@@ -1,0 +1,522 @@
+
+VCDekho
+News Portal — Automated Content System
+
+
+Document type
+Product Requirements Document (PRD)
+Prepared for
+Antigravity Development Team
+Product
+VCDekho News Portal
+Phase
+MVP
+Version
+1.0 — June 2026
+
+
+1. Overview
+
+1.1 What is VCDekho?
+VCDekho is a platform built for founders to discover, research, and connect with venture capital firms. It provides structured profiles for VC firms — investment thesis, portfolio, team, cheque size — giving founders a single place to understand who is investing and in what.
+
+1.2 What is the News Portal?
+The VCDekho News Portal is an automated content system that publishes VC and startup funding news directly on the VCDekho website. Every article is scraped from trusted external sources, processed by an AI content engine, reviewed by the VCDekho team, and published as a formatted news article — without manually writing each piece.
+
+The news portal serves two goals:
+	•	Keep founders visiting VCDekho regularly by giving them a reason to return — fresh, relevant VC news daily.
+	•	Build SEO authority for VCDekho by generating keyword-rich content that links to existing VC firm profile pages.
+
+1.3 MVP Scope
+This document covers Phase 1 (MVP) only. The MVP is intentionally narrow — the goal is to get a working pipeline live quickly, validate article quality, and then scale.
+
+In scope (MVP)
+Out of scope (later phases)
+4 scraped news sources
+Social media distribution (X, LinkedIn)
+Daily automated scrape + deduplicate
+Newsletter / email digest
+AI article generation via Anthropic API
+Events API scraping
+SEO metadata and internal links
+Automatic publishing (no review)
+Manual review queue before publish
+Reader comments or reactions
+Publish to VCDekho website only
+Monetisation or sponsored content
+
+
+2. Data Sources
+
+VCDekho is a platform built specifically for Indian founders, Indian VCs, and the Indian funding ecosystem. All four MVP sources are therefore India-first — publications that cover Indian startup funding as their primary beat, not as a subset of global tech news.
+
+Source selection principle 
+Every source chosen covers the Indian VC and startup ecosystem as its core focus. Global-first sources like TechCrunch or VentureBeat have been deliberately excluded from the MVP — they cover Indian funding only occasionally and inconsistently. VCDekho's edge is depth on India, not breadth across the world.
+
+2.1 Source overview
+Source
+Access method
+Content type
+Why included
+Inc42
+RSS feed
+Indian startup funding, VC, and policy news
+India's #1 startup media platform; 10M+ monthly readers; dedicated funding coverage with named investors and round details
+Entrackr
+RSS feed
+Investigative Indian funding and VC news
+Hard-hitting, early-scoop coverage of Indian funding rounds, startup closures, and VC firm activity — no PR fluff
+YourStory
+RSS feed
+Founder stories and Indian funding rounds
+India's largest founder-facing platform; strong on seed and early-stage rounds that other outlets miss
+VCCircle
+RSS feed
+Indian PE, VC deals, exits, and fund news
+Most authoritative source on Indian VC fund launches, LP activity, M&A, and late-stage deals — backed by HT Media
+
+2.2 Source details
+Inc42 — RSS
+Feed URL: https://inc42.com/feed/
+Funding-specific feed: https://inc42.com/buzz/feed/ (breaking news, faster updates)
+Update frequency: Multiple times per day; one of the highest-volume Indian startup feeds
+Fields available: Title, link, published date, author, full article body in RSS
+Filter logic: Accept items where title or category tag contains: funding, raises, seed, Series A/B/C/D, round, VC, venture, fund, backed, investment, crore, lakh, million, unicorn, IPO, acquisition
+Body availability: Full body available directly in RSS — no secondary fetch needed.
+Rate limit: None for RSS polling. Poll once per day at 6:00 AM IST.
+Note: Inc42 has a premium subscription layer (Inc42 Plus) for research reports. The public RSS feed covers all breaking news and funding articles without a paywall.
+
+Entrackr — RSS
+Feed URL: https://entrackr.com/feed/
+Update frequency: Several times per day; often the first to break Indian funding news
+Fields available: Title, link, published date, full body
+Filter logic: Accept all items — Entrackr is VC/startup focused by default. Optionally filter out category 'opinion' to keep only hard news.
+Body availability: Full body in RSS feed — no secondary fetch needed.
+Rate limit: None. Poll once per day.
+Note: Entrackr is especially valuable for investigative pieces — funding disputes, startup shutdowns, internal VC firm changes — which most platforms skip. These make for high-engagement articles on VCDekho.
+
+YourStory — RSS
+Feed URL: https://yourstory.com/feed
+Funding-specific feed: https://yourstory.com/tag/funding/feed (if available; fall back to main feed with keyword filter)
+Update frequency: Multiple times per day; very high volume — filter aggressively
+Fields available: Title, link, published date, author, excerpt or full body
+Filter logic: YourStory covers a broad range of startup topics. Apply strict keyword filtering: only accept items where the title explicitly contains funding amount terms (crore, lakh, million, billion, $, Rs) OR stage terms (seed, pre-seed, Series A/B/C/D, angel round, bridge round).
+Body availability: RSS may provide excerpts only. If body is truncated, perform a secondary HTTP GET to the article URL to fetch the full body before AI processing.
+Rate limit: None for RSS. If doing secondary fetches, add a 2-second delay between requests to be a polite crawler.
+Note: YourStory excels at covering seed and pre-seed rounds from Tier 2 and Tier 3 Indian cities — a segment that Inc42 and Entrackr sometimes miss. This is particularly relevant for VCDekho's founder audience.
+
+VCCircle — RSS
+Feed URL: https://www.vccircle.com/feed
+Update frequency: Several times per day; more measured volume than Inc42 or YourStory
+Fields available: Title, link, published date, excerpt or full body
+Filter logic: Accept all items — VCCircle covers only PE/VC, M&A, and startup finance by default. No additional keyword filter needed.
+Body availability: VCCircle has a partial paywall. RSS typically provides a full excerpt (300-500 words) which is sufficient for AI fact extraction. If the excerpt is too short, flag the item for manual review rather than scraping the paywalled full article.
+Rate limit: None for RSS. Poll once per day.
+Note: VCCircle is the go-to source for VC fund launches (first close, final close, fund size), LP announcements, and late-stage PE deals — content that no other Indian source covers as systematically. This directly feeds VCDekho's 'VC firm news' category.
+
+
+3. System Architecture
+
+The full pipeline has five stages. Each stage is independent — a failure in one should not cascade and should be logged for retry.
+
+3.1 Pipeline overview
+Stage
+Name
+Trigger
+Output
+1
+Scrape + fetch
+Daily cron (6:00 AM IST)
+Raw content rows in DB
+2
+Deduplicate + filter
+After stage 1 completes
+Filtered queue of new items
+3
+AI processing
+After stage 2 completes
+Draft article + metadata per item
+4
+Review queue
+Manual — triggered by team
+Approved articles ready to publish
+5
+Publish
+On approval click
+Live article on VCDekho website
+
+3.2 Stage 1 — Scrape and fetch
+A background job runs every day at 6:00 AM IST. It queries all four sources and stores the raw results in the database.
+
+For each source:
+	•	Parse the RSS feed or call the API.
+	•	For each item returned, check if the source_url already exists in the raw_content table.
+	•	If new: fetch the full article body (for VentureBeat, this requires an HTTP GET to the article URL). Store as a new row with status = 'raw'.
+	•	If already exists: skip.
+	•	Log total fetched, total new, and any errors to the job log table.
+
+3.3 Stage 2 — Deduplicate and filter
+After scraping, a second pass runs to remove noise and near-duplicates across sources.
+
+Deduplication: Compare new items against all items from the last 14 days. If the title similarity score is above 85% (using a fuzzy match or simple token overlap), mark the newer item as status = 'duplicate' and skip it. This handles the common case where TechCrunch and VentureBeat both cover the same funding round.
+
+Relevance filter: Score each raw item. Accept if it scores 2 or more of the following signals:
+	•	Title contains a funding keyword (raise, round, seed, Series A/B/C, fund, backs, invests, VC, venture)
+	•	Title contains a dollar/rupee amount ($, ₹, crore, lakh, million, billion)
+	•	Source is Crunchbase (structured data is always relevant)
+	•	Source is Entrackr (India-focused, always relevant)
+
+Items passing the filter move to status = 'queued'.
+
+3.4 Stage 3 — AI processing
+Each queued item is processed by three sequential prompts sent to the Anthropic API (claude-sonnet-4-6). The full prompt templates are in Section 4.
+
+Prompt 1 — Fact extraction: Given the raw title and body, extract: startup name, amount raised, currency, round stage, lead investor(s), other investors, country/city, industry, and one-line description of what the startup does.
+Prompt 2 — Article generation: Given the extracted facts, write a 250-350 word news article in plain journalistic English. Structure: punchy first sentence, key facts in paragraph 2, investor context in paragraph 3, closing 'why it matters' line.
+Prompt 3 — SEO and metadata: Given the article, generate: URL slug, meta title (60 chars max), meta description (155 chars max), 5-8 tags, and a list of VC firm and founder names mentioned (used for internal linking).
+
+After all three prompts succeed, the item is updated to status = 'draft' and a new row is created in the articles table with all generated fields.
+
+Important 
+Each item should be processed sequentially, not in parallel, to avoid hitting Anthropic API rate limits. Process a maximum of 10 items per day in the MVP — this is well above the target of 1 article per day and gives room to discard poor quality drafts.
+
+3.5 Stage 4 — Review queue
+The review queue is an internal admin page accessible only to the VCDekho team. It shows all articles with status = 'draft' and allows:
+	•	Reading the full generated article
+	•	Editing the article inline
+	•	Approving (sets status = 'approved', triggers Stage 5)
+	•	Discarding (sets status = 'discarded', removes from queue)
+
+The review page should show: article title, source name, source URL, draft article body, SEO slug, meta description, and tags. No other data is needed at MVP.
+
+3.6 Stage 5 — Publish
+On approval, the article is published to the VCDekho website via the Antigravity CMS. The publish action should:
+	•	Create a new article record in the CMS with all fields populated (see Section 5 — Data Schema).
+	•	Set the article status to 'published' and record the published_at timestamp.
+	•	Resolve internal links: for each VC firm or founder name identified in Step 3 (Prompt 3), check if a VCDekho profile page exists for that entity. If it does, wrap occurrences of that name in the article body with a hyperlink to the profile page.
+	•	The article is immediately live on the VCDekho website at its slug URL.
+
+
+4. AI Prompt Templates
+
+These are the exact prompts to send to the Anthropic API at each stage. Use model: claude-sonnet-4-6. Max tokens: 1000 per call.
+
+4.1 Prompt 1 — Fact extraction
+System prompt:
+You are a VC and startup news analyst. Extract structured facts from
+the article below. Return ONLY a valid JSON object with these keys:
+startup_name, amount_raised, currency, stage, lead_investors (array),
+other_investors (array), country, city, industry, startup_description
+(one sentence, max 20 words). If a field is not mentioned, use null.
+Do not include any text outside the JSON object.
+
+User prompt:
+Article title: {{title}}
+
+Article body:
+{{body}}
+
+4.2 Prompt 2 — Article generation
+System prompt:
+You are a financial journalist writing for VCDekho, a platform for
+Indian founders. Write a news article based on the funding facts below.
+Rules:
+- Length: 250 to 350 words
+- Tone: plain, factual, no hype or jargon
+- Structure: hook sentence -> funding facts -> investor context -> why it matters
+- Do not start with 'In a significant...' or 'In a move that...'
+- Do not invent facts not present in the input
+- Do not include any preamble or explanation — output the article only
+
+User prompt:
+Startup: {{startup_name}}
+Amount raised: {{amount_raised}} {{currency}}
+Stage: {{stage}}
+Lead investors: {{lead_investors}}
+Other investors: {{other_investors}}
+Country: {{country}}, City: {{city}}
+Industry: {{industry}}
+What the startup does: {{startup_description}}
+Original source URL: {{source_url}}
+
+4.3 Prompt 3 — SEO and metadata
+System prompt:
+You are an SEO specialist. Given the article below, return ONLY a valid
+JSON object with these keys:
+- slug: URL-friendly string, lowercase, hyphens, max 70 chars
+- meta_title: string, max 60 chars, includes startup name and round
+- meta_description: string, max 155 chars, compelling, includes key terms
+- tags: array of 5 to 8 strings (e.g. 'Series A', 'Fintech', 'India', VC firm names)
+- internal_link_entities: array of VC firm and investor names mentioned
+  in the article that may have a profile on VCDekho
+Do not include any text outside the JSON object.
+
+User prompt:
+Article:
+{{generated_article}}
+
+
+5. Database Schema
+
+Two primary tables are needed for the MVP. Both should be created in the existing Antigravity / VCDekho database.
+
+5.1 Table: raw_content
+Stores every scraped item before AI processing.
+
+Column
+Type
+Description
+id
+UUID (PK)
+Auto-generated primary key
+source_name
+TEXT
+One of: techcrunch, crunchbase, entrackr, venturebeat
+source_url
+TEXT (UNIQUE)
+Original article URL — used for deduplication
+title
+TEXT
+Original headline from source
+body
+TEXT
+Full article body text (plain text, HTML stripped)
+published_at_source
+TIMESTAMPTZ
+Publish date from the source RSS or API
+scraped_at
+TIMESTAMPTZ
+When our scraper fetched this item
+status
+TEXT
+One of: raw, queued, duplicate, discarded, processing, done
+relevance_score
+INTEGER
+Score from the filter stage (0-4). Items with score >= 2 are queued.
+error_log
+TEXT
+Null if no error. Error message string if any stage failed on this item.
+
+5.2 Table: articles
+Stores the AI-generated article and all metadata. One row per published (or draft) article.
+
+Column
+Type
+Description
+id
+UUID (PK)
+Auto-generated primary key
+raw_content_id
+UUID (FK)
+References raw_content.id — the source item
+title
+TEXT
+Article headline (may be edited in review queue)
+body
+TEXT
+Full article body with HTML formatting and internal hyperlinks
+slug
+TEXT (UNIQUE)
+URL slug, e.g. 'sequoia-backs-startup-xyz-series-a'
+meta_title
+TEXT
+SEO title tag, max 60 chars
+meta_description
+TEXT
+SEO meta description, max 155 chars
+tags
+TEXT[]
+Array of tag strings
+category
+TEXT
+One of: funding-round, vc-firm, founder, event, deep-read
+source_name
+TEXT
+Source attribution shown on article page
+source_url
+TEXT
+Link back to original source article (shown as citation)
+internal_link_entities
+TEXT[]
+VC/founder names resolved to profile links
+status
+TEXT
+One of: draft, approved, published, discarded
+created_at
+TIMESTAMPTZ
+When AI generated this draft
+reviewed_at
+TIMESTAMPTZ
+When team approved or discarded
+published_at
+TIMESTAMPTZ
+When article went live on VCDekho
+
+5.3 Table: job_log
+Tracks each daily pipeline run for debugging and monitoring.
+
+Column
+Type
+Description
+id
+UUID (PK)
+Auto-generated
+run_at
+TIMESTAMPTZ
+When the cron job started
+items_fetched
+INTEGER
+Total raw items scraped across all sources
+items_queued
+INTEGER
+Items passing the relevance filter
+items_duplicated
+INTEGER
+Items skipped as duplicates
+articles_generated
+INTEGER
+Drafts successfully created by AI
+errors
+TEXT
+JSON array of error strings for any failures
+status
+TEXT
+One of: running, completed, failed
+
+
+6. Article Page Design
+
+Each published article lives at a URL in the format: vcdekho.com/news/[slug]
+
+6.1 Required page elements
+	•	Article headline (H1)
+	•	Category badge (e.g. Funding Round, VC Firm, Founder)
+	•	Published date
+	•	Source attribution line: 'Source: TechCrunch' with a hyperlink to the original article
+	•	Article body with internal hyperlinks to VCDekho VC profiles
+	•	Tags displayed as clickable chips (links to tag-filtered news list)
+	•	Related articles section (3 cards, same category or shared tags)
+
+6.2 SEO requirements
+	•	Canonical URL: vcdekho.com/news/[slug]
+	•	Title tag: meta_title from the articles table
+	•	Meta description: meta_description from the articles table
+	•	Open Graph tags: og:title, og:description, og:url
+	•	Schema markup: NewsArticle (schema.org) with headline, datePublished, author (VCDekho), publisher
+
+6.3 News index page
+A news index page at vcdekho.com/news should display all published articles in reverse chronological order. It should support filtering by category (Funding Rounds / VC Firms / Founders / Events). This page should also be SEO-optimised with a page title and meta description targeting VC and startup funding news in India.
+
+6.4 Internal linking logic
+When an article is published, the system checks the internal_link_entities array (from Prompt 3 output) against VCDekho's existing VC profile slugs. For each match, it finds the first occurrence of that entity's name in the article body and wraps it in an anchor tag pointing to the VCDekho profile.
+
+Example: if the article mentions 'Sequoia Capital India' and a profile exists at vcdekho.com/vc/sequoia-capital-india, the first occurrence of 'Sequoia Capital India' in the body becomes a hyperlink. Only the first occurrence is linked — not every mention.
+
+
+7. Admin Review Queue
+
+The review queue is a simple internal admin page accessible only to authenticated VCDekho team members. It does not need to be polished — functional is sufficient for MVP.
+
+7.1 Queue list view
+A table of all articles with status = 'draft', showing:
+	•	Article title
+	•	Source name
+	•	Generated at timestamp
+	•	Approve button
+	•	Discard button
+	•	Edit link (opens detail view)
+
+7.2 Article detail view
+Clicking an article opens a detail view showing:
+	•	Full article body (editable text area)
+	•	Slug (editable)
+	•	Meta title and description (editable)
+	•	Tags (editable)
+	•	Source URL (read-only link)
+	•	Approve and Discard buttons
+
+UX note 
+The review queue does not need to be beautiful. A simple table with inline editing and two action buttons is sufficient. The team will spend under 2 minutes per article in the queue.
+
+
+8. Phased Rollout
+
+
+Phase
+Timeline
+Deliverables
+Phase 1 (MVP)
+Weeks 1-2
+4 source scrapers live, DB schema created, daily cron job running, raw content storing correctly
+Phase 1 (MVP)
+Weeks 3-4
+AI pipeline live (3 prompts), review queue functional, first articles published to VCDekho news page
+Phase 2
+Month 2
+Internal linking to VC profiles live, tag-filtered news index, SEO schema markup, article quality review and prompt tuning
+Phase 3
+Month 3
+Add 4-6 more sources, increase to 3-5 articles per day, related articles section, auto-categorisation improvement
+Phase 4
+Month 4+
+Social distribution (X, LinkedIn), weekly digest newsletter, events scraping, fully automated publishing for low-risk categories
+
+
+9. Technical Stack
+
+All components should be built within the existing Antigravity infrastructure. No new external services are required for the MVP beyond the two API keys listed below.
+
+Component
+Technology
+Notes
+Daily cron job
+Antigravity background jobs / scheduler
+Trigger at 6:00 AM IST daily
+RSS parser
+Any Node.js/Python RSS library
+e.g. rss-parser (Node) or feedparser (Python)
+HTTP fetch (full body)
+Standard HTTP client
+For VentureBeat full-body fetch; respect robots.txt
+Database
+Existing VCDekho Postgres
+Add 3 new tables (see Section 5)
+AI API
+Anthropic API (claude-sonnet-4-6)
+API key required — obtain from console.anthropic.com
+RSS parser
+Any Node.js/Python RSS library
+e.g. rss-parser (Node) or feedparser (Python). All 4 sources use RSS.
+Review queue UI
+Antigravity CMS admin panel
+Simple internal page, no public access
+Article publish
+Antigravity CMS
+Articles table in CMS, rendered at /news/[slug]
+
+9.1 API keys needed
+Action required 
+One API key must be obtained before development begins:
+Anthropic API key — console.anthropic.com (paid, usage-based pricing). All four news sources (Inc42, Entrackr, YourStory, VCCircle) are accessible via free RSS feeds — no other API keys are required for the MVP.
+
+
+10. Open Questions
+
+The following decisions are needed before or during development. The VCDekho team should answer these before the Antigravity team begins implementation.
+
+Question
+Why it matters
+Should articles be published under a VCDekho byline, or attributed to the original source author?
+Affects how the article is displayed and the NewsArticle schema markup
+Is there a minimum article quality bar for auto-discard? (e.g. discard if word count < 150)
+Reduces manual review load for very short or broken AI outputs
+Should the news portal be accessible without logging in to VCDekho?
+Affects SEO crawlability — public access is strongly recommended for SEO
+Which VCDekho profile pages already exist and in what format are their slugs?
+Required for the internal linking logic in Stage 5
+Is there a brand style guide for the news article page design?
+Needed before frontend work begins on the article page template
+
+
+End of document
+VCDekho News Portal PRD v1.0 — For Antigravity team use only

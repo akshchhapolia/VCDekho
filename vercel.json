@@ -1,0 +1,35 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/news/:slug",
+      "destination": "/api/news/article?slug=:slug"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/scrape",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/cron/ai-process",
+      "schedule": "30 6 * * *"
+    },
+    {
+      "path": "/api/cron/scrape",
+      "schedule": "30 12 * * *"
+    },
+    {
+      "path": "/api/cron/ai-process",
+      "schedule": "10 13 * * *"
+    },
+    {
+      "path": "/api/cron/daily-digest",
+      "schedule": "40 13 * * *"
+    }
+  ]
+}

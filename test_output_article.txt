@@ -1,0 +1,11 @@
+Karo Sambhav, a Delhi NCR-based extended producer responsibility (EPR) platform, has raised ₹56 crore in a Pre-Series A funding round led by Rainmatter.
+
+The company designs and runs EPR programmes across multiple waste categories, including e-waste, batteries, plastics, and glass. These programmes help producers, importers, and brand owners meet their legal recycling obligations under India's waste management regulations. Karo Sambhav essentially sits between the companies that generate waste liability and the recyclers who process the material, managing the compliance chain end to end.
+
+The fresh capital will be used to advance the company's work in converting e-waste into critical raw materials — components such as lithium, cobalt, and copper that feed back into manufacturing supply chains.
+
+Rainmatter, the investment arm of trading platform Zerodha, has been building a portfolio focused on climate and sustainability. The fund has backed a range of startups working on clean energy, sustainable agriculture, and environmental services. Its bet on Karo Sambhav fits that broader pattern of investing in businesses that address regulatory and environmental gaps in the Indian market.
+
+The funding comes at a time when India's e-waste problem is growing sharply. The country generates millions of tonnes of electronic waste each year, much of which ends up being processed through the informal sector under unsafe conditions. Formalising that chain — and recovering valuable materials in the process — is both a regulatory priority and an economic opportunity.
+
+For founders tracking the cleantech space, Karo Sambhav's raise signals continued investor appetite for businesses built around compliance infrastructure and the circular economy. Rather than a pure technology play, it is a systems and services model that works with existing regulatory frameworks to create measurable environmental outcomes. That approach, grounded in policy rather than product alone, may prove durable as India tightens enforcement of its waste management rules.

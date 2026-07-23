@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="scrollable-page">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ23KLLWFM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BJ23KLLWFM');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VC & Startup Funding News | VC Dekho</title>
+    <meta name="description" content="Latest VC funding news, startup rounds, and investor insights from India's startup ecosystem.">
+    <link rel="icon" type="image/png" href="/assets/logoforvc.png">
+    <link rel="stylesheet" href="/style.css?v=5">
+</head>
+<body class="scrollable-page">
+    <div class="app-container">
+        <header class="site-header">
+            <a href="/" class="logo-container">
+                <img src="/assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img">
+            </a>
+            <button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="main-nav" id="navigation-bar">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/blog" class="nav-link">Blog</a>
+                <a href="/guide/raising-vc-funding-india" class="nav-link">Fundraising Guide</a>
+                <a href="/news" class="nav-link active">News</a>
+                <a href="/contact" class="nav-link">Contact</a>
+            </nav>
+        </header>
+
+        <main class="hero-showcase" style="padding-top: 120px; padding-bottom: 80px;">
+            <!-- Ambient Glow Background -->
+            <div class="ambient-bg-wrapper">
+                <div class="waitlist-bg" id="waitlist-ambient-bg">
+                    <div class="glow-orb orb-1"></div>
+                    <div class="glow-orb orb-2"></div>
+                    <div class="glow-orb orb-3"></div>
+                </div>
+            </div>
+            
+            <div style="max-width: 1000px; margin: 0 auto; text-align: left; position: relative; z-index: 10; padding: 0 20px;">
+                <!-- Breadcrumbs -->
+                <div style="margin-bottom: 25px; font-size: 0.9rem; color: var(--color-text-muted);">
+                    <a href="/" style="color: var(--color-text-muted); text-decoration: none;">Home</a> 
+                    <span style="margin: 0 8px;">›</span> 
+                    <span style="color: var(--color-accent-orange);">News</span>
+                </div>
+
+                <h1 class="blog-title" style="font-size: 3.5rem; margin-bottom: 10px;">Latest VC News</h1>
+                <p style="color: var(--color-text-muted); margin-bottom: 50px; font-size: 1.15rem; max-width: 600px;">Daily funding rounds, VC firm updates, and startup news from across India's vibrant ecosystem.</p>
+
+                <div id="news-container">
+                    <p style="color: var(--color-text-muted);">Loading news...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/app.js"></script>
+    <script>
+        async function fetchNews() {
+            try {
+                const res = await fetch('/api/news/list');
+                const articles = await res.json();
+                
+                const container = document.getElementById('news-container');
+                if (articles.length === 0) {
+                    container.innerHTML = '<p style="color: var(--color-text-muted);">No news published yet.</p>';
+                    return;
+                }
+
+                let html = '';
+                articles.forEach((a, index) => {
+                    const dateStr = new Date(a.published_at).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' });
+                    const catStr = a.category === 'funding-round' ? 'Funding Round' : a.category.replace('-', ' ');
+                    
+                    if (index === 0) {
+                        // Featured Card
+                        html += `
+                            <a href="/news/${a.slug}" class="news-feed-card featured-news-card">
+                                ${a.image_url ? `<div class="news-image"><img src="${a.image_url}" alt="${a.title}"></div>` : ''}
+                                <div class="news-content">
+                                    <div class="news-meta">
+                                        <span class="news-category">${catStr}</span>
+                                        <span class="news-date-source">${dateStr} • ${a.source_name}</span>
+                                    </div>
+                                    <h2 class="news-title" style="font-size: 2.2rem;">${a.title}</h2>
+                                    ${a.meta_description ? `<p class="news-desc" style="color: var(--color-text-muted); margin-top: 15px; font-size: 1.1rem; line-height: 1.6;">${a.meta_description}</p>` : ''}
+                                </div>
+                            </a>
+                        `;
+                    } else {
+                        // Grid Cards
+                        if (index === 1) html += '<div class="news-grid">';
+                        html += `
+                            <a href="/news/${a.slug}" class="news-feed-card grid-news-card">
+                                ${a.image_url ? `<div class="news-image"><img src="${a.image_url}" alt="${a.title}"></div>` : ''}
+                                <div class="news-content" style="padding: 25px;">
+                                    <div class="news-meta" style="margin-bottom: 10px;">
+                                        <span class="news-category">${catStr}</span>
+                                    </div>
+                                    <h2 class="news-title" style="font-size: 1.3rem; margin-bottom: 15px;">${a.title}</h2>
+                                    <div class="news-date-source" style="margin-top: auto; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05);">${dateStr} • ${a.source_name}</div>
+                                </div>
+                            </a>
+                        `;
+                        if (index === articles.length - 1) html += '</div>';
+                    }
+                });
+
+                container.innerHTML = html;
+            } catch (err) {
+                console.error(err);
+                document.getElementById('news-container').innerHTML = '<p style="color: #ff6b6b;">Failed to load news.</p>';
+            }
+        }
+
+        fetchNews();
+    </script>
+</body>
+</html>
