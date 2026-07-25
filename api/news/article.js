@@ -179,6 +179,18 @@ module.exports = async function handler(req, res) {
         }
 
         const publishDate = new Date(article.published_at).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' });
+        const isBlog = article.category === 'blog';
+        const pathPrefix = isBlog ? 'blog' : 'news';
+        const sectionLabel = isBlog
+            ? ((article.tags || []).find(t => t === 'Fundraising Fundamentals' || t === 'VC Research') || 'Founder Guide')
+            : (article.category === 'funding-round' ? 'Funding Round' : article.category === 'daily-digest' ? 'Daily Digest' : 'News');
+        const schemaType = isBlog ? 'BlogPosting' : 'NewsArticle';
+        const titleSuffix = isBlog ? 'VC Dekho Blog' : 'VC Dekho News';
+        const blogNavActive = isBlog ? 'active' : '';
+        const newsNavActive = isBlog ? '' : 'active';
+        const sourceLine = isBlog
+            ? `<span>${publishDate}</span><span style="width: 4px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 50%;"></span><span>VC Dekho Editorial</span>`
+            : `<span>📅 ${publishDate}</span><span style="width: 4px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 50%;"></span><span>Source: <a href="${article.source_url}" target="_blank" style="color: var(--color-accent-orange); text-decoration: none;">${article.source_name}</a></span>`;
 
         const html = `
 <!DOCTYPE html>
@@ -194,23 +206,24 @@ module.exports = async function handler(req, res) {
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${article.meta_title} | VC Dekho News</title>
+    <title>${article.meta_title} | ${titleSuffix}</title>
     <meta name="description" content="${article.meta_description}">
     
     <link rel="icon" type="image/png" href="/assets/logoforvc.png">
     <link rel="stylesheet" href="/style.css?v=5">
+    <link rel="canonical" href="https://vcdekho.com/${pathPrefix}/${article.slug}">
     
     <meta property="og:title" content="${article.meta_title}">
     <meta property="og:description" content="${article.meta_description}">
-    <meta property="og:url" content="https://vcdekho.com/news/${article.slug}">
+    <meta property="og:url" content="https://vcdekho.com/${pathPrefix}/${article.slug}">
     <meta property="og:type" content="article">
     <meta property="og:image" content="https://vcdekho.com/assets/logoforvc.png">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "NewsArticle",
-      "headline": "${article.title}",
+      "@type": "${schemaType}",
+      "headline": "${String(article.title).replace(/"/g, '\\"')}",
       "datePublished": "${article.published_at}",
       "author": { "@type": "Organization", "name": "VC Dekho" },
       "publisher": { "@type": "Organization", "name": "VC Dekho", "logo": { "@type": "ImageObject", "url": "https://vcdekho.com/assets/logoforvc.png" } }
@@ -228,9 +241,9 @@ module.exports = async function handler(req, res) {
             </button>
             <nav class="main-nav" id="navigation-bar">
                 <a href="/" class="nav-link">Home</a>
-                <a href="/blog" class="nav-link">Blog</a>
+                <a href="/blog" class="nav-link ${blogNavActive}">Blog</a>
                 <a href="/guide/raising-vc-funding-india" class="nav-link">Fundraising Guide</a>
-                <a href="/news" class="nav-link active">News</a>
+                <a href="/news" class="nav-link ${newsNavActive}">News</a>
                 <a href="/contact" class="nav-link">Contact</a>
             </nav>
         </header>
@@ -250,16 +263,14 @@ module.exports = async function handler(req, res) {
                 <div style="margin-bottom: 25px; font-size: 0.9rem; color: var(--color-text-muted);">
                     <a href="/" style="color: var(--color-text-muted); text-decoration: none;">Home</a> 
                     <span style="margin: 0 8px;">›</span> 
-                    <a href="/news" style="color: var(--color-text-muted); text-decoration: none;">News</a> 
+                    <a href="/${pathPrefix}" style="color: var(--color-text-muted); text-decoration: none;">${isBlog ? 'Blog' : 'News'}</a> 
                     <span style="margin: 0 8px;">›</span> 
-                    <span style="color: var(--color-accent-orange);">${article.category === 'funding-round' ? 'Funding Round' : 'VC Firm'}</span>
+                    <span style="color: var(--color-accent-orange);">${sectionLabel}</span>
                 </div>
 
                 <h1 class="blog-title" style="font-size: 2.8rem; margin-bottom: 20px; color: var(--color-text-light); line-height: 1.25; letter-spacing: -0.02em;">${article.title}</h1>
-                <p style="color: var(--color-text-muted); margin-bottom: 30px; font-size: 1.05rem; display: flex; align-items: center; gap: 15px;">
-                    <span>📅 ${publishDate}</span>
-                    <span style="width: 4px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 50%;"></span>
-                    <span>Source: <a href="${article.source_url}" target="_blank" style="color: var(--color-accent-orange); text-decoration: none;">${article.source_name}</a></span>
+                <p style="color: var(--color-text-muted); margin-bottom: 30px; font-size: 1.05rem; display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                    ${sourceLine}
                 </p>
                 
                 ${article.image_url ? `
@@ -287,7 +298,7 @@ module.exports = async function handler(req, res) {
                 <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
                     <h3 style="color: var(--color-text-light); margin-bottom: 15px; font-size: 1.2rem;">Topics</h3>
                     <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                        ${(article.tags || []).map(t => '<span style="padding: 8px 14px; font-size: 0.85rem; border-radius: 20px; background: rgba(255,255,255,0.06); color: var(--color-text-light); border: 1px solid rgba(255,255,255,0.1); transition: all 0.2s ease; cursor: pointer;">#' + t + '</span>').join('')}
+                        ${(article.tags || []).filter(t => t && !String(t).startsWith('topic:')).map(t => '<span style="padding: 8px 14px; font-size: 0.85rem; border-radius: 20px; background: rgba(255,255,255,0.06); color: var(--color-text-light); border: 1px solid rgba(255,255,255,0.1); transition: all 0.2s ease; cursor: pointer;">#' + t + '</span>').join('')}
                     </div>
                 </div>
 
