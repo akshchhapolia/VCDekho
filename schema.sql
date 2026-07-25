@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS articles (
     category TEXT,
     source_name TEXT,
     source_url TEXT,
+    image_url TEXT,
     internal_link_entities TEXT[],
     status TEXT NOT NULL DEFAULT 'draft', -- draft, approved, published, discarded
     created_at TIMESTAMPTZ DEFAULT NOW(),
