@@ -154,6 +154,38 @@ const MOCK_ARTICLES = {
     }
 };
 
+function formatRelatedDate(dateStr) {
+    if (!dateStr) return '';
+    const d = new Date(dateStr);
+    if (Number.isNaN(d.getTime())) return '';
+
+    const now = new Date();
+    const startToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const startThat = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    const diffDays = Math.round((startToday - startThat) / 86400000);
+
+    if (diffDays === 0) return 'Today';
+    if (diffDays === 1) return 'Yesterday';
+    return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+function relatedCategoryLabel(item) {
+    if (item.category === 'blog') {
+        return (item.tags || []).find(t => t === 'Fundraising Fundamentals' || t === 'VC Research') || 'Founder Guide';
+    }
+    if (item.category === 'funding-round') return 'Funding Round';
+    if (item.category === 'daily-digest') return 'Daily Digest';
+    return 'News';
+}
+
+function escapeHtml(value) {
+    return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
 module.exports = async function handler(req, res) {
     const { slug } = req.query;
 
@@ -162,6 +194,7 @@ module.exports = async function handler(req, res) {
     }
 
     let article;
+    let relatedItems = [];
 
     try {
         if (!process.env.DATABASE_URL) {
@@ -169,6 +202,7 @@ module.exports = async function handler(req, res) {
             if (!article) {
                 return res.status(404).send('<h1>404 - Article Not Found (Mock Mode)</h1>');
             }
+            relatedItems = Object.values(MOCK_ARTICLES).filter(a => a.slug !== slug).slice(0, 2);
         } else {
             const { rows } = await db.query(`SELECT * FROM articles WHERE slug = $1 AND status = 'published'`, [slug]);
             
@@ -176,6 +210,37 @@ module.exports = async function handler(req, res) {
                 return res.status(404).send('<h1>404 - Article Not Found</h1>');
             }
             article = rows[0];
+
+            // Prefer same-category related posts; fill with other published items if needed
+            const relatedQuery = article.category === 'blog'
+                ? `SELECT title, slug, category, source_name, published_at, tags
+                   FROM articles
+                   WHERE status = 'published' AND slug <> $1 AND category = 'blog'
+                   ORDER BY published_at DESC
+                   LIMIT 2`
+                : `SELECT title, slug, category, source_name, published_at, tags
+                   FROM articles
+                   WHERE status = 'published' AND slug <> $1 AND category IS DISTINCT FROM 'blog'
+                   ORDER BY published_at DESC
+                   LIMIT 2`;
+
+            const relatedRes = await db.query(relatedQuery, [slug]);
+            relatedItems = relatedRes.rows;
+
+            if (relatedItems.length < 2) {
+                const fillRes = await db.query(
+                    `SELECT title, slug, category, source_name, published_at, tags
+                     FROM articles
+                     WHERE status = 'published' AND slug <> $1
+                     ORDER BY published_at DESC
+                     LIMIT $2`,
+                    [slug, 2 - relatedItems.length]
+                );
+                const seen = new Set(relatedItems.map(r => r.slug));
+                for (const row of fillRes.rows) {
+                    if (!seen.has(row.slug)) relatedItems.push(row);
+                }
+            }
         }
 
         const publishDate = new Date(article.published_at).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -188,9 +253,27 @@ module.exports = async function handler(req, res) {
         const titleSuffix = isBlog ? 'VC Dekho Blog' : 'VC Dekho News';
         const blogNavActive = isBlog ? 'active' : '';
         const newsNavActive = isBlog ? '' : 'active';
+        const relatedHeading = isBlog ? 'Related Guides' : 'Related News';
         const sourceLine = isBlog
             ? `<span>${publishDate}</span><span style="width: 4px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 50%;"></span><span>VC Dekho Editorial</span>`
             : `<span>📅 ${publishDate}</span><span style="width: 4px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 50%;"></span><span>Source: <a href="${article.source_url}" target="_blank" style="color: var(--color-accent-orange); text-decoration: none;">${article.source_name}</a></span>`;
+
+        const relatedCardsHtml = relatedItems.map(item => {
+            const itemIsBlog = item.category === 'blog';
+            const href = `/${itemIsBlog ? 'blog' : 'news'}/${item.slug}`;
+            const label = relatedCategoryLabel(item);
+            const dateLabel = formatRelatedDate(item.published_at);
+            const source = itemIsBlog ? 'VC Dekho' : (item.source_name || 'VC Dekho');
+            return `
+                        <a href="${href}" style="text-decoration: none; display: block; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; transition: transform 0.2s ease, background 0.2s ease;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 10px;">
+                                <span style="font-size: 0.75rem; color: var(--color-accent-orange); text-transform: uppercase; letter-spacing: 1px;">${escapeHtml(label)}</span>
+                                <span style="font-size: 0.75rem; color: var(--color-text-muted); white-space: nowrap;">${escapeHtml(dateLabel)}</span>
+                            </div>
+                            <h4 style="color: var(--color-text-light); margin: 0 0 10px 0; font-size: 1.1rem; line-height: 1.4;">${escapeHtml(item.title)}</h4>
+                            <p style="color: var(--color-text-muted); margin: 0; font-size: 0.9rem;">${escapeHtml(source)}</p>
+                        </a>`;
+        }).join('');
 
         const html = `
 <!DOCTYPE html>
@@ -302,29 +385,16 @@ module.exports = async function handler(req, res) {
                     </div>
                 </div>
 
-                <!-- Related News Section -->
+                ${relatedCardsHtml ? `
+                <!-- Related Section -->
                 <div style="margin-top: 70px;">
-                    <h2 style="color: var(--color-text-light); margin-bottom: 25px; font-size: 1.8rem; border-bottom: 2px solid var(--color-accent-orange); padding-bottom: 10px; display: inline-block;">Related News</h2>
+                    <h2 style="color: var(--color-text-light); margin-bottom: 25px; font-size: 1.8rem; border-bottom: 2px solid var(--color-accent-orange); padding-bottom: 10px; display: inline-block;">${relatedHeading}</h2>
                     
                     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; margin-top: 10px;">
-                        <a href="/news/karo-sambhav-raises-56-crore-pre-series-a-rainmatter" style="text-decoration: none; display: block; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; transition: transform 0.2s ease, background 0.2s ease;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                                <span style="font-size: 0.75rem; color: var(--color-accent-orange); text-transform: uppercase; letter-spacing: 1px;">Funding Round</span>
-                                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Today</span>
-                            </div>
-                            <h4 style="color: var(--color-text-light); margin: 0 0 10px 0; font-size: 1.1rem; line-height: 1.4;">Karo Sambhav Raises ₹56 Crore Pre-Series A</h4>
-                            <p style="color: var(--color-text-muted); margin: 0; font-size: 0.9rem;">Inc42</p>
-                        </a>
-                        <a href="/news/rusk-media-raises-100-crore-pre-series-c-nazara-technologies" style="text-decoration: none; display: block; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; transition: transform 0.2s ease, background 0.2s ease;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                                <span style="font-size: 0.75rem; color: var(--color-accent-orange); text-transform: uppercase; letter-spacing: 1px;">Funding Round</span>
-                                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Today</span>
-                            </div>
-                            <h4 style="color: var(--color-text-light); margin: 0 0 10px 0; font-size: 1.1rem; line-height: 1.4;">Rusk Media Raises ₹100 Crore Pre-Series C</h4>
-                            <p style="color: var(--color-text-muted); margin: 0; font-size: 0.9rem;">Inc42</p>
-                        </a>
+                        ${relatedCardsHtml}
                     </div>
                 </div>
+                ` : ''}
             </div>
         </main>
     </div>
