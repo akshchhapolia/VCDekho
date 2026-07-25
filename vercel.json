@@ -6,6 +6,10 @@
       "destination": "/api/news/article?slug=:slug"
     },
     {
+      "source": "/blog/:slug",
+      "destination": "/api/news/article?slug=:slug"
+    },
+    {
       "source": "/sitemap.xml",
       "destination": "/api/sitemap"
     }
@@ -30,6 +34,10 @@
     {
       "path": "/api/cron/daily-digest",
       "schedule": "40 13 * * *"
+    },
+    {
+      "path": "/api/cron/ai-blog",
+      "schedule": "0 14 * * *"
     }
   ]
 }

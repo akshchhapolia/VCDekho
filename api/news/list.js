@@ -41,12 +41,15 @@ module.exports = async function handler(req, res) {
     }
 
     const { category } = req.query;
-    let query = `SELECT id, title, slug, category, published_at, source_name FROM articles WHERE status = 'published'`;
+    let query = `SELECT id, title, slug, category, published_at, source_name, meta_description, tags FROM articles WHERE status = 'published'`;
     const params = [];
 
     if (category) {
         query += ` AND category = $1`;
         params.push(category);
+    } else {
+        // News feed should not mix in evergreen blog posts
+        query += ` AND category IS DISTINCT FROM 'blog'`;
     }
     
     query += ` ORDER BY published_at DESC LIMIT 50`;

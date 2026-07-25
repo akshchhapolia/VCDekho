@@ -9,16 +9,18 @@ module.exports = async function handler(req, res) {
         let dynamicUrls = '';
         
         if (process.env.DATABASE_URL) {
-            const query = `SELECT slug, published_at FROM articles WHERE status = 'published' ORDER BY published_at DESC LIMIT 500`;
+            const query = `SELECT slug, category, published_at FROM articles WHERE status = 'published' ORDER BY published_at DESC LIMIT 500`;
             const { rows } = await db.query(query);
             
             rows.forEach(article => {
                 const date = article.published_at ? new Date(article.published_at).toISOString().split('T')[0] : new Date().toISOString().split('T')[0];
+                const pathPrefix = article.category === 'blog' ? 'blog' : 'news';
+                const priority = article.category === 'blog' ? '0.8' : '0.7';
                 dynamicUrls += `
   <url>
-    <loc>https://vcdekho.com/news/${article.slug}</loc>
+    <loc>https://vcdekho.com/${pathPrefix}/${article.slug}</loc>
     <lastmod>${date}</lastmod>
-    <priority>0.7</priority>
+    <priority>${priority}</priority>
   </url>`;
             });
         }
