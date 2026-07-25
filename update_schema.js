@@ -15,6 +15,9 @@ async function migrate() {
     try {
         console.log("Adding extracted_facts column to raw_content...");
         await pool.query(`ALTER TABLE raw_content ADD COLUMN IF NOT EXISTS extracted_facts JSONB;`);
+
+        console.log("Adding image_url column to articles...");
+        await pool.query(`ALTER TABLE articles ADD COLUMN IF NOT EXISTS image_url TEXT;`);
         console.log("Migration successful.");
     } catch (e) {
         console.error("Migration failed:", e);

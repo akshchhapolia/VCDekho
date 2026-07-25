@@ -166,11 +166,13 @@ Only include 1-2 of these if they fit naturally.`
             ...((meta.tags || []).filter(t => typeof t === 'string'))
         ])).slice(0, 12);
 
+        const imageUrl = topic.imageUrl;
+
         await db.query(
             `INSERT INTO articles (
                 title, body, slug, meta_title, meta_description, tags,
-                category, source_name, source_url, status, published_at
-             ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+                category, source_name, source_url, image_url, status, published_at
+             ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
             [
                 title,
                 body,
@@ -181,6 +183,7 @@ Only include 1-2 of these if they fit naturally.`
                 'blog',
                 'VCDekho Original',
                 `/blog/${uniqueSlug}`,
+                imageUrl,
                 'published',
                 new Date()
             ]
@@ -192,6 +195,7 @@ Only include 1-2 of these if they fit naturally.`
             categoryLabel: topic.categoryLabel,
             title,
             articleSlug: uniqueSlug,
+            imageUrl,
             wordCount: words
         });
     } catch (error) {

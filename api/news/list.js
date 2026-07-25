@@ -41,7 +41,7 @@ module.exports = async function handler(req, res) {
     }
 
     const { category } = req.query;
-    let query = `SELECT id, title, slug, category, published_at, source_name, meta_description, tags FROM articles WHERE status = 'published'`;
+    let query = `SELECT id, title, slug, category, published_at, source_name, meta_description, tags, image_url FROM articles WHERE status = 'published'`;
     const params = [];
 
     if (category) {

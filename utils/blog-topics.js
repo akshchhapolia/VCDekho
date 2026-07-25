@@ -173,6 +173,32 @@ const BLOG_TOPICS = [
     }
 ];
 
+// Curated hero images (Unsplash) — startup / funding / work aesthetic
+const HERO_IMAGES = [
+    'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1600&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=1600&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1600&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=1600&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1600&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1600&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=1600&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=1600&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1573164713714-d95e436db8d1?q=80&w=1600&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1600&auto=format&fit=crop'
+];
+
+function imageForTopic(topicId) {
+    let hash = 0;
+    for (let i = 0; i < topicId.length; i++) {
+        hash = (hash + topicId.charCodeAt(i) * (i + 1)) % HERO_IMAGES.length;
+    }
+    return HERO_IMAGES[hash];
+}
+
 /**
  * Pick the next topic that hasn't been used recently.
  * Falls back to day-of-year rotation if the pool is exhausted.
@@ -185,7 +211,11 @@ function pickTopic(recentTopicIds = []) {
     const dayOfYear = Math.floor(
         (Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000
     );
-    return pool[dayOfYear % pool.length];
+    const topic = pool[dayOfYear % pool.length];
+    return {
+        ...topic,
+        imageUrl: topic.imageUrl || imageForTopic(topic.id)
+    };
 }
 
-module.exports = { BLOG_TOPICS, pickTopic };
+module.exports = { BLOG_TOPICS, HERO_IMAGES, imageForTopic, pickTopic };
