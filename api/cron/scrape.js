@@ -1,13 +1,21 @@
 const Parser = require('rss-parser');
 const db = require('../../utils/db');
 
-const parser = new Parser();
+const parser = new Parser({
+    timeout: 15000,
+    headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; VCDekhoBot/1.0; +https://vcdekho.com)',
+        'Accept': 'application/rss+xml, application/xml, text/xml, */*'
+    }
+});
 
+// VCCircle no longer exposes a public RSS feed (endpoints return HTML/500).
+// LiveMint Companies is used as the PE/VC-adjacent Indian business source.
 const SOURCES = [
     { name: 'inc42', url: 'https://inc42.com/buzz/feed/' },
-    { name: 'entrackr', url: 'https://entrackr.com/feed/' },
+    { name: 'entrackr', url: 'https://entrackr.com/rss' },
     { name: 'yourstory', url: 'https://yourstory.com/feed' },
-    { name: 'vccircle', url: 'https://www.vccircle.com/feed' }
+    { name: 'livemint', url: 'https://www.livemint.com/rss/companies' }
 ];
 
 function scoreRelevance(item, sourceName) {
@@ -28,8 +36,14 @@ function scoreRelevance(item, sourceName) {
             return 0; 
         }
     }
-    
-    if (sourceName === 'vccircle') score += 1; // It's PE/VC focused
+
+    // LiveMint is broad business news — require funding/deal signals
+    if (sourceName === 'livemint') {
+        if (!(/raise|round|seed|series [abcd]|fund|backs|invests|vc|venture|ipo|acquires|merger|crore|lakh|million|billion|\$|₹/i.test(title))) {
+            return 0;
+        }
+        score += 1;
+    }
 
     return score;
 }

@@ -1,9 +1,14 @@
-process.env.DATABASE_URL = 'postgresql://postgres.qviyhvnubhduyhgwzuzc:Aksh%40t99chhapolia@aws-1-ap-southeast-2.pooler.supabase.com:6543/postgres';
+require('dotenv').config();
 const db = require('./utils/db');
 
 async function run() {
+    if (!process.env.DATABASE_URL) {
+        console.error('DATABASE_URL is not set. Add it to .env before running this script.');
+        process.exit(1);
+    }
+
     try {
-        console.log("Querying raw_content...");
+        console.log('Querying raw_content...');
         const res = await db.query(
             `SELECT id, title, status, scraped_at, published_at_source FROM raw_content 
              ORDER BY scraped_at DESC LIMIT 20`
