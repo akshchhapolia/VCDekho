@@ -1,6 +1,10 @@
 const db = require('../../utils/db');
 
 module.exports = async function handler(req, res) {
+    if (req.headers.authorization !== `Bearer ${process.env.ADMIN_SECRET}`) {
+        return res.status(401).json({ error: 'Unauthorized' });
+    }
+
     try {
         // Delete today's generated digests so they don't clutter the feed
         await db.query(`DELETE FROM articles WHERE category = 'daily-digest' AND created_at >= CURRENT_DATE`);
