@@ -2583,7 +2583,7 @@ body.has-announcement .app-container {
 
 /* Investment thesis widget (investor profiles) */
 .thesis-widget {
-  margin: 1.25rem 0 0;
+  margin: 1.35rem 0 1.75rem;
   padding: 1.35rem 1.4rem 1.25rem;
   border-radius: 18px;
   border: 1px solid rgba(120, 170, 255, 0.18);
