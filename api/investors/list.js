@@ -18,7 +18,7 @@ module.exports = async function handler(req, res) {
         investorCount: t.investorCount
       }));
       res.setHeader('Cache-Control', 'private, no-store');
-    return res.status(200).json({ total: themes.length, themes });
+      return res.status(200).json({ total: themes.length, themes });
     }
 
     if (query.view === 'stages') {
