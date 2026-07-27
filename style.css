@@ -2581,6 +2581,29 @@ body.has-announcement .app-container {
   color: #d7e6ff;
 }
 
+a.inv-chip {
+  text-decoration: none;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+}
+
+a.inv-chip:hover {
+  border-color: rgba(237, 87, 47, 0.45);
+  background: rgba(237, 87, 47, 0.14);
+  color: #ffe1d6;
+  transform: translateY(-1px);
+}
+
+.inv-inline-link {
+  color: #ffb89c;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.inv-inline-link:hover {
+  color: #ffd2c3;
+  text-decoration: underline;
+}
+
 .inv-chip.muted {
   opacity: 0.6;
 }
