@@ -5,6 +5,7 @@
   var clientPromise = null;
 
   function setAccessCookie(token, maxAge) {
+    var secure = global.location && global.location.protocol === 'https:' ? '; Secure' : '';
     if (token) {
       var age = typeof maxAge === 'number' ? maxAge : 3600;
       document.cookie =
@@ -13,9 +14,10 @@
         encodeURIComponent(token) +
         '; Path=/; Max-Age=' +
         age +
-        '; SameSite=Lax; Secure';
+        '; SameSite=Lax' +
+        secure;
     } else {
-      document.cookie = COOKIE_NAME + '=; Path=/; Max-Age=0; SameSite=Lax; Secure';
+      document.cookie = COOKIE_NAME + '=; Path=/; Max-Age=0; SameSite=Lax' + secure;
     }
   }
 
