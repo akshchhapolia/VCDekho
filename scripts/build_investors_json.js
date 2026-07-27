@@ -62,13 +62,13 @@ const THESIS_THEMES = [
   { id: 'series-a-pmf', label: 'Series A / PMF capital', match: [/series\s*a\b/i, /product[-\s]?market[-\s]?fit/i, /\bpmf\b/i, /early growth/i], stageIds: ['series-a', 'pre-series-a'], exclude: [/pre[-\s]?series\s*a/i] },
   { id: 'edtech', label: 'Edtech / skilling', match: [/edtech/i, /ed[-\s]?tech/i, /skilling/i, /education tech/i, /learning platform/i], sectorIds: ['edtech'] },
   { id: 'micro-vc', label: 'Micro-VC / small cheque', match: [/micro[-\s]?vc/i, /small cheque/i, /cheque size.*(25|50|100|150|200)k/i] },
-  { id: 'bootstrapped-profit', label: 'Bootstrapped / profitability-first', match: [/bootstrapp/i, /profitab/i, /unit economics/i, /capital efficien/i, /path to profit/i] },
-  { id: 'platform-marketplace', label: 'Platform / marketplace builders', match: [/marketplace/i, /platform/i, /network effect/i, /two[-\s]?sided/i] },
+  { id: 'bootstrapped-profit', label: 'Bootstrapped / profitability-first', match: [/bootstrapp/i, /profitab/i, /unit economics/i, /capital efficien/i, /path to profit/i, /cash[-\s]?flow positive/i, /default[-\s]?alive/i] },
+  { id: 'platform-marketplace', label: 'Platform / marketplace builders', match: [/marketplace/i, /two[-\s]?sided/i, /network effect/i, /platform business/i, /platform play/i] },
   { id: 'gaming-media', label: 'Gaming / media', match: [/gaming/i, /\bgame\b/i, /entertainment/i, /\bmedia\b/i, /content platform/i], sectorIds: ['gaming'] },
   { id: 'proptech', label: 'Proptech / real estate', match: [/prop\s*tech/i, /proptech/i, /real estate/i, /housing tech/i], sectorIds: ['proptech'] },
   { id: 'accelerator-studio', label: 'Accelerator / studio-linked', match: [/accelerator/i, /incubator/i, /venture studio/i, /startup studio/i], typeIds: ['accelerator'] },
   { id: 'sea-india', label: 'Southeast Asia + India', match: [/southeast asia/i, /\bsea\b/i, /\basean\b/i, /india and southeast/i] },
-  { id: 'mobility-ev', label: 'Mobility / EV', match: [/mobility/i, /\bev\b/i, /electric vehicle/i, /auto[-\s]?tech/i, /two[-\s]?wheeler/i] }
+  { id: 'mobility-ev', label: 'Mobility / EV', match: [/mobility/i, /\bev\b/i, /electric vehicle/i, /auto[-\s]?tech/i, /two[-\s]?wheeler/i, /three[-\s]?wheeler/i, /fleet electr/i] }
 ];
 
 const TYPE_CANON = [
@@ -193,7 +193,7 @@ function build() {
     }
     if (!sectors.length) sectors = [{ id: 'sector-agnostic', label: 'Sector Agnostic' }];
 
-    const thesisThemes = uniqueById(matchCanon(`${thesisText} ${stageText} ${sectorText} ${typeText}`, THESIS_THEMES));
+    const thesisThemes = uniqueById(matchCanon(`${thesisText} ${stageText} ${sectorText} ${typeText} ${row['Detailed Writeup (~200 words)'] || ''} ${row.Notes || ''}`, THESIS_THEMES));
     const type = classifyType(typeText);
 
     // Also tag themes from structured sector / stage / type fits
