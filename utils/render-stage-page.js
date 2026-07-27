@@ -17,47 +17,78 @@ function paragraphs(text) {
     .join('');
 }
 
-function bullets(items, className) {
-  return '<ul class="' + (className || 'stage-bullets') + '">' +
-    (items || []).map(item => '<li>' + escapeHtml(item) + '</li>').join('') +
-    '</ul>';
+function pullQuoteFromWriteup(text) {
+  const first = String(text || '')
+    .split(/\n\n+/)
+    .map(p => p.trim())
+    .filter(Boolean)[0] || '';
+  // Prefer a mid/late sentence for punch; fall back to first sentence.
+  const sentences = first.match(/[^.!?]+[.!?]+/g) || [first];
+  const pick = (sentences[1] || sentences[0] || '').trim();
+  if (!pick) return '';
+  return (
+    '<blockquote class="stage-pullquote">' +
+      '<p>' + escapeHtml(pick) + '</p>' +
+    '</blockquote>'
+  );
 }
 
-function checklist(items) {
-  return '<ul class="stage-checklist">' +
-    (items || []).map(item => (
-      '<li><span class="stage-check" aria-hidden="true"></span><span>' + escapeHtml(item) + '</span></li>'
+function numberedList(items, className) {
+  return (
+    '<ol class="' + (className || 'stage-numbered') + '">' +
+    (items || []).map((item, i) => (
+      '<li class="stage-reveal">' +
+        '<span class="stage-num" aria-hidden="true">' + String(i + 1).padStart(2, '0') + '</span>' +
+        '<span class="stage-num-text">' + escapeHtml(item) + '</span>' +
+      '</li>'
     )).join('') +
-    '</ul>';
+    '</ol>'
+  );
+}
+
+function tipList(items) {
+  return (
+    '<ul class="stage-tip-list">' +
+    (items || []).map(item => (
+      '<li class="stage-reveal">' +
+        '<span class="stage-tip-mark" aria-hidden="true">→</span>' +
+        '<span>' + escapeHtml(item) + '</span>' +
+      '</li>'
+    )).join('') +
+    '</ul>'
+  );
 }
 
 function renderStagePage(stage, res) {
   const snapshot = stage.snapshot || {};
-  const snapshotCards = [
+  const orderLabel = String(stage.order).padStart(2, '0');
+  const allStages = getAllStages();
+
+  const snapshotStrip = [
     ['Typical cheque', snapshot.chequeRange],
     ['Company maturity', snapshot.maturity],
     ['Round purpose', snapshot.roundPurpose],
     ['Diligence', snapshot.diligence],
     ['Common capital', snapshot.capitalTypes]
-  ].map(([label, value]) => (
-    '<div class="stage-snap-card">' +
-      '<div class="stage-snap-label">' + escapeHtml(label) + '</div>' +
-      '<div class="stage-snap-value">' + escapeHtml(value || '—') + '</div>' +
+  ].map(([label, value], i) => (
+    '<div class="stage-metric' + (i === 0 ? ' is-lead' : '') + '">' +
+      '<div class="stage-metric-label">' + escapeHtml(label) + '</div>' +
+      '<div class="stage-metric-value">' + escapeHtml(value || '—') + '</div>' +
     '</div>'
   )).join('');
 
   const investorCards = (stage.investors || []).slice(0, 24).map(inv => (
-    '<a class="theme-inv-card" href="/investors/' + escapeHtml(inv.slug) + '">' +
-      '<div class="theme-inv-type">' + escapeHtml(inv.type) + '</div>' +
+    '<a class="stage-inv-card stage-reveal" href="/investors/' + escapeHtml(inv.slug) + '">' +
+      '<div class="stage-inv-type">' + escapeHtml(inv.type) + '</div>' +
       '<h3>' + escapeHtml(inv.name) + '</h3>' +
       '<p>' + escapeHtml(inv.thesis || inv.chequeSize || '') + '</p>' +
-      '<div class="theme-inv-meta">' + escapeHtml(inv.chequeSize || (inv.stages || []).slice(0, 2).join(' · ')) + '</div>' +
+      '<div class="stage-inv-meta">' + escapeHtml(inv.chequeSize || (inv.stages || []).slice(0, 2).join(' · ')) + '</div>' +
     '</a>'
   )).join('');
 
   const relatedStageCards = (stage.relatedStages || []).map(s => (
-    '<a class="stage-related-card" href="/investors/stages/' + escapeHtml(s.id) + '">' +
-      '<div class="stage-related-order">Stage ' + s.order + '</div>' +
+    '<a class="stage-related-card stage-reveal" href="/investors/stages/' + escapeHtml(s.id) + '">' +
+      '<div class="stage-related-order">Stage ' + String(s.order).padStart(2, '0') + '</div>' +
       '<h3>' + escapeHtml(s.label) + '</h3>' +
       '<p>' + escapeHtml(s.summary) + '</p>' +
       '<div class="stage-related-meta">' + s.investorCount + ' investors</div>' +
@@ -65,25 +96,51 @@ function renderStagePage(stage, res) {
   )).join('');
 
   const themeCards = (stage.relatedThemes || []).map(t => (
-    '<a class="stage-theme-chip" href="/investors/themes/' + escapeHtml(t.id) + '">' +
+    '<a class="stage-theme-chip stage-reveal" href="/investors/themes/' + escapeHtml(t.id) + '">' +
       '<strong>' + escapeHtml(t.label) + '</strong>' +
       '<span>' + escapeHtml(t.summary) + '</span>' +
     '</a>'
   )).join('');
 
-  const ladderHtml = getAllStages().map(s => (
-    '<a class="stage-ladder-step' + (s.id === stage.id ? ' is-active' : '') + '" href="/investors/stages/' + escapeHtml(s.id) + '">' +
-      '<span class="stage-ladder-num">' + s.order + '</span>' +
-      '<span class="stage-ladder-label">' + escapeHtml(s.label) + '</span>' +
-    '</a>'
+  const ladderHtml = allStages.map((s, idx) => {
+    const stateClass = s.order < stage.order
+      ? ' is-done'
+      : (s.id === stage.id ? ' is-active' : ' is-upcoming');
+    const connector = idx < allStages.length - 1
+      ? '<span class="stage-rail-line' + (s.order < stage.order ? ' is-done' : '') + '" aria-hidden="true"></span>'
+      : '';
+    return (
+      '<div class="stage-rail-item">' +
+        '<a class="stage-rail-node' + stateClass + '" href="/investors/stages/' + escapeHtml(s.id) + '">' +
+          '<span class="stage-rail-dot"><span>' + s.order + '</span></span>' +
+          '<span class="stage-rail-label">' + escapeHtml(s.label) + '</span>' +
+        '</a>' +
+        connector +
+      '</div>'
+    );
+  }).join('');
+
+  const fitBullets = (stage.whoItFits || []).map(item => (
+    '<li class="stage-reveal"><span class="stage-fit-mark is-yes" aria-hidden="true">+</span><span>' + escapeHtml(item) + '</span></li>'
+  )).join('');
+
+  const waitBullets = (stage.whoDoesntFit || []).map(item => (
+    '<li class="stage-reveal"><span class="stage-fit-mark is-wait" aria-hidden="true">–</span><span>' + escapeHtml(item) + '</span></li>'
+  )).join('');
+
+  const mistakesHtml = (stage.commonMistakes || []).map((m, i) => (
+    '<div class="stage-mistake stage-reveal">' +
+      '<span class="stage-mistake-num">' + String(i + 1).padStart(2, '0') + '</span>' +
+      '<p>' + escapeHtml(m) + '</p>' +
+    '</div>'
   )).join('');
 
   const prevNext = [
     stage.prev
-      ? '<a class="stage-pn-card" href="/investors/stages/' + escapeHtml(stage.prev.id) + '"><span>Previous</span><strong>' + escapeHtml(stage.prev.label) + '</strong></a>'
+      ? '<a class="stage-pn-card stage-reveal" href="/investors/stages/' + escapeHtml(stage.prev.id) + '"><span>Previous stage</span><strong>' + escapeHtml(stage.prev.label) + '</strong></a>'
       : '<div class="stage-pn-card is-empty"></div>',
     stage.next
-      ? '<a class="stage-pn-card" href="/investors/stages/' + escapeHtml(stage.next.id) + '"><span>Next</span><strong>' + escapeHtml(stage.next.label) + '</strong></a>'
+      ? '<a class="stage-pn-card stage-reveal" href="/investors/stages/' + escapeHtml(stage.next.id) + '"><span>Next stage</span><strong>' + escapeHtml(stage.next.label) + '</strong></a>'
       : '<div class="stage-pn-card is-empty"></div>'
   ].join('');
 
@@ -99,9 +156,9 @@ function renderStagePage(stage, res) {
     '<meta name="description" content="' + escapeHtml(stage.summary).slice(0, 160) + '">',
     '<link rel="canonical" href="https://vcdekho.com/investors/stages/' + escapeHtml(stage.id) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
-    '<link rel="stylesheet" href="/style.css?v=10">',
+    '<link rel="stylesheet" href="/style.css?v=11">',
     '</head>',
-    '<body class="scrollable-page inv-page">',
+    '<body class="scrollable-page inv-page stage-guide-page">',
     '<div class="app-container">',
     '<header class="site-header">',
     '<a href="/" class="logo-container"><img src="/assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img"></a>',
@@ -117,84 +174,100 @@ function renderStagePage(stage, res) {
     '<div class="inv-detail-wrap stage-page-wrap">',
     '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="/investors">Investors</a><span>›</span><a href="/investors/stages">Stages</a><span>›</span><span class="current">' + escapeHtml(stage.label) + '</span></div>',
 
-    '<section class="stage-hero" id="overview">',
-    '<span class="inv-kicker">' + escapeHtml(stage.eyebrow) + ' · ' + stage.order + ' of 6</span>',
-    '<h1 class="inv-detail-title">' + escapeHtml(stage.label) + '</h1>',
-    '<p class="inv-detail-thesis">' + escapeHtml(stage.summary) + '</p>',
-    '<div class="theme-hero-meta"><span>' + stage.investorCount + ' matching investors on VC Dekho</span><a href="/investors?stage=' + encodeURIComponent(stage.id) + '">View in directory →</a></div>',
-    '<div class="stage-ladder" aria-label="Funding stage ladder">' + ladderHtml + '</div>',
+    '<section class="stage-hero stage-hero-enter" id="overview">',
+    '<div class="stage-hero-wash" aria-hidden="true"></div>',
+    '<div class="stage-hero-num" aria-hidden="true">' + orderLabel + '</div>',
+    '<div class="stage-hero-copy">',
+    '<span class="stage-hero-kicker">' + escapeHtml(stage.eyebrow) + ' · Guide ' + stage.order + ' of 6</span>',
+    '<h1 class="stage-hero-title">' + escapeHtml(stage.label) + '</h1>',
+    '<p class="stage-hero-summary">' + escapeHtml(stage.summary) + '</p>',
+    '<div class="stage-hero-actions">',
+    '<div class="stage-hero-stat"><strong>' + stage.investorCount + '</strong><span>matching investors</span></div>',
+    '<a class="stage-hero-cta" href="/investors?stage=' + encodeURIComponent(stage.id) + '">Open in directory</a>',
+    '</div>',
+    '</div>',
+    '<div class="stage-rail" aria-label="Funding stage ladder">' + ladderHtml + '</div>',
     '</section>',
 
-    '<nav class="stage-sticky-nav" aria-label="On this page">',
-    '<a href="#meaning">Meaning</a>',
-    '<a href="#snapshot">Snapshot</a>',
-    '<a href="#fit">Who it fits</a>',
-    '<a href="#look-for">Investors look for</a>',
-    '<a href="#prepare">Prepare</a>',
-    '<a href="#round">Round tips</a>',
-    '<a href="#mistakes">Mistakes</a>',
-    '<a href="#investors">Investors</a>',
+    '<nav class="stage-sticky-nav" id="stage-sticky-nav" aria-label="On this page">',
+    '<a href="#meaning" data-section="meaning">Meaning</a>',
+    '<a href="#snapshot" data-section="snapshot">Snapshot</a>',
+    '<a href="#fit" data-section="fit">Fit</a>',
+    '<a href="#look-for" data-section="look-for">Look for</a>',
+    '<a href="#prepare" data-section="prepare">Prepare</a>',
+    '<a href="#round" data-section="round">Round</a>',
+    '<a href="#mistakes" data-section="mistakes">Mistakes</a>',
+    '<a href="#investors" data-section="investors">Investors</a>',
     '</nav>',
 
-    '<section class="inv-body-panel stage-section" id="meaning">',
+    '<section class="stage-section stage-meaning stage-reveal" id="meaning">',
+    '<div class="stage-section-label">01 — Context</div>',
     '<h2>What this stage means</h2>',
-    paragraphs(stage.writeup),
-    '</section>',
-
-    '<section class="stage-section" id="snapshot">',
-    '<div class="stage-section-head"><h2>Stage snapshot</h2><p>A quick read of how this stage usually shows up for Indian founders.</p></div>',
-    '<div class="stage-snap-grid">' + snapshotCards + '</div>',
-    '</section>',
-
-    '<section class="stage-section stage-two-panels" id="fit">',
-    '<div class="stage-panel">' +
-      '<h2>Who it fits</h2>' +
-      bullets(stage.whoItFits) +
-    '</div>',
-    '<div class="stage-panel stage-panel-muted">' +
-      '<h2>Who should wait</h2>' +
-      bullets(stage.whoDoesntFit) +
+    '<div class="stage-meaning-grid">',
+    '<div class="stage-meaning-prose">' + paragraphs(stage.writeup) + '</div>',
+    pullQuoteFromWriteup(stage.writeup),
     '</div>',
     '</section>',
 
-    '<section class="stage-section" id="look-for">',
-    '<div class="stage-section-head"><h2>What investors look for</h2><p>Use this as a diligence checklist before you start outreach.</p></div>',
-    '<div class="stage-widget">' + checklist(stage.whatInvestorsLookFor) + '</div>',
+    '<section class="stage-section stage-reveal" id="snapshot">',
+    '<div class="stage-section-label">02 — At a glance</div>',
+    '<div class="stage-section-head"><h2>Stage snapshot</h2><p>How this stage usually shows up for Indian founders.</p></div>',
+    '<div class="stage-metric-strip">' + snapshotStrip + '</div>',
     '</section>',
 
-    '<section class="stage-section" id="prepare">',
-    '<div class="stage-section-head"><h2>What to prepare</h2><p>Practical pack for a credible process at this stage.</p></div>',
-    '<div class="stage-widget">' + checklist(stage.whatToPrepare) + '</div>',
+    '<section class="stage-section stage-fit-band stage-reveal" id="fit">',
+    '<div class="stage-section-label">03 — Fit</div>',
+    '<div class="stage-fit-grid">',
+    '<div class="stage-fit-panel is-yes">',
+    '<h2>Who it fits</h2>',
+    '<ul class="stage-fit-list">' + fitBullets + '</ul>',
+    '</div>',
+    '<div class="stage-fit-panel is-wait">',
+    '<h2>Who should wait</h2>',
+    '<ul class="stage-fit-list">' + waitBullets + '</ul>',
+    '</div>',
+    '</div>',
     '</section>',
 
-    '<section class="stage-section" id="round">',
+    '<section class="stage-section stage-reveal" id="look-for">',
+    '<div class="stage-section-label">04 — Diligence</div>',
+    '<div class="stage-section-head"><h2>What investors look for</h2><p>Use this as a checklist before you start outreach.</p></div>',
+    '<div class="stage-panel-accent">' + numberedList(stage.whatInvestorsLookFor) + '</div>',
+    '</section>',
+
+    '<section class="stage-section stage-reveal" id="prepare">',
+    '<div class="stage-section-label">05 — Pack</div>',
+    '<div class="stage-section-head"><h2>What to prepare</h2><p>Practical materials for a credible process at this stage.</p></div>',
+    '<div class="stage-panel-accent">' + numberedList(stage.whatToPrepare) + '</div>',
+    '</section>',
+
+    '<section class="stage-section stage-reveal" id="round">',
+    '<div class="stage-section-label">06 — Construction</div>',
     '<div class="stage-section-head"><h2>Round construction tips</h2><p>Educational guidance for how rounds are often built in India — not legal advice.</p></div>',
-    '<div class="stage-widget">' + bullets(stage.roundConstruction, 'stage-bullets stage-tips') + '</div>',
+    '<div class="stage-tips-panel">' + tipList(stage.roundConstruction) + '</div>',
     '</section>',
 
-    '<section class="stage-section" id="mistakes">',
+    '<section class="stage-section stage-reveal" id="mistakes">',
+    '<div class="stage-section-label">07 — Watchouts</div>',
     '<div class="stage-section-head"><h2>Common mistakes</h2></div>',
-    '<div class="stage-mistakes">' +
-      (stage.commonMistakes || []).map((m, i) => (
-        '<div class="stage-mistake"><span class="stage-mistake-num">' + String(i + 1).padStart(2, '0') + '</span><p>' + escapeHtml(m) + '</p></div>'
-      )).join('') +
-    '</div>',
+    '<div class="stage-mistakes">' + mistakesHtml + '</div>',
     '</section>',
 
-    '<section class="stage-section" id="investors">',
+    '<section class="stage-section stage-reveal" id="investors">',
+    '<div class="stage-section-label">08 — Capital map</div>',
     '<div class="theme-section-head"><h2>Investors active at this stage</h2><a href="/investors?stage=' + encodeURIComponent(stage.id) + '">See all filters</a></div>',
-    '<div class="theme-inv-grid">' + (investorCards || '<p class="inv-empty">No investors tagged yet.</p>') + '</div>',
+    '<div class="stage-inv-grid">' + (investorCards || '<p class="inv-empty">No investors tagged yet.</p>') + '</div>',
     stage.investorCount > 24
       ? ('<div class="theme-more"><a class="inv-btn inv-btn-primary" href="/investors?stage=' + encodeURIComponent(stage.id) + '">Browse all ' + stage.investorCount + ' investors</a></div>')
       : '',
     '</section>',
 
     relatedStageCards
-      ? ('<section class="stage-section"><div class="stage-section-head"><h2>Related stages</h2></div><div class="stage-related-grid">' + relatedStageCards + '</div></section>')
+      ? ('<section class="stage-section stage-reveal"><div class="stage-section-label">Continue</div><div class="stage-section-head"><h2>Related stages</h2></div><div class="stage-related-grid">' + relatedStageCards + '</div></section>')
       : '',
 
     themeCards
-      ? ('<section class="stage-section"><div class="stage-section-head"><h2>Related thesis themes</h2><p>Pair stage fit with thesis fit before you shortlist.</p></div><div class="stage-theme-grid">' + themeCards + '</div></section>')
+      ? ('<section class="stage-section stage-reveal"><div class="stage-section-head"><h2>Related thesis themes</h2><p>Pair stage fit with thesis fit before you shortlist.</p></div><div class="stage-theme-grid">' + themeCards + '</div></section>')
       : '',
 
     '<section class="stage-section"><div class="stage-pn-grid">' + prevNext + '</div></section>',
@@ -209,6 +282,28 @@ function renderStagePage(stage, res) {
 
     '</div></main></div>',
     '<script src="/app.js"></script>',
+    '<script>',
+    '(function(){',
+    'var nav=document.getElementById("stage-sticky-nav");',
+    'var links=nav?Array.prototype.slice.call(nav.querySelectorAll("a[data-section]")):[];',
+    'var sections=links.map(function(a){return document.getElementById(a.getAttribute("data-section"));}).filter(Boolean);',
+    'function setActive(id){links.forEach(function(a){a.classList.toggle("is-active",a.getAttribute("data-section")===id);});}',
+    'if(sections.length&&"IntersectionObserver" in window){',
+    'var io=new IntersectionObserver(function(entries){',
+    'entries.forEach(function(e){if(e.isIntersecting)setActive(e.target.id);});',
+    '},{rootMargin:"-25% 0px -55% 0px",threshold:0.01});',
+    'sections.forEach(function(s){io.observe(s);});',
+    '}',
+    'var reveals=document.querySelectorAll(".stage-reveal");',
+    'if("IntersectionObserver" in window){',
+    'var ro=new IntersectionObserver(function(entries){',
+    'entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add("is-visible");ro.unobserve(e.target);}});',
+    '},{threshold:0.12,rootMargin:"0px 0px -8% 0px"});',
+    'reveals.forEach(function(el){ro.observe(el);});',
+    '}else{reveals.forEach(function(el){el.classList.add("is-visible");});}',
+    'requestAnimationFrame(function(){document.body.classList.add("stage-ready");});',
+    '})();',
+    '</script>',
     '</body></html>'
   ].join('\n');
 

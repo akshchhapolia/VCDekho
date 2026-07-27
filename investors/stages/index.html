@@ -14,9 +14,9 @@
   <meta name="description" content="Deep guides to Pre-Seed, Seed, Pre-Series A, Series A, Series B and Series C+ / Growth — with investor lists for Indian founders.">
   <link rel="canonical" href="https://vcdekho.com/investors/stages">
   <link rel="icon" type="image/png" href="/assets/logoforvc.png">
-  <link rel="stylesheet" href="/style.css?v=10">
+  <link rel="stylesheet" href="/style.css?v=11">
 </head>
-<body class="scrollable-page inv-page">
+<body class="scrollable-page inv-page stage-guide-page">
   <div class="app-container">
     <header class="site-header">
       <a href="/" class="logo-container">
@@ -42,20 +42,28 @@
         </div>
       </div>
 
-      <div class="inv-list-wrap">
+      <div class="inv-list-wrap stage-page-wrap">
         <div class="inv-breadcrumbs">
           <a href="/">Home</a><span>›</span>
           <a href="/investors">Investors</a><span>›</span>
           <span class="current">Stages</span>
         </div>
 
-        <header class="inv-list-header">
-          <span class="inv-kicker">Founder guides</span>
-          <h1>Investment stages</h1>
-          <p>A practical ladder from Pre-Seed to Growth — what each stage means in India, what investors look for, and which funds on VC Dekho map to it.</p>
-        </header>
+        <section class="stage-hero stage-hero-enter stages-index-hero" id="overview">
+          <div class="stage-hero-wash" aria-hidden="true"></div>
+          <div class="stage-hero-num" aria-hidden="true">06</div>
+          <div class="stage-hero-copy">
+            <span class="stage-hero-kicker">Founder guides</span>
+            <h1 class="stage-hero-title">Investment stages</h1>
+            <p class="stage-hero-summary">A practical ladder from Pre-Seed to Growth — what each stage means in India, what investors look for, and which funds on VC Dekho map to it.</p>
+            <div class="stage-hero-actions">
+              <div class="stage-hero-stat"><strong>6</strong><span>stage guides</span></div>
+              <a class="stage-hero-cta" href="/investors">Browse investors</a>
+            </div>
+          </div>
+          <div id="stages-ladder" class="stage-rail" aria-label="Funding stage ladder"></div>
+        </section>
 
-        <div id="stages-ladder" class="stages-index-ladder" aria-hidden="true"></div>
         <div id="stages-grid" class="stages-index-grid">
           <p class="inv-empty">Loading stages...</p>
         </div>
@@ -76,16 +84,19 @@
           grid.innerHTML = '<p class="inv-empty">No stages found.</p>';
           return;
         }
-        ladder.innerHTML = stages.map(s => `
-          <a class="stage-ladder-step" href="/investors/stages/${encodeURIComponent(s.id)}">
-            <span class="stage-ladder-num">${s.order}</span>
-            <span class="stage-ladder-label">${s.label}</span>
-          </a>
+        ladder.innerHTML = stages.map((s, idx) => `
+          <div class="stage-rail-item">
+            <a class="stage-rail-node" href="/investors/stages/${encodeURIComponent(s.id)}">
+              <span class="stage-rail-dot"><span>${s.order}</span></span>
+              <span class="stage-rail-label">${s.label}</span>
+            </a>
+            ${idx < stages.length - 1 ? '<span class="stage-rail-line" aria-hidden="true"></span>' : ''}
+          </div>
         `).join('');
         grid.innerHTML = stages.map(s => `
-          <a class="stage-index-card" href="/investors/stages/${encodeURIComponent(s.id)}">
+          <a class="stage-index-card stage-reveal is-visible" href="/investors/stages/${encodeURIComponent(s.id)}">
             <div class="stage-index-top">
-              <span class="stage-index-order">Stage ${s.order}</span>
+              <span class="stage-index-order">Stage ${String(s.order).padStart(2, '0')}</span>
               <span class="stage-index-count">${s.investorCount} investors</span>
             </div>
             <h2>${s.label}</h2>
@@ -96,6 +107,7 @@
             </div>
           </a>
         `).join('');
+        requestAnimationFrame(() => document.body.classList.add('stage-ready'));
       } catch (err) {
         console.error(err);
         grid.innerHTML = '<p class="inv-empty">Failed to load stages.</p>';
