@@ -8,20 +8,21 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;');
 }
 
-function chip(label) {
-  return '<span class="inv-chip">' + escapeHtml(label) + '</span>';
+function chip(label, variant) {
+  const cls = variant ? ('inv-chip inv-chip-' + variant) : 'inv-chip';
+  return '<span class="' + cls + '">' + escapeHtml(label) + '</span>';
 }
 
-function chips(list) {
-  return (list || []).map(chip).join('');
+function chips(list, variant) {
+  return (list || []).map(function (item) { return chip(item, variant); }).join('');
 }
 
-function infoProp(label, valueHtml) {
+function factRow(label, valueHtml) {
   if (!valueHtml) return '';
   return (
-    '<div class="inv-prop">' +
-      '<div class="inv-prop-label">' + escapeHtml(label) + '</div>' +
-      '<div class="inv-prop-value">' + valueHtml + '</div>' +
+    '<div class="inv-fact-row">' +
+      '<div class="inv-fact-label">' + escapeHtml(label) + '</div>' +
+      '<div class="inv-fact-value">' + valueHtml + '</div>' +
     '</div>'
   );
 }
@@ -84,17 +85,27 @@ module.exports = async function handler(req, res) {
       : '';
 
     const connectHtml = (investor.linkedin || investor.website)
-      ? '<span>Website / LinkedIn</span>'
-      : '<span>Via VC Dekho waitlist</span>';
-    const ticketHtml = investor.chequeSize
-      ? '<strong>' + escapeHtml(investor.chequeSize) + '</strong>'
+      ? '<span class="inv-connect-text">Website / LinkedIn</span>'
+      : '<span class="inv-connect-text">Via VC Dekho waitlist</span>';
+
+    const metricsHtml = investor.chequeSize
+      ? (
+        '<div class="inv-metrics">' +
+          '<div class="inv-metric">' +
+            '<span class="inv-metric-label">Ticket size</span>' +
+            '<span class="inv-metric-value">' + escapeHtml(investor.chequeSize) + '</span>' +
+          '</div>' +
+        '</div>'
+      )
       : '';
-    const propsHtml =
-      infoProp('Stages', chips(investor.stages)) +
-      infoProp('Sectors', chips(investor.sectors)) +
-      infoProp('Thesis themes', chips(investor.thesisThemes)) +
-      infoProp('Ticket size', ticketHtml) +
-      infoProp('Best way to connect', connectHtml);
+
+    const factsHtml =
+      '<div class="inv-facts">' +
+        factRow('Lead / invest stages', chips(investor.stages, 'stage')) +
+        factRow('Sector focus', chips(investor.sectors, 'sector')) +
+        factRow('Investment thesis', chips(investor.thesisThemes, 'thesis')) +
+        factRow('Best way to connect', connectHtml) +
+      '</div>';
 
     const schema = JSON.stringify({
       '@context': 'https://schema.org',
@@ -117,7 +128,7 @@ module.exports = async function handler(req, res) {
       '<meta name="description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
       '<link rel="canonical" href="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
       '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
-      '<link rel="stylesheet" href="/style.css?v=6">',
+      '<link rel="stylesheet" href="/style.css?v=7">',
       '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
       '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
       '<meta property="og:url" content="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
@@ -140,14 +151,15 @@ module.exports = async function handler(req, res) {
       '<div class="ambient-bg-wrapper"><div class="waitlist-bg"><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div><div class="glow-orb orb-3"></div></div></div>',
       '<div class="inv-detail-wrap">',
       '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="/investors">Investors</a><span>›</span><span class="current">' + escapeHtml(investor.name) + '</span></div>',
-      '<section class="inv-hero-panel">',
-      '<div class="inv-hero-top">',
-      '<span class="inv-type-badge">' + escapeHtml(investor.type) + '</span>',
-      '<h1 class="inv-detail-title">' + escapeHtml(investor.name) + '</h1>',
-      thesisHtml,
-      '<div class="inv-hero-actions">' + websiteBtn + linkedinBtn + '<a class="inv-btn inv-btn-ghost" href="/waitlist">Join Waitlist</a></div>',
-      '</div>',
-      '<div class="inv-props-grid">' + propsHtml + '</div>',
+      '<section class="inv-hero-panel">' +
+      '<div class="inv-hero-top">' +
+      '<span class="inv-type-badge">' + escapeHtml(investor.type) + '</span>' +
+      '<h1 class="inv-detail-title">' + escapeHtml(investor.name) + '</h1>' +
+      thesisHtml +
+      '<div class="inv-hero-actions">' + websiteBtn + linkedinBtn + '<a class="inv-btn inv-btn-ghost" href="/waitlist">Join Waitlist</a></div>' +
+      '</div>' +
+      metricsHtml +
+      factsHtml +
       '</section>',
       '<section class="inv-body-panel">',
       '<h2>About ' + escapeHtml(investor.name) + '</h2>',
