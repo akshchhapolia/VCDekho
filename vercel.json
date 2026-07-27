@@ -1,5 +1,12 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/waitlist",
+      "destination": "/login",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/news/:slug",
