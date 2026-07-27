@@ -11,7 +11,7 @@
     },
     {
       "source": "/investors/themes/:slug",
-      "destination": "/api/investors/theme-detail?slug=:slug"
+      "destination": "/api/investors/detail?slug=:slug&view=theme"
     },
     {
       "source": "/investors/:slug",

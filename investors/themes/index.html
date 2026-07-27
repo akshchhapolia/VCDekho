@@ -67,7 +67,7 @@
     (async function () {
       const grid = document.getElementById('themes-grid');
       try {
-        const res = await fetch('/api/investors/themes');
+        const res = await fetch('/api/investors/list?view=themes');
         const data = await res.json();
         const themes = data.themes || [];
         if (!themes.length) {
