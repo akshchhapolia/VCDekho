@@ -1,5 +1,7 @@
 const { getInvestorBySlug, filterInvestors, toCard } = require('../../utils/investors');
 const { getThemePage, getAllThemes } = require('../../utils/thesis-themes');
+const { getStagePage } = require('../../utils/investment-stages');
+const { renderStagePage } = require('../../utils/render-stage-page');
 
 function escapeHtml(value) {
   return String(value || '')

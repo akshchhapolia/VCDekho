@@ -111,7 +111,7 @@ A strong seed round buys you the right to learn with intensity for 18–24 month
       'Over-hiring before the wedge is sharp',
       'Treating every interested cheque as must-take capital'
     ],
-    relatedThesisIds: ['early-stage-builders', 'seed-specialists', 'founder-led', 'micro-vc', 'series-a-pmf']
+    relatedThesisIds: ['early-stage-builders', 'founder-led', 'micro-vc', 'series-a-pmf', 'angel-syndicates']
   },
   {
     id: 'pre-series-a',
