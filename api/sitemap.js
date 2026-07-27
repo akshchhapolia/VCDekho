@@ -1,4 +1,5 @@
 const db = require('../utils/db');
+const { getAllInvestors } = require('../utils/investors');
 
 module.exports = async function handler(req, res) {
     res.setHeader('Content-Type', 'application/xml');
@@ -25,6 +26,19 @@ module.exports = async function handler(req, res) {
             });
         }
 
+        try {
+            const investors = getAllInvestors();
+            investors.forEach(inv => {
+                dynamicUrls += `
+  <url>
+    <loc>https://vcdekho.com/investors/${inv.slug}</loc>
+    <priority>0.75</priority>
+  </url>`;
+            });
+        } catch (e) {
+            console.warn('Investor sitemap skipped:', e.message);
+        }
+
         const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
@@ -42,6 +56,10 @@ module.exports = async function handler(req, res) {
   <url>
     <loc>https://vcdekho.com/waitlist</loc>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vcdekho.com/investors</loc>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://vcdekho.com/blog</loc>

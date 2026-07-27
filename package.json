@@ -4,7 +4,8 @@
   "description": "",
   "main": "about.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:investors": "node scripts/build_investors_json.js"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,8 @@
   "type": "commonjs",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.104.2",
+    "csv-parse": "^7.0.1",
+    "csv-stringify": "^6.8.1",
     "dotenv": "^17.4.2",
     "pg": "^8.21.0",
     "rss-parser": "^3.13.0"
