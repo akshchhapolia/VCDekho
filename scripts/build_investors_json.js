@@ -46,7 +46,19 @@ const THESIS_THEMES = [
   { id: 'category-creators', label: 'Category creators', match: [/category/i, /enduring companies/i, /category[-\s]?defining/i, /transform/i] },
   { id: 'impact-inclusion', label: 'Impact & inclusion', match: [/impact/i, /inclusion/i, /underserved/i, /climate/i, /sustainab/i] },
   { id: 'growth-scale', label: 'Growth & scale-ups', match: [/growth/i, /scale/i, /series\s*[b-z]/i, /pre[-\s]?ipo/i] },
-  { id: 'deep-science', label: 'Deep science / hard tech', match: [/deep\s*tech/i, /hard\s*tech/i, /science/i, /research/i, /semiconductor/i] }
+  { id: 'deep-science', label: 'Deep science / hard tech', match: [/deep\s*tech/i, /hard\s*tech/i, /science/i, /research/i, /semiconductor/i] },
+  { id: 'fintech', label: 'Fintech / embedded finance', match: [/fintech/i, /embedded finance/i, /payments?/i, /\bupi\b/i, /insurtech/i, /wealthtech/i, /lending/i], sectorIds: ['fintech'] },
+  { id: 'saas-b2b', label: 'SaaS / B2B software', match: [/\bsaas\b/i, /b2b software/i, /enterprise software/i, /b2b saas/i], sectorIds: ['saas'] },
+  { id: 'consumer-d2c', label: 'Consumer / D2C brands', match: [/\bd2c\b/i, /consumer brand/i, /direct[-\s]?to[-\s]?consumer/i, /consumer internet/i, /marketplace/i], sectorIds: ['consumer'] },
+  { id: 'ai-ml', label: 'AI / ML', match: [/\bai\b/i, /artificial intelligence/i, /machine learning/i, /\bml\b/i, /generative ai/i, /enterprise[-\s]?ai/i], sectorIds: ['ai-ml'] },
+  { id: 'healthtech', label: 'Healthtech / wellness', match: [/healthtech/i, /health[-\s]?tech/i, /healthcare/i, /wellness/i, /medtech/i, /digital health/i], sectorIds: ['health'] },
+  { id: 'climate', label: 'Climate / sustainability', match: [/climate/i, /sustainab/i, /clean[-\s]?tech/i, /cleantech/i, /renewable/i, /net[-\s]?zero/i], sectorIds: ['climate'] },
+  { id: 'pre-seed-day-zero', label: 'Pre-seed / day-zero', match: [/pre[-\s]?seed/i, /day[-\s]?zero/i, /first cheque/i, /first significant backer/i], stageIds: ['pre-seed'] },
+  { id: 'crypto-web3', label: 'Crypto / Web3', match: [/crypto/i, /web3/i, /blockchain/i, /bitcoin/i, /\bdefi\b/i] },
+  { id: 'family-offices', label: 'Family offices', match: [/family\s*office/i, /patient capital/i], typeIds: ['family-office'] },
+  { id: 'angel-syndicates', label: 'Angel syndicates / networks', match: [/syndicate/i, /angel network/i, /angel community/i, /rolling fund/i], typeIds: ['syndicate', 'angel'] },
+  { id: 'agri-food', label: 'Agri / food systems', match: [/agri/i, /agtech/i, /foodtech/i, /agriculture/i, /farming/i, /food system/i], sectorIds: ['agritech'] },
+  { id: 'logistics-supply', label: 'Logistics / supply chain', match: [/logistics/i, /supply\s*chain/i, /warehous/i, /fulfiliment/i], sectorIds: ['logistics'] }
 ];
 
 const TYPE_CANON = [
@@ -172,11 +184,22 @@ function build() {
     if (!sectors.length) sectors = [{ id: 'sector-agnostic', label: 'Sector Agnostic' }];
 
     const thesisThemes = uniqueById(matchCanon(`${thesisText} ${stageText} ${sectorText} ${typeText}`, THESIS_THEMES));
-    if (!thesisThemes.length && thesisText) {
-      thesisThemes.push({ id: 'general', label: 'General thesis' });
+    const type = classifyType(typeText);
+
+    // Also tag themes from structured sector / stage / type fits
+    for (const theme of THESIS_THEMES) {
+      const sectorHit = (theme.sectorIds || []).some(id => sectors.some(s => s.id === id));
+      const stageHit = (theme.stageIds || []).some(id => stages.some(s => s.id === id));
+      const typeHit = (theme.typeIds || []).includes(type.id);
+      if (sectorHit || stageHit || typeHit) {
+        thesisThemes.push({ id: theme.id, label: theme.label });
+      }
+    }
+    const finalThemes = uniqueById(thesisThemes);
+    if (!finalThemes.length && thesisText) {
+      finalThemes.push({ id: 'general', label: 'General thesis' });
     }
 
-    const type = classifyType(typeText);
     let chequeLabel = cheque.label;
     if (cheque.min != null && cheque.max != null) {
       const a = formatUsd(cheque.min);
@@ -195,8 +218,8 @@ function build() {
       stageIds: stages.map(s => s.id),
       sectors: sectors.map(s => s.label),
       sectorIds: sectors.map(s => s.id),
-      thesisThemes: thesisThemes.map(t => t.label),
-      thesisThemeIds: thesisThemes.map(t => t.id),
+      thesisThemes: finalThemes.map(t => t.label),
+      thesisThemeIds: finalThemes.map(t => t.id),
       thesis: (row['Company Thesis'] || '').trim(),
       chequeSize: chequeLabel,
       chequeMin: cheque.min,
