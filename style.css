@@ -2379,22 +2379,6 @@ body.has-announcement .app-container {
   gap: 0.35rem;
 }
 
-.inv-chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.28rem 0.55rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.05);
-  color: rgba(255,255,255,0.85);
-  font-size: 0.72rem;
-  line-height: 1.2;
-}
-
-.inv-chip.muted {
-  opacity: 0.6;
-}
-
 .inv-ticket {
   color: var(--color-text-light);
   font-weight: 600;
@@ -2437,26 +2421,31 @@ body.has-announcement .app-container {
 
 .inv-hero-panel,
 .inv-body-panel {
-  background: rgba(255,255,255,0.04);
+  background: linear-gradient(180deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.03) 100%);
   border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 18px;
-  padding: 1.6rem;
+  border-radius: 22px;
+  padding: 1.85rem 1.85rem 1.4rem;
   margin-bottom: 1.25rem;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+}
+
+.inv-hero-top {
+  max-width: 760px;
 }
 
 .inv-hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
-  margin-top: 1.2rem;
+  margin-top: 1.35rem;
 }
 
 .inv-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.1rem;
-  border-radius: 10px;
+  padding: 0.8rem 1.2rem;
+  border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.92rem;
@@ -2471,11 +2460,13 @@ body.has-announcement .app-container {
 
 .inv-btn-primary:hover {
   background: var(--color-accent-orange-hover);
+  transform: translateY(-1px);
 }
 
 .inv-btn-ghost {
   border: 1px solid rgba(255,255,255,0.18);
   color: var(--color-text-light);
+  background: rgba(255,255,255,0.03);
 }
 
 .inv-btn-ghost:hover {
@@ -2483,33 +2474,122 @@ body.has-announcement .app-container {
   color: var(--color-accent-orange);
 }
 
-.inv-props-grid {
+.inv-metrics {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 1.5rem;
+  grid-template-columns: minmax(0, 280px);
+  gap: 0.85rem;
+  margin: 1.75rem 0 0.35rem;
 }
 
-.inv-prop {
-  background: rgba(0,0,0,0.2);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 12px;
-  padding: 0.95rem 1rem;
+.inv-metric {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  padding: 1.15rem 1.25rem;
+  background:
+    radial-gradient(circle at top right, rgba(237, 87, 47, 0.28), transparent 55%),
+    rgba(0,0,0,0.28);
+  border: 1px solid rgba(237, 87, 47, 0.28);
 }
 
-.inv-prop-label {
-  color: rgba(255,255,255,0.45);
+.inv-metric-label {
+  display: block;
+  color: rgba(255,255,255,0.55);
   font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.45rem;
 }
 
-.inv-prop-value {
+.inv-metric-value {
+  display: block;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  line-height: 1.15;
+}
+
+.inv-facts {
+  margin-top: 1.1rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.inv-fact-row {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.inv-fact-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0.35rem;
+}
+
+.inv-fact-label {
+  color: rgba(255,255,255,0.48);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-top: 0.35rem;
+}
+
+.inv-fact-value {
   color: var(--color-text-light);
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.inv-connect-text {
+  color: rgba(255,255,255,0.88);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.inv-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.9);
+  font-size: 0.78rem;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.inv-chip-stage {
+  border-color: rgba(237, 87, 47, 0.35);
+  background: rgba(237, 87, 47, 0.12);
+  color: #ffd2c3;
+}
+
+.inv-chip-sector {
+  border-color: rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.05);
+}
+
+.inv-chip-thesis {
+  border-color: rgba(120, 170, 255, 0.28);
+  background: rgba(120, 170, 255, 0.1);
+  color: #d7e6ff;
+}
+
+.inv-chip.muted {
+  opacity: 0.6;
+}
+
+.inv-props-grid,
+.inv-prop,
+.inv-prop-label,
+.inv-prop-value {
+  /* legacy unused */
 }
 
 .inv-body-panel h2,
@@ -2616,8 +2696,17 @@ body.has-announcement .app-container {
     grid-template-columns: 1fr;
     gap: 0.85rem;
   }
-  .inv-props-grid,
+  .inv-fact-row {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+  .inv-fact-label {
+    padding-top: 0;
+  }
   .inv-related-grid {
+    grid-template-columns: 1fr;
+  }
+  .inv-metrics {
     grid-template-columns: 1fr;
   }
 }
