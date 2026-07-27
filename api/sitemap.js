@@ -1,6 +1,7 @@
 const db = require('../utils/db');
 const { getAllInvestors } = require('../utils/investors');
 const { THESIS_THEMES } = require('../data/thesis-themes');
+const { INVESTMENT_STAGES } = require('../data/investment-stages');
 
 module.exports = async function handler(req, res) {
     res.setHeader('Content-Type', 'application/xml');

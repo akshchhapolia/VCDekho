@@ -157,5 +157,23 @@
     load().catch(console.error);
   });
 
-  resetOffsetAndLoad();
+  // Prefill filters from URL (?stage=&thesis=)
+  const params0 = new URLSearchParams(window.location.search);
+  if (params0.get('stage')) state.stage = params0.get('stage');
+  if (params0.get('thesis')) state.thesis = params0.get('thesis');
+  if (params0.get('sector')) state.sector = params0.get('sector');
+  if (params0.get('type')) state.type = params0.get('type');
+  if (params0.get('cheque')) state.cheque = params0.get('cheque');
+  if (params0.get('q')) {
+    state.q = params0.get('q');
+    els.search.value = state.q;
+  }
+
+  resetOffsetAndLoad().then(() => {
+    if (state.stage && els.stage) els.stage.value = state.stage;
+    if (state.thesis && els.thesis) els.thesis.value = state.thesis;
+    if (state.sector && els.sector) els.sector.value = state.sector;
+    if (state.type && els.type) els.type.value = state.type;
+    if (state.cheque && els.cheque) els.cheque.value = state.cheque;
+  });
 })();
