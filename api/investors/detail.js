@@ -142,7 +142,7 @@ module.exports = async function handler(req, res) {
       '<meta name="description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
       '<link rel="canonical" href="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
       '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
-      '<link rel="stylesheet" href="/style.css?v=7">',
+      '<link rel="stylesheet" href="/style.css?v=8">',
       '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
       '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
       '<meta property="og:url" content="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
