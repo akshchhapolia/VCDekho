@@ -341,7 +341,7 @@ function renderInvestorPage(investor, related, res) {
   ].join('\n');
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
+  res.setHeader('Cache-Control', 'private, no-store');
   return res.status(200).send(html);
 }
 
