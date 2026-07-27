@@ -14,7 +14,8 @@
   <meta name="description" content="Deep guides to Pre-Seed, Seed, Pre-Series A, Series A, Series B and Series C+ / Growth — with investor lists for Indian founders.">
   <link rel="canonical" href="https://vcdekho.com/investors/stages">
   <link rel="icon" type="image/png" href="/assets/logoforvc.png">
-  <link rel="stylesheet" href="/style.css?v=11">
+  <link rel="stylesheet" href="/style.css?v=15">
+  <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="scrollable-page inv-page stage-guide-page">
   <div class="app-container">
@@ -30,6 +31,7 @@
         <a href="/investors" class="nav-link active">Investors</a>
         <a href="/blog" class="nav-link">Blog</a>
         <a href="/news" class="nav-link">News</a>
+        <a href="/login" class="nav-link" id="logout-link">Log out</a>
       </nav>
     </header>
 
@@ -71,13 +73,19 @@
     </main>
   </div>
 
+  <script src="/js/auth.js"></script>
+  <script src="/js/auth-guard.js"></script>
   <script src="/app.js"></script>
   <script>
     (async function () {
       const grid = document.getElementById('stages-grid');
       const ladder = document.getElementById('stages-ladder');
       try {
-        const res = await fetch('/api/investors/list?view=stages');
+        const res = await window.VCAuth.authFetch('/api/investors/list?view=stages');
+        if (res.status === 401) {
+          window.location.replace(window.VCAuth.loginUrl());
+          return;
+        }
         const data = await res.json();
         const stages = data.stages || [];
         if (!stages.length) {
