@@ -1,5 +1,6 @@
 const { filterInvestors, getFilters, toCard } = require('../../utils/investors');
 const { getAllThemes } = require('../../utils/thesis-themes');
+const { getAllStages } = require('../../utils/investment-stages');
 
 module.exports = async function handler(req, res) {
   try {
@@ -14,6 +15,19 @@ module.exports = async function handler(req, res) {
       }));
       res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
       return res.status(200).json({ total: themes.length, themes });
+    }
+
+    if (query.view === 'stages') {
+      const stages = getAllStages().map(s => ({
+        id: s.id,
+        label: s.label,
+        summary: s.summary,
+        order: s.order,
+        investorCount: s.investorCount,
+        snapshot: s.snapshot
+      }));
+      res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
+      return res.status(200).json({ total: stages.length, stages });
     }
 
     const {

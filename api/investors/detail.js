@@ -202,6 +202,12 @@ module.exports = async function handler(req, res) {
       return renderThemePage(theme, res);
     }
 
+    if (view === 'stage') {
+      const stage = getStagePage(slug);
+      if (!stage) return res.status(404).send('<h1>404 - Investment stage not found</h1>');
+      return renderStagePage(stage, res);
+    }
+
     const investor = getInvestorBySlug(slug);
     if (!investor) {
       return res.status(404).send('<h1>404 - Investor Not Found</h1>');
