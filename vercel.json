@@ -10,6 +10,10 @@
       "destination": "/api/news/article?slug=:slug"
     },
     {
+      "source": "/investors/themes/:slug",
+      "destination": "/api/investors/theme-detail?slug=:slug"
+    },
+    {
       "source": "/investors/:slug",
       "destination": "/api/investors/detail?slug=:slug"
     },

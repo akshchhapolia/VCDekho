@@ -8,13 +8,27 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;');
 }
 
-function chip(label, variant) {
+function chip(label, variant, href) {
   const cls = variant ? ('inv-chip inv-chip-' + variant) : 'inv-chip';
-  return '<span class="' + cls + '">' + escapeHtml(label) + '</span>';
+  const inner = escapeHtml(label);
+  if (href) {
+    return '<a class="' + cls + '" href="' + escapeHtml(href) + '">' + inner + '</a>';
+  }
+  return '<span class="' + cls + '">' + inner + '</span>';
 }
 
 function chips(list, variant) {
   return (list || []).map(function (item) { return chip(item, variant); }).join('');
+}
+
+function thesisThemeChips(investor) {
+  const labels = investor.thesisThemes || [];
+  const ids = investor.thesisThemeIds || [];
+  return labels.map(function (label, i) {
+    const id = ids[i];
+    const href = id && id !== 'general' ? '/investors/themes/' + id : '';
+    return chip(label, 'thesis', href);
+  }).join('');
 }
 
 function factRow(label, valueHtml) {
@@ -103,7 +117,7 @@ module.exports = async function handler(req, res) {
       '<div class="inv-facts">' +
         factRow('Lead / invest stages', chips(investor.stages, 'stage')) +
         factRow('Sector focus', chips(investor.sectors, 'sector')) +
-        factRow('Investment thesis', chips(investor.thesisThemes, 'thesis')) +
+        factRow('Investment thesis', thesisThemeChips(investor)) +
         factRow('Best way to connect', connectHtml) +
       '</div>';
 

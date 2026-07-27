@@ -1,5 +1,6 @@
 const db = require('../utils/db');
 const { getAllInvestors } = require('../utils/investors');
+const { THESIS_THEMES } = require('../data/thesis-themes');
 
 module.exports = async function handler(req, res) {
     res.setHeader('Content-Type', 'application/xml');
@@ -61,6 +62,14 @@ module.exports = async function handler(req, res) {
     <loc>https://vcdekho.com/investors</loc>
     <priority>0.95</priority>
   </url>
+  <url>
+    <loc>https://vcdekho.com/investors/themes</loc>
+    <priority>0.9</priority>
+  </url>${THESIS_THEMES.map(t => `
+  <url>
+    <loc>https://vcdekho.com/investors/themes/${t.id}</loc>
+    <priority>0.85</priority>
+  </url>`).join('')}
   <url>
     <loc>https://vcdekho.com/blog</loc>
     <priority>0.9</priority>
