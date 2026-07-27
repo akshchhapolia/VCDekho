@@ -3,3 +3,5 @@
 node_modules/
 .DS_Store
 *.log
+scripts/.enrich_org_progress.json
+Updated VC Dekho Sheet - Org.backup.csv
