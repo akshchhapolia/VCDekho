@@ -4020,6 +4020,7 @@ a.inv-chip:hover {
 
 .inv-profile-section {
   margin: 0 0 2.75rem;
+  scroll-margin-top: 4.5rem;
 }
 
 .inv-profile-section-label {
