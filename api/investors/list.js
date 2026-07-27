@@ -1,9 +1,13 @@
 const { filterInvestors, getFilters, toCard } = require('../../utils/investors');
 const { getAllThemes } = require('../../utils/thesis-themes');
 const { getAllStages } = require('../../utils/investment-stages');
+const { requireAuth } = require('../../utils/require-auth');
 
 module.exports = async function handler(req, res) {
   try {
+    const user = await requireAuth(req, res);
+    if (!user) return;
+
     const query = req.query || {};
 
     if (query.view === 'themes') {

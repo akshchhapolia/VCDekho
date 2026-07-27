@@ -3,6 +3,7 @@ const { getThemePage, getAllThemes } = require('../../utils/thesis-themes');
 const { getStagePage } = require('../../utils/investment-stages');
 const { renderStagePage } = require('../../utils/render-stage-page');
 const { renderInvestorPage } = require('../../utils/render-investor-page');
+const { requireAuth } = require('../../utils/require-auth');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -73,6 +74,7 @@ function renderThemePage(theme, res) {
     '<a href="/investors" class="nav-link active">Investors</a>',
     '<a href="/blog" class="nav-link">Blog</a>',
     '<a href="/news" class="nav-link">News</a>',
+    '<a href="/login" class="nav-link" id="logout-link">Log out</a>',
     '</nav></header>',
     '<main class="hero-showcase inv-detail-main">',
     '<div class="ambient-bg-wrapper"><div class="waitlist-bg"><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div><div class="glow-orb orb-3"></div></div></div>',
@@ -103,19 +105,24 @@ function renderThemePage(theme, res) {
     '<div class="blog-cta-content">',
     '<h2 class="blog-cta-title">Match your round to the right thesis</h2>',
     '<p class="blog-cta-desc">VC Dekho helps founders shortlist investors by stage, sector, cheque size, and investment thesis.</p>',
-    '<a href="/waitlist" class="blog-cta-btn">Join the Waitlist</a>',
+    '<a href="/investors" class="blog-cta-btn">Browse investors</a>',
     '</div></section>',
     '</div></main></div>',
+    '<script src="/js/auth.js"></script>',
+    '<script src="/js/auth-guard.js"></script>',
     '<script src="/app.js"></script>',
     '</body></html>'
   ].join('\n');
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
+  res.setHeader('Cache-Control', 'private, no-store');
   return res.status(200).send(html);
 }
 
 module.exports = async function handler(req, res) {
+  const user = await requireAuth(req, res);
+  if (!user) return;
+
   const { slug, view } = req.query || {};
   if (!slug) {
     return res.status(400).send('<h1>400 - Bad Request</h1>');
