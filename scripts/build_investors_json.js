@@ -58,7 +58,17 @@ const THESIS_THEMES = [
   { id: 'family-offices', label: 'Family offices', match: [/family\s*office/i, /patient capital/i], typeIds: ['family-office'] },
   { id: 'angel-syndicates', label: 'Angel syndicates / networks', match: [/syndicate/i, /angel network/i, /angel community/i, /rolling fund/i], typeIds: ['syndicate', 'angel'] },
   { id: 'agri-food', label: 'Agri / food systems', match: [/agri/i, /agtech/i, /foodtech/i, /agriculture/i, /farming/i, /food system/i], sectorIds: ['agritech'] },
-  { id: 'logistics-supply', label: 'Logistics / supply chain', match: [/logistics/i, /supply\s*chain/i, /warehous/i, /fulfiliment/i], sectorIds: ['logistics'] }
+  { id: 'logistics-supply', label: 'Logistics / supply chain', match: [/logistics/i, /supply\s*chain/i, /warehous/i, /fulfiliment/i], sectorIds: ['logistics'] },
+  { id: 'series-a-pmf', label: 'Series A / PMF capital', match: [/series\s*a\b/i, /product[-\s]?market[-\s]?fit/i, /\bpmf\b/i, /early growth/i], stageIds: ['series-a', 'pre-series-a'], exclude: [/pre[-\s]?series\s*a/i] },
+  { id: 'edtech', label: 'Edtech / skilling', match: [/edtech/i, /ed[-\s]?tech/i, /skilling/i, /education tech/i, /learning platform/i], sectorIds: ['edtech'] },
+  { id: 'micro-vc', label: 'Micro-VC / small cheque', match: [/micro[-\s]?vc/i, /small cheque/i, /cheque size.*(25|50|100|150|200)k/i] },
+  { id: 'bootstrapped-profit', label: 'Bootstrapped / profitability-first', match: [/bootstrapp/i, /profitab/i, /unit economics/i, /capital efficien/i, /path to profit/i] },
+  { id: 'platform-marketplace', label: 'Platform / marketplace builders', match: [/marketplace/i, /platform/i, /network effect/i, /two[-\s]?sided/i] },
+  { id: 'gaming-media', label: 'Gaming / media', match: [/gaming/i, /\bgame\b/i, /entertainment/i, /\bmedia\b/i, /content platform/i], sectorIds: ['gaming'] },
+  { id: 'proptech', label: 'Proptech / real estate', match: [/prop\s*tech/i, /proptech/i, /real estate/i, /housing tech/i], sectorIds: ['proptech'] },
+  { id: 'accelerator-studio', label: 'Accelerator / studio-linked', match: [/accelerator/i, /incubator/i, /venture studio/i, /startup studio/i], typeIds: ['accelerator'] },
+  { id: 'sea-india', label: 'Southeast Asia + India', match: [/southeast asia/i, /\bsea\b/i, /\basean\b/i, /india and southeast/i] },
+  { id: 'mobility-ev', label: 'Mobility / EV', match: [/mobility/i, /\bev\b/i, /electric vehicle/i, /auto[-\s]?tech/i, /two[-\s]?wheeler/i] }
 ];
 
 const TYPE_CANON = [
@@ -196,8 +206,13 @@ function build() {
       }
     }
     const finalThemes = uniqueById(thesisThemes);
-    if (!finalThemes.length && thesisText) {
-      finalThemes.push({ id: 'general', label: 'General thesis' });
+    // Micro-VC: also tag small max cheque sizes
+    if (cheque.max != null && cheque.max > 0 && cheque.max <= 250000) {
+      finalThemes.push({ id: 'micro-vc', label: 'Micro-VC / small cheque' });
+    }
+    const themesOut = uniqueById(finalThemes);
+    if (!themesOut.length && thesisText) {
+      themesOut.push({ id: 'general', label: 'General thesis' });
     }
 
     let chequeLabel = cheque.label;
@@ -218,8 +233,8 @@ function build() {
       stageIds: stages.map(s => s.id),
       sectors: sectors.map(s => s.label),
       sectorIds: sectors.map(s => s.id),
-      thesisThemes: finalThemes.map(t => t.label),
-      thesisThemeIds: finalThemes.map(t => t.id),
+      thesisThemes: themesOut.map(t => t.label),
+      thesisThemeIds: themesOut.map(t => t.id),
       thesis: (row['Company Thesis'] || '').trim(),
       chequeSize: chequeLabel,
       chequeMin: cheque.min,

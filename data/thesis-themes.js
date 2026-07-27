@@ -421,6 +421,216 @@ Pitch the bottleneck you remove, the density you have (or will get), and why inc
       'Density and retention evidence',
       'Asset strategy and capital intensity called out clearly'
     ]
+  },
+  {
+    id: 'series-a-pmf',
+    label: 'Series A / PMF capital',
+    eyebrow: 'Stage thesis',
+    summary: 'Investors who fund the jump from early traction to proven product-market fit and a repeatable growth engine.',
+    writeup: `Series A and PMF capital sits between “this might work” and “this clearly works.” These investors want evidence that a wedge is converting into a repeatable motion — retention, sales efficiency, or density — and a plan to turn that into category leadership.
+
+In India, Series A diligence is sharper than seed: cohorts, contribution margins, hiring plan, and competitive reality matter. Founders who still pitch only vision get pushed back; founders who can show learning loops and a credible path to the next 18 months of milestones do well.
+
+Lead with what is proven, what is still a bet, and exactly how the round buys proof — not only growth vanity metrics.`,
+    whoItFits: [
+      'Founders raising pre-Series A or Series A with real traction',
+      'Teams with early retention or revenue signals seeking a lead',
+      'Companies ready for more process than a seed round'
+    ],
+    whatToPrepare: [
+      'Cohorts, retention, or sales funnel metrics',
+      'A 18-month plan tied to use of funds',
+      'Honest competitive map and why you win the wedge'
+    ]
+  },
+  {
+    id: 'edtech',
+    label: 'Edtech / skilling',
+    eyebrow: 'Sector thesis',
+    summary: 'Capital for education technology, skilling, upskilling, and learning products across India.',
+    writeup: `Edtech and skilling investors back products that help students, parents, professionals, or enterprises learn and get outcomes — exams, jobs, skills, or credentials. India’s market is large but cyclical; distribution, willingness to pay, and outcome proof matter more than content volume.
+
+These funds ask who the buyer is (parent, student, employer, institution), how completion and outcomes look, and whether CAC stays sane after paid acquisition cools. B2B skilling and workflow tools often underwrite differently from pure consumer test-prep.
+
+Pitch the learning outcome and the economic buyer clearly. Show retention or completion, not only downloads or enrolment spikes.`,
+    whoItFits: [
+      'K-12, test-prep, higher-ed, and skilling founders',
+      'B2B learning / L&D products selling to employers or institutes',
+      'Teams with outcome or completion evidence'
+    ],
+    whatToPrepare: [
+      'Buyer and pricing model clarity',
+      'Completion, placement, or learning outcome metrics',
+      'CAC payback and organic/distribution levers'
+    ]
+  },
+  {
+    id: 'micro-vc',
+    label: 'Micro-VC / small cheque',
+    eyebrow: 'Capital type',
+    summary: 'Funds and platforms that write smaller, faster cheques — often the first institutional money in the round.',
+    writeup: `Micro-VCs and small-cheque funds specialise in speed and access. Cheques are smaller than classic institutional seed, but decisions can be faster, processes lighter, and founder support more hands-on. In India they often sit alongside angels and larger leads to fill or catalyse a round.
+
+Founders should ask about ownership targets, follow-on reserves, and whether the fund typically leads or follows. A great micro-VC can unlock intros and round momentum; a weak one adds cap-table noise.
+
+Pitch tightly and ask for a clear yes/no window. Use them strategically — especially when you need a first believer or a bridge to a larger lead.`,
+    whoItFits: [
+      'Pre-seed and seed founders needing a first or filling cheque',
+      'Rounds that benefit from fast conviction capital',
+      'Teams that want hands-on help without a large primary'
+    ],
+    whatToPrepare: [
+      'A short deck and crisp ask amount',
+      'Round construction (lead vs fill)',
+      'What help you want beyond the cheque'
+    ]
+  },
+  {
+    id: 'bootstrapped-profit',
+    label: 'Bootstrapped / profitability-first',
+    eyebrow: 'Founder lens',
+    summary: 'Investors who prefer capital-efficient companies with strong unit economics and a path to profit.',
+    writeup: `Profitability-first investors underwrite discipline. They like founders who treat capital as scarce, understand contribution margins early, and can grow without lighting money on fire. Some come from operator backgrounds; others run funds explicitly biased to efficient SaaS, brands, or services-tech hybrids.
+
+This is not anti-growth — it is anti-waste. Expect questions on payback periods, burn multiple, pricing power, and what happens if fundraising markets freeze. “We’ll figure out monetisation later” usually fails here.
+
+Show the economic engine first. Growth plans land better when unit economics already whisper that the business can stand on its own.`,
+    whoItFits: [
+      'Capital-efficient SaaS, brands, and services-tech founders',
+      'Teams with early gross margin or payback clarity',
+      'Founders who may raise less and build longer'
+    ],
+    whatToPrepare: [
+      'Unit economics and burn discipline',
+      'A growth plan that does not assume infinite CAC',
+      'Milestones to default-alive or default-profitable'
+    ]
+  },
+  {
+    id: 'platform-marketplace',
+    label: 'Platform / marketplace builders',
+    eyebrow: 'Business-model thesis',
+    summary: 'Investors backing two-sided platforms and marketplaces where liquidity and network effects are the moat.',
+    writeup: `Platform and marketplace investors look for liquidity loops: more supply attracts demand, more demand attracts supply, and take rates or adjacent services monetise the network. In India this includes horizontal and vertical marketplaces, B2B platforms, and hybrid models with services attached.
+
+Diligence focuses on concentration risk, repeat usage, take rate durability, and cold-start strategy city by city or category by category. Fake liquidity and heavy subsidies without retention get discounted fast.
+
+Pitch your wedge market, how you seed both sides, and what compounds after subsidies fade — data, brand, workflow, or density.`,
+    whoItFits: [
+      'Consumer and B2B marketplace founders',
+      'Platform businesses with early liquidity in a wedge',
+      'Teams that understand ops intensity behind network effects'
+    ],
+    whatToPrepare: [
+      'Liquidity metrics and repeat rates by cohort',
+      'Cold-start and expansion playbook',
+      'Unit economics after incentives'
+    ]
+  },
+  {
+    id: 'gaming-media',
+    label: 'Gaming / media',
+    eyebrow: 'Sector thesis',
+    summary: 'Capital for games, interactive entertainment, content platforms, and media-tech businesses.',
+    writeup: `Gaming and media investors back studios, platforms, tools, and distribution businesses in interactive entertainment and content. Hits are power-law; so funds look for teams that understand retention loops, live ops, IP, or distribution advantages — not only a single launch spike.
+
+In India, mobile-first audiences, creator ecosystems, and global publishing ambitions all show up in theses. Diligence asks about D1/D7 retention, payer conversion, content pipeline, and whether growth depends on paid UA forever.
+
+Pitch the engagement loop and the economic engine. One viral moment is not a thesis; a system that produces repeatable audience or hit potential is.`,
+    whoItFits: [
+      'Game studios, gaming platforms, and media-tech founders',
+      'Teams with retention or creator/audience proof',
+      'Products with a path beyond a single title or format'
+    ],
+    whatToPrepare: [
+      'Retention and monetisation metrics',
+      'Content or title pipeline realism',
+      'UA strategy and payback assumptions'
+    ]
+  },
+  {
+    id: 'proptech',
+    label: 'Proptech / real estate',
+    eyebrow: 'Sector thesis',
+    summary: 'Investors in property tech, housing platforms, and real-estate workflow software or services.',
+    writeup: `Proptech investors fund software and services that improve how property is discovered, transacted, financed, built, or managed. India’s real-estate market is fragmented and trust-sensitive, so distribution partnerships and compliance often matter as much as product UX.
+
+These investors scrutinise transaction frequency, take rates, working capital, and whether you are building a durable workflow tool versus a cyclical brokerage. B2B proptech (builders, brokers, facility ops) can underwrite differently from consumer listing marketplaces.
+
+Show who pays, how often, and why your product becomes embedded in a high-stakes workflow.`,
+    whoItFits: [
+      'Housing marketplace, brokerage-tech, and proptech SaaS founders',
+      'Teams selling into brokers, builders, societies, or lenders',
+      'Businesses with repeat transaction or subscription signals'
+    ],
+    whatToPrepare: [
+      'Revenue model and transaction/retention proof',
+      'Trust and compliance posture',
+      'Cycle risk and how you survive slow markets'
+    ]
+  },
+  {
+    id: 'accelerator-studio',
+    label: 'Accelerator / studio-linked',
+    eyebrow: 'Capital type',
+    summary: 'Accelerators, incubators, and venture studios that combine capital with structured company-building support.',
+    writeup: `Accelerator and studio-linked capital comes with a program: mentors, milestones, demos, and sometimes co-building. Cheques may be smaller, but the packaging can include network access, follow-on pathways, and operating help. Studios go further — sometimes originating ideas or embedding operators.
+
+Founders should read the trade carefully: equity for program value, time commitment, and whether the brand truly opens doors. Great programs create density and accountability; weak ones take equity for workshops.
+
+Apply when you want structure and network as much as money. Be clear-eyed on dilution versus the acceleration you actually need.`,
+    whoItFits: [
+      'Early founders wanting program structure and network',
+      'Teams that benefit from cohort learning and demo days',
+      'Studio-fit ideas needing operators and capital together'
+    ],
+    whatToPrepare: [
+      'Why a program beats raising only angels/VCs right now',
+      'Willingness to commit to milestones and pacing',
+      'Clear view of equity trade vs support offered'
+    ]
+  },
+  {
+    id: 'sea-india',
+    label: 'Southeast Asia + India',
+    eyebrow: 'Geography thesis',
+    summary: 'Investors who underwrite India and Southeast Asia as a connected growth theater.',
+    writeup: `India + Southeast Asia investors see shared playbooks across large, mobile-first, diverse markets — fintech rails, commerce, B2B software, and consumer services. Some funds are headquartered in one region with a mandate across both; others help Indian companies expand into SEA or vice versa.
+
+Diligence often asks whether your wedge is portable: payments, language, regulation, and distribution rarely copy-paste. Founders who treat SEA as “India 2.0” without local partners struggle; founders with a sequenced expansion thesis do better.
+
+Pitch why the second geography is a natural adjacency, not a distraction — and what local advantage you will need.`,
+    whoItFits: [
+      'Founders with India traction looking at SEA expansion',
+      'Companies building multi-market consumer or fintech plays',
+      'Teams with partners or operators across the corridor'
+    ],
+    whatToPrepare: [
+      'A sequenced market expansion plan',
+      'What transfers vs what must be rebuilt locally',
+      'Regulatory and distribution realities called out'
+    ]
+  },
+  {
+    id: 'mobility-ev',
+    label: 'Mobility / EV',
+    eyebrow: 'Sector thesis',
+    summary: 'Capital for electric mobility, auto-tech, and the software/services layer around moving people and goods.',
+    writeup: `Mobility and EV investors back electric vehicles, charging and battery-adjacent businesses, fleet platforms, and auto-tech software. Hardware cycles are capital intensive; software and services layers can scale differently. In India, two-wheelers, three-wheelers, and commercial fleets often matter as much as passenger cars.
+
+Expect questions on unit economics per vehicle or km, supply-chain dependence, policy sensitivity, and whether you own demand (fleet, consumer) or infrastructure. Pure subsidy stories fade; durable utilisation and service models travel better.
+
+Pitch the economic buyer and utilisation loop. Show why your wedge survives when incentives change.`,
+    whoItFits: [
+      'EV, fleet, charging, and auto-tech founders',
+      'Teams with utilisation or deployment proof',
+      'Software layers selling into mobility operators'
+    ],
+    whatToPrepare: [
+      'Unit economics per vehicle, km, or account',
+      'Hardware vs software capital plan',
+      'Policy and supply-chain risk honesty'
+    ]
   }
 ];
 
