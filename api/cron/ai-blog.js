@@ -38,13 +38,14 @@ module.exports = async function handler(req, res) {
             throw new Error('DATABASE_URL is missing');
         }
 
-        // One blog post per calendar day (UTC)
+        // One blog post per calendar day (UTC), unless force=1 for manual runs
+        const force = req.query?.force === '1' || req.query?.force === 1;
         const existingToday = await db.query(
             `SELECT id, slug, title FROM articles
              WHERE category = 'blog' AND published_at >= date_trunc('day', NOW() AT TIME ZONE 'UTC')
              LIMIT 1`
         );
-        if (existingToday.rows.length > 0) {
+        if (existingToday.rows.length > 0 && !force) {
             return res.status(200).json({
                 success: true,
                 skipped: true,
