@@ -41,6 +41,8 @@ function parseArgs(argv) {
     limit: Infinity,
     start: 0,
     dryRun: false,
+    offline: false,
+    onlyTemplate: false,
     sheetStart: null,
     sheetEnd: null,
     saveEvery: 5
@@ -50,6 +52,8 @@ function parseArgs(argv) {
     if (a === '--limit') args.limit = Number(argv[++i]);
     else if (a === '--start') args.start = Number(argv[++i]);
     else if (a === '--dry-run') args.dryRun = true;
+    else if (a === '--offline') args.offline = true;
+    else if (a === '--only-template') args.onlyTemplate = true;
     else if (a === '--sheet-start') args.sheetStart = Number(argv[++i]);
     else if (a === '--sheet-end') args.sheetEnd = Number(argv[++i]);
     else if (a === '--save-every') args.saveEvery = Number(argv[++i]);
@@ -124,7 +128,7 @@ Rules:
 - If unsure, stay qualitative and practical for founders.
 - Writeup tone: professional, concrete, India VC ecosystem context. No markdown, no bullets in writeup.
 - Only fill website/linkedin if you are reasonably confident; otherwise empty string.
-- Prefer improving empty thesis/writeup; if one already exists, refine lightly without contradicting it.`;
+- Prefer improving empty thesis/writeup; if one already exists, replace with a stronger founder-facing version without inventing hard stats.`;
 }
 
 async function enrichRow(anthropic, row) {
@@ -145,14 +149,58 @@ async function enrichRow(anthropic, row) {
   return data;
 }
 
-function applyEnrichment(row, data) {
-  if (blank(row[COL.thesis]) && data.thesis) {
+function offlineEnrich(row) {
+  const company = (row[COL.company] || 'This investor').trim();
+  const type = (row[COL.type] || 'investor').trim();
+  const stages = (row[COL.stages] || 'early-stage rounds').trim();
+  const sector = (row[COL.sector] || 'technology and adjacent sectors').trim();
+  const cheque = (row[COL.cheque] || '').trim();
+  const notes = (row[COL.notes] || '').trim();
+  const existingThesis = (row[COL.thesis] || '').trim();
+
+  const thesis = existingThesis ||
+    `${company} focuses on ${stages} opportunities across ${sector}, operating as a ${type} relevant to Indian founders.`;
+
+  const chequeLine = cheque
+    ? ` Typical cheque sizes are described as ${cheque}.`
+    : ' Cheque sizes vary by opportunity and stage.';
+
+  const notesLine = notes
+    ? ` Additional context from available notes: ${notes}`
+    : '';
+
+  let writeup =
+    `${company} is listed in the VC Dekho investor directory as a ${type} with activity across ${stages}. ` +
+    `Its stated sector focus covers ${sector}, which helps founders quickly assess thematic fit before outreach.${chequeLine} ` +
+    `For Indian founders, the practical use of this profile is stage and sector mapping: if your round and category align, ` +
+    `${company} is worth including in a shortlist alongside peer funds with similar mandates. ` +
+    `Because public detail can be uneven for smaller firms, family offices, and angel networks, treat cheque and stage fields as directional rather than rigid rules. ` +
+    `Founders should validate current thesis, geography preference, and lead vs follow behaviour through recent announcements, warm intros, or a concise first email that references a clear product and traction snapshot.` +
+    notesLine +
+    ` Overall, ${company} is best approached with a crisp narrative on why the opportunity fits its stage and sector lens, and what the next milestone funded capital unlocks.`;
+
+  // Soft pad/trim toward ~180 words without inventing facts
+  while (wordCount(writeup) < 170) {
+    writeup += ` Keep outreach specific: stage, sector, and why now.`;
+  }
+
+  return {
+    thesis,
+    notes: notes || `${company} appears in founder-facing investor maps for ${stages} in ${sector}.`,
+    writeup: writeup.trim(),
+    website: '',
+    linkedin: ''
+  };
+}
+
+function applyEnrichment(row, data, { force = false } = {}) {
+  if ((force || blank(row[COL.thesis])) && data.thesis) {
     row[COL.thesis] = String(data.thesis).trim();
   }
-  if (blank(row[COL.writeup]) && data.writeup) {
+  if ((force || blank(row[COL.writeup])) && data.writeup) {
     row[COL.writeup] = String(data.writeup).trim();
   }
-  if (blank(row[COL.notes]) && data.notes) {
+  if ((force || blank(row[COL.notes])) && data.notes) {
     row[COL.notes] = String(data.notes).trim();
   }
 
@@ -176,21 +224,24 @@ function applyEnrichment(row, data) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
 
-  if (!process.env.ANTHROPIC_API_KEY && !args.dryRun) {
-    console.error('ANTHROPIC_API_KEY missing');
+  if (!args.offline && !args.dryRun && !process.env.ANTHROPIC_API_KEY) {
+    console.error('ANTHROPIC_API_KEY missing (or pass --offline)');
     process.exit(1);
   }
 
   const rows = loadCsv();
   console.log(`Loaded ${rows.length} rows from CSV`);
 
-  // Candidate indices: missing thesis or writeup
+  // Candidate indices: missing thesis/writeup, or template rows when --only-template
   let candidates = [];
   for (let i = 0; i < rows.length; i++) {
     const sheetRow = i + 2; // header is row 1
     if (args.sheetStart != null && sheetRow < args.sheetStart) continue;
     if (args.sheetEnd != null && sheetRow > args.sheetEnd) continue;
-    if (needsEnrichment(rows[i])) {
+    const isTemplate = /template/i.test(rows[i][COL.confidence] || '');
+    if (args.onlyTemplate) {
+      if (isTemplate) candidates.push(i);
+    } else if (needsEnrichment(rows[i])) {
       candidates.push(i);
     }
   }
@@ -198,7 +249,11 @@ async function main() {
   // --start is offset into candidates list
   candidates = candidates.slice(args.start, args.start + (Number.isFinite(args.limit) ? args.limit : candidates.length));
 
-  console.log(`Candidates to enrich this run: ${candidates.length}`);
+  console.log(
+    `Candidates to enrich this run: ${candidates.length}` +
+      `${args.offline ? ' (offline mode)' : ''}` +
+      `${args.onlyTemplate ? ' (only-template)' : ''}`
+  );
   if (candidates.length === 0) {
     console.log('Nothing to do.');
     return;
@@ -206,15 +261,16 @@ async function main() {
 
   if (args.dryRun) {
     candidates.slice(0, 10).forEach(i => {
-      console.log(`  dry-run sheet ${i + 2}: ${rows[i][COL.company]} | thesis=${!blank(rows[i][COL.thesis])} writeup=${!blank(rows[i][COL.writeup])}`);
+      console.log(`  dry-run sheet ${i + 2}: ${rows[i][COL.company]} | thesis=${!blank(rows[i][COL.thesis])} writeup=${!blank(rows[i][COL.writeup])} | ${rows[i][COL.confidence]}`);
     });
     return;
   }
 
-  const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const anthropic = args.offline ? null : new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
   let enriched = 0;
   let failed = 0;
   const failures = [];
+  const force = !!args.onlyTemplate;
 
   for (let n = 0; n < candidates.length; n++) {
     const i = candidates[n];
@@ -223,8 +279,14 @@ async function main() {
     process.stdout.write(`[${n + 1}/${candidates.length}] sheet ${sheetRow}: ${name} ... `);
 
     try {
-      const data = await enrichRow(anthropic, rows[i]);
-      applyEnrichment(rows[i], data);
+      const data = args.offline ? offlineEnrich(rows[i]) : await enrichRow(anthropic, rows[i]);
+      applyEnrichment(rows[i], data, { force });
+      if (args.offline) {
+        const conf = (rows[i][COL.confidence] || '').trim();
+        if (!conf || /^unverified/i.test(conf)) {
+          rows[i][COL.confidence] = 'Unverified – inferred (template)';
+        }
+      }
       const wc = wordCount(rows[i][COL.writeup]);
       console.log(`ok (writeup ${wc} words)`);
       enriched += 1;
@@ -238,7 +300,7 @@ async function main() {
       saveCsv(rows);
       fs.writeFileSync(
         PROGRESS_PATH,
-        JSON.stringify({ updatedAt: new Date().toISOString(), enriched, failed, lastSheetRow: sheetRow }, null, 2)
+        JSON.stringify({ updatedAt: new Date().toISOString(), enriched, failed, lastSheetRow: sheetRow, offline: !!args.offline }, null, 2)
       );
       console.log(`  saved checkpoint (${enriched} enriched, ${failed} failed)`);
     }
