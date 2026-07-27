@@ -72,6 +72,14 @@ module.exports = async function handler(req, res) {
     <priority>0.85</priority>
   </url>`).join('')}
   <url>
+    <loc>https://vcdekho.com/investors/stages</loc>
+    <priority>0.9</priority>
+  </url>${INVESTMENT_STAGES.map(s => `
+  <url>
+    <loc>https://vcdekho.com/investors/stages/${s.id}</loc>
+    <priority>0.85</priority>
+  </url>`).join('')}
+  <url>
     <loc>https://vcdekho.com/blog</loc>
     <priority>0.9</priority>
   </url>

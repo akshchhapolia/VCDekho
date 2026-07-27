@@ -111,6 +111,11 @@
       fillSelect(els.type, data.filters.types || [], 'All types');
       fillSelect(els.thesis, data.filters.thesisThemes || [], 'All theses');
       fillSelect(els.cheque, data.filters.chequeRanges || [], 'Any ticket');
+      if (state.sector) els.sector.value = state.sector;
+      if (state.stage) els.stage.value = state.stage;
+      if (state.type) els.type.value = state.type;
+      if (state.thesis) els.thesis.value = state.thesis;
+      if (state.cheque) els.cheque.value = state.cheque;
     }
 
     state.total = data.total || 0;
@@ -169,11 +174,5 @@
     els.search.value = state.q;
   }
 
-  resetOffsetAndLoad().then(() => {
-    if (state.stage && els.stage) els.stage.value = state.stage;
-    if (state.thesis && els.thesis) els.thesis.value = state.thesis;
-    if (state.sector && els.sector) els.sector.value = state.sector;
-    if (state.type && els.type) els.type.value = state.type;
-    if (state.cheque && els.cheque) els.cheque.value = state.cheque;
-  });
+  resetOffsetAndLoad();
 })();
