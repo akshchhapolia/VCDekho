@@ -100,7 +100,11 @@
       offset: String(state.offset)
     });
 
-    const res = await fetch(`/api/investors/list?${params.toString()}`);
+    const res = await window.VCAuth.authFetch(`/api/investors/list?${params.toString()}`);
+    if (res.status === 401) {
+      window.location.replace(window.VCAuth.loginUrl());
+      return;
+    }
     if (!res.ok) throw new Error('Failed to load investors');
     const data = await res.json();
 

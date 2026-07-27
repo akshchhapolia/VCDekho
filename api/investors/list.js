@@ -17,8 +17,8 @@ module.exports = async function handler(req, res) {
         summary: t.summary,
         investorCount: t.investorCount
       }));
-      res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
-      return res.status(200).json({ total: themes.length, themes });
+      res.setHeader('Cache-Control', 'private, no-store');
+    return res.status(200).json({ total: themes.length, themes });
     }
 
     if (query.view === 'stages') {
@@ -30,7 +30,7 @@ module.exports = async function handler(req, res) {
         investorCount: s.investorCount,
         snapshot: s.snapshot
       }));
-      res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
+      res.setHeader('Cache-Control', 'private, no-store');
       return res.status(200).json({ total: stages.length, stages });
     }
 
@@ -50,7 +50,7 @@ module.exports = async function handler(req, res) {
     const take = Math.min(200, Math.max(1, parseInt(limit, 10) || 100));
     const page = all.slice(start, start + take).map(toCard);
 
-    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
+    res.setHeader('Cache-Control', 'private, no-store');
     res.status(200).json({
       total: all.length,
       offset: start,

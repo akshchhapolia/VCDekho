@@ -14,7 +14,8 @@
   <meta name="description" content="Explore 380+ VCs, family offices, angels and syndicates in India. Filter by sector, stage, cheque size, company type and investment thesis.">
   <link rel="canonical" href="https://vcdekho.com/investors">
   <link rel="icon" type="image/png" href="/assets/logoforvc.png">
-  <link rel="stylesheet" href="/style.css?v=10">
+  <link rel="stylesheet" href="/style.css?v=15">
+  <meta name="robots" content="noindex, nofollow">
   <meta property="og:title" content="Indian Investors Directory | VC Dekho">
   <meta property="og:description" content="Explore 380+ VCs, family offices, angels and syndicates in India.">
   <meta property="og:url" content="https://vcdekho.com/investors">
@@ -33,6 +34,7 @@
         <a href="/investors" class="nav-link active">Investors</a>
         <a href="/blog" class="nav-link">Blog</a>
         <a href="/news" class="nav-link">News</a>
+        <a href="/login" class="nav-link" id="logout-link">Log out</a>
       </nav>
     </header>
 
@@ -106,6 +108,8 @@
     </main>
   </div>
 
+  <script src="/js/auth.js"></script>
+  <script src="/js/auth-guard.js"></script>
   <script src="/app.js"></script>
   <script src="/investors/investors.js"></script>
 </body>
