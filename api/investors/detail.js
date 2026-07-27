@@ -32,6 +32,48 @@ function thesisThemeChips(investor) {
   }).join('');
 }
 
+function thesisWidget(investor) {
+  const labels = investor.thesisThemes || [];
+  const ids = investor.thesisThemeIds || [];
+  if (!labels.length) return '';
+
+  const MAX_VISIBLE = 4;
+  const chipsHtml = labels.map(function (label, i) {
+    const id = ids[i];
+    const href = id && id !== 'general' ? '/investors/themes/' + id : '';
+    const extraClass = i >= MAX_VISIBLE ? ' thesis-chip-extra' : '';
+    const cls = 'inv-chip inv-chip-thesis thesis-widget-chip' + extraClass;
+    const inner = escapeHtml(label);
+    if (href) {
+      return '<a class="' + cls + '" href="' + escapeHtml(href) + '">' + inner + '</a>';
+    }
+    return '<span class="' + cls + '">' + inner + '</span>';
+  }).join('');
+
+  const hiddenCount = Math.max(0, labels.length - MAX_VISIBLE);
+  const toggleHtml = hiddenCount > 0
+    ? (
+      '<button type="button" class="thesis-widget-toggle" data-more="View ' + hiddenCount + ' more" data-less="Show less" aria-expanded="false">' +
+        'View ' + hiddenCount + ' more' +
+      '</button>'
+    )
+    : '';
+
+  return (
+    '<section class="thesis-widget' + (hiddenCount ? ' is-collapsed' : '') + '">' +
+      '<div class="thesis-widget-head">' +
+        '<div>' +
+          '<p class="thesis-widget-kicker">Mapped themes</p>' +
+          '<h2 class="thesis-widget-title">Investment thesis</h2>' +
+        '</div>' +
+        '<a class="thesis-widget-browse" href="/investors/themes">All themes →</a>' +
+      '</div>' +
+      '<div class="thesis-widget-chips">' + chipsHtml + '</div>' +
+      toggleHtml +
+    '</section>'
+  );
+}
+
 function factRow(label, valueHtml) {
   if (!valueHtml) return '';
   return (
@@ -227,9 +269,10 @@ module.exports = async function handler(req, res) {
       '<div class="inv-facts">' +
         factRow('Lead / invest stages', chips(investor.stages, 'stage')) +
         factRow('Sector focus', chips(investor.sectors, 'sector')) +
-        factRow('Investment thesis', thesisThemeChips(investor)) +
         factRow('Best way to connect', connectHtml) +
       '</div>';
+
+    const thesisWidgetHtml = thesisWidget(investor);
 
     const schema = JSON.stringify({
       '@context': 'https://schema.org',
@@ -252,7 +295,7 @@ module.exports = async function handler(req, res) {
       '<meta name="description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
       '<link rel="canonical" href="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
       '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
-      '<link rel="stylesheet" href="/style.css?v=8">',
+      '<link rel="stylesheet" href="/style.css?v=9">',
       '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
       '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
       '<meta property="og:url" content="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
@@ -285,6 +328,7 @@ module.exports = async function handler(req, res) {
       metricsHtml +
       factsHtml +
       '</section>',
+      thesisWidgetHtml,
       '<section class="inv-body-panel">',
       '<h2>About ' + escapeHtml(investor.name) + '</h2>',
       writeupHtml,
@@ -302,6 +346,20 @@ module.exports = async function handler(req, res) {
       '</div></section>',
       '</div></main></div>',
       '<script src="/app.js"></script>',
+      '<script>',
+      '(function(){',
+      'var root=document.querySelector(".thesis-widget");',
+      'if(!root) return;',
+      'var btn=root.querySelector(".thesis-widget-toggle");',
+      'if(!btn) return;',
+      'btn.addEventListener("click",function(){',
+      'var open=root.classList.toggle("is-expanded");',
+      'root.classList.toggle("is-collapsed",!open);',
+      'btn.setAttribute("aria-expanded", open ? "true" : "false");',
+      'btn.textContent=open ? btn.getAttribute("data-less") : btn.getAttribute("data-more");',
+      '});',
+      '})();',
+      '</script>',
       '</body></html>'
     ].join('\n');
 
