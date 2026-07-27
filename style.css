@@ -2581,6 +2581,104 @@ body.has-announcement .app-container {
   color: #d7e6ff;
 }
 
+/* Investment thesis widget (investor profiles) */
+.thesis-widget {
+  margin: 1.25rem 0 0;
+  padding: 1.35rem 1.4rem 1.25rem;
+  border-radius: 18px;
+  border: 1px solid rgba(120, 170, 255, 0.18);
+  background:
+    linear-gradient(145deg, rgba(120, 170, 255, 0.08), rgba(12, 14, 22, 0.35) 45%, rgba(237, 87, 47, 0.05)),
+    rgba(10, 12, 20, 0.72);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+}
+
+.thesis-widget-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.thesis-widget-kicker {
+  margin: 0 0 0.25rem;
+  color: #9eb8ff;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.thesis-widget-title {
+  margin: 0;
+  font-family: var(--font-heading);
+  color: var(--color-text-light);
+  font-size: 1.35rem;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.thesis-widget-browse {
+  flex-shrink: 0;
+  color: #ffb89c;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding-top: 0.35rem;
+}
+
+.thesis-widget-browse:hover {
+  color: #ffd2c3;
+  text-decoration: underline;
+}
+
+.thesis-widget-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.thesis-widget.is-collapsed .thesis-chip-extra {
+  display: none;
+}
+
+.thesis-widget-chip {
+  border-radius: 12px;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.82rem;
+}
+
+.thesis-widget-toggle {
+  margin-top: 1rem;
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.88);
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.thesis-widget-toggle:hover {
+  border-color: rgba(237, 87, 47, 0.45);
+  background: rgba(237, 87, 47, 0.12);
+  color: #ffe1d6;
+}
+
+@media (max-width: 640px) {
+  .thesis-widget {
+    padding: 1.15rem 1.05rem 1.05rem;
+  }
+  .thesis-widget-head {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+}
+
 a.inv-chip {
   text-decoration: none;
   transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
