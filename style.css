@@ -2509,6 +2509,7 @@ body.has-announcement .app-container {
 }
 
 .inv-dir-row {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 0.75fr);
   gap: 1rem;
@@ -2517,23 +2518,31 @@ body.has-announcement .app-container {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
-a.inv-dir-col-fund,
-a.inv-dir-ticket {
+a.inv-dir-col-fund {
   text-decoration: none;
   color: inherit;
 }
 
-a.inv-dir-col-fund:hover .inv-dir-name,
-a.inv-dir-ticket:hover {
-  color: #ffb89c;
+/* Stretch fund link across the row so empty space is clickable */
+a.inv-dir-col-fund::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
 
 .inv-dir-row:hover {
   background: rgba(255, 255, 255, 0.03);
   border-bottom-color: rgba(237, 87, 47, 0.35);
+}
+
+.inv-dir-row:hover .inv-dir-name,
+.inv-dir-row:hover .inv-dir-ticket {
+  color: #ffb89c;
 }
 
 .inv-dir-col {
@@ -5268,6 +5277,8 @@ html.auth-pending body {
 
 .inv-dir-cell a,
 .inv-dir-inline-link {
+  position: relative;
+  z-index: 1;
   color: inherit;
   text-decoration: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);

@@ -253,7 +253,7 @@
         </div>
         <div class="inv-dir-col inv-dir-col-ticket">
           <span class="inv-dir-mobile-label">Ticket</span>
-          <a class="inv-dir-ticket" href="/investors/${esc(inv.slug)}">${esc(inv.chequeSize || 'Not listed')}</a>
+          <span class="inv-dir-ticket">${esc(inv.chequeSize || 'Not listed')}</span>
         </div>
       </article>`;
     }).join('');
