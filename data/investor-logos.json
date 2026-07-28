@@ -3590,5 +3590,469 @@
     "bytes": 15406,
     "fetchedAt": "2026-07-28T20:19:39.531Z",
     "from": "https://icons.duckduckgo.com/ip3/hcltech.com.ico"
+  },
+  "avaana-capital": {
+    "path": "/assets/investors/avaana-capital.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 1994,
+    "fetchedAt": "2026-07-28T20:43:06.229Z",
+    "from": "https://avaanacapital.com/cdn/shop/files/Frame_2147207977.svg?v=1755180503&width=96"
+  },
+  "seedfund": {
+    "path": "/assets/investors/seedfund.svg",
+    "source": "website",
+    "contentType": "image/svg+xml;charset=utf-8",
+    "bytes": 1039,
+    "fetchedAt": "2026-07-28T20:43:06.691Z",
+    "from": "https://seedfund.com/og.svg"
+  },
+  "circulate-capital": {
+    "path": "/assets/investors/circulate-capital.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 4262,
+    "fetchedAt": "2026-07-28T20:43:08.854Z",
+    "from": "https://www.circulatecapital.com/wp-content/uploads/2022/10/cropped-CirculateRoundelMark-180x180.png"
+  },
+  "unltd-india": {
+    "path": "/assets/investors/unltd-india.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 7763,
+    "fetchedAt": "2026-07-28T20:43:09.261Z",
+    "from": "https://unltdindia.org/wp-content/uploads/2023/06/cropped-logo-48-1-180x180.png"
+  },
+  "headstart-network-foundation": {
+    "path": "/assets/investors/headstart-network-foundation.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 11602,
+    "fetchedAt": "2026-07-28T20:43:09.675Z",
+    "from": "https://www.headstart.in/apple-touch-icon.png"
+  },
+  "systemiq-capital": {
+    "path": "/assets/investors/systemiq-capital.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 1784,
+    "fetchedAt": "2026-07-28T20:43:09.898Z",
+    "from": "https://www.systemiq.earth/wp-content/uploads/2019/06/SYSTEMIQ-1.png"
+  },
+  "asha-impact": {
+    "path": "/assets/investors/asha-impact.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 107220,
+    "fetchedAt": "2026-07-28T20:43:10.321Z",
+    "from": "https://ashaventures.in/assets/asha-small-logo-B2qF4Aeb.png"
+  },
+  "nabventures": {
+    "path": "/assets/investors/nabventures.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 1406,
+    "fetchedAt": "2026-07-28T20:43:11.197Z",
+    "from": "https://nabventures.in/images/favicon.ico"
+  },
+  "birac": {
+    "path": "/assets/investors/birac.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 3518,
+    "fetchedAt": "2026-07-28T20:43:11.587Z",
+    "from": "https://www.birac.nic.in/images/Logo.ico"
+  },
+  "amicus-capital": {
+    "path": "/assets/investors/amicus-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 7766,
+    "fetchedAt": "2026-07-28T20:43:13.320Z",
+    "from": "https://www.amicuscapital.in/wp-content/uploads/2019/06/cropped-site-icon-180x180.png"
+  },
+  "c-camp": {
+    "path": "/assets/investors/c-camp.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 2154,
+    "fetchedAt": "2026-07-28T20:43:13.495Z",
+    "from": "https://www.google.com/s2/favicons?domain=ccamp.res.in&sz=128"
+  },
+  "stpi-centres-of-entrepreneurship": {
+    "path": "/assets/investors/stpi-centres-of-entrepreneurship.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 2501,
+    "fetchedAt": "2026-07-28T20:43:19.295Z",
+    "from": "https://www.google.com/s2/favicons?domain=stpi.in&sz=128"
+  },
+  "idex": {
+    "path": "/assets/investors/idex.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 6941,
+    "fetchedAt": "2026-07-28T20:43:19.967Z",
+    "from": "https://idex.gov.in//assets/favicon/apple-icon-57x57.png"
+  },
+  "ikp-knowledge-park": {
+    "path": "/assets/investors/ikp-knowledge-park.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 12625,
+    "fetchedAt": "2026-07-28T20:43:20.954Z",
+    "from": "https://ikpknowledgepark.com/wp-content/uploads/2023/11/ikp-logo.svg"
+  },
+  "t-works": {
+    "path": "/assets/investors/t-works.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 6674,
+    "fetchedAt": "2026-07-28T20:43:23.704Z",
+    "from": "https://www.google.com/s2/favicons?domain=tworks.in&sz=128"
+  },
+  "google-for-startups-accelerator-india": {
+    "path": "/assets/investors/google-for-startups-accelerator-india.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 1164,
+    "fetchedAt": "2026-07-28T20:43:23.800Z",
+    "from": "https://www.gstatic.com/marketing-cms/assets/images/68/a8/c5cfedc44b8195ae82b92ad87f1c/fevicon.webp"
+  },
+  "nvidia-inception": {
+    "path": "/assets/investors/nvidia-inception.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 123596,
+    "fetchedAt": "2026-07-28T20:43:24.490Z",
+    "from": "https://www.nvidia.com/content/dam/en-zz/Solutions/startups/inception-og-100_.jpg"
+  },
+  "microsoft-for-startups-india": {
+    "path": "/assets/investors/microsoft-for-startups-india.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 17174,
+    "fetchedAt": "2026-07-28T20:43:24.849Z",
+    "from": "https://www.microsoft.com/favicon.ico?v2"
+  },
+  "aws-activate-india": {
+    "path": "/assets/investors/aws-activate-india.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2352,
+    "fetchedAt": "2026-07-28T20:43:25.139Z",
+    "from": "https://a0.awsstatic.com/libra-css/images/site/touch-icon-iphone-114-smile.png"
+  },
+  "cisco-launchpad": {
+    "path": "/assets/investors/cisco-launchpad.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 1406,
+    "fetchedAt": "2026-07-28T20:43:27.085Z",
+    "from": "https://startups.cisco.com/favicon.ico"
+  },
+  "tie-scaleup": {
+    "path": "/assets/investors/tie-scaleup.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 666,
+    "fetchedAt": "2026-07-28T20:43:27.403Z",
+    "from": "https://tie.org/wp-content/uploads/2025/02/TIE-FAV.webp"
+  },
+  "tie-nurture": {
+    "path": "/assets/investors/tie-nurture.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 666,
+    "fetchedAt": "2026-07-28T20:43:27.975Z",
+    "from": "https://tie.org/wp-content/uploads/2025/02/TIE-FAV.webp"
+  },
+  "founders-institute-bangalore": {
+    "path": "/assets/investors/founders-institute-bangalore.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 4879,
+    "fetchedAt": "2026-07-28T20:43:30.657Z",
+    "from": "https://fi.co/apple-touch-icon.png"
+  },
+  "founders-institute-hyderabad": {
+    "path": "/assets/investors/founders-institute-hyderabad.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 4879,
+    "fetchedAt": "2026-07-28T20:43:31.176Z",
+    "from": "https://fi.co/apple-touch-icon.png"
+  },
+  "iit-ropar-incubation-foundation": {
+    "path": "/assets/investors/iit-ropar-incubation-foundation.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 19878,
+    "fetchedAt": "2026-07-28T20:43:31.356Z",
+    "from": "https://www.iitrpr.ac.in/img/logos/logo.png"
+  },
+  "iit-guwahati-technology-incubation-centre": {
+    "path": "/assets/investors/iit-guwahati-technology-incubation-centre.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 6644,
+    "fetchedAt": "2026-07-28T20:43:32.007Z",
+    "from": "https://www.iitg.ac.in/favicon/apple-icon-57x57.png"
+  },
+  "iit-indore-innovation": {
+    "path": "/assets/investors/iit-indore-innovation.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T20:43:32.137Z",
+    "from": "https://www.iiti.ac.in/images/iitindore.ico"
+  },
+  "founders-institute-mumbai": {
+    "path": "/assets/investors/founders-institute-mumbai.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 4879,
+    "fetchedAt": "2026-07-28T20:43:35.784Z",
+    "from": "https://fi.co/apple-touch-icon.png"
+  },
+  "nitk-step": {
+    "path": "/assets/investors/nitk-step.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 39340,
+    "fetchedAt": "2026-07-28T20:43:35.937Z",
+    "from": "https://www.nitk.ac.in/design-system/images/favicon.ico"
+  },
+  "yes-fintech": {
+    "path": "/assets/investors/yes-fintech.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 311,
+    "fetchedAt": "2026-07-28T20:43:36.737Z",
+    "from": "https://www.google.com/s2/favicons?domain=yesbank.in&sz=128"
+  },
+  "nit-trichy-tbi": {
+    "path": "/assets/investors/nit-trichy-tbi.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 32216,
+    "fetchedAt": "2026-07-28T20:43:36.767Z",
+    "from": "https://www.nitt.edu/cms/templates/NewNittSite17/nittlogo-300x300.jpg"
+  },
+  "bits-pilani-tbi": {
+    "path": "/assets/investors/bits-pilani-tbi.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 15890,
+    "fetchedAt": "2026-07-28T20:43:37.364Z",
+    "from": "https://www.bits-pilani.ac.in/wp-content/uploads/cropped-favicon-1-180x180.png"
+  },
+  "amrita-tbi": {
+    "path": "/assets/investors/amrita-tbi.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T20:43:37.403Z",
+    "from": "https://webfiles.amrita.edu/2019/05/SQY15Vky-amrita-new-favicon.ico"
+  },
+  "iit-bhubaneswar-research-and-entrepreneurship-park": {
+    "path": "/assets/investors/iit-bhubaneswar-research-and-entrepreneurship-park.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 232369,
+    "fetchedAt": "2026-07-28T20:43:37.793Z",
+    "from": "https://www.iitbbs.ac.in/wp-content/uploads/2023/06/iitb_bhubaneswar_logo.png"
+  },
+  "vit-tbi": {
+    "path": "/assets/investors/vit-tbi.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 9152,
+    "fetchedAt": "2026-07-28T20:43:38.723Z",
+    "from": "https://vit.ac.in/wp-content/uploads/2023/06/images.webp"
+  },
+  "icreate": {
+    "path": "/assets/investors/icreate.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 28274,
+    "fetchedAt": "2026-07-28T20:43:40.102Z",
+    "from": "https://icreate.org.in/wp-content/uploads/2025/06/favicon.png"
+  },
+  "deshpande-startups": {
+    "path": "/assets/investors/deshpande-startups.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 7492,
+    "fetchedAt": "2026-07-28T20:43:40.521Z",
+    "from": "https://www.deshpandefoundation.org/wp-content/uploads/2022/12/cropped-Deshpande-foundation-favicon-180x180.png"
+  },
+  "startup-haryana": {
+    "path": "/assets/investors/startup-haryana.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 21285,
+    "fetchedAt": "2026-07-28T20:43:40.812Z",
+    "from": "https://startupharyana.gov.in/admin/dist/img/favicon/apple-touch-icon.png"
+  },
+  "meity-tide-2-0": {
+    "path": "/assets/investors/meity-tide-2-0.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 154,
+    "fetchedAt": "2026-07-28T20:43:41.024Z",
+    "from": "https://www.google.com/s2/favicons?domain=meity.gov.in&sz=128"
+  },
+  "dasra": {
+    "path": "/assets/investors/dasra.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T20:43:43.106Z",
+    "from": "https://dasra.org/frontend/images/favicon.ico"
+  },
+  "acumen-academy-india": {
+    "path": "/assets/investors/acumen-academy-india.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2000,
+    "fetchedAt": "2026-07-28T20:43:43.557Z",
+    "from": "https://acumenacademy.org/icons/icon-48x48.png?v=fb986de54647e75f9834d076422626a4"
+  },
+  "intellecap": {
+    "path": "/assets/investors/intellecap.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 34522,
+    "fetchedAt": "2026-07-28T20:43:44.772Z",
+    "from": "https://www.intellecap.com/wp-content/uploads/2018/07/cropped-favicon-180x180.png"
+  },
+  "iit-mandi-catalyst": {
+    "path": "/assets/investors/iit-mandi-catalyst.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 3719,
+    "fetchedAt": "2026-07-28T20:43:44.882Z",
+    "from": "https://www.google.com/s2/favicons?domain=iitmandi.ac.in&sz=128"
+  },
+  "nasscom-coe-fintech": {
+    "path": "/assets/investors/nasscom-coe-fintech.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T20:43:45.045Z",
+    "from": "https://www.nasscom.in/themes/custom/nasscomredesigntheme/favicon.ico"
+  },
+  "nasscom-coe-iot-and-ai": {
+    "path": "/assets/investors/nasscom-coe-iot-and-ai.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T20:43:45.063Z",
+    "from": "https://www.nasscom.in/themes/custom/nasscomredesigntheme/favicon.ico"
+  },
+  "mahindra-sparkle": {
+    "path": "/assets/investors/mahindra-sparkle.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 116,
+    "fetchedAt": "2026-07-28T20:43:45.159Z",
+    "from": "https://www.mahindra.com/sites/default/files/favicon.png"
+  },
+  "ashoka-university-entrepreneurship": {
+    "path": "/assets/investors/ashoka-university-entrepreneurship.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 11021,
+    "fetchedAt": "2026-07-28T20:43:45.400Z",
+    "from": "https://www.google.com/s2/favicons?domain=ashoka.edu.in&sz=128"
+  },
+  "iim-lucknow-enterprise-incubator": {
+    "path": "/assets/investors/iim-lucknow-enterprise-incubator.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T20:43:46.158Z",
+    "from": "https://www.iiml.ac.in/themes/awesome_zymphonies_theme/favicon.ico"
+  },
+  "razorpay-rize": {
+    "path": "/assets/investors/razorpay-rize.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 665,
+    "fetchedAt": "2026-07-28T20:43:47.093Z",
+    "from": "https://framerusercontent.com/images/CU1m0xFonUl76ZeaW0IdkQ0M.png"
+  },
+  "goa-startup-mission": {
+    "path": "/assets/investors/goa-startup-mission.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 12826,
+    "fetchedAt": "2026-07-28T20:43:47.096Z",
+    "from": "https://www.goa.gov.in/wp-content/uploads/2016/05/favicon-2.jpg"
+  },
+  "plaksha-university-launchpad": {
+    "path": "/assets/investors/plaksha-university-launchpad.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 4029,
+    "fetchedAt": "2026-07-28T20:43:48.151Z",
+    "from": "https://plaksha.edu.in/favicon.ico"
+  },
+  "bosch-startup-harbor-india": {
+    "path": "/assets/investors/bosch-startup-harbor-india.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 3245,
+    "fetchedAt": "2026-07-28T20:43:48.683Z",
+    "from": "https://www.bosch.com/media/tech/tech_images/apple-touch-icon.png"
+  },
+  "manipal-universal-tbi": {
+    "path": "/assets/investors/manipal-universal-tbi.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T20:43:48.685Z",
+    "from": "https://www.manipal.edu/etc/designs/manipal-edu/favicon.ico"
+  },
+  "qualcomm-design-in-india-startup": {
+    "path": "/assets/investors/qualcomm-design-in-india-startup.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 317,
+    "fetchedAt": "2026-07-28T20:43:50.019Z",
+    "from": "https://www.qualcomm.com/etc.clientlibs/qcomm-martech/clientlibs/clientlib-react/resources/favicon/qualcomm/favicon.png"
+  },
+  "cashfree-for-startups": {
+    "path": "/assets/investors/cashfree-for-startups.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 156175,
+    "fetchedAt": "2026-07-28T20:43:51.078Z",
+    "from": "https://cashfreelogo.cashfree.com/cf-og.png"
+  },
+  "intel-india-ignite": {
+    "path": "/assets/investors/intel-india-ignite.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 880,
+    "fetchedAt": "2026-07-28T20:43:51.426Z",
+    "from": "https://www.intel.com/etc.clientlibs/settings/wcm/designs/intel/default/resources/favicon-32x32.png"
+  },
+  "village-capital-india": {
+    "path": "/assets/investors/village-capital-india.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 4227,
+    "fetchedAt": "2026-07-28T20:43:51.605Z",
+    "from": "https://vilcap.com/icons/apple-touch-icon.png"
+  },
+  "rtbi-iit-madras": {
+    "path": "/assets/investors/rtbi-iit-madras.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 75928,
+    "fetchedAt": "2026-07-28T20:43:53.524Z",
+    "from": "https://rtbi.in/favicon.ico"
   }
 }
