@@ -33,7 +33,9 @@ const COL = {
   criteria: 'Investment Criteria (evaluation)',
   process: 'Process / Extra Notes',
   writeup: 'Detailed Writeup (~200 words)',
-  confidence: 'Data Confidence'
+  confidence: 'Data Confidence',
+  indiaRelevance: 'India relevance',
+  source: 'Source'
 };
 
 function parseArgs(argv) {

@@ -71,14 +71,15 @@ const THESIS_THEMES = [
   { id: 'mobility-ev', label: 'Mobility / EV', match: [/mobility/i, /\bev\b/i, /electric vehicle/i, /auto[-\s]?tech/i, /two[-\s]?wheeler/i, /three[-\s]?wheeler/i, /fleet electr/i] }
 ];
 
+// More specific types listed first so hybrids like "VC / Family Office" classify as FO/CVC/etc.
 const TYPE_CANON = [
-  { id: 'vc', label: 'Venture Capital', match: [/^vc\b/i, /venture capital/i, /micro\s*vc/i, /impact\s*vc/i, /vc\s*\/\s*growth/i] },
   { id: 'family-office', label: 'Family Office', match: [/family\s*office/i] },
-  { id: 'angel', label: 'Angel / Individual', match: [/angel/i, /individual/i] },
-  { id: 'syndicate', label: 'Syndicate / Network', match: [/syndicate/i, /angel\s*network/i, /network/i] },
+  { id: 'accelerator', label: 'Accelerator', match: [/accelerator/i, /incubator/i, /venture\s*studio/i] },
+  { id: 'corporate', label: 'Corporate / CVC', match: [/corporate/i, /\bcvc\b/i, /strategic\s*fintech/i] },
+  { id: 'syndicate', label: 'Syndicate / Network', match: [/syndicate/i, /angel\s*network/i] },
+  { id: 'angel', label: 'Angel / Individual', match: [/\bangel\b/i, /individual/i] },
   { id: 'pe', label: 'Private Equity', match: [/\bpe\b/i, /private\s*equity/i, /growth\s*equity/i] },
-  { id: 'accelerator', label: 'Accelerator', match: [/accelerator/i, /incubator/i] },
-  { id: 'corporate', label: 'Corporate / CVC', match: [/corporate/i, /\bcvc\b/i] }
+  { id: 'vc', label: 'Venture Capital', match: [/^vc\b/i, /venture capital/i, /micro\s*vc/i, /impact\s*vc/i, /vc\s*\/\s*growth/i, /\bventures?\b/i] }
 ];
 
 function slugify(text) {
@@ -245,7 +246,9 @@ function build() {
       criteria: (row['Investment Criteria (evaluation)'] || '').trim(),
       processNotes: (row['Process / Extra Notes'] || '').trim(),
       writeup: (row['Detailed Writeup (~200 words)'] || '').trim(),
-      confidence: (row['Data Confidence'] || '').trim()
+      confidence: (row['Data Confidence'] || '').trim(),
+      indiaRelevance: (row['India relevance'] || '').trim(),
+      source: (row.Source || '').trim()
     };
   });
 
