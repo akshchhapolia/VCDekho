@@ -94,28 +94,17 @@ function thesisWidget(investor) {
   const ids = investor.thesisThemeIds || [];
   if (!labels.length) return '';
 
-  const MAX_VISIBLE = 4;
   const chipsHtml = labels.map(function (label, i) {
     const id = ids[i];
     const href = id && id !== 'general' ? '/investors/themes/' + id : '';
-    const extraClass = i >= MAX_VISIBLE ? ' thesis-chip-extra' : '';
-    const cls = 'inv-profile-chip inv-profile-chip-thesis' + extraClass;
+    const cls = 'inv-profile-chip inv-profile-chip-thesis';
     const inner = escapeHtml(label);
     if (href) return '<a class="' + cls + '" href="' + escapeHtml(href) + '">' + inner + '</a>';
     return '<span class="' + cls + '">' + inner + '</span>';
   }).join('');
 
-  const hiddenCount = Math.max(0, labels.length - MAX_VISIBLE);
-  const toggleHtml = hiddenCount > 0
-    ? (
-      '<button type="button" class="inv-profile-thesis-toggle" data-more="View ' + hiddenCount + ' more" data-less="Show less" aria-expanded="false">' +
-        'View ' + hiddenCount + ' more' +
-      '</button>'
-    )
-    : '';
-
   return (
-    '<section class="inv-profile-section inv-profile-thesis' + (hiddenCount ? ' is-collapsed' : '') + ' inv-profile-reveal" id="thesis">' +
+    '<section class="inv-profile-section inv-profile-thesis inv-profile-reveal" id="thesis">' +
       '<div class="inv-profile-section-label">03 — Thesis</div>' +
       '<div class="inv-profile-section-head inv-profile-section-head-row">' +
         '<div>' +
@@ -125,7 +114,6 @@ function thesisWidget(investor) {
         '<a class="inv-profile-browse" href="/investors/themes">All themes →</a>' +
       '</div>' +
       '<div class="inv-profile-thesis-chips">' + chipsHtml + '</div>' +
-      toggleHtml +
     '</section>'
   );
 }
@@ -437,15 +425,6 @@ function renderInvestorPage(investor, related, res) {
     '<script src="/app.js"></script>',
     '<script>',
     '(function(){',
-    'var thesis=document.querySelector(".inv-profile-thesis");',
-    'if(thesis){',
-    'var btn=thesis.querySelector(".inv-profile-thesis-toggle");',
-    'if(btn){btn.addEventListener("click",function(){',
-    'var open=thesis.classList.toggle("is-expanded");',
-    'thesis.classList.toggle("is-collapsed",!open);',
-    'btn.setAttribute("aria-expanded", open?"true":"false");',
-    'btn.textContent=open?btn.getAttribute("data-less"):btn.getAttribute("data-more");',
-    '});}}',
     'var nav=document.getElementById("inv-profile-sticky");',
     'var links=nav?Array.prototype.slice.call(nav.querySelectorAll("a[data-section]")):[];',
     'var sections=links.map(function(a){return document.getElementById(a.getAttribute("data-section"));}).filter(Boolean);',
