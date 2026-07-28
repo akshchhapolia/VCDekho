@@ -23,6 +23,22 @@ function wantsHtml(req) {
   return accept.includes('text/html');
 }
 
+function requestHost(req) {
+  return String(req.headers['x-forwarded-host'] || req.headers.host || '')
+    .split(',')[0]
+    .trim()
+    .split(':')[0]
+    .toLowerCase();
+}
+
+/** Production only — preview / preprod hosts stay open for QA. */
+function isProductionHost(host) {
+  const h = String(host || '')
+    .split(':')[0]
+    .toLowerCase();
+  return h === 'vcdekho.com' || h === 'www.vcdekho.com';
+}
+
 function loginRedirect(req, res) {
   const host = req.headers['x-forwarded-host'] || req.headers.host || 'vcdekho.com';
   const proto = req.headers['x-forwarded-proto'] || 'https';
@@ -46,8 +62,13 @@ async function verifyAccessToken(token) {
 /**
  * Require a valid Supabase session for investor APIs/pages.
  * Returns the user object, or null after sending 401/302.
+ * Skipped on non-production hosts so previews/preprod stay testable.
  */
 async function requireAuth(req, res) {
+  if (!isProductionHost(requestHost(req))) {
+    return { id: 'preview', email: 'preview@local' };
+  }
+
   const authHeader = String(req.headers.authorization || '');
   let token = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : null;
   if (!token) {
@@ -85,4 +106,11 @@ async function requireAuth(req, res) {
   }
 }
 
-module.exports = { requireAuth, verifyAccessToken, SUPABASE_URL, SUPABASE_ANON_KEY };
+module.exports = {
+  requireAuth,
+  verifyAccessToken,
+  isProductionHost,
+  requestHost,
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+};
