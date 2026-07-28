@@ -2834,7 +2834,7 @@ body.has-announcement .app-container {
 
 .inv-dir-pager-current {
   font-family: var(--font-heading);
-  font-size: 1.45rem;
+  font-size: 1.1rem;
   line-height: 1;
   color: #fff;
   font-weight: 400;
