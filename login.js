@@ -45,8 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
     tabSignup.classList.toggle('is-active', isSignup);
     tabLogin.setAttribute('aria-selected', String(!isSignup));
     tabSignup.setAttribute('aria-selected', String(isSignup));
+    nameGroup.classList.toggle('is-hidden', !isSignup);
     nameGroup.hidden = !isSignup;
     nameInput.required = isSignup;
+    if (!isSignup) nameInput.value = '';
     passwordInput.autocomplete = isSignup ? 'new-password' : 'current-password';
     submitBtn.textContent = isSignup ? 'Create account' : 'Log in';
     setStatus('');
