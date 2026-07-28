@@ -1,146 +1,28 @@
-[
-  {
-    "name": "021 Capital Trust",
-    "reg": "IN/AIF1/25-26/1857",
-    "category": "1",
-    "email": "manjunath@ascentcapital.in"
-  },
-  {
-    "name": "021 CAPITAL TRUST - II",
-    "reg": "IN/AIF1/17-18/0384",
-    "category": "1",
-    "email": "sailesh@021.capital"
-  },
-  {
-    "name": "1000X CAPITAL TRUST",
-    "reg": "IN/AIF2/21-22/1013",
-    "category": "2",
-    "email": "saileshtulshan@gmail.com"
-  },
-  {
-    "name": "1008 Bharat Growth Trust",
-    "reg": "IN/AIF2/25-26/1983",
-    "category": "2",
-    "email": "Info@1000x.co.in"
-  },
-  {
-    "name": "100Unicorns",
-    "reg": "IN/AIF3/25-26/1864",
-    "category": "3",
-    "email": "1008bharatgrowth@gmail.com"
-  },
-  {
-    "name": "108 Capital Venture Fund",
-    "reg": "IN/AIF2/23-24/1342",
-    "category": "2",
-    "email": "ankit@9unicorns.in"
-  },
-  {
-    "name": "11H Holdings",
-    "reg": "IN/AIF2/23-24/1349",
-    "category": "2",
-    "email": "nk@108.vc"
-  },
-  {
-    "name": "129 Wealth Trust",
-    "reg": "IN/AIF3/23-24/1391",
-    "category": "3",
-    "email": "ronak@11hadvisors.com"
-  },
-  {
-    "name": "16 Alpha Alternatives Technologies Fund",
-    "reg": "IN/AIF3/24-25/1602",
-    "category": "3",
-    "email": "info@paulasset.com"
-  },
-  {
-    "name": "1950 Ventures AIF",
-    "reg": "IN/AIF3/24-25/1586",
-    "category": "3",
-    "email": "office@16alpha.in"
-  },
-  {
-    "name": "1Funds Trust",
-    "reg": "IN/AIF2/26-27/2197",
-    "category": "2",
-    "email": ""
-  },
-  {
-    "name": "1Funds Trust 2",
-    "reg": "IN/AIF1/17-18/0344",
-    "category": "1",
-    "email": ""
-  },
-  {
-    "name": "247VC Investment Trust",
-    "reg": "IN/AIF1/22-23/1078",
-    "category": "1",
-    "email": "anil.gudibande@1crowd.co"
-  },
-  {
-    "name": "2Point2 Capital Trust",
-    "reg": "IN/AIF2/25-26/1810",
-    "category": "2",
-    "email": "yagnesh@247vc.in"
-  },
-  {
-    "name": "31 Degrees North Fund",
-    "reg": "IN/AIF3/19-20/0686",
-    "category": "3",
-    "email": "bhavit@2point2capital.com"
-  },
-  {
-    "name": "35North India Growth Fund Trust",
-    "reg": "IN/AIF3/25-26/1798",
-    "category": "3",
-    "email": "tejasshah@31degreesnorth.in"
-  },
-  {
-    "name": "360 ONE ALTERNATIVE OPPORTUNITIES FUND",
-    "reg": "IN/AIF1/17-18/0321",
-    "category": "1",
-    "email": ""
-  },
-  {
-    "name": "360 ONE Asset Angel Fund 1",
-    "reg": "IN/AIF3/16-17/0286",
-    "category": "3",
-    "email": "ashutosh.naik@iiflw.com"
-  },
-  {
-    "name": "360 ONE Opportunities Fund",
-    "reg": "IN/AIF1/21-22/1011",
-    "category": "1",
-    "email": "nandini@mumbaiangels.com"
-  },
-  {
-    "name": "360 ONE Private Equity Fund",
-    "reg": "IN/AIF3/12-13/0016",
-    "category": "3",
-    "email": "Meetali.Mistry@iiflw.com"
-  },
-  {
-    "name": "360 ONE Venture Capital Trust",
-    "reg": "IN/AIF2/12-13/0015",
-    "category": "2",
-    "email": "ashutosh.naik@iiflw.com"
-  },
-  {
-    "name": "360 Rising Straits Capital Fund",
-    "reg": "IN/AIF2/20-21/0838",
-    "category": "2",
-    "email": "samay@scaleventurecap.com"
-  },
-  {
-    "name": "3F Ventures",
-    "reg": "IN/AIF2/20-21/0830",
-    "category": "2",
-    "email": "gaurav@risingstraits.com"
-  },
-  {
-    "name": "3IPARTNERS FUND",
-    "reg": "IN/AIF1/16-17/0301",
-    "category": "1",
-    "email": ""
-  }
-]
+{
+  "aif": [
+    {
+      "name": "",
+      "reg_no": "span",
+      "category": "",
+      "date": "",
+      "address": "",
+      "website": "",
+      "email": "",
+      "contact": "span>"
+    }
+  ],
+  "vcf": [
+    {
+      "name": "",
+      "reg_no": "span",
+      "category": "",
+      "date": "",
+      "address": "",
+      "website": "",
+      "email": "",
+      "contact": ""
+    }
+  ],
+  "aif_count": 1,
+  "vcf_count": 1
+}
