@@ -204,6 +204,34 @@
     return parts.join(', ') + (more ? '…' : '');
   }
 
+  function initialsFor(name) {
+    const parts = String(name || '')
+      .replace(/[()]/g, ' ')
+      .split(/\s+/)
+      .filter(Boolean);
+    if (!parts.length) return '?';
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return (parts[0][0] + parts[1][0]).toUpperCase();
+  }
+
+  function logoHtml(inv) {
+    if (inv.logo) {
+      return (
+        '<img class="inv-dir-logo" src="' +
+        esc(inv.logo) +
+        '" alt="" width="40" height="40" loading="lazy" decoding="async" onerror="this.classList.add(\'is-broken\');this.nextElementSibling&&this.nextElementSibling.classList.add(\'is-visible\');">' +
+        '<span class="inv-dir-logo-fallback" aria-hidden="true">' +
+        esc(initialsFor(inv.name)) +
+        '</span>'
+      );
+    }
+    return (
+      '<span class="inv-dir-logo-fallback is-visible" aria-hidden="true">' +
+      esc(initialsFor(inv.name)) +
+      '</span>'
+    );
+  }
+
   function renderRows(investors) {
     if (!investors.length) {
       els.results.innerHTML =
@@ -242,8 +270,11 @@
       <article class="inv-dir-row">
         <a class="inv-dir-row-hit" href="${href}" aria-label="${esc(inv.name)}"></a>
         <div class="inv-dir-col inv-dir-col-fund">
-          <span class="inv-dir-type">${esc(inv.type || 'Investor')}</span>
-          <span class="inv-dir-name">${esc(inv.name)}</span>
+          <span class="inv-dir-fund-mark">${logoHtml(inv)}</span>
+          <span class="inv-dir-fund-text">
+            <span class="inv-dir-type">${esc(inv.type || 'Investor')}</span>
+            <span class="inv-dir-name">${esc(inv.name)}</span>
+          </span>
         </div>
         <div class="inv-dir-col inv-dir-col-stages">
           <span class="inv-dir-mobile-label">Stages</span>

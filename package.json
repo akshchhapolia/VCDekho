@@ -5,7 +5,8 @@
   "main": "about.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:investors": "node scripts/build_investors_json.js"
+    "build:investors": "node scripts/build_investors_json.js",
+    "fetch:logos": "node scripts/fetch_investor_logos.js"
   },
   "keywords": [],
   "author": "",

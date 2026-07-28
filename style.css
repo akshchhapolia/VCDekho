@@ -2547,6 +2547,61 @@ body.has-announcement .app-container {
   min-width: 0;
 }
 
+.inv-dir-col-fund {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.inv-dir-fund-mark {
+  position: relative;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+}
+
+.inv-dir-logo,
+.inv-dir-logo-fallback {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.inv-dir-logo {
+  display: block;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.inv-dir-logo.is-broken {
+  display: none;
+}
+
+.inv-dir-logo-fallback {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(237, 87, 47, 0.16);
+  border: 1px solid rgba(237, 87, 47, 0.28);
+  color: #ffb89c;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.inv-dir-logo-fallback.is-visible {
+  display: flex;
+}
+
+.inv-dir-fund-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .inv-dir-type {
   display: block;
   color: var(--color-accent-orange);

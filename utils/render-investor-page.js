@@ -285,6 +285,9 @@ function renderInvestorPage(investor, related, res) {
     '<section class="inv-profile-hero inv-profile-hero-enter" id="overview">',
     '<div class="inv-profile-hero-wash" aria-hidden="true"></div>',
     '<div class="inv-profile-hero-copy">',
+    investor.logo
+      ? ('<img class="inv-profile-logo" src="' + escapeHtml(investor.logo) + '" alt="" width="56" height="56" loading="eager">')
+      : '',
     '<span class="inv-profile-type">' + escapeHtml(investor.type) + '</span>',
     '<h1 class="inv-profile-title">' + escapeHtml(investor.name) + '</h1>',
     thesisLead,

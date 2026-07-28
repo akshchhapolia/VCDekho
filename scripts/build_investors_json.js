@@ -249,6 +249,17 @@ function build() {
     };
   });
 
+  // Preserve previously fetched logos across rebuilds
+  const logosPath = path.join(ROOT, 'data', 'investor-logos.json');
+  if (fs.existsSync(logosPath)) {
+    try {
+      const logos = JSON.parse(fs.readFileSync(logosPath, 'utf8'));
+      investors.forEach((inv) => {
+        if (logos[inv.slug] && logos[inv.slug].path) inv.logo = logos[inv.slug].path;
+      });
+    } catch (_) {}
+  }
+
   const payload = {
     generatedAt: new Date().toISOString(),
     count: investors.length,
