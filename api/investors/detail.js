@@ -4,6 +4,7 @@ const { getStagePage } = require('../../utils/investment-stages');
 const { renderStagePage } = require('../../utils/render-stage-page');
 const { renderInvestorPage } = require('../../utils/render-investor-page');
 const { renderExploreRelated } = require('../../utils/render-explore-related');
+const { getThesisThemeIconSvg } = require('../../utils/thesis-theme-icons');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -67,7 +68,10 @@ function renderThemePage(theme, res) {
 
   const otherCards = otherThemes.map(t => (
     '<a class="theme-other-card" href="/investors/themes/' + escapeHtml(t.id) + '">' +
-      '<div class="theme-other-count">' + t.investorCount + ' investors</div>' +
+      '<div class="theme-other-top">' +
+        getThesisThemeIconSvg(t.id, 'theme-other-icon') +
+        '<div class="theme-other-count">' + t.investorCount + ' investors</div>' +
+      '</div>' +
       '<h3>' + escapeHtml(t.label) + '</h3>' +
       '<p>' + escapeHtml(t.summary) + '</p>' +
     '</a>'
@@ -97,7 +101,7 @@ function renderThemePage(theme, res) {
     '<link rel="canonical" href="https://vcdekho.com/investors/themes/' + escapeHtml(theme.id) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/style.css?v=35">',
+    '<link rel="stylesheet" href="/style.css?v=46">',
     '</head>',
     '<body class="scrollable-page inv-page">',
     '<div class="app-container">',
@@ -115,6 +119,7 @@ function renderThemePage(theme, res) {
     '<div class="inv-detail-wrap theme-page-wrap">',
     '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="/investors">Investors</a><span>›</span><a href="/investors/themes">Thesis themes</a><span>›</span><span class="current">' + escapeHtml(theme.label) + '</span></div>',
     '<section class="theme-hero">',
+    '<div class="theme-hero-icon-wrap" aria-hidden="true">' + getThesisThemeIconSvg(theme.id, 'theme-hero-icon') + '</div>',
     '<span class="inv-kicker">' + escapeHtml(theme.eyebrow) + '</span>',
     '<h1 class="inv-detail-title">' + escapeHtml(theme.label) + '</h1>',
     '<p class="inv-detail-thesis">' + escapeHtml(theme.summary) + '</p>',
