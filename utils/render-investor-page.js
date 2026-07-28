@@ -117,10 +117,10 @@ function thesisWidget(investor) {
   return (
     '<section class="inv-profile-section inv-profile-thesis' + (hiddenCount ? ' is-collapsed' : '') + ' inv-profile-reveal" id="thesis">' +
       '<div class="inv-profile-section-label">03 — Thesis</div>' +
-      '<div class="inv-profile-thesis-head">' +
+      '<div class="inv-profile-section-head inv-profile-section-head-row">' +
         '<div>' +
-          '<p class="inv-profile-kicker">Mapped themes</p>' +
           '<h2>Investment thesis</h2>' +
+          '<p>Themes this investor is mapped to across the VC Dekho directory.</p>' +
         '</div>' +
         '<a class="inv-profile-browse" href="/investors/themes">All themes →</a>' +
       '</div>' +
@@ -273,7 +273,7 @@ function renderInvestorPage(investor, related, res) {
     ? (
       '<section class="inv-profile-section inv-profile-reveal" id="similar">' +
         '<div class="inv-profile-section-label">05 — Nearby</div>' +
-        '<div class="inv-profile-section-head"><h2>Similar investors</h2></div>' +
+        '<div class="inv-profile-section-head"><h2>Similar investors</h2><p>Other funds that overlap on stage, sector, or thesis.</p></div>' +
         '<div class="inv-profile-related-grid">' + relatedCards + '</div>' +
       '</section>'
     )
@@ -292,6 +292,7 @@ function renderInvestorPage(investor, related, res) {
   const stagesForExplore = orderedStages.length ? orderedStages : exploreStages;
 
   const exploreHtml = renderExploreRelated({
+    sectionLabel: '06 — Explore',
     title: 'Explore related',
     subtitle: 'Jump into stage and thesis guides connected to this fund.',
     stages: stagesForExplore,
@@ -390,14 +391,15 @@ function renderInvestorPage(investor, related, res) {
 
     '<section class="inv-profile-section inv-profile-reveal" id="focus">',
     '<div class="inv-profile-section-label">02 — Focus</div>',
+    '<div class="inv-profile-section-head"><h2>Where they invest</h2><p>Stages and sectors this investor typically backs.</p></div>',
     '<div class="inv-profile-focus-grid">',
     '<div class="inv-profile-focus-panel is-stages">',
-    '<h2>Lead / invest stages</h2>',
+    '<h3>Lead / invest stages</h3>',
     '<div class="inv-profile-chip-row">' + stageChips + '</div>',
     '<a class="inv-profile-panel-link" href="/investors/stages">Stage guides →</a>',
     '</div>',
     '<div class="inv-profile-focus-panel is-sectors">',
-    '<h2>Sector focus</h2>',
+    '<h3>Sector focus</h3>',
     '<div class="inv-profile-chip-row">' + sectorChips + '</div>',
     '<a class="inv-profile-panel-link" href="/investors">Browse by sector →</a>',
     '</div>',
@@ -408,7 +410,7 @@ function renderInvestorPage(investor, related, res) {
 
     '<section class="inv-profile-section inv-profile-about inv-profile-reveal" id="about">',
     '<div class="inv-profile-section-label">04 — Story</div>',
-    '<div class="inv-profile-section-head"><h2>About ' + escapeHtml(investor.name) + '</h2></div>',
+    '<div class="inv-profile-section-head"><h2>About ' + escapeHtml(investor.name) + '</h2><p>Background and context for founders evaluating this investor.</p></div>',
     '<div class="inv-profile-about-grid">',
     '<div class="inv-profile-about-prose">' + aboutProse(investor.writeup) + '</div>',
     quote,
