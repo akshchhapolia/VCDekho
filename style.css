@@ -2574,6 +2574,15 @@ body.has-announcement .app-container {
   line-height: 1.4;
 }
 
+/* Keep sectors/thesis to 3 lines so directory rows stay even height */
+.inv-dir-col-sectors .inv-dir-cell {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  max-height: calc(1.4em * 3);
+}
+
 .inv-dir-ticket {
   color: var(--color-text-light);
   font-weight: 600;
