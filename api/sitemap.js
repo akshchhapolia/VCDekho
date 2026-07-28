@@ -2,6 +2,7 @@ const db = require('../utils/db');
 const { getAllInvestors } = require('../utils/investors');
 const { THESIS_THEMES } = require('../data/thesis-themes');
 const { INVESTMENT_STAGES } = require('../data/investment-stages');
+const { SECTOR_GUIDES } = require('../data/sectors');
 
 module.exports = async function handler(req, res) {
     res.setHeader('Content-Type', 'application/xml');
@@ -71,6 +72,14 @@ module.exports = async function handler(req, res) {
   </url>${INVESTMENT_STAGES.map(s => `
   <url>
     <loc>https://vcdekho.com/investors/stages/${s.id}</loc>
+    <priority>0.85</priority>
+  </url>`).join('')}
+  <url>
+    <loc>https://vcdekho.com/investors/sectors</loc>
+    <priority>0.9</priority>
+  </url>${SECTOR_GUIDES.map(s => `
+  <url>
+    <loc>https://vcdekho.com/investors/sectors/${s.id}</loc>
     <priority>0.85</priority>
   </url>`).join('')}
   <url>

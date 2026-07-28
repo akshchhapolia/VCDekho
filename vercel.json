@@ -25,6 +25,10 @@
       "destination": "/api/investors/detail?slug=:slug&view=theme"
     },
     {
+      "source": "/investors/sectors/:slug",
+      "destination": "/api/investors/detail?slug=:slug&view=sector"
+    },
+    {
       "source": "/investors/:slug",
       "destination": "/api/investors/detail?slug=:slug"
     },

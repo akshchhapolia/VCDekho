@@ -1,13 +1,16 @@
 const { filterInvestors, getFilters, toCard } = require('../../utils/investors');
 const { getAllThemes } = require('../../utils/thesis-themes');
 const { getAllStages } = require('../../utils/investment-stages');
+const { getAllSectorGuides } = require('../../utils/sectors');
 const { requireAuth } = require('../../utils/require-auth');
 const { getThesisThemeIconSvg } = require('../../utils/thesis-theme-icons');
+const { getSectorIconSvg } = require('../../utils/sector-icons');
 
 module.exports = async function handler(req, res) {
   try {
     const query = req.query || {};
-    const isPublicView = query.view === 'themes' || query.view === 'stages';
+    const isPublicView =
+      query.view === 'themes' || query.view === 'stages' || query.view === 'sectors';
 
     if (!isPublicView) {
       const user = await requireAuth(req, res);
@@ -37,6 +40,18 @@ module.exports = async function handler(req, res) {
       }));
       res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
       return res.status(200).json({ total: stages.length, stages });
+    }
+
+    if (query.view === 'sectors') {
+      const sectors = getAllSectorGuides().map(s => ({
+        id: s.id,
+        label: s.label,
+        summary: s.summary,
+        investorCount: s.investorCount,
+        iconSvg: getSectorIconSvg(s.id, 'theme-index-icon')
+      }));
+      res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
+      return res.status(200).json({ total: sectors.length, sectors });
     }
 
     const {

@@ -1,7 +1,9 @@
 const { getInvestorBySlug, filterInvestors, toCard, hasStageGuide, deriveRelatedStages } = require('../../utils/investors');
 const { getThemePage, getAllThemes } = require('../../utils/thesis-themes');
 const { getStagePage } = require('../../utils/investment-stages');
+const { getSectorPage } = require('../../utils/sectors');
 const { renderStagePage } = require('../../utils/render-stage-page');
+const { renderSectorPage } = require('../../utils/render-sector-page');
 const { renderInvestorPage } = require('../../utils/render-investor-page');
 const { renderExploreRelated } = require('../../utils/render-explore-related');
 const { getThesisThemeIconSvg } = require('../../utils/thesis-theme-icons');
@@ -84,8 +86,8 @@ function renderThemePage(theme, res) {
     themes: otherThemes.map(t => ({ id: t.id, label: t.label })),
     fundsHref: '/investors?thesis=' + encodeURIComponent(theme.id),
     fundsLabel: 'Browse ' + theme.investorCount + ' matching funds →',
-    siblingHref: '/investors/stages',
-    siblingLabel: 'Stage guides →'
+    siblingHref: '/investors/sectors',
+    siblingLabel: 'Sector guides →'
   });
 
   const html = [
@@ -175,6 +177,12 @@ module.exports = async function handler(req, res) {
       const stage = getStagePage(slug);
       if (!stage) return res.status(404).send('<h1>404 - Investment stage not found</h1>');
       return renderStagePage(stage, res);
+    }
+
+    if (view === 'sector') {
+      const sector = getSectorPage(slug);
+      if (!sector) return res.status(404).send('<h1>404 - Sector guide not found</h1>');
+      return renderSectorPage(sector, res);
     }
 
     const investor = getInvestorBySlug(slug);

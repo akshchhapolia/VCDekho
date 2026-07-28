@@ -3,6 +3,7 @@
  */
 const { hasStageGuide, deriveRelatedStages, loadInvestorsData } = require('./investors');
 const { getAllStages } = require('./investment-stages');
+const { hasSectorGuide } = require('./sectors');
 const { renderExploreRelated } = require('./render-explore-related');
 const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
 
@@ -203,7 +204,11 @@ function renderInvestorPage(investor, related, res) {
 
   const sectorChips = sectors.map((label, i) => {
     const id = sectorIds[i];
-    const href = id ? '/investors?sector=' + encodeURIComponent(id) : '';
+    const href = hasSectorGuide(id)
+      ? '/investors/sectors/' + encodeURIComponent(id)
+      : id
+        ? '/investors?sector=' + encodeURIComponent(id)
+        : '';
     if (href) {
       return '<a class="inv-profile-chip inv-profile-chip-sector" href="' + escapeHtml(href) + '">' + escapeHtml(label) + '</a>';
     }
@@ -284,13 +289,13 @@ function renderInvestorPage(investor, related, res) {
   const exploreHtml = renderExploreRelated({
     sectionLabel: '06 — Explore',
     title: 'Explore related',
-    subtitle: 'Jump into stage and thesis guides connected to this fund.',
+    subtitle: 'Jump into stage, sector, and thesis guides connected to this fund.',
     stages: stagesForExplore,
     themes: exploreThemes,
     fundsHref: '/investors',
     fundsLabel: 'Back to directory →',
-    siblingHref: '/investors/themes',
-    siblingLabel: 'All thesis guides →',
+    siblingHref: '/investors/sectors',
+    siblingLabel: 'Sector guides →',
     className: 'inv-profile-reveal'
   });
 
@@ -393,6 +398,8 @@ function renderInvestorPage(investor, related, res) {
     '<h3>Lead / invest stages</h3>',
     '<div class="inv-profile-chip-row">' + stageChips + '</div>',
     '<a class="inv-profile-panel-link" href="/investors/stages">Stage guides →</a>',
+    '<a class="inv-profile-panel-link" href="/investors/sectors">Sector guides →</a>',
+    '<a class="inv-profile-panel-link" href="/investors/themes">Thesis guides →</a>',
     '</div>',
     '</div>',
     '</div>',
