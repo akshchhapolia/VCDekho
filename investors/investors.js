@@ -237,12 +237,14 @@
         .filter(Boolean)
         .join(' · ') || '—';
 
+      const href = '/investors/' + esc(inv.slug);
       return `
-      <article class="inv-dir-row" data-href="/investors/${esc(inv.slug)}">
-        <a class="inv-dir-col inv-dir-col-fund" href="/investors/${esc(inv.slug)}">
+      <article class="inv-dir-row">
+        <a class="inv-dir-row-hit" href="${href}" aria-label="${esc(inv.name)}"></a>
+        <div class="inv-dir-col inv-dir-col-fund">
           <span class="inv-dir-type">${esc(inv.type || 'Investor')}</span>
           <span class="inv-dir-name">${esc(inv.name)}</span>
-        </a>
+        </div>
         <div class="inv-dir-col inv-dir-col-stages">
           <span class="inv-dir-mobile-label">Stages</span>
           <span class="inv-dir-cell">${stagesHtml}</span>
@@ -257,15 +259,6 @@
         </div>
       </article>`;
     }).join('');
-  }
-
-  function navigateRow(href, event) {
-    if (!href) return;
-    if (event && (event.metaKey || event.ctrlKey || event.shiftKey || event.button === 1)) {
-      window.open(href, '_blank', 'noopener');
-      return;
-    }
-    window.location.href = href;
   }
 
   function findFilterLabel(list, id) {
@@ -403,25 +396,6 @@
   document.addEventListener('click', () => closeAllDropdowns());
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeAllDropdowns();
-  });
-
-  // Whole row opens the fund profile; nested stage/thesis links still work
-  els.results.addEventListener('click', (e) => {
-    if (e.defaultPrevented || e.button !== 0) return;
-    if (e.target.closest('a, button')) return;
-    const row = e.target.closest('.inv-dir-row[data-href]');
-    if (!row || row.classList.contains('inv-dir-skel')) return;
-    e.preventDefault();
-    navigateRow(row.getAttribute('data-href'), e);
-  });
-
-  els.results.addEventListener('auxclick', (e) => {
-    if (e.button !== 1) return;
-    if (e.target.closest('a, button')) return;
-    const row = e.target.closest('.inv-dir-row[data-href]');
-    if (!row || row.classList.contains('inv-dir-skel')) return;
-    e.preventDefault();
-    navigateRow(row.getAttribute('data-href'), e);
   });
 
   const params0 = new URLSearchParams(window.location.search);
