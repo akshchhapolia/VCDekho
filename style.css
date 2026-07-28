@@ -117,8 +117,15 @@ body {
 
 .main-nav {
     display: flex;
+    flex: 1;
+    justify-content: flex-end;
     gap: 2.5rem;
     align-items: center;
+}
+
+.main-nav .nav-link[href="/login"],
+.main-nav .nav-link[href="/login/"] {
+    margin-left: 0.75rem;
 }
 
 .nav-link {
@@ -203,6 +210,12 @@ body {
         z-index: 99;
         box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
         transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        flex: none;
+    }
+
+    .main-nav .nav-link[href="/login"],
+    .main-nav .nav-link[href="/login/"] {
+        margin-left: 0;
     }
 
     .main-nav.active {

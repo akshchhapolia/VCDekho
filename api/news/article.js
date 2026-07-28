@@ -293,7 +293,7 @@ module.exports = async function handler(req, res) {
     <meta name="description" content="${article.meta_description}">
     
     <link rel="icon" type="image/png" href="/assets/logoforvc.png">
-    <link rel="stylesheet" href="/style.css?v=35">
+    <link rel="stylesheet" href="/style.css?v=51">
     <link rel="canonical" href="https://vcdekho.com/${pathPrefix}/${article.slug}">
     
     <meta property="og:title" content="${article.meta_title}">
@@ -324,9 +324,9 @@ module.exports = async function handler(req, res) {
             </button>
             <nav class="main-nav" id="navigation-bar">
                 <a href="/" class="nav-link">Home</a>
-                <a href="/login" class="nav-link">Log in</a>
-                <a href="/blog" class="nav-link ${blogNavActive}">Blog</a>
+<a href="/blog" class="nav-link ${blogNavActive}">Blog</a>
                 <a href="/news" class="nav-link ${newsNavActive}">News</a>
+                <a href="/login" class="nav-link">Log in</a>
             </nav>
         </header>
 
