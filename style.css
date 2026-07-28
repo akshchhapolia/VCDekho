@@ -2177,6 +2177,8 @@ body.has-announcement .app-container {
    ========================================================================== */
 .inv-dir-page .hero-showcase.inv-list-main {
   background-color: #0b0b0d;
+  padding-top: 72px;
+  padding-bottom: 48px;
 }
 
 .inv-dir-page .inv-dir-ambient {
@@ -2205,18 +2207,18 @@ body.has-announcement .app-container {
   align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.65rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .inv-dir-header h1 {
   font-family: var(--font-heading);
   color: var(--color-text-light);
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(1.65rem, 3vw, 2.1rem);
   line-height: 1.1;
   font-weight: 400;
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.2rem;
 }
 
 .inv-dir-meta {
@@ -2514,7 +2516,7 @@ body.has-announcement .app-container {
   grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.72fr) minmax(0, 1.7fr) minmax(0, 0.68fr);
   gap: 1.35rem;
   align-items: center;
-  padding: 0.95rem 0.15rem;
+  padding: 0.75rem 0.15rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   text-decoration: none;
   color: inherit;
@@ -4484,6 +4486,11 @@ a.inv-chip:hover {
 }
 
 @media (max-width: 960px) {
+  .inv-dir-page .hero-showcase.inv-list-main {
+    padding-top: 68px;
+    padding-bottom: 40px;
+  }
+
   .inv-dir-layout {
     grid-template-columns: 1fr;
   }
@@ -4624,12 +4631,20 @@ a.inv-chip:hover {
 }
 
 @media (max-width: 640px) {
+  .inv-dir-page .hero-showcase.inv-list-main {
+    padding-top: 64px;
+    padding-bottom: 36px;
+  }
+
   .inv-dir-header {
     align-items: flex-start;
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.55rem;
   }
 
   .inv-dir-row {
     grid-template-columns: 1fr;
+    padding: 0.7rem 0;
   }
 
   .inv-dir-col-ticket {
