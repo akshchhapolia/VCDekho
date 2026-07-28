@@ -64,7 +64,7 @@
           </div>
         </section>
 
-        <div id="sectors-grid" class="themes-grid">
+        <div id="sectors-grid" class="stages-index-grid">
           <p class="inv-empty">Loading sectors...</p>
         </div>
       </div>
@@ -86,15 +86,17 @@
           return;
         }
         grid.innerHTML = sectors.map(s => `
-          <a class="theme-index-card" href="/investors/sectors/${encodeURIComponent(s.id)}">
-            <div class="theme-index-top">
+          <a class="stage-index-card stage-reveal is-visible" href="/investors/sectors/${encodeURIComponent(s.id)}">
+            <div class="stage-index-card-top">
               ${s.iconSvg || ''}
-              <span class="theme-index-count">${s.investorCount} investors</span>
+              <span class="stage-index-count">${s.investorCount} investors</span>
             </div>
             <h2>${s.label}</h2>
             <p>${s.summary}</p>
+            <span class="stage-index-cta">Open guide →</span>
           </a>
         `).join('');
+        document.body.classList.add('stage-ready');
       } catch (err) {
         grid.innerHTML = '<p class="inv-empty">Could not load sector guides.</p>';
         console.error(err);
