@@ -36,6 +36,11 @@ export default async function middleware(request) {
   const url = new URL(request.url);
   const pathname = url.pathname;
 
+  // Allow static assets under /investors (JS used by the directory page)
+  if (/\.(js|css|map|png|jpg|jpeg|gif|webp|svg|ico|woff2?)$/i.test(pathname)) {
+    return;
+  }
+
   const isInvestorsPath =
     pathname === '/investors' ||
     pathname.startsWith('/investors/') ||
