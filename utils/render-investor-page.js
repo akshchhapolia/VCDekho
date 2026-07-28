@@ -4,6 +4,7 @@
 const { hasStageGuide, deriveRelatedStages, loadInvestorsData } = require('./investors');
 const { getAllStages } = require('./investment-stages');
 const { renderExploreRelated } = require('./render-explore-related');
+const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -94,17 +95,12 @@ function thesisWidget(investor) {
   const ids = investor.thesisThemeIds || [];
   if (!labels.length) return '';
 
-  const themeIcon =
-    '<svg class="inv-profile-chip-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
-      '<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<circle cx="7" cy="7" r="1.2" fill="currentColor"/>' +
-    '</svg>';
-
   const chipsHtml = labels.map(function (label, i) {
     const id = ids[i];
     const href = id && id !== 'general' ? '/investors/themes/' + id : '';
     const cls = 'inv-profile-chip inv-profile-chip-thesis';
-    const inner = themeIcon + '<span>' + escapeHtml(label) + '</span>';
+    const icon = getThesisThemeIconSvg(id || '', 'inv-profile-chip-icon');
+    const inner = icon + '<span>' + escapeHtml(label) + '</span>';
     if (href) return '<a class="' + cls + '" href="' + escapeHtml(href) + '">' + inner + '</a>';
     return '<span class="' + cls + '">' + inner + '</span>';
   }).join('');
@@ -333,7 +329,7 @@ function renderInvestorPage(investor, related, res) {
     '<link rel="canonical" href="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/style.css?v=45">',
+    '<link rel="stylesheet" href="/style.css?v=46">',
     '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
