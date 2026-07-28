@@ -2492,8 +2492,8 @@ body.has-announcement .app-container {
 
 .inv-dir-table-head {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 0.75fr);
-  gap: 1rem;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.72fr) minmax(0, 1.7fr) minmax(0, 0.68fr);
+  gap: 1.35rem;
   padding: 0 0.15rem 0.65rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   color: rgba(255, 255, 255, 0.4);
@@ -2511,8 +2511,8 @@ body.has-announcement .app-container {
 .inv-dir-row {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 0.75fr);
-  gap: 1rem;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.72fr) minmax(0, 1.7fr) minmax(0, 0.68fr);
+  gap: 1.35rem;
   align-items: center;
   padding: 0.95rem 0.15rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -2631,12 +2631,19 @@ body.has-announcement .app-container {
 }
 
 /* Keep sectors/thesis to 3 lines so directory rows stay even height */
+.inv-dir-col-sectors {
+  padding-left: 0.35rem;
+  padding-right: 0.55rem;
+}
+
 .inv-dir-col-sectors .inv-dir-cell {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
-  max-height: calc(1.4em * 3);
+  max-height: calc(1.45em * 3);
+  line-height: 1.45;
+  letter-spacing: 0.01em;
 }
 
 .inv-dir-ticket {
