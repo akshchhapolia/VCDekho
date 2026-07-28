@@ -14,7 +14,7 @@
   <meta name="description" content="Explore 380+ VCs, family offices, angels and syndicates in India. Filter by sector, stage, cheque size, company type and investment thesis.">
   <link rel="canonical" href="https://vcdekho.com/investors">
   <link rel="icon" type="image/png" href="/assets/logoforvc.png">
-  <link rel="stylesheet" href="/style.css?v=18">
+  <link rel="stylesheet" href="/style.css?v=20">
   <meta name="robots" content="noindex, nofollow">
   <meta property="og:title" content="Indian Investors Directory | VC Dekho">
   <meta property="og:description" content="Explore 380+ VCs, family offices, angels and syndicates in India.">
@@ -51,7 +51,7 @@
           <div class="inv-dir-header-text">
             <h1>Investors</h1>
             <p class="inv-dir-meta">
-              <span id="inv-count">Loading…</span>
+              <span id="inv-count">Fetching funds</span>
               <span class="inv-dir-dot" aria-hidden="true">·</span>
               <a href="/investors/themes">Thesis guides</a>
               <span class="inv-dir-dot" aria-hidden="true">·</span>
@@ -75,26 +75,26 @@
               <input id="inv-search" type="search" placeholder="Fund, thesis, sector…" autocomplete="off">
             </label>
 
-            <label class="inv-dir-field">
+            <div class="inv-dir-field">
               <span>Sector</span>
-              <select id="filter-sector"><option value="">All sectors</option></select>
-            </label>
-            <label class="inv-dir-field">
+              <div class="inv-dd" id="filter-sector" data-placeholder="All sectors"></div>
+            </div>
+            <div class="inv-dir-field">
               <span>Stage</span>
-              <select id="filter-stage"><option value="">All stages</option></select>
-            </label>
-            <label class="inv-dir-field">
+              <div class="inv-dd" id="filter-stage" data-placeholder="All stages"></div>
+            </div>
+            <div class="inv-dir-field">
               <span>Ticket size</span>
-              <select id="filter-cheque"><option value="">Any ticket</option></select>
-            </label>
-            <label class="inv-dir-field">
+              <div class="inv-dd" id="filter-cheque" data-placeholder="Any ticket"></div>
+            </div>
+            <div class="inv-dir-field">
               <span>Company type</span>
-              <select id="filter-type"><option value="">All types</option></select>
-            </label>
-            <label class="inv-dir-field">
+              <div class="inv-dd" id="filter-type" data-placeholder="All types"></div>
+            </div>
+            <div class="inv-dir-field">
               <span>Investment thesis</span>
-              <select id="filter-thesis"><option value="">All theses</option></select>
-            </label>
+              <div class="inv-dd" id="filter-thesis" data-placeholder="All theses"></div>
+            </div>
 
             <button type="button" id="inv-clear" class="inv-dir-clear">Clear filters</button>
           </aside>
@@ -106,7 +106,44 @@
               <span>Sectors / Thesis</span>
               <span>Ticket</span>
             </div>
-            <div id="inv-results" class="inv-dir-results"></div>
+            <div id="inv-results" class="inv-dir-results" aria-busy="true">
+              <div class="inv-dir-row inv-dir-skel" aria-hidden="true">
+                <div class="inv-dir-col inv-dir-col-fund"><span class="inv-skel inv-skel-type"></span><span class="inv-skel inv-skel-name"></span></div>
+                <div class="inv-dir-col inv-dir-col-stages"><span class="inv-skel inv-skel-line"></span></div>
+                <div class="inv-dir-col inv-dir-col-sectors"><span class="inv-skel inv-skel-line inv-skel-wide"></span></div>
+                <div class="inv-dir-col inv-dir-col-ticket"><span class="inv-skel inv-skel-ticket"></span></div>
+              </div>
+              <div class="inv-dir-row inv-dir-skel" aria-hidden="true">
+                <div class="inv-dir-col inv-dir-col-fund"><span class="inv-skel inv-skel-type"></span><span class="inv-skel inv-skel-name"></span></div>
+                <div class="inv-dir-col inv-dir-col-stages"><span class="inv-skel inv-skel-line"></span></div>
+                <div class="inv-dir-col inv-dir-col-sectors"><span class="inv-skel inv-skel-line inv-skel-wide"></span></div>
+                <div class="inv-dir-col inv-dir-col-ticket"><span class="inv-skel inv-skel-ticket"></span></div>
+              </div>
+              <div class="inv-dir-row inv-dir-skel" aria-hidden="true">
+                <div class="inv-dir-col inv-dir-col-fund"><span class="inv-skel inv-skel-type"></span><span class="inv-skel inv-skel-name"></span></div>
+                <div class="inv-dir-col inv-dir-col-stages"><span class="inv-skel inv-skel-line"></span></div>
+                <div class="inv-dir-col inv-dir-col-sectors"><span class="inv-skel inv-skel-line inv-skel-wide"></span></div>
+                <div class="inv-dir-col inv-dir-col-ticket"><span class="inv-skel inv-skel-ticket"></span></div>
+              </div>
+              <div class="inv-dir-row inv-dir-skel" aria-hidden="true">
+                <div class="inv-dir-col inv-dir-col-fund"><span class="inv-skel inv-skel-type"></span><span class="inv-skel inv-skel-name"></span></div>
+                <div class="inv-dir-col inv-dir-col-stages"><span class="inv-skel inv-skel-line"></span></div>
+                <div class="inv-dir-col inv-dir-col-sectors"><span class="inv-skel inv-skel-line inv-skel-wide"></span></div>
+                <div class="inv-dir-col inv-dir-col-ticket"><span class="inv-skel inv-skel-ticket"></span></div>
+              </div>
+              <div class="inv-dir-row inv-dir-skel" aria-hidden="true">
+                <div class="inv-dir-col inv-dir-col-fund"><span class="inv-skel inv-skel-type"></span><span class="inv-skel inv-skel-name"></span></div>
+                <div class="inv-dir-col inv-dir-col-stages"><span class="inv-skel inv-skel-line"></span></div>
+                <div class="inv-dir-col inv-dir-col-sectors"><span class="inv-skel inv-skel-line inv-skel-wide"></span></div>
+                <div class="inv-dir-col inv-dir-col-ticket"><span class="inv-skel inv-skel-ticket"></span></div>
+              </div>
+              <div class="inv-dir-row inv-dir-skel" aria-hidden="true">
+                <div class="inv-dir-col inv-dir-col-fund"><span class="inv-skel inv-skel-type"></span><span class="inv-skel inv-skel-name"></span></div>
+                <div class="inv-dir-col inv-dir-col-stages"><span class="inv-skel inv-skel-line"></span></div>
+                <div class="inv-dir-col inv-dir-col-sectors"><span class="inv-skel inv-skel-line inv-skel-wide"></span></div>
+                <div class="inv-dir-col inv-dir-col-ticket"><span class="inv-skel inv-skel-ticket"></span></div>
+              </div>
+            </div>
             <div class="inv-dir-pager">
               <button type="button" id="inv-prev" disabled>Previous</button>
               <span id="inv-page-label"></span>

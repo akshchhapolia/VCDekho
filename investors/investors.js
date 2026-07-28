@@ -15,11 +15,6 @@
   const els = {
     search: document.getElementById('inv-search'),
     clear: document.getElementById('inv-clear'),
-    sector: document.getElementById('filter-sector'),
-    stage: document.getElementById('filter-stage'),
-    type: document.getElementById('filter-type'),
-    thesis: document.getElementById('filter-thesis'),
-    cheque: document.getElementById('filter-cheque'),
     count: document.getElementById('inv-count'),
     results: document.getElementById('inv-results'),
     prev: document.getElementById('inv-prev'),
@@ -31,6 +26,8 @@
     backdrop: document.getElementById('inv-filters-backdrop')
   };
 
+  const dropdowns = {};
+
   function esc(s) {
     return String(s || '')
       .replace(/&/g, '&amp;')
@@ -39,12 +36,107 @@
       .replace(/"/g, '&quot;');
   }
 
-  function fillSelect(select, options, placeholder) {
-    const current = select.value;
-    select.innerHTML = `<option value="">${esc(placeholder)}</option>` +
-      options.map(o => `<option value="${esc(o.id)}">${esc(o.label)}</option>`).join('');
-    if ([...select.options].some(o => o.value === current)) select.value = current;
+  function closeAllDropdowns(except) {
+    Object.keys(dropdowns).forEach(key => {
+      if (dropdowns[key] !== except) dropdowns[key].close();
+    });
   }
+
+  function createDropdown(root, key) {
+    const placeholder = root.getAttribute('data-placeholder') || 'All';
+    root.innerHTML =
+      '<button type="button" class="inv-dd-trigger" aria-haspopup="listbox" aria-expanded="false">' +
+        '<span class="inv-dd-value">' + esc(placeholder) + '</span>' +
+        '<span class="inv-dd-caret" aria-hidden="true"></span>' +
+      '</button>' +
+      '<ul class="inv-dd-menu" role="listbox" hidden></ul>';
+
+    const trigger = root.querySelector('.inv-dd-trigger');
+    const valueEl = root.querySelector('.inv-dd-value');
+    const menu = root.querySelector('.inv-dd-menu');
+    let options = [{ id: '', label: placeholder }];
+    let value = '';
+    let onChange = null;
+
+    function renderMenu() {
+      menu.innerHTML = options.map(o => {
+        const selected = o.id === value;
+        return (
+          '<li role="option" class="inv-dd-option' + (selected ? ' is-selected' : '') + '" data-value="' + esc(o.id) + '" aria-selected="' + (selected ? 'true' : 'false') + '">' +
+            '<span class="inv-dd-check" aria-hidden="true"></span>' +
+            '<span class="inv-dd-label">' + esc(o.label) + '</span>' +
+          '</li>'
+        );
+      }).join('');
+    }
+
+    function syncLabel() {
+      const match = options.find(o => o.id === value);
+      valueEl.textContent = match ? match.label : placeholder;
+      root.classList.toggle('has-value', Boolean(value));
+    }
+
+    function open() {
+      closeAllDropdowns(api);
+      root.classList.add('is-open');
+      trigger.setAttribute('aria-expanded', 'true');
+      menu.hidden = false;
+    }
+
+    function close() {
+      root.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+      menu.hidden = true;
+    }
+
+    function setValue(next, silent) {
+      value = next || '';
+      syncLabel();
+      renderMenu();
+      if (!silent && onChange) onChange(value);
+    }
+
+    function setOptions(list, nextValue) {
+      options = [{ id: '', label: placeholder }].concat(list || []);
+      if (nextValue !== undefined) value = nextValue || '';
+      if (!options.some(o => o.id === value)) value = '';
+      syncLabel();
+      renderMenu();
+    }
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (root.classList.contains('is-open')) close();
+      else open();
+    });
+
+    menu.addEventListener('click', (e) => {
+      const option = e.target.closest('.inv-dd-option');
+      if (!option) return;
+      e.stopPropagation();
+      setValue(option.getAttribute('data-value') || '');
+      close();
+    });
+
+    const api = {
+      get value() { return value; },
+      set value(v) { setValue(v, true); },
+      setOptions,
+      setOnChange(fn) { onChange = fn; },
+      open,
+      close
+    };
+
+    dropdowns[key] = api;
+    setOptions([]);
+    return api;
+  }
+
+  dropdowns.sector = createDropdown(document.getElementById('filter-sector'), 'sector');
+  dropdowns.stage = createDropdown(document.getElementById('filter-stage'), 'stage');
+  dropdowns.type = createDropdown(document.getElementById('filter-type'), 'type');
+  dropdowns.thesis = createDropdown(document.getElementById('filter-thesis'), 'thesis');
+  dropdowns.cheque = createDropdown(document.getElementById('filter-cheque'), 'cheque');
 
   function joinList(list, limit) {
     const items = (list || []).filter(Boolean).slice(0, limit);
@@ -64,11 +156,42 @@
       els.filtersToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
     document.body.classList.toggle('inv-dir-filters-open', open);
+    if (!open) closeAllDropdowns();
+  }
+
+  function renderSkeleton(count) {
+    const n = count || 8;
+    els.results.innerHTML = Array.from({ length: n }, () => `
+      <div class="inv-dir-row inv-dir-skel" aria-hidden="true">
+        <div class="inv-dir-col inv-dir-col-fund">
+          <span class="inv-skel inv-skel-type"></span>
+          <span class="inv-skel inv-skel-name"></span>
+        </div>
+        <div class="inv-dir-col inv-dir-col-stages">
+          <span class="inv-skel inv-skel-line"></span>
+        </div>
+        <div class="inv-dir-col inv-dir-col-sectors">
+          <span class="inv-skel inv-skel-line inv-skel-wide"></span>
+        </div>
+        <div class="inv-dir-col inv-dir-col-ticket">
+          <span class="inv-skel inv-skel-ticket"></span>
+        </div>
+      </div>
+    `).join('');
   }
 
   function renderRows(investors) {
     if (!investors.length) {
-      els.results.innerHTML = '<p class="inv-dir-empty">No investors match these filters.</p>';
+      els.results.innerHTML =
+        '<div class="inv-dir-empty-state">' +
+          '<p class="inv-dir-empty-title">No matching investors</p>' +
+          '<p class="inv-dir-empty-copy">Try clearing filters or searching a different fund, sector, or stage.</p>' +
+          '<button type="button" class="inv-dir-empty-action" id="inv-empty-clear">Clear filters</button>' +
+        '</div>';
+      const btn = document.getElementById('inv-empty-clear');
+      if (btn) {
+        btn.addEventListener('click', () => els.clear.click());
+      }
       return;
     }
 
@@ -107,7 +230,10 @@
   }
 
   async function load() {
-    els.results.innerHTML = '<p class="inv-dir-empty">Loading…</p>';
+    renderSkeleton(8);
+    if (!state.total) {
+      els.count.textContent = 'Fetching funds';
+    }
     const params = new URLSearchParams({
       q: state.q,
       sector: state.sector,
@@ -129,16 +255,11 @@
 
     if (!state.filters && data.filters) {
       state.filters = data.filters;
-      fillSelect(els.sector, data.filters.sectors || [], 'All sectors');
-      fillSelect(els.stage, data.filters.stages || [], 'All stages');
-      fillSelect(els.type, data.filters.types || [], 'All types');
-      fillSelect(els.thesis, data.filters.thesisThemes || [], 'All theses');
-      fillSelect(els.cheque, data.filters.chequeRanges || [], 'Any ticket');
-      if (state.sector) els.sector.value = state.sector;
-      if (state.stage) els.stage.value = state.stage;
-      if (state.type) els.type.value = state.type;
-      if (state.thesis) els.thesis.value = state.thesis;
-      if (state.cheque) els.cheque.value = state.cheque;
+      dropdowns.sector.setOptions(data.filters.sectors || [], state.sector);
+      dropdowns.stage.setOptions(data.filters.stages || [], state.stage);
+      dropdowns.type.setOptions(data.filters.types || [], state.type);
+      dropdowns.thesis.setOptions(data.filters.thesisThemes || [], state.thesis);
+      dropdowns.cheque.setOptions(data.filters.chequeRanges || [], state.cheque);
     }
 
     state.total = data.total || 0;
@@ -150,7 +271,14 @@
     state.offset = 0;
     load().catch(err => {
       console.error(err);
-      els.results.innerHTML = '<p class="inv-dir-empty">Failed to load investors.</p>';
+      els.results.innerHTML =
+        '<div class="inv-dir-empty-state">' +
+          '<p class="inv-dir-empty-title">Couldn’t load investors</p>' +
+          '<p class="inv-dir-empty-copy">Check your connection and try again.</p>' +
+          '<button type="button" class="inv-dir-empty-action" id="inv-empty-retry">Retry</button>' +
+        '</div>';
+      const btn = document.getElementById('inv-empty-retry');
+      if (btn) btn.addEventListener('click', () => resetOffsetAndLoad());
     });
   }
 
@@ -163,16 +291,20 @@
     }, 250);
   });
 
-  els.sector.addEventListener('change', () => { state.sector = els.sector.value; resetOffsetAndLoad(); });
-  els.stage.addEventListener('change', () => { state.stage = els.stage.value; resetOffsetAndLoad(); });
-  els.type.addEventListener('change', () => { state.type = els.type.value; resetOffsetAndLoad(); });
-  els.thesis.addEventListener('change', () => { state.thesis = els.thesis.value; resetOffsetAndLoad(); });
-  els.cheque.addEventListener('change', () => { state.cheque = els.cheque.value; resetOffsetAndLoad(); });
+  dropdowns.sector.setOnChange(v => { state.sector = v; resetOffsetAndLoad(); });
+  dropdowns.stage.setOnChange(v => { state.stage = v; resetOffsetAndLoad(); });
+  dropdowns.type.setOnChange(v => { state.type = v; resetOffsetAndLoad(); });
+  dropdowns.thesis.setOnChange(v => { state.thesis = v; resetOffsetAndLoad(); });
+  dropdowns.cheque.setOnChange(v => { state.cheque = v; resetOffsetAndLoad(); });
 
   els.clear.addEventListener('click', () => {
     state.q = state.sector = state.stage = state.type = state.thesis = state.cheque = '';
     els.search.value = '';
-    els.sector.value = els.stage.value = els.type.value = els.thesis.value = els.cheque.value = '';
+    dropdowns.sector.value = '';
+    dropdowns.stage.value = '';
+    dropdowns.type.value = '';
+    dropdowns.thesis.value = '';
+    dropdowns.cheque.value = '';
     resetOffsetAndLoad();
   });
 
@@ -194,6 +326,11 @@
   if (els.backdrop) {
     els.backdrop.addEventListener('click', () => setFiltersOpen(false));
   }
+
+  document.addEventListener('click', () => closeAllDropdowns());
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAllDropdowns();
+  });
 
   const params0 = new URLSearchParams(window.location.search);
   if (params0.get('stage')) state.stage = params0.get('stage');
