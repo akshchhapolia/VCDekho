@@ -24,7 +24,11 @@
     results: document.getElementById('inv-results'),
     prev: document.getElementById('inv-prev'),
     next: document.getElementById('inv-next'),
-    pageLabel: document.getElementById('inv-page-label')
+    pageLabel: document.getElementById('inv-page-label'),
+    filtersToggle: document.getElementById('inv-filters-toggle'),
+    filtersClose: document.getElementById('inv-filters-close'),
+    sidebar: document.getElementById('inv-dir-sidebar'),
+    backdrop: document.getElementById('inv-filters-backdrop')
   };
 
   function esc(s) {
@@ -42,60 +46,64 @@
     if ([...select.options].some(o => o.value === current)) select.value = current;
   }
 
-  function hasActiveFilters() {
-    return !!(state.q || state.sector || state.stage || state.type || state.thesis || state.cheque);
+  function joinList(list, limit) {
+    const items = (list || []).filter(Boolean).slice(0, limit);
+    if (!items.length) return '—';
+    const text = items.join(', ');
+    if ((list || []).length > limit) return text + '…';
+    return text;
   }
 
-  function syncClearButton() {
-    els.clear.hidden = !hasActiveFilters();
-    [els.sector, els.stage, els.type, els.thesis, els.cheque].forEach(function (sel) {
-      sel.classList.toggle('has-value', !!sel.value);
-    });
+  function setFiltersOpen(open) {
+    if (!els.sidebar) return;
+    els.sidebar.classList.toggle('is-open', open);
+    if (els.backdrop) {
+      els.backdrop.hidden = !open;
+    }
+    if (els.filtersToggle) {
+      els.filtersToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    document.body.classList.toggle('inv-dir-filters-open', open);
   }
 
-  function metaLine(inv) {
-    const parts = [];
-    if (inv.type) parts.push(esc(inv.type));
-    const stages = (inv.stages || []).slice(0, 3).join(', ');
-    if (stages) parts.push(esc(stages));
-    const sectors = (inv.sectors || []).slice(0, 2).join(', ');
-    if (sectors) parts.push(esc(sectors));
-    return parts.join(' · ') || '—';
-  }
-
-  function renderCards(investors) {
+  function renderRows(investors) {
     if (!investors.length) {
       els.results.innerHTML = '<p class="inv-dir-empty">No investors match these filters.</p>';
       return;
     }
 
-    els.results.innerHTML = investors.map((inv, i) => `
-      <a class="inv-dir-row" href="/investors/${esc(inv.slug)}" role="listitem" style="--i:${i}">
-        <div class="inv-dir-row-main">
-          <div class="inv-dir-row-top">
-            <h2 class="inv-dir-name">${esc(inv.name)}</h2>
-            <span class="inv-dir-ticket">${esc(inv.chequeSize || 'Ticket n/a')}</span>
-          </div>
-          <div class="inv-dir-meta-line">${metaLine(inv)}</div>
-          <p class="inv-dir-thesis">${esc(inv.thesis || 'Open profile for thesis and focus areas.')}</p>
+    els.results.innerHTML = investors.map(inv => {
+      const sectors = joinList([...(inv.sectors || []), ...(inv.thesisThemes || [])], 4);
+      const stages = joinList(inv.stages, 5);
+      return `
+      <a class="inv-dir-row" href="/investors/${esc(inv.slug)}">
+        <div class="inv-dir-col inv-dir-col-fund">
+          <span class="inv-dir-type">${esc(inv.type || 'Investor')}</span>
+          <span class="inv-dir-name">${esc(inv.name)}</span>
         </div>
-        <span class="inv-dir-arrow" aria-hidden="true">→</span>
-      </a>
-    `).join('');
+        <div class="inv-dir-col inv-dir-col-stages">
+          <span class="inv-dir-mobile-label">Stages</span>
+          <span class="inv-dir-cell">${esc(stages)}</span>
+        </div>
+        <div class="inv-dir-col inv-dir-col-sectors">
+          <span class="inv-dir-mobile-label">Sectors</span>
+          <span class="inv-dir-cell">${esc(sectors)}</span>
+        </div>
+        <div class="inv-dir-col inv-dir-col-ticket">
+          <span class="inv-dir-mobile-label">Ticket</span>
+          <span class="inv-dir-ticket">${esc(inv.chequeSize || 'Not listed')}</span>
+        </div>
+      </a>`;
+    }).join('');
   }
 
   function updatePager() {
     const page = Math.floor(state.offset / PAGE_SIZE) + 1;
     const pages = Math.max(1, Math.ceil(state.total / PAGE_SIZE));
-    els.pageLabel.textContent = `${page} / ${pages}`;
+    els.pageLabel.textContent = `Page ${page} of ${pages}`;
     els.prev.disabled = state.offset <= 0;
     els.next.disabled = state.offset + PAGE_SIZE >= state.total;
-    const start = state.total ? state.offset + 1 : 0;
-    const end = Math.min(state.offset + PAGE_SIZE, state.total);
-    els.count.textContent = state.total
-      ? `Showing ${start.toLocaleString('en-IN')}–${end.toLocaleString('en-IN')} of ${state.total.toLocaleString('en-IN')}`
-      : '0 investors';
-    syncClearButton();
+    els.count.textContent = `${state.total.toLocaleString('en-IN')} funds`;
   }
 
   async function load() {
@@ -121,11 +129,11 @@
 
     if (!state.filters && data.filters) {
       state.filters = data.filters;
-      fillSelect(els.sector, data.filters.sectors || [], 'Sector');
-      fillSelect(els.stage, data.filters.stages || [], 'Stage');
-      fillSelect(els.type, data.filters.types || [], 'Type');
-      fillSelect(els.thesis, data.filters.thesisThemes || [], 'Thesis');
-      fillSelect(els.cheque, data.filters.chequeRanges || [], 'Ticket size');
+      fillSelect(els.sector, data.filters.sectors || [], 'All sectors');
+      fillSelect(els.stage, data.filters.stages || [], 'All stages');
+      fillSelect(els.type, data.filters.types || [], 'All types');
+      fillSelect(els.thesis, data.filters.thesisThemes || [], 'All theses');
+      fillSelect(els.cheque, data.filters.chequeRanges || [], 'Any ticket');
       if (state.sector) els.sector.value = state.sector;
       if (state.stage) els.stage.value = state.stage;
       if (state.type) els.type.value = state.type;
@@ -134,7 +142,7 @@
     }
 
     state.total = data.total || 0;
-    renderCards(data.investors || []);
+    renderRows(data.investors || []);
     updatePager();
   }
 
@@ -176,6 +184,16 @@
     state.offset = state.offset + PAGE_SIZE;
     load().catch(console.error);
   });
+
+  if (els.filtersToggle) {
+    els.filtersToggle.addEventListener('click', () => setFiltersOpen(true));
+  }
+  if (els.filtersClose) {
+    els.filtersClose.addEventListener('click', () => setFiltersOpen(false));
+  }
+  if (els.backdrop) {
+    els.backdrop.addEventListener('click', () => setFiltersOpen(false));
+  }
 
   const params0 = new URLSearchParams(window.location.search);
   if (params0.get('stage')) state.stage = params0.get('stage');

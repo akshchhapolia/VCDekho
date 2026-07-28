@@ -2172,6 +2172,316 @@ body.has-announcement .app-container {
   overflow-y: auto;
 }
 
+/* ==========================================================================
+   INVESTORS DIRECTORY (dense / IndianVCs-style)
+   ========================================================================== */
+.inv-dir-page .inv-dir-ambient {
+  opacity: 0.35;
+}
+
+.inv-dir-page .inv-dir-ambient .glow-orb {
+  filter: blur(80px);
+  opacity: 0.45;
+}
+
+.inv-dir-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  padding: 0 20px 48px;
+}
+
+.inv-dir-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.inv-dir-header h1 {
+  font-family: var(--font-heading);
+  color: var(--color-text-light);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.1;
+  font-weight: 400;
+  margin: 0 0 0.35rem;
+}
+
+.inv-dir-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.9rem;
+}
+
+.inv-dir-meta a {
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.inv-dir-meta a:hover {
+  color: var(--color-accent-orange);
+  border-bottom-color: rgba(237, 87, 47, 0.5);
+}
+
+.inv-dir-dot {
+  opacity: 0.4;
+}
+
+.inv-dir-filters-toggle {
+  display: none;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text-light);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.55rem 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.inv-dir-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 1.75rem;
+  align-items: start;
+}
+
+.inv-dir-sidebar {
+  position: sticky;
+  top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding-right: 0.25rem;
+}
+
+.inv-dir-sidebar-head {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+  color: var(--color-text-light);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.inv-dir-sidebar-close {
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.inv-dir-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.inv-dir-field > span {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.inv-dir-field input,
+.inv-dir-field select {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 0;
+  color: var(--color-text-light);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  padding: 0.55rem 0;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.inv-dir-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='rgba(255,255,255,0.55)' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  padding-right: 1.1rem;
+}
+
+.inv-dir-field input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.inv-dir-field input:focus,
+.inv-dir-field select:focus {
+  border-bottom-color: rgba(237, 87, 47, 0.7);
+}
+
+.inv-dir-field select option {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.inv-dir-clear {
+  align-self: flex-start;
+  margin-top: 0.35rem;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0;
+}
+
+.inv-dir-clear:hover {
+  color: var(--color-accent-orange);
+}
+
+.inv-dir-main {
+  min-width: 0;
+}
+
+.inv-dir-table-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: 1rem;
+  padding: 0 0.15rem 0.65rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.inv-dir-results {
+  display: flex;
+  flex-direction: column;
+}
+
+.inv-dir-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.95rem 0.15rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.inv-dir-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom-color: rgba(237, 87, 47, 0.35);
+}
+
+.inv-dir-col {
+  min-width: 0;
+}
+
+.inv-dir-type {
+  display: block;
+  color: var(--color-accent-orange);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.inv-dir-name {
+  display: block;
+  font-family: var(--font-heading);
+  color: var(--color-text-light);
+  font-size: 1.2rem;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.inv-dir-cell,
+.inv-dir-ticket {
+  display: block;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.inv-dir-ticket {
+  color: var(--color-text-light);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.inv-dir-mobile-label {
+  display: none;
+}
+
+.inv-dir-empty {
+  color: rgba(255, 255, 255, 0.55);
+  padding: 2rem 0.15rem;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.inv-dir-pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.inv-dir-pager button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--color-text-light);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  padding: 0.55rem 0.95rem;
+  cursor: pointer;
+}
+
+.inv-dir-pager button:hover:not(:disabled) {
+  border-color: rgba(237, 87, 47, 0.55);
+  color: var(--color-accent-orange);
+}
+
+.inv-dir-pager button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+#inv-page-label {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.85rem;
+}
+
+.inv-dir-backdrop {
+  display: none;
+}
+
 .inv-list-wrap,
 .inv-detail-wrap {
   max-width: 1120px;
@@ -2422,326 +2732,6 @@ body.has-announcement .app-container {
 #inv-page-label {
   color: rgba(255,255,255,0.7);
   font-size: 0.9rem;
-}
-
-/* ==========================================================================
-   INVESTORS DIRECTORY — clean list redesign
-   ========================================================================== */
-.inv-dir-page .inv-dir-wrap {
-  max-width: 920px;
-}
-
-.inv-dir-hero {
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.inv-dir-hero h1 {
-  font-family: var(--font-heading);
-  font-size: clamp(2.75rem, 6vw, 4.25rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
-  color: var(--color-text-light);
-  margin: 0 0 0.55rem;
-}
-
-.inv-dir-hero p {
-  margin: 0;
-  max-width: 28rem;
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 1.05rem;
-  line-height: 1.55;
-}
-
-.inv-dir-guides {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.55rem;
-  margin-top: 0.9rem;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.inv-dir-guides a {
-  color: rgba(255, 255, 255, 0.78);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(237, 87, 47, 0.55);
-  padding-bottom: 1px;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.inv-dir-guides a:hover {
-  color: #fff;
-  border-color: var(--color-accent-orange);
-}
-
-.inv-dir-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  margin-bottom: 1.15rem;
-}
-
-.inv-dir-search {
-  position: relative;
-}
-
-.inv-dir-search-icon {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: rgba(255, 255, 255, 0.4);
-  pointer-events: none;
-}
-
-.inv-dir-search input {
-  width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 0;
-  color: var(--color-text-light);
-  font-family: var(--font-sans);
-  font-size: 1.05rem;
-  padding: 0.95rem 1rem 0.95rem 2.75rem;
-  outline: none;
-  transition: border-color 0.2s ease;
-}
-
-.inv-dir-search input::placeholder {
-  color: rgba(255, 255, 255, 0.38);
-}
-
-.inv-dir-search input:focus {
-  border-bottom-color: rgba(237, 87, 47, 0.75);
-}
-
-.inv-dir-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.inv-dir-filters select {
-  appearance: none;
-  background: transparent
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='rgba(255,255,255,0.55)' d='M1 1l5 5 5-5'/%3E%3C/svg%3E")
-    no-repeat right 0.85rem center;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-  color: rgba(255, 255, 255, 0.82);
-  font-family: var(--font-sans);
-  font-size: 0.82rem;
-  padding: 0.55rem 2rem 0.55rem 0.95rem;
-  cursor: pointer;
-  max-width: 100%;
-  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
-}
-
-.inv-dir-filters select:hover,
-.inv-dir-filters select:focus {
-  border-color: rgba(237, 87, 47, 0.55);
-  outline: none;
-}
-
-.inv-dir-filters select.has-value {
-  border-color: rgba(237, 87, 47, 0.45);
-  background-color: rgba(237, 87, 47, 0.1);
-  color: #fff;
-}
-
-.inv-dir-filters select option {
-  background: #1a1a1a;
-  color: #fff;
-}
-
-.inv-dir-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.35rem;
-  min-height: 1.5rem;
-}
-
-#inv-count {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.85rem;
-  letter-spacing: 0.01em;
-}
-
-.inv-dir-clear {
-  border: none;
-  background: none;
-  color: var(--color-accent-orange);
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0;
-}
-
-.inv-dir-clear:hover {
-  color: #ff7a55;
-}
-
-.inv-dir-list {
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.inv-dir-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 1rem;
-  align-items: center;
-  padding: 1.2rem 0.15rem 1.2rem 0;
-  text-decoration: none;
-  color: inherit;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  transition: background 0.2s ease, padding-left 0.25s ease;
-  opacity: 0;
-  transform: translateY(8px);
-  animation: invDirRowIn 0.45s ease forwards;
-  animation-delay: calc(var(--i, 0) * 28ms);
-}
-
-@keyframes invDirRowIn {
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.inv-dir-row:hover {
-  background: linear-gradient(90deg, rgba(237, 87, 47, 0.08), transparent 55%);
-  padding-left: 0.55rem;
-}
-
-.inv-dir-row-top {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.3rem;
-}
-
-.inv-dir-name {
-  font-family: var(--font-heading);
-  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
-  font-weight: 400;
-  line-height: 1.2;
-  color: #fff;
-  margin: 0;
-}
-
-.inv-dir-ticket {
-  flex-shrink: 0;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 0.88rem;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.inv-dir-meta-line {
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 0.8rem;
-  line-height: 1.4;
-  margin-bottom: 0.35rem;
-}
-
-.inv-dir-thesis {
-  margin: 0;
-  max-width: 40rem;
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 0.92rem;
-  line-height: 1.5;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.inv-dir-arrow {
-  color: rgba(255, 255, 255, 0.28);
-  font-size: 1.1rem;
-  transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.inv-dir-row:hover .inv-dir-arrow {
-  color: var(--color-accent-orange);
-  transform: translateX(3px);
-}
-
-.inv-dir-empty {
-  color: rgba(255, 255, 255, 0.55);
-  padding: 2.5rem 0.25rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.inv-dir-pager {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.25rem;
-  margin-top: 1.75rem;
-  padding-top: 0.5rem;
-}
-
-.inv-dir-pager button {
-  background: none;
-  border: none;
-  border-bottom: 1px solid transparent;
-  color: rgba(255, 255, 255, 0.8);
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 0.25rem 0;
-  cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.inv-dir-pager button:hover:not(:disabled) {
-  color: #fff;
-  border-bottom-color: var(--color-accent-orange);
-}
-
-.inv-dir-pager button:disabled {
-  opacity: 0.35;
-  cursor: not-allowed;
-}
-
-.inv-dir-pager #inv-page-label {
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 0.85rem;
-  font-variant-numeric: tabular-nums;
-}
-
-@media (max-width: 720px) {
-  .inv-dir-row {
-    grid-template-columns: 1fr;
-    gap: 0.35rem;
-  }
-  .inv-dir-arrow {
-    display: none;
-  }
-  .inv-dir-row-top {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
-  }
-  .inv-dir-filters {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  .inv-dir-filters select {
-    width: 100%;
-  }
 }
 
 .inv-hero-panel,
