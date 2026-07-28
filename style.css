@@ -2523,15 +2523,18 @@ body.has-announcement .app-container {
 }
 
 a.inv-dir-col-fund {
+  position: relative;
+  z-index: 2;
   text-decoration: none;
   color: inherit;
 }
 
-/* Stretch fund link across the row so empty space is clickable */
-a.inv-dir-col-fund::after {
-  content: '';
-  position: absolute;
-  inset: 0;
+/* Let the fund link cover the full row; other columns pass clicks through */
+.inv-dir-col-stages,
+.inv-dir-col-sectors,
+.inv-dir-col-ticket {
+  pointer-events: none;
+  position: relative;
   z-index: 1;
 }
 
@@ -5277,8 +5280,9 @@ html.auth-pending body {
 
 .inv-dir-cell a,
 .inv-dir-inline-link {
+  pointer-events: auto;
   position: relative;
-  z-index: 2;
+  z-index: 3;
   color: inherit;
   text-decoration: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
