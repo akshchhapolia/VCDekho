@@ -2164,29 +2164,34 @@ body.has-announcement .app-container {
     }
 }
 /* ==========================================================================
-   INVESTORS DIRECTORY
+   INVESTORS + SCROLLABLE CONTENT PAGES
+   Header is in normal flow — don't stack large top padding under it
    ========================================================================== */
 .inv-page .hero-showcase {
-  padding-top: 110px;
-  padding-bottom: 80px;
+  padding-top: 1.25rem;
+  padding-bottom: 2.5rem;
   overflow-y: auto;
+  min-height: 0;
 }
 
-/* ==========================================================================
-   INVESTORS DIRECTORY (dense / IndianVCs-style)
-   ========================================================================== */
-/* Header is in normal flow on this page — don't stack large top padding under it */
-body.inv-dir-page .app-container {
+body.scrollable-page.inv-page .app-container,
+body.scrollable-page:not(.inv-page) .app-container {
   padding-top: 1rem;
   padding-bottom: 0;
   gap: 0.75rem;
 }
 
+body.scrollable-page:not(.inv-page) .hero-showcase {
+  padding-top: 1.25rem !important;
+  padding-bottom: 2.5rem !important;
+  min-height: 0;
+}
+
+/* ==========================================================================
+   INVESTORS DIRECTORY (dense / IndianVCs-style)
+   ========================================================================== */
 .inv-dir-page .hero-showcase.inv-list-main {
   background-color: #0b0b0d;
-  padding-top: 1.25rem;
-  padding-bottom: 2.5rem;
-  min-height: 0;
 }
 
 .inv-dir-page .inv-dir-ambient {
@@ -3702,8 +3707,8 @@ a.inv-chip:hover {
 
 .stage-guide-page .stage-hero {
   position: relative;
-  margin: 0 0 1.75rem;
-  padding: 2.25rem 1.75rem 1.75rem;
+  margin: 0 0 1.35rem;
+  padding: 1.65rem 1.5rem 1.4rem;
   border-radius: 24px;
   border: 1px solid rgba(237, 87, 47, 0.22);
   overflow: hidden;
@@ -4494,14 +4499,16 @@ a.inv-chip:hover {
 }
 
 @media (max-width: 960px) {
-  body.inv-dir-page .app-container {
+  body.scrollable-page.inv-page .app-container,
+  body.scrollable-page:not(.inv-page) .app-container {
     padding-top: 0.85rem;
     gap: 0.65rem;
   }
 
-  .inv-dir-page .hero-showcase.inv-list-main {
-    padding-top: 1rem;
-    padding-bottom: 2rem;
+  body.scrollable-page.inv-page .hero-showcase,
+  body.scrollable-page:not(.inv-page) .hero-showcase {
+    padding-top: 1rem !important;
+    padding-bottom: 2rem !important;
   }
 
   .inv-dir-layout {
@@ -4644,14 +4651,16 @@ a.inv-chip:hover {
 }
 
 @media (max-width: 640px) {
-  body.inv-dir-page .app-container {
+  body.scrollable-page.inv-page .app-container,
+  body.scrollable-page:not(.inv-page) .app-container {
     padding-top: 0.75rem;
     gap: 0.5rem;
   }
 
-  .inv-dir-page .hero-showcase.inv-list-main {
-    padding-top: 0.85rem;
-    padding-bottom: 1.75rem;
+  body.scrollable-page.inv-page .hero-showcase,
+  body.scrollable-page:not(.inv-page) .hero-showcase {
+    padding-top: 0.85rem !important;
+    padding-bottom: 1.75rem !important;
   }
 
   .inv-dir-header {
@@ -4702,8 +4711,8 @@ a.inv-chip:hover {
 
 .inv-profile-hero {
   position: relative;
-  margin: 0 0 1.5rem;
-  padding: 2.25rem 1.75rem 1.85rem;
+  margin: 0 0 1.25rem;
+  padding: 1.65rem 1.5rem 1.5rem;
   border-radius: 24px;
   border: 1px solid rgba(237, 87, 47, 0.22);
   overflow: hidden;
