@@ -4996,8 +4996,8 @@ a.inv-chip:hover {
   display: flex;
   flex-wrap: nowrap;
   gap: 0.15rem 1rem;
-  margin: 0 0 2rem;
-  padding: 0.85rem 0.25rem;
+  margin: 0 0 1.15rem;
+  padding: 0.75rem 0.25rem;
   overflow-x: auto;
   border-bottom: 1px solid rgba(255,255,255,0.1);
   background: linear-gradient(180deg, rgba(6,8,14,0.92), rgba(6,8,14,0.78));
