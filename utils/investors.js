@@ -88,7 +88,8 @@ function toCard(investor) {
     thesisThemeIds: (investor.thesisThemeIds || []).slice(0, 3),
     thesis: investor.thesis,
     chequeSize: investor.chequeSize,
-    website: investor.website
+    website: investor.website,
+    logo: investor.logo || null
   };
 }
 
