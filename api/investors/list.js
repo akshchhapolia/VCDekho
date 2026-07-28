@@ -2,6 +2,7 @@ const { filterInvestors, getFilters, toCard } = require('../../utils/investors')
 const { getAllThemes } = require('../../utils/thesis-themes');
 const { getAllStages } = require('../../utils/investment-stages');
 const { requireAuth } = require('../../utils/require-auth');
+const { getThesisThemeIconSvg } = require('../../utils/thesis-theme-icons');
 
 module.exports = async function handler(req, res) {
   try {
@@ -18,7 +19,8 @@ module.exports = async function handler(req, res) {
         id: t.id,
         label: t.label,
         summary: t.summary,
-        investorCount: t.investorCount
+        investorCount: t.investorCount,
+        iconSvg: getThesisThemeIconSvg(t.id, 'theme-index-icon')
       }));
       res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
       return res.status(200).json({ total: themes.length, themes });
