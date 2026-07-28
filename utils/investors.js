@@ -1,7 +1,10 @@
 const fs = require('fs');
 const path = require('path');
+const { INVESTMENT_STAGES } = require('../data/investment-stages');
 
 let cache = null;
+
+const STAGE_GUIDE_IDS = new Set(INVESTMENT_STAGES.map(s => s.id));
 
 function loadInvestorsData() {
   if (cache) return cache;
@@ -20,6 +23,15 @@ function getAllInvestors() {
 
 function getInvestorBySlug(slug) {
   return getAllInvestors().find(i => i.slug === slug) || null;
+}
+
+function hasStageGuide(id) {
+  return Boolean(id && STAGE_GUIDE_IDS.has(id));
+}
+
+function getStageGuideLabel(id) {
+  const stage = INVESTMENT_STAGES.find(s => s.id === id);
+  return stage ? stage.label : id;
 }
 
 function chequeOverlaps(inv, range) {
@@ -70,12 +82,35 @@ function toCard(investor) {
     type: investor.type,
     typeId: investor.typeId,
     stages: investor.stages,
+    stageIds: investor.stageIds || [],
     sectors: investor.sectors.slice(0, 4),
     thesisThemes: investor.thesisThemes.slice(0, 3),
+    thesisThemeIds: (investor.thesisThemeIds || []).slice(0, 3),
     thesis: investor.thesis,
     chequeSize: investor.chequeSize,
     website: investor.website
   };
+}
+
+/**
+ * Derive top stage guides from a list of investors/cards (by stageId frequency).
+ */
+function deriveRelatedStages(investors, limit = 4) {
+  const counts = Object.create(null);
+  (investors || []).forEach(inv => {
+    (inv.stageIds || []).forEach(id => {
+      if (!hasStageGuide(id)) return;
+      counts[id] = (counts[id] || 0) + 1;
+    });
+  });
+  return Object.keys(counts)
+    .sort((a, b) => counts[b] - counts[a] || a.localeCompare(b))
+    .slice(0, limit)
+    .map(id => ({
+      id,
+      label: getStageGuideLabel(id),
+      count: counts[id]
+    }));
 }
 
 module.exports = {
@@ -84,5 +119,9 @@ module.exports = {
   getAllInvestors,
   getInvestorBySlug,
   filterInvestors,
-  toCard
+  toCard,
+  hasStageGuide,
+  getStageGuideLabel,
+  deriveRelatedStages,
+  STAGE_GUIDE_IDS
 };
