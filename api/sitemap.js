@@ -1,4 +1,7 @@
 const db = require('../utils/db');
+const { getAllInvestors } = require('../utils/investors');
+const { THESIS_THEMES } = require('../data/thesis-themes');
+const { INVESTMENT_STAGES } = require('../data/investment-stages');
 
 module.exports = async function handler(req, res) {
     res.setHeader('Content-Type', 'application/xml');
@@ -24,6 +27,18 @@ module.exports = async function handler(req, res) {
             });
         }
 
+        try {
+            getAllInvestors().forEach(inv => {
+                dynamicUrls += `
+  <url>
+    <loc>https://vcdekho.com/investors/${inv.slug}</loc>
+    <priority>0.75</priority>
+  </url>`;
+            });
+        } catch (e) {
+            console.warn('Investor sitemap skipped:', e.message);
+        }
+
         const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
@@ -40,8 +55,24 @@ module.exports = async function handler(req, res) {
   </url>
   <url>
     <loc>https://vcdekho.com/login</loc>
-    <priority>0.85</priority>
+    <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://vcdekho.com/investors/themes</loc>
+    <priority>0.9</priority>
+  </url>${THESIS_THEMES.map(t => `
+  <url>
+    <loc>https://vcdekho.com/investors/themes/${t.id}</loc>
+    <priority>0.85</priority>
+  </url>`).join('')}
+  <url>
+    <loc>https://vcdekho.com/investors/stages</loc>
+    <priority>0.9</priority>
+  </url>${INVESTMENT_STAGES.map(s => `
+  <url>
+    <loc>https://vcdekho.com/investors/stages/${s.id}</loc>
+    <priority>0.85</priority>
+  </url>`).join('')}
   <url>
     <loc>https://vcdekho.com/blog</loc>
     <priority>0.9</priority>
