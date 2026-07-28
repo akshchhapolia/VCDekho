@@ -1,0 +1,26 @@
+{
+  "input": 99,
+  "new": 94,
+  "dupes": [
+    {
+      "candidate": "Artha99",
+      "matched": "Artha99 Venture Capital Fund"
+    },
+    {
+      "candidate": "Blue Ashva Capital",
+      "matched": "Blue Ashva Capital"
+    },
+    {
+      "candidate": "Eaglewings Ventures",
+      "matched": "Eaglewings Ventures"
+    },
+    {
+      "candidate": "GrowthCap Ventures",
+      "matched": "GrowthCap Ventures"
+    },
+    {
+      "candidate": "Varanium",
+      "matched": "Varanium Capital Advisors"
+    }
+  ]
+}
