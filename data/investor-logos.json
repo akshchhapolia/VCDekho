@@ -1,0 +1,98 @@
+{
+  "kunal-shah": {
+    "path": "/assets/investors/kunal-shah.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 930,
+    "fetchedAt": "2026-07-28T10:16:38.377Z",
+    "from": "https://web-images.credcdn.in/v2/_next/assets/icons/logo.png"
+  },
+  "kalaari-capital": {
+    "path": "/assets/investors/kalaari-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 10727,
+    "fetchedAt": "2026-07-28T10:16:38.805Z",
+    "from": "https://cdn.prod.website-files.com/69932395f46b656c443e9c46/6a576f7050b2bb382ee2b041_Frame%202085665636.png"
+  },
+  "sequoia-india-peak-xv": {
+    "path": "/assets/investors/sequoia-india-peak-xv.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 6077,
+    "fetchedAt": "2026-07-28T10:16:38.806Z",
+    "from": "https://cdn.prod.website-files.com/69183d51704ed8e1b1c250fc/692070b6650d0ca9c10dddb3_Webclip.png"
+  },
+  "anand-chandrasekaran": {
+    "path": "/assets/investors/anand-chandrasekaran.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 11458,
+    "fetchedAt": "2026-07-28T10:16:39.157Z",
+    "from": "https://cdn.prod.website-files.com/61081e11ee5a0ed41c7c6d2e/611fca2aeef4eb22e10904a1_Frame%202.png"
+  },
+  "gaurav-munjal": {
+    "path": "/assets/investors/gaurav-munjal.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 5274,
+    "fetchedAt": "2026-07-28T10:16:40.251Z",
+    "from": "https://static.uacdn.net/production/_next/static/icons/icon-192x192.png"
+  },
+  "anupam-mittal": {
+    "path": "/assets/investors/anupam-mittal.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1862,
+    "fetchedAt": "2026-07-28T10:16:40.425Z",
+    "from": "https://img2.shaadi.com/assests/2021/images/favicon-32.png"
+  },
+  "nexus-venture-partners": {
+    "path": "/assets/investors/nexus-venture-partners.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 7588,
+    "fetchedAt": "2026-07-28T10:16:40.753Z",
+    "from": "https://nexusvp.com/in/wp-content/uploads/2020/05/cropped-nexus-favicon-512-180x180.png"
+  },
+  "ritesh-agarwal": {
+    "path": "/assets/investors/ritesh-agarwal.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 25432,
+    "fetchedAt": "2026-07-28T10:16:41.457Z",
+    "from": "https://static.wixstatic.com/media/966ea6_74bb796829b645c9a220cae8f04ea512%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/966ea6_74bb796829b645c9a220cae8f04ea512%7Emv2.png"
+  },
+  "kunal-bahl": {
+    "path": "/assets/investors/kunal-bahl.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 5002,
+    "fetchedAt": "2026-07-28T10:16:41.540Z",
+    "from": "https://www.titancapital.vc/wp-content/uploads/2022/01/cropped-Group-178-180x180.png"
+  },
+  "zeropearl-vc": {
+    "path": "/assets/investors/zeropearl-vc.png",
+    "source": "website",
+    "contentType": "image/avif",
+    "bytes": 2308,
+    "fetchedAt": "2026-07-28T10:16:42.625Z",
+    "from": "https://framerusercontent.com/images/ahfjV2ReGcikbbbvnGeRpotixE.png"
+  },
+  "indian-angel-network-ian": {
+    "path": "/assets/investors/indian-angel-network-ian.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 14985,
+    "fetchedAt": "2026-07-28T10:16:42.831Z",
+    "from": "https://iangroup.vc/wp-content/uploads/2023/06/cropped-ianlogo-180x180.png"
+  },
+  "sanjay-mehta": {
+    "path": "/assets/investors/sanjay-mehta.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 4362,
+    "fetchedAt": "2026-07-28T10:16:44.221Z",
+    "from": "https://www.100x.vc/favicon.ico"
+  }
+}
