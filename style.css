@@ -2627,6 +2627,7 @@ body.has-announcement .app-container {
   color: rgba(255, 255, 255, 0.72);
   font-size: 0.88rem;
   line-height: 1.4;
+  font-weight: 400;
 }
 
 /* Keep sectors/thesis to 3 lines so directory rows stay even height */
@@ -2639,9 +2640,9 @@ body.has-announcement .app-container {
 }
 
 .inv-dir-ticket {
-  color: var(--color-text-light);
-  font-weight: 600;
-  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .inv-dir-mobile-label {
