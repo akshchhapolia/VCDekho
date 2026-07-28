@@ -2013,6 +2013,21 @@ a.breadcrumb-link:hover {
     color: var(--color-accent-orange);
 }
 
+.news-skel-card {
+    pointer-events: none;
+    min-height: 180px;
+}
+
+.news-skel-card:hover {
+    transform: none;
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+}
+
+.news-skel-card .blog-skel-line {
+    display: block;
+}
+
 /* -------------------------------------------------------------------------- */
 /* Digest Cards */
 /* -------------------------------------------------------------------------- */
