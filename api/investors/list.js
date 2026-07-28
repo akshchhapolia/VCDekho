@@ -5,10 +5,13 @@ const { requireAuth } = require('../../utils/require-auth');
 
 module.exports = async function handler(req, res) {
   try {
-    const user = await requireAuth(req, res);
-    if (!user) return;
-
     const query = req.query || {};
+    const isPublicView = query.view === 'themes' || query.view === 'stages';
+
+    if (!isPublicView) {
+      const user = await requireAuth(req, res);
+      if (!user) return;
+    }
 
     if (query.view === 'themes') {
       const themes = getAllThemes().map(t => ({
@@ -17,7 +20,7 @@ module.exports = async function handler(req, res) {
         summary: t.summary,
         investorCount: t.investorCount
       }));
-      res.setHeader('Cache-Control', 'private, no-store');
+      res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
       return res.status(200).json({ total: themes.length, themes });
     }
 
@@ -30,7 +33,7 @@ module.exports = async function handler(req, res) {
         investorCount: s.investorCount,
         snapshot: s.snapshot
       }));
-      res.setHeader('Cache-Control', 'private, no-store');
+      res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
       return res.status(200).json({ total: stages.length, stages });
     }
 

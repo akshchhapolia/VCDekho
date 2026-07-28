@@ -32,22 +32,21 @@ async function isValidToken(token) {
   }
 }
 
+/**
+ * Only the investor directory (and its search API) stay behind login.
+ * Individual profiles, thesis pages, and stage pages are public + crawlable.
+ */
 export default async function middleware(request) {
   const url = new URL(request.url);
-  const pathname = url.pathname;
+  const pathname = url.pathname.replace(/\/$/, '') || '/';
 
-  // Allow static assets under /investors (JS used by the directory page)
-  if (/\.(js|css|map|png|jpg|jpeg|gif|webp|svg|ico|woff2?)$/i.test(pathname)) {
-    return;
-  }
+  const isDirectoryPage = pathname === '/investors';
+  const isDirectoryApi =
+    pathname === '/api/investors/list' &&
+    url.searchParams.get('view') !== 'themes' &&
+    url.searchParams.get('view') !== 'stages';
 
-  const isInvestorsPath =
-    pathname === '/investors' ||
-    pathname.startsWith('/investors/') ||
-    pathname === '/api/investors/list' ||
-    pathname.startsWith('/api/investors/');
-
-  if (!isInvestorsPath) {
+  if (!isDirectoryPage && !isDirectoryApi) {
     return;
   }
 
@@ -62,7 +61,7 @@ export default async function middleware(request) {
   const wantsHtml = accept.includes('text/html');
 
   if (!token || !(await isValidToken(token))) {
-    if (wantsHtml || pathname.startsWith('/investors')) {
+    if (wantsHtml || isDirectoryPage) {
       const next = encodeURIComponent(pathname + url.search);
       return Response.redirect(new URL(`/login?next=${next}`, request.url), 302);
     }
@@ -74,5 +73,5 @@ export default async function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/investors', '/investors/:path*', '/api/investors/:path*']
+  matcher: ['/investors', '/api/investors/list']
 };

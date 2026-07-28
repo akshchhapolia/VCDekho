@@ -4,7 +4,6 @@ const { getStagePage } = require('../../utils/investment-stages');
 const { renderStagePage } = require('../../utils/render-stage-page');
 const { renderInvestorPage } = require('../../utils/render-investor-page');
 const { renderExploreRelated } = require('../../utils/render-explore-related');
-const { requireAuth } = require('../../utils/require-auth');
 
 function escapeHtml(value) {
   return String(value || '')
