@@ -14,13 +14,13 @@
   <meta name="description" content="Explore 380+ VCs, family offices, angels and syndicates in India. Filter by sector, stage, cheque size, company type and investment thesis.">
   <link rel="canonical" href="https://vcdekho.com/investors">
   <link rel="icon" type="image/png" href="/assets/logoforvc.png">
-  <link rel="stylesheet" href="/style.css?v=15">
+  <link rel="stylesheet" href="/style.css?v=17">
   <meta name="robots" content="noindex, nofollow">
   <meta property="og:title" content="Indian Investors Directory | VC Dekho">
   <meta property="og:description" content="Explore 380+ VCs, family offices, angels and syndicates in India.">
   <meta property="og:url" content="https://vcdekho.com/investors">
 </head>
-<body class="scrollable-page inv-page">
+<body class="scrollable-page inv-page inv-dir-page">
   <div class="app-container">
     <header class="site-header">
       <a href="/" class="logo-container">
@@ -39,7 +39,7 @@
     </header>
 
     <main class="hero-showcase inv-list-main">
-      <div class="ambient-bg-wrapper">
+      <div class="ambient-bg-wrapper" aria-hidden="true">
         <div class="waitlist-bg">
           <div class="glow-orb orb-1"></div>
           <div class="glow-orb orb-2"></div>
@@ -47,59 +47,43 @@
         </div>
       </div>
 
-      <div class="inv-list-wrap">
-        <div class="inv-breadcrumbs">
-          <a href="/">Home</a><span>›</span>
-          <span class="current">Investors</span>
-        </div>
-
-        <header class="inv-list-header">
-          <span class="inv-kicker">VC Dekho Directory</span>
-          <h1>All Investors</h1>
-          <p>Browse VCs, family offices, angels and syndicates. Filter by sector, stage, ticket size, type and investment thesis. <a href="/investors/themes" class="inv-inline-link">Thesis guides →</a> · <a href="/investors/stages" class="inv-inline-link">Stage guides →</a></p>
+      <div class="inv-list-wrap inv-dir-wrap">
+        <header class="inv-dir-hero">
+          <h1>Investors</h1>
+          <p>Search Indian VCs, family offices, angels and syndicates.</p>
+          <div class="inv-dir-guides">
+            <a href="/investors/themes">Thesis guides</a>
+            <span aria-hidden="true">·</span>
+            <a href="/investors/stages">Stage guides</a>
+          </div>
         </header>
 
-        <section class="inv-filters" id="inv-filters">
-          <div class="inv-search-row">
-            <input id="inv-search" type="search" placeholder="Search funds, thesis, sectors..." autocomplete="off">
-            <button type="button" id="inv-clear" class="inv-clear-btn">Clear</button>
+        <section class="inv-dir-controls" aria-label="Search and filters">
+          <div class="inv-dir-search">
+            <svg class="inv-dir-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="M20 20l-3.5-3.5"></path>
+            </svg>
+            <input id="inv-search" type="search" placeholder="Search by name, thesis, or sector…" autocomplete="off">
           </div>
-          <div class="inv-filter-grid">
-            <label>
-              <span>Sector</span>
-              <select id="filter-sector"><option value="">All sectors</option></select>
-            </label>
-            <label>
-              <span>Stage</span>
-              <select id="filter-stage"><option value="">All stages</option></select>
-            </label>
-            <label>
-              <span>Ticket size</span>
-              <select id="filter-cheque"><option value="">Any ticket</option></select>
-            </label>
-            <label>
-              <span>Company type</span>
-              <select id="filter-type"><option value="">All types</option></select>
-            </label>
-            <label>
-              <span>Investment thesis</span>
-              <select id="filter-thesis"><option value="">All theses</option></select>
-            </label>
+
+          <div class="inv-dir-filters" id="inv-filters">
+            <select id="filter-sector" aria-label="Sector"><option value="">Sector</option></select>
+            <select id="filter-stage" aria-label="Stage"><option value="">Stage</option></select>
+            <select id="filter-cheque" aria-label="Ticket size"><option value="">Ticket size</option></select>
+            <select id="filter-type" aria-label="Type"><option value="">Type</option></select>
+            <select id="filter-thesis" aria-label="Thesis"><option value="">Thesis</option></select>
           </div>
         </section>
 
-        <div class="inv-results-meta">
-          <span id="inv-count">Loading investors...</span>
+        <div class="inv-dir-meta">
+          <span id="inv-count">Loading…</span>
+          <button type="button" id="inv-clear" class="inv-dir-clear" hidden>Clear filters</button>
         </div>
 
-        <div class="inv-table-head" aria-hidden="true">
-          <span>Investor</span>
-          <span>Stages</span>
-          <span>Sectors / Thesis</span>
-          <span>Ticket size</span>
-        </div>
-        <div id="inv-results" class="inv-results"></div>
-        <div class="inv-pager">
+        <div id="inv-results" class="inv-dir-list" role="list"></div>
+
+        <div class="inv-dir-pager">
           <button type="button" id="inv-prev" disabled>Previous</button>
           <span id="inv-page-label"></span>
           <button type="button" id="inv-next" disabled>Next</button>

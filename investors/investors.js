@@ -42,38 +42,41 @@
     if ([...select.options].some(o => o.value === current)) select.value = current;
   }
 
-  function chips(list, limit) {
-    return (list || []).slice(0, limit).map(x => `<span class="inv-chip">${esc(x)}</span>`).join('');
+  function hasActiveFilters() {
+    return !!(state.q || state.sector || state.stage || state.type || state.thesis || state.cheque);
+  }
+
+  function syncClearButton() {
+    els.clear.hidden = !hasActiveFilters();
+  }
+
+  function metaLine(inv) {
+    const parts = [];
+    if (inv.type) parts.push(esc(inv.type));
+    const stages = (inv.stages || []).slice(0, 3).join(', ');
+    if (stages) parts.push(esc(stages));
+    const sectors = (inv.sectors || []).slice(0, 2).join(', ');
+    if (sectors) parts.push(esc(sectors));
+    return parts.join(' · ') || '—';
   }
 
   function renderCards(investors) {
     if (!investors.length) {
-      els.results.innerHTML = '<p class="inv-empty">No investors match these filters.</p>';
+      els.results.innerHTML = '<p class="inv-dir-empty">No investors match these filters.</p>';
       return;
     }
 
-    els.results.innerHTML = investors.map(inv => `
-      <a class="inv-card" href="/investors/${esc(inv.slug)}">
-        <div class="inv-card-main">
-          <div class="inv-card-type">${esc(inv.type)}</div>
-          <h2 class="inv-card-name">${esc(inv.name)}</h2>
-          <p class="inv-card-thesis">${esc(inv.thesis || 'Investment thesis available on profile.')}</p>
-        </div>
-        <div class="inv-card-col">
-          <div class="inv-card-col-label">Stages</div>
-          <div class="inv-chip-row">${chips(inv.stages, 4) || '<span class="inv-chip muted">—</span>'}</div>
-        </div>
-        <div class="inv-card-col">
-          <div class="inv-card-col-label">Sectors / Thesis</div>
-          <div class="inv-chip-row">
-            ${chips(inv.sectors, 3)}
-            ${chips(inv.thesisThemes, 2)}
+    els.results.innerHTML = investors.map((inv, i) => `
+      <a class="inv-dir-row" href="/investors/${esc(inv.slug)}" role="listitem" style="--i:${i}">
+        <div class="inv-dir-row-main">
+          <div class="inv-dir-row-top">
+            <h2 class="inv-dir-name">${esc(inv.name)}</h2>
+            <span class="inv-dir-ticket">${esc(inv.chequeSize || 'Ticket n/a')}</span>
           </div>
+          <div class="inv-dir-meta-line">${metaLine(inv)}</div>
+          <p class="inv-dir-thesis">${esc(inv.thesis || 'Open profile for thesis and focus areas.')}</p>
         </div>
-        <div class="inv-card-col inv-card-ticket">
-          <div class="inv-card-col-label">Ticket size</div>
-          <div class="inv-ticket">${esc(inv.chequeSize || 'Not listed')}</div>
-        </div>
+        <span class="inv-dir-arrow" aria-hidden="true">→</span>
       </a>
     `).join('');
   }
@@ -81,14 +84,19 @@
   function updatePager() {
     const page = Math.floor(state.offset / PAGE_SIZE) + 1;
     const pages = Math.max(1, Math.ceil(state.total / PAGE_SIZE));
-    els.pageLabel.textContent = `Page ${page} of ${pages}`;
+    els.pageLabel.textContent = `${page} / ${pages}`;
     els.prev.disabled = state.offset <= 0;
     els.next.disabled = state.offset + PAGE_SIZE >= state.total;
-    els.count.textContent = `${state.total.toLocaleString('en-IN')} investors`;
+    const start = state.total ? state.offset + 1 : 0;
+    const end = Math.min(state.offset + PAGE_SIZE, state.total);
+    els.count.textContent = state.total
+      ? `Showing ${start.toLocaleString('en-IN')}–${end.toLocaleString('en-IN')} of ${state.total.toLocaleString('en-IN')}`
+      : '0 investors';
+    syncClearButton();
   }
 
   async function load() {
-    els.results.innerHTML = '<p class="inv-empty">Loading...</p>';
+    els.results.innerHTML = '<p class="inv-dir-empty">Loading…</p>';
     const params = new URLSearchParams({
       q: state.q,
       sector: state.sector,
@@ -110,11 +118,11 @@
 
     if (!state.filters && data.filters) {
       state.filters = data.filters;
-      fillSelect(els.sector, data.filters.sectors || [], 'All sectors');
-      fillSelect(els.stage, data.filters.stages || [], 'All stages');
-      fillSelect(els.type, data.filters.types || [], 'All types');
-      fillSelect(els.thesis, data.filters.thesisThemes || [], 'All theses');
-      fillSelect(els.cheque, data.filters.chequeRanges || [], 'Any ticket');
+      fillSelect(els.sector, data.filters.sectors || [], 'Sector');
+      fillSelect(els.stage, data.filters.stages || [], 'Stage');
+      fillSelect(els.type, data.filters.types || [], 'Type');
+      fillSelect(els.thesis, data.filters.thesisThemes || [], 'Thesis');
+      fillSelect(els.cheque, data.filters.chequeRanges || [], 'Ticket size');
       if (state.sector) els.sector.value = state.sector;
       if (state.stage) els.stage.value = state.stage;
       if (state.type) els.type.value = state.type;
@@ -131,7 +139,7 @@
     state.offset = 0;
     load().catch(err => {
       console.error(err);
-      els.results.innerHTML = '<p class="inv-empty">Failed to load investors.</p>';
+      els.results.innerHTML = '<p class="inv-dir-empty">Failed to load investors.</p>';
     });
   }
 
@@ -166,7 +174,6 @@
     load().catch(console.error);
   });
 
-  // Prefill filters from URL (?stage=&thesis=)
   const params0 = new URLSearchParams(window.location.search);
   if (params0.get('stage')) state.stage = params0.get('stage');
   if (params0.get('thesis')) state.thesis = params0.get('thesis');
