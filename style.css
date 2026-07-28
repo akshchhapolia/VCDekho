@@ -2571,8 +2571,7 @@ body.has-announcement .app-container {
   display: block;
   object-fit: contain;
   background: rgba(255, 255, 255, 0.96);
-  border: 1.5px solid rgba(237, 87, 47, 0.55);
-  box-shadow: 0 0 0 1px rgba(237, 87, 47, 0.18);
+  border: 1.5px solid var(--color-accent-orange);
   padding: 4px;
   box-sizing: border-box;
 }
@@ -2586,8 +2585,7 @@ body.has-announcement .app-container {
   align-items: center;
   justify-content: center;
   background: rgba(237, 87, 47, 0.16);
-  border: 1.5px solid rgba(237, 87, 47, 0.55);
-  box-shadow: 0 0 0 1px rgba(237, 87, 47, 0.18);
+  border: 1.5px solid var(--color-accent-orange);
   color: #ffb89c;
   font-size: 0.72rem;
   font-weight: 700;
@@ -4625,8 +4623,7 @@ a.inv-chip:hover {
   object-fit: contain;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.96);
-  border: 1.5px solid rgba(237, 87, 47, 0.55);
-  box-shadow: 0 0 0 1px rgba(237, 87, 47, 0.18);
+  border: 1.5px solid var(--color-accent-orange);
   padding: 6px;
   box-sizing: border-box;
   margin-bottom: 1rem;
