@@ -48,6 +48,9 @@
 
   function syncClearButton() {
     els.clear.hidden = !hasActiveFilters();
+    [els.sector, els.stage, els.type, els.thesis, els.cheque].forEach(function (sel) {
+      sel.classList.toggle('has-value', !!sel.value);
+    });
   }
 
   function metaLine(inv) {

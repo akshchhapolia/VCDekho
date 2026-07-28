@@ -2548,7 +2548,6 @@ body.has-announcement .app-container {
   outline: none;
 }
 
-.inv-dir-filters select:not([value=""]),
 .inv-dir-filters select.has-value {
   border-color: rgba(237, 87, 47, 0.45);
   background-color: rgba(237, 87, 47, 0.1);
