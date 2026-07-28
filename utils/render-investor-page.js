@@ -1,7 +1,7 @@
 /**
  * Editorial investor profile page renderer.
  */
-const { hasStageGuide, deriveRelatedStages } = require('./investors');
+const { hasStageGuide, deriveRelatedStages, loadInvestorsData } = require('./investors');
 const { getAllStages } = require('./investment-stages');
 const { renderExploreRelated } = require('./render-explore-related');
 
@@ -11,6 +11,54 @@ function escapeHtml(value) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+function directoryWidget() {
+  const data = loadInvestorsData();
+  const filters = data.filters || {};
+  const investorCount = data.count || (data.investors || []).length || 0;
+  const stageCount = (filters.stages || []).length;
+  const sectorCount = (filters.sectors || []).length;
+  const themeCount = (filters.thesisThemes || []).length;
+  const countLabel = investorCount >= 100 ? String(Math.floor(investorCount / 10) * 10) + '+' : String(investorCount);
+
+  return (
+    '<aside class="inv-profile-dir-widget" aria-label="Investor directory">' +
+      '<div class="inv-profile-dir-visual" aria-hidden="true">' +
+        '<svg class="inv-profile-dir-svg" viewBox="0 0 220 132" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+          '<rect x="10" y="10" width="200" height="22" rx="11" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.14)"/>' +
+          '<circle cx="26" cy="21" r="5" fill="rgba(237,87,47,0.9)"/>' +
+          '<rect x="40" y="17" width="96" height="8" rx="4" fill="rgba(255,255,255,0.18)"/>' +
+          '<rect x="10" y="44" width="60" height="78" rx="14" fill="rgba(237,87,47,0.16)" stroke="rgba(237,87,47,0.42)"/>' +
+          '<rect x="22" y="58" width="36" height="6" rx="3" fill="rgba(255,255,255,0.55)"/>' +
+          '<rect x="22" y="72" width="28" height="5" rx="2.5" fill="rgba(255,255,255,0.22)"/>' +
+          '<rect x="22" y="84" width="32" height="5" rx="2.5" fill="rgba(255,255,255,0.16)"/>' +
+          '<rect x="22" y="96" width="24" height="5" rx="2.5" fill="rgba(255,255,255,0.12)"/>' +
+          '<rect x="80" y="44" width="60" height="78" rx="14" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)"/>' +
+          '<rect x="92" y="58" width="36" height="6" rx="3" fill="rgba(255,255,255,0.4)"/>' +
+          '<rect x="92" y="72" width="28" height="5" rx="2.5" fill="rgba(255,255,255,0.18)"/>' +
+          '<rect x="92" y="84" width="32" height="5" rx="2.5" fill="rgba(255,255,255,0.14)"/>' +
+          '<rect x="92" y="96" width="20" height="5" rx="2.5" fill="rgba(255,255,255,0.1)"/>' +
+          '<rect x="150" y="44" width="60" height="78" rx="14" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)"/>' +
+          '<rect x="162" y="58" width="36" height="6" rx="3" fill="rgba(255,255,255,0.32)"/>' +
+          '<rect x="162" y="72" width="24" height="5" rx="2.5" fill="rgba(255,255,255,0.14)"/>' +
+          '<rect x="162" y="84" width="30" height="5" rx="2.5" fill="rgba(255,255,255,0.1)"/>' +
+          '<rect x="162" y="96" width="18" height="5" rx="2.5" fill="rgba(255,255,255,0.08)"/>' +
+        '</svg>' +
+      '</div>' +
+      '<div class="inv-profile-dir-stats">' +
+        '<div class="inv-profile-dir-stat"><strong>' + escapeHtml(countLabel) + '</strong><span>Investors</span></div>' +
+        '<div class="inv-profile-dir-stat"><strong>' + stageCount + '</strong><span>Stages</span></div>' +
+        '<div class="inv-profile-dir-stat"><strong>' + sectorCount + '</strong><span>Sectors</span></div>' +
+        '<div class="inv-profile-dir-stat"><strong>' + themeCount + '</strong><span>Themes</span></div>' +
+      '</div>' +
+      '<div class="inv-profile-dir-copy">' +
+        '<h2 class="inv-profile-dir-title">Find more investors like this</h2>' +
+        '<p class="inv-profile-dir-desc">Filter by stage, sector, cheque size, and thesis.</p>' +
+        '<a class="inv-profile-cta is-ghost" href="/investors">Investor Directory</a>' +
+      '</div>' +
+    '</aside>'
+  );
 }
 
 function pullQuote(text) {
@@ -258,7 +306,7 @@ function renderInvestorPage(investor, related, res) {
     '<link rel="canonical" href="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/style.css?v=39">',
+    '<link rel="stylesheet" href="/style.css?v=40">',
     '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
@@ -294,11 +342,7 @@ function renderInvestorPage(investor, related, res) {
     '<div class="inv-profile-hero-actions">' + websiteBtn + linkedinBtn + '</div>',
     '</div>',
     '</section>',
-    '<aside class="inv-profile-dir-widget" aria-label="Investor directory">',
-    '<h2 class="inv-profile-dir-title">Find more investors like this</h2>',
-    '<p class="inv-profile-dir-desc">Filter by stage, sector, cheque size, and thesis.</p>',
-    '<a class="inv-profile-cta is-ghost" href="/investors">Investor Directory</a>',
-    '</aside>',
+    directoryWidget(),
     '</div>',
 
     stickyNav,
