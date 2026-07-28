@@ -96,14 +96,6 @@ function renderStagePage(stage, res) {
     '</a>'
   )).join('');
 
-  const themeCards = (stage.relatedThemes || []).map(t => (
-    '<a class="stage-theme-chip stage-reveal" href="/investors/themes/' + escapeHtml(t.id) + '">' +
-      '<strong>' + escapeHtml(t.label) + '</strong>' +
-      '<span>' + escapeHtml(t.summary) + '</span>' +
-    '</a>'
-  )).join('');
-  void themeCards;
-
   const ladderHtml = allStages.map((s, idx) => {
     const stateClass = s.order < stage.order
       ? ' is-done'

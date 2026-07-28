@@ -1,5 +1,13 @@
 (function () {
   const PAGE_SIZE = 24;
+  const STAGE_GUIDE_IDS = {
+    'pre-seed': true,
+    seed: true,
+    'pre-series-a': true,
+    'series-a': true,
+    'series-b': true,
+    'series-c': true
+  };
   const state = {
     q: '',
     sector: '',
