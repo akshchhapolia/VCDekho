@@ -3518,6 +3518,25 @@ a.inv-chip:hover {
   margin: 0 0 2rem;
 }
 
+.theme-hero-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 0.85rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.theme-hero-icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  display: block;
+}
+
 .theme-hero-meta {
   display: flex;
   flex-wrap: wrap;
@@ -3652,6 +3671,28 @@ a.inv-chip:hover {
   letter-spacing: 0.03em;
   text-transform: uppercase;
   margin-bottom: 0.55rem;
+}
+
+.theme-index-top,
+.theme-other-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.55rem;
+}
+
+.theme-index-top .theme-index-count,
+.theme-other-top .theme-other-count {
+  margin-bottom: 0;
+}
+
+.theme-index-icon,
+.theme-other-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: 0 0 auto;
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .theme-inv-card h3,
