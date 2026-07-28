@@ -4609,6 +4609,19 @@ a.inv-chip:hover {
   max-width: 44rem;
 }
 
+.inv-profile-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 6px;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  display: block;
+}
+
 .inv-profile-type {
   display: inline-block;
   margin-bottom: 0.85rem;
