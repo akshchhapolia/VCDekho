@@ -47,7 +47,9 @@ module.exports = async function handler(req, res) {
         id: s.id,
         label: s.label,
         summary: s.summary,
+        order: s.order,
         investorCount: s.investorCount,
+        snapshot: s.snapshot || null,
         iconSvg: getSectorIconSvg(s.id, 'theme-index-icon')
       }));
       res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');

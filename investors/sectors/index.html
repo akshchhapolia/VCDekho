@@ -85,18 +85,21 @@
           grid.innerHTML = '<p class="inv-empty">No sector guides found.</p>';
           return;
         }
-        grid.innerHTML = sectors.map(s => `
+        grid.innerHTML = sectors.map((s, i) => `
           <a class="stage-index-card stage-reveal is-visible" href="/investors/sectors/${encodeURIComponent(s.id)}">
-            <div class="stage-index-card-top">
-              ${s.iconSvg || ''}
+            <div class="stage-index-top">
+              <span class="stage-index-order">${s.iconSvg || ''} Guide ${String(i + 1).padStart(2, '0')}</span>
               <span class="stage-index-count">${s.investorCount} investors</span>
             </div>
             <h2>${s.label}</h2>
             <p>${s.summary}</p>
-            <span class="stage-index-cta">Open guide →</span>
+            <div class="stage-index-meta">
+              <span>${(s.snapshot && s.snapshot.diligenceFocus) || ''}</span>
+              <span class="stage-index-cta">Open guide →</span>
+            </div>
           </a>
         `).join('');
-        document.body.classList.add('stage-ready');
+        requestAnimationFrame(() => document.body.classList.add('stage-ready'));
       } catch (err) {
         grid.innerHTML = '<p class="inv-empty">Could not load sector guides.</p>';
         console.error(err);
