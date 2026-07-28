@@ -1,0 +1,81 @@
+Company,Company Type,"Invests in(Preseed, Seed, Series A ...)",Company Thesis,Sector,Cheque Size,Website,Company Linkedin,Notes,Investment Criteria (evaluation),Process / Extra Notes,Detailed Writeup (~200 words),Data Confidence,India relevance,Source,Wave,Status
+Bangalore Angels Network,Syndicate / Network,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Delhi Angels / Delhi Angel Network,Syndicate / Network,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Pune Angels,Syndicate / Network,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Kerala Angels Network,Syndicate / Network,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Guwahati Angels,Syndicate / Network,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Chartered Angels,Syndicate / Network,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Rajasthan Angels / Marwari Angels,Syndicate / Network,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Sharrp Ventures (Mariwala),Family Office,"Seed, Series A",,Consumer / D2C,,,,Likely dup Sharrp Ventures,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+RPSG Ventures Angel / FO arm,Family Office,"Seed, Series A",,Sector Agnostic,,,,Related RPSG Capital,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Goenka Family Office,Family Office,"Seed, Series A",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Bharti Family Office / Bharti Enterprises investments,Family Office,"Series A, Series B",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Mittal Family Office (India),Family Office,"Seed, Series A",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Piramal Family Office,Family Office,"Seed, Series A, Series B",,"Health, Sector Agnostic",,,,Related Piramal Alternatives,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Godrej Family Office / Godrej Ventures,Family Office,"Seed, Series A",,"Consumer / D2C, Climate / Sustainability",,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Bajaj Family Office,Family Office,"Seed, Series A",,"Fintech, Sector Agnostic",,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Murugappa Family Office,Family Office,"Seed, Series A",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Hero Family Office,Family Office,"Seed, Series A",,"Mobility, Sector Agnostic",,,,Related Hero Enterprise,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Anand Mahindra personal investments desk,Angel / Individual,"Seed, Series A",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Ratan Tata Angels / RNT Associates legacy,Angel / Individual,"Seed, Series A",,Sector Agnostic,,,,Historic — medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Azim Premji personal philanthropy vs invest,Family Office,Seed,,Impact,,,,low — skip prefer Premji Invest,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Nandan Nilekani investments / Fundamentum related,Angel / Individual,"Seed, Series A",,Sector Agnostic,,,,Related Fundamentum,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Infosys founders family offices (Murthy/Gopalakrishnan),Family Office,"Seed, Series A",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Wipro Ventures / Premji adjacent,Corporate / CVC,"Seed, Series A",,SaaS / Enterprise,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Tata Opportunities Fund / TOF,VC,"Series A, Series B",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Kotak Alternate Assets early stage,VC,"Seed, Series A",,Sector Agnostic,,,,medium — not mega PE brand dump,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+IIT Kharagpur STEP / Science Park,Accelerator,Pre-Seed,,Deep Tech,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+BITS BioCyTiH / BITS Pilani TBI,Accelerator,Pre-Seed,,"Deep Tech, Health",,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Vellore Institute TBI,Accelerator,Pre-Seed,,Deep Tech,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Ahmedabad University VentureStudio,Accelerator,Pre-Seed,,Sector Agnostic,,,,Related VentureStudio?,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Amity Innovation Incubator,Accelerator,Pre-Seed,,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Manipal Universal Technology Business Incubator,Accelerator,Pre-Seed,,"Health, Sector Agnostic",,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+VentureWorks India,VC,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Rohit Bansal Angel,Angel / Individual,"Pre-Seed, Seed",,Consumer / D2C,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Aprameya Radhakrishna Angel,Angel / Individual,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Binny Bansal Angel,Angel / Individual,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Sachin Bansal Angel,Angel / Individual,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Falguni Nayar Angel,Angel / Individual,"Pre-Seed, Seed",,Consumer / D2C,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Peyush Bansal Angel,Angel / Individual,"Pre-Seed, Seed",,Consumer / D2C,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Aman Gupta Angel,Angel / Individual,"Pre-Seed, Seed",,Consumer / D2C,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Deepinder Goyal Angel,Angel / Individual,"Pre-Seed, Seed",,"Consumer / D2C, Logistics",,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Bhavish Aggarwal Angel,Angel / Individual,"Pre-Seed, Seed",,"Mobility, Deep Tech",,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Harshil Mathur Angel,Angel / Individual,"Pre-Seed, Seed",,Fintech,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Shashank Kumar Angel,Angel / Individual,"Pre-Seed, Seed",,Fintech,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Vidit Aatrey Angel,Angel / Individual,"Pre-Seed, Seed",,Consumer / D2C,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Sanjay Sethi Angel,Angel / Individual,"Pre-Seed, Seed",,"Consumer / D2C, Logistics",,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Mukesh Bansal Angel,Angel / Individual,"Pre-Seed, Seed",,"Consumer / D2C, Health",,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Sujeet Kumar Angel,Angel / Individual,"Pre-Seed, Seed",,Logistics,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Ashish Kashyap Angel,Angel / Individual,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Girish Mathrubootham Angel,Angel / Individual,"Pre-Seed, Seed",,SaaS / Enterprise,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Sridhar Vembu Angel,Angel / Individual,"Pre-Seed, Seed",,SaaS / Enterprise,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Sharad Sharma Angel / iSPIRT,Angel / Individual,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Bala Parthasarathy Angel,Angel / Individual,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Rehan Yahya Angel,Angel / Individual,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Neeraj Arora Angel,Angel / Individual,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Shailesh Rao Angel,Angel / Individual,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Vani Kola Angel (personal vs Kalaari),Angel / Individual,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Karthik Reddy Angel (personal vs Blume),Angel / Individual,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Sanjay Nath Angel,Angel / Individual,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Alok Mittal Angel,Angel / Individual,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Dhruv Khaitan Angel,Angel / Individual,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Vaibhav Domkundwar Angel / Better Capital personal,Angel / Individual,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+India SME Tech Fund / similar,VC,"Seed, Series A",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Quinnox Ventures / QVentures India,Corporate / CVC,"Seed, Series A",,SaaS / Enterprise,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Mphasis Ventures,Corporate / CVC,"Seed, Series A",,"SaaS / Enterprise, AI / ML",,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+L&T Technology Ventures / LTTB,Corporate / CVC,"Seed, Series A",,Deep Tech,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+HCL Software Ventures,Corporate / CVC,"Seed, Series A",,SaaS / Enterprise,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Druva Ventures desk,Corporate / CVC,"Seed, Series A",,SaaS / Enterprise,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Icertis investments,Corporate / CVC,"Seed, Series A",,SaaS / Enterprise,,,,medium,,,,Unverified – inferred,HQ India,manual,B,staging_medium
+Helion Venture Partners,VC,"Seed, Series A, Series B",,Sector Agnostic,,,,Legacy — include as historic India VC with note,,,,Unverified – inferred,HQ India,manual research,B,staging_medium
+Lightbox Ventures,VC,"Series A, Series B",,Consumer / D2C,,,,medium,,,,Unverified – inferred,HQ India,manual research,B,staging_medium
+Zodius Capital,VC,"Series A, Series B",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual research,B,staging_medium
+Stanford Angels & Entrepreneurs India,Syndicate / Network,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,Active India cheque,manual research,B,staging_medium
+IIT Bombay Alumni Association Angels,Syndicate / Network,"Pre-Seed, Seed",,Deep Tech,,,,medium,,,,Unverified – inferred,HQ India,manual research,B,staging_medium
+KITVEN,VC,"Seed, Series A",,Sector Agnostic,,,,Karnataka — medium,,,,Unverified – inferred,HQ India,manual research,B,staging_medium
+Amansa Holdings,Family Office,Growth,,Sector Agnostic,,,,Public markets tilt — medium,,,,Unverified – inferred,HQ India,manual research,B,staging_medium
+Hornbill Capital Advisers,VC,"Series A, Series B",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual research,B,staging_medium
+Know3 Ventures,VC,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual research,B,staging_medium
+Malabar Investments,Family Office,Growth,,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual research,B,staging_medium
+Maharashtra State Innovation Society,Accelerator,Pre-Seed,,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual research,B,staging_medium
+AP Innovation Society,Accelerator,"Pre-Seed, Seed",,Sector Agnostic,,,,medium,,,,Unverified – inferred,HQ India,manual research,B,staging_medium
