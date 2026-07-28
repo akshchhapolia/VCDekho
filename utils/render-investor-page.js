@@ -26,13 +26,13 @@ function directoryWidget() {
     '<aside class="inv-profile-dir-widget" aria-label="Investor directory">' +
       '<div class="inv-profile-dir-visual" aria-hidden="true">' +
         '<svg class="inv-profile-dir-svg" viewBox="0 0 220 132" fill="none" xmlns="http://www.w3.org/2000/svg">' +
-          '<rect x="8" y="8" width="204" height="36" rx="12" fill="rgba(237,87,47,0.14)" stroke="rgba(237,87,47,0.45)"/>' +
-          '<rect x="18" y="16" width="20" height="20" rx="6" fill="rgba(255,255,255,0.92)" stroke="rgba(237,87,47,0.85)"/>' +
+          '<rect x="8" y="8" width="204" height="36" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.16)"/>' +
+          '<rect x="18" y="16" width="20" height="20" rx="6" fill="rgba(255,255,255,0.9)" stroke="rgba(237,87,47,0.55)"/>' +
           '<text x="28" y="30" text-anchor="middle" fill="#ED572F" font-size="9" font-weight="700" font-family="system-ui,sans-serif">VC</text>' +
-          '<rect x="46" y="17" width="78" height="7" rx="3.5" fill="rgba(255,255,255,0.82)"/>' +
-          '<rect x="46" y="28" width="34" height="8" rx="4" fill="rgba(237,87,47,0.35)" stroke="rgba(237,87,47,0.55)"/>' +
-          '<rect x="84" y="28" width="40" height="8" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)"/>' +
-          '<path d="M186 20l6 6-6 6" stroke="rgba(255,184,156,0.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+          '<rect x="46" y="17" width="78" height="7" rx="3.5" fill="rgba(255,255,255,0.55)"/>' +
+          '<rect x="46" y="28" width="34" height="8" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.16)"/>' +
+          '<rect x="84" y="28" width="40" height="8" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>' +
+          '<path d="M186 20l6 6-6 6" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
 
           '<rect x="8" y="50" width="204" height="36" rx="12" fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.12)"/>' +
           '<rect x="18" y="58" width="20" height="20" rx="6" fill="rgba(255,255,255,0.88)"/>' +
