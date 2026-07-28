@@ -18,6 +18,15 @@ function readCookie(cookieHeader, name) {
   return null;
 }
 
+function isProductionHost(host) {
+  const h = String(host || '')
+    .split(',')[0]
+    .trim()
+    .split(':')[0]
+    .toLowerCase();
+  return h === 'vcdekho.com' || h === 'www.vcdekho.com';
+}
+
 async function isValidToken(token) {
   try {
     const response = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
@@ -33,12 +42,17 @@ async function isValidToken(token) {
 }
 
 /**
- * Only the investor directory (and its search API) stay behind login.
- * Individual profiles, thesis pages, and stage pages are public + crawlable.
+ * Only the investor directory (and its search API) stay behind login on production.
+ * Preview / preprod hosts skip auth so UI changes can be reviewed without bouncing to prod.
  */
 export default async function middleware(request) {
   const url = new URL(request.url);
   const pathname = url.pathname.replace(/\/$/, '') || '/';
+  const host = request.headers.get('x-forwarded-host') || request.headers.get('host') || '';
+
+  if (!isProductionHost(host)) {
+    return;
+  }
 
   const isDirectoryPage = pathname === '/investors';
   const isDirectoryApi =
