@@ -2222,5 +2222,13 @@
     "bytes": 1661,
     "fetchedAt": "2026-07-28T10:19:20.585Z",
     "from": "https://cdn.prod.website-files.com/60ac98a57ef92f240ba249f8/6a2013602d86f2baf4d78344_superscout-square-logo.png"
+  },
+  "senseai-ventures": {
+    "path": "/assets/investors/senseai-ventures.webp",
+    "source": "duckduckgo",
+    "contentType": "image/webp",
+    "bytes": 466,
+    "fetchedAt": "2026-07-28T19:59:52.154Z",
+    "from": "https://icons.duckduckgo.com/ip3/senseai.ai.ico"
   }
 }
