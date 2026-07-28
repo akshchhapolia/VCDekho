@@ -13,7 +13,11 @@
     <title>VC & Startup Funding News | VC Dekho</title>
     <meta name="description" content="Latest VC funding news, startup rounds, and investor insights from India's startup ecosystem.">
     <link rel="icon" type="image/png" href="/assets/logoforvc.png">
-    <link rel="stylesheet" href="/style.css?v=52">
+    <link rel="stylesheet" href="/style.css?v=53">
+    <style>
+      /* Avoid cream flash while news skeletons/content load */
+      html.scrollable-page, body.scrollable-page { background: #0b0b0d; }
+    </style>
 </head>
 <body class="scrollable-page">
     <div class="app-container">
@@ -26,7 +30,7 @@
             </button>
             <nav class="main-nav" id="navigation-bar">
                 <a href="/" class="nav-link">Home</a>
-<a href="/blog" class="nav-link">Blog</a>
+                <a href="/blog" class="nav-link">Blog</a>
                 <a href="/news" class="nav-link active">News</a>
                 <a href="/login" class="nav-link">Log in</a>
             </nav>
@@ -53,8 +57,46 @@
                 <h1 class="blog-title" style="font-size: 3.5rem; margin-bottom: 10px;">Latest VC News</h1>
                 <p style="color: var(--color-text-muted); margin-bottom: 50px; font-size: 1.15rem; max-width: 600px;">Daily funding rounds, VC firm updates, and startup news from across India's vibrant ecosystem.</p>
 
-                <div id="news-container">
-                    <p style="color: var(--color-text-muted);">Loading news...</p>
+                <div id="news-container" aria-busy="true">
+                    <div class="news-feed-card featured-news-card news-skel-card" aria-hidden="true">
+                        <div class="news-content" style="padding: 35px;">
+                            <div class="news-meta">
+                                <span class="blog-skel-line blog-skel-cat"></span>
+                                <span class="blog-skel-line blog-skel-meta"></span>
+                            </div>
+                            <span class="blog-skel-line blog-skel-title" style="height: 1.6rem; width: 88%; margin-bottom: 0.55rem;"></span>
+                            <span class="blog-skel-line blog-skel-title short" style="height: 1.6rem; width: 62%; margin-bottom: 1rem;"></span>
+                            <span class="blog-skel-line blog-skel-excerpt"></span>
+                            <span class="blog-skel-line blog-skel-excerpt" style="margin-top: 0.45rem;"></span>
+                            <span class="blog-skel-line blog-skel-excerpt short" style="margin-top: 0.45rem;"></span>
+                        </div>
+                    </div>
+                    <div class="news-grid">
+                        <div class="news-feed-card grid-news-card news-skel-card" aria-hidden="true">
+                            <div class="news-content" style="padding: 25px;">
+                                <span class="blog-skel-line blog-skel-cat" style="margin-bottom: 12px;"></span>
+                                <span class="blog-skel-line blog-skel-title" style="height: 1.15rem; width: 95%;"></span>
+                                <span class="blog-skel-line blog-skel-title short" style="height: 1.15rem; width: 70%; margin-top: 0.45rem;"></span>
+                                <span class="blog-skel-line blog-skel-meta" style="margin-top: 1.25rem;"></span>
+                            </div>
+                        </div>
+                        <div class="news-feed-card grid-news-card news-skel-card" aria-hidden="true">
+                            <div class="news-content" style="padding: 25px;">
+                                <span class="blog-skel-line blog-skel-cat" style="margin-bottom: 12px;"></span>
+                                <span class="blog-skel-line blog-skel-title" style="height: 1.15rem; width: 92%;"></span>
+                                <span class="blog-skel-line blog-skel-title short" style="height: 1.15rem; width: 64%; margin-top: 0.45rem;"></span>
+                                <span class="blog-skel-line blog-skel-meta" style="margin-top: 1.25rem;"></span>
+                            </div>
+                        </div>
+                        <div class="news-feed-card grid-news-card news-skel-card" aria-hidden="true">
+                            <div class="news-content" style="padding: 25px;">
+                                <span class="blog-skel-line blog-skel-cat" style="margin-bottom: 12px;"></span>
+                                <span class="blog-skel-line blog-skel-title" style="height: 1.15rem; width: 90%;"></span>
+                                <span class="blog-skel-line blog-skel-title short" style="height: 1.15rem; width: 58%; margin-top: 0.45rem;"></span>
+                                <span class="blog-skel-line blog-skel-meta" style="margin-top: 1.25rem;"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -63,23 +105,23 @@
     <script src="/app.js"></script>
     <script>
         async function fetchNews() {
+            const container = document.getElementById('news-container');
             try {
                 const res = await fetch('/api/news/list');
                 const articles = await res.json();
                 
-                const container = document.getElementById('news-container');
-                if (articles.length === 0) {
+                if (!Array.isArray(articles) || articles.length === 0) {
                     container.innerHTML = '<p style="color: var(--color-text-muted);">No news published yet.</p>';
+                    container.setAttribute('aria-busy', 'false');
                     return;
                 }
 
                 let html = '';
                 articles.forEach((a, index) => {
                     const dateStr = new Date(a.published_at).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' });
-                    const catStr = a.category === 'funding-round' ? 'Funding Round' : a.category.replace('-', ' ');
+                    const catStr = a.category === 'funding-round' ? 'Funding Round' : String(a.category || '').replace('-', ' ');
                     
                     if (index === 0) {
-                        // Featured Card
                         html += `
                             <a href="/news/${a.slug}" class="news-feed-card featured-news-card">
                                 ${a.image_url ? `<div class="news-image"><img src="${a.image_url}" alt="${a.title}"></div>` : ''}
@@ -94,7 +136,6 @@
                             </a>
                         `;
                     } else {
-                        // Grid Cards
                         if (index === 1) html += '<div class="news-grid">';
                         html += `
                             <a href="/news/${a.slug}" class="news-feed-card grid-news-card">
@@ -113,9 +154,11 @@
                 });
 
                 container.innerHTML = html;
+                container.setAttribute('aria-busy', 'false');
             } catch (err) {
                 console.error(err);
-                document.getElementById('news-container').innerHTML = '<p style="color: #ff6b6b;">Failed to load news.</p>';
+                container.innerHTML = '<p style="color: #ff6b6b;">Failed to load news.</p>';
+                container.setAttribute('aria-busy', 'false');
             }
         }
 
