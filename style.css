@@ -2175,13 +2175,21 @@ body.has-announcement .app-container {
 /* ==========================================================================
    INVESTORS DIRECTORY (dense / IndianVCs-style)
    ========================================================================== */
+.inv-dir-page .hero-showcase.inv-list-main {
+  background-color: #0b0b0d;
+}
+
 .inv-dir-page .inv-dir-ambient {
-  opacity: 0.35;
+  opacity: 1;
+}
+
+.inv-dir-page .inv-dir-ambient .waitlist-bg {
+  background-color: #0b0b0d;
 }
 
 .inv-dir-page .inv-dir-ambient .glow-orb {
-  filter: blur(80px);
-  opacity: 0.45;
+  filter: blur(90px);
+  opacity: 0.28;
 }
 
 .inv-dir-wrap {
