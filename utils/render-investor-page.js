@@ -258,7 +258,7 @@ function renderInvestorPage(investor, related, res) {
     '<link rel="canonical" href="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/style.css?v=35">',
+    '<link rel="stylesheet" href="/style.css?v=39">',
     '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
@@ -281,7 +281,8 @@ function renderInvestorPage(investor, related, res) {
     '<div class="inv-detail-wrap inv-profile-wrap">',
     '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="/investors">Investors</a><span>›</span><span class="current">' + escapeHtml(investor.name) + '</span></div>',
 
-    '<section class="inv-profile-hero inv-profile-hero-enter" id="overview">',
+    '<div class="inv-profile-hero-row inv-profile-hero-enter" id="overview">',
+    '<section class="inv-profile-hero">',
     '<div class="inv-profile-hero-wash" aria-hidden="true"></div>',
     '<div class="inv-profile-hero-copy">',
     investor.logo
@@ -290,9 +291,15 @@ function renderInvestorPage(investor, related, res) {
     '<span class="inv-profile-type">' + escapeHtml(investor.type) + '</span>',
     '<h1 class="inv-profile-title">' + escapeHtml(investor.name) + '</h1>',
     thesisLead,
-    '<div class="inv-profile-hero-actions">' + websiteBtn + linkedinBtn + '<a class="inv-profile-cta is-ghost" href="/investors">Browse directory</a></div>',
+    '<div class="inv-profile-hero-actions">' + websiteBtn + linkedinBtn + '</div>',
     '</div>',
     '</section>',
+    '<aside class="inv-profile-dir-widget" aria-label="Investor directory">',
+    '<h2 class="inv-profile-dir-title">Find more investors like this</h2>',
+    '<p class="inv-profile-dir-desc">Filter by stage, sector, cheque size, and thesis.</p>',
+    '<a class="inv-profile-cta is-ghost" href="/investors">Investor Directory</a>',
+    '</aside>',
+    '</div>',
 
     stickyNav,
 
