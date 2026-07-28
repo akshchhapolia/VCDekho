@@ -5056,9 +5056,14 @@ a.inv-chip:hover {
   margin-bottom: 1.15rem;
 }
 
-.inv-profile-section-head h2,
-.inv-profile-focus-panel h2,
-.inv-profile-thesis h2 {
+.inv-profile-section-head-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.inv-profile-section-head h2 {
   font-family: var(--font-heading);
   color: #fff;
   font-size: clamp(1.85rem, 3.5vw, 2.35rem);
@@ -5067,12 +5072,26 @@ a.inv-chip:hover {
   line-height: 1.15;
 }
 
+.inv-profile-focus-panel h3 {
+  font-family: var(--font-heading);
+  color: #fff;
+  font-size: clamp(1.25rem, 2.2vw, 1.45rem);
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
 .inv-profile-section-head p {
   margin: 0;
   color: rgba(255,255,255,0.55);
   font-size: 0.98rem;
   line-height: 1.5;
   max-width: 36rem;
+}
+
+.inv-profile-section-head-row .inv-profile-browse {
+  flex: 0 0 auto;
+  margin-top: 0.35rem;
 }
 
 .inv-profile-metric-strip {
@@ -5202,10 +5221,6 @@ a.inv-profile-chip:hover {
 .inv-profile-empty {
   color: rgba(255,255,255,0.45);
   font-size: 0.9rem;
-}
-
-.inv-profile-thesis {
-  /* Open section — same chrome as Snapshot / Focus (no section-level box) */
 }
 
 .inv-profile-thesis-chips {
@@ -5419,7 +5434,7 @@ a.inv-profile-chip:hover {
 }
 
 @media (max-width: 640px) {
-  .inv-profile-thesis-head {
+  .inv-profile-section-head-row {
     flex-direction: column;
     gap: 0.35rem;
   }
