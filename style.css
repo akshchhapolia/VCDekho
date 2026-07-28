@@ -5170,6 +5170,7 @@ a.inv-chip:hover {
 .inv-profile-chip {
   display: inline-flex;
   align-items: center;
+  gap: 0.4rem;
   padding: 0.5rem 0.85rem;
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,0.12);
@@ -5181,11 +5182,23 @@ a.inv-chip:hover {
   transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
 }
 
+.inv-profile-chip-icon {
+  flex: 0 0 auto;
+  width: 13px;
+  height: 13px;
+  opacity: 0.72;
+  display: block;
+}
+
 a.inv-profile-chip:hover {
   border-color: rgba(237, 87, 47, 0.45);
   background: rgba(237, 87, 47, 0.14);
   color: #ffe1d6;
   transform: translateY(-1px);
+}
+
+a.inv-profile-chip:hover .inv-profile-chip-icon {
+  opacity: 1;
 }
 
 .inv-profile-chip-stage {
@@ -5199,9 +5212,9 @@ a.inv-profile-chip:hover {
 }
 
 .inv-profile-chip-thesis {
-  border-color: rgba(255,184,156,0.28);
-  background: rgba(237, 87, 47, 0.08);
-  color: #ffe1d6;
+  border-color: rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.9);
 }
 
 .inv-profile-panel-link,
