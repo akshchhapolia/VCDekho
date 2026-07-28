@@ -5113,15 +5113,6 @@ a.inv-chip:hover {
   line-height: 1.15;
 }
 
-.inv-profile-focus-panel h3 {
-  font-family: var(--font-heading);
-  color: #fff;
-  font-size: clamp(1.25rem, 2.2vw, 1.45rem);
-  margin: 0;
-  font-weight: 400;
-  line-height: 1.2;
-}
-
 .inv-profile-section-head p {
   margin: 0;
   color: rgba(255,255,255,0.55);
@@ -5469,6 +5460,13 @@ a.inv-profile-chip:hover .inv-profile-chip-icon {
   .inv-profile-about-grid,
   .inv-profile-related-grid {
     grid-template-columns: 1fr;
+  }
+
+  .inv-profile-focus-col + .inv-profile-focus-col {
+    padding-left: 0;
+    padding-top: 1.1rem;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
   .inv-profile-metric {
     border-right: none;
