@@ -14,7 +14,7 @@
   <meta name="description" content="Explore investment thesis themes used by Indian VCs, family offices and angels — then find matching investors on VC Dekho.">
   <link rel="canonical" href="https://vcdekho.com/investors/themes">
   <link rel="icon" type="image/png" href="/assets/logoforvc.png">
-  <link rel="stylesheet" href="/style.css?v=35">
+  <link rel="stylesheet" href="/style.css?v=46">
   <meta name="robots" content="index, follow">
 </head>
 <body class="scrollable-page inv-page">
@@ -79,7 +79,10 @@
         }
         grid.innerHTML = themes.map(t => `
           <a class="theme-index-card" href="/investors/themes/${encodeURIComponent(t.id)}">
-            <div class="theme-index-count">${t.investorCount} investors</div>
+            <div class="theme-index-top">
+              ${t.iconSvg || ''}
+              <div class="theme-index-count">${t.investorCount} investors</div>
+            </div>
             <h2>${t.label}</h2>
             <p>${t.summary}</p>
             <span class="theme-index-cta">Read thesis →</span>
