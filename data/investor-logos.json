@@ -3278,5 +3278,317 @@
     "bytes": 599885,
     "fetchedAt": "2026-07-28T20:01:57.536Z",
     "from": "https://www.accion.org/wp-content/uploads/2023/11/miriam-morales-guatemala-scaled.jpeg"
+  },
+  "narotam-sekhsaria-family-office": {
+    "path": "/assets/investors/narotam-sekhsaria-family-office.png",
+    "source": "duckduckgo",
+    "contentType": "image/png",
+    "bytes": 15761,
+    "fetchedAt": "2026-07-28T20:18:47.861Z",
+    "from": "https://icons.duckduckgo.com/ip3/nsfoundation.in.ico"
+  },
+  "iit-madras-incubation-cell": {
+    "path": "/assets/investors/iit-madras-incubation-cell.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 1660,
+    "fetchedAt": "2026-07-28T20:19:00.365Z",
+    "from": "https://www.google.com/s2/favicons?domain=incubation.iitm.ac.in&sz=128"
+  },
+  "villgro": {
+    "path": "/assets/investors/villgro.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 8247,
+    "fetchedAt": "2026-07-28T20:19:01.787Z",
+    "from": "https://villgro.org/storage/2023/11/cropped-favicon-180x180.png"
+  },
+  "sine-iit-bombay": {
+    "path": "/assets/investors/sine-iit-bombay.ico",
+    "source": "duckduckgo",
+    "contentType": "image/x-icon",
+    "bytes": 15406,
+    "fetchedAt": "2026-07-28T20:19:03.284Z",
+    "from": "https://icons.duckduckgo.com/ip3/sineiitb.org.ico"
+  },
+  "fitt-iit-delhi": {
+    "path": "/assets/investors/fitt-iit-delhi.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2001,
+    "fetchedAt": "2026-07-28T20:19:04.872Z",
+    "from": "https://fitt-iitd.in/web/assets/images/favicon.png"
+  },
+  "forge-innovation-and-ventures": {
+    "path": "/assets/investors/forge-innovation-and-ventures.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T20:19:11.702Z",
+    "from": "https://www.forge-iv.co/assets/Images/favicon.ico"
+  },
+  "psg-step": {
+    "path": "/assets/investors/psg-step.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 6121,
+    "fetchedAt": "2026-07-28T20:19:12.449Z",
+    "from": "https://psgstep.org/images/logo/psg_step.png"
+  },
+  "tie-bangalore-angels": {
+    "path": "/assets/investors/tie-bangalore-angels.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2867,
+    "fetchedAt": "2026-07-28T20:19:14.026Z",
+    "from": "https://bangalore.tie.org/apple-icon-57x57.png"
+  },
+  "tie-hyderabad-angels": {
+    "path": "/assets/investors/tie-hyderabad-angels.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 242171,
+    "fetchedAt": "2026-07-28T20:19:15.379Z",
+    "from": "https://tiehyderabad.org/icon.png?v=4"
+  },
+  "tie-delhi-ncr-angels": {
+    "path": "/assets/investors/tie-delhi-ncr-angels.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1309,
+    "fetchedAt": "2026-07-28T20:19:16.175Z",
+    "from": "https://delhi.tie.org/wp-content/uploads/2017/10/logo.png"
+  },
+  "iamai-angel-network": {
+    "path": "/assets/investors/iamai-angel-network.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T20:19:16.856Z",
+    "from": "https://www.iamai.in/themes/iamai/favicon.ico"
+  },
+  "iim-calcutta-innovation-park": {
+    "path": "/assets/investors/iim-calcutta-innovation-park.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 15086,
+    "fetchedAt": "2026-07-28T20:19:17.067Z",
+    "from": "https://jmys.com/favicon.ico"
+  },
+  "tie-mumbai-angels": {
+    "path": "/assets/investors/tie-mumbai-angels.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1309,
+    "fetchedAt": "2026-07-28T20:19:17.734Z",
+    "from": "https://mumbai.tie.org/wp-content/uploads/2017/10/logo.png"
+  },
+  "tie-chennai-angels": {
+    "path": "/assets/investors/tie-chennai-angels.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 180110,
+    "fetchedAt": "2026-07-28T20:19:18.741Z",
+    "from": "https://chennai.tie.org/logo/favicon.ico"
+  },
+  "caspian-impact-investments": {
+    "path": "/assets/investors/caspian-impact-investments.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T20:19:19.239Z",
+    "from": "https://static.parastorage.com/client/pfavico.ico"
+  },
+  "hdfc-capital": {
+    "path": "/assets/investors/hdfc-capital.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T20:19:19.354Z",
+    "from": "https://www.hdfccapital.com/favicon.ico"
+  },
+  "tata-capital-innovations": {
+    "path": "/assets/investors/tata-capital-innovations.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 318,
+    "fetchedAt": "2026-07-28T20:19:20.427Z",
+    "from": "https://www.tatacapital.com/content/dam/tata-capital/images/favicon.ico"
+  },
+  "nabkisan-finance-nabard-ecosystem": {
+    "path": "/assets/investors/nabkisan-finance-nabard-ecosystem.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 11502,
+    "fetchedAt": "2026-07-28T20:19:22.155Z",
+    "from": "https://www.nabard.org/Hindi/images/favicon.ico"
+  },
+  "bangalore-bioinnovation-centre-angels-bbc": {
+    "path": "/assets/investors/bangalore-bioinnovation-centre-angels-bbc.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 49296,
+    "fetchedAt": "2026-07-28T20:19:22.332Z",
+    "from": "https://www.bioinnovationcentre.com/mobile-icon.png"
+  },
+  "kiit-tbi": {
+    "path": "/assets/investors/kiit-tbi.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 22668,
+    "fetchedAt": "2026-07-28T20:19:23.805Z",
+    "from": "https://kiitincubator.in/wp-content/uploads/2021/05/Logo-500x-150x150.jpg"
+  },
+  "niif": {
+    "path": "/assets/investors/niif.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 720,
+    "fetchedAt": "2026-07-28T20:19:23.808Z",
+    "from": "https://dpbt9h452fgde.cloudfront.net/wp-content/uploads/2024/12/Favicon.svg"
+  },
+  "zoho-investments": {
+    "path": "/assets/investors/zoho-investments.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 15086,
+    "fetchedAt": "2026-07-28T20:19:23.830Z",
+    "from": "https://www.zohowebstatic.com/sites/zweb/images/favicon.ico"
+  },
+  "wipro-ventures": {
+    "path": "/assets/investors/wipro-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 5525,
+    "fetchedAt": "2026-07-28T20:19:24.368Z",
+    "from": "https://www.wipro.com/content/dam/nexus/en/images/wipro_logo.png"
+  },
+  "browserstack-investments": {
+    "path": "/assets/investors/browserstack-investments.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 12204,
+    "fetchedAt": "2026-07-28T20:19:25.423Z",
+    "from": "https://browserstack.wpenginepowered.com/wp-content/themes/browserstack/img/favicons/apple-touch-icon.png"
+  },
+  "freshworks-capital": {
+    "path": "/assets/investors/freshworks-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 22720,
+    "fetchedAt": "2026-07-28T20:19:25.607Z",
+    "from": "https://www.freshworks.com/favicons/apple-touch-icon.png"
+  },
+  "infosys-innovation-fund": {
+    "path": "/assets/investors/infosys-innovation-fund.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 860,
+    "fetchedAt": "2026-07-28T20:19:25.986Z",
+    "from": "https://www.google.com/s2/favicons?domain=infosys.com&sz=128"
+  },
+  "tech-mahindra-ventures": {
+    "path": "/assets/investors/tech-mahindra-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 3307,
+    "fetchedAt": "2026-07-28T20:19:26.489Z",
+    "from": "https://www.techmahindra.com/themes/custom/techm/favicon/apple-touch-icon.png"
+  },
+  "postman-capital": {
+    "path": "/assets/investors/postman-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 11003,
+    "fetchedAt": "2026-07-28T20:19:26.889Z",
+    "from": "https://www.postman.com/_mk-www-next/icons/android-chrome-192x192.png"
+  },
+  "chargebee-investments": {
+    "path": "/assets/investors/chargebee-investments.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 4286,
+    "fetchedAt": "2026-07-28T20:19:26.976Z",
+    "from": "https://www.chargebee.com/favicon.ico"
+  },
+  "l-and-t-technology-services-ventures": {
+    "path": "/assets/investors/l-and-t-technology-services-ventures.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 479,
+    "fetchedAt": "2026-07-28T20:19:27.226Z",
+    "from": "https://www.ltts.com/themes/custom/ltts_revamp/favicon.ico"
+  },
+  "persistent-ventures": {
+    "path": "/assets/investors/persistent-ventures.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T20:19:28.545Z",
+    "from": "https://www.persistent.com/wp-content/themes/persistent/dist/images/persistent-logo-favicon-icon_83d9bf54.ico"
+  },
+  "mphasis-next-labs-investments": {
+    "path": "/assets/investors/mphasis-next-labs-investments.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 9662,
+    "fetchedAt": "2026-07-28T20:19:28.814Z",
+    "from": "https://www.mphasis.com/content/dam/mphasis-com/common/icons/favicon.ico"
+  },
+  "mindtree-ventures-ltimindtree-investments": {
+    "path": "/assets/investors/mindtree-ventures-ltimindtree-investments.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 979,
+    "fetchedAt": "2026-07-28T20:19:29.256Z",
+    "from": "https://www.ltm.com/content/dam/ltimcorporatewebsite/refresh-images/icons/LTM_favicon.png"
+  },
+  "birlasoft-ventures": {
+    "path": "/assets/investors/birlasoft-ventures.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 9662,
+    "fetchedAt": "2026-07-28T20:19:29.559Z",
+    "from": "https://www.birlasoft.com/themes/custom/birlasoft/favicon.ico"
+  },
+  "rajan-anandan": {
+    "path": "/assets/investors/rajan-anandan.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 834,
+    "fetchedAt": "2026-07-28T20:19:30.074Z",
+    "from": "https://www.google.com/s2/favicons?domain=linkedin.com&sz=128"
+  },
+  "tamil-nadu-startup-and-innovation-mission": {
+    "path": "/assets/investors/tamil-nadu-startup-and-innovation-mission.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1104,
+    "fetchedAt": "2026-07-28T20:19:30.507Z",
+    "from": "https://startuptn.in/startup-white2.png"
+  },
+  "citiustech-investments": {
+    "path": "/assets/investors/citiustech-investments.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 333,
+    "fetchedAt": "2026-07-28T20:19:30.906Z",
+    "from": "https://www.citiustech.com/hubfs/CT_Favicon.png"
+  },
+  "unitus-ventures": {
+    "path": "/assets/investors/unitus-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 5099,
+    "fetchedAt": "2026-07-28T20:19:31.594Z",
+    "from": "https://unitus.vc/wp-content/uploads/2023/11/cropped-Unitus-Favicon-180x180.png"
+  },
+  "hcl-software-investments": {
+    "path": "/assets/investors/hcl-software-investments.ico",
+    "source": "duckduckgo",
+    "contentType": "image/x-icon",
+    "bytes": 15406,
+    "fetchedAt": "2026-07-28T20:19:39.531Z",
+    "from": "https://icons.duckduckgo.com/ip3/hcltech.com.ico"
   }
 }
