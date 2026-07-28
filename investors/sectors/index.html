@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" class="scrollable-page">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ23KLLWFM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BJ23KLLWFM');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investor Sector Guides | Fintech, SaaS, AI & More | VC Dekho</title>
+  <meta name="description" content="Sector guides for Indian founders — fintech, SaaS, consumer, AI, healthcare, deep tech, climate, and impact — with matching investors on VC Dekho.">
+  <link rel="canonical" href="https://vcdekho.com/investors/sectors">
+  <link rel="icon" type="image/png" href="/assets/logoforvc.png">
+  <link rel="stylesheet" href="/style.css?v=47">
+  <meta name="robots" content="index, follow">
+</head>
+<body class="scrollable-page inv-page">
+  <div class="app-container">
+    <header class="site-header">
+      <a href="/" class="logo-container">
+        <img src="/assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img">
+      </a>
+      <button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="navigation-bar">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/investors" class="nav-link active">Investors</a>
+        <a href="/blog" class="nav-link">Blog</a>
+        <a href="/news" class="nav-link">News</a>
+      </nav>
+    </header>
+
+    <main class="hero-showcase inv-list-main">
+      <div class="ambient-bg-wrapper">
+        <div class="waitlist-bg">
+          <div class="glow-orb orb-1"></div>
+          <div class="glow-orb orb-2"></div>
+          <div class="glow-orb orb-3"></div>
+        </div>
+      </div>
+
+      <div class="inv-list-wrap">
+        <div class="inv-breadcrumbs">
+          <a href="/">Home</a><span>›</span>
+          <a href="/investors">Investors</a><span>›</span>
+          <span class="current">Sectors</span>
+        </div>
+
+        <header class="inv-list-header">
+          <span class="inv-kicker">Founder guides</span>
+          <h1>Sector guides</h1>
+          <p>What investors look for in each category — and which funds on VC Dekho map to it. Pair with <a class="inv-inline-link" href="/investors/stages">stage</a> and <a class="inv-inline-link" href="/investors/themes">thesis</a> guides before you shortlist.</p>
+        </header>
+
+        <div id="sectors-grid" class="themes-grid">
+          <p class="inv-empty">Loading sectors...</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/auth.js"></script>
+  <script src="/app.js"></script>
+  <script>
+    (async function () {
+      const grid = document.getElementById('sectors-grid');
+      try {
+        const res = await fetch('/api/investors/list?view=sectors');
+        if (!res.ok) throw new Error('Failed to load sectors');
+        const data = await res.json();
+        const sectors = data.sectors || [];
+        if (!sectors.length) {
+          grid.innerHTML = '<p class="inv-empty">No sector guides found.</p>';
+          return;
+        }
+        grid.innerHTML = sectors.map(s => `
+          <a class="theme-index-card" href="/investors/sectors/${encodeURIComponent(s.id)}">
+            <div class="theme-index-top">
+              ${s.iconSvg || ''}
+              <span class="theme-index-count">${s.investorCount} investors</span>
+            </div>
+            <h2>${s.label}</h2>
+            <p>${s.summary}</p>
+          </a>
+        `).join('');
+      } catch (err) {
+        grid.innerHTML = '<p class="inv-empty">Could not load sector guides.</p>';
+        console.error(err);
+      }
+    })();
+  </script>
+</body>
+</html>
