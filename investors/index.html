@@ -14,7 +14,7 @@
   <meta name="description" content="Explore 380+ VCs, family offices, angels and syndicates in India. Filter by sector, stage, cheque size, company type and investment thesis.">
   <link rel="canonical" href="https://vcdekho.com/investors">
   <link rel="icon" type="image/png" href="/assets/logoforvc.png">
-  <link rel="stylesheet" href="/style.css?v=30">
+  <link rel="stylesheet" href="/style.css?v=31">
   <meta name="robots" content="noindex, nofollow">
   <meta property="og:title" content="Indian Investors Directory | VC Dekho">
   <meta property="og:description" content="Explore 380+ VCs, family offices, angels and syndicates in India.">
@@ -145,10 +145,16 @@
                 <div class="inv-dir-col inv-dir-col-ticket"><span class="inv-skel inv-skel-ticket"></span></div>
               </div>
             </div>
-            <div class="inv-dir-pager">
-              <button type="button" id="inv-prev" disabled>Previous</button>
-              <span id="inv-page-label"></span>
-              <button type="button" id="inv-next" disabled>Next</button>
+            <div class="inv-dir-pager" role="navigation" aria-label="Directory pages">
+              <button type="button" class="inv-dir-pager-btn" id="inv-prev" disabled>
+                <span class="inv-dir-pager-arrow" aria-hidden="true">←</span>
+                <span>Previous</span>
+              </button>
+              <p class="inv-dir-pager-status" id="inv-page-label" aria-live="polite"></p>
+              <button type="button" class="inv-dir-pager-btn" id="inv-next" disabled>
+                <span>Next</span>
+                <span class="inv-dir-pager-arrow" aria-hidden="true">→</span>
+              </button>
             </div>
           </div>
         </div>
@@ -161,6 +167,6 @@
   <script src="/js/auth.js"></script>
   <script src="/js/auth-guard.js?v=24"></script>
   <script src="/app.js"></script>
-  <script src="/investors/investors.js?v=26"></script>
+  <script src="/investors/investors.js?v=31"></script>
 </body>
 </html>

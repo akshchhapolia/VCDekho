@@ -2757,38 +2757,99 @@ body.has-announcement .app-container {
 }
 
 .inv-dir-pager {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1.75rem;
-  padding-top: 1rem;
+  gap: 1rem 1.25rem;
+  margin-top: 1.85rem;
+  padding: 1.15rem 0.25rem 0.35rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.inv-dir-pager button {
-  background: transparent;
+.inv-dir-pager-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: fit-content;
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.14);
-  color: var(--color-text-light);
+  color: rgba(255, 255, 255, 0.88);
   font-family: var(--font-sans);
-  font-size: 0.85rem;
-  padding: 0.55rem 0.95rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 0.65rem 1rem;
   cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
 
-.inv-dir-pager button:hover:not(:disabled) {
-  border-color: rgba(237, 87, 47, 0.55);
+.inv-dir-pager-btn#inv-prev {
+  justify-self: start;
+}
+
+.inv-dir-pager-btn#inv-next {
+  justify-self: end;
+}
+
+.inv-dir-pager-arrow {
+  font-size: 0.95rem;
+  line-height: 1;
   color: var(--color-accent-orange);
 }
 
-.inv-dir-pager button:disabled {
-  opacity: 0.35;
-  cursor: not-allowed;
+.inv-dir-pager-btn:hover:not(:disabled) {
+  background: rgba(237, 87, 47, 0.1);
+  border-color: rgba(237, 87, 47, 0.55);
+  color: #fff;
 }
 
-#inv-page-label {
+.inv-dir-pager-btn:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+  background: transparent;
+}
+
+.inv-dir-pager-btn:disabled .inv-dir-pager-arrow {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.inv-dir-pager-status {
+  margin: 0;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  justify-self: center;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+
+.inv-dir-pager-kicker {
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-right: 0.15rem;
+}
+
+.inv-dir-pager-current {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  line-height: 1;
+  color: #fff;
+  font-weight: 400;
+}
+
+.inv-dir-pager-sep {
+  color: rgba(255, 255, 255, 0.28);
+  font-size: 0.95rem;
+}
+
+.inv-dir-pager-total {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  line-height: 1;
   color: rgba(255, 255, 255, 0.55);
-  font-size: 0.85rem;
 }
 
 .inv-dir-backdrop {
@@ -3041,8 +3102,7 @@ body.has-announcement .app-container {
   cursor: not-allowed;
 }
 
-.inv-page-label,
-#inv-page-label {
+.inv-page-label {
   color: rgba(255,255,255,0.7);
   font-size: 0.9rem;
 }
@@ -4499,6 +4559,22 @@ a.inv-chip:hover {
     letter-spacing: 0.06em;
     text-transform: uppercase;
     margin-bottom: 0.15rem;
+  }
+
+  .inv-dir-pager {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .inv-dir-pager-status {
+    grid-column: 1 / -1;
+    order: -1;
+    justify-self: center;
+  }
+
+  .inv-dir-pager-btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .inv-filter-grid {

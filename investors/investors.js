@@ -319,7 +319,11 @@
   function updatePager() {
     const page = Math.floor(state.offset / PAGE_SIZE) + 1;
     const pages = Math.max(1, Math.ceil(state.total / PAGE_SIZE));
-    els.pageLabel.textContent = `Page ${page} of ${pages}`;
+    els.pageLabel.innerHTML =
+      '<span class="inv-dir-pager-kicker">Page</span>' +
+      '<span class="inv-dir-pager-current">' + page + '</span>' +
+      '<span class="inv-dir-pager-sep" aria-hidden="true">/</span>' +
+      '<span class="inv-dir-pager-total">' + pages + '</span>';
     els.prev.disabled = state.offset <= 0;
     els.next.disabled = state.offset + PAGE_SIZE >= state.total;
     els.count.textContent = `${state.total.toLocaleString('en-IN')} funds`;
