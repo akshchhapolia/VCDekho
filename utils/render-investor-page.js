@@ -134,11 +134,22 @@ function renderInvestorPage(investor, related, res) {
   const metaDesc = investor.thesis ||
     (investor.name + ' — ' + investor.type + '. Stages: ' + (investor.stages || []).join(', ') + '. Explore on VC Dekho.');
 
+  const iconExternal =
+    '<svg class="inv-profile-cta-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
+      '<path d="M14 4h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path d="M10 14L20 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path d="M20 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+    '</svg>';
+  const iconLinkedin =
+    '<svg class="inv-profile-cta-icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+      '<path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4V8.5zM8.5 8.5h3.8v2h.05c.53-1 1.82-2.05 3.75-2.05 4.01 0 4.75 2.64 4.75 6.07V23h-4v-6.6c0-1.57-.03-3.59-2.19-3.59-2.19 0-2.53 1.71-2.53 3.48V23h-4V8.5z"/>' +
+    '</svg>';
+
   const websiteBtn = investor.website
-    ? '<a class="inv-profile-cta is-primary" href="' + escapeHtml(investor.website) + '" target="_blank" rel="noopener noreferrer">Visit website</a>'
+    ? '<a class="inv-profile-cta is-primary" href="' + escapeHtml(investor.website) + '" target="_blank" rel="noopener noreferrer">' + iconExternal + '<span>Visit website</span></a>'
     : '';
   const linkedinBtn = investor.linkedin
-    ? '<a class="inv-profile-cta is-ghost" href="' + escapeHtml(investor.linkedin) + '" target="_blank" rel="noopener noreferrer">LinkedIn</a>'
+    ? '<a class="inv-profile-cta is-ghost" href="' + escapeHtml(investor.linkedin) + '" target="_blank" rel="noopener noreferrer">' + iconLinkedin + '<span>LinkedIn</span></a>'
     : '';
 
   const stages = investor.stages || [];
@@ -212,6 +223,25 @@ function renderInvestorPage(investor, related, res) {
   const thesisLead = investor.thesis
     ? '<p class="inv-profile-hero-lead">' + escapeHtml(investor.thesis) + '</p>'
     : '';
+
+  const heroMeta = (
+    '<div class="inv-profile-hero-meta">' +
+      '<div class="inv-profile-hero-meta-item">' +
+        '<span class="inv-profile-hero-meta-label">Ticket size</span>' +
+        '<strong class="inv-profile-hero-meta-value">' + escapeHtml(investor.chequeSize || 'Not listed') + '</strong>' +
+      '</div>' +
+      '<div class="inv-profile-hero-meta-item">' +
+        '<span class="inv-profile-hero-meta-label">Stages</span>' +
+        '<strong class="inv-profile-hero-meta-value">' + escapeHtml(stageSummary) + '</strong>' +
+      '</div>' +
+      '<div class="inv-profile-hero-meta-item">' +
+        '<span class="inv-profile-hero-meta-label">Sectors</span>' +
+        '<strong class="inv-profile-hero-meta-value">' +
+          escapeHtml(sectors.length ? String(sectors.length) + ' focus areas' : '—') +
+        '</strong>' +
+      '</div>' +
+    '</div>'
+  );
 
   const notesHtml = investor.notes
     ? (
@@ -308,7 +338,7 @@ function renderInvestorPage(investor, related, res) {
     '<link rel="canonical" href="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/style.css?v=40">',
+    '<link rel="stylesheet" href="/style.css?v=42">',
     '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
@@ -334,6 +364,7 @@ function renderInvestorPage(investor, related, res) {
     '<div class="inv-profile-hero-row inv-profile-hero-enter" id="overview">',
     '<section class="inv-profile-hero">',
     '<div class="inv-profile-hero-wash" aria-hidden="true"></div>',
+    '<div class="inv-profile-hero-inner">',
     '<div class="inv-profile-hero-copy">',
     investor.logo
       ? ('<img class="inv-profile-logo" src="' + escapeHtml(investor.logo) + '" alt="" width="56" height="56" loading="eager">')
@@ -342,6 +373,8 @@ function renderInvestorPage(investor, related, res) {
     '<h1 class="inv-profile-title">' + escapeHtml(investor.name) + '</h1>',
     thesisLead,
     '<div class="inv-profile-hero-actions">' + websiteBtn + linkedinBtn + '</div>',
+    '</div>',
+    heroMeta,
     '</div>',
     '</section>',
     directoryWidget(),

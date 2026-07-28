@@ -4719,8 +4719,10 @@ a.inv-chip:hover {
 
 .inv-profile-hero {
   position: relative;
+  display: flex;
+  flex-direction: column;
   margin: 0;
-  padding: 1.65rem 1.5rem 1.5rem;
+  padding: 1.65rem 1.5rem 1.35rem;
   border-radius: 24px;
   border: 1px solid rgba(237, 87, 47, 0.22);
   overflow: hidden;
@@ -4738,11 +4740,54 @@ a.inv-chip:hover {
   pointer-events: none;
 }
 
-.inv-profile-hero-copy {
+.inv-profile-hero-inner {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 1 auto;
+  gap: 1.35rem;
+  min-height: 100%;
+}
+
+.inv-profile-hero-copy {
   max-width: 44rem;
   min-width: 0;
+}
+
+.inv-profile-hero-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.inv-profile-hero-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.inv-profile-hero-meta-label {
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.inv-profile-hero-meta-value {
+  color: rgba(255, 255, 255, 0.92);
+  font-family: var(--font-heading);
+  font-size: clamp(0.98rem, 1.5vw, 1.15rem);
+  font-weight: 400;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .inv-profile-dir-widget {
@@ -4904,12 +4949,21 @@ a.inv-chip:hover {
 .inv-profile-cta {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
   padding: 0.8rem 1.15rem;
   border-radius: 999px;
   text-decoration: none;
   font-weight: 700;
   font-size: 0.9rem;
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.inv-profile-cta-icon {
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  display: block;
 }
 
 .inv-profile-cta.is-primary {
@@ -5367,7 +5421,16 @@ a.inv-profile-chip:hover {
   }
 
   .inv-profile-hero {
-    padding: 1.75rem 1.2rem 1.4rem;
+    padding: 1.75rem 1.2rem 1.25rem;
+  }
+
+  .inv-profile-hero-meta {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .inv-profile-hero-meta-value {
+    white-space: normal;
   }
 
   .inv-profile-dir-widget {
