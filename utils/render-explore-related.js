@@ -11,6 +11,7 @@ function escapeHtml(value) {
 
 /**
  * @param {object} opts
+ * @param {string} [opts.sectionLabel]
  * @param {string} [opts.title]
  * @param {string} [opts.subtitle]
  * @param {Array<{id:string,label:string}>} [opts.stages]
@@ -81,13 +82,40 @@ function renderExploreRelated(opts = {}) {
     ? '<div class="inv-explore-actions">' + actions.join('') + '</div>'
     : '';
 
-  return (
-    '<section class="inv-explore ' + escapeHtml(opts.className || '') + '" id="explore">' +
-      '<div class="inv-explore-head">' +
-        '<p class="inv-explore-kicker">Continue exploring</p>' +
+  const sectionLabel = opts.sectionLabel || 'Continue exploring';
+  const headClass = opts.sectionLabel
+    ? 'inv-profile-section-head'
+    : 'inv-explore-head';
+
+  const labelHtml = opts.sectionLabel
+    ? '<div class="inv-profile-section-label">' + escapeHtml(sectionLabel) + '</div>'
+    : '<p class="inv-explore-kicker">' + escapeHtml(sectionLabel) + '</p>';
+
+  const titleBlock = opts.sectionLabel
+    ? (
+      '<div class="' + headClass + '">' +
+        '<h2>' + escapeHtml(opts.title || 'Explore related') + '</h2>' +
+        (opts.subtitle ? '<p>' + escapeHtml(opts.subtitle) + '</p>' : '') +
+      '</div>'
+    )
+    : (
+      '<div class="' + headClass + '">' +
+        labelHtml +
         '<h2>' + escapeHtml(opts.title || 'Explore related') + '</h2>' +
         (opts.subtitle ? '<p class="inv-explore-sub">' + escapeHtml(opts.subtitle) + '</p>' : '') +
-      '</div>' +
+      '</div>'
+    );
+
+  const sectionClass = [
+    'inv-explore',
+    opts.sectionLabel ? 'inv-profile-section' : '',
+    opts.className || ''
+  ].filter(Boolean).join(' ');
+
+  return (
+    '<section class="' + sectionClass + '" id="explore">' +
+      (opts.sectionLabel ? labelHtml : '') +
+      titleBlock +
       '<div class="inv-explore-body">' +
         stageChips +
         themeChips +
