@@ -135,7 +135,7 @@ function main() {
       if (!mentions.has(key)) {
         mentions.set(key, {
           Company: name,
-          Company Type: 'VC',
+          'Company Type': 'VC',
           'India relevance': 'Active India cheque',
           Source: item.source,
           Notes: `Extracted from news: ${item.title || item.source}`,
