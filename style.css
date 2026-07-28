@@ -1485,6 +1485,70 @@ body.scrollable-page .hero-showcase {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(234, 88, 12, 0.1);
 }
 
+.blog-post-skeleton {
+    pointer-events: none;
+    cursor: default;
+}
+
+.blog-post-skeleton:hover {
+    transform: none;
+    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: none;
+}
+
+.blog-skel-block,
+.blog-skel-line {
+    display: block;
+    border-radius: 8px;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.12) 50%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    background-size: 200% 100%;
+    animation: blog-skel-shimmer 1.2s ease-in-out infinite;
+}
+
+.blog-skel-block {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 0;
+}
+
+.blog-skel-line {
+    height: 0.85rem;
+}
+
+.blog-skel-cat {
+    width: 42%;
+    height: 0.7rem;
+}
+
+.blog-skel-title {
+    width: 92%;
+    height: 1.1rem;
+}
+
+.blog-skel-excerpt {
+    width: 100%;
+}
+
+.blog-skel-meta {
+    width: 36%;
+    height: 0.7rem;
+}
+
+.blog-skel-line.short {
+    width: 58%;
+}
+
+@keyframes blog-skel-shimmer {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
+
 .blog-card-img-wrapper {
     width: 100%;
     aspect-ratio: 16/9;
