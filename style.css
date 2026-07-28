@@ -5184,16 +5184,19 @@ a.inv-chip:hover {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem 1.5rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .inv-profile-focus-col {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
+  min-height: 100%;
 }
 
 .inv-profile-focus-col + .inv-profile-focus-col {
   padding-left: 1.5rem;
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .inv-profile-focus-panel h3 {
