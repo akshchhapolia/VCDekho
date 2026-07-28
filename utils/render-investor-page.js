@@ -164,7 +164,7 @@ function renderInvestorPage(investor, related, res) {
     },
     {
       label: 'Stages',
-      value: stages.length ? (stages.length + ' · ' + stageSummary) : '—',
+      value: stages.length ? stageSummary : '—',
       href: stages.length ? '#focus' : null
     },
     {
