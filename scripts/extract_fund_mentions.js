@@ -48,7 +48,18 @@ function loadExistingNorms() {
   return new Set((payload.investors || []).map((i) => normName(i.name)));
 }
 
-function collectNewsTexts(limit) {
+function pushArticle(texts, a, fallbackSource) {
+  const title = a.title || a.headline || '';
+  const desc = a.meta_description || a.summary || a.excerpt || a.description || '';
+  const body = typeof a.content === 'string' ? a.content.replace(/<[^>]+>/g, ' ') : '';
+  texts.push({
+    source: a.slug ? `/news/${a.slug}` : fallbackSource,
+    title,
+    text: [title, desc, body].filter(Boolean).join('\n')
+  });
+}
+
+async function collectNewsTexts(limit) {
   const texts = [];
   const candidates = [
     path.join(ROOT, 'data', 'news.json'),
@@ -62,26 +73,41 @@ function collectNewsTexts(limit) {
       const raw = JSON.parse(fs.readFileSync(file, 'utf8'));
       const list = Array.isArray(raw) ? raw : raw.articles || raw.news || raw.items || [];
       for (const a of list) {
-        const title = a.title || a.headline || '';
-        const desc = a.meta_description || a.summary || a.excerpt || a.description || '';
-        const body = typeof a.content === 'string' ? a.content.replace(/<[^>]+>/g, ' ') : '';
-        texts.push({
-          source: a.slug ? `/news/${a.slug}` : file,
-          title,
-          text: [title, desc, body].filter(Boolean).join('\n')
-        });
+        pushArticle(texts, a, file);
         if (texts.length >= limit) return texts;
       }
     } catch (_) {}
   }
 
+  // Live news API (titles + meta_description are enough for fund-name hints)
+  const endpoints = [
+    'https://vcdekho.com/api/news/list',
+    'https://vc-dekho-preprod.vercel.app/api/news/list'
+  ];
+  for (const url of endpoints) {
+    if (texts.length >= limit) break;
+    try {
+      const res = await fetch(url);
+      if (!res.ok) continue;
+      const list = await res.json();
+      if (!Array.isArray(list)) continue;
+      for (const a of list) {
+        pushArticle(texts, a, url);
+        if (texts.length >= limit) break;
+      }
+      if (texts.length) break;
+    } catch (_) {}
+  }
+
   // Fallback: scan api/news article stubs if present as JS exports (best-effort strings)
-  const articlePath = path.join(ROOT, 'api', 'news', 'article.js');
-  if (fs.existsSync(articlePath)) {
-    const src = fs.readFileSync(articlePath, 'utf8');
-    const titles = [...src.matchAll(/title:\s*['`]([^'`]+)['`]/g)].map((m) => m[1]);
-    for (const title of titles.slice(0, limit)) {
-      texts.push({ source: 'api/news/article.js', title, text: title });
+  if (!texts.length) {
+    const articlePath = path.join(ROOT, 'api', 'news', 'article.js');
+    if (fs.existsSync(articlePath)) {
+      const src = fs.readFileSync(articlePath, 'utf8');
+      const titles = [...src.matchAll(/title:\s*['`]([^'`]+)['`]/g)].map((m) => m[1]);
+      for (const title of titles.slice(0, limit)) {
+        texts.push({ source: 'api/news/article.js', title, text: title });
+      }
     }
   }
 
@@ -119,13 +145,13 @@ function extractFromText(text) {
   return [...found.values()];
 }
 
-function main() {
+async function main() {
   const args = process.argv.slice(2);
   const limIdx = args.indexOf('--limit');
   const limit = limIdx >= 0 ? Number(args[limIdx + 1]) || 300 : 300;
 
   const existing = loadExistingNorms();
-  const news = collectNewsTexts(limit);
+  const news = await collectNewsTexts(limit);
   const mentions = new Map();
 
   for (const item of news) {
@@ -177,4 +203,7 @@ function main() {
   });
 }
 
-main();
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
