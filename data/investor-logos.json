@@ -94,5 +94,2133 @@
     "bytes": 4362,
     "fetchedAt": "2026-07-28T10:16:44.221Z",
     "from": "https://www.100x.vc/favicon.ico"
+  },
+  "neon-fund": {
+    "path": "/assets/investors/neon-fund.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 115528,
+    "fetchedAt": "2026-07-28T10:16:51.496Z",
+    "from": "https://neon.fund/wp-content/uploads/2025/05/Neon_Image.png"
+  },
+  "sun-icon-ventures": {
+    "path": "/assets/investors/sun-icon-ventures.png",
+    "source": "website",
+    "contentType": "image/avif",
+    "bytes": 14889,
+    "fetchedAt": "2026-07-28T10:16:51.542Z",
+    "from": "https://framerusercontent.com/images/hjOOv8x9JEVkrHSzyMNtMXeJg8.png"
+  },
+  "premji-invest": {
+    "path": "/assets/investors/premji-invest.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 5865,
+    "fetchedAt": "2026-07-28T10:16:51.610Z",
+    "from": "https://cdn.prod.website-files.com/64dacb948568718d71988312/650e096d490bf3ec2c57e87c_favicon-256x256.jpg"
+  },
+  "unicorn-india-ventures": {
+    "path": "/assets/investors/unicorn-india-ventures.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 30464,
+    "fetchedAt": "2026-07-28T10:16:51.938Z",
+    "from": "https://cdn.prod.website-files.com/6a2014c9b202effc115bdf79/6a561d37c93e88891852eb93_Group%201171275375.jpg"
+  },
+  "pentathlon-ventures": {
+    "path": "/assets/investors/pentathlon-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 298,
+    "fetchedAt": "2026-07-28T10:16:51.954Z",
+    "from": "https://cdn-ileeknp.nitrocdn.com/qTWYxCWjIyKYIAmseMPKJjsjBDoMuPsn/assets/images/optimized/rev-8e1d459/pentathlon.vc/wp-content/uploads/2021/06/favicon.png"
+  },
+  "alkemi-growth-capital": {
+    "path": "/assets/investors/alkemi-growth-capital.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 26362,
+    "fetchedAt": "2026-07-28T10:16:52.135Z",
+    "from": "https://www.alkemivp.com/cdn/shop/files/favicon.svg?crop=center&height=32&v=1774459621&width=32"
+  },
+  "warmup-ventures": {
+    "path": "/assets/investors/warmup-ventures.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 15406,
+    "fetchedAt": "2026-07-28T10:16:52.542Z",
+    "from": "https://www.warmupventures.com/favicon.ico?favicon.0zamxu3n42m.6.ico"
+  },
+  "sixth-sense-ventures": {
+    "path": "/assets/investors/sixth-sense-ventures.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 59958,
+    "fetchedAt": "2026-07-28T10:16:52.891Z",
+    "from": "https://sixthsenseventures.com/wp-content/uploads/2024/08/sixth-sense-favicon-light-logo.svg"
+  },
+  "bluegreen-ventures": {
+    "path": "/assets/investors/bluegreen-ventures.png",
+    "source": "website",
+    "contentType": "image/png;charset=UTF-8",
+    "bytes": 17440,
+    "fetchedAt": "2026-07-28T10:16:53.351Z",
+    "from": "https://www.bluegreen.vc/favicon.png"
+  },
+  "disruptors-capital": {
+    "path": "/assets/investors/disruptors-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 4347,
+    "fetchedAt": "2026-07-28T10:16:53.885Z",
+    "from": "https://www.disruptors.capital/favicon.png"
+  },
+  "8x-ventures": {
+    "path": "/assets/investors/8x-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 42433,
+    "fetchedAt": "2026-07-28T10:16:54.954Z",
+    "from": "https://cdn.prod.website-files.com/669b931379f070f89cd88c73/66b0bce6441fc462e7896d58_logo%20256*256%20Colured.png"
+  },
+  "growx-ventures": {
+    "path": "/assets/investors/growx-ventures.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 4551,
+    "fetchedAt": "2026-07-28T10:16:55.654Z",
+    "from": "https://www.google.com/s2/favicons?domain=growxventures.com&sz=128"
+  },
+  "venture-catalysts-india-s-first-integrated-incubator": {
+    "path": "/assets/investors/venture-catalysts-india-s-first-integrated-incubator.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 101354,
+    "fetchedAt": "2026-07-28T10:16:55.817Z",
+    "from": "https://jeahoddswlzjaknxhatd.supabase.co/storage/v1/object/public/Aboutus/Aboutus/VCats%20logo_Symbol-01.png"
+  },
+  "bharat-innovation-fund": {
+    "path": "/assets/investors/bharat-innovation-fund.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 5706,
+    "fetchedAt": "2026-07-28T10:16:57.412Z",
+    "from": "https://bharat.fund/innovation/img/favicon.png"
+  },
+  "sangam-ventures": {
+    "path": "/assets/investors/sangam-ventures.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 334164,
+    "fetchedAt": "2026-07-28T10:16:57.431Z",
+    "from": "https://sangam.vc/images/favicon-32x32.svg"
+  },
+  "omnivore": {
+    "path": "/assets/investors/omnivore.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 8138,
+    "fetchedAt": "2026-07-28T10:16:57.947Z",
+    "from": "https://omnivore.vc/apple-touch-icon.png"
+  },
+  "realtime-rtaf": {
+    "path": "/assets/investors/realtime-rtaf.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 4286,
+    "fetchedAt": "2026-07-28T10:16:58.831Z",
+    "from": "https://www.realtimeaf.com/assets/img/favicon.ico"
+  },
+  "india-accelerator": {
+    "path": "/assets/investors/india-accelerator.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 16135,
+    "fetchedAt": "2026-07-28T10:16:59.212Z",
+    "from": "https://www.indiaaccelerator.co/ia-logo-dark.png"
+  },
+  "elev8-venture-partners": {
+    "path": "/assets/investors/elev8-venture-partners.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 3554,
+    "fetchedAt": "2026-07-28T10:16:59.682Z",
+    "from": "https://elev8vp.com/wp-content/uploads/2025/07/cropped-Group-1321314681-180x180.png"
+  },
+  "aureolis-ventures": {
+    "path": "/assets/investors/aureolis-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2202,
+    "fetchedAt": "2026-07-28T10:17:00.641Z",
+    "from": "https://aureolis.co.in/wp-content/themes/aureolis/assets/images/favicons/apple-touch-icon-57x57.png"
+  },
+  "elevar-equity": {
+    "path": "/assets/investors/elevar-equity.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 54646,
+    "fetchedAt": "2026-07-28T10:17:00.819Z",
+    "from": "https://elevarequity.com/wp-content/uploads/2020/09/banner_new.jpeg"
+  },
+  "we-founder-circle": {
+    "path": "/assets/investors/we-founder-circle.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 4864,
+    "fetchedAt": "2026-07-28T10:17:00.994Z",
+    "from": "https://wefoundercircle.com/wp-content/uploads/2023/05/WFC-favicon.png"
+  },
+  "kathyawad-ventures": {
+    "path": "/assets/investors/kathyawad-ventures.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 6646,
+    "fetchedAt": "2026-07-28T10:17:01.702Z",
+    "from": "https://kathyawadventures.in/wp-content/uploads/2023/07/favicon-300x300.png"
+  },
+  "artha-venture-fund": {
+    "path": "/assets/investors/artha-venture-fund.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 96061,
+    "fetchedAt": "2026-07-28T10:17:02.236Z",
+    "from": "https://artha.vc/AVF_Logo.png"
+  },
+  "100unicorns": {
+    "path": "/assets/investors/100unicorns.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1892,
+    "fetchedAt": "2026-07-28T10:17:02.692Z",
+    "from": "https://www.100unicorns.in/assets/images/fav.png"
+  },
+  "reddy-ventures": {
+    "path": "/assets/investors/reddy-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 25089,
+    "fetchedAt": "2026-07-28T10:17:03.300Z",
+    "from": "https://cdn.prod.website-files.com/638f3323a0a3538409536cfe/63cf15e48ea7826ada6f4e19_6331a7948c821e2b82cdc64e_Frame%2090.png"
+  },
+  "aarin-capital": {
+    "path": "/assets/investors/aarin-capital.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 1682,
+    "fetchedAt": "2026-07-28T10:17:03.414Z",
+    "from": "https://www.google.com/s2/favicons?domain=aarincapital.com&sz=128"
+  },
+  "spectrum-impact": {
+    "path": "/assets/investors/spectrum-impact.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 567,
+    "fetchedAt": "2026-07-28T10:17:03.998Z",
+    "from": "https://spectrum-impact.org/img/favicon.png"
+  },
+  "catamaran": {
+    "path": "/assets/investors/catamaran.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 6274,
+    "fetchedAt": "2026-07-28T10:17:04.234Z",
+    "from": "https://catamaran.in/wp-content/uploads/2026/02/cropped-Catamaran_favicon-180x180.png"
+  },
+  "midas-capital-baheti-family-office": {
+    "path": "/assets/investors/midas-capital-baheti-family-office.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 3258,
+    "fetchedAt": "2026-07-28T10:17:05.067Z",
+    "from": "https://i0.wp.com/midascapital.co.in/wp-content/uploads/2023/12/midas-logo-colour_page-0001.jpg?fit=180%2C73&#038;ssl=1"
+  },
+  "precog-innovation-partners": {
+    "path": "/assets/investors/precog-innovation-partners.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 3104,
+    "fetchedAt": "2026-07-28T10:17:05.160Z",
+    "from": "https://www.google.com/s2/favicons?domain=precoginnovations.com&sz=128"
+  },
+  "midas-capital": {
+    "path": "/assets/investors/midas-capital.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 3258,
+    "fetchedAt": "2026-07-28T10:17:05.218Z",
+    "from": "https://i0.wp.com/midascapital.co.in/wp-content/uploads/2023/12/midas-logo-colour_page-0001.jpg?fit=180%2C73&#038;ssl=1"
+  },
+  "hunch-ventures-and-investments-pvt-ltd": {
+    "path": "/assets/investors/hunch-ventures-and-investments-pvt-ltd.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2935,
+    "fetchedAt": "2026-07-28T10:17:05.825Z",
+    "from": "https://hunchventures.com/favicons/apple-touch-icon.png"
+  },
+  "aarii-ventures": {
+    "path": "/assets/investors/aarii-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 16710,
+    "fetchedAt": "2026-07-28T10:17:05.938Z",
+    "from": "https://static.wixstatic.com/media/18030b_0d4a6ec930d540979b35afb120425c96%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/18030b_0d4a6ec930d540979b35afb120425c96%7Emv2.png"
+  },
+  "aroa-venture-partners": {
+    "path": "/assets/investors/aroa-venture-partners.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 25432,
+    "fetchedAt": "2026-07-28T10:17:07.032Z",
+    "from": "https://static.wixstatic.com/media/966ea6_74bb796829b645c9a220cae8f04ea512%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/966ea6_74bb796829b645c9a220cae8f04ea512%7Emv2.png"
+  },
+  "malpani-ventures": {
+    "path": "/assets/investors/malpani-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1330,
+    "fetchedAt": "2026-07-28T10:17:07.145Z",
+    "from": "https://www.malpaniventures.com/favicon.png"
+  },
+  "aakash-emprise-pvt-ltd": {
+    "path": "/assets/investors/aakash-emprise-pvt-ltd.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 14000,
+    "fetchedAt": "2026-07-28T10:17:07.321Z",
+    "from": "https://aakashemprise.com/wp-content/uploads/2023/05/cropped-aakash-favicon-180x180.png"
+  },
+  "westbridge-capital": {
+    "path": "/assets/investors/westbridge-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 13153,
+    "fetchedAt": "2026-07-28T10:17:07.412Z",
+    "from": "https://westbridgecap.com/images/favicon-light.png"
+  },
+  "rainmatter": {
+    "path": "/assets/investors/rainmatter.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1692,
+    "fetchedAt": "2026-07-28T10:17:07.779Z",
+    "from": "https://rainmatter.com/static/images/favicon.png"
+  },
+  "siana-capital": {
+    "path": "/assets/investors/siana-capital.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 25408,
+    "fetchedAt": "2026-07-28T10:17:08.772Z",
+    "from": "https://images.squarespace-cdn.com/content/v1/5a3fb07af9a61e1bb3261d78/765a9d9e-1410-4669-8412-ca157a65e4c0/favicon.ico"
+  },
+  "zeca-capital": {
+    "path": "/assets/investors/zeca-capital.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 324,
+    "fetchedAt": "2026-07-28T10:17:09.547Z",
+    "from": "https://img1.wsimg.com/isteam/ip/static/pwa-app/logo-default.png/:/rs=w:57,h:57,m"
+  },
+  "gsf": {
+    "path": "/assets/investors/gsf.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 29331,
+    "fetchedAt": "2026-07-28T10:17:09.619Z",
+    "from": "https://cdn.prod.website-files.com/66b9eb9dc7fbf741b931b589/6718cb7f83f48e56ed73807a_fav-256.jpg"
+  },
+  "seafund": {
+    "path": "/assets/investors/seafund.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1598,
+    "fetchedAt": "2026-07-28T10:17:09.679Z",
+    "from": "https://seafund.in/wp-content/uploads/2023/06/favicon-1.png"
+  },
+  "iima-ventures": {
+    "path": "/assets/investors/iima-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 7094,
+    "fetchedAt": "2026-07-28T10:17:10.148Z",
+    "from": "https://iimaventures.com/wp-content/themes/ciie/assetss/images/fav.png"
+  },
+  "sales-force-ventures": {
+    "path": "/assets/investors/sales-force-ventures.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 2094,
+    "fetchedAt": "2026-07-28T10:17:10.943Z",
+    "from": "https://salesforceventures.com/wp-content/uploads/2022/05/cropped-Untitled-1-2.png?w=180"
+  },
+  "ivycap-ventures": {
+    "path": "/assets/investors/ivycap-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 3068,
+    "fetchedAt": "2026-07-28T10:17:11.031Z",
+    "from": "https://www.ivycapventures.com/icons/favicon.png"
+  },
+  "ivycap-ventures-advisors-private-limited": {
+    "path": "/assets/investors/ivycap-ventures-advisors-private-limited.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 3068,
+    "fetchedAt": "2026-07-28T10:17:11.072Z",
+    "from": "https://www.ivycapventures.com/icons/favicon.png"
+  },
+  "elevation-capital": {
+    "path": "/assets/investors/elevation-capital.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 28140,
+    "fetchedAt": "2026-07-28T10:17:11.134Z",
+    "from": "https://cdn.sanity.io/images/gxmub2ol/redesign-2024/dfcfe42b012c23514448ba711d45b553c4760904-4512x2531.jpg?rect=0,82,4512,2369&amp;w=1200&amp;h=630"
+  },
+  "8i-ventures": {
+    "path": "/assets/investors/8i-ventures.png",
+    "source": "website",
+    "contentType": "image/avif",
+    "bytes": 10718,
+    "fetchedAt": "2026-07-28T10:17:11.628Z",
+    "from": "https://framerusercontent.com/images/3kWbEGXXdhWvEx7xQAtTWW16wO8.png"
+  },
+  "eaglewings-ventures": {
+    "path": "/assets/investors/eaglewings-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 3060,
+    "fetchedAt": "2026-07-28T10:17:11.639Z",
+    "from": "https://eaglewings.vc/img/logo-head-32x24_c.png"
+  },
+  "2am-vc": {
+    "path": "/assets/investors/2am-vc.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 622,
+    "fetchedAt": "2026-07-28T10:17:11.664Z",
+    "from": "https://www.2amvc.com/favicon.png"
+  },
+  "bharat-founders-fund": {
+    "path": "/assets/investors/bharat-founders-fund.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 5529,
+    "fetchedAt": "2026-07-28T10:17:12.800Z",
+    "from": "https://www.google.com/s2/favicons?domain=investopad.com&sz=128"
+  },
+  "panthera-peak": {
+    "path": "/assets/investors/panthera-peak.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 8205,
+    "fetchedAt": "2026-07-28T10:17:13.198Z",
+    "from": "https://firebasestorage.googleapis.com/v0/b/panthera-902d5.appspot.com/o/favicon.png?alt=media"
+  },
+  "peercheque": {
+    "path": "/assets/investors/peercheque.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 4078,
+    "fetchedAt": "2026-07-28T10:17:13.311Z",
+    "from": "https://cdn.prod.website-files.com/646482bb9be93d6e98e0caf6/64670ea0add5077e342dbd10_5.png"
+  },
+  "247vc": {
+    "path": "/assets/investors/247vc.jpg",
+    "source": "google",
+    "contentType": "image/jpeg",
+    "bytes": 1698,
+    "fetchedAt": "2026-07-28T10:17:14.897Z",
+    "from": "https://www.google.com/s2/favicons?domain=247vc.in&sz=128"
+  },
+  "mars-shot-ventures": {
+    "path": "/assets/investors/mars-shot-ventures.png",
+    "source": "website",
+    "contentType": "image/avif",
+    "bytes": 15994,
+    "fetchedAt": "2026-07-28T10:17:15.428Z",
+    "from": "https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/7e0cdef6-7475-4953-8d10-d38cf21c9f9d/DIWALI_MARTIAN_MIXER_(2)/public"
+  },
+  "good-capital": {
+    "path": "/assets/investors/good-capital.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 6210,
+    "fetchedAt": "2026-07-28T10:17:15.607Z",
+    "from": "https://images.squarespace-cdn.com/content/v1/64e7035b6c1be702f6e4f0db/9f02dd3b-edf3-4ac1-a8c5-5d6248ac4d94/favicon.ico?format=100w"
+  },
+  "prath-ventures": {
+    "path": "/assets/investors/prath-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 20145,
+    "fetchedAt": "2026-07-28T10:17:16.136Z",
+    "from": "https://assets.softr-files.com/applications/2e72e7ee-0398-46ac-96a5-4e39f165c2f1/assets/c062a73c-d838-46e5-8d5c-148f02220947.png?rnd=1659898602986"
+  },
+  "aeravti-ventures": {
+    "path": "/assets/investors/aeravti-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 9035,
+    "fetchedAt": "2026-07-28T10:17:16.492Z",
+    "from": "https://cdn.prod.website-files.com/641ef078dbfc5fa1bfd82be6/6431b9e2e2d0579deeed86a5_256.png"
+  },
+  "mount-judi-ventures": {
+    "path": "/assets/investors/mount-judi-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1584,
+    "fetchedAt": "2026-07-28T10:17:16.848Z",
+    "from": "https://mountjudi.com/sites/default/files/mj-gold_0.png"
+  },
+  "otp-ventures": {
+    "path": "/assets/investors/otp-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 11763,
+    "fetchedAt": "2026-07-28T10:17:16.850Z",
+    "from": "https://otp.vc/wp-content/uploads/2024/12/favicon-300x300.png"
+  },
+  "pointone-capital": {
+    "path": "/assets/investors/pointone-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2543,
+    "fetchedAt": "2026-07-28T10:17:16.850Z",
+    "from": "https://pointone.capital/src/assets/logos/PointOne%20Logo%20Left.png"
+  },
+  "uncork-capital": {
+    "path": "/assets/investors/uncork-capital.png",
+    "source": "website",
+    "contentType": "image/avif",
+    "bytes": 4096,
+    "fetchedAt": "2026-07-28T10:17:18.301Z",
+    "from": "https://framerusercontent.com/images/Lj2gDyR08wtxelyLQNFZwTXLOQ.png"
+  },
+  "vicus-ventures": {
+    "path": "/assets/investors/vicus-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2602,
+    "fetchedAt": "2026-07-28T10:17:19.192Z",
+    "from": "https://www.vicusventures.com/vicus-dark.png"
+  },
+  "a100x-ventures": {
+    "path": "/assets/investors/a100x-ventures.png",
+    "source": "website",
+    "contentType": "image/avif",
+    "bytes": 718,
+    "fetchedAt": "2026-07-28T10:17:19.548Z",
+    "from": "https://framerusercontent.com/images/T5O4ZywIy5dQzKTxyVFbZOWlQ.png"
+  },
+  "south-loop-ventures": {
+    "path": "/assets/investors/south-loop-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 11175,
+    "fetchedAt": "2026-07-28T10:17:20.256Z",
+    "from": "https://cdn.prod.website-files.com/683831611e808accc8389f65/684d1b1b168d244e4c9b511d_slv-256x256.png"
+  },
+  "character": {
+    "path": "/assets/investors/character.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 7330,
+    "fetchedAt": "2026-07-28T10:17:20.429Z",
+    "from": "https://cdn.prod.website-files.com/6952be922505f0dae2db5707/69543cbec409787946df142b_Character%20Monogram%201.0%20256w.png"
+  },
+  "airavat-capital": {
+    "path": "/assets/investors/airavat-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 3600,
+    "fetchedAt": "2026-07-28T10:17:20.889Z",
+    "from": "https://airavatcap.com/wp-content/uploads/2024/04/Favicon_180.png#64"
+  },
+  "verb-ventures": {
+    "path": "/assets/investors/verb-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1946,
+    "fetchedAt": "2026-07-28T10:17:20.990Z",
+    "from": "https://verb.ventures/apple-touch-icon.png"
+  },
+  "sierra-ventures": {
+    "path": "/assets/investors/sierra-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 13957,
+    "fetchedAt": "2026-07-28T10:17:21.860Z",
+    "from": "https://www.sierraventures.com/hubfs/logo55-2-1.png"
+  },
+  "sanchiconnect": {
+    "path": "/assets/investors/sanchiconnect.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 11056,
+    "fetchedAt": "2026-07-28T10:17:21.971Z",
+    "from": "https://sanchiconnect.com/wp-content/uploads/2026/05/cropped-fav-icon-180x180.png"
+  },
+  "athena": {
+    "path": "/assets/investors/athena.png",
+    "source": "website",
+    "contentType": "image/avif",
+    "bytes": 7926,
+    "fetchedAt": "2026-07-28T10:17:22.074Z",
+    "from": "https://framerusercontent.com/images/gqaYiXes8WrGHmau35w9MmaWDUY.png"
+  },
+  "ankur-capital-fund": {
+    "path": "/assets/investors/ankur-capital-fund.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 72879,
+    "fetchedAt": "2026-07-28T10:17:22.807Z",
+    "from": "https://cdn.prod.website-files.com/5af33564f4ef3e00631a0309/6370abbfa8142818b59c4eaa_fav-web-ankur.png"
+  },
+  "venturi-partners": {
+    "path": "/assets/investors/venturi-partners.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 787,
+    "fetchedAt": "2026-07-28T10:17:22.884Z",
+    "from": "https://www.venturi.partners/wp-content/uploads/2021/11/Vector.svg"
+  },
+  "capital-a": {
+    "path": "/assets/investors/capital-a.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 11744,
+    "fetchedAt": "2026-07-28T10:17:23.317Z",
+    "from": "https://capital-a.vc/wp-content/uploads/2025/12/cropped-CA-180x180.png"
+  },
+  "veltis-capital": {
+    "path": "/assets/investors/veltis-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 458,
+    "fetchedAt": "2026-07-28T10:17:24.370Z",
+    "from": "https://veltiscapital.com/wp-content/uploads/2026/03/favicon.png"
+  },
+  "golden-sparrow": {
+    "path": "/assets/investors/golden-sparrow.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 1046,
+    "fetchedAt": "2026-07-28T10:17:25.860Z",
+    "from": "https://goldensparrow.vc/wp-content/uploads/2023/02/rr-icon.png"
+  },
+  "multiple-ventures": {
+    "path": "/assets/investors/multiple-ventures.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 3872,
+    "fetchedAt": "2026-07-28T10:17:26.501Z",
+    "from": "https://www.multiplyventures.com/images/logo/mv-logo.svg"
+  },
+  "aavishkaar-capital": {
+    "path": "/assets/investors/aavishkaar-capital.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 9062,
+    "fetchedAt": "2026-07-28T10:17:26.512Z",
+    "from": "https://www.google.com/s2/favicons?domain=aavishkaar.in&sz=128"
+  },
+  "ajvc": {
+    "path": "/assets/investors/ajvc.png",
+    "source": "website",
+    "contentType": "image/avif",
+    "bytes": 2165,
+    "fetchedAt": "2026-07-28T10:17:27.072Z",
+    "from": "https://framerusercontent.com/images/d2HgHHKDOx60BT32x57gNBeMopY.png"
+  },
+  "java-capital": {
+    "path": "/assets/investors/java-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 10864,
+    "fetchedAt": "2026-07-28T10:17:28.180Z",
+    "from": "https://static.wixstatic.com/media/4a2231_9bf58ebe7381432db4ab00cdb8e5b516%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/4a2231_9bf58ebe7381432db4ab00cdb8e5b516%7Emv2.png"
+  },
+  "lumikai-fund": {
+    "path": "/assets/investors/lumikai-fund.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 14061,
+    "fetchedAt": "2026-07-28T10:17:29.143Z",
+    "from": "https://static.wixstatic.com/media/a48b03_1188905c69584d8ca9b23734a0ab0114%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/a48b03_1188905c69584d8ca9b23734a0ab0114%7Emv2.png"
+  },
+  "z47": {
+    "path": "/assets/investors/z47.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 581,
+    "fetchedAt": "2026-07-28T10:17:29.280Z",
+    "from": "https://cdn.prod.website-files.com/678518036ebf6d040622b6b3/6794b2b4fe82049969cfcdcc_Frame%2057052.svg"
+  },
+  "a91-partners": {
+    "path": "/assets/investors/a91-partners.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 4286,
+    "fetchedAt": "2026-07-28T10:17:29.733Z",
+    "from": "https://a91partners.com/favicon.ico"
+  },
+  "multiples-alternate-asset-management": {
+    "path": "/assets/investors/multiples-alternate-asset-management.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 1965,
+    "fetchedAt": "2026-07-28T10:17:30.536Z",
+    "from": "https://www.google.com/s2/favicons?domain=multiples.com&sz=128"
+  },
+  "speciale-invest": {
+    "path": "/assets/investors/speciale-invest.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 22014,
+    "fetchedAt": "2026-07-28T10:17:31.431Z",
+    "from": "https://static.wixstatic.com/media/6cfbae_37975581118448a887efe66a831738b5%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/6cfbae_37975581118448a887efe66a831738b5%7Emv2.png"
+  },
+  "avendus": {
+    "path": "/assets/investors/avendus.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 413,
+    "fetchedAt": "2026-07-28T10:17:31.452Z",
+    "from": "https://www.google.com/s2/favicons?domain=avendus.com&sz=128"
+  },
+  "scalable-capital": {
+    "path": "/assets/investors/scalable-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1345,
+    "fetchedAt": "2026-07-28T10:17:34.489Z",
+    "from": "https://assets.scalable.capital/touch-icons/apple-touch-icon.png"
+  },
+  "the-chennai-angels": {
+    "path": "/assets/investors/the-chennai-angels.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 5698,
+    "fetchedAt": "2026-07-28T10:17:37.071Z",
+    "from": "https://i0.wp.com/thechennaiangels.com/wp-content/uploads/2023/03/cropped-favicon1.png?fit=180%2C180&#038;ssl=1"
+  },
+  "ahead-vc": {
+    "path": "/assets/investors/ahead-vc.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T10:17:37.102Z",
+    "from": "https://static.parastorage.com/client/pfavico.ico"
+  },
+  "upekkha": {
+    "path": "/assets/investors/upekkha.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 13678,
+    "fetchedAt": "2026-07-28T10:17:37.425Z",
+    "from": "https://cdn.prod.website-files.com/6660300a285c80dfaaad807f/6661b269b5ed54891bfbc3ed_6059ef70ed4a6c6426c8a2e1_android-chrome-512x512.png"
+  },
+  "a99-vc": {
+    "path": "/assets/investors/a99-vc.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 76819,
+    "fetchedAt": "2026-07-28T10:17:38.314Z",
+    "from": "https://a99.vc/images/logotab.png?v=2"
+  },
+  "tvs-capital-funds": {
+    "path": "/assets/investors/tvs-capital-funds.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 2526,
+    "fetchedAt": "2026-07-28T10:17:38.607Z",
+    "from": "https://www.google.com/s2/favicons?domain=tvscapitalfunds.com&sz=128"
+  },
+  "artha99-venture-capital-fund": {
+    "path": "/assets/investors/artha99-venture-capital-fund.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2877,
+    "fetchedAt": "2026-07-28T10:17:39.309Z",
+    "from": "https://artha99.com/img/icon.png"
+  },
+  "pi-ventures": {
+    "path": "/assets/investors/pi-ventures.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 23182,
+    "fetchedAt": "2026-07-28T10:17:39.806Z",
+    "from": "https://cdn.prod.website-files.com/678d701a372aafca6368a8dc/67a1b200e8bab1f06c50e949_256.svg"
+  },
+  "first-cheque": {
+    "path": "/assets/investors/first-cheque.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 35880,
+    "fetchedAt": "2026-07-28T10:17:40.779Z",
+    "from": "https://cdn.prod.website-files.com/63736f2649d28cebf9331134/638731871a49fb780ef2ecfb_FC_256x.png"
+  },
+  "matrix-partners": {
+    "path": "/assets/investors/matrix-partners.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 581,
+    "fetchedAt": "2026-07-28T10:17:41.692Z",
+    "from": "https://cdn.prod.website-files.com/678518036ebf6d040622b6b3/6794b2b4fe82049969cfcdcc_Frame%2057052.svg"
+  },
+  "tdv-partners": {
+    "path": "/assets/investors/tdv-partners.png",
+    "source": "website",
+    "contentType": "image/avif",
+    "bytes": 32975,
+    "fetchedAt": "2026-07-28T10:17:41.731Z",
+    "from": "https://framerusercontent.com/images/qxqGRh5z8LJyvM8PGTe5Mg4A.png"
+  },
+  "yali-capital": {
+    "path": "/assets/investors/yali-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 11474,
+    "fetchedAt": "2026-07-28T10:17:42.059Z",
+    "from": "https://yali.vc/apple-touch-icon.png"
+  },
+  "encubay-angel-network": {
+    "path": "/assets/investors/encubay-angel-network.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 2796,
+    "fetchedAt": "2026-07-28T10:17:42.295Z",
+    "from": "https://www.google.com/s2/favicons?domain=encubay.com&sz=128"
+  },
+  "hellman-and-friedman": {
+    "path": "/assets/investors/hellman-and-friedman.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 1606,
+    "fetchedAt": "2026-07-28T10:17:42.687Z",
+    "from": "https://hf.com/wp-content/uploads/2026/03/H-512x512-1-300x300.png"
+  },
+  "i-cash-fintech": {
+    "path": "/assets/investors/i-cash-fintech.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 27742,
+    "fetchedAt": "2026-07-28T10:17:43.189Z",
+    "from": "https://static.wixstatic.com/media/2205ae_f06f4830a19e44b586011f993cb7aec7%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/2205ae_f06f4830a19e44b586011f993cb7aec7%7Emv2.png"
+  },
+  "exfinity-venture-partners": {
+    "path": "/assets/investors/exfinity-venture-partners.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 5976,
+    "fetchedAt": "2026-07-28T10:17:43.536Z",
+    "from": "https://cdn.prod.website-files.com/64942e1a92839ba6ed60371a/64b50d9cd8aeff98ec2dd48f_exfinity-webclip.png"
+  },
+  "endurance-capital": {
+    "path": "/assets/investors/endurance-capital.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T10:17:43.679Z",
+    "from": "https://static.parastorage.com/client/pfavico.ico"
+  },
+  "capital-2b": {
+    "path": "/assets/investors/capital-2b.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2818,
+    "fetchedAt": "2026-07-28T10:17:43.710Z",
+    "from": "https://static.wixstatic.com/media/3dbd27_df0f4ce211f6481082a610d0fd1eea04%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/3dbd27_df0f4ce211f6481082a610d0fd1eea04%7Emv2.png"
+  },
+  "campus-fund": {
+    "path": "/assets/investors/campus-fund.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1712,
+    "fetchedAt": "2026-07-28T10:17:43.728Z",
+    "from": "https://yourcampusfund.com/wp-content/uploads/2025/10/cropped-Untitled-design-1-180x180.png"
+  },
+  "tyke-technologies-private-limited": {
+    "path": "/assets/investors/tyke-technologies-private-limited.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 11413,
+    "fetchedAt": "2026-07-28T10:17:44.882Z",
+    "from": "https://tykeinvest.com/favicon.ico"
+  },
+  "peaceful-progress": {
+    "path": "/assets/investors/peaceful-progress.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 776,
+    "fetchedAt": "2026-07-28T10:17:45.007Z",
+    "from": "https://peacefulprogress.in/wp-content/themes/pp_theme/assets/images/peaceful-progress-favicon.png"
+  },
+  "wefoundercircle": {
+    "path": "/assets/investors/wefoundercircle.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 4864,
+    "fetchedAt": "2026-07-28T10:17:45.040Z",
+    "from": "https://wefoundercircle.com/wp-content/uploads/2023/05/WFC-favicon.png"
+  },
+  "earlsfield-capital": {
+    "path": "/assets/investors/earlsfield-capital.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 2587,
+    "fetchedAt": "2026-07-28T10:17:45.365Z",
+    "from": "https://www.google.com/s2/favicons?domain=earlsfieldcapital.com&sz=128"
+  },
+  "leo-capital": {
+    "path": "/assets/investors/leo-capital.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 1158,
+    "fetchedAt": "2026-07-28T10:17:45.652Z",
+    "from": "https://leo.capital/wp-content/uploads/2024/01/leo-favicon.png"
+  },
+  "v3-ventures-verlinvest": {
+    "path": "/assets/investors/v3-ventures-verlinvest.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 5432,
+    "fetchedAt": "2026-07-28T10:17:45.674Z",
+    "from": "https://cdn.prod.website-files.com/66c60a4b15a1ad9f1db01b85/66d04fce1d0f79b524fd40ec_v3_webclip.png"
+  },
+  "cactus-vp": {
+    "path": "/assets/investors/cactus-vp.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 339,
+    "fetchedAt": "2026-07-28T10:17:46.836Z",
+    "from": "https://www.cactuspartners.in/src/assets/images/favicon-16x16.png"
+  },
+  "all-in-capital": {
+    "path": "/assets/investors/all-in-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2110,
+    "fetchedAt": "2026-07-28T10:17:46.984Z",
+    "from": "https://allincapital.vc/apple-touch-icon.png"
+  },
+  "gemba-capital": {
+    "path": "/assets/investors/gemba-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1115,
+    "fetchedAt": "2026-07-28T10:17:47.806Z",
+    "from": "https://gembacapital.in/new/images/favicon.png"
+  },
+  "endiya-partners": {
+    "path": "/assets/investors/endiya-partners.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 26733,
+    "fetchedAt": "2026-07-28T10:17:47.926Z",
+    "from": "https://cdn.prod.website-files.com/64213cb1e5020913ee210f20/6423e2066b457930a0d7d09b_webclip-endiya.png"
+  },
+  "eight-roads-ventures-india": {
+    "path": "/assets/investors/eight-roads-ventures-india.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 4123,
+    "fetchedAt": "2026-07-28T10:17:48.088Z",
+    "from": "https://eightroads.com/en/assets/favicons/apple-touch-icon.png"
+  },
+  "goldman-sachs-growth-equity": {
+    "path": "/assets/investors/goldman-sachs-growth-equity.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2750,
+    "fetchedAt": "2026-07-28T10:17:48.093Z",
+    "from": "https://cdn.gs.com/images/goldman-sachs/v2/gs-favicon-180.png"
+  },
+  "accel": {
+    "path": "/assets/investors/accel.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 726,
+    "fetchedAt": "2026-07-28T10:17:48.765Z",
+    "from": "https://www.accel.com/icon.png?icon.14a45d38.png"
+  },
+  "anchorage-capital": {
+    "path": "/assets/investors/anchorage-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 5737,
+    "fetchedAt": "2026-07-28T10:17:48.820Z",
+    "from": "https://anchoragecap.in/images/favicon.png"
+  },
+  "anthill-ventures": {
+    "path": "/assets/investors/anthill-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 6188,
+    "fetchedAt": "2026-07-28T10:17:48.951Z",
+    "from": "https://cdn.prod.website-files.com/685a76cb03bc3c04bfcdd60e/685c3ac26adf7e8890527c57_anthill_logo256.png"
+  },
+  "athera-venture-partners-formerly-inventus-india": {
+    "path": "/assets/investors/athera-venture-partners-formerly-inventus-india.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1985,
+    "fetchedAt": "2026-07-28T10:17:49.378Z",
+    "from": "https://cdn.sanity.io/images/p72wzz83/production/1e354572814110bcee225a096ac9d1bb757fb1fd-32x32.png?w=64"
+  },
+  "bluelotus-ventures": {
+    "path": "/assets/investors/bluelotus-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 3113,
+    "fetchedAt": "2026-07-28T10:17:50.243Z",
+    "from": "https://bluelotus.vc/wp-content/uploads/2023/04/Group-17.png"
+  },
+  "pravega-ventures": {
+    "path": "/assets/investors/pravega-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2322,
+    "fetchedAt": "2026-07-28T10:17:50.243Z",
+    "from": "https://pravegavc.com/favicon.png"
+  },
+  "turbostart": {
+    "path": "/assets/investors/turbostart.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 396,
+    "fetchedAt": "2026-07-28T10:17:51.311Z",
+    "from": "https://turbostart.co/icon.svg?692f0a6738297de0"
+  },
+  "jsw-ventures": {
+    "path": "/assets/investors/jsw-ventures.png",
+    "source": "website",
+    "contentType": "image/avif",
+    "bytes": 2794,
+    "fetchedAt": "2026-07-28T10:17:51.488Z",
+    "from": "https://framerusercontent.com/images/SnbucIUCl695BVDR4P416kTA1Xg.png"
+  },
+  "chiratae-ventures": {
+    "path": "/assets/investors/chiratae-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 769,
+    "fetchedAt": "2026-07-28T10:17:52.020Z",
+    "from": "https://www.chiratae.com/wp-content/uploads/2022/11/favicon-chiratae.png"
+  },
+  "sig": {
+    "path": "/assets/investors/sig.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 11912,
+    "fetchedAt": "2026-07-28T10:17:52.579Z",
+    "from": "https://sig-asiavc.com/wp-content/uploads/fbrfg/apple-touch-icon.png?v=2"
+  },
+  "yashoda-hospitals-family-office": {
+    "path": "/assets/investors/yashoda-hospitals-family-office.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 13439,
+    "fetchedAt": "2026-07-28T10:17:52.643Z",
+    "from": "https://www.yashodahospitals.com/wp-content/uploads/2026/07/Yashoda-Hospitals-Favicon-300x300.png"
+  },
+  "upsparks-llp": {
+    "path": "/assets/investors/upsparks-llp.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 11151,
+    "fetchedAt": "2026-07-28T10:17:52.683Z",
+    "from": "https://static.wixstatic.com/media/16d720_4ee1eafc8b2d4398ae10d5dc29842176%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/16d720_4ee1eafc8b2d4398ae10d5dc29842176%7Emv2.png"
+  },
+  "gradcapital": {
+    "path": "/assets/investors/gradcapital.png",
+    "source": "website",
+    "contentType": "image/avif",
+    "bytes": 2964,
+    "fetchedAt": "2026-07-28T10:17:53.692Z",
+    "from": "https://framerusercontent.com/images/F9XOOcWbmR22TrHMr2K2gnObsMg.png"
+  },
+  "rtp-global": {
+    "path": "/assets/investors/rtp-global.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 7712,
+    "fetchedAt": "2026-07-28T10:17:53.816Z",
+    "from": "https://rtp.vc/wp-content/uploads/2023/03/favi_rtp-300x300.png"
+  },
+  "trifecta-growth-equity": {
+    "path": "/assets/investors/trifecta-growth-equity.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 41392,
+    "fetchedAt": "2026-07-28T10:17:54.365Z",
+    "from": "https://trifectacapital.in/handylogin/sites/default/files/2021-08/Trifecta%20CAPITAL_18.jpg"
+  },
+  "cogniphy-llc": {
+    "path": "/assets/investors/cogniphy-llc.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 4286,
+    "fetchedAt": "2026-07-28T10:17:54.596Z",
+    "from": "https://cogniphy.com/images/favicon.ico"
+  },
+  "tanglin-venture-partners": {
+    "path": "/assets/investors/tanglin-venture-partners.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 3199,
+    "fetchedAt": "2026-07-28T10:17:55.053Z",
+    "from": "https://cdn.prod.website-files.com/65896e1ea643c0b4583b28c7/65897349d4eb0fb6268a53bc_ET-%20wc.png"
+  },
+  "india-quotient": {
+    "path": "/assets/investors/india-quotient.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 17184,
+    "fetchedAt": "2026-07-28T10:17:55.488Z",
+    "from": "https://cdn.prod.website-files.com/64757ba539f277007a314082/64943d7c20f990a86658f0e1_IQ-logo%20(2).png"
+  },
+  "lightspeed": {
+    "path": "/assets/investors/lightspeed.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 130,
+    "fetchedAt": "2026-07-28T10:17:55.572Z",
+    "from": "https://lsvp.com/wp-content/uploads/2023/04/favicon-32x32-1.png"
+  },
+  "together": {
+    "path": "/assets/investors/together.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 5814,
+    "fetchedAt": "2026-07-28T10:17:55.732Z",
+    "from": "https://cdn.prod.website-files.com/682181088907d9e5e12f3d45/68242c91c3f638c0cc42fb76_webclip.png"
+  },
+  "prime-venture-partners": {
+    "path": "/assets/investors/prime-venture-partners.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 205086,
+    "fetchedAt": "2026-07-28T10:17:56.514Z",
+    "from": "https://www.primevp.in/favicon.ico"
+  },
+  "3one4-capital": {
+    "path": "/assets/investors/3one4-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1390,
+    "fetchedAt": "2026-07-28T10:17:56.787Z",
+    "from": "https://cdn.prod.website-files.com/6269326520418226350c9a99/626a21edd59ab564b179de8b_webclip.png"
+  },
+  "faad-network": {
+    "path": "/assets/investors/faad-network.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 4286,
+    "fetchedAt": "2026-07-28T10:17:57.775Z",
+    "from": "https://faad.in/favicon.ico?favicon.1c5b3ce3.ico"
+  },
+  "growth-valley": {
+    "path": "/assets/investors/growth-valley.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 17533,
+    "fetchedAt": "2026-07-28T10:17:57.783Z",
+    "from": "https://assets.api.gamma.app/7q814it4gng8dib/screenshots/ommdew8xocv2a71/lxgvtsjdphergmg/slide/W5-hJqCIDLt7ESxM1nGvmgcDUJQ"
+  },
+  "innoven-capital": {
+    "path": "/assets/investors/innoven-capital.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 16958,
+    "fetchedAt": "2026-07-28T10:17:58.711Z",
+    "from": "https://innovencapital.com/public/static/modules/cms/images/favicon.ico"
+  },
+  "international-finance-corporation-ifc": {
+    "path": "/assets/investors/international-finance-corporation-ifc.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 894,
+    "fetchedAt": "2026-07-28T10:17:59.276Z",
+    "from": "https://www.ifc.org/content/dam/ifc/migration/favicon.ico"
+  },
+  "dholakia-ventures": {
+    "path": "/assets/investors/dholakia-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 6060,
+    "fetchedAt": "2026-07-28T10:17:59.365Z",
+    "from": "https://www.dholakiaventures.com/assets/images/logos/favicon-dark.png"
+  },
+  "peak-sustainability-ventures": {
+    "path": "/assets/investors/peak-sustainability-ventures.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 14932,
+    "fetchedAt": "2026-07-28T10:17:59.374Z",
+    "from": "https://peakventures.in/favicon.ico"
+  },
+  "eximius-ventures": {
+    "path": "/assets/investors/eximius-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 7457,
+    "fetchedAt": "2026-07-28T10:17:59.660Z",
+    "from": "https://eximiusvc.com/wp-content/uploads/2025/04/exim-fav.png"
+  },
+  "dexter-angels": {
+    "path": "/assets/investors/dexter-angels.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 3092,
+    "fetchedAt": "2026-07-28T10:18:00.336Z",
+    "from": "https://cdn.prod.website-files.com/644b5842d82a33773b01b392/64884643e719e3ba4a027e00_Dexter%20Webclip.png"
+  },
+  "inno-vest-advisors": {
+    "path": "/assets/investors/inno-vest-advisors.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T10:18:02.257Z",
+    "from": "https://static.parastorage.com/client/pfavico.ico"
+  },
+  "magnivia-ventures": {
+    "path": "/assets/investors/magnivia-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 20942,
+    "fetchedAt": "2026-07-28T10:18:02.313Z",
+    "from": "https://static.wixstatic.com/media/067a4d_2bc62befb7f74ed291d74381f8fd949f%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/067a4d_2bc62befb7f74ed291d74381f8fd949f%7Emv2.png"
+  },
+  "rise-capital": {
+    "path": "/assets/investors/rise-capital.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 4639,
+    "fetchedAt": "2026-07-28T10:18:04.299Z",
+    "from": "https://static.wixstatic.com/media/07e8e6_b4506beec2b847aba9afda9b40de376c%7Emv2.jpg/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/07e8e6_b4506beec2b847aba9afda9b40de376c%7Emv2.jpg"
+  },
+  "titan-capital": {
+    "path": "/assets/investors/titan-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 5002,
+    "fetchedAt": "2026-07-28T10:18:04.999Z",
+    "from": "https://www.titancapital.vc/wp-content/uploads/2022/01/cropped-Group-178-180x180.png"
+  },
+  "brigade-reap": {
+    "path": "/assets/investors/brigade-reap.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 15406,
+    "fetchedAt": "2026-07-28T10:18:05.133Z",
+    "from": "https://brigadereap.com/favicon.ico?favicon.2f50005a.ico"
+  },
+  "multiply-ventures": {
+    "path": "/assets/investors/multiply-ventures.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 3872,
+    "fetchedAt": "2026-07-28T10:18:07.842Z",
+    "from": "https://www.multiplyventures.com/images/logo/mv-logo.svg"
+  },
+  "blinc-invest": {
+    "path": "/assets/investors/blinc-invest.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 4764,
+    "fetchedAt": "2026-07-28T10:18:08.159Z",
+    "from": "https://static.wixstatic.com/media/fed6ac_c49ef92b7220426bb326c4864b82e7fa%7Emv2.jpg/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/fed6ac_c49ef92b7220426bb326c4864b82e7fa%7Emv2.jpg"
+  },
+  "beej-network": {
+    "path": "/assets/investors/beej-network.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 22864,
+    "fetchedAt": "2026-07-28T10:18:10.036Z",
+    "from": "https://pusatdata.org/images/icon-orbit-4d.webp"
+  },
+  "cloud-capital": {
+    "path": "/assets/investors/cloud-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 11537,
+    "fetchedAt": "2026-07-28T10:18:10.747Z",
+    "from": "https://static.wixstatic.com/media/93329d_7357bf6de2f54d4b8beec8030436d6e6%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/93329d_7357bf6de2f54d4b8beec8030436d6e6%7Emv2.png"
+  },
+  "ecosystem-ventures": {
+    "path": "/assets/investors/ecosystem-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 98575,
+    "fetchedAt": "2026-07-28T10:18:11.658Z",
+    "from": "https://ecosystemventures.in/wp-content/themes/patti-child/favicon.png"
+  },
+  "blume-ventures": {
+    "path": "/assets/investors/blume-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 4834,
+    "fetchedAt": "2026-07-28T10:18:12.779Z",
+    "from": "https://cdn.blume.vc/blume/favicons/apple-touch-icon.png"
+  },
+  "caspian-equity": {
+    "path": "/assets/investors/caspian-equity.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T10:18:14.311Z",
+    "from": "https://static.parastorage.com/client/pfavico.ico"
+  },
+  "beyond-next-ventures": {
+    "path": "/assets/investors/beyond-next-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1673,
+    "fetchedAt": "2026-07-28T10:18:14.431Z",
+    "from": "https://beyondnextventures.com/wp/common/img/fav/apple-touch-icon.png"
+  },
+  "vertex-ventures": {
+    "path": "/assets/investors/vertex-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 3898,
+    "fetchedAt": "2026-07-28T10:18:14.574Z",
+    "from": "https://www.vertexventures.sg/icons/icon-48x48.png?v=afc4d9d7049eb76ec5cc11e6071ee2ac"
+  },
+  "indiabiz": {
+    "path": "/assets/investors/indiabiz.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 5430,
+    "fetchedAt": "2026-07-28T10:18:14.601Z",
+    "from": "https://www.indiabizforsale.com/assets/ico/favicon.ico"
+  },
+  "mayfield-india": {
+    "path": "/assets/investors/mayfield-india.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 8164,
+    "fetchedAt": "2026-07-28T10:18:15.232Z",
+    "from": "https://www.mayfield.com/wp-content/uploads/2024/12/mayfield-m-favicon-300x300.png"
+  },
+  "senseai": {
+    "path": "/assets/investors/senseai.webp",
+    "source": "duckduckgo",
+    "contentType": "image/webp",
+    "bytes": 466,
+    "fetchedAt": "2026-07-28T10:18:15.944Z",
+    "from": "https://icons.duckduckgo.com/ip3/senseai.ai.ico"
+  },
+  "anicut-capital": {
+    "path": "/assets/investors/anicut-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1877,
+    "fetchedAt": "2026-07-28T10:18:17.026Z",
+    "from": "https://www.anicutcapital.com/wp-content/uploads/2025/01/64a50aab6254432beac079a5_favicon.png"
+  },
+  "arali-ventures": {
+    "path": "/assets/investors/arali-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 7511,
+    "fetchedAt": "2026-07-28T10:18:17.152Z",
+    "from": "https://cdn.prod.website-files.com/697912adedeb921bcfad17e3/698b35d28b2cd2192f43e3cb_Favicon%20(1).png"
+  },
+  "social-alpha": {
+    "path": "/assets/investors/social-alpha.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1660,
+    "fetchedAt": "2026-07-28T10:18:17.477Z",
+    "from": "https://d3vrux30chabys.cloudfront.net/wp-content/uploads/2019/08/favicon.png"
+  },
+  "randev-ventures": {
+    "path": "/assets/investors/randev-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 11929,
+    "fetchedAt": "2026-07-28T10:18:18.659Z",
+    "from": "https://www.randevventures.com/wp-content/uploads/2022/11/cropped-RV-500.500-180x180.png"
+  },
+  "samarthya-investment-advisors": {
+    "path": "/assets/investors/samarthya-investment-advisors.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 191410,
+    "fetchedAt": "2026-07-28T10:18:19.112Z",
+    "from": "https://static.wixstatic.com/ficons/3938df_a7aa3754009d426b88c37348ba851304%7Emv2.ico"
+  },
+  "citi-strategic-fintech-investments": {
+    "path": "/assets/investors/citi-strategic-fintech-investments.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 8747,
+    "fetchedAt": "2026-07-28T10:18:19.466Z",
+    "from": "https://www.citi.com/cbol-hp-static-assets/assets/favicon.ico"
+  },
+  "rpg-ventures": {
+    "path": "/assets/investors/rpg-ventures.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 4684,
+    "fetchedAt": "2026-07-28T10:18:20.452Z",
+    "from": "https://www.rpgventures.in/assets/images/favicon.ico"
+  },
+  "build3": {
+    "path": "/assets/investors/build3.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2707,
+    "fetchedAt": "2026-07-28T10:18:20.472Z",
+    "from": "https://static.wixstatic.com/media/a119b9_22602a43824249f297a44c6dbc539b33%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/a119b9_22602a43824249f297a44c6dbc539b33%7Emv2.png"
+  },
+  "pavestone-vc": {
+    "path": "/assets/investors/pavestone-vc.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1677,
+    "fetchedAt": "2026-07-28T10:18:20.726Z",
+    "from": "https://pavestone.vc/wp-content/uploads/2024/09/MicrosoftTeams-image-49.png"
+  },
+  "white-venture-capital": {
+    "path": "/assets/investors/white-venture-capital.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 1540,
+    "fetchedAt": "2026-07-28T10:18:20.962Z",
+    "from": "https://images.squarespace-cdn.com/content/v1/608cc79763047b66b80db92b/689d6a5f-468b-4c5d-93d1-b3f94465ff69/favicon.ico?format=100w"
+  },
+  "weh-ventures": {
+    "path": "/assets/investors/weh-ventures.png",
+    "source": "website",
+    "contentType": "image/avif",
+    "bytes": 1780,
+    "fetchedAt": "2026-07-28T10:18:22.094Z",
+    "from": "https://framerusercontent.com/images/ymDnyodVWft16g4JtHiCvDQclQ.png"
+  },
+  "eximus-ventures": {
+    "path": "/assets/investors/eximus-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 7457,
+    "fetchedAt": "2026-07-28T10:18:22.318Z",
+    "from": "https://eximiusvc.com/wp-content/uploads/2025/04/exim-fav.png"
+  },
+  "kira-studio": {
+    "path": "/assets/investors/kira-studio.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 3222,
+    "fetchedAt": "2026-07-28T10:18:23.456Z",
+    "from": "https://cdn.prod.website-files.com/625ec0253abd839a479bd5f1/657352730b742bf19a0092bf_kiraround.webp"
+  },
+  "better-capital": {
+    "path": "/assets/investors/better-capital.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T10:18:24.520Z",
+    "from": "https://www.bettercapital.vc/assets/images/better-capital-favicon.ico"
+  },
+  "100x-vc": {
+    "path": "/assets/investors/100x-vc.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 4362,
+    "fetchedAt": "2026-07-28T10:18:24.525Z",
+    "from": "https://www.100x.vc/favicon.ico"
+  },
+  "arkam-ventures": {
+    "path": "/assets/investors/arkam-ventures.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 1271,
+    "fetchedAt": "2026-07-28T10:18:24.551Z",
+    "from": "https://www.google.com/s2/favicons?domain=arkam.vc&sz=128"
+  },
+  "alpha-wave-global": {
+    "path": "/assets/investors/alpha-wave-global.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 21460,
+    "fetchedAt": "2026-07-28T10:18:24.698Z",
+    "from": "https://cdn.prod.website-files.com/69d941048de462ae52b4e113/69fd39790e9889939b987624_icon1_Favicon.png"
+  },
+  "prequate-advisory": {
+    "path": "/assets/investors/prequate-advisory.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 1965,
+    "fetchedAt": "2026-07-28T10:18:25.075Z",
+    "from": "https://www.google.com/s2/favicons?domain=prequate.com&sz=128"
+  },
+  "venture-highway": {
+    "path": "/assets/investors/venture-highway.jpg",
+    "source": "google",
+    "contentType": "image/jpeg",
+    "bytes": 4043,
+    "fetchedAt": "2026-07-28T10:18:25.956Z",
+    "from": "https://www.google.com/s2/favicons?domain=venturehighway.vc&sz=128"
+  },
+  "devc": {
+    "path": "/assets/investors/devc.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 528,
+    "fetchedAt": "2026-07-28T10:18:26.343Z",
+    "from": "https://www.google.com/s2/favicons?domain=devc.in&sz=128"
+  },
+  "alteria-capital": {
+    "path": "/assets/investors/alteria-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 17016,
+    "fetchedAt": "2026-07-28T10:18:26.347Z",
+    "from": "https://alteriacapital.com/wp-content/uploads/2024/11/cropped-alteriafavicon-348x348.png"
+  },
+  "lumis-partners": {
+    "path": "/assets/investors/lumis-partners.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 66911,
+    "fetchedAt": "2026-07-28T10:18:26.481Z",
+    "from": "https://lumispartners.com/wp-content/uploads/2021/03/fav-05.jpg"
+  },
+  "shastra-vc": {
+    "path": "/assets/investors/shastra-vc.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 15086,
+    "fetchedAt": "2026-07-28T10:18:27.041Z",
+    "from": "https://img.sedoparking.com/templates/logos/sedo_logo.png"
+  },
+  "sauce-vc": {
+    "path": "/assets/investors/sauce-vc.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 42579,
+    "fetchedAt": "2026-07-28T10:18:28.108Z",
+    "from": "https://sauce.vc/wp-content/uploads/2024/03/WhatsApp-Image-2024-03-11-at-15.17.50_211d9fae-1.jpg"
+  },
+  "saama": {
+    "path": "/assets/investors/saama.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 688,
+    "fetchedAt": "2026-07-28T10:18:29.576Z",
+    "from": "https://www.saama.com/wp-content/uploads/saama_icon.svg"
+  },
+  "spiral-ventures-pte-ltd": {
+    "path": "/assets/investors/spiral-ventures-pte-ltd.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 1965,
+    "fetchedAt": "2026-07-28T10:18:30.763Z",
+    "from": "https://www.google.com/s2/favicons?domain=spiral.vc&sz=128"
+  },
+  "inflexor-ventures": {
+    "path": "/assets/investors/inflexor-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1850,
+    "fetchedAt": "2026-07-28T10:18:30.811Z",
+    "from": "https://www.atom.com/assets/images/atom-favicon.png"
+  },
+  "july-ventures": {
+    "path": "/assets/investors/july-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 4932,
+    "fetchedAt": "2026-07-28T10:18:30.984Z",
+    "from": "https://static.wixstatic.com/media/4e243e_2876872e5f7b46f88b1aaab18985981b%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/4e243e_2876872e5f7b46f88b1aaab18985981b%7Emv2.png"
+  },
+  "sorin-investments": {
+    "path": "/assets/investors/sorin-investments.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 422,
+    "fetchedAt": "2026-07-28T10:18:31.039Z",
+    "from": "https://www.sorininvestments.com/images/6356310ee708dcc7a55053b0_logo_sorin-32x32.png"
+  },
+  "wami-capital-single-family-office": {
+    "path": "/assets/investors/wami-capital-single-family-office.jpg",
+    "source": "google",
+    "contentType": "image/jpeg",
+    "bytes": 2704,
+    "fetchedAt": "2026-07-28T10:18:33.092Z",
+    "from": "https://www.google.com/s2/favicons?domain=wamicapital.com&sz=128"
+  },
+  "trifecta-capital": {
+    "path": "/assets/investors/trifecta-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 530,
+    "fetchedAt": "2026-07-28T10:18:33.464Z",
+    "from": "https://trifectacapital.in/assets/common/favicon/favicon.png?v=425302"
+  },
+  "dsg-consumer-partners": {
+    "path": "/assets/investors/dsg-consumer-partners.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 5516,
+    "fetchedAt": "2026-07-28T10:18:33.927Z",
+    "from": "https://cdn.prod.website-files.com/6502a82cff431778b5d82800/65074cd5ce2d9d36a203b07f_WEBCLIP.png"
+  },
+  "xeed-ventures": {
+    "path": "/assets/investors/xeed-ventures.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 15416,
+    "fetchedAt": "2026-07-28T10:18:33.972Z",
+    "from": "https://cdn.prod.website-files.com/65bf7049e0833ee8ef7cbe80/65e85e32f41a9cb31e19668f_65d4cc42c7709f32d71a368e_Xeed_Ventures_WhatsApp_Jan_31.webp"
+  },
+  "kae-capital": {
+    "path": "/assets/investors/kae-capital.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 324,
+    "fetchedAt": "2026-07-28T10:18:34.135Z",
+    "from": "https://img1.wsimg.com/isteam/ip/static/pwa-app/logo-default.png/:/rs=w:57,h:57,m"
+  },
+  "guild-capital": {
+    "path": "/assets/investors/guild-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1824,
+    "fetchedAt": "2026-07-28T10:18:34.613Z",
+    "from": "https://guild.capital/wp-content/uploads/2024/09/GUILD-Capital-fav.png"
+  },
+  "green-frontier-capital": {
+    "path": "/assets/investors/green-frontier-capital.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 1124,
+    "fetchedAt": "2026-07-28T10:18:35.262Z",
+    "from": "https://images.squarespace-cdn.com/content/v1/62c84cd51c48897fadfc573f/89aeb32d-e7f3-4e14-80b1-b0f452d193b3/favicon.ico?format=100w"
+  },
+  "merak-ventures": {
+    "path": "/assets/investors/merak-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 3445,
+    "fetchedAt": "2026-07-28T10:18:36.048Z",
+    "from": "https://merakventures.com/img/favicon.png"
+  },
+  "z3partners": {
+    "path": "/assets/investors/z3partners.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 4774,
+    "fetchedAt": "2026-07-28T10:18:36.457Z",
+    "from": "https://z3partnersglobal.com/meta_logo.png"
+  },
+  "norwest-venture-partners": {
+    "path": "/assets/investors/norwest-venture-partners.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 2368,
+    "fetchedAt": "2026-07-28T10:18:36.792Z",
+    "from": "https://www.norwest.com/apple-touch-icon.png"
+  },
+  "stellaris-venture-partners": {
+    "path": "/assets/investors/stellaris-venture-partners.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 3603,
+    "fetchedAt": "2026-07-28T10:18:37.209Z",
+    "from": "https://cdn.prod.website-files.com/66ed281c56ad4efcd0e78c68/66fe6758bed141a8f6ef9a00_webclip-stellaris%201.png"
+  },
+  "capital-a-manjushree-capital-advisors": {
+    "path": "/assets/investors/capital-a-manjushree-capital-advisors.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 11744,
+    "fetchedAt": "2026-07-28T10:18:38.827Z",
+    "from": "https://capital-a.vc/wp-content/uploads/2025/12/cropped-CA-180x180.png"
+  },
+  "manjushree-ventures": {
+    "path": "/assets/investors/manjushree-ventures.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-07-28T10:18:39.547Z",
+    "from": "https://static.parastorage.com/client/pfavico.ico"
+  },
+  "theia-ventures": {
+    "path": "/assets/investors/theia-ventures.jpg",
+    "source": "google",
+    "contentType": "image/jpeg",
+    "bytes": 1915,
+    "fetchedAt": "2026-07-28T10:18:39.785Z",
+    "from": "https://www.google.com/s2/favicons?domain=theiaventures.com&sz=128"
+  },
+  "lok-capital": {
+    "path": "/assets/investors/lok-capital.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 2422,
+    "fetchedAt": "2026-07-28T10:18:39.879Z",
+    "from": "https://cdn.prod.website-files.com/65b1a6a0ad3ceb57b337dfbd/65d10d1a768616dd86216c62_Frame%2031689.svg"
+  },
+  "chiratae-ventures-2": {
+    "path": "/assets/investors/chiratae-ventures-2.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 769,
+    "fetchedAt": "2026-07-28T10:18:40.208Z",
+    "from": "https://www.chiratae.com/wp-content/uploads/2022/11/favicon-chiratae.png"
+  },
+  "1818-venture-capital": {
+    "path": "/assets/investors/1818-venture-capital.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 2595,
+    "fetchedAt": "2026-07-28T10:18:41.360Z",
+    "from": "https://www.google.com/s2/favicons?domain=1818vc.com&sz=128"
+  },
+  "backfuture": {
+    "path": "/assets/investors/backfuture.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 893,
+    "fetchedAt": "2026-07-28T10:18:43.311Z",
+    "from": "https://framerusercontent.com/images/rGvlijuxwXAdO5yP6T0hkHbejY.png"
+  },
+  "upsidedown-vc": {
+    "path": "/assets/investors/upsidedown-vc.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 1980,
+    "fetchedAt": "2026-07-28T10:18:43.673Z",
+    "from": "https://www.google.com/s2/favicons?domain=upsidedownvc.com&sz=128"
+  },
+  "teja-ventures": {
+    "path": "/assets/investors/teja-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 19456,
+    "fetchedAt": "2026-07-28T10:18:44.222Z",
+    "from": "https://static.wixstatic.com/media/75a75b_03b2cb2af631470c9b2cca359a0926d0%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/75a75b_03b2cb2af631470c9b2cca359a0926d0%7Emv2.png"
+  },
+  "supermorpheus": {
+    "path": "/assets/investors/supermorpheus.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 12512,
+    "fetchedAt": "2026-07-28T10:18:45.850Z",
+    "from": "https://cdn.prod.website-files.com/639f367cd4fdce50bcc429ee/64467c9af1a12c2d93ca54b8_webclip.png"
+  },
+  "village-global": {
+    "path": "/assets/investors/village-global.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 5776,
+    "fetchedAt": "2026-07-28T10:18:45.875Z",
+    "from": "https://cdn.prod.website-files.com/67167e56b8481bdcc6627a23/6764c520bb4bcb968e19629e_Frame%20852.png"
+  },
+  "lightpace-vc": {
+    "path": "/assets/investors/lightpace-vc.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 1352,
+    "fetchedAt": "2026-07-28T10:18:46.737Z",
+    "from": "https://images.squarespace-cdn.com/content/v1/6478f324ebfb4753d1193535/2a68d335-f0a1-4f6b-bb83-e4cbf0445659/favicon.ico?format=100w"
+  },
+  "operatorvc": {
+    "path": "/assets/investors/operatorvc.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 7676,
+    "fetchedAt": "2026-07-28T10:18:47.268Z",
+    "from": "https://dented-saxophone-956.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F97c1890e-d52e-4c0d-aa5b-4ad85dbd8779%2FGroup_2.png?table=block&id=8a33376d-ede5-41f0-8d7d-4bfc1a963d68&spaceId=b298cdd5-f97b-409a-9e3e-f61be39bcae4&width=2000&userId=&cache=v2&imgBuildSrc=pageMetadataIcon"
+  },
+  "investopad": {
+    "path": "/assets/investors/investopad.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 5529,
+    "fetchedAt": "2026-07-28T10:18:47.759Z",
+    "from": "https://www.google.com/s2/favicons?domain=investopad.com&sz=128"
+  },
+  "venture-cooperative": {
+    "path": "/assets/investors/venture-cooperative.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 684,
+    "fetchedAt": "2026-07-28T10:18:48.740Z",
+    "from": "https://venturecoop.com/og.svg"
+  },
+  "unpopular-ventures": {
+    "path": "/assets/investors/unpopular-ventures.ico",
+    "source": "website",
+    "contentType": "text/plain",
+    "bytes": 6518,
+    "fetchedAt": "2026-07-28T10:18:49.440Z",
+    "from": "https://assets.squarespace.com/universal/default-favicon.ico"
+  },
+  "orbit-startups": {
+    "path": "/assets/investors/orbit-startups.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 7038,
+    "fetchedAt": "2026-07-28T10:18:49.471Z",
+    "from": "https://orbitventures.com/wp-content/uploads/2023/05/cropped-favicon-large1-180x180.png"
+  },
+  "unitus-capital": {
+    "path": "/assets/investors/unitus-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 14166,
+    "fetchedAt": "2026-07-28T10:18:50.195Z",
+    "from": "https://unituscapital.com/wp-content/uploads/2023/07/favicon-units.png"
+  },
+  "c4d-partners": {
+    "path": "/assets/investors/c4d-partners.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 12737,
+    "fetchedAt": "2026-07-28T10:18:51.169Z",
+    "from": "https://c4dpartners.com/wp-content/themes/c4d/images/favicon.png"
+  },
+  "tiger-global-management": {
+    "path": "/assets/investors/tiger-global-management.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 15406,
+    "fetchedAt": "2026-07-28T10:18:51.598Z",
+    "from": "https://www.tigerglobal.com/Templates/TigerGlobal/media/favicon.ico"
+  },
+  "menterra-ventures": {
+    "path": "/assets/investors/menterra-ventures.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 341941,
+    "fetchedAt": "2026-07-28T10:18:51.744Z",
+    "from": "https://www.menterra.com/wp-content/uploads/2023/04/Favicon.svg"
+  },
+  "sharrp-ventures-harsh-mariwala-investment-office": {
+    "path": "/assets/investors/sharrp-ventures-harsh-mariwala-investment-office.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 15406,
+    "fetchedAt": "2026-07-28T10:18:52.874Z",
+    "from": "https://www.sharrpventures.com/favicon.ico"
+  },
+  "social-capital": {
+    "path": "/assets/investors/social-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 6441,
+    "fetchedAt": "2026-07-28T10:18:53.000Z",
+    "from": "https://cdn.prod.website-files.com/6269cbe46f7507126d5bcb79/62a24e46fe91567453eff6db_webclip.png"
+  },
+  "beyond-capital-ventures": {
+    "path": "/assets/investors/beyond-capital-ventures.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 1726,
+    "fetchedAt": "2026-07-28T10:18:53.209Z",
+    "from": "https://beyondcapital.vc/assets/favicon-180.svg"
+  },
+  "lightrock": {
+    "path": "/assets/investors/lightrock.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 1810,
+    "fetchedAt": "2026-07-28T10:18:53.632Z",
+    "from": "https://www.google.com/s2/favicons?domain=lightrock.com&sz=128"
+  },
+  "kedaara-capital": {
+    "path": "/assets/investors/kedaara-capital.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 198,
+    "fetchedAt": "2026-07-28T10:18:54.226Z",
+    "from": "https://www.google.com/s2/favicons?domain=kedaaracapital.com&sz=128"
+  },
+  "gaja-capital": {
+    "path": "/assets/investors/gaja-capital.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 1002,
+    "fetchedAt": "2026-07-28T10:18:54.600Z",
+    "from": "https://gajacapital.com/assets/favicons/favicon.svg"
+  },
+  "ascent-capital": {
+    "path": "/assets/investors/ascent-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1903,
+    "fetchedAt": "2026-07-28T10:18:54.723Z",
+    "from": "https://ascentcapital.in/favicon.png"
+  },
+  "chryscapital": {
+    "path": "/assets/investors/chryscapital.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 1084,
+    "fetchedAt": "2026-07-28T10:18:54.977Z",
+    "from": "https://chryscapital.com/wp-content/uploads/2024/05/favicon.webp"
+  },
+  "everstone-group": {
+    "path": "/assets/investors/everstone-group.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 1308,
+    "fetchedAt": "2026-07-28T10:18:55.995Z",
+    "from": "https://www.everstonegroup.com/wp-content/uploads/2022/09/favicon.png"
+  },
+  "madison-india-capital": {
+    "path": "/assets/investors/madison-india-capital.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 560,
+    "fetchedAt": "2026-07-28T10:18:56.048Z",
+    "from": "https://www.google.com/s2/favicons?domain=madisonindia.com&sz=128"
+  },
+  "beenext": {
+    "path": "/assets/investors/beenext.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 1514,
+    "fetchedAt": "2026-07-28T10:18:56.194Z",
+    "from": "https://www.beenext.com/wp-content/uploads/2020/06/favicon.png"
+  },
+  "east-ventures": {
+    "path": "/assets/investors/east-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 6397,
+    "fetchedAt": "2026-07-28T10:18:57.593Z",
+    "from": "https://east-ventures-web.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2025/07/14173058/android-chrome-512x512-1-250x250.png"
+  },
+  "gvfl-limited": {
+    "path": "/assets/investors/gvfl-limited.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 7940,
+    "fetchedAt": "2026-07-28T10:18:58.749Z",
+    "from": "https://gvfl.com/assets/images/cropped-Untitled-design-25-180x180.png"
+  },
+  "vertex-ventures-se-asia-and-india": {
+    "path": "/assets/investors/vertex-ventures-se-asia-and-india.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 3298,
+    "fetchedAt": "2026-07-28T10:18:59.049Z",
+    "from": "https://www.google.com/s2/favicons?domain=vertexventures.com&sz=128"
+  },
+  "ah-ventures": {
+    "path": "/assets/investors/ah-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 4719,
+    "fetchedAt": "2026-07-28T10:19:01.061Z",
+    "from": "https://ahventures.in/favicon.png"
+  },
+  "marwari-catalysts": {
+    "path": "/assets/investors/marwari-catalysts.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 106242,
+    "fetchedAt": "2026-07-28T10:19:01.620Z",
+    "from": "https://www.marwaricatalysts.com/assets/favicon.png"
+  },
+  "axilor-ventures": {
+    "path": "/assets/investors/axilor-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 29126,
+    "fetchedAt": "2026-07-28T10:19:04.925Z",
+    "from": "https://www.axilor.com/wp-content/uploads/2020/08/cropped-Favicon-180x180.png"
+  },
+  "ventureast": {
+    "path": "/assets/investors/ventureast.gif",
+    "source": "website",
+    "contentType": "image/gif",
+    "bytes": 19086,
+    "fetchedAt": "2026-07-28T10:19:05.342Z",
+    "from": "https://cdn.prod.website-files.com/58b6aee81aba256869a139ce/58b81ebc13b01d6f69552d5c_256x256.gif"
+  },
+  "gusec": {
+    "path": "/assets/investors/gusec.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 41149,
+    "fetchedAt": "2026-07-28T10:19:05.783Z",
+    "from": "https://gusec.edu.in/wp-content/uploads/2022/07/cropped-1-1-180x180.png"
+  },
+  "ribbit-capital": {
+    "path": "/assets/investors/ribbit-capital.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 9393,
+    "fetchedAt": "2026-07-28T10:19:06.745Z",
+    "from": "https://www.ribbitcap.com/icon.ico?7f47e9c8855b75ce"
+  },
+  "cherry-ventures": {
+    "path": "/assets/investors/cherry-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2468,
+    "fetchedAt": "2026-07-28T10:19:07.499Z",
+    "from": "https://cdn.prod.website-files.com/697f93ad7d63d775baed46f8/69adfb2aecd7a4b431782bf9_weblicp.png"
+  },
+  "index-ventures": {
+    "path": "/assets/investors/index-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 920,
+    "fetchedAt": "2026-07-28T10:19:08.089Z",
+    "from": "https://www.indexventures.com/static/images/apple-touch-icon.334e2c0ca650.png"
+  },
+  "upfront-ventures": {
+    "path": "/assets/investors/upfront-ventures.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 15086,
+    "fetchedAt": "2026-07-28T10:19:08.995Z",
+    "from": "https://upfront.com/favicon.ico"
+  },
+  "mayfield-fund": {
+    "path": "/assets/investors/mayfield-fund.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 8164,
+    "fetchedAt": "2026-07-28T10:19:09.804Z",
+    "from": "https://www.mayfield.com/wp-content/uploads/2024/12/mayfield-m-favicon-300x300.png"
+  },
+  "foster-ventures": {
+    "path": "/assets/investors/foster-ventures.png",
+    "source": "duckduckgo",
+    "contentType": "image/png",
+    "bytes": 759,
+    "fetchedAt": "2026-07-28T10:19:12.590Z",
+    "from": "https://icons.duckduckgo.com/ip3/fosterventures.com.ico"
+  },
+  "b-capital": {
+    "path": "/assets/investors/b-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1183,
+    "fetchedAt": "2026-07-28T10:19:13.462Z",
+    "from": "https://b.capital/wp-content/uploads/2023/10/cropped-BCapital_Logo_XL-180x180.png"
+  },
+  "2048-ventures": {
+    "path": "/assets/investors/2048-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 6513,
+    "fetchedAt": "2026-07-28T10:19:13.716Z",
+    "from": "https://cdn.prod.website-files.com/6195437cec00d52284613d97/6195450b450e437760f5d1bb_webclip.png"
+  },
+  "saison-capital": {
+    "path": "/assets/investors/saison-capital.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 1710,
+    "fetchedAt": "2026-07-28T10:19:14.301Z",
+    "from": "https://www.google.com/s2/favicons?domain=saisoncapital.com&sz=128"
+  },
+  "monk-s-hill-venture": {
+    "path": "/assets/investors/monk-s-hill-venture.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 15121,
+    "fetchedAt": "2026-07-28T10:19:14.948Z",
+    "from": "https://cdn.prod.website-files.com/5efd4790a2e6ce037c6b5343/5f03c852d4347710cd231281_icon1.png"
+  },
+  "aum-ventures": {
+    "path": "/assets/investors/aum-ventures.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 1980,
+    "fetchedAt": "2026-07-28T10:19:15.348Z",
+    "from": "https://www.google.com/s2/favicons?domain=aumventures.com&sz=128"
+  },
+  "auxano-capital": {
+    "path": "/assets/investors/auxano-capital.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 386,
+    "fetchedAt": "2026-07-28T10:19:15.457Z",
+    "from": "https://www.google.com/s2/favicons?domain=auxanocapital.com&sz=128"
+  },
+  "integra-partners": {
+    "path": "/assets/investors/integra-partners.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 1980,
+    "fetchedAt": "2026-07-28T10:19:15.588Z",
+    "from": "https://www.google.com/s2/favicons?domain=integra.partners&sz=128"
+  },
+  "ac-ventures": {
+    "path": "/assets/investors/ac-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 34803,
+    "fetchedAt": "2026-07-28T10:19:16.760Z",
+    "from": "https://acventures.vc/wp-content/uploads/2025/02/cropped-Mask-group-1-180x180.png"
+  },
+  "m-venture-partners-mvp": {
+    "path": "/assets/investors/m-venture-partners-mvp.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 3226,
+    "fetchedAt": "2026-07-28T10:19:17.478Z",
+    "from": "https://www.google.com/s2/favicons?domain=mventurepartners.com&sz=128"
+  },
+  "everywhere-ventures": {
+    "path": "/assets/investors/everywhere-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 3513,
+    "fetchedAt": "2026-07-28T10:19:17.484Z",
+    "from": "https://cdn.prod.website-files.com/689a5dc2b89334e1fcb836eb/689aeb8ac2a73c3343eefe09_Webclip.png"
+  },
+  "momentum-capital": {
+    "path": "/assets/investors/momentum-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 35741,
+    "fetchedAt": "2026-07-28T10:19:18.197Z",
+    "from": "https://static.hugedomains.com/images/hdv3-img/og_hugedomains.png"
+  },
+  "dexter-ventures": {
+    "path": "/assets/investors/dexter-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 3092,
+    "fetchedAt": "2026-07-28T10:19:18.532Z",
+    "from": "https://cdn.prod.website-files.com/644b5842d82a33773b01b392/64884643e719e3ba4a027e00_Dexter%20Webclip.png"
+  },
+  "alkemi-growth-capital-2": {
+    "path": "/assets/investors/alkemi-growth-capital-2.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 26362,
+    "fetchedAt": "2026-07-28T10:19:19.244Z",
+    "from": "https://www.alkemivp.com/cdn/shop/files/favicon.svg?crop=center&height=32&v=1774459621&width=32"
+  },
+  "hustle-fund": {
+    "path": "/assets/investors/hustle-fund.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 3653,
+    "fetchedAt": "2026-07-28T10:19:19.823Z",
+    "from": "https://cdn.prod.website-files.com/6331a9a50eb8aa687c52dd23/642abe3817fdf6469c47352f_favicon%20256x256.png"
+  },
+  "superscout": {
+    "path": "/assets/investors/superscout.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1661,
+    "fetchedAt": "2026-07-28T10:19:20.585Z",
+    "from": "https://cdn.prod.website-files.com/60ac98a57ef92f240ba249f8/6a2013602d86f2baf4d78344_superscout-square-logo.png"
   }
 }
