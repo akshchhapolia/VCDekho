@@ -20,7 +20,7 @@
     <meta name="keywords" content="Venture Capital India, Startup Blog, Fundraising Guides, Investor Lists">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="/style.css?v=35">
+    <link rel="stylesheet" href="/style.css?v=50">
     <link rel="icon" type="image/png" href="/assets/logoforvc.png">
     <link rel="canonical" href="https://vcdekho.com/blog">
     <meta property="og:title" content="VC Dekho Blog - Insights & Guides for Indian Startup Founders">
@@ -83,8 +83,36 @@
 
                 <!-- Blog Grid -->
                 <div class="blog-grid" id="blog-grid">
-                    <!-- Dynamically inserted daily AI blog posts appear first -->
-                    
+                    <!-- Skeletons while daily/API blogs load -->
+                    <div class="blog-post-card blog-post-skeleton" aria-hidden="true">
+                        <div class="blog-card-img-wrapper blog-skel-block"></div>
+                        <div class="blog-card-body">
+                            <span class="blog-skel-line blog-skel-cat"></span>
+                            <span class="blog-skel-line blog-skel-title"></span>
+                            <span class="blog-skel-line blog-skel-title short"></span>
+                            <span class="blog-skel-line blog-skel-excerpt"></span>
+                            <span class="blog-skel-line blog-skel-excerpt short"></span>
+                        </div>
+                        <div class="blog-card-footer">
+                            <span class="blog-skel-line blog-skel-meta"></span>
+                            <span class="blog-skel-line blog-skel-meta short"></span>
+                        </div>
+                    </div>
+                    <div class="blog-post-card blog-post-skeleton" aria-hidden="true">
+                        <div class="blog-card-img-wrapper blog-skel-block"></div>
+                        <div class="blog-card-body">
+                            <span class="blog-skel-line blog-skel-cat"></span>
+                            <span class="blog-skel-line blog-skel-title"></span>
+                            <span class="blog-skel-line blog-skel-title short"></span>
+                            <span class="blog-skel-line blog-skel-excerpt"></span>
+                            <span class="blog-skel-line blog-skel-excerpt short"></span>
+                        </div>
+                        <div class="blog-card-footer">
+                            <span class="blog-skel-line blog-skel-meta"></span>
+                            <span class="blog-skel-line blog-skel-meta short"></span>
+                        </div>
+                    </div>
+
                     <!-- Blog Post Card 1 (Newest static) -->
                     <a href="/blog/how-to-find-right-vc-india" class="blog-post-card">
                         <div class="blog-card-img-wrapper">
@@ -170,10 +198,18 @@
         const grid = document.getElementById('blog-grid');
         if (!grid) return;
 
+        const clearSkeletons = () => {
+            grid.querySelectorAll('.blog-post-skeleton').forEach((el) => el.remove());
+        };
+
         try {
             const res = await fetch('/api/news/list?category=blog');
-            if (!res.ok) return;
+            if (!res.ok) {
+                clearSkeletons();
+                return;
+            }
             const posts = await res.json();
+            clearSkeletons();
             if (!Array.isArray(posts) || posts.length === 0) return;
 
             const esc = (s) => String(s || '')
@@ -212,6 +248,7 @@
             });
             grid.prepend(frag);
         } catch (err) {
+            clearSkeletons();
             console.warn('Could not load daily blogs', err);
         }
     })();
