@@ -1,0 +1,831 @@
+{
+  "dupes": [
+    [
+      "WaterBridge Ventures",
+      "Capital-A"
+    ],
+    [
+      "Force Ventures",
+      "Sales Force Ventures"
+    ],
+    [
+      "9Unicorns",
+      "Unicorn India Ventures"
+    ],
+    [
+      "Mumbai Angels Network",
+      "Capital-A"
+    ],
+    [
+      "Hyderabad Angels",
+      "Capital-A"
+    ],
+    [
+      "Lead Angels",
+      "Capital-A"
+    ],
+    [
+      "Calcutta Angels Network",
+      "Capital-A"
+    ],
+    [
+      "Native Smart Capital",
+      "Capital-A"
+    ],
+    [
+      "Rainmatter Capital",
+      "Rainmatter"
+    ],
+    [
+      "Flipkart Ventures",
+      "Capital-A"
+    ],
+    [
+      "Reliance New Energy / Reliance Ventures",
+      "Capital-A"
+    ],
+    [
+      "Mahindra Partners",
+      "Capital-A"
+    ],
+    [
+      "Bajaj Finserv Ventures",
+      "Capital-A"
+    ],
+    [
+      "Tata Digital / Tata Capital Growth",
+      "Capital-A"
+    ],
+    [
+      "SIDBI Venture Capital",
+      "B Capital"
+    ],
+    [
+      "Canbank Venture Capital",
+      "Capital-A"
+    ],
+    [
+      "Kotak Investment Advisors / Kotak PE",
+      "Capital-A"
+    ],
+    [
+      "Multiples Alternate Asset Management Growth",
+      "Capital-A"
+    ],
+    [
+      "Unitus Ventures",
+      "Unitus Capital"
+    ],
+    [
+      "Acumen India / Acumen Fund",
+      "Capital-A"
+    ],
+    [
+      "Patamar Capital",
+      "Capital-A"
+    ],
+    [
+      "Quona Capital",
+      "Capital-A"
+    ],
+    [
+      "Steadview Capital",
+      "Capital-A"
+    ],
+    [
+      "Rebright Partners",
+      "B Capital"
+    ],
+    [
+      "Antler",
+      "Capital-A"
+    ],
+    [
+      "Y Combinator",
+      "Capital-A"
+    ],
+    [
+      "Techstars",
+      "Capital-A"
+    ],
+    [
+      "500 Global",
+      "Capital-A"
+    ],
+    [
+      "Openspace Ventures",
+      "Capital-A"
+    ],
+    [
+      "Wavemaker Partners",
+      "Capital-A"
+    ],
+    [
+      "Golden Gate Ventures",
+      "Capital-A"
+    ],
+    [
+      "Insignia Ventures Partners",
+      "Capital-A"
+    ],
+    [
+      "Ganita Capital",
+      "Capital-A"
+    ],
+    [
+      "SBI Investment / SBI Ventures",
+      "B Capital"
+    ],
+    [
+      "Mitsubishi UFJ Capital",
+      "B Capital"
+    ],
+    [
+      "JAFCO Asia",
+      "Capital-A"
+    ],
+    [
+      "Pavilion Capital",
+      "Capital-A"
+    ],
+    [
+      "General Atlantic",
+      "Capital-A"
+    ],
+    [
+      "Bessemer Venture Partners",
+      "B Capital"
+    ],
+    [
+      "Naspers Foundry",
+      "Capital-A"
+    ],
+    [
+      "Temasek",
+      "Capital-A"
+    ],
+    [
+      "GIC",
+      "Citi Strategic FinTech Investments"
+    ],
+    [
+      "SoftBank Investment Advisers",
+      "Capital-A"
+    ],
+    [
+      "SoftBank Ventures Asia",
+      "Capital-A"
+    ],
+    [
+      "Insight Partners",
+      "SIG"
+    ],
+    [
+      "Coatue Management",
+      "Capital-A"
+    ],
+    [
+      "DST Global",
+      "Capital-A"
+    ],
+    [
+      "Dragoneer Investment Group",
+      "Capital-A"
+    ],
+    [
+      "Blackstone Growth",
+      "Capital-A"
+    ],
+    [
+      "Warburg Pincus",
+      "Capital-A"
+    ],
+    [
+      "Bain Capital",
+      "Capital-A"
+    ],
+    [
+      "Advent International",
+      "Capital-A"
+    ],
+    [
+      "Carlyle",
+      "Capital-A"
+    ],
+    [
+      "Apax Partners",
+      "Capital-A"
+    ],
+    [
+      "TPG",
+      "TPG NewQuest"
+    ],
+    [
+      "Creador",
+      "Capital-A"
+    ],
+    [
+      "Lighthouse Canton / Lighthouse PE",
+      "Capital-A"
+    ],
+    [
+      "British International Investment",
+      "Capital-A"
+    ],
+    [
+      "Proparco",
+      "Capital-A"
+    ],
+    [
+      "Michael & Susan Dell Foundation",
+      "Capital-A"
+    ],
+    [
+      "Qualcomm Ventures",
+      "Capital-A"
+    ],
+    [
+      "Samsung Ventures",
+      "Capital-A"
+    ],
+    [
+      "Google for Startups / Gradient Ventures",
+      "Capital-A"
+    ],
+    [
+      "Amazon Smbhav Venture Fund",
+      "Capital-A"
+    ],
+    [
+      "PayU Finance / PayU Ventures",
+      "Capital-A"
+    ],
+    [
+      "SC Ventures",
+      "Scalable Capital"
+    ],
+    [
+      "HSBC Asset Management Alternatives / HSBC Innovation",
+      "Capital-A"
+    ],
+    [
+      "Nestl\u00e9 SHAKE THE FUTURE / Nestl\u00e9 Ventures",
+      "Capital-A"
+    ],
+    [
+      "Marico Innovation Foundation / Marico Growth",
+      "Capital-A"
+    ],
+    [
+      "Hero Enterprise / Hero FinCorp ventures",
+      "Rise Capital"
+    ],
+    [
+      "Aavishkaar Venture Management (distinct funds)",
+      "Capital-A"
+    ],
+    [
+      "Omnivore Partners Fund variants",
+      "Omnivore"
+    ],
+    [
+      "Sayahi Capital",
+      "Capital-A"
+    ],
+    [
+      "Kae Capital Fund III vehicles",
+      "Capital-A"
+    ],
+    [
+      "India Alternative Research / IAR",
+      "Capital-A"
+    ],
+    [
+      "Varanium Capital",
+      "Capital-A"
+    ],
+    [
+      "Agility Venture Partners Asia",
+      "Capital-A"
+    ],
+    [
+      "Beacon India Private Equity Fund",
+      "Capital-A"
+    ],
+    [
+      "NEA",
+      "Capital-A"
+    ],
+    [
+      "Accel US (distinct from Accel India)",
+      "Capital-A"
+    ],
+    [
+      "Lightspeed Venture Partners US",
+      "Lightspeed"
+    ],
+    [
+      "Matrix Partners US",
+      "Capital-A"
+    ],
+    [
+      "Sequoia Capital (US/China vehicles)",
+      "Capital-A"
+    ],
+    [
+      "Andreessen Horowitz",
+      "Capital-A"
+    ],
+    [
+      "Founders Fund",
+      "Bharat Founders Fund"
+    ],
+    [
+      "Ribbit Capital India practice",
+      "Capital-A"
+    ],
+    [
+      "Valar Ventures",
+      "Capital-A"
+    ],
+    [
+      "Addition",
+      "Capital-A"
+    ],
+    [
+      "Falcon Edge Capital",
+      "Capital-A"
+    ],
+    [
+      "Trident Capital Asia",
+      "Capital-A"
+    ],
+    [
+      "Kalaari Capital Fund vehicles",
+      "Kalaari Capital"
+    ],
+    [
+      "Blume Ventures Fund vehicles",
+      "Blume Ventures"
+    ],
+    [
+      "Indian Angel Network Fund",
+      "Indian Angel Network (IAN)"
+    ],
+    [
+      "IAN Fund",
+      "Indian Angel Network (IAN)"
+    ],
+    [
+      "Ah! Ventures Fund",
+      "ah! Ventures"
+    ],
+    [
+      "Stanford Angels & Entrepreneurs India",
+      "Capital-A"
+    ],
+    [
+      "Harvard Angels India",
+      "Capital-A"
+    ],
+    [
+      "IIT Alumni Angels / IITB Alumni Fund",
+      "Capital-A"
+    ],
+    [
+      "NSRCEL / IIMB Invest",
+      "B Capital"
+    ],
+    [
+      "CIE IIIT Hyderabad",
+      "Capital-A"
+    ],
+    [
+      "T-Hub",
+      "B Capital"
+    ],
+    [
+      "Startup India Seed Fund Scheme partners",
+      "Capital-A"
+    ],
+    [
+      "Kerala Startup Mission / KSUM funds",
+      "Capital-A"
+    ],
+    [
+      "AP Innovation Society funds",
+      "Capital-A"
+    ],
+    [
+      "Maharashtra State Innovation Society",
+      "Capital-A"
+    ],
+    [
+      "Zone Startups India",
+      "Capital-A"
+    ],
+    [
+      "Fintech Fortress / India FinTech Festival capital partners",
+      "Capital-A"
+    ],
+    [
+      "LocalGlobe",
+      "Capital-A"
+    ],
+    [
+      "Seedcamp",
+      "Capital-A"
+    ],
+    [
+      "Atomico",
+      "Capital-A"
+    ],
+    [
+      "Balderton Capital",
+      "Capital-A"
+    ],
+    [
+      "Accel London",
+      "Capital-A"
+    ],
+    [
+      "Creandum",
+      "Capital-A"
+    ],
+    [
+      "Global Founders Capital",
+      "Capital-A"
+    ],
+    [
+      "Rocket Internet / Global Founders",
+      "Capital-A"
+    ],
+    [
+      "Glovo / Delivery platforms capital",
+      "Capital-A"
+    ],
+    [
+      "Swiggy investment arm",
+      "Capital-A"
+    ],
+    [
+      "Zomato Distances / Hyperpure capital",
+      "Capital-A"
+    ],
+    [
+      "CRED Capital / Dreamplug investments",
+      "Capital-A"
+    ],
+    [
+      "Razorpay Capital",
+      "Capital-A"
+    ],
+    [
+      "Pine Labs investments",
+      "Capital-A"
+    ],
+    [
+      "Cashfree investments",
+      "Capital-A"
+    ],
+    [
+      "Ola Electric / ANI Technologies ventures",
+      "Capital-A"
+    ],
+    [
+      "BYJU'S / Think & Learn capital (legacy)",
+      "Capital-A"
+    ],
+    [
+      "upGrad Ventures",
+      "Capital-A"
+    ],
+    [
+      "Unacademy investments",
+      "Capital-A"
+    ],
+    [
+      "Practo investments",
+      "Capital-A"
+    ],
+    [
+      "Manipal Hospitals / Manipal Education ventures",
+      "Capital-A"
+    ],
+    [
+      "Apollo Hospitals / AHLL Ventures",
+      "Capital-A"
+    ],
+    [
+      "Dr. Reddy's ventures / Aurigene",
+      "Reddy Ventures"
+    ],
+    [
+      "Biocon / Syngene ventures",
+      "B Capital"
+    ],
+    [
+      "Sun Pharma Ventures",
+      "Capital-A"
+    ],
+    [
+      "Cipla Ventures / Cipla New Ventures",
+      "Capital-A"
+    ],
+    [
+      "Lupin Ventures",
+      "pi Ventures"
+    ],
+    [
+      "Tata 1mg / Tata Digital health investments",
+      "Capital-A"
+    ],
+    [
+      "Nykaa / FSN E-Commerce Ventures investments",
+      "Capital-A"
+    ],
+    [
+      "Lenskart investments",
+      "Capital-A"
+    ],
+    [
+      "Dream11 / Dream Sports ventures",
+      "Capital-A"
+    ],
+    [
+      "Nazara Ventures",
+      "Capital-A"
+    ],
+    [
+      "Nodwin Gaming investments",
+      "Capital-A"
+    ],
+    [
+      "Times Internet / Brand Capital",
+      "Capital-A"
+    ],
+    [
+      "HT Media / Mint investments",
+      "Capital-A"
+    ],
+    [
+      "Network18 / Reliance Media investments",
+      "Capital-A"
+    ],
+    [
+      "Zee Entertainment Ventures",
+      "Capital-A"
+    ],
+    [
+      "Sony Innovation Fund",
+      "Capital-A"
+    ],
+    [
+      "Honda Xcelerator / Honda Ventures",
+      "Capital-A"
+    ],
+    [
+      "Toyota Ventures",
+      "Capital-A"
+    ],
+    [
+      "Hyundai CRADLE",
+      "Capital-A"
+    ],
+    [
+      "Bosch Ventures",
+      "B Capital"
+    ],
+    [
+      "Schneider Electric Energy Access / SE Ventures",
+      "Capital-A"
+    ],
+    [
+      "BP Ventures",
+      "B Capital"
+    ],
+    [
+      "TotalEnergies Ventures",
+      "Capital-A"
+    ],
+    [
+      "Breakthrough Energy Ventures",
+      "Capital-A"
+    ],
+    [
+      "Lowercarbon Capital",
+      "Capital-A"
+    ],
+    [
+      "Energy Impact Partners",
+      "Capital-A"
+    ],
+    [
+      "Khazaana / family offices list placeholder",
+      "Capital-A"
+    ],
+    [
+      "Piramal Alternatives / Piramal Capital",
+      "Capital-A"
+    ],
+    [
+      "Edelweiss Alternatives",
+      "Capital-A"
+    ],
+    [
+      "Motilal Oswal PE / IEPF",
+      "Capital-A"
+    ],
+    [
+      "JM Financial PE",
+      "Capital-A"
+    ],
+    [
+      "IIFL Asset Management alternatives",
+      "Capital-A"
+    ],
+    [
+      "Amansa Capital",
+      "Capital-A"
+    ],
+    [
+      "Malabar Investments",
+      "Capital-A"
+    ],
+    [
+      "Hornbill Capital Advisers",
+      "Capital-A"
+    ],
+    [
+      "Fountainhead Growth Partners",
+      "Capital-A"
+    ],
+    [
+      "Lightbox Ventures",
+      "B Capital"
+    ],
+    [
+      "SAIF Partners / Panacea",
+      "Capital-A"
+    ],
+    [
+      "Coinbase Ventures",
+      "Capital-A"
+    ],
+    [
+      "Binance Labs / YZi Labs",
+      "Capital-A"
+    ],
+    [
+      "Mechanism Capital",
+      "Capital-A"
+    ],
+    [
+      "Pantera Capital",
+      "Capital-A"
+    ],
+    [
+      "Paradigm",
+      "Capital-A"
+    ],
+    [
+      "Better Capital Fund II vehicles",
+      "Better Capital"
+    ],
+    [
+      "First Cheque Fund vehicles",
+      "First Cheque"
+    ],
+    [
+      "Sauce VC Fund vehicles",
+      "Capital-A"
+    ],
+    [
+      "Titan Capital Fund vehicles",
+      "Capital-A"
+    ],
+    [
+      "Whiteboard Capital Fund vehicles",
+      "Capital-A"
+    ],
+    [
+      "All In Capital Fund vehicles",
+      "Capital-A"
+    ],
+    [
+      "Java Capital Fund vehicles",
+      "Capital-A"
+    ],
+    [
+      "Shastra VC Fund vehicles",
+      "Capital-A"
+    ],
+    [
+      "Arkam Ventures Fund vehicles",
+      "Capital-A"
+    ],
+    [
+      "Pravega Ventures Fund vehicles",
+      "Capital-A"
+    ],
+    [
+      "PointOne Capital Fund vehicles",
+      "PointOne Capital"
+    ],
+    [
+      "PeerCapital Fund vehicles",
+      "Capital-A"
+    ],
+    [
+      "DeVC Fund vehicles",
+      "DeVC"
+    ],
+    [
+      "Capital A Fund vehicles",
+      "Capital-A"
+    ],
+    [
+      "WEH Ventures Fund vehicles",
+      "WEH Ventures"
+    ]
+  ],
+  "skipped": [
+    "TVS Capital already present skip",
+    "Ribbit already present",
+    "Tiger Global already present",
+    "FirstCry Fireside already",
+    "Sixth Sense already",
+    "Venture Catalysts already",
+    "Gujarat Venture Finance / GVFL already",
+    "Index Ventures already",
+    "IvyCap already",
+    "Orios already",
+    "Prime already",
+    "Endiya already",
+    "Athera already",
+    "Venture Highway already",
+    "Stellaris already",
+    "Chiratae already",
+    "Nexus already",
+    "Elevation already",
+    "WestBridge already",
+    "Iron Pillar already",
+    "Bertelsmann already",
+    "Eight Roads already",
+    "Beenext already",
+    "RTP already",
+    "Vertex already",
+    "B Capital already",
+    "Mayfield already",
+    "Norwest already",
+    "Accel already",
+    "Peak XV already",
+    "Z47 already",
+    "3one4 already",
+    "A91 already",
+    "Fireside already",
+    "Good Capital already",
+    "India Quotient already",
+    "Speciale already",
+    "pi Ventures already",
+    "Ideaspring already",
+    "Exfinity already",
+    "Ankur already",
+    "Omnivore already",
+    "Elevar already",
+    "Omidyar already",
+    "Lightrock already",
+    "Alteria already",
+    "Trifecta already",
+    "Stride already",
+    "Inflexor already",
+    "Innoven already",
+    "Premji Invest already",
+    "Catamaran already",
+    "Chiratae already2",
+    "Ah! Ventures already skip2",
+    "Huddle already",
+    "Axilor already",
+    "GSF already",
+    "Upekkha already",
+    "100Unicorns already",
+    "Turbostart already",
+    "Marwari Catalysts already",
+    "Social Alpha already",
+    "Brigade REAP already",
+    "Orbit Startups already",
+    "Village Global already",
+    "Everywhere Ventures already",
+    "Hustle Fund already",
+    "Uncork already",
+    "Saison Capital already",
+    "East Ventures already",
+    "Monk's Hill already",
+    "Integra Partners already",
+    "Spiral Ventures already",
+    "Tanglin already",
+    "Beyond Next already",
+    "AC Ventures already",
+    "M Venture Partners already"
+  ]
+}
