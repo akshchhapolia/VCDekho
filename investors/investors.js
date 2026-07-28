@@ -24,6 +24,7 @@
     search: document.getElementById('inv-search'),
     clear: document.getElementById('inv-clear'),
     count: document.getElementById('inv-count'),
+    guideSlot: document.getElementById('inv-guide-slot'),
     results: document.getElementById('inv-results'),
     prev: document.getElementById('inv-prev'),
     next: document.getElementById('inv-next'),
@@ -188,6 +189,21 @@
     `).join('');
   }
 
+  function joinLinked(labels, ids, hrefForId, limit) {
+    const items = (labels || []).slice(0, limit || 4);
+    if (!items.length) return '—';
+    const more = (labels || []).length > items.length;
+    const parts = items.map((label, i) => {
+      const id = (ids || [])[i];
+      const href = id && hrefForId(id);
+      if (href) {
+        return '<a class="inv-dir-inline-link" href="' + esc(href) + '">' + esc(label) + '</a>';
+      }
+      return esc(label);
+    });
+    return parts.join(', ') + (more ? '…' : '');
+  }
+
   function renderRows(investors) {
     if (!investors.length) {
       els.results.innerHTML =
@@ -204,28 +220,67 @@
     }
 
     els.results.innerHTML = investors.map(inv => {
-      const sectors = joinList([...(inv.sectors || []), ...(inv.thesisThemes || [])], 4);
-      const stages = joinList(inv.stages, 5);
+      const stagesHtml = joinLinked(
+        inv.stages,
+        inv.stageIds,
+        id => (STAGE_GUIDE_IDS[id] ? '/investors/stages/' + id : null),
+        4
+      );
+      const thesisHtml = joinLinked(
+        inv.thesisThemes,
+        inv.thesisThemeIds,
+        id => (id && id !== 'general' ? '/investors/themes/' + id : null),
+        3
+      );
+      const sectorsText = joinList(inv.sectors, 3);
+      const sectorsThesis = [sectorsText !== '—' ? esc(sectorsText) : '', thesisHtml !== '—' ? thesisHtml : '']
+        .filter(Boolean)
+        .join(' · ') || '—';
+
       return `
-      <a class="inv-dir-row" href="/investors/${esc(inv.slug)}">
-        <div class="inv-dir-col inv-dir-col-fund">
+      <article class="inv-dir-row">
+        <a class="inv-dir-col inv-dir-col-fund" href="/investors/${esc(inv.slug)}">
           <span class="inv-dir-type">${esc(inv.type || 'Investor')}</span>
           <span class="inv-dir-name">${esc(inv.name)}</span>
-        </div>
+        </a>
         <div class="inv-dir-col inv-dir-col-stages">
           <span class="inv-dir-mobile-label">Stages</span>
-          <span class="inv-dir-cell">${esc(stages)}</span>
+          <span class="inv-dir-cell">${stagesHtml}</span>
         </div>
         <div class="inv-dir-col inv-dir-col-sectors">
           <span class="inv-dir-mobile-label">Sectors</span>
-          <span class="inv-dir-cell">${esc(sectors)}</span>
+          <span class="inv-dir-cell">${sectorsThesis}</span>
         </div>
         <div class="inv-dir-col inv-dir-col-ticket">
           <span class="inv-dir-mobile-label">Ticket</span>
-          <span class="inv-dir-ticket">${esc(inv.chequeSize || 'Not listed')}</span>
+          <a class="inv-dir-ticket" href="/investors/${esc(inv.slug)}">${esc(inv.chequeSize || 'Not listed')}</a>
         </div>
-      </a>`;
+      </article>`;
     }).join('');
+  }
+
+  function findFilterLabel(list, id) {
+    const match = (list || []).find(o => o.id === id);
+    return match ? match.label : id;
+  }
+
+  function updateGuideSlot() {
+    if (!els.guideSlot) return;
+    if (state.stage && STAGE_GUIDE_IDS[state.stage]) {
+      const label = findFilterLabel(state.filters && state.filters.stages, state.stage) || state.stage;
+      els.guideSlot.innerHTML =
+        '<span class="inv-dir-dot" aria-hidden="true">·</span>' +
+        '<a class="inv-dir-guide-link" href="/investors/stages/' + esc(state.stage) + '">Open ' + esc(label) + ' guide →</a>';
+      return;
+    }
+    if (state.thesis && state.thesis !== 'general') {
+      const label = findFilterLabel(state.filters && state.filters.thesisThemes, state.thesis) || state.thesis;
+      els.guideSlot.innerHTML =
+        '<span class="inv-dir-dot" aria-hidden="true">·</span>' +
+        '<a class="inv-dir-guide-link" href="/investors/themes/' + esc(state.thesis) + '">Open ' + esc(label) + ' guide →</a>';
+      return;
+    }
+    els.guideSlot.innerHTML = '';
   }
 
   function updatePager() {
@@ -235,6 +290,7 @@
     els.prev.disabled = state.offset <= 0;
     els.next.disabled = state.offset + PAGE_SIZE >= state.total;
     els.count.textContent = `${state.total.toLocaleString('en-IN')} funds`;
+    updateGuideSlot();
   }
 
   async function load() {

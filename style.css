@@ -2520,6 +2520,17 @@ body.has-announcement .app-container {
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
+a.inv-dir-col-fund,
+a.inv-dir-ticket {
+  text-decoration: none;
+  color: inherit;
+}
+
+a.inv-dir-col-fund:hover .inv-dir-name,
+a.inv-dir-ticket:hover {
+  color: #ffb89c;
+}
+
 .inv-dir-row:hover {
   background: rgba(255, 255, 255, 0.03);
   border-bottom-color: rgba(237, 87, 47, 0.35);
