@@ -1,0 +1,294 @@
+{
+  "input": 205,
+  "new": 133,
+  "dupes": [
+    {
+      "candidate": "3One4 Capital India Internet Dynamics",
+      "matched": "domain:3one4capital.com"
+    },
+    {
+      "candidate": "Aeravti Ventures",
+      "matched": "Aeravti Ventures"
+    },
+    {
+      "candidate": "Alkemi Venture",
+      "matched": "domain:alkemivp.com"
+    },
+    {
+      "candidate": "Ankur Capital",
+      "matched": "Ankur Capital Fund"
+    },
+    {
+      "candidate": "Anthill Capital Ventures",
+      "matched": "Anthill Ventures"
+    },
+    {
+      "candidate": "Antler Innovation India",
+      "matched": "domain:antler.co"
+    },
+    {
+      "candidate": "Arali Ventures",
+      "matched": "Arali Ventures"
+    },
+    {
+      "candidate": "Artha Venture",
+      "matched": "Artha Venture Fund"
+    },
+    {
+      "candidate": "Athera",
+      "matched": "Athera Venture Partners (formerly Inventus India)"
+    },
+    {
+      "candidate": "Aum Ventures Investment",
+      "matched": "AUM Ventures"
+    },
+    {
+      "candidate": "Avaana Capital Seed",
+      "matched": "domain:avaanacapital.com"
+    },
+    {
+      "candidate": "Axilor Investment",
+      "matched": "Axilor Ventures"
+    },
+    {
+      "candidate": "Beyond Next Ventures India",
+      "matched": "Beyond Next Ventures"
+    },
+    {
+      "candidate": "Bharat Seed",
+      "matched": "domain:bharat.fund"
+    },
+    {
+      "candidate": "Blume Ventures",
+      "matched": "Blume Ventures"
+    },
+    {
+      "candidate": "Campus Angel",
+      "matched": "Campus Fund"
+    },
+    {
+      "candidate": "Canbank Venture Capital",
+      "matched": "Canbank Venture Capital Fund"
+    },
+    {
+      "candidate": "Chiratae",
+      "matched": "Chiratae Ventures"
+    },
+    {
+      "candidate": "Disruptors Capital",
+      "matched": "Disruptors Capital"
+    },
+    {
+      "candidate": "Edelweiss Infrastructure Yield Plus",
+      "matched": "domain:edelweissfin.com"
+    },
+    {
+      "candidate": "Enzia Investment",
+      "matched": "Enzia Ventures"
+    },
+    {
+      "candidate": "Eximius",
+      "matched": "Eximius Ventures"
+    },
+    {
+      "candidate": "Faad Capital",
+      "matched": "Faad Network"
+    },
+    {
+      "candidate": "Fireside Ventures Investment",
+      "matched": "Fireside Ventures"
+    },
+    {
+      "candidate": "Fluid Ventures",
+      "matched": "Fluid Ventures"
+    },
+    {
+      "candidate": "Force Ventures",
+      "matched": "Force Ventures"
+    },
+    {
+      "candidate": "Gaja Capital India",
+      "matched": "Gaja Capital"
+    },
+    {
+      "candidate": "Gemba Capital",
+      "matched": "Gemba Capital"
+    },
+    {
+      "candidate": "Grand Anicut",
+      "matched": "domain:anicutcapital.com"
+    },
+    {
+      "candidate": "Growx Ventures",
+      "matched": "growX ventures"
+    },
+    {
+      "candidate": "Gvfl Venture Capital",
+      "matched": "GVFL Limited"
+    },
+    {
+      "candidate": "Huddle Venture",
+      "matched": "Huddle Ventures"
+    },
+    {
+      "candidate": "Hyderabad Angels",
+      "matched": "Hyderabad Angels"
+    },
+    {
+      "candidate": "IAN",
+      "matched": "IAN Fund"
+    },
+    {
+      "candidate": "Inflexor Ventures",
+      "matched": "Inflexor Ventures"
+    },
+    {
+      "candidate": "Ivycap Ventures",
+      "matched": "IvyCap Ventures"
+    },
+    {
+      "candidate": "JSW Ventures",
+      "matched": "JSW Ventures"
+    },
+    {
+      "candidate": "July Ventures",
+      "matched": "July Ventures"
+    },
+    {
+      "candidate": "Kitven",
+      "matched": "KITVEN"
+    },
+    {
+      "candidate": "Lead Angels",
+      "matched": "Lead Angels"
+    },
+    {
+      "candidate": "Lok Capital Growth",
+      "matched": "domain:lokcapital.com"
+    },
+    {
+      "candidate": "Menterra Social Impact",
+      "matched": "domain:menterra.com"
+    },
+    {
+      "candidate": "Mount Judi India Micro",
+      "matched": "domain:mountjudi.com"
+    },
+    {
+      "candidate": "Multiply Ventures",
+      "matched": "Multiply Ventures"
+    },
+    {
+      "candidate": "Orios Venture",
+      "matched": "Orios Venture Partners"
+    },
+    {
+      "candidate": "Otp Ventures",
+      "matched": "OTP Ventures"
+    },
+    {
+      "candidate": "Pavestone Ventures",
+      "matched": "Pavestone VC"
+    },
+    {
+      "candidate": "Peaceful Progress",
+      "matched": "Peaceful Progress"
+    },
+    {
+      "candidate": "Piper Serica Angel",
+      "matched": "Piper Serica Angel Fund"
+    },
+    {
+      "candidate": "Sauce Capital",
+      "matched": "Sauce.vc"
+    },
+    {
+      "candidate": "Seafund Venture India",
+      "matched": "seafund"
+    },
+    {
+      "candidate": "Senseai Ventures",
+      "matched": "SenseAI Ventures"
+    },
+    {
+      "candidate": "Sidbi Sme Venture",
+      "matched": "domain:sidbiventure.co.in"
+    },
+    {
+      "candidate": "Sixth Sense Ventures",
+      "matched": "Sixth Sense Ventures"
+    },
+    {
+      "candidate": "Sparrow Capital",
+      "matched": "Sparrow Capital"
+    },
+    {
+      "candidate": "Sprout Venture Partners",
+      "matched": "Sprout Venture Partners"
+    },
+    {
+      "candidate": "Stellaris Venture Partners India",
+      "matched": "Stellaris Venture Partners"
+    },
+    {
+      "candidate": "Stride Ventures",
+      "matched": "Stride Ventures"
+    },
+    {
+      "candidate": "Synapses Venture Capital",
+      "matched": "Synapses VC"
+    },
+    {
+      "candidate": "Tata Capital Growth",
+      "matched": "domain:tatacapital.com"
+    },
+    {
+      "candidate": "The Ventureast Funds",
+      "matched": "VenturEast"
+    },
+    {
+      "candidate": "True North",
+      "matched": "True North"
+    },
+    {
+      "candidate": "Turbostart Angel",
+      "matched": "Turbostart"
+    },
+    {
+      "candidate": "Unicorn India Ventures",
+      "matched": "Unicorn India Ventures"
+    },
+    {
+      "candidate": "Venture Catalysts Angel",
+      "matched": "domain:venturecatalysts.in"
+    },
+    {
+      "candidate": "Warmup Ventures",
+      "matched": "Warmup Ventures"
+    },
+    {
+      "candidate": "WaterBridge Ventures II",
+      "matched": "domain:waterbridge.vc"
+    },
+    {
+      "candidate": "WEH Ventures",
+      "matched": "WEH Ventures"
+    },
+    {
+      "candidate": "Yali Ventures",
+      "matched": "Yali Capital"
+    },
+    {
+      "candidate": "Yournest Angel",
+      "matched": "YourNest Venture Capital"
+    },
+    {
+      "candidate": "Z3Partners Tech",
+      "matched": "domain:z3partners.com"
+    },
+    {
+      "candidate": "Zeropearl Vc",
+      "matched": "Zeropearl VC"
+    }
+  ]
+}
