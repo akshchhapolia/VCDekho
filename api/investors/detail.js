@@ -96,7 +96,7 @@ function renderThemePage(theme, res) {
     '<meta name="description" content="' + escapeHtml(theme.summary).slice(0, 160) + '">',
     '<link rel="canonical" href="https://vcdekho.com/investors/themes/' + escapeHtml(theme.id) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
-    '<meta name="robots" content="noindex, nofollow">',
+    '<meta name="robots" content="index, follow">',
     '<link rel="stylesheet" href="/style.css?v=21">',
     '</head>',
     '<body class="scrollable-page inv-page">',
@@ -145,20 +145,16 @@ function renderThemePage(theme, res) {
     '</div></section>',
     '</div></main></div>',
     '<script src="/js/auth.js"></script>',
-    '<script src="/js/auth-guard.js"></script>',
     '<script src="/app.js"></script>',
     '</body></html>'
   ].join('\n');
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 'private, no-store');
+  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
   return res.status(200).send(html);
 }
 
 module.exports = async function handler(req, res) {
-  const user = await requireAuth(req, res);
-  if (!user) return;
-
   const { slug, view } = req.query || {};
   if (!slug) {
     return res.status(400).send('<h1>400 - Bad Request</h1>');

@@ -150,7 +150,7 @@ function renderStagePage(stage, res) {
     '<meta name="description" content="' + escapeHtml(stage.summary).slice(0, 160) + '">',
     '<link rel="canonical" href="https://vcdekho.com/investors/stages/' + escapeHtml(stage.id) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
-    '<meta name="robots" content="noindex, nofollow">',
+    '<meta name="robots" content="index, follow">',
     '<link rel="stylesheet" href="/style.css?v=21">',
     '</head>',
     '<body class="scrollable-page inv-page stage-guide-page">',
@@ -284,7 +284,6 @@ function renderStagePage(stage, res) {
 
     '</div></main></div>',
     '<script src="/js/auth.js"></script>',
-    '<script src="/js/auth-guard.js"></script>',
     '<script src="/app.js"></script>',
     '<script>',
     '(function(){',
@@ -312,7 +311,7 @@ function renderStagePage(stage, res) {
   ].join('\n');
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 'private, no-store');
+  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
   return res.status(200).send(html);
 }
 

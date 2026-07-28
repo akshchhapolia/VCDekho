@@ -257,7 +257,7 @@ function renderInvestorPage(investor, related, res) {
     '<meta name="description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<link rel="canonical" href="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
-    '<meta name="robots" content="noindex, nofollow">',
+    '<meta name="robots" content="index, follow">',
     '<link rel="stylesheet" href="/style.css?v=21">',
     '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
@@ -344,7 +344,6 @@ function renderInvestorPage(investor, related, res) {
 
     '</div></main></div>',
     '<script src="/js/auth.js"></script>',
-    '<script src="/js/auth-guard.js"></script>',
     '<script src="/app.js"></script>',
     '<script>',
     '(function(){',
@@ -396,7 +395,7 @@ function renderInvestorPage(investor, related, res) {
   ].join('\n');
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 'private, no-store');
+  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
   return res.status(200).send(html);
 }
 
