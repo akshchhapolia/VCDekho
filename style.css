@@ -5182,23 +5182,40 @@ a.inv-chip:hover {
   font-family: var(--font-heading);
 }
 
-.inv-profile-focus-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
 .inv-profile-focus-panel {
-  padding: 1.4rem 1.35rem;
+  padding: 1.25rem 1.3rem 1.2rem;
   border-radius: 18px;
   border: 1px solid rgba(255,255,255,0.1);
   background: rgba(12, 14, 22, 0.55);
 }
 
-.inv-profile-focus-panel.is-stages {
-  border-color: rgba(237, 87, 47, 0.35);
-  box-shadow: inset 3px 0 0 var(--color-accent-orange);
-  background: linear-gradient(135deg, rgba(237, 87, 47, 0.1), rgba(12, 14, 22, 0.45));
+.inv-profile-focus-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem 1.5rem;
+  align-items: start;
+}
+
+.inv-profile-focus-col {
+  min-width: 0;
+}
+
+.inv-profile-focus-col + .inv-profile-focus-col {
+  padding-left: 1.5rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.inv-profile-focus-panel h3 {
+  font-family: var(--font-heading);
+  color: #fff;
+  font-size: clamp(1.25rem, 2.2vw, 1.45rem);
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.inv-profile-focus-col .inv-profile-chip-row {
+  margin: 0.85rem 0 0.95rem;
 }
 
 .inv-profile-chip-row {
