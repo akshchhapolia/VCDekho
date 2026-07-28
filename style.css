@@ -3464,6 +3464,12 @@ a.inv-chip:hover {
   transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
 }
 
+.theme-inv-card-main {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
 .theme-inv-card:hover,
 .theme-index-card:hover,
 .theme-other-card:hover {

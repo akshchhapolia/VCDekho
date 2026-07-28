@@ -1,4 +1,5 @@
 const { getAllStages } = require('./investment-stages');
+const { renderExploreRelated } = require('./render-explore-related');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -101,6 +102,7 @@ function renderStagePage(stage, res) {
       '<span>' + escapeHtml(t.summary) + '</span>' +
     '</a>'
   )).join('');
+  void themeCards;
 
   const ladderHtml = allStages.map((s, idx) => {
     const stateClass = s.order < stage.order
@@ -157,7 +159,7 @@ function renderStagePage(stage, res) {
     '<link rel="canonical" href="https://vcdekho.com/investors/stages/' + escapeHtml(stage.id) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="noindex, nofollow">',
-    '<link rel="stylesheet" href="/style.css?v=15">',
+    '<link rel="stylesheet" href="/style.css?v=21">',
     '</head>',
     '<body class="scrollable-page inv-page stage-guide-page">',
     '<div class="app-container">',
@@ -268,9 +270,15 @@ function renderStagePage(stage, res) {
       ? ('<section class="stage-section stage-reveal"><div class="stage-section-label">Continue</div><div class="stage-section-head"><h2>Related stages</h2></div><div class="stage-related-grid">' + relatedStageCards + '</div></section>')
       : '',
 
-    themeCards
-      ? ('<section class="stage-section stage-reveal"><div class="stage-section-head"><h2>Related thesis themes</h2><p>Pair stage fit with thesis fit before you shortlist.</p></div><div class="stage-theme-grid">' + themeCards + '</div></section>')
-      : '',
+    renderExploreRelated({
+      title: 'Explore related',
+      subtitle: 'Match stage fit with thesis fit, then open the directory.',
+      themes: (stage.relatedThemes || []).map(t => ({ id: t.id, label: t.label })),
+      fundsHref: '/investors?stage=' + encodeURIComponent(stage.id),
+      fundsLabel: 'Browse ' + stage.investorCount + ' funds at this stage →',
+      siblingHref: '/investors/themes',
+      siblingLabel: 'Thesis guides →'
+    }),
 
     '<section class="stage-section"><div class="stage-pn-grid">' + prevNext + '</div></section>',
 

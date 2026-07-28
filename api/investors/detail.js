@@ -1,8 +1,9 @@
-const { getInvestorBySlug, filterInvestors, toCard } = require('../../utils/investors');
+const { getInvestorBySlug, filterInvestors, toCard, hasStageGuide, deriveRelatedStages } = require('../../utils/investors');
 const { getThemePage, getAllThemes } = require('../../utils/thesis-themes');
 const { getStagePage } = require('../../utils/investment-stages');
 const { renderStagePage } = require('../../utils/render-stage-page');
 const { renderInvestorPage } = require('../../utils/render-investor-page');
+const { renderExploreRelated } = require('../../utils/render-explore-related');
 const { requireAuth } = require('../../utils/require-auth');
 
 function escapeHtml(value) {
@@ -28,18 +29,41 @@ function listItems(items) {
     .join('');
 }
 
+function stageLinksForCard(inv) {
+  const labels = inv.stages || [];
+  const ids = inv.stageIds || [];
+  const links = labels.slice(0, 3).map((label, i) => {
+    const id = ids[i];
+    if (hasStageGuide(id)) {
+      return (
+        '<a class="theme-inv-stage-link" href="/investors/stages/' + escapeHtml(id) + '">' +
+          escapeHtml(label) +
+        '</a>'
+      );
+    }
+    return '<span class="theme-inv-stage-link">' + escapeHtml(label) + '</span>';
+  });
+  if (!links.length) return '';
+  return '<div class="theme-inv-stages">' + links.join('<span aria-hidden="true"> · </span>') + '</div>';
+}
+
 function renderThemePage(theme, res) {
   const otherThemes = getAllThemes()
     .filter(t => t.id !== theme.id)
     .slice(0, 4);
 
+  const relatedStages = deriveRelatedStages(theme.investors, 5);
+
   const investorCards = theme.investors.slice(0, 24).map(inv => (
-    '<a class="theme-inv-card" href="/investors/' + escapeHtml(inv.slug) + '">' +
-      '<div class="theme-inv-type">' + escapeHtml(inv.type) + '</div>' +
-      '<h3>' + escapeHtml(inv.name) + '</h3>' +
-      '<p>' + escapeHtml(inv.thesis || inv.chequeSize || '') + '</p>' +
-      '<div class="theme-inv-meta">' + escapeHtml(inv.chequeSize || (inv.stages || []).slice(0, 2).join(' · ')) + '</div>' +
-    '</a>'
+    '<article class="theme-inv-card">' +
+      '<a class="theme-inv-card-main" href="/investors/' + escapeHtml(inv.slug) + '">' +
+        '<div class="theme-inv-type">' + escapeHtml(inv.type) + '</div>' +
+        '<h3>' + escapeHtml(inv.name) + '</h3>' +
+        '<p>' + escapeHtml(inv.thesis || inv.chequeSize || '') + '</p>' +
+        '<div class="theme-inv-meta">' + escapeHtml(inv.chequeSize || '') + '</div>' +
+      '</a>' +
+      stageLinksForCard(inv) +
+    '</article>'
   )).join('');
 
   const otherCards = otherThemes.map(t => (
@@ -49,6 +73,17 @@ function renderThemePage(theme, res) {
       '<p>' + escapeHtml(t.summary) + '</p>' +
     '</a>'
   )).join('');
+
+  const exploreHtml = renderExploreRelated({
+    title: 'Explore related',
+    subtitle: 'Pair this thesis with the right stage, then shortlist matching funds.',
+    stages: relatedStages,
+    themes: otherThemes.map(t => ({ id: t.id, label: t.label })),
+    fundsHref: '/investors?thesis=' + encodeURIComponent(theme.id),
+    fundsLabel: 'Browse ' + theme.investorCount + ' matching funds →',
+    siblingHref: '/investors/stages',
+    siblingLabel: 'Stage guides →'
+  });
 
   const html = [
     '<!DOCTYPE html>',
@@ -63,7 +98,7 @@ function renderThemePage(theme, res) {
     '<link rel="canonical" href="https://vcdekho.com/investors/themes/' + escapeHtml(theme.id) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="noindex, nofollow">',
-    '<link rel="stylesheet" href="/style.css?v=15">',
+    '<link rel="stylesheet" href="/style.css?v=21">',
     '</head>',
     '<body class="scrollable-page inv-page">',
     '<div class="app-container">',
@@ -100,6 +135,7 @@ function renderThemePage(theme, res) {
     '<div class="theme-inv-grid">' + (investorCards || '<p class="inv-empty">No investors tagged yet.</p>') + '</div>',
     theme.investorCount > 24 ? ('<div class="theme-more"><a class="inv-btn inv-btn-primary" href="/investors?thesis=' + encodeURIComponent(theme.id) + '">Browse all ' + theme.investorCount + ' investors</a></div>') : '',
     '</section>',
+    exploreHtml,
     otherCards ? ('<section class="theme-others"><h2>Other thesis themes</h2><div class="theme-others-grid">' + otherCards + '</div></section>') : '',
     '<section class="blog-cta-banner" style="margin: 3rem 0 1rem;">',
     '<img src="/assets/blog_vc_dekho_cta.png" alt="VC Dekho" class="blog-cta-bg">',
