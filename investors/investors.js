@@ -424,15 +424,6 @@
     navigateRow(row.getAttribute('data-href'), e);
   });
 
-  els.results.addEventListener('keydown', (e) => {
-    if (e.key !== 'Enter' && e.key !== ' ') return;
-    if (e.target.closest('a, button')) return;
-    const row = e.target.closest('.inv-dir-row[data-href]');
-    if (!row || row.classList.contains('inv-dir-skel')) return;
-    e.preventDefault();
-    navigateRow(row.getAttribute('data-href'), e);
-  });
-
   const params0 = new URLSearchParams(window.location.search);
   if (params0.get('stage')) state.stage = params0.get('stage');
   if (params0.get('thesis')) state.thesis = params0.get('thesis');
