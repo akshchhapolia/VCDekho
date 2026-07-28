@@ -188,11 +188,26 @@ function build() {
     const cheque = parseCheque(row['Cheque Size']);
 
     const stages = uniqueById(matchCanon(stageText, STAGE_CANON));
-    let sectors = uniqueById(matchCanon(`${sectorText} ${thesisText}`, SECTOR_CANON));
+    // Prefer explicit Sector cell + short thesis; include name/notes for keyword hits
+    // (e.g. "W Health", "Beams") without scanning long template writeups.
+    let sectors = uniqueById(
+      matchCanon(`${sectorText} ${thesisText} ${name} ${row.Notes || ''}`, SECTOR_CANON)
+    );
     if (!sectors.length && sectorText.trim()) {
-      sectors = [{ id: 'other', label: splitList(sectorText)[0] || 'Other' }];
+      const first = splitList(sectorText)[0] || 'Other';
+      if (/^all sectors$/i.test(first) || /^sector-?agnostic$/i.test(first)) {
+        sectors = [{ id: 'sector-agnostic', label: 'Sector Agnostic' }];
+      } else if (/^(crypto|web3)$/i.test(first)) {
+        sectors = [{ id: 'fintech', label: 'Fintech' }];
+      } else {
+        sectors = [{ id: 'other', label: first }];
+      }
     }
     if (!sectors.length) sectors = [{ id: 'sector-agnostic', label: 'Sector Agnostic' }];
+    // If any specific sector is present, drop the generic agnostic tag
+    if (sectors.length > 1) {
+      sectors = sectors.filter((s) => s.id !== 'sector-agnostic');
+    }
 
     const thesisThemes = uniqueById(matchCanon(`${thesisText} ${stageText} ${sectorText} ${typeText} ${row['Detailed Writeup (~200 words)'] || ''} ${row.Notes || ''}`, THESIS_THEMES));
     const type = classifyType(typeText);
