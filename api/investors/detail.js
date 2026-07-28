@@ -97,7 +97,7 @@ function renderThemePage(theme, res) {
     '<link rel="canonical" href="https://vcdekho.com/investors/themes/' + escapeHtml(theme.id) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/style.css?v=21">',
+    '<link rel="stylesheet" href="/style.css?v=35">',
     '</head>',
     '<body class="scrollable-page inv-page">',
     '<div class="app-container">',
