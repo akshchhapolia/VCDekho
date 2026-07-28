@@ -109,7 +109,6 @@ function renderThemePage(theme, res) {
     '<a href="/investors" class="nav-link active">Investors</a>',
     '<a href="/blog" class="nav-link">Blog</a>',
     '<a href="/news" class="nav-link">News</a>',
-    '<a href="/login" class="nav-link">Log in</a>',
     '</nav></header>',
     '<main class="hero-showcase inv-detail-main">',
     '<div class="ambient-bg-wrapper"><div class="waitlist-bg"><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div><div class="glow-orb orb-3"></div></div></div>',
