@@ -125,7 +125,8 @@ const INR_PER_USD = 83;
 
 function inrToUsd(inr) {
   if (inr == null || Number.isNaN(inr)) return null;
-  return Math.round(inr / INR_PER_USD);
+  // Round to nearest $1K so filter labels stay clean after FX
+  return Math.round(inr / INR_PER_USD / 1000) * 1000;
 }
 
 function parseInrUnit(unit) {
@@ -233,7 +234,8 @@ function parseCheque(text) {
     };
   }
 
-  // Last resort: unit-less $ style without currency (legacy behaviour for "500k–1m")
+  // Last resort: unit-less amounts — treat as USD tickets when they look like cheque sizes
+  // e.g. "100,000 - 500,000", "USD 75000 - 100,000", "2,50,000-5,00,000"
   const loose = [];
   const looseRe = /([\d,.]+)\s*(k|m|mn|million|b|bn|billion)\b/gi;
   while ((m = looseRe.exec(raw)) !== null) {
@@ -245,6 +247,19 @@ function parseCheque(text) {
     else if (unit === 'b' || unit === 'bn' || unit === 'billion') n *= 1e9;
     if (n >= 1000) loose.push(n);
   }
+
+  // Indian-format or plain USD integers (with optional USD prefix)
+  const plainRe = /(?:USD|US\$)?\s*([\d]{1,3}(?:,\d{2},\d{3})+|[\d]{1,3}(?:,\d{3})+|\d{4,})/gi;
+  while ((m = plainRe.exec(raw)) !== null) {
+    // Skip percentages / ownership / deal counts nearby
+    const around = raw.slice(Math.max(0, m.index - 12), m.index + m[0].length + 12).toLowerCase();
+    if (/%|ownership|startups\/yr|deals\/|fund\s*i+\b/.test(around)) continue;
+    let n = parseFloat(m[1].replace(/,/g, ''));
+    if (Number.isNaN(n)) continue;
+    // Indian lakh grouping sometimes written 2,50,000 — already stripped commas
+    if (n >= 10000 && n <= 100000000) loose.push(n);
+  }
+
   if (loose.length) {
     return {
       min: Math.min(...loose),
