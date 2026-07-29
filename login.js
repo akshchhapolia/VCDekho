@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function validateOtpStep() {
     clearFieldErrors();
     const token = otpInput.value.trim().replace(/\s+/g, '');
-    if (!/^\d{6,8}$/.test(token)) {
+    if (!/^\d{8}$/.test(token)) {
       otpInput.classList.add('invalid');
       otpError.style.display = 'block';
       return false;
