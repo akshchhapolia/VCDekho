@@ -5,7 +5,7 @@
  *
  * Each eligible angel org becomes a People row:
  *   First Name = Company name
- *   Company    = Company name  (links back to their org page)
+ *   Company    = Angel Investor  (Firm column label; build resolves org via name)
  *   Title      = Angel Investor
  *
  * Usage:
@@ -106,7 +106,7 @@ function main() {
     }
     toAdd.push({
       name,
-      company: name,
+      company: 'Angel Investor',
       title: 'Angel Investor',
       linkedinUrl: String(org['Company Linkedin'] || '').trim(),
       method: 'angel-org-seed'

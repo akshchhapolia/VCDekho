@@ -37,16 +37,25 @@ function build() {
   for (const row of rows) {
     const name = (row['First Name'] || '').trim();
     const companyRaw = (row.Company || '').trim();
+    const title = (row.Title || '').trim();
     if (!name) continue; // skip blank rows
+
+    const isSoloAngel = /^angel investor$/i.test(title);
 
     let companySlug = '';
     let companyType = '';
     let companyLogo = null;
     let companyName = companyRaw;
 
-    if (companyRaw) {
-      const resolved = resolveOrg(companyRaw);
-      const key = resolved.match ? normStrict(resolved.match.company) : normStrict(companyRaw);
+    // Solo angels: Firm column shows "Angel Investor". Resolve their org page
+    // via person name when Company is already the display label (or self-named).
+    const lookupName = isSoloAngel
+      ? (companyRaw && !/^angel investor$/i.test(companyRaw) ? companyRaw : name)
+      : companyRaw;
+
+    if (lookupName) {
+      const resolved = resolveOrg(lookupName);
+      const key = resolved.match ? normStrict(resolved.match.company) : normStrict(lookupName);
       const org = orgByNormName.get(key);
       if (org) {
         companySlug = org.slug;
@@ -54,6 +63,10 @@ function build() {
         companyLogo = org.logo || null;
         companyName = org.name;
       }
+    }
+
+    if (isSoloAngel) {
+      companyName = 'Angel Investor';
     }
 
     let slug = slugify(name) || 'person';
@@ -68,7 +81,7 @@ function build() {
       id: String(people.length + 1),
       slug,
       name,
-      title: (row.Title || '').trim(),
+      title,
       company: companyName,
       companySlug,
       companyType,
