@@ -1,0 +1,52 @@
+{
+  "attempted": {
+    "prateek agarwal||first cheque||https://www.linkedin.com/in/fcwalaprateek/": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-07-29T16:13:00.138Z"
+    },
+    "anindya||hellman and friedman||https://www.linkedin.com/in/anindya-ghoshal": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-07-29T16:13:01.099Z"
+    },
+    "vinutha rallapalli||innovex capital||": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-07-29T16:13:09.019Z"
+    },
+    "siddesh choudhary||accel||https://www.linkedin.com/in/sid239/": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-07-29T16:13:12.212Z"
+    },
+    "aayushi shah||iti growth opportunities||https://www.linkedin.com/in/aayushi-shah-78b28780/": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-07-29T16:13:14.143Z"
+    },
+    "ranopriyo choudhury||growth valley||": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-07-29T16:13:17.968Z"
+    },
+    "samyak jain||ecosystem ventures||": {
+      "status": "FOUND",
+      "email": "samyak.j@ecosystemventures.in",
+      "certainty": "ultra_sure",
+      "at": "2026-07-29T16:13:19.863Z"
+    },
+    "poorna||social alpha||": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-07-29T16:13:20.717Z"
+    }
+  }
+}
