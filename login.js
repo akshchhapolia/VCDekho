@@ -17,10 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let step = 'email';
   let pendingEmail = '';
   let busy = false;
+  let clientReady = false;
   let resendCooldownTimer = null;
   let resendCooldownUntil = 0;
 
   const RESEND_COOLDOWN_MS = 30000;
+  const LABEL_SEND = 'Send OTP';
+  const LABEL_VERIFY = 'Verify & continue';
 
   const params = new URLSearchParams(window.location.search);
   const nextPath = params.get('next') || '/investors';
@@ -50,6 +53,19 @@ document.addEventListener('DOMContentLoaded', () => {
     otpError.style.display = 'none';
   }
 
+  function readEmail() {
+    // Autofill can look filled but leave .value empty until a user gesture settles.
+    let email = (emailInput.value || '').trim();
+    if (!email && form) {
+      try {
+        email = String(new FormData(form).get('email') || '').trim();
+      } catch (_) {
+        /* ignore */
+      }
+    }
+    return email;
+  }
+
   function updateResendLabel() {
     const remaining = Math.ceil((resendCooldownUntil - Date.now()) / 1000);
     if (remaining > 0) {
@@ -58,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     resendBtn.disabled = busy;
-    resendBtn.textContent = 'Resend code';
+    resendBtn.textContent = 'Resend OTP';
   }
 
   function startResendCooldown() {
@@ -76,7 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function setBusy(nextBusy) {
     busy = nextBusy;
-    submitBtn.disabled = busy;
+    // Do not set submitBtn.disabled synchronously inside a submit handler —
+    // that cancels the first click in some browsers after a hard refresh.
+    submitBtn.classList.toggle('is-busy', busy);
+    submitBtn.setAttribute('aria-busy', busy ? 'true' : 'false');
     googleBtn.disabled = busy;
     changeEmailBtn.disabled = busy;
     emailInput.readOnly = busy && step === 'otp';
@@ -93,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     otpStep.hidden = !onOtp;
     emailInput.required = !onOtp;
     otpInput.required = onOtp;
-    submitBtn.textContent = onOtp ? 'Verify & continue' : 'Send code';
+    submitBtn.textContent = onOtp ? LABEL_VERIFY : LABEL_SEND;
     if (onOtp) {
       otpInput.value = '';
       setTimeout(() => otpInput.focus(), 0);
@@ -113,7 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function validateEmailStep() {
     clearFieldErrors();
-    const email = emailInput.value.trim();
+    const email = readEmail();
+    if (email && emailInput.value.trim() !== email) {
+      emailInput.value = email;
+    }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       emailInput.classList.add('invalid');
       emailError.style.display = 'block';
@@ -147,18 +169,28 @@ document.addEventListener('DOMContentLoaded', () => {
     return (err && err.message) || 'Something went wrong. Try again.';
   }
 
+  async function ensureClient() {
+    if (!window.VCAuth || typeof window.VCAuth.getClient !== 'function') {
+      throw new Error('Auth is still loading. Try again in a moment.');
+    }
+    await window.VCAuth.getClient();
+    clientReady = true;
+  }
+
   async function sendOtpCode({ fromResend } = {}) {
     if (!fromResend && !validateEmailStep()) return false;
     if (fromResend && !pendingEmail) return false;
     if (fromResend && Date.now() < resendCooldownUntil) return false;
 
-    const email = fromResend ? pendingEmail : emailInput.value.trim();
+    const email = fromResend ? pendingEmail : readEmail();
 
     setBusy(true);
-    submitBtn.textContent = fromResend ? 'Resending…' : 'Sending…';
-    setStatus('');
+    submitBtn.textContent = fromResend ? 'Resending…' : 'Sending OTP…';
+    setStatus(clientReady ? '' : 'Connecting…', clientReady ? undefined : 'info');
 
     try {
+      await ensureClient();
+      setStatus('');
       await window.VCAuth.sendEmailOtp({
         email,
         createUser: true
@@ -173,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return false;
     } finally {
       setBusy(false);
-      submitBtn.textContent = step === 'otp' ? 'Verify & continue' : 'Send code';
+      submitBtn.textContent = step === 'otp' ? LABEL_VERIFY : LABEL_SEND;
     }
   }
 
@@ -186,6 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setStatus('');
 
     try {
+      await ensureClient();
       const data = await window.VCAuth.verifyEmailOtp({
         email: pendingEmail,
         token
@@ -197,12 +230,13 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) {
       setStatus(friendlyAuthError(err, 'verify'), 'error');
       setBusy(false);
-      submitBtn.textContent = 'Verify & continue';
+      submitBtn.textContent = LABEL_VERIFY;
     }
   }
 
   (async function bootstrap() {
     try {
+      await ensureClient();
       const client = await window.VCAuth.getClient();
       const { data } = await client.auth.getSession();
       if (data.session) {
@@ -215,6 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    e.stopPropagation();
     if (busy) return;
     if (step === 'email') {
       await sendOtpCode();
@@ -237,9 +272,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   googleBtn.addEventListener('click', async () => {
     if (busy) return;
-    googleBtn.disabled = true;
+    setBusy(true);
     setStatus('');
     try {
+      await ensureClient();
       const client = await window.VCAuth.getClient();
       const { error } = await client.auth.signInWithOAuth({
         provider: 'google',
@@ -252,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       if (error) throw error;
     } catch (err) {
-      googleBtn.disabled = false;
+      setBusy(false);
       setStatus((err && err.message) || 'Google sign-in failed.', 'error');
     }
   });

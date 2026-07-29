@@ -5689,6 +5689,13 @@ html.auth-pending body {
   cursor: wait;
 }
 
+.waitlist-submit-btn.is-busy,
+.auth-card .waitlist-submit-btn.is-busy {
+  opacity: 0.75;
+  cursor: wait;
+  pointer-events: none;
+}
+
 .auth-card-title {
   margin: 0 0 0.35rem;
   font-size: 1.35rem;
