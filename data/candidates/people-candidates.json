@@ -1891,1840 +1891,2331 @@
       "sourceUrl": "https://in.linkedin.com/company/appreciate-capital",
       "method": "manual-research",
       "confidence": "high"
-    }
-  ],
-  "unresolved": [
+    },
     {
       "company": "Spiral Ventures Pte. Ltd.",
-      "website": "https://spiral.vc",
-      "reason": "homepage-fetch-failed",
-      "detail": "The operation was aborted due to timeout"
+      "name": "Sujit Kunte",
+      "title": "Partner and Head of India",
+      "linkedinUrl": "",
+      "sourceUrl": "https://spiral-ventures.com/teams/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Lodha Ventures",
-      "website": "https://lodhaventures.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Abhinandan Lodha",
+      "title": "Chief Executive Officer & Owner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.thecompanycheck.com/company/b/lodha-ventures/53x9aak0ai4jymqm7",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Wami Capital - Single Family Office",
-      "website": "https://wamicapital.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://wamicapital.com/"
+      "name": "Anisha Ramakrishnan",
+      "title": "Chief Executive Officer",
+      "linkedinUrl": "https://ae.linkedin.com/in/anisha-ramakrishnan-1a61785b",
+      "sourceUrl": "https://wamicapital.com/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "3 Peaks Ventures",
-      "website": "https://3peaksventures.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Akshat Chaudhary",
+      "title": "Director & Partner",
+      "linkedinUrl": "https://linkedin.com/in/akshat-chaudhary-a1388189",
+      "sourceUrl": "https://in.linkedin.com/company/3-peaks-ventures",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Superb Capital",
-      "website": "https://superbcapital.vc",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Shilpin Tater",
+      "title": "Founder",
+      "linkedinUrl": "https://www.linkedin.com/in/shilpin-tater-baa25013",
+      "sourceUrl": "https://superbcapital.in/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Agility Ventures",
-      "website": "https://agilityventures.vc",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Dhianu Das",
+      "title": "Co-founder",
+      "linkedinUrl": "",
+      "sourceUrl": "https://india.entrepreneur.com/news-and-trends/always-agile-dhianu-das-co-founder-agility-ventures/456216",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Agility Ventures",
+      "name": "Prashant Narang",
+      "title": "Co-founder",
+      "linkedinUrl": "",
+      "sourceUrl": "https://india.entrepreneur.com/news-and-trends/always-agile-dhianu-das-co-founder-agility-ventures/456216",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Eternal Capital (India)",
-      "website": "https://eternalcapital.in/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Dhruv Dhanraj Bahl",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/dhruv-dhanraj-bahl-3857a033",
+      "sourceUrl": "https://www.business-standard.com/companies/start-ups/former-bharatpe-coo-bahl-led-eternal-capital-launches-rs-120-crore-vc-fund-124050200009_1.html",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "888vc",
-      "website": "https://888.vc",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Rohit Bafna",
+      "title": "Founder & CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/iamrohitbafna",
+      "sourceUrl": "https://www.888vc.co/about",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Blue Ashva Capital",
-      "website": "https://blueashva.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Satya Bansal",
+      "title": "Founder & CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/satyabansal",
+      "sourceUrl": "https://blueashvacapital.com/our-team",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "1818 Venture Capital",
-      "website": "https://1818vc.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Richard Avery-Wright",
+      "title": "Founding Partner & CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.1818venturecapital.com/about",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "Teja Ventures",
-      "website": "https://www.tejaventures.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.tejaventures.com/about-us"
+      "name": "Virginia Tan",
+      "title": "Founding & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.tejaventures.com/team",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "UpsideDown VC",
-      "website": "https://upsidedownvc.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "LightPace VC",
-      "website": "https://www.lightpacevc.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.lightpacevc.com/"
-    },
-    {
-      "company": "OperatorVC",
-      "website": "https://operatorvc.com/OperatorVC-8a33376dede541f08d7d4bfc1a963d68",
-      "reason": "homepage-fetch-failed",
-      "detail": 500
-    },
-    {
-      "company": "Supermorpheus",
-      "website": "https://supermorpheus.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://supermorpheus.com/"
+      "name": "Jonathan Sun",
+      "title": "Founder",
+      "linkedinUrl": "https://linkedin.com/in/jonathan-sun-652541131",
+      "sourceUrl": "https://upsidedown.vc/",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "Unpopular Ventures",
-      "website": "https://unpopularventures.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.unpopular.vc/team"
+      "name": "Peter Livingston",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/pliv",
+      "sourceUrl": "https://f4.fund/firms/unpopular-ventures",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Unpopular Ventures",
+      "name": "Thibault Reichelt",
+      "title": "Partner (India, Africa & LatAm)",
+      "linkedinUrl": "",
+      "sourceUrl": "https://f4.fund/firms/unpopular-ventures",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Orbit Startups",
-      "website": "https://orbitstartups.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://orbitventures.com/partnerships/"
-    },
-    {
-      "company": "Wavelaunch VC",
-      "website": "https://wavelaunchvc.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "Venture Cooperative",
-      "website": "https://venturecoop.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://venturecoop.com/"
-    },
-    {
-      "company": "Bertelsmann India Investments",
-      "website": "https://bertelsmann-india.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "Tiger Global Management",
-      "website": "https://www.tigerglobal.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.tigerglobal.com/"
+      "name": "Aditya Kathpalia",
+      "title": "Director of India & MENA",
+      "linkedinUrl": "https://www.linkedin.com/in/akathpalia/",
+      "sourceUrl": "https://icoholder.com/hi/companies/orbit-startups-22319",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Unitus Capital",
-      "website": "https://unituscapital.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://unituscapital.com/about-us/"
+      "name": "Abhijit Ray",
+      "title": "Co-founder & Managing Director",
+      "linkedinUrl": "https://linkedin.com/in/abhijit-ray-0697b47",
+      "sourceUrl": "https://unituscapital.com/our-team/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Unitus Capital",
+      "name": "Kylie Charlton",
+      "title": "Co-founder & Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://unituscapital.com/board-of-directors/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Menterra Ventures",
-      "website": "https://www.menterra.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.menterra.com/about-us/"
+      "name": "Mukesh Sharma",
+      "title": "Co-founder, Partner & Head-Investment Management",
+      "linkedinUrl": "",
+      "sourceUrl": "https://menterra.com/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
-      "company": "Omidyar Network India",
-      "website": "https://omidyarnetwork.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "company": "Menterra Ventures",
+      "name": "Paul Basil",
+      "title": "Co-founder, Partner & Head-Impact Management",
+      "linkedinUrl": "",
+      "sourceUrl": "https://menterra.com/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Gaja Capital",
-      "website": "https://gajacapital.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://gajacapital.com/about"
+      "name": "Gopal Jain",
+      "title": "Co-founder, Managing Partner & CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://gajacapital.com/team/gopal-jain",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Kedaara Capital",
-      "website": "https://kedaaracapital.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Manish Kejriwal",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/manish-kejriwal-1a7336",
+      "sourceUrl": "https://kedaara.com/team-member/manish-kejriwal/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Kedaara Capital",
+      "name": "Sunish Sharma",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://kedaara.com/team-member/sunish-sharma/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "OperatorVC",
+      "name": "Abhishek Agarwal",
+      "title": "Founder & General Partner",
+      "linkedinUrl": "https://linkedin.com/in/aggyabhishek",
+      "sourceUrl": "https://in.linkedin.com/company/operatorvc",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Supermorpheus",
+      "name": "Sameer Guglani",
+      "title": "Founder",
+      "linkedinUrl": "https://linkedin.com/in/sameerguglani",
+      "sourceUrl": "https://supermorpheus.com/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Wavelaunch VC",
+      "name": "Arunav Gupta",
+      "title": "Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/arunavv",
+      "sourceUrl": "https://wavelaunch.org/investor-centre/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Bertelsmann India Investments",
+      "name": "Pankaj Makkar",
+      "title": "Managing Director",
+      "linkedinUrl": "https://in.linkedin.com/in/pankajmakkar",
+      "sourceUrl": "https://www.avcj.com/avcj/interview/3028579/q-a-bertelsmann-india-investments-pankaj-makkar",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Everstone Group ",
-      "website": "https://www.everstonegroup.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.everstonegroup.com/about-us/"
+      "name": "Sameer Sain",
+      "title": "Co-Founder & Group CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://eversourcecapital.com/team/sameer-sain/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Ascent Capital",
-      "website": "https://ascentcapital.in/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Raja Kumar",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/raja-kumar-455b7245",
+      "sourceUrl": "https://mergr.com/investor/ascent-capital/team",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Burman Family Holdings",
-      "website": "https://burmanfamily.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Gaurav Burman",
+      "title": "Head, Burman Family Holdings",
+      "linkedinUrl": "",
+      "sourceUrl": "https://burmanfh.com/investing-next-generation/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Narotam Sekhsaria Family Office",
-      "website": "https://nsfoundation.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Darshan Engineer",
+      "title": "Chief Executive Officer",
+      "linkedinUrl": "https://linkedin.com/in/darshan-engineer-0b5258375",
+      "sourceUrl": "https://inforcapital.com/companies/narotam-sekhsaria-family-office/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Samara Capital",
-      "website": "https://samaracapital.in/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Sumeet Narang",
+      "title": "Founder & Managing Director",
+      "linkedinUrl": "https://in.linkedin.com/in/sumeet-narang111",
+      "sourceUrl": "https://samaracapital.com/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Chona Family Office",
-      "website": "https://chonafamily.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Nirali Solani",
+      "title": "Head - Family Office",
+      "linkedinUrl": "https://linkedin.com/in/nirali-solani-83105a4b",
+      "sourceUrl": "https://www.vccircle.com/whychona-family-office-hit-a-pause-on-lp-investments",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "MGA Ventures",
-      "website": "https://mgaventures.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Gautam Ashra",
+      "title": "Promoter",
+      "linkedinUrl": "",
+      "sourceUrl": "http://mgaventures.in/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "MGA Ventures",
+      "name": "Jay Desai",
+      "title": "Partner & Head of Investments",
+      "linkedinUrl": "https://linkedin.com/in/jaydesai91",
+      "sourceUrl": "http://mgaventures.in/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Madison India Capital",
-      "website": "https://madisonindia.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "East Ventures",
-      "website": "https://east.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://east.vc/about-us"
+      "name": "Surya Chadha",
+      "title": "Founder & Managing Director",
+      "linkedinUrl": "https://www.linkedin.com/in/suryachadha",
+      "sourceUrl": "https://www.madison-india.com/team",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "PeerCapital",
-      "website": "https://peercapital.vc",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Ankur Pahwa",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://peercapital.in/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "PeerCapital",
+      "name": "Karthik Prabhakar",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://peercapital.in/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "The Venture Folks",
-      "website": "https://theventurefolks.com",
-      "reason": "homepage-fetch-failed",
-      "detail": 526
+      "name": "Nishtha Sethi",
+      "title": "Founder",
+      "linkedinUrl": "https://in.linkedin.com/in/nishtha-sethi",
+      "sourceUrl": "https://linkedin.com/company/theventurefolks",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "RPSG Capital Ventures",
-      "website": "https://rpsgcapital.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Abhishek Goenka",
+      "title": "Managing Partner & CIO",
+      "linkedinUrl": "https://www.linkedin.com/in/abhishekgoenka",
+      "sourceUrl": "https://rpsgcapital.vc/team/abhishek-goenka",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "GVFL Limited",
-      "website": "https://gvfl.com/",
-      "reason": "no-usable-text",
-      "detail": ""
-    },
-    {
-      "company": "Marwari Catalysts",
-      "website": "https://www.marwaricatalysts.com/home.php",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.marwaricatalysts.com/mcats-group.php"
-    },
-    {
-      "company": "Tanas Capital",
-      "website": "https://tanascapital.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "VentureStudio",
-      "website": "https://venturestudio.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "The operation was aborted due to timeout"
-    },
-    {
-      "company": "GUSEC",
-      "website": "https://gusec.edu.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://gusec.edu.in/about-us/"
+      "name": "Mihir Joshi",
+      "title": "Managing Director",
+      "linkedinUrl": "https://linkedin.com/in/mihirjoshi-mj",
+      "sourceUrl": "https://gvfl.com/team",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Axilor Ventures",
-      "website": "https://www.axilor.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.axilor.com/about/"
+      "name": "Ganapathy Venugopal",
+      "title": "Co-founder & CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.axilor.com/person/ganapathy-venugopal/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "VenturEast",
-      "website": "https://ventureast.net",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Sarath Naru",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/sarathnaru",
+      "sourceUrl": "https://www.ventureast.net/team/sarath-naru",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Marwari Catalysts",
+      "name": "Sushil Sharma",
+      "title": "Founder & CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/sushilsharmamcats",
+      "sourceUrl": "https://www.marwaricatalysts.com/team",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Tanas Capital",
+      "name": "Amit Sharma",
+      "title": "Managing Director & Founder",
+      "linkedinUrl": "https://sg.linkedin.com/in/aamitsharma",
+      "sourceUrl": "https://www.tcapital.sg/people",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "GUSEC",
+      "name": "Srinivasa Rao Sureddi",
+      "title": "Chief Executive Officer",
+      "linkedinUrl": "https://linkedin.com/in/srinivasa-rao-sureddi-a4a14a68",
+      "sourceUrl": "https://gusec.edu.in/team/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "AUM Ventures",
-      "website": "https://aumventures.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "The operation was aborted due to timeout"
-    },
-    {
-      "company": "Ribbit Capital",
-      "website": "https://www.ribbitcap.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.ribbitcap.com/team"
-    },
-    {
-      "company": "Index Ventures ",
-      "website": "https://www.indexventures.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.indexventures.com/team/"
-    },
-    {
-      "company": "Cherry Ventures",
-      "website": "https://cherry.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://cherry.vc/founders"
-    },
-    {
-      "company": "Upfront Ventures",
-      "website": "https://upfront.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Chetan Mehta",
+      "title": "Founding Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/chetanmehta-aumvc",
+      "sourceUrl": "https://aumvc.com/team",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "TVentures",
-      "website": "https://tventures.vc",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Abhishek Gupta",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://edugrowth.org.au/2021/06/12/international-investor-lens-with-abhishek-gupta/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Foster Ventures",
-      "website": "https://fosterventures.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "B Capital ",
-      "website": "https://bcapgroup.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://b.capital/about/"
-    },
-    {
-      "company": "Valia Ventures",
-      "website": "https://valiaventures.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Priya Ramachandran",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.fostervc.com/",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "Alfa Ventures",
-      "website": "https://alfaventures.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Dhianu Das",
+      "title": "Founder",
+      "linkedinUrl": "https://www.linkedin.com/in/dhianu",
+      "sourceUrl": "https://www.vccircle.com/angel-investor-dhianu-das-floats-proprietary-seed-fund",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Auxano Capital",
-      "website": "https://auxanocapital.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.auxanocapital.com/about/"
+      "name": "Brijesh Damodaran Nair",
+      "title": "Managing Partner & Co-founder",
+      "linkedinUrl": "https://www.linkedin.com/in/brijeshdamodaran",
+      "sourceUrl": "https://bridgeindia.org.uk/speaker/brijesh-damodaran/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Saison Capital",
-      "website": "https://saisoncapital.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Visa Kannan",
+      "title": "Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/visalakshi-kannan",
+      "sourceUrl": "https://startupintros.com/orgs/saison-capital",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Integra Partners",
-      "website": "https://integra.partners",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Chris Kaptein",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://integrapartners.co/integra-news/integra-partners-announces-us90m-fund-ii-close-and-regional-expansion/",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "Momentum Capital",
-      "website": "https://www.hugedomains.com/domain_profile.cfm?d=momentumcap.com",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.hugedomains.com/about.cfm"
+      "name": "Ankur Shrivastava",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/srivast",
+      "sourceUrl": "https://mvcapital.vc/team.html",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "AC Ventures",
-      "website": "https://acventures.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://acventures.vc/about/"
-    },
-    {
-      "company": "Mana Ventures",
-      "website": "https://manaventures.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Tarun Bhargava",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://in.linkedin.com/company/a-cventure",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "Silicon Valley Quad (SVQ)",
-      "website": "https://svquad.vc",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "Hustle Fund",
-      "website": "https://www.hustlefund.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.hustlefund.vc/founders"
+      "name": "Kanwal Rekhi",
+      "title": "Founding Partner",
+      "linkedinUrl": "https://linkedin.com/in/kanwalrekhi",
+      "sourceUrl": "https://svquad.com/",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "N+1 Capital",
-      "website": "https://nplus1.capital",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Rahul Chowdhury",
+      "title": "Co-Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.np1.in/team/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
-      "company": "Superscout",
-      "website": "https://superscout.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://superscout.co/partners/gate"
+      "company": "N+1 Capital",
+      "name": "Ashish Singla",
+      "title": "Co-Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.np1.in/team/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "B Capital ",
+      "name": "Karan Mohla",
+      "title": "General Partner (South & Southeast Asia)",
+      "linkedinUrl": "",
+      "sourceUrl": "https://b.capital/team/karan-mohla/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Anay Ventures",
-      "website": "",
-      "reason": "no-website"
+      "name": "Avantika Mandhani",
+      "title": "Founding Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/avantika-mandhani-b18b11105",
+      "sourceUrl": "https://www.linkedin.com/company/anay-ventures",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "WaterBridge Ventures",
-      "website": "https://waterbridge.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://waterbridge.vc/about/"
+      "name": "Manish Kheterpal",
+      "title": "Co-founder & Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/mkheterpal",
+      "sourceUrl": "https://informaconnect.com/superventure/speakers/manish-kheterpal/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "SRI Capital",
-      "website": "https://sricapital.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Sashi Reddi",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.cbinsights.com/investor/sri-capital",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Force Ventures",
-      "website": "https://force.vc",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Karthik Bhat",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/karthik-bhat-8221b61",
+      "sourceUrl": "https://f4.fund/firms/force-ventures",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "9Unicorns",
-      "website": "https://9unicorns.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Apoorva Ranjan Sharma",
+      "title": "Co-Founder & Managing Director",
+      "linkedinUrl": "https://www.linkedin.com/in/drapoorvsharma",
+      "sourceUrl": "https://theorg.com/org/9unicorns-accelerator-fund/org-chart/apoorva-ranjan-sharma",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "LetsVenture",
-      "website": "https://www.letsventure.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://lvxventures.com/founders"
+      "name": "Shanti Mohan",
+      "title": "Founder & CEO",
+      "linkedinUrl": "https://linkedin.com/in/shantimohanlv",
+      "sourceUrl": "https://tracxn.com/d/companies/letsventure/__W1m-CELpZ-0ZI5-ozx4gOjFd6f-3sJcmfcpA6vE8Gfg",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Mumbai Angels Network",
-      "website": "https://www.mumbaiangels.com/",
-      "reason": "homepage-fetch-failed",
-      "detail": 403
+      "name": "Nandini Mansinghka",
+      "title": "Co-founder & CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/nandinimansinghka",
+      "sourceUrl": "https://www.bloomberg.com/profile/person/21035076",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Hyderabad Angels",
-      "website": "https://hyderabadangels.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "The operation was aborted due to timeout"
+      "name": "J A Chowdary",
+      "title": "Founder & Chairman",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.business-standard.com/article/finance/hyderabad-angels-gives-start-ups-a-boost-112112202001_1.html",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Lead Angels",
-      "website": "https://leadangels.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://leadangels.in/"
+      "name": "Sushanto Mitra",
+      "title": "Founder & CEO",
+      "linkedinUrl": "https://in.linkedin.com/in/sushantomitra",
+      "sourceUrl": "https://theorg.com/org/lead-angels/org-chart/sushanto-mitra",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Calcutta Angels Network",
-      "website": "https://calcuttaangels.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "Native Smart Capital",
-      "website": "https://nativesmart.capital",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Raghav Kanoria",
+      "title": "First Co-Founder",
+      "linkedinUrl": "https://www.linkedin.com/in/raghav-kanoria-30195412",
+      "sourceUrl": "https://startupintros.com/orgs/calcutta-angels",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Info Edge Ventures",
-      "website": "https://www.infoedge.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.infoedge.in/About/Overview"
+      "name": "Sanjeev Bikhchandani",
+      "title": "Founder",
+      "linkedinUrl": "",
+      "sourceUrl": "https://infoedgeventures.in/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Info Edge Ventures",
+      "name": "Chinmaya Sharma",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.infoedgeventures.in/team",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Flipkart Ventures",
-      "website": "https://stories.flipkart.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://stories.flipkart.com/"
+      "name": "Nishant Verman",
+      "title": "SVP, Corporate Development & Partnerships (Flipkart Ventures)",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.linkedin.com/posts/flipkart_were-pleased-to-welcome-nishant-verman-back-activity-7442157154930954240-Uofl",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "JioGenNext",
-      "website": "https://www.jiogennext.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.jiogennext.com/"
-    },
-    {
-      "company": "Reliance Ventures",
-      "website": "https://www.ril.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.ril.com/"
+      "name": "Amey Mashelkar",
+      "title": "Head",
+      "linkedinUrl": "https://linkedin.com/in/amey-mashelkar-20239a4",
+      "sourceUrl": "https://www.ril.com/about/jiogennext",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Mahindra Partners",
-      "website": "https://www.mahindrapartners.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Zhooben Bhiwandiwala",
+      "title": "President",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.cbinsights.com/investor/mahindra-partners",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Mahindra Partners",
+      "name": "Parag Shah",
+      "title": "President, Group Legal Member",
+      "linkedinUrl": "https://in.linkedin.com/in/parag-shah-1b96597",
+      "sourceUrl": "https://www.mahindra.com/blogs/investing-in-the-businesses-of-tomorrow-mahindra-partners",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "LightPace VC",
+      "name": "Chenelle Ansah",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://aeroleads.com/c/lightpace-vc",
+      "method": "manual-research",
+      "confidence": "medium"
+    },
+    {
+      "company": "Tiger Global Management",
+      "name": "Deep Verma",
+      "title": "Head of India & Southeast Asia",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.newsbytesapp.com/news/business/tiger-global-revamps-investment-approach-in-india-s-start-up-ecosystem/story",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Omidyar Network India",
+      "name": "Badri Pillapakkam",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/badripillapakkam",
+      "sourceUrl": "https://www.omidyarnetwork.in/team/badri-pillapakkam",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "East Ventures",
+      "name": "Willson Cuaca",
+      "title": "Co-founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://east.vc/news/insights/key-facts-east-ventures",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "VentureStudio",
+      "name": "Jeremy Fritzhand",
+      "title": "Chief Executive Officer",
+      "linkedinUrl": "https://linkedin.com/in/fritzhand",
+      "sourceUrl": "https://ahduni.edu.in/faculty/jeremy-fritzhand/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Ribbit Capital",
+      "name": "Micky Malka",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://economictimes.indiatimes.com/small-biz/startups/newsbuzz/ribbit-leads-21-m-round-in-groww/articleshow/71194973.cms",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Valia Ventures",
+      "name": "Khaled Jalanbo",
+      "title": "Co-Founder & Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/khaled-jalanbo",
+      "sourceUrl": "https://www.cbinsights.com/investor/valia-investments-1",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Mana Ventures",
+      "name": "Morgan Schwanke",
+      "title": "Founder & General Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/morganschwanke",
+      "sourceUrl": "https://www.linkedin.com/company/manaventures",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Hustle Fund",
+      "name": "Elizabeth Yin",
+      "title": "Co-Founder & Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://foundry.vc/blog/2021/02/our-investment-in-hustle-fund/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Hustle Fund",
+      "name": "Shiyan Koh",
+      "title": "Co-Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://foundry.vc/blog/2021/02/our-investment-in-hustle-fund/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Superscout",
+      "name": "David Haddad",
+      "title": "Founder",
+      "linkedinUrl": "https://linkedin.com/in/davidhaddad",
+      "sourceUrl": "https://superscout.co/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "SIDBI Venture Capital",
-      "website": "https://www.sidbiventure.co.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.sidbiventure.co.in/"
+      "name": "Arup Kumar",
+      "title": "MD & CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.sidbiventure.co.in/Our_Team.html",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Canbank Venture Capital Fund",
-      "website": "https://www.canbankventure.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Sanjeev Kumar Shrivastava",
+      "title": "Managing Director",
+      "linkedinUrl": "https://www.linkedin.com/in/sanjeev-kumar-shrivastava-5b270b101",
+      "sourceUrl": "https://www.canbank.vc/board_of_directors.php",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "IFCI Venture Capital Funds",
-      "website": "https://www.ifciventure.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.ifciventure.com/index.aspx"
+      "name": "V. Anish Babu",
+      "title": "Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.ifciventure.com/directors-information.aspx",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "ICICI Venture",
-      "website": "https://www.iciciventure.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "The operation was aborted due to timeout"
+      "name": "Puneet Nanda",
+      "title": "Managing Director & CEO",
+      "linkedinUrl": "https://in.linkedin.com/in/puneet-nanda-3b643467",
+      "sourceUrl": "https://www.bloomberg.com/profile/person/16477319",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Kotak Private Equity",
-      "website": "https://www.kotak.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.kotak.bank.in/en/corporate/cash-management-services.html"
+      "name": "S. Sriniwasan",
+      "title": "Managing Director",
+      "linkedinUrl": "https://linkedin.com/in/srini-sriniwasan-4250016",
+      "sourceUrl": "https://www.kotakalternateasset.com/leadership/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Patamar Capital",
-      "website": "https://patamar.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://patamar.com/about-us/"
+      "name": "Lee FitzGerald",
+      "title": "Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/lee-fitzgerald-433964148",
+      "sourceUrl": "https://patamar.com/patamar-capital-launches-impact-investment-fund-drive-growth-womens-smes-southeast-asia/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Greyhound Capital",
-      "website": "https://greyhoundcapital.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://greyhoundcapital.com/"
+      "name": "Sergej Belozerov",
+      "title": "Founder & Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.greyhoundcapital.net/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Steadview Capital",
-      "website": "https://www.steadview.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.steadview.com/"
+      "name": "Ravi Mehta",
+      "title": "Founder, CIO & Managing Director",
+      "linkedinUrl": "https://www.linkedin.com/in/ravi-mehta-29644826",
+      "sourceUrl": "https://www.ashoka.edu.in/profile/ravi-mehta/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Rebright Partners",
-      "website": "https://rebrightpartners.com/",
-      "reason": "homepage-fetch-failed",
-      "detail": "The operation was aborted due to timeout"
+      "name": "Takeshi Ebihara",
+      "title": "Founding General Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/ebihara",
+      "sourceUrl": "https://rebrightpartners.com/about-us/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Rebright Partners",
+      "name": "Brij Bhasin",
+      "title": "Partner (India Investments)",
+      "linkedinUrl": "",
+      "sourceUrl": "https://rebrightpartners.com/team/brij-bhasin/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Surge",
-      "website": "https://surge.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.coca-cola.com/us/en/offerings/partners/nascar"
+      "name": "Rajan Anandan",
+      "title": "Managing Director",
+      "linkedinUrl": "https://linkedin.com/in/rajan-anandan-2481b814",
+      "sourceUrl": "https://www.forbesindia.com/article/take-one-big-story-of-the-day/peak-xv-sees-surge-programme-going-more-global-reveals-cohort-10/94446/1",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Y Combinator",
-      "website": "https://www.ycombinator.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.ycombinator.com/about"
+      "name": "Jared Friedman",
+      "title": "Partner & Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.moneycontrol.com/news/business/startup/mc-interview-india-has-ai-talent-but-lacks-breakout-ideas-says-y-combinator-s-jared-friedman-13892532.html",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Techstars",
-      "website": "https://www.techstars.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.techstars.com/about"
-    },
-    {
-      "company": "500 Global",
-      "website": "https://500.co/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://500.co/founders/flagship"
+      "name": "Ray Newal",
+      "title": "Managing Director, Techstars Bangalore",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.techstars.com/newsroom/introducing-managing-director-ray-newal",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "Jungle Ventures",
-      "website": "https://www.jungle.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.jungle.vc/portfolio"
+      "name": "Amit Anand",
+      "title": "Founding Partner & Managing Director",
+      "linkedinUrl": "https://www.linkedin.com/in/amit-anand-6b72903",
+      "sourceUrl": "https://www.jungle.vc/team/amit-anand",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Wavemaker Partners",
-      "website": "https://wavemaker.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://wavemaker.vc/"
+      "name": "Paul Santos",
+      "title": "Managing Partner, Southeast Asia",
+      "linkedinUrl": "",
+      "sourceUrl": "https://wavemakerpartners.com/team/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Insignia Ventures Partners",
-      "website": "https://www.insignia.vc/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Yinglan Tan",
+      "title": "Founding Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/yinglantan",
+      "sourceUrl": "https://www.insignia.vc/team/yinglan",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "JAFCO Asia",
-      "website": "https://www.jafco.asia",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Supriya Singh",
+      "title": "Senior Director & Head of Investment (SEA & India)",
+      "linkedinUrl": "https://linkedin.com/in/supriya-singh-79789215",
+      "sourceUrl": "https://www.linkedin.com/posts/jif-capital_we-are-pleased-to-announce-that-jafco-investment-activity-7439958029913006080-lHPk",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Pavilion Capital",
-      "website": "https://www.pavilioncapital.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Tow Heng Tan",
+      "title": "CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.sevioragroup.com/resource-detail/pavilion-capital-to-join-seviora-group-in-building-a-leading-asia-based-asset-management-group",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "General Atlantic",
-      "website": "https://www.generalatlantic.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.generalatlantic.com/"
+      "name": "Shantanu Rastogi",
+      "title": "Managing Director, Head of India",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.generalatlantic.com/people/shantanu-rastogi/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Bessemer Venture Partners",
-      "website": "https://www.bvp.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.bvp.com/team"
+      "name": "Vishal Gupta",
+      "title": "Partner",
+      "linkedinUrl": "https://linkedin.com/in/vishalguptabvp",
+      "sourceUrl": "https://www.bvp.com/team/vishal-gupta",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Prosus Ventures",
-      "website": "https://www.prosus.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.prosus.com/about-us"
+      "name": "Ashutosh Sharma",
+      "title": "Head of India & Southeast Asia Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://medial.app/news/prosus-elevates-ashutosh-sharma-to-lead-india-southeast-asia-deals-b48478a0255c5",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
-      "company": "Naspers Foundry",
-      "website": "https://www.naspers.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.naspers.com/the-group/leadership"
+      "company": "Prosus Ventures",
+      "name": "Apoorve Goyal",
+      "title": "Managing Director, India Investments",
+      "linkedinUrl": "https://www.linkedin.com/in/apoorve-goyal-67967797",
+      "sourceUrl": "https://www.linkedin.com/in/apoorve-goyal-67967797",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Temasek",
-      "website": "https://www.temasek.com.sg/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.temasek.com.sg/en/about-us"
+      "name": "Ravi Lambah",
+      "title": "Head of India & Strategic Initiatives",
+      "linkedinUrl": "https://www.linkedin.com/in/ravi-lambah-7b95a7a3",
+      "sourceUrl": "https://www.temasek.com.sg/en/about-us/our-leadership",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "SoftBank Investment Advisers",
-      "website": "https://group.softbank/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://group.softbank/about/corporate_governance"
+      "name": "Sumer Juneja",
+      "title": "Managing Partner, EMEA & India",
+      "linkedinUrl": "https://www.linkedin.com/in/sumer-juneja-48288626",
+      "sourceUrl": "https://visionfund.com/team/sarthak-misra",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "SoftBank Ventures Asia",
-      "website": "https://www.softbank.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "The operation was aborted due to timeout"
+      "name": "JP Lee",
+      "title": "CEO & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://startupintros.com/orgs/softbank-ventures-asia",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Insight Partners",
-      "website": "https://www.insightpartners.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.insightpartners.com/onsite/"
+      "name": "Nikhil Sachdev",
+      "title": "Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://me.sh/profile/nikhil-sachdev",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Coatue Management",
-      "website": "https://www.coatue.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.coatue.com/blog/press/our-continued-partnership-with-anthropic"
+      "name": "Rahul Kishore",
+      "title": "Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://talent4boards.com/vedantu-announces-rahul-kishore-to-its-board-along-with-raising-100m-series-d-funding-led-by-coatue/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "DST Global",
-      "website": "https://dstglobal.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "Dragoneer Investment Group",
-      "website": "https://www.dragoneer.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Yuri Milner",
+      "title": "Founder",
+      "linkedinUrl": "",
+      "sourceUrl": "https://breakthroughprize.org/Yuri_Milner",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Blackstone Growth",
-      "website": "https://www.blackstone.com/",
-      "reason": "homepage-fetch-failed",
-      "detail": 403
+      "name": "Mukesh Mehta",
+      "title": "CIO & Senior Managing Director, PE India",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.ivca.in/committee/member/mukeshh-mehta",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Warburg Pincus",
-      "website": "https://warburgpincus.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://warburgpincus.com/"
+      "name": "Narendra Ostawal",
+      "title": "Managing Director, Head of India Private Equity",
+      "linkedinUrl": "",
+      "sourceUrl": "https://warburgpincus.com/team/narendra-ostawal/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Bain Capital",
-      "website": "https://www.baincapital.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.baincapital.com/about-us"
+      "name": "Amit Chandra",
+      "title": "Partner & Chair of India",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.baincapital.com/people/amit-chandra",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Carlyle Group",
-      "website": "https://www.carlyle.com/",
-      "reason": "homepage-fetch-failed",
-      "detail": 403
+      "name": "Amit Jain",
+      "title": "Managing Director & Head of Carlyle India Advisors",
+      "linkedinUrl": "https://linkedin.com/in/amit-jain-3227088",
+      "sourceUrl": "https://www.carlyle.com/about-carlyle/team/amit-jain",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Creador",
-      "website": "https://www.creador.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://creador.com/about/our-story/"
+      "name": "Brahmal Vasudevan",
+      "title": "Founder & CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Creador",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Creador",
+      "name": "Kabir Thakur",
+      "title": "Managing Director, Head of India",
+      "linkedinUrl": "",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Creador",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "British International Investment",
-      "website": "https://www.bii.co.uk/",
-      "reason": "homepage-fetch-failed",
-      "detail": 403
-    },
-    {
-      "company": "Norfund",
-      "website": "https://www.norfund.no/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.norfund.no/about-norfund/"
-    },
-    {
-      "company": "FMO Entrepreneurial Development Bank",
-      "website": "https://www.fmo.nl/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.fmo.nl/about-fmo"
+      "name": "Shilpa Kumar",
+      "title": "Managing Director & Head of India",
+      "linkedinUrl": "https://www.linkedin.com/in/shilpankumar",
+      "sourceUrl": "https://economictimes.indiatimes.com/industry/banking/finance/bii-appoints-shilpa-kumar-as-managing-director-and-head-of-india/articleshow/120757471.cms",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Proparco",
-      "website": "https://www.proparco.fr/fr",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.proparco.fr/fr"
+      "name": "Vincent Vandenbussche",
+      "title": "Acting Regional Director, South Asia",
+      "linkedinUrl": "https://linkedin.com/in/vincent-vandenbussche-656a6039",
+      "sourceUrl": "https://proparco.fr/en/regional-office-covering-south-asia-located-new-delhi",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Michael & Susan Dell Foundation",
-      "website": "https://www.dell.org/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.dell.org/"
+      "name": "Prachi Windlass",
+      "title": "Head of India",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.dell.org/employee/prachi-windlass/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Cisco Investments",
-      "website": "https://www.cisco.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.cisco.com/site/us/en/about/whats-new.html"
+      "name": "Sachin Chiramel",
+      "title": "India Lead",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.ciscoinvestments.com/team/sachin-chiramel",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Samsung Ventures",
-      "website": "https://www.samsungventures.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Snehal Deshpande",
+      "title": "Investment Director & Head, Samsung Venture India",
+      "linkedinUrl": "https://www.linkedin.com/in/snehal-deshpande-19a7422a",
+      "sourceUrl": "https://www.linkedin.com/in/snehal-deshpande-19a7422a",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Amazon Smbhav Venture Fund",
-      "website": "https://www.aboutamazon.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.aboutamazon.in/news/small-business/amazon-india-smbhav-pledges"
+      "name": "Abhijeet Muzumdar",
+      "title": "VP & Head, Amazon Smbhav Venture Fund",
+      "linkedinUrl": "https://www.linkedin.com/in/abhijeetmuzumdar",
+      "sourceUrl": "https://smbhav.amazon.in/initiatives/smbhav-venture-fund",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "SC Ventures",
-      "website": "https://www.sc.com/en/about/innovation/sc-ventures/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.sc.com/en/about/"
+      "name": "Alex Manson",
+      "title": "CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.sc.com/en/people/alex-manson/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Unilever Ventures",
-      "website": "https://www.unileverventures.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.unileverventures.com/about/"
+      "name": "Pawan Chaturvedi",
+      "title": "Partner & Head of Asia",
+      "linkedinUrl": "https://www.linkedin.com/in/pawan-chaturvedi-b0058620",
+      "sourceUrl": "https://www.unileverventures.com/team/pawn-chaturvedi/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Brand Capital",
-      "website": "https://brandcapital.co.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://brandcapital.co.in/aboutus.html"
+      "name": "Srini Vudayagiri",
+      "title": "President, The Times of India & Head of Brand Capital",
+      "linkedinUrl": "https://linkedin.com/in/srinivudayagiri",
+      "sourceUrl": "https://brandcapital.co.in/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Nazara Ventures",
-      "website": "https://www.nazara.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Nitish Mittersain",
+      "title": "Founder, CEO & Joint MD",
+      "linkedinUrl": "",
+      "sourceUrl": "https://investors.nazara.com/about",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Sony Innovation Fund",
-      "website": "https://www.sonyinnovationfund.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.sonyinnovationfund.com/about/"
+      "name": "Yoko Fukata",
+      "title": "Head of Sony Ventures India",
+      "linkedinUrl": "https://www.linkedin.com/in/yoko-fukata-94633a173",
+      "sourceUrl": "https://www.sonyinnovationfund.com/team/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Shell Ventures",
-      "website": "https://www.shell.com/what-we-do/technology-and-innovation/innovate-with-shell/shell-ventures.html",
-      "reason": "no-usable-text",
-      "detail": ""
-    },
-    {
-      "company": "BP Ventures",
-      "website": "https://www.bp.com/en-IN",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.bp.com/en-IN/about-us/what-we-do/bp-worldwide"
-    },
-    {
-      "company": "Energy Impact Partners",
-      "website": "https://www.energyimpactpartners.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.energyimpactpartners.com/cdn-cgi/content?id=k4mERg.InpqhGjKftcWqYBzFRWOheFN2nk6UhMjGBYE-1785343691.2414086-1.2.1.1-qcRAchqarovGDaswt0y5IVZFtS8HRDCXTiG_JmiYrj8"
-    },
-    {
-      "company": "Valar Ventures",
-      "website": "https://www.valar.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.valar.com/"
-    },
-    {
-      "company": "Thrive Capital",
-      "website": "https://www.thrivecap.com/",
-      "reason": "no-usable-text",
-      "detail": ""
-    },
-    {
-      "company": "New Enterprise Associates",
-      "website": "https://www.nea.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.nea.com/about"
-    },
-    {
-      "company": "Andreessen Horowitz",
-      "website": "https://a16z.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://a16z.com/team/"
-    },
-    {
-      "company": "Founders Fund",
-      "website": "https://foundersfund.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://foundersfund.com/portfolio/"
+      "name": "Robert Linck",
+      "title": "Chief Investment Officer & Co-Founder (leads India team)",
+      "linkedinUrl": "",
+      "sourceUrl": "https://staging.indiaenergyweek.com/strategic-conference-speakers/executive-session-speakers/robert-linck/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "IAN Fund",
-      "website": "https://www.ianfund.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "The operation was aborted due to timeout"
+      "name": "Padmaja Ruparel",
+      "title": "Co-Founder & Senior Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/padmajaruparel",
+      "sourceUrl": "https://iangroup.vc/team_members/padmaja-ruparel-bioangels/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "IAN Fund",
+      "name": "Rajnish Kapur",
+      "title": "Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/kapurrajnish",
+      "sourceUrl": "https://alphafund.iangroup.vc/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "CIIE.CO",
-      "website": "https://ciie.co",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Priyanka Agarwal Chopra",
+      "title": "CEO & Managing Partner",
+      "linkedinUrl": "https://in.linkedin.com/in/priyanka-agarwal-chopra",
+      "sourceUrl": "https://iimaventures.com/team/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "T-Hub",
-      "website": "https://www.t-hub.co/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.t-hub.co/"
+      "name": "Kavikrut",
+      "title": "CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/kavikrut",
+      "sourceUrl": "https://timesofindia.indiatimes.com/city/hyderabad/telangana-govt-ropes-in-former-oyo-cxo-kavikrut-to-helm-t-hub/articleshow/118782337.cms",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "CIE IIIT Hyderabad",
-      "website": "https://cie.iiit.ac.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://cie.iiit.ac.in/"
+      "name": "C. V. Jawahar",
+      "title": "CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://cie.iiit.ac.in/the-team/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Zone Startups India",
-      "website": "https://www.zonestartups.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.zonestartups.com/"
+      "name": "Hemant Gupta",
+      "title": "Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://in.marketscreener.com/insider/HEMANT-GUPTA-A3KDJV/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Piramal Alternatives",
-      "website": "https://www.piramal.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.piramal.com/"
+      "name": "Kalpesh Kikani",
+      "title": "Managing Director & CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/kalpesh-kikani-5275901b3",
+      "sourceUrl": "https://theorg.com/org/piramal-group/org-chart/kalpesh-kikani",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Edelweiss Alternative Asset Advisors",
-      "website": "https://www.edelweissfin.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.edelweissfin.com/about-us/"
+      "name": "Amit Agarwal",
+      "title": "CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.vccircle.com/eaaaindia-alts-names-amit-agarwal-sole-ceo-as-co-ceo-steps-down",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Motilal Oswal Private Equity",
-      "website": "https://www.motilaloswal.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.motilaloswal.com/portfolio-management-services"
+      "name": "Vishal Tulsyan",
+      "title": "Founder, MD & CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.motilaloswal.com/our-businesses/private-equity",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "JM Financial Private Equity",
-      "website": "https://www.jmfl.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.jmfl.com/who-we-are/about-us"
-    },
-    {
-      "company": "Atomico",
-      "website": "https://www.atomico.com",
-      "reason": "homepage-fetch-failed",
-      "detail": 429
-    },
-    {
-      "company": "Balderton Capital",
-      "website": "https://www.balderton.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.balderton.com/about-balderton/"
-    },
-    {
-      "company": "Coinbase Ventures",
-      "website": "https://www.coinbase.com/en-in/ventures",
-      "reason": "homepage-fetch-failed",
-      "detail": 403
-    },
-    {
-      "company": "YZi Labs",
-      "website": "https://www.binance.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Darius Pandole",
+      "title": "Managing Director & CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://mergr.com/investor/jm-financial-private-equity/team/darius-pandole",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Polygon Ventures",
-      "website": "https://polygon.technology/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://polygon.technology/solutions/cross-border-treasury"
+      "name": "Shreyansh Singh",
+      "title": "Head of Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://incubatorlist.com/shreyansh-singh",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Woodstock Fund",
-      "website": "https://woodstock.fund",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Pranav Sharma",
+      "title": "Co-Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://yourstory.com/2020/07/indian-blockchain-ecosystem-startups-woodstock-fund",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
-      "company": "SBI Investment",
-      "website": "https://www.sbinvestment.co.jp/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.sbinvestment.co.jp/"
-    },
-    {
-      "company": "Honda Ventures",
-      "website": "https://www.honda.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.honda.com/teamusa"
-    },
-    {
-      "company": "Toyota Ventures",
-      "website": "https://www.toyota.ventures/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.toyota.ventures/"
-    },
-    {
-      "company": "Hyundai CRADLE",
-      "website": "https://cradle.hyundai.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "Bosch Ventures",
-      "website": "https://bosch.ventures/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://bosch.ventures/"
-    },
-    {
-      "company": "Invert by Groww",
-      "website": "https://groww.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://groww.in/mutual-funds/amc"
+      "company": "Woodstock Fund",
+      "name": "Himanshu Yadav",
+      "title": "Founding Partner / General Partner",
+      "linkedinUrl": "https://linkedin.com/in/hyws",
+      "sourceUrl": "https://yourstory.com/2021/10/woodstock-fund-blockchain-crypto-investor-dlt-startups",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Dream Sports Ventures",
-      "website": "https://www.dreamsports.gg",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "Cipla New Ventures",
-      "website": "https://www.cipla.com/",
-      "reason": "no-usable-text",
-      "detail": ""
-    },
-    {
-      "company": "Apollo Connect / Apollo Hospitals Ventures",
-      "website": "https://www.apollohospitals.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.apollohospitals.com/company-overview/the-apollo-story"
+      "name": "Harsh Jain",
+      "title": "Co-Founder & CEO, Dream Sports",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.dreamsports.group/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Varanium Capital Advisors",
-      "website": "https://varanium.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "T. S. Anantakrishnan",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/t-s-anantakrishnan-46a358",
+      "sourceUrl": "https://varanium.vc/our-team-2/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
-      "company": "Mechanism Capital",
-      "website": "https://www.mechanism.capital/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.mechanism.capital/writings/million-markets-from-the-bazaar-to-the-dex"
+      "company": "Varanium Capital Advisors",
+      "name": "Aparajit Bhandarkar",
+      "title": "Partner, Venture Capital",
+      "linkedinUrl": "",
+      "sourceUrl": "https://varanium.vc/our-team-2/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "CoinDCX Ventures",
-      "website": "https://coindcx.com/",
-      "reason": "homepage-fetch-failed",
-      "detail": 403
+      "name": "Rohit Jain",
+      "title": "Head of Ventures and Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://economictimes.indiatimes.com/markets/cryptocurrency/coindcx-launches-coindcx-ventures-to-deploy-rs-100-cr-in-web3-ecosystem/articleshow/91463662.cms",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "SBI Caps Ventures / SBICAP Ventures",
-      "website": "https://www.sbicapventures.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://sbiventures.co.in/about-us/"
+      "name": "Prem Prabhakar",
+      "title": "Managing Director & CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://sbiventures.co.in/about-us/our-people/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Kerala Startup Mission",
-      "website": "https://startupmission.kerala.gov.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://startupmission.kerala.gov.in/about"
+      "name": "Anoop Ambika",
+      "title": "CEO",
+      "linkedinUrl": "https://linkedin.com/in/anoopambika",
+      "sourceUrl": "https://www.ciol.com/serial-entrepreneur-anoop-ambika-new-ceo-kerala-startup-mission/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "NSRCEL",
-      "website": "https://nsrcel.org/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://nsrcel.org/"
+      "name": "Rasika Prashant",
+      "title": "CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.thehindubusinessline.com/news/education/srcel-at-iim-bangalore-appoints-rasika-prashant-as-ceo/article71109955.ece",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "IIFL Seed Venture Fund / IIFL PE",
-      "website": "https://www.iifl.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.iifl.com/gold-loans/partners"
+      "name": "Sameer Nath",
+      "title": "CIO & Head, Venture Capital & Private Equity (360 ONE Asset / formerly IIFL AMC)",
+      "linkedinUrl": "https://www.linkedin.com/in/sameer-nath-089698109",
+      "sourceUrl": "https://www.vccircle.com/iiflamc-onboards-truescale-capital-with-sameer-nath-to-head-alternative-biz",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Lighthouse Canton",
-      "website": "https://www.lighthouse-canton.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.lighthouse-canton.com/about"
-    },
-    {
-      "company": "TotalEnergies Ventures",
-      "website": "https://totalenergies.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www2.totalenergies.com/company/strength/totalenergies-and-sport"
-    },
-    {
-      "company": "Nestlé Ventures",
-      "website": "https://www.nestle.com/",
-      "reason": "homepage-fetch-failed",
-      "detail": 403
+      "name": "Sumegh Bhatia",
+      "title": "CEO & Managing Director, India",
+      "linkedinUrl": "https://in.linkedin.com/in/sumeghbhatia",
+      "sourceUrl": "https://cxotoday.com/interviews/lighthouse-canton-focuses-on-building-its-portfolio-in-india-bets-big-on-providing-optimized-client-experience/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Marico Growth Ventures",
-      "website": "https://marico.com/global",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://marico.com/global/about-us"
-    },
-    {
-      "company": "Sun Pharma Ventures",
-      "website": "https://sunpharma.com/",
-      "reason": "homepage-fetch-failed",
-      "detail": 403
-    },
-    {
-      "company": "Biocon Innovation / Biocon Ventures",
-      "website": "https://www.biocon.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.biocon.com/about-us/"
+      "name": "Suranjana Ghosh",
+      "title": "Head, Marico Innovation Foundation",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.maricoinnovationfoundation.org/about-us/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "upGrad Ventures",
-      "website": "https://www.upgrad.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.upgrad.com/ctaio-iimu-iiit/"
+      "name": "Ronnie Screwvala",
+      "title": "Founder & CEO (leads AI incubator / early investments)",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.business-standard.com/companies/news/upgrad-earmarks-rs-100-cr-for-creating-ai-incubator-ronnie-screwvala-125022600415_1.html",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "PayU Ventures",
-      "website": "https://payu.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://payu.in/about-us"
+      "name": "Himanshu Kapoor",
+      "title": "Senior Director, Investments & M&A",
+      "linkedinUrl": "https://linkedin.com/in/himanshu-kapoor-93896b18",
+      "sourceUrl": "https://linkedin.com/in/himanshu-kapoor-93896b18",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Mitsubishi UFJ Capital",
-      "website": "https://www.mucap.co.jp/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.mucap.co.jp/team/"
-    },
-    {
-      "company": "Delivery Hero Ventures",
-      "website": "https://www.deliveryhero.com/",
-      "reason": "homepage-fetch-failed",
-      "detail": 403
+      "name": "Mayank Shiromani",
+      "title": "Deputy CIO, MUFG Innovation Partners (leads India fund)",
+      "linkedinUrl": "https://linkedin.com/in/mayankshiromani",
+      "sourceUrl": "https://economictimes.indiatimes.com/tech/startups/japans-mufg-bets-250-million-on-india/articleshow/131445576.cms",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Accion Venture Lab",
-      "website": "https://www.accion.org/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.accion.org/about-accion/"
+      "name": "Rahil Rangwala",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://people.equilar.com/bio/person/rahil-rangwala-accion-international/28067366",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Villgro",
-      "website": "https://villgro.org/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://villgro.org/about/"
+      "name": "Srinivas Ramanujam",
+      "title": "CEO",
+      "linkedinUrl": "https://linkedin.com/in/srinivas1729",
+      "sourceUrl": "https://villgro.org/our-team/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "IIT Madras Incubation Cell",
-      "website": "https://www.incubation.iitm.ac.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Tamaswati Ghosh",
+      "title": "CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/tamaswati",
+      "sourceUrl": "http://rtbi.in/incubationiitm/about-us/management.html",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "SINE IIT Bombay",
-      "website": "https://sineiitb.org",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Shaji Varghese",
+      "title": "CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://indianexpress.com/article/technology/tech-news-technology/our-playbook-on-tech-incubation-is-being-followed-across-india-shaji-varghese-ceo-sine-iit-bombay-9529587/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "SIIC IIT Kanpur",
-      "website": "https://siic.iitk.ac.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "The operation was aborted due to timeout"
+      "name": "Ashutosh Agnihotri",
+      "title": "CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/ashutoshagnihotri/",
+      "sourceUrl": "https://www.siicincubator.com/about/team.php",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "IIM Calcutta Innovation Park",
-      "website": "https://iimcip.org/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://iimcip.org/about-us/about-iimcip/"
+      "name": "V. K. Rai",
+      "title": "CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "http://iimcip.org/topic/iim-calcutta-innovation-park-appoints-dr-v-k-rai-as-chief-executive-officer/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "ISB DLabs / CEL",
-      "website": "https://cel.isb.edu",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Saumya Kumar",
+      "title": "CEO, DLabs | Director, ISB I-Venture",
+      "linkedinUrl": "",
+      "sourceUrl": "https://isbdlabs.org/about/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Startup Oasis",
-      "website": "https://startupoasis.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Chintan Bakshi",
+      "title": "CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://tryforgood.com/chintan-bakshi-ceo-start-oasis-jaipur/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Forge Innovation & Ventures",
-      "website": "https://www.forgeforward.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.forge-iv.co/"
+      "name": "Vish Sahasranamam",
+      "title": "Co-Founder & CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/vishforge",
+      "sourceUrl": "https://www.forge-iv.co/forge-people/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "KIIT-TBI",
-      "website": "https://kiitincubator.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://kiitincubator.in/"
+      "name": "Mrutyunjay Suar",
+      "title": "CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://tto.kiitincubator.in/team/mrutyunjay-suar/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "PSG-STEP",
-      "website": "https://psgstep.org",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://psgstep.org/index.php?page_id=2"
+      "name": "K. Suresh Kumar",
+      "title": "Executive Director",
+      "linkedinUrl": "https://linkedin.com/in/k-suresh-kumar-0b3ab29",
+      "sourceUrl": "http://www.psgstep.org/index.php?page_id=3&sub_id=20",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "AIC-SMU Technology Business Incubation Foundation",
-      "website": "https://www.smu.edu.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.smu.edu.in/about-sikkim-manipal-university.php"
-    },
-    {
-      "company": "NASSCOM 10000 Startups",
-      "website": "https://10000startups.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Tejbanta S. Chingtham",
+      "title": "CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.smutbi.com/in-news-2/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Nativelead Foundation / Nativelead Angels",
-      "website": "https://nativelead.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "The operation was aborted due to timeout"
+      "name": "Nagaraja Prakasam",
+      "title": "Co-Founder, Chairman & Interim CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.nativelead.org/team_nativelead.php",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "TiE Delhi-NCR Angels",
-      "website": "https://delhi.tie.org/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://delhi.tie.org/about/"
+      "name": "Alok Mittal",
+      "title": "President, TiE Delhi-NCR",
+      "linkedinUrl": "https://linkedin.com/in/alok-mittal-590a",
+      "sourceUrl": "https://www.tice.news/tice-dispatch/tie-delhi-ncr-elevates-leadership-announces-new-appointments-4755504",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "TiE Mumbai Angels",
-      "website": "https://mumbai.tie.org/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://mumbai.tie.org/about/"
+      "name": "Apoorva Ranjan Sharma",
+      "title": "President, TiE Mumbai",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.linkedin.com/posts/drapoorvsharma_im-honored-to-share-that-ive-joined-as-activity-7321112764549095424-s542",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "TiE Chennai Angels",
-      "website": "https://chennai.tie.org/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://chennai.tie.org/"
+      "name": "Shankar V",
+      "title": "Head of Executive Committee, The Chennai Angels",
+      "linkedinUrl": "",
+      "sourceUrl": "https://thechennaiangels.com/about-us/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "JITO Angel Network",
-      "website": "https://www.jito.org",
-      "reason": "homepage-fetch-failed",
-      "detail": "The operation was aborted due to timeout"
+      "name": "Seema Baid",
+      "title": "President",
+      "linkedinUrl": "",
+      "sourceUrl": "https://in.linkedin.com/company/jitojiif",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Tata Capital Innovations",
-      "website": "https://www.tatacapital.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.tatacapital.com/wealth.html"
+      "name": "Vineet Chadha",
+      "title": "Partner & Head, Venture Start-up Investments",
+      "linkedinUrl": "https://www.linkedin.com/in/vineetchadhacfa",
+      "sourceUrl": "https://theorg.com/org/tata-capital-limited/org-chart/vineet-chadha",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "NIIF",
-      "website": "https://niifindia.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://niifindia.in/about/"
+      "name": "Sanjiv Aggarwal",
+      "title": "Managing Director & CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://niifindia.in/about/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "NABKISAN Finance / NABARD ecosystem",
-      "website": "https://www.nabard.org/Hindi/Default.aspx",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.nabard.org/Hindi/team.aspx?id=9"
+      "name": "Immanuvel Ganesan",
+      "title": "Managing Director & CEO, NABKISAN Finance",
+      "linkedinUrl": "https://www.linkedin.com/in/immanuvel-ganesan-28494172",
+      "sourceUrl": "https://www.nabkisan.org/board-of-director",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Wipro Ventures",
-      "website": "https://www.wipro.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.wipro.com/about-us/"
+      "name": "Ali Wasti",
+      "title": "Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/aliwasti",
+      "sourceUrl": "https://www.wipro.com/ventures/team/ali-wasti/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Freshworks Capital",
-      "website": "https://www.freshworks.com/",
-      "reason": "homepage-fetch-failed",
-      "detail": 403
+      "name": "Girish Mathrubootham",
+      "title": "Founder & CEO, Freshworks",
+      "linkedinUrl": "",
+      "sourceUrl": "https://inc42.com/buzz/together-sets-up-early-stage-vc-fund-with-a-corpus-of-85-mn/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Postman Capital",
-      "website": "https://www.postman.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.postman.com/product/workspaces/"
+      "name": "Abhinav Asthana",
+      "title": "Co-Founder & CEO, Postman",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.avcj.com/avcj/news/3024785/postman-becomes-india-s-top-saas-unicorn",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "BrowserStack Investments",
-      "website": "https://www.browserstack.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.browserstack.com/test-management"
+      "name": "Ritesh Arora",
+      "title": "Co-Founder & CEO, BrowserStack",
+      "linkedinUrl": "",
+      "sourceUrl": "https://inc42.com/buzz/together-sets-up-early-stage-vc-fund-with-a-corpus-of-85-mn/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Chargebee Investments",
-      "website": "https://www.chargebee.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.chargebee.com/billing/manage-subscriptions/"
+      "name": "Krish Subramanian",
+      "title": "Co-Founder & CEO, Chargebee",
+      "linkedinUrl": "",
+      "sourceUrl": "https://inc42.com/buzz/together-sets-up-early-stage-vc-fund-with-a-corpus-of-85-mn/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Infosys Innovation Fund",
-      "website": "https://www.infosys.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.infosys.com/industries/waste-management.html"
+      "name": "Shyam Mundhada",
+      "title": "Head of Corporate Development (M&A | Start-up fund)",
+      "linkedinUrl": "https://linkedin.com/in/shyam-mundhada-5151001",
+      "sourceUrl": "https://linkedin.com/in/shyam-mundhada-5151001",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "TCS Co-Innovation / TCS Ventures",
-      "website": "https://www.tcs.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.tcs.com/who-we-are/alliances-partnerships"
-    },
-    {
-      "company": "Tech Mahindra Ventures",
-      "website": "https://www.techmahindra.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.techmahindra.com/about-us/"
+      "name": "Anil Sharma",
+      "title": "Global Head, TCS Co-Innovation Network (COIN)",
+      "linkedinUrl": "https://www.linkedin.com/in/tcs-anilsharma",
+      "sourceUrl": "https://www.linkedin.com/in/tcs-anilsharma",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "HCL Software Investments",
-      "website": "https://www.hcltech.com",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.hcltech.com/product-lifecycle-management-plm"
-    },
-    {
-      "company": "L&T Technology Services Ventures",
-      "website": "https://www.ltts.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.ltts.com/services/asset-care-services"
+      "name": "Sachin Varshney",
+      "title": "Director, Corporate Development (M&A and Corporate Venturing)",
+      "linkedinUrl": "https://linkedin.com/in/sachinvarshney",
+      "sourceUrl": "https://linkedin.com/in/sachinvarshney",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "Mphasis NEXT Labs Investments",
-      "website": "https://www.mphasis.com/home.html",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.mphasis.com/home.html"
+      "name": "Srikumar Ramanathan",
+      "title": "Chief Solutions Officer (NEXT Labs / Sparkle Innovation)",
+      "linkedinUrl": "",
+      "sourceUrl": "https://cio.economictimes.indiatimes.com/news/strategy-and-management/inside-mphasis-next-labs-rolling-out-quantum-for-enterprises/95416593",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Persistent Ventures",
-      "website": "https://www.persistent.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://validate.perfdrive.com/?ssa=a4a6ba76-f2d4-420d-8935-9723e5e2c793&ssb=13064283440&ssc=https%3A%2F%2Fwww.persistent.com%2F&ssi=343de9d8-d452-4b6b-8f21-ee43e29bd19f&ssk=botmanager_support@radware.com&ssm=26823065069763624106288481548039&ssn=68e0e19bf66d15c5d387abd5c23e789ed42c236447b7-07d1-44ac-82e6c3&sso=253cd72c-79d1c715504870dcc359321b420da97e6b2bcd0659aaa3c1&ssp=86607530011785323634178537859371119&ssq=59102324407885903619044078842911373768927&ssr=MjQwNToyMDE6YTQwNDo1MGI3OmY1MWU6OGJkNTphMGUxOjU3Mjg=&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/124.0.0.0%20Safari/537.36&ssu=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDAyMzY0NDdiNy0wN2QxLTQ0YWMtODcyYy03OWQxYzcxNTUwNDgxLTE3ODUzNDQwNzg4MTcwLTAwNDU0Mzk0ZDc3N2U1MzQ5MzAxMCJ9"
+      "name": "Saurabh Dwivedi",
+      "title": "Head, Corporate Development & Investor Relations",
+      "linkedinUrl": "https://linkedin.com/in/saurabhdwivedipersistentsystems",
+      "sourceUrl": "https://www.persistent.com/company-overview/management-team/saurabh-dwivedi/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Mindtree Ventures / LTIMindtree Investments",
-      "website": "https://www.ltimindtree.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.ltm.com/services/application-management-services"
-    },
-    {
-      "company": "CitiusTech Investments",
-      "website": "https://www.citiustech.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.citiustech.com/market/medtech/revenue-cycle-management"
+      "name": "Nupur Hemant",
+      "title": "Head of Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://theorg.com/org/ltimindtree/org-chart/vipul-chandra",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Godrej Family Office",
-      "website": "",
-      "reason": "no-website"
+      "name": "Jishnu Batabyal",
+      "title": "Group Head, M&A and Business Development (incl. family office)",
+      "linkedinUrl": "https://www.linkedin.com/in/jishnu-batabyal-a0276311",
+      "sourceUrl": "https://www.linkedin.com/in/jishnu-batabyal-a0276311",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Bharti Family Office",
-      "website": "",
-      "reason": "no-website"
+      "name": "Kapil Agarwal",
+      "title": "SVP & Head, Family Office",
+      "linkedinUrl": "https://in.linkedin.com/in/kapilagarwal1",
+      "sourceUrl": "https://in.linkedin.com/in/kapilagarwal1",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Murugappa Family Office",
-      "website": "",
-      "reason": "no-website"
+      "name": "Vellayan Subbiah",
+      "title": "Director, Ambadi Investments (Murugappa Group holding company)",
+      "linkedinUrl": "",
+      "sourceUrl": "https://ambadiinvestments.com/BOD.html",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "Goenka Family Office",
-      "website": "",
-      "reason": "no-website"
-    },
-    {
-      "company": "Bajaj Family Office",
-      "website": "",
-      "reason": "no-website"
+      "name": "Subodh Gupta",
+      "title": "Executive Director, Growth and Investments",
+      "linkedinUrl": "https://www.linkedin.com/in/subodhg",
+      "sourceUrl": "https://www.linkedin.com/in/subodhg",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Amansa Holdings",
-      "website": "https://www.amansacapital.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Akash Prakash",
+      "title": "Founder, Director & CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.flame.edu.in/academics/flame-investment-lab/speakers-repository/akash-prakash",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Malabar Investments",
-      "website": "https://www.malabarinvestments.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Sumeet Nagar",
+      "title": "Founder & Portfolio Manager",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.malabarinvest.com/team-4",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "KITVEN",
-      "website": "https://www.hugedomains.com/domain_profile.cfm?d=kitven.com",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.hugedomains.com/about.cfm"
-    },
-    {
-      "company": "Helion Venture Partners",
-      "website": "https://www.helionvc.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "P. V. Harikrishnan",
+      "title": "CEO",
+      "linkedinUrl": "https://in.linkedin.com/in/pvhari71",
+      "sourceUrl": "http://www.kitven.in/about-us",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Stanford Angels & Entrepreneurs India",
-      "website": "https://stanfordangels.co.in/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Paula Mariwala",
+      "title": "Co-Founder & President",
+      "linkedinUrl": "",
+      "sourceUrl": "https://stanfordangels.co.in/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "IIT Bombay Alumni Angels",
-      "website": "",
-      "reason": "no-website"
-    },
-    {
-      "company": "Chartered Angels Network",
-      "website": "",
-      "reason": "no-website"
+      "name": "Sushanto Mitra",
+      "title": "Founder & CEO, Lead Angels (IIT Bombay alumni network)",
+      "linkedinUrl": "https://www.linkedin.com/in/sushantomitra",
+      "sourceUrl": "https://yourstory.com/companies/lead-angels-network",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Maharashtra State Innovation Society",
-      "website": "https://mahasbic.gov.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Shrikant Patil",
+      "title": "CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://msins.in/Aboutus",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Andhra Pradesh Innovation Society",
-      "website": "https://apis.ap.gov.in/home/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://apis.ap.gov.in/home/"
+      "name": "Suryateja Mallavarapu",
+      "title": "CEO",
+      "linkedinUrl": "https://linkedin.com/in/suryateja-mallavarapu-ias-59820283",
+      "sourceUrl": "https://www.linkedin.com/posts/andhra-pradesh-innovation-society-4a3483217_codespark2025-apinnovationsociety-innovationleadership-activity-7358473594290532354-QYv3",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Gujarat Student Startup Innovation Hub / i-Hub",
-      "website": "https://www.startupgujarat.in/",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Jaykumar Joshi",
+      "title": "Program Head",
+      "linkedinUrl": "https://linkedin.com/in/jaykumar-joshi-490b8039",
+      "sourceUrl": "https://ihubgujarat.in/about",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Karnataka Innovation Authority / Elevate",
-      "website": "https://startup.karnataka.gov.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "The operation was aborted due to timeout"
+      "name": "Sanjeev Kumar Gupta",
+      "title": "CEO, Karnataka Digital Economy Mission",
+      "linkedinUrl": "",
+      "sourceUrl": "https://karnatakadigital.in/about-us/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Tamil Nadu Startup & Innovation Mission",
-      "website": "https://startuptn.in/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "L. Nirmal Raj",
+      "title": "CEO (additional charge); Industries Commissioner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.newindianexpress.com/states/tamil-nadu/2026/Jun/25/ramanathan-resigns-as-ceo-of-startuptn-after-45-year-stint",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Odisha Startup / Startup Odisha",
-      "website": "https://startupodisha.gov.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Smruti Ranjan Pradhan",
+      "title": "CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://startupodisha.gov.in/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Telangana TSIC / T-Hub related programs",
-      "website": "https://enrich.telangana.gov.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Kavikrut",
+      "title": "CEO, T-Hub",
+      "linkedinUrl": "https://www.linkedin.com/in/kavikrut",
+      "sourceUrl": "https://timesofindia.indiatimes.com/city/hyderabad/telangana-govt-ropes-in-former-oyo-cxo-kavikrut-to-helm-t-hub/articleshow/118782337.cms",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Unitus Ventures",
-      "website": "https://unitus.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://unitus.vc/"
+      "name": "Surya Mantha",
+      "title": "Managing Partner (Capria / former Unitus Ventures)",
+      "linkedinUrl": "",
+      "sourceUrl": "https://yourstory.com/2023/09/unitus-ventures-combines-with-capria-ventures-to-form-single-entity",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Seedfund",
-      "website": "https://seedfund.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://seedfund.com/team"
+      "name": "Bharati Jacob",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.seedfund.in/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Infuse Ventures",
-      "website": "https://infuseventures.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "The operation was aborted due to timeout"
+      "name": "Shyam Menon",
+      "title": "Co-Founder & Investment Director",
+      "linkedinUrl": "https://in.linkedin.com/in/shyam-menon-b908314",
+      "sourceUrl": "https://indiaai.gov.in/investment-fund/infuse-ventures",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Asha Impact",
-      "website": "https://ashaimpact.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Vikram Gandhi",
+      "title": "Founder",
+      "linkedinUrl": "",
+      "sourceUrl": "https://vikramsgandhi.com/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Circulate Capital",
-      "website": "https://www.circulatecapital.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.circulatecapital.com/about-us/"
+      "name": "Rob Kaplan",
+      "title": "Founder & CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/robbykaplan",
+      "sourceUrl": "https://www.circulatecapital.com/team/rob-kaplan/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Amicus Capital",
-      "website": "https://www.amicuscapital.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.amicuscapital.in/about-us/"
+      "name": "Mahesh Parasuraman",
+      "title": "Partner & Co-Founder",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.amicuscapital.in/news/niif-announces-inr-207-crore-usd-25-mn-commitment-to-amicus-capital/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Zodius Capital",
-      "website": "",
-      "reason": "no-website"
-    },
-    {
-      "company": "Know3 Ventures",
-      "website": "",
-      "reason": "no-website"
-    },
-    {
-      "company": "Locomotive Ventures",
-      "website": "",
-      "reason": "no-website"
+      "name": "Neeraj Bhargava",
+      "title": "Founder, Senior Managing Director & CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.marketsandmarkets.com/leadership/NeerajBhargava.asp",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Soonicorn Club Ventures",
-      "website": "https://soonicornventures.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://soonicornventures.com/"
-    },
-    {
-      "company": "Beej Capital",
-      "website": "https://www.hugedomains.com/domain_profile.cfm?d=beejcapital.com",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.hugedomains.com/about.cfm"
-    },
-    {
-      "company": "Systemiq Capital",
-      "website": "https://www.systemiq.earth/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.systemiq.earth/"
+      "name": "Vijay Singh Rathore",
+      "title": "Co-Founder & CEO",
+      "linkedinUrl": "https://linkedin.com/in/vijayrathorenucleus",
+      "sourceUrl": "https://startupintros.com/orgs/soonicorn-ventures",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "UnLtd India",
-      "website": "https://unltdindia.org/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://unltdindia.org/"
+      "name": "Akhil Shahani",
+      "title": "Managing Director (UnLtd India via SAGE Foundation)",
+      "linkedinUrl": "",
+      "sourceUrl": "https://idronline.org/article/ecosystem-development/making-acquisitions-work-for-nonprofits/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "C-CAMP",
-      "website": "https://www.ccamp.res.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Taslimarif Saiyed",
+      "title": "CEO & Director",
+      "linkedinUrl": "https://www.linkedin.com/in/taslimarif",
+      "sourceUrl": "https://indianexpress.com/article/technology/tech-news-technology/antimicrobial-resistance-taslimarif-saiyed-ceo-c-camp-interview-9032500/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "IKP Knowledge Park",
-      "website": "https://ikpknowledgepark.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://ikpknowledgepark.com/"
+      "name": "Satya Prakash Dash",
+      "title": "CEO",
+      "linkedinUrl": "https://linkedin.com/in/spdash",
+      "sourceUrl": "https://medicalbuyer.co.in/dr-satya-prakash-dash-named-ikp-knowledge-park-ceo/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "a-IDEA NAARM",
-      "website": "https://www.aidea.naarm.org.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Ranjit Kumar",
+      "title": "CEO, a-IDEA & Principal Scientist, ICAR-NAARM",
+      "linkedinUrl": "",
+      "sourceUrl": "https://aidea.naarm.org.in/ceo",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Pusa Krishi",
-      "website": "https://pusakrishi.iari.res.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Akriti Sharma",
+      "title": "CEO",
+      "linkedinUrl": "https://linkedin.com/in/dr-akriti-sharma-2b864910a",
+      "sourceUrl": "https://pusakrishi.in/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Agri Udaan",
-      "website": "https://www.agriudaan.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Ranjit Kumar",
+      "title": "CEO, a-IDEA (Agri Udaan program lead org)",
+      "linkedinUrl": "",
+      "sourceUrl": "https://aidea.naarm.org.in/ceo",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "NABI Mohali",
-      "website": "https://nabi.res.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://nabi.res.in/cms?slug=%23"
+      "name": "Ashwani Pareek",
+      "title": "Executive Director, BRIC-NABI",
+      "linkedinUrl": "",
+      "sourceUrl": "https://nabi.res.in/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Electropreneur Park",
-      "website": "https://www.electropreneurpark.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Sanjeev Chopra",
+      "title": "CEO",
+      "linkedinUrl": "https://linkedin.com/in/sanjeevc",
+      "sourceUrl": "https://www.linkedin.com/in/sanjeevc",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "STPI Centres of Entrepreneurship",
-      "website": "https://www.stpi.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.stpi.in/"
+      "name": "Arvind Kumar",
+      "title": "Director General, STPI",
+      "linkedinUrl": "https://linkedin.com/in/arvind-kumar71",
+      "sourceUrl": "https://www.linkedin.com/posts/elets-world-fintech-summit_wfs2026-fintechindia-digitalfinance-activity-7452586528330977280-rwzp",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "T-Works",
-      "website": "https://tworks.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://tworks.telangana.gov.in/about-us"
-    },
-    {
-      "company": "Cisco LaunchPad",
-      "website": "https://launchpad.cisco.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://startups.cisco.com/c/aboutus.html"
+      "name": "Joginder Tanikella",
+      "title": "CEO",
+      "linkedinUrl": "https://linkedin.com/in/jogindertanikella",
+      "sourceUrl": "https://www.linkedin.com/in/jogindertanikella",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "SAP.iO Foundry India",
-      "website": "https://sap.io",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Aparna V.",
+      "title": "Head, Startup & Ecosystem Programs (SAP Startup Studio; successor to SAP.iO Foundry)",
+      "linkedinUrl": "https://linkedin.com/in/aparna-veerarouthu",
+      "sourceUrl": "https://news.sap.com/india/2026/06/sap-labs-india-unveils-2026-startup-studio-cohort-focused-on-enterprise-ai-and-deep-tech-innovation/",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "Google for Startups Accelerator India",
-      "website": "https://startup.google.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://startup.google.com/alumni/"
+      "name": "Ragini Das",
+      "title": "Head, Google for Startups – India",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.peoplematters.in/news/appointments/google-startup-programme-in-india-gets-new-head-ragini-das-46704",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Microsoft for Startups India",
-      "website": "https://www.microsoft.com/en-in/startups",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
+      "name": "Kapil Chawla",
+      "title": "Director & Head of Startups, VC & Strategic Partnerships",
+      "linkedinUrl": "https://linkedin.com/in/kapilchawla",
+      "sourceUrl": "https://www.linkedin.com/in/kapilchawla",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "AWS Activate India",
-      "website": "https://aws.amazon.com/startups/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://aws.amazon.com/partners/work-with-partners/?nc1=f_dr"
+      "name": "Amitabh Nagpal",
+      "title": "Head of Startup Ecosystem, India (AWS)",
+      "linkedinUrl": "https://linkedin.com/in/amitabhnagpal",
+      "sourceUrl": "https://www.linkedin.com/in/amitabhnagpal",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "NVIDIA Inception",
-      "website": "https://www.nvidia.com/en-us/startups/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.nvidia.com/en-us/"
+      "name": "Arundhati Banerjee",
+      "title": "Senior Inception Partner (India)",
+      "linkedinUrl": "https://linkedin.com/in/arundhati-banerjee-130912a0",
+      "sourceUrl": "https://www.linkedin.com/posts/arundhati-banerjee-130912a0_startups-founders-nvidia-activity-7438130574399266816-oc4f",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Yes Fintech",
-      "website": "https://www.yesbank.in",
-      "reason": "no-usable-text",
-      "detail": ""
-    },
-    {
-      "company": "TiE ScaleUp",
-      "website": "https://tie.org/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://tie.org/about/"
+      "name": "Gaurav Goel",
+      "title": "National Head – Start Up, Fintech & New Economy Business, YES BANK",
+      "linkedinUrl": "https://linkedin.com/in/ggaurav77",
+      "sourceUrl": "https://www.linkedin.com/in/ggaurav77",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "TiE Nurture",
-      "website": "https://tie.org/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://tie.org/about/"
-    },
-    {
-      "company": "Founders Institute Bangalore",
-      "website": "https://fi.co/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://fi.co/partners"
+      "name": "Seshadri Kannan",
+      "title": "Created & led TiE Nurture (TiE Global)",
+      "linkedinUrl": "https://linkedin.com/in/seshadri-kannan-tie",
+      "sourceUrl": "https://www.linkedin.com/in/seshadri-kannan-tie",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Founders Institute Hyderabad",
-      "website": "https://fi.co/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://fi.co/partners"
-    },
-    {
-      "company": "Founders Institute Mumbai",
-      "website": "https://fi.co/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://fi.co/partners"
+      "name": "Sujit Jagirdar",
+      "title": "Director & Chapter Leader, Founder Institute Hyderabad",
+      "linkedinUrl": "https://linkedin.com/in/sujitjagirdar",
+      "sourceUrl": "https://fi.co/insight/build-a-fundable-global-startup-in-hyderabad-in-11-weeks",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "IISc SID",
-      "website": "https://sid.iisc.ac.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Balan Gurumoorthy",
+      "title": "Chief Executive, SID / Director, FSID (IISc)",
+      "linkedinUrl": "https://linkedin.com/in/balan-gurumoorthy-827955a",
+      "sourceUrl": "https://sid.iisc.ac.in/about/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "IIT Hyderabad i-TIC",
-      "website": "https://i-tic.iith.ac.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Keyur Punjani",
+      "title": "Chief Operating Officer, iTIC Incubator",
+      "linkedinUrl": "https://linkedin.com/in/keyurpunjani91",
+      "sourceUrl": "https://www.linkedin.com/posts/bharatcxo_leadershipspotlight-leadershipmoves-deeptech-activity-7459901209706151936-64BN",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "IIT Guwahati Technology Incubation Centre",
-      "website": "https://www.iitg.ac.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.iitg.ac.in/iitg_page_details?page=1/about-us"
-    },
-    {
-      "company": "IIT Ropar Incubation Foundation",
-      "website": "https://www.iitrpr.ac.in/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Urmi Buragohain",
+      "title": "CEO",
+      "linkedinUrl": "https://linkedin.com/in/urmi-buragohain-9629516",
+      "sourceUrl": "https://iitgtic.com/index_page_team",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "IIT Mandi Catalyst",
-      "website": "https://iitmandi.ac.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://iitmandi.ac.in/"
+      "name": "Anil Singh",
+      "title": "CEO",
+      "linkedinUrl": "https://linkedin.com/in/anilsinghiitmandi",
+      "sourceUrl": "https://www.linkedin.com/posts/iitmandicatalyst_iitmandi-iitmandicatalyst-ceo-activity-7376579042633953281-EQe2",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "IIT Indore Innovation",
-      "website": "https://www.iiti.ac.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.iiti.ac.in/page/about-us"
+      "name": "Bhupesh Kumar Lad",
+      "title": "Project Director, IITI DRISHTI CPS (Launchpad Incubation & Innovation)",
+      "linkedinUrl": "https://linkedin.com/in/bhupesh-kumar-lad-39227510",
+      "sourceUrl": "https://www.linkedin.com/posts/iiti-drishti-cps-foundation-iit-indore_when-vision-meets-execution-timelines-turn-activity-7444230395187052544-i_Tn",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "IIT Bhubaneswar Research & Entrepreneurship Park",
-      "website": "https://www.iitbbs.ac.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.iitbbs.ac.in/index.php/home/about/"
+      "name": "Soobhankar Pati",
+      "title": "CEO",
+      "linkedinUrl": "https://linkedin.com/in/moxst",
+      "sourceUrl": "https://rep.iitbbs.ac.in/team/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "IIT Roorkee TIDES",
-      "website": "https://www.iitr.ac.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.iitr.ac.in/team_chakra/"
+      "name": "Azam Ali Khan",
+      "title": "CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://tides.iitr.ac.in/governing-body",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "NITK STEP",
-      "website": "https://www.nitk.ac.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.nitk.ac.in/about_us"
+      "name": "Subray R. Hegde",
+      "title": "Director In-Charge",
+      "linkedinUrl": "",
+      "sourceUrl": "https://step.nitk.ac.in/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "NIT Trichy TBI",
-      "website": "https://www.nitt.edu/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.nitt.edu/home/about/"
+      "name": "Susil Kumar Kanagaraj Victor",
+      "title": "CEO, CEDI-NIT Trichy",
+      "linkedinUrl": "https://linkedin.com/in/susil-kumar-8a312a61",
+      "sourceUrl": "https://www.nitt.edu/home/rc/cedi",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "BITS Pilani TBI",
-      "website": "https://www.bits-pilani.ac.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.bits-pilani.ac.in/about/bits-foundation/"
+      "name": "Sachin Arya",
+      "title": "CEO, Incubation & Entrepreneurship / Head, PIEDS",
+      "linkedinUrl": "https://linkedin.com/in/sachinarya",
+      "sourceUrl": "https://www.bits-pilani.ac.in/tec/team/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Amrita TBI",
-      "website": "https://www.amrita.edu/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.amrita.edu/program/b-a-hons-with-research-in-mass-communication-with-minor-in-business-management-and-media/"
+      "name": "Krishnashree Achuthan",
+      "title": "CEO",
+      "linkedinUrl": "https://linkedin.com/in/krishnashree-achuthan",
+      "sourceUrl": "https://www.amrita.edu/faculty/krishnashree/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "VIT-TBI",
-      "website": "https://vit.ac.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://vit.ac.in/"
-    },
-    {
-      "company": "SRM Innovation Incubation Centre",
-      "website": "https://www.srmist.edu.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.srmist.edu.in/"
+      "name": "A. Balachandran",
+      "title": "Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://vittbi.com/wp-content/uploads/2025/01/VITTBI-Newsletter-Jan25.pdf",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "IIM Lucknow Enterprise Incubator",
-      "website": "https://www.iiml.ac.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.iiml.ac.in/"
+      "name": "Yamini Bhushan Pandey",
+      "title": "Managing Director, IIML EIC",
+      "linkedinUrl": "https://linkedin.com/in/yaminibhushanpandey",
+      "sourceUrl": "https://www.linkedin.com/in/yaminibhushanpandey",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "IIM Kozhikode LIVE",
-      "website": "https://iimk.ac.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://iimk.ac.in/academic-programmes/Fellow-Programme-in-Management"
+      "name": "Ashutosh Sarkar",
+      "title": "Executive Director",
+      "linkedinUrl": "https://linkedin.com/in/ashutosh-sarkar-5a4167b",
+      "sourceUrl": "https://www.linkedin.com/posts/iimklive_impactful-contribution-contribution-by-mr-activity-7432685247584174080-4vgZ",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "iCreate",
-      "website": "https://icreate.org.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://icreate.org.in/about-us/"
+      "name": "Avinash Punekar",
+      "title": "CEO",
+      "linkedinUrl": "https://linkedin.com/in/avinashpunekar",
+      "sourceUrl": "https://www.saurenergy.com/solar-energy-news/avinash-punekar-the-new-chief-executive-officer-at-icreate",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Startup Punjab",
-      "website": "https://www.startuppunjab.gov.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "Startup Haryana",
-      "website": "https://startupharyana.gov.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://startupharyana.gov.in/pages/about-startup-haryana"
+      "name": "Somveer Anand",
+      "title": "CEO & Mission Director, Innovation Mission Punjab",
+      "linkedinUrl": "https://linkedin.com/in/somveeranand",
+      "sourceUrl": "https://www.linkedin.com/in/somveeranand",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "RTBI IIT Madras",
-      "website": "https://rtbi.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://rtbi.in/"
+      "name": "Suma Prashant",
+      "title": "Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://nstedb.com/institutional/tbi-center.htm",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "Dasra",
-      "website": "https://dasra.org/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://dasra.org/about"
+      "name": "Neera Nundy",
+      "title": "Co-founder & Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/neera-nundy-4b14105",
+      "sourceUrl": "https://skoll.org/contributor/neera-nundy/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Acumen Academy India",
-      "website": "https://acumenacademy.org/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://acumenacademy.org/partner-list/"
-    },
-    {
-      "company": "NASSCOM CoE Fintech",
-      "website": "https://www.nasscom.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.nasscom.in/about-us"
+      "name": "Mahesh Yagnaraman",
+      "title": "India Country Director & Chief of Operations (leads Academy in India)",
+      "linkedinUrl": "",
+      "sourceUrl": "https://acumen.org/team/mahesh-yagnaraman/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "NASSCOM CoE IoT & AI",
-      "website": "https://www.nasscom.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.nasscom.in/about-us"
+      "name": "Sanjeev Malhotra",
+      "title": "CEO, MeitY-NASSCOM CoE for IoT & AI",
+      "linkedinUrl": "https://linkedin.com/in/jeevmalhotra",
+      "sourceUrl": "https://ihwcouncil.org/dr-sanjeev-malhotra/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Razorpay Rize",
-      "website": "https://rize.razorpay.com",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://razorpay.com/partners/"
-    },
-    {
-      "company": "Plaksha University Launchpad",
-      "website": "https://plaksha.edu.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://plaksha.edu.in/"
+      "name": "Nipun Jain",
+      "title": "Senior Director – Business Management, Razorpay Rize",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.linkedin.com/posts/cxo-sparks_cxosparks-razorpay-startupecosystem-activity-7466755241296834560-G-9a",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Ashoka University Entrepreneurship",
-      "website": "https://www.ashoka.edu.in/",
-      "reason": "homepage-fetch-failed",
-      "detail": 403
+      "name": "Priyank Narayan",
+      "title": "Director, InfoEdge Centre for Entrepreneurship",
+      "linkedinUrl": "https://linkedin.com/in/priyankn",
+      "sourceUrl": "https://www.linkedin.com/posts/cfeashoka_ashokauniversity-entrepreneurship-startupecosystem-activity-7435964825672814592-qVkB",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "AIC NITTE",
-      "website": "https://aicnitte.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://aicnitte.com/about-aic-nitte/"
+      "name": "Puneeth Rai",
+      "title": "CEO, AIC Nitte Incubation Centre",
+      "linkedinUrl": "https://linkedin.com/in/puneeth-rai-02bb2a25",
+      "sourceUrl": "https://www.linkedin.com/in/puneeth-rai-02bb2a25",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Manipal Universal TBI",
-      "website": "https://www.manipal.edu/mu.html",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.manipal.edu/mu/about-us/history.html"
-    },
-    {
-      "company": "Genome Valley Bio Incubators",
-      "website": "http://sbtic.org/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "http://sbtic.org/"
-    },
-    {
-      "company": "RKVY-RAFTAAR Incubators",
-      "website": "https://rkvy.nic.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "The operation was aborted due to timeout"
+      "name": "Manohara Pai M M",
+      "title": "Professor In-charge / Associate Director, MUTBI",
+      "linkedinUrl": "",
+      "sourceUrl": "https://nstedb.com/institutional/tbi-center.htm",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "Goa Startup Mission",
-      "website": "https://www.goa.gov.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.goa.gov.in/wp-content/uploads/2026/07/Notification-23-07-2026.pdf"
+      "name": "D S Prashant",
+      "title": "CEO, Goa Startup Mission / SITPC",
+      "linkedinUrl": "https://linkedin.com/in/dsprashant",
+      "sourceUrl": "https://www.linkedin.com/in/dsprashant",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Startup Madhya Pradesh",
-      "website": "https://startup.mp.gov.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://startup.mp.gov.in/about-us"
-    },
-    {
-      "company": "Startup Jharkhand",
-      "website": "https://startupjharkhand.org/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://startupjharkhand.org/"
-    },
-    {
-      "company": "Bihar Startup Fund programs",
-      "website": "https://startupbihar.in/",
-      "reason": "no-usable-text",
-      "detail": ""
-    },
-    {
-      "company": "Startup J&K",
-      "website": "https://startupjk.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://startupjk.com/"
-    },
-    {
-      "company": "Chhattisgarh Startup",
-      "website": "https://invest.cg.gov.in/startup/startup",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://invest.cg.gov.in/startup/startup"
-    },
-    {
-      "company": "Village Capital India",
-      "website": "https://vilcap.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://vilcap.com/about-us/story"
-    },
-    {
-      "company": "Bosch Startup Harbor India",
-      "website": "https://www.bosch.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.bosch.com/company/leadership/"
-    },
-    {
-      "company": "Intel India Ignite",
-      "website": "https://www.intel.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.intel.com/content/www/us/en/partner-alliance/membership/overview.html"
+      "name": "Abha Rishi",
+      "title": "Executive Head, Madhya Pradesh Startup Mission",
+      "linkedinUrl": "https://linkedin.com/in/abharishi",
+      "sourceUrl": "https://www.linkedin.com/posts/abharishi_startupindia-incubationexcellence-g20startup20-activity-7427296247390273536-BKVD",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Qualcomm Design in India Startup",
-      "website": "https://www.qualcomm.com/",
-      "reason": "no-usable-text",
-      "detail": ""
-    },
-    {
-      "company": "Cashfree for Startups",
-      "website": "https://www.cashfree.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.cashfree.com/how-to-choose-the-right-payment-stack-for-optimal-subscription-management/"
-    },
+      "name": "Hemang Shah",
+      "title": "Leads Qualcomm startup programs / Design in India Challenge (India)",
+      "linkedinUrl": "https://linkedin.com/in/hemang",
+      "sourceUrl": "https://www.linkedin.com/posts/hemang_startups-india-innovation-activity-7144010199719100416-JTVl",
+      "method": "manual-research",
+      "confidence": "high"
+    }
+  ],
+  "unresolved": [
     {
       "company": "108 Capital",
       "website": "https://108.vc/",
@@ -4089,6 +4580,338 @@
       "website": "https://whealthventures.com/",
       "reason": "no-names-in-text",
       "sourceUrl": "https://whealthventures.com/about-us/"
+    }
+  ],
+  "skipped": [
+    {
+      "company": "Venture Cooperative",
+      "reason": "no-credible-india-lead-or-not-investor-org",
+      "method": "manual-research"
+    },
+    {
+      "company": "Index Ventures ",
+      "reason": "no-credible-india-lead-or-not-investor-org",
+      "method": "manual-research"
+    },
+    {
+      "company": "Cherry Ventures",
+      "reason": "no-credible-india-lead-or-not-investor-org",
+      "method": "manual-research"
+    },
+    {
+      "company": "Upfront Ventures",
+      "reason": "no-credible-india-lead-or-not-investor-org",
+      "method": "manual-research"
+    },
+    {
+      "company": "Native Smart Capital",
+      "reason": "no-credible-india-lead-or-not-investor-org",
+      "method": "manual-research"
+    },
+    {
+      "company": "Reliance Ventures",
+      "reason": "no-credible-india-lead-or-not-investor-org",
+      "method": "manual-research"
+    },
+    {
+      "company": "500 Global",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Naspers Foundry",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Dragoneer Investment Group",
+      "reason": "no-credible-india-lead",
+      "method": "manual-research"
+    },
+    {
+      "company": "Norfund",
+      "reason": "no-credible-india-lead",
+      "method": "manual-research"
+    },
+    {
+      "company": "FMO Entrepreneurial Development Bank",
+      "reason": "no-credible-india-lead",
+      "method": "manual-research"
+    },
+    {
+      "company": "BP Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Energy Impact Partners",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Valar Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Thrive Capital",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "New Enterprise Associates",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Andreessen Horowitz",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Founders Fund",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Atomico",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Balderton Capital",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Coinbase Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "YZi Labs",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "SBI Investment",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Honda Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Toyota Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Hyundai CRADLE",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Bosch Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Invert by Groww",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Cipla New Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Apollo Connect / Apollo Hospitals Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Mechanism Capital",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "TotalEnergies Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Nestlé Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Sun Pharma Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Biocon Innovation / Biocon Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Delivery Hero Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "NASSCOM 10000 Startups",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Tech Mahindra Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "L&T Technology Services Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "CitiusTech Investments",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Bajaj Family Office",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Helion Venture Partners",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Chartered Angels Network",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Know3 Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Locomotive Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Beej Capital",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Systemiq Capital",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Cisco LaunchPad",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "TiE ScaleUp",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Founders Institute Bangalore",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Founders Institute Mumbai",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "IIT Ropar Incubation Foundation",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "SRM Innovation Incubation Centre",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Startup Haryana",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "NASSCOM CoE Fintech",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Plaksha University Launchpad",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Genome Valley Bio Incubators",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "RKVY-RAFTAAR Incubators",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Startup Jharkhand",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Bihar Startup Fund programs",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Startup J&K",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Chhattisgarh Startup",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Village Capital India",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Bosch Startup Harbor India",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Intel India Ignite",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Cashfree for Startups",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
     }
   ]
 }
