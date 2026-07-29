@@ -1,0 +1,301 @@
+[
+  {
+    "company": "Kedaara Capital",
+    "website": "https://kedaaracapital.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Everstone Group ",
+    "website": "https://www.everstonegroup.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.everstonegroup.com/about-us/"
+  },
+  {
+    "company": "Ascent Capital",
+    "website": "https://ascentcapital.in/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Burman Family Holdings",
+    "website": "https://burmanfamily.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Narotam Sekhsaria Family Office",
+    "website": "https://nsfoundation.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Samara Capital",
+    "website": "https://samaracapital.in/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Chona Family Office",
+    "website": "https://chonafamily.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "MGA Ventures",
+    "website": "https://mgaventures.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Madison India Capital",
+    "website": "https://madisonindia.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "East Ventures",
+    "website": "https://east.vc/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://east.vc/about-us"
+  },
+  {
+    "company": "PeerCapital",
+    "website": "https://peercapital.vc",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "The Venture Folks",
+    "website": "https://theventurefolks.com",
+    "reason": "homepage-fetch-failed",
+    "detail": 526
+  },
+  {
+    "company": "RPSG Capital Ventures",
+    "website": "https://rpsgcapital.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "GVFL Limited",
+    "website": "https://gvfl.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Marwari Catalysts",
+    "website": "https://www.marwaricatalysts.com/home.php",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.marwaricatalysts.com/mcats-group.php"
+  },
+  {
+    "company": "Tanas Capital",
+    "website": "https://tanascapital.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "VentureStudio",
+    "website": "https://venturestudio.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "The operation was aborted due to timeout"
+  },
+  {
+    "company": "GUSEC",
+    "website": "https://gusec.edu.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://gusec.edu.in/about-us/"
+  },
+  {
+    "company": "Axilor Ventures",
+    "website": "https://www.axilor.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.axilor.com/about/"
+  },
+  {
+    "company": "VenturEast",
+    "website": "https://ventureast.net",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "AUM Ventures",
+    "website": "https://aumventures.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "The operation was aborted due to timeout"
+  },
+  {
+    "company": "Ribbit Capital",
+    "website": "https://www.ribbitcap.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.ribbitcap.com/team"
+  },
+  {
+    "company": "Index Ventures ",
+    "website": "https://www.indexventures.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.indexventures.com/team/"
+  },
+  {
+    "company": "Cherry Ventures",
+    "website": "https://cherry.vc/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://cherry.vc/founders"
+  },
+  {
+    "company": "Upfront Ventures",
+    "website": "https://upfront.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "TVentures",
+    "website": "https://tventures.vc",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Foster Ventures",
+    "website": "https://fosterventures.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "B Capital ",
+    "website": "https://bcapgroup.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://b.capital/about/"
+  },
+  {
+    "company": "Valia Ventures",
+    "website": "https://valiaventures.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Alfa Ventures",
+    "website": "https://alfaventures.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Auxano Capital",
+    "website": "https://auxanocapital.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.auxanocapital.com/about/"
+  },
+  {
+    "company": "Saison Capital",
+    "website": "https://saisoncapital.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Integra Partners",
+    "website": "https://integra.partners",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Momentum Capital",
+    "website": "https://www.hugedomains.com/domain_profile.cfm?d=momentumcap.com",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.hugedomains.com/about.cfm"
+  },
+  {
+    "company": "AC Ventures",
+    "website": "https://acventures.vc/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://acventures.vc/about/"
+  },
+  {
+    "company": "Mana Ventures",
+    "website": "https://manaventures.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Silicon Valley Quad (SVQ)",
+    "website": "https://svquad.vc",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Hustle Fund",
+    "website": "https://www.hustlefund.vc/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.hustlefund.vc/founders"
+  },
+  {
+    "company": "N+1 Capital",
+    "website": "https://nplus1.capital",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Superscout",
+    "website": "https://superscout.vc/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://superscout.co/partners/gate"
+  },
+  {
+    "company": "Anay Ventures",
+    "website": "",
+    "reason": "no-website"
+  },
+  {
+    "company": "WaterBridge Ventures",
+    "website": "https://waterbridge.vc/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://waterbridge.vc/about/"
+  },
+  {
+    "company": "SRI Capital",
+    "website": "https://sricapital.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Force Ventures",
+    "website": "https://force.vc",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "9Unicorns",
+    "website": "https://9unicorns.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "LetsVenture",
+    "website": "https://www.letsventure.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://lvxventures.com/founders"
+  },
+  {
+    "company": "Mumbai Angels Network",
+    "website": "https://www.mumbaiangels.com/",
+    "reason": "homepage-fetch-failed",
+    "detail": 403
+  },
+  {
+    "company": "Hyderabad Angels",
+    "website": "https://hyderabadangels.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "The operation was aborted due to timeout"
+  },
+  {
+    "company": "Lead Angels",
+    "website": "https://leadangels.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://leadangels.in/"
+  },
+  {
+    "company": "Calcutta Angels Network",
+    "website": "https://calcuttaangels.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  }
+]

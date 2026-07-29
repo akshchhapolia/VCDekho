@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T17:02:41.017Z",
+  "generatedAt": "2026-07-29T17:07:37.261Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -1238,6 +1238,342 @@
       "name": "Sailesh Tulshan",
       "title": "Founder",
       "sourceUrl": "https://www.xeed.vc/about-us",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Aagama Ventures",
+      "name": "Abhishant Pant",
+      "title": "Co-founder & Partner",
+      "sourceUrl": "https://aagama.vc/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Aagama Ventures",
+      "name": "Shubhanga Prasad",
+      "title": "Co-founder & Partner",
+      "sourceUrl": "https://aagama.vc/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Allvest",
+      "name": "Jay Desai",
+      "title": "MD & CEO",
+      "sourceUrl": "https://www.allvest.co/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Allvest",
+      "name": "Amit Bansal",
+      "title": "Executive Director",
+      "sourceUrl": "https://www.allvest.co/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Avatar Growth Capital",
+      "name": "Vishal Bakshi",
+      "title": "Founder and Managing Partner",
+      "sourceUrl": "https://www.avatargcp.com/core-team/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Avatar Growth Capital",
+      "name": "Abhay Havaldar",
+      "title": "Founder and Managing Partner",
+      "sourceUrl": "https://www.avatargcp.com/core-team/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Breathe Capital",
+      "name": "Zubin Mehta",
+      "title": "Co Founder & Partner",
+      "sourceUrl": "https://breathecap.com/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Breathe Capital",
+      "name": "Shauraya Bhutani",
+      "title": "Co Founder & Partner",
+      "sourceUrl": "https://breathecap.com/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Capitar Ventures",
+      "name": "Bikramjit Singh Kalra",
+      "title": "Managing Partner",
+      "sourceUrl": "https://capitar.in/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Capitar Ventures",
+      "name": "Rahul Mahipal",
+      "title": "Managing Partner",
+      "sourceUrl": "https://capitar.in/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "CDM Capital",
+      "name": "Davesh Manocha",
+      "title": "Managing Partner",
+      "sourceUrl": "https://cdmcapital.in/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "CDM Capital",
+      "name": "Vidhi Jain",
+      "title": "VP, Investments",
+      "sourceUrl": "https://cdmcapital.in/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Chakra Fund",
+      "name": "Sri Purisai",
+      "title": "Founder & Managing Director",
+      "sourceUrl": "https://chakragrowthcapital.com/team.html",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Chakra Fund",
+      "name": "Maya Gadhvi",
+      "title": "Founding GP",
+      "sourceUrl": "https://chakragrowthcapital.com/team.html",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Equirus Ventures",
+      "name": "Mr. Ajit Deshmukh",
+      "title": "Managing Director at Equirus and Member of Key Investment Team",
+      "sourceUrl": "https://www.equirus.com/vc",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Equirus Ventures",
+      "name": "Mr. Krishna Jha",
+      "title": "Fund manager",
+      "sourceUrl": "https://www.equirus.com/vc",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Faering Capital",
+      "name": "Aditya Parekh",
+      "title": "Co-founder & Managing Director",
+      "sourceUrl": "https://www.faeringcapital.com/about-us",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Faering Capital",
+      "name": "Sameer Shroff",
+      "title": "Co-founder & Managing Director",
+      "sourceUrl": "https://www.faeringcapital.com/about-us",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Fundalogical Ventures",
+      "name": "Anil Saldanha",
+      "title": "CEO",
+      "sourceUrl": "https://fundalogical.com/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "GetFive",
+      "name": "Shrikant Goyal",
+      "title": "Co-Founder",
+      "sourceUrl": "https://getfive.in/about-us/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "GetFive",
+      "name": "CA Kanika Khandelia",
+      "title": "Co-Founder & Director",
+      "sourceUrl": "https://getfive.in/about-us/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Indusbridge Ventures",
+      "name": "Ravi Kapoor",
+      "title": "General Partner",
+      "sourceUrl": "https://www.indusbridgeventures.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Indusbridge Ventures",
+      "name": "Rahul Devjani",
+      "title": "General Partner",
+      "sourceUrl": "https://www.indusbridgeventures.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "IXP Lifesciences",
+      "name": "Vishal Goel",
+      "title": "Partner",
+      "sourceUrl": "https://ixplifesciences.com/team-ixp/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "IXP Lifesciences",
+      "name": "Jasmeet Chhabra",
+      "title": "Partner",
+      "sourceUrl": "https://ixplifesciences.com/team-ixp/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Mela Ventures",
+      "name": "Krishnakumar Natarajan",
+      "title": "Managing Partner",
+      "sourceUrl": "https://melaventures.in/insights/ai-indian-it-the-founders-who-come-next/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Mela Ventures",
+      "name": "Viju George",
+      "title": "Partner",
+      "sourceUrl": "https://melaventures.in/insights/ai-indian-it-the-founders-who-come-next/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Morphosis Ventures",
+      "name": "Narayanan Muralidharan",
+      "title": "CO-FOUNDER & PARTNER",
+      "sourceUrl": "https://www.morphosisvc.in/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Morphosis Ventures",
+      "name": "Kartik Chandra",
+      "title": "CO-FOUNDER & PARTNER",
+      "sourceUrl": "https://www.morphosisvc.in/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Naya Ventures",
+      "name": "Dayakar Puskoor",
+      "title": "Founder and Managing Director",
+      "sourceUrl": "https://www.dallasvc.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Pivot Ventures",
+      "name": "Vikas Choudhury",
+      "title": "Founding Partner",
+      "sourceUrl": "https://www.pivotventures.in/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Pivot Ventures",
+      "name": "Aditya Kedia",
+      "title": "MD",
+      "sourceUrl": "https://www.pivotventures.in/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Revanta Capital",
+      "name": "Mr. Pankaj Razdan",
+      "title": "Founder & Chairman",
+      "sourceUrl": "https://revantacapital.com/about/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Revanta Capital",
+      "name": "Mr. Vikas Gautam",
+      "title": "Co-Founder, MD & CEO",
+      "sourceUrl": "https://revantacapital.com/about/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Small Ticket Funding",
+      "name": "Stanley Stephen",
+      "title": "Managing Director",
+      "sourceUrl": "https://smallticketfunding.vc/about/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Small Ticket Funding",
+      "name": "Sandro Stephen",
+      "title": "Partner",
+      "sourceUrl": "https://smallticketfunding.vc/about/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Thinkuvate",
+      "name": "Ghanshyam Ahuja",
+      "title": "Founder & Managing Partner",
+      "sourceUrl": "https://thinkuvate.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Thinkuvate",
+      "name": "Addison Appu",
+      "title": "Managing Partner",
+      "sourceUrl": "https://thinkuvate.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Ventana Ventures",
+      "name": "Shylaja Rao",
+      "title": "Founding General Partner",
+      "sourceUrl": "https://www.ventanaventures.in/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Ventana Ventures",
+      "name": "Poornima Nayak",
+      "title": "VP - Investments & Finance",
+      "sourceUrl": "https://www.ventanaventures.in/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "White Whale",
+      "name": "Shapath Parikh",
+      "title": "Co-founder",
+      "sourceUrl": "https://www.whitewhale.in/about-us",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "White Whale",
+      "name": "Kunal Vora",
+      "title": "Co-founder",
+      "sourceUrl": "https://www.whitewhale.in/about-us",
       "method": "crawl",
       "companyType": "VC"
     }
@@ -3229,6 +3565,365 @@
       "website": "https://108.vc/",
       "reason": "no-names-in-text",
       "sourceUrl": "https://108.vc/team"
+    },
+    {
+      "company": "77 East Ventures",
+      "website": "https://77eastvp.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "888 VC",
+      "website": "https://www.888vc.co/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Advantedge",
+      "website": "https://www.advantedge.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.advantedge.vc/"
+    },
+    {
+      "company": "Alyxis Ventures",
+      "website": "https://alyxisventures.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Asha Ventures",
+      "website": "https://ashaventures.in/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Audacity Ventures",
+      "website": "https://audacityvc.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "AudTen Capital",
+      "website": "https://audten.vc/",
+      "reason": "homepage-fetch-failed",
+      "detail": 403
+    },
+    {
+      "company": "Beams VC",
+      "website": "https://beams.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://beams.vc/about-us-iteration-2"
+    },
+    {
+      "company": "ConsumerX Ventures",
+      "website": "https://consumerx.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://consumerx.vc/"
+    },
+    {
+      "company": "Dezerv",
+      "website": "https://www.dezerv.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.dezerv.in/portfolio-management-services/"
+    },
+    {
+      "company": "Disruption Fund",
+      "website": "https://disruption.fund/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://disruption.fund/"
+    },
+    {
+      "company": "Ekamya",
+      "website": "https://www.ekamya.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.ekamya.com/about-us"
+    },
+    {
+      "company": "Equanimity Ventures",
+      "website": "https://equanimity.vc",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "FBC Fund",
+      "website": "https://fbcfund.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "First and Fast Capital",
+      "website": "https://firstandfast.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://firstandfast.vc/case-studies/team-extension-for-building-ewallet/"
+    },
+    {
+      "company": "First Assetz",
+      "website": "https://firstassetz.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://firstassetz.com/"
+    },
+    {
+      "company": "FirstPort Capital",
+      "website": "https://firstport.vc",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Fundamental Ventures",
+      "website": "https://fundamentalvc.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://fundamentalvc.in/index.php/about/"
+    },
+    {
+      "company": "Gnan Circle",
+      "website": "https://gnancircle.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Green Marble VC",
+      "website": "https://www.greenmarble.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.greenmarble.vc/about"
+    },
+    {
+      "company": "GrowthAlly Capital",
+      "website": "https://growthally.org/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://growthally.org/"
+    },
+    {
+      "company": "Hegd Investments",
+      "website": "https://www.hegdinvst.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.hegdinvst.com/team"
+    },
+    {
+      "company": "IKP Venture",
+      "website": "https://ikpimc.in",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Incube8 Ventures",
+      "website": "https://incube8.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://incube8.vc/"
+    },
+    {
+      "company": "Induckt VC",
+      "website": "https://inducktvc.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "J4S Alliance",
+      "website": "https://j4salliance.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://expireddomains.com/domain/j4salliance.com?utm_source=redi"
+    },
+    {
+      "company": "Jamwant Ventures",
+      "website": "",
+      "reason": "no-website"
+    },
+    {
+      "company": "Lavni Ventures",
+      "website": "https://lavni.co.in",
+      "reason": "homepage-fetch-failed",
+      "detail": "The operation was aborted due to timeout"
+    },
+    {
+      "company": "LongView Ventures",
+      "website": "https://longview-ventures.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://longview-ventures.com/"
+    },
+    {
+      "company": "Makia Capital",
+      "website": "https://www.makiacapital.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Merisis Ventures",
+      "website": "https://merisis.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://merisis.in/"
+    },
+    {
+      "company": "Navam Capital",
+      "website": "https://www.navamcapital.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.navamcapital.com/about"
+    },
+    {
+      "company": "New Leaf",
+      "website": "https://newleafia.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "NilaCap",
+      "website": "https://nilacap.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "OnePoint44",
+      "website": "https://onepoint44.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://onepoint44.com/"
+    },
+    {
+      "company": "PanIIT Alumni",
+      "website": "https://www.paniit.org/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Pangram Ventures",
+      "website": "https://pangram.vc/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Paragon Partners",
+      "website": "https://www.paragonpartners.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.paragonpartners.in/sitemap/"
+    },
+    {
+      "company": "Phi Capital",
+      "website": "https://phicapital.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://phicapital.in/about-us/"
+    },
+    {
+      "company": "Prana Ventures",
+      "website": "https://pranaventures.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.pranaventures.com/portfolio"
+    },
+    {
+      "company": "Refex Capital",
+      "website": "https://refex.co.in/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Rockstud Capital",
+      "website": "https://rockstudcap.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://rockstudcap.com/about-us"
+    },
+    {
+      "company": "Roots Ventures",
+      "website": "https://roots-ventures.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://roots-ventures.com/about-us/"
+    },
+    {
+      "company": "Roving Partners",
+      "website": "https://rovingpartners.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://rovingpartners.com/"
+    },
+    {
+      "company": "Silver Needle",
+      "website": "https://silverneedle.vc/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Sistema Asia Fund",
+      "website": "https://sistemaasiafund.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Startup-O",
+      "website": "https://startup-o.com",
+      "reason": "homepage-fetch-failed",
+      "detail": 500
+    },
+    {
+      "company": "SucSEED Indovation",
+      "website": "https://www.sucseed.biz/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.sucseed.biz/aboutus.php"
+    },
+    {
+      "company": "Swishin Ventures",
+      "website": "https://swishin.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://swishin.vc/"
+    },
+    {
+      "company": "Takshil Ventures",
+      "website": "https://takshil.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://takshil.vc/"
+    },
+    {
+      "company": "Tavasya Capital",
+      "website": "https://tavasyacapital.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://tavasyacapital.in/"
+    },
+    {
+      "company": "Tenacity Ventures",
+      "website": "https://tenacity.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://tenacity.vc/about-us"
+    },
+    {
+      "company": "Tilt Capital",
+      "website": "https://tiltcap.org/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://tiltcap.org/"
+    },
+    {
+      "company": "TransCon Capital",
+      "website": "https://transconcapital.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://transconcapital.com/about.html"
+    },
+    {
+      "company": "Tryrock Capital",
+      "website": "https://tryrock.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://tryrock.com/"
+    },
+    {
+      "company": "V-Cube Ventures",
+      "website": "https://vcube.one",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "ValleyNXT Ventures",
+      "website": "https://valleynxtventures.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Venture Gurukool",
+      "website": "https://venturegurukool.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://venturegurukool.com/about-us"
+    },
+    {
+      "company": "Vincere Partners",
+      "website": "https://www.vincerepartners.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.vincerepartners.in/about-us/"
+    },
+    {
+      "company": "W Health Ventures",
+      "website": "https://whealthventures.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://whealthventures.com/about-us/"
     }
   ]
 }

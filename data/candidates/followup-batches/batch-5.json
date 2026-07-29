@@ -1,0 +1,295 @@
+[
+  {
+    "company": "Mitsubishi UFJ Capital",
+    "website": "https://www.mucap.co.jp/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.mucap.co.jp/team/"
+  },
+  {
+    "company": "Delivery Hero Ventures",
+    "website": "https://www.deliveryhero.com/",
+    "reason": "homepage-fetch-failed",
+    "detail": 403
+  },
+  {
+    "company": "Accion Venture Lab",
+    "website": "https://www.accion.org/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.accion.org/about-accion/"
+  },
+  {
+    "company": "Villgro",
+    "website": "https://villgro.org/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://villgro.org/about/"
+  },
+  {
+    "company": "IIT Madras Incubation Cell",
+    "website": "https://www.incubation.iitm.ac.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "SINE IIT Bombay",
+    "website": "https://sineiitb.org",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "SIIC IIT Kanpur",
+    "website": "https://siic.iitk.ac.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "The operation was aborted due to timeout"
+  },
+  {
+    "company": "IIM Calcutta Innovation Park",
+    "website": "https://iimcip.org/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://iimcip.org/about-us/about-iimcip/"
+  },
+  {
+    "company": "ISB DLabs / CEL",
+    "website": "https://cel.isb.edu",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Startup Oasis",
+    "website": "https://startupoasis.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Forge Innovation & Ventures",
+    "website": "https://www.forgeforward.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.forge-iv.co/"
+  },
+  {
+    "company": "KIIT-TBI",
+    "website": "https://kiitincubator.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://kiitincubator.in/"
+  },
+  {
+    "company": "PSG-STEP",
+    "website": "https://psgstep.org",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://psgstep.org/index.php?page_id=2"
+  },
+  {
+    "company": "AIC-SMU Technology Business Incubation Foundation",
+    "website": "https://www.smu.edu.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.smu.edu.in/about-sikkim-manipal-university.php"
+  },
+  {
+    "company": "NASSCOM 10000 Startups",
+    "website": "https://10000startups.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Nativelead Foundation / Nativelead Angels",
+    "website": "https://nativelead.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "The operation was aborted due to timeout"
+  },
+  {
+    "company": "TiE Delhi-NCR Angels",
+    "website": "https://delhi.tie.org/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://delhi.tie.org/about/"
+  },
+  {
+    "company": "TiE Mumbai Angels",
+    "website": "https://mumbai.tie.org/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://mumbai.tie.org/about/"
+  },
+  {
+    "company": "TiE Chennai Angels",
+    "website": "https://chennai.tie.org/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://chennai.tie.org/"
+  },
+  {
+    "company": "JITO Angel Network",
+    "website": "https://www.jito.org",
+    "reason": "homepage-fetch-failed",
+    "detail": "The operation was aborted due to timeout"
+  },
+  {
+    "company": "Tata Capital Innovations",
+    "website": "https://www.tatacapital.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.tatacapital.com/wealth.html"
+  },
+  {
+    "company": "NIIF",
+    "website": "https://niifindia.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://niifindia.in/about/"
+  },
+  {
+    "company": "NABKISAN Finance / NABARD ecosystem",
+    "website": "https://www.nabard.org/Hindi/Default.aspx",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.nabard.org/Hindi/team.aspx?id=9"
+  },
+  {
+    "company": "Wipro Ventures",
+    "website": "https://www.wipro.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.wipro.com/about-us/"
+  },
+  {
+    "company": "Freshworks Capital",
+    "website": "https://www.freshworks.com/",
+    "reason": "homepage-fetch-failed",
+    "detail": 403
+  },
+  {
+    "company": "Postman Capital",
+    "website": "https://www.postman.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.postman.com/product/workspaces/"
+  },
+  {
+    "company": "BrowserStack Investments",
+    "website": "https://www.browserstack.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.browserstack.com/test-management"
+  },
+  {
+    "company": "Chargebee Investments",
+    "website": "https://www.chargebee.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.chargebee.com/billing/manage-subscriptions/"
+  },
+  {
+    "company": "Infosys Innovation Fund",
+    "website": "https://www.infosys.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.infosys.com/industries/waste-management.html"
+  },
+  {
+    "company": "TCS Co-Innovation / TCS Ventures",
+    "website": "https://www.tcs.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.tcs.com/who-we-are/alliances-partnerships"
+  },
+  {
+    "company": "Tech Mahindra Ventures",
+    "website": "https://www.techmahindra.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.techmahindra.com/about-us/"
+  },
+  {
+    "company": "HCL Software Investments",
+    "website": "https://www.hcltech.com",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.hcltech.com/product-lifecycle-management-plm"
+  },
+  {
+    "company": "L&T Technology Services Ventures",
+    "website": "https://www.ltts.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.ltts.com/services/asset-care-services"
+  },
+  {
+    "company": "Mphasis NEXT Labs Investments",
+    "website": "https://www.mphasis.com/home.html",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.mphasis.com/home.html"
+  },
+  {
+    "company": "Persistent Ventures",
+    "website": "https://www.persistent.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://validate.perfdrive.com/?ssa=a4a6ba76-f2d4-420d-8935-9723e5e2c793&ssb=13064283440&ssc=https%3A%2F%2Fwww.persistent.com%2F&ssi=343de9d8-d452-4b6b-8f21-ee43e29bd19f&ssk=botmanager_support@radware.com&ssm=26823065069763624106288481548039&ssn=68e0e19bf66d15c5d387abd5c23e789ed42c236447b7-07d1-44ac-82e6c3&sso=253cd72c-79d1c715504870dcc359321b420da97e6b2bcd0659aaa3c1&ssp=86607530011785323634178537859371119&ssq=59102324407885903619044078842911373768927&ssr=MjQwNToyMDE6YTQwNDo1MGI3OmY1MWU6OGJkNTphMGUxOjU3Mjg=&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/124.0.0.0%20Safari/537.36&ssu=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDAyMzY0NDdiNy0wN2QxLTQ0YWMtODcyYy03OWQxYzcxNTUwNDgxLTE3ODUzNDQwNzg4MTcwLTAwNDU0Mzk0ZDc3N2U1MzQ5MzAxMCJ9"
+  },
+  {
+    "company": "Mindtree Ventures / LTIMindtree Investments",
+    "website": "https://www.ltimindtree.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.ltm.com/services/application-management-services"
+  },
+  {
+    "company": "CitiusTech Investments",
+    "website": "https://www.citiustech.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.citiustech.com/market/medtech/revenue-cycle-management"
+  },
+  {
+    "company": "Godrej Family Office",
+    "website": "",
+    "reason": "no-website"
+  },
+  {
+    "company": "Bharti Family Office",
+    "website": "",
+    "reason": "no-website"
+  },
+  {
+    "company": "Murugappa Family Office",
+    "website": "",
+    "reason": "no-website"
+  },
+  {
+    "company": "Goenka Family Office",
+    "website": "",
+    "reason": "no-website"
+  },
+  {
+    "company": "Bajaj Family Office",
+    "website": "",
+    "reason": "no-website"
+  },
+  {
+    "company": "Amansa Holdings",
+    "website": "https://www.amansacapital.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Malabar Investments",
+    "website": "https://www.malabarinvestments.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "KITVEN",
+    "website": "https://www.hugedomains.com/domain_profile.cfm?d=kitven.com",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.hugedomains.com/about.cfm"
+  },
+  {
+    "company": "Helion Venture Partners",
+    "website": "https://www.helionvc.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Stanford Angels & Entrepreneurs India",
+    "website": "https://stanfordangels.co.in/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "IIT Bombay Alumni Angels",
+    "website": "",
+    "reason": "no-website"
+  },
+  {
+    "company": "Chartered Angels Network",
+    "website": "",
+    "reason": "no-website"
+  },
+  {
+    "company": "Maharashtra State Innovation Society",
+    "website": "https://mahasbic.gov.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  }
+]
