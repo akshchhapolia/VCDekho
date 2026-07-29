@@ -130,6 +130,59 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function sanitizeOtpValue(raw) {
+    return String(raw || '').replace(/\D/g, '').slice(0, 8);
+  }
+
+  function applyOtpDigitsOnly() {
+    const cleaned = sanitizeOtpValue(otpInput.value);
+    if (otpInput.value !== cleaned) {
+      const start = otpInput.selectionStart;
+      otpInput.value = cleaned;
+      if (typeof start === 'number') {
+        const nextPos = Math.min(cleaned.length, start);
+        try {
+          otpInput.setSelectionRange(nextPos, nextPos);
+        } catch (_) {
+          /* ignore */
+        }
+      }
+    }
+    if (cleaned.length && !/^\d+$/.test(cleaned)) {
+      otpInput.classList.add('invalid');
+      otpError.textContent = 'OTP must be digits only.';
+      otpError.style.display = 'block';
+    } else if (otpError.style.display === 'block' && otpError.textContent === 'OTP must be digits only.') {
+      otpInput.classList.remove('invalid');
+      otpError.style.display = 'none';
+      otpError.textContent = 'Enter the 8-digit code from your email.';
+    }
+  }
+
+  otpInput.addEventListener('beforeinput', (e) => {
+    if (e.inputType && e.inputType.startsWith('delete')) return;
+    if (e.data != null && /\D/.test(e.data)) {
+      e.preventDefault();
+      otpInput.classList.add('invalid');
+      otpError.textContent = 'OTP must be digits only (0–9).';
+      otpError.style.display = 'block';
+    }
+  });
+
+  otpInput.addEventListener('input', applyOtpDigitsOnly);
+  otpInput.addEventListener('paste', (e) => {
+    e.preventDefault();
+    const text = (e.clipboardData || window.clipboardData).getData('text');
+    const digits = sanitizeOtpValue(text);
+    otpInput.value = digits;
+    applyOtpDigitsOnly();
+    if (text && !digits) {
+      otpInput.classList.add('invalid');
+      otpError.textContent = 'OTP must be digits only (0–9).';
+      otpError.style.display = 'block';
+    }
+  });
+
   function validateEmailStep() {
     clearFieldErrors();
     const email = readEmail();
@@ -146,9 +199,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function validateOtpStep() {
     clearFieldErrors();
-    const token = otpInput.value.trim().replace(/\s+/g, '');
+    otpError.textContent = 'Enter the 8-digit code from your email.';
+    const token = sanitizeOtpValue(otpInput.value);
+    otpInput.value = token;
+    if (!token) {
+      otpInput.classList.add('invalid');
+      otpError.textContent = 'Enter the 8-digit code from your email.';
+      otpError.style.display = 'block';
+      return false;
+    }
+    if (/\D/.test(otpInput.value) || !/^\d+$/.test(token)) {
+      otpInput.classList.add('invalid');
+      otpError.textContent = 'OTP must be digits only (0–9).';
+      otpError.style.display = 'block';
+      return false;
+    }
     if (!/^\d{8}$/.test(token)) {
       otpInput.classList.add('invalid');
+      otpError.textContent = 'Enter the full 8-digit code from your email.';
       otpError.style.display = 'block';
       return false;
     }

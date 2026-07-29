@@ -112,11 +112,11 @@
                                 <div id="otp-step" class="auth-otp-step is-hidden" hidden>
                                     <div class="form-group">
                                         <label for="otp-code" class="form-label">Enter OTP</label>
-                                        <input type="text" id="otp-code" name="otp" class="form-input auth-otp-input" placeholder="8-digit code" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" maxlength="8" enterkeyhint="done">
+                                        <input type="text" id="otp-code" name="otp" class="form-input auth-otp-input" placeholder="8-digit code" inputmode="numeric" pattern="[0-9]{8}" autocomplete="one-time-code" maxlength="8" enterkeyhint="done" aria-describedby="otp-error">
                                         <span class="form-error-msg" id="otp-error">Enter the 8-digit code from your email.</span>
                                     </div>
                                     <div class="auth-otp-actions">
-                                        <button type="button" class="auth-text-btn" id="resend-otp-btn">Resend code</button>
+                                        <button type="button" class="auth-text-btn" id="resend-otp-btn">Resend OTP</button>
                                         <button type="button" class="auth-text-btn" id="change-email-btn">Change email</button>
                                     </div>
                                 </div>
