@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T20:01:36.119Z",
+  "generatedAt": "2026-07-29T20:01:45.971Z",
   "schemaVersion": 1,
   "description": "Staged LinkedIn/Twitter enrichments for existing People rows. Apply via scripts/apply_people_socials.js — patches empty CSV cells only.",
   "found": [
@@ -686,6 +686,92 @@
           "page": "https://www.julyventures.com/about"
         }
       ]
+    },
+    {
+      "key": "nikhil sachdev||insightpartners",
+      "name": "Nikhil Sachdev",
+      "company": "Insight Partners",
+      "title": "Managing Director",
+      "linkedinUrl": "https://www.linkedin.com/in/nikhilsachdev",
+      "twitterUrl": "",
+      "sourceUrl": "https://me.sh/profile/nikhil-sachdev",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital",
+      "evidence": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/nikhilsachdev",
+          "via": "href",
+          "page": "https://me.sh/profile/nikhil-sachdev"
+        }
+      ]
+    },
+    {
+      "key": "paul santos||wavemakerpartners",
+      "name": "Paul Santos",
+      "company": "Wavemaker Partners",
+      "title": "Managing Partner, Southeast Asia",
+      "linkedinUrl": "https://www.linkedin.com/in/b-paul-santos-b18a052",
+      "twitterUrl": "",
+      "sourceUrl": "https://wavemakerpartners.com/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital",
+      "evidence": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/b-paul-santos-b18a052",
+          "via": "href",
+          "page": "https://wavemakerpartners.com/team/"
+        }
+      ]
+    },
+    {
+      "key": "paul veradittakit||panteracapital",
+      "name": "Paul Veradittakit",
+      "company": "Pantera Capital",
+      "title": "Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/veradittakit",
+      "twitterUrl": "https://x.com/veradittakit",
+      "sourceUrl": "https://panteracapital.com/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital",
+      "evidence": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/veradittakit",
+          "via": "text",
+          "page": "https://panteracapital.com/team/"
+        },
+        {
+          "type": "twitter",
+          "url": "https://x.com/veradittakit",
+          "via": "text",
+          "page": "https://panteracapital.com/team/"
+        }
+      ]
+    },
+    {
+      "key": "prachi windlass||michaelsusandellfoundation",
+      "name": "Prachi Windlass",
+      "company": "Michael & Susan Dell Foundation",
+      "title": "Head of India",
+      "linkedinUrl": "https://www.linkedin.com/in/prachi-jain-windlass-426148",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.dell.org/employee/prachi-windlass/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital",
+      "evidence": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/prachi-jain-windlass-426148",
+          "via": "href",
+          "page": "https://www.dell.org/employee/prachi-windlass/"
+        }
+      ]
     }
   ],
   "unresolved": [
@@ -1358,6 +1444,110 @@
       "company": "QED Investors",
       "reason": "no-socials-near-name",
       "sourceUrl": "https://qedinvestors.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "nitya agarwal||3one4capital",
+      "name": "Nitya Agarwal",
+      "company": "3one4 Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.3one4capital.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "pl erik sjtil||lightrock",
+      "name": "Pål Erik Sjåtil",
+      "company": "Lightrock",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.lightrock.com/about/",
+      "method": "harvest"
+    },
+    {
+      "key": "pankaj jethwani||whealthventures",
+      "name": "Pankaj Jethwani",
+      "company": "W Health Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://whealthventures.com/about-us/",
+      "method": "harvest"
+    },
+    {
+      "key": "paul basil||menterraventures",
+      "name": "Paul Basil",
+      "company": "Menterra Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.menterra.com/about-us/",
+      "method": "harvest"
+    },
+    {
+      "key": "pearl agarwal||eximusventures",
+      "name": "Pearl Agarwal",
+      "company": "Eximus Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://eximiusvc.com/about-us/",
+      "method": "harvest"
+    },
+    {
+      "key": "peng t ong||monkshillventure",
+      "name": "Peng T. Ong",
+      "company": "Monk's Hill Venture",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://monkshill.com/about-us",
+      "method": "harvest"
+    },
+    {
+      "key": "piyush mathur||theiaventures",
+      "name": "Piyush Mathur",
+      "company": "Theia Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.theia-ventures.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "poornima nayak||ventanaventures",
+      "name": "Poornima Nayak",
+      "company": "Ventana Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.ventanaventures.in/about",
+      "method": "harvest"
+    },
+    {
+      "key": "pranav sharma||woodstockfund",
+      "name": "Pranav Sharma",
+      "company": "Woodstock Fund",
+      "reason": "crawl-failed",
+      "sourceUrl": "",
+      "method": "harvest"
+    },
+    {
+      "key": "prashant narang||agilityventures",
+      "name": "Prashant Narang",
+      "company": "Agility Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://india.entrepreneur.com/news-and-trends/always-agile-dhianu-das-co-founder-agility-ventures/456216",
+      "method": "harvest"
+    },
+    {
+      "key": "pratim||senseai",
+      "name": "Pratim",
+      "company": "SenseAI",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.senseai.ai/team",
+      "method": "harvest"
+    },
+    {
+      "key": "preetham||cactusvp",
+      "name": "Preetham",
+      "company": "Cactus vp",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.cactuspartners.in/people.html",
+      "method": "harvest"
+    },
+    {
+      "key": "preeti nellore sampat||eximusventures",
+      "name": "Preeti Nellore Sampat",
+      "company": "Eximus Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://eximiusvc.com/about-us/",
       "method": "harvest"
     }
   ]
