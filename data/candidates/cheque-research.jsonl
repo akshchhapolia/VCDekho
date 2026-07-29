@@ -31,3 +31,13 @@
 {"name":"DST Global","slug":"dst-global","typeId":"vc","website":"https://dstglobal.com","status":"no_fetch","cheque":null}
 {"name":"ConsumerX Ventures","slug":"consumerx-ventures","typeId":"vc","website":"https://consumerx.vc","status":"no_signal","pages":["https://consumerx.vc","https://consumerx.vc/"],"cheque":null}
 {"name":"Dragoneer Investment Group","slug":"dragoneer-investment-group","typeId":"vc","website":"https://www.dragoneer.com","status":"no_fetch","cheque":null}
+{"name":"Chakra Fund","slug":"chakra-fund","typeId":"vc","website":"https://chakra.fund","status":"no_signal","pages":["https://chakra.fund","https://chakra.fund/"],"cheque":null}
+{"name":"Disruption Fund","slug":"disruption-fund","typeId":"vc","website":"https://disruption.fund","status":"no_signal","pages":["https://disruption.fund","https://disruption.fund/"],"cheque":null}
+{"name":"FBC Fund","slug":"fbc-fund","typeId":"vc","website":"https://fbcfund.com","status":"no_fetch","cheque":null}
+{"name":"Ekamya","slug":"ekamya","typeId":"vc","website":"https://ekamya.com","status":"no_signal","pages":["https://ekamya.com","https://ekamya.com/","https://ekamya.com/about-us"],"cheque":null}
+{"name":"Congruent Ventures","slug":"congruent-ventures","typeId":"vc","website":"https://congruentvc.com","status":"no_signal","pages":["https://congruentvc.com","https://congruentvc.com/"],"cheque":null}
+{"name":"Equanimity Ventures","slug":"equanimity-ventures","typeId":"vc","website":"https://equanimity.vc","status":"no_fetch","cheque":null}
+{"name":"FirstPort Capital","slug":"firstport-capital","typeId":"vc","website":"https://firstport.vc","status":"no_fetch","cheque":null}
+{"name":"Equirus Ventures","slug":"equirus-ventures","typeId":"vc","website":"https://equirus.vc","status":"no_signal","pages":["https://equirus.vc","https://equirus.vc/"],"cheque":null}
+{"name":"Flourish Ventures","slug":"flourish-ventures","typeId":"vc","website":"https://flourishventures.com","status":"no_signal","pages":["https://flourishventures.com","https://flourishventures.com/","https://flourishventures.com/about","https://flourishventures.com/about-us"],"cheque":null}
+{"name":"Breakthrough Energy Ventures","slug":"breakthrough-energy-ventures","typeId":"vc","website":"https://www.breakthroughenergy.org","status":"no_signal","pages":["https://www.breakthroughenergy.org","https://www.breakthroughenergy.org/","https://www.breakthroughenergy.org/about","https://www.breakthroughenergy.org/about-us","https://www.breakthroughenergy.org/thesis"],"cheque":null}
