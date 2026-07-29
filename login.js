@@ -2,23 +2,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuToggle = document.getElementById('menu-toggle');
   const mainNav = document.getElementById('navigation-bar');
   const form = document.getElementById('auth-form');
-  const tabLogin = document.getElementById('tab-login');
-  const tabSignup = document.getElementById('tab-signup');
-  const nameGroup = document.getElementById('name-group');
-  const nameInput = document.getElementById('full-name');
+  const emailStep = document.getElementById('email-step');
+  const otpStep = document.getElementById('otp-step');
   const emailInput = document.getElementById('work-email');
-  const passwordInput = document.getElementById('password');
+  const otpInput = document.getElementById('otp-code');
   const submitBtn = document.getElementById('auth-submit-btn');
+  const resendBtn = document.getElementById('resend-otp-btn');
+  const changeEmailBtn = document.getElementById('change-email-btn');
   const googleBtn = document.getElementById('google-btn');
   const statusEl = document.getElementById('auth-status');
   const emailError = document.getElementById('email-error');
-  const passwordError = document.getElementById('password-error');
+  const otpError = document.getElementById('otp-error');
 
-  let mode = 'login';
+  let step = 'email';
+  let pendingEmail = '';
+  let busy = false;
+  let resendCooldownTimer = null;
+  let resendCooldownUntil = 0;
+
+  const RESEND_COOLDOWN_MS = 30000;
 
   const params = new URLSearchParams(window.location.search);
   const nextPath = params.get('next') || '/investors';
-  if (params.get('mode') === 'signup') mode = 'signup';
 
   function safeNext(path) {
     if (!path || typeof path !== 'string') return '/investors';
@@ -38,23 +43,66 @@ document.addEventListener('DOMContentLoaded', () => {
     statusEl.className = 'auth-status is-' + (type || 'info');
   }
 
-  function setMode(nextMode) {
-    mode = nextMode;
-    const isSignup = mode === 'signup';
-    tabLogin.classList.toggle('is-active', !isSignup);
-    tabSignup.classList.toggle('is-active', isSignup);
-    tabLogin.setAttribute('aria-selected', String(!isSignup));
-    tabSignup.setAttribute('aria-selected', String(isSignup));
-    nameGroup.classList.toggle('is-hidden', !isSignup);
-    nameGroup.hidden = !isSignup;
-    nameInput.required = isSignup;
-    if (!isSignup) nameInput.value = '';
-    passwordInput.autocomplete = isSignup ? 'new-password' : 'current-password';
-    submitBtn.textContent = isSignup ? 'Create account' : 'Log in';
-    setStatus('');
+  function clearFieldErrors() {
+    emailInput.classList.remove('invalid');
+    otpInput.classList.remove('invalid');
+    emailError.style.display = 'none';
+    otpError.style.display = 'none';
   }
 
-  setMode(mode);
+  function updateResendLabel() {
+    const remaining = Math.ceil((resendCooldownUntil - Date.now()) / 1000);
+    if (remaining > 0) {
+      resendBtn.disabled = true;
+      resendBtn.textContent = 'Resend in ' + remaining + 's';
+      return;
+    }
+    resendBtn.disabled = busy;
+    resendBtn.textContent = 'Resend code';
+  }
+
+  function startResendCooldown() {
+    resendCooldownUntil = Date.now() + RESEND_COOLDOWN_MS;
+    updateResendLabel();
+    if (resendCooldownTimer) clearInterval(resendCooldownTimer);
+    resendCooldownTimer = setInterval(() => {
+      if (Date.now() >= resendCooldownUntil) {
+        clearInterval(resendCooldownTimer);
+        resendCooldownTimer = null;
+      }
+      updateResendLabel();
+    }, 250);
+  }
+
+  function setBusy(nextBusy) {
+    busy = nextBusy;
+    submitBtn.disabled = busy;
+    googleBtn.disabled = busy;
+    changeEmailBtn.disabled = busy;
+    emailInput.readOnly = busy && step === 'otp';
+    otpInput.readOnly = busy;
+    updateResendLabel();
+  }
+
+  function setStep(nextStep) {
+    step = nextStep;
+    const onOtp = step === 'otp';
+    emailStep.classList.toggle('is-hidden', onOtp);
+    emailStep.hidden = onOtp;
+    otpStep.classList.toggle('is-hidden', !onOtp);
+    otpStep.hidden = !onOtp;
+    emailInput.required = !onOtp;
+    otpInput.required = onOtp;
+    submitBtn.textContent = onOtp ? 'Verify & continue' : 'Send code';
+    if (onOtp) {
+      otpInput.value = '';
+      setTimeout(() => otpInput.focus(), 0);
+    } else {
+      pendingEmail = '';
+      otpInput.value = '';
+    }
+    clearFieldErrors();
+  }
 
   if (menuToggle && mainNav) {
     menuToggle.addEventListener('click', () => {
@@ -63,33 +111,94 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  tabLogin.addEventListener('click', () => setMode('login'));
-  tabSignup.addEventListener('click', () => setMode('signup'));
-
-  function validate() {
-    let ok = true;
+  function validateEmailStep() {
+    clearFieldErrors();
     const email = emailInput.value.trim();
-    const password = passwordInput.value;
-    emailInput.classList.remove('invalid');
-    passwordInput.classList.remove('invalid');
-    emailError.style.display = 'none';
-    passwordError.style.display = 'none';
-
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       emailInput.classList.add('invalid');
       emailError.style.display = 'block';
-      ok = false;
+      return false;
     }
-    if (!password || password.length < 6) {
-      passwordInput.classList.add('invalid');
-      passwordError.style.display = 'block';
-      ok = false;
+    return true;
+  }
+
+  function validateOtpStep() {
+    clearFieldErrors();
+    const token = otpInput.value.trim().replace(/\s+/g, '');
+    if (!/^\d{6,8}$/.test(token)) {
+      otpInput.classList.add('invalid');
+      otpError.style.display = 'block';
+      return false;
     }
-    return ok;
+    return true;
   }
 
   async function redirectAfterAuth() {
     window.location.href = safeNext(nextPath);
+  }
+
+  function friendlyAuthError(err, context) {
+    const raw = ((err && err.message) || '').toLowerCase();
+    if (context === 'verify') {
+      if (raw.includes('expired') || raw.includes('otp') || raw.includes('token') || raw.includes('invalid')) {
+        return 'Invalid or expired code. Request a new one.';
+      }
+    }
+    return (err && err.message) || 'Something went wrong. Try again.';
+  }
+
+  async function sendOtpCode({ fromResend } = {}) {
+    if (!fromResend && !validateEmailStep()) return false;
+    if (fromResend && !pendingEmail) return false;
+    if (fromResend && Date.now() < resendCooldownUntil) return false;
+
+    const email = fromResend ? pendingEmail : emailInput.value.trim();
+
+    setBusy(true);
+    submitBtn.textContent = fromResend ? 'Resending…' : 'Sending…';
+    setStatus('');
+
+    try {
+      await window.VCAuth.sendEmailOtp({
+        email,
+        createUser: true
+      });
+      pendingEmail = email;
+      setStep('otp');
+      startResendCooldown();
+      setStatus('Check your inbox for a one-time code sent to ' + email + '.', 'success');
+      return true;
+    } catch (err) {
+      setStatus(friendlyAuthError(err, 'send'), 'error');
+      return false;
+    } finally {
+      setBusy(false);
+      submitBtn.textContent = step === 'otp' ? 'Verify & continue' : 'Send code';
+    }
+  }
+
+  async function verifyOtpCode() {
+    if (!validateOtpStep()) return;
+    const token = otpInput.value.trim().replace(/\s+/g, '');
+
+    setBusy(true);
+    submitBtn.textContent = 'Verifying…';
+    setStatus('');
+
+    try {
+      const data = await window.VCAuth.verifyEmailOtp({
+        email: pendingEmail,
+        token
+      });
+      if (data && data.session) {
+        window.VCAuth.syncCookie(data.session);
+      }
+      await redirectAfterAuth();
+    } catch (err) {
+      setStatus(friendlyAuthError(err, 'verify'), 'error');
+      setBusy(false);
+      submitBtn.textContent = 'Verify & continue';
+    }
   }
 
   (async function bootstrap() {
@@ -106,53 +215,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (!validate()) return;
-
-    submitBtn.disabled = true;
-    const original = submitBtn.textContent;
-    submitBtn.textContent = mode === 'signup' ? 'Creating…' : 'Signing in…';
-    setStatus('');
-
-    try {
-      const client = await window.VCAuth.getClient();
-      const email = emailInput.value.trim();
-      const password = passwordInput.value;
-
-      if (mode === 'signup') {
-        const { data, error } = await client.auth.signUp({
-          email,
-          password,
-          options: {
-            data: { full_name: nameInput.value.trim() || undefined },
-            emailRedirectTo: window.location.origin + '/login?next=' + encodeURIComponent(safeNext(nextPath))
-          }
-        });
-        if (error) throw error;
-
-        if (data.session) {
-          window.VCAuth.syncCookie(data.session);
-          await redirectAfterAuth();
-          return;
-        }
-
-        setStatus('Account created. Check your email to confirm, then log in.', 'success');
-        setMode('login');
-      } else {
-        const { data, error } = await client.auth.signInWithPassword({ email, password });
-        if (error) throw error;
-        window.VCAuth.syncCookie(data.session);
-        await redirectAfterAuth();
-      }
-    } catch (err) {
-      const message = (err && err.message) || 'Something went wrong. Try again.';
-      setStatus(message, 'error');
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = original;
+    if (busy) return;
+    if (step === 'email') {
+      await sendOtpCode();
+    } else {
+      await verifyOtpCode();
     }
   });
 
+  resendBtn.addEventListener('click', async () => {
+    if (busy || Date.now() < resendCooldownUntil) return;
+    await sendOtpCode({ fromResend: true });
+  });
+
+  changeEmailBtn.addEventListener('click', () => {
+    if (busy) return;
+    setStep('email');
+    setStatus('');
+    emailInput.focus();
+  });
+
   googleBtn.addEventListener('click', async () => {
+    if (busy) return;
     googleBtn.disabled = true;
     setStatus('');
     try {

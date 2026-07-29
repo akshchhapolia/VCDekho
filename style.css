@@ -5689,6 +5689,63 @@ html.auth-pending body {
   cursor: wait;
 }
 
+.auth-card-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.auth-card-subtitle {
+  margin: 0 0 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.auth-otp-step.is-hidden,
+.auth-otp-step[hidden],
+#email-step.is-hidden,
+#email-step[hidden] {
+  display: none;
+}
+
+.auth-otp-input {
+  letter-spacing: 0.28em;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.auth-otp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.1rem;
+  margin: -0.15rem 0 1rem;
+}
+
+.auth-text-btn {
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.auth-text-btn:hover {
+  color: #fff;
+}
+
+.auth-text-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+  text-decoration: none;
+}
+
 /* ==========================================================================
    EXPLORE RELATED (ecosystem interlinking)
    ========================================================================== */

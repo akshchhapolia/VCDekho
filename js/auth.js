@@ -117,6 +117,37 @@
     setAccessCookie(null);
   }
 
+  async function sendEmailOtp(options) {
+    options = options || {};
+    var email = (options.email || '').trim();
+    if (!email) throw new Error('Email is required');
+    var client = await getClient();
+    var result = await client.auth.signInWithOtp({
+      email: email,
+      options: {
+        shouldCreateUser: options.createUser !== false
+      }
+    });
+    if (result.error) throw result.error;
+    return result.data;
+  }
+
+  async function verifyEmailOtp(options) {
+    options = options || {};
+    var email = (options.email || '').trim();
+    var token = String(options.token || '').trim().replace(/\s+/g, '');
+    if (!email || !token) throw new Error('Email and code are required');
+    var client = await getClient();
+    var result = await client.auth.verifyOtp({
+      email: email,
+      token: token,
+      type: 'email'
+    });
+    if (result.error) throw result.error;
+    syncCookie(result.data && result.data.session);
+    return result.data;
+  }
+
   function wireLogout(selector) {
     var el = document.querySelector(selector || '#logout-link');
     if (!el) return;
@@ -136,6 +167,8 @@
     requireSession: requireSession,
     authFetch: authFetch,
     signOut: signOut,
+    sendEmailOtp: sendEmailOtp,
+    verifyEmailOtp: verifyEmailOtp,
     wireLogout: wireLogout,
     loginUrl: loginUrl,
     syncCookie: syncCookie
