@@ -4213,375 +4213,252 @@
       "sourceUrl": "https://www.linkedin.com/posts/hemang_startups-india-innovation-activity-7144010199719100416-JTVl",
       "method": "manual-research",
       "confidence": "high"
-    }
-  ],
-  "unresolved": [
+    },
     {
       "company": "108 Capital",
-      "website": "https://108.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://108.vc/team"
+      "name": "Nimesh Kampani",
+      "title": "Founding Partner",
+      "linkedinUrl": "https://linkedin.com/in/nimeshkampani",
+      "sourceUrl": "https://108.vc/team/nimesh-kampani",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "77 East Ventures",
-      "website": "https://77eastvp.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "888 VC",
-      "website": "https://www.888vc.co/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Mohanlal Parameshwara Menon",
+      "title": "Designated Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.sensibook.com/companies/2902868/ABB-9261/77-EAST-VENTURE-PARTNERS-LLP",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "Advantedge",
-      "website": "https://www.advantedge.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.advantedge.vc/"
-    },
-    {
-      "company": "Alyxis Ventures",
-      "website": "https://alyxisventures.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Kunal Khattar",
+      "title": "Founding Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.advantedge.vc/post/yourstory-rapido-backer-advantedge-unveils-100m-fund-iii-to-take-bets-on-e-mobility",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Asha Ventures",
-      "website": "https://ashaventures.in/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Amit Mehta",
+      "title": "Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/amit-mehta-6b90b92",
+      "sourceUrl": "https://www.vccircle.com/impactfocused-asha-ventures-marks-first-close-of-debut-fund",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Audacity Ventures",
-      "website": "https://audacityvc.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Kabir Kochhar",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/kabirkochhar",
+      "sourceUrl": "https://www.linkedin.com/in/kabirkochhar",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "AudTen Capital",
-      "website": "https://audten.vc/",
-      "reason": "homepage-fetch-failed",
-      "detail": 403
+      "name": "Sanjay G Kothari",
+      "title": "Founder & General Partner, AudTen Ventures",
+      "linkedinUrl": "https://linkedin.com/in/sanjay-g-kothari",
+      "sourceUrl": "https://www.linkedin.com/in/sanjay-g-kothari",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Beams VC",
-      "website": "https://beams.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://beams.vc/about-us-iteration-2"
+      "name": "Sagar Agarvwal",
+      "title": "Founder & Managing Partner, Beams Fintech Fund",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.linkedin.com/company/beamsvc",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "ConsumerX Ventures",
-      "website": "https://consumerx.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://consumerx.vc/"
+      "name": "Chhavi Bhardwaj Kargaonkar",
+      "title": "Co-Founder & Partner",
+      "linkedinUrl": "https://linkedin.com/in/chhavibk",
+      "sourceUrl": "https://www.linkedin.com/in/chhavibk",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Dezerv",
-      "website": "https://www.dezerv.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.dezerv.in/portfolio-management-services/"
-    },
-    {
-      "company": "Disruption Fund",
-      "website": "https://disruption.fund/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://disruption.fund/"
-    },
-    {
-      "company": "Ekamya",
-      "website": "https://www.ekamya.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.ekamya.com/about-us"
+      "name": "Sandeep Jethwani",
+      "title": "Co-Founder",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.onepercent.live/episodes/tag/founder+stories",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Equanimity Ventures",
-      "website": "https://equanimity.vc",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "FBC Fund",
-      "website": "https://fbcfund.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "First and Fast Capital",
-      "website": "https://firstandfast.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://firstandfast.vc/case-studies/team-extension-for-building-ewallet/"
-    },
-    {
-      "company": "First Assetz",
-      "website": "https://firstassetz.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://firstassetz.com/"
-    },
-    {
-      "company": "FirstPort Capital",
-      "website": "https://firstport.vc",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "Fundamental Ventures",
-      "website": "https://fundamentalvc.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://fundamentalvc.in/index.php/about/"
-    },
-    {
-      "company": "Gnan Circle",
-      "website": "https://gnancircle.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Rajesh Sehgal",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.equanimityinvestments.com/discover",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Green Marble VC",
-      "website": "https://www.greenmarble.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.greenmarble.vc/about"
-    },
-    {
-      "company": "GrowthAlly Capital",
-      "website": "https://growthally.org/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://growthally.org/"
-    },
-    {
-      "company": "Hegd Investments",
-      "website": "https://www.hegdinvst.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.hegdinvst.com/team"
-    },
-    {
-      "company": "IKP Venture",
-      "website": "https://ikpimc.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "Incube8 Ventures",
-      "website": "https://incube8.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://incube8.vc/"
+      "name": "Ruchira Shukla",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/ruchirashukla",
+      "sourceUrl": "https://www.ivca.in/greenReturns-2025/speakers/ruchira-shukla",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Induckt VC",
-      "website": "https://inducktvc.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "J4S Alliance",
-      "website": "https://j4salliance.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://expireddomains.com/domain/j4salliance.com?utm_source=redi"
+      "name": "Ayush Goyal",
+      "title": "Founder & Managing General Partner",
+      "linkedinUrl": "https://linkedin.com/in/passionforgoal",
+      "sourceUrl": "https://induckt.vc/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Jamwant Ventures",
-      "website": "",
-      "reason": "no-website"
+      "name": "Navneet Kaushik",
+      "title": "Founder",
+      "linkedinUrl": "",
+      "sourceUrl": "https://jamwantventures.com/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Lavni Ventures",
-      "website": "https://lavni.co.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "The operation was aborted due to timeout"
+      "name": "Vasu Guruswamy",
+      "title": "Co-Founder & General Partner",
+      "linkedinUrl": "https://linkedin.com/in/vasu-guruswamy-0b80802",
+      "sourceUrl": "https://www.vccircle.com/lavniventures-rolls-out-new-vc-fund-to-back-deep-tech-startups",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "LongView Ventures",
-      "website": "https://longview-ventures.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://longview-ventures.com/"
-    },
-    {
-      "company": "Makia Capital",
-      "website": "https://www.makiacapital.com/",
-      "reason": "no-usable-text",
-      "detail": ""
-    },
-    {
-      "company": "Merisis Ventures",
-      "website": "https://merisis.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://merisis.in/"
+      "name": "Akshat Poddar",
+      "title": "Partner / Team lead",
+      "linkedinUrl": "",
+      "sourceUrl": "https://longview-ventures.com/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Navam Capital",
-      "website": "https://www.navamcapital.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.navamcapital.com/about"
-    },
-    {
-      "company": "New Leaf",
-      "website": "https://newleafia.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "NilaCap",
-      "website": "https://nilacap.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "OnePoint44",
-      "website": "https://onepoint44.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://onepoint44.com/"
-    },
-    {
-      "company": "PanIIT Alumni",
-      "website": "https://www.paniit.org/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Rajeev Mantri",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.navamcapital.com/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Pangram Ventures",
-      "website": "https://pangram.vc/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Manoj Laddha",
+      "title": "Founder & General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.pangram.vc/team",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Paragon Partners",
-      "website": "https://www.paragonpartners.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.paragonpartners.in/sitemap/"
+      "name": "Siddharth Parekh",
+      "title": "Co-Founder & Senior Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.paragonpartners.in/our-team/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Phi Capital",
-      "website": "https://phicapital.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://phicapital.in/about-us/"
-    },
-    {
-      "company": "Prana Ventures",
-      "website": "https://pranaventures.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.pranaventures.com/portfolio"
-    },
-    {
-      "company": "Refex Capital",
-      "website": "https://refex.co.in/",
-      "reason": "no-usable-text",
-      "detail": ""
-    },
-    {
-      "company": "Rockstud Capital",
-      "website": "https://rockstudcap.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://rockstudcap.com/about-us"
-    },
-    {
-      "company": "Roots Ventures",
-      "website": "https://roots-ventures.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://roots-ventures.com/about-us/"
-    },
-    {
-      "company": "Roving Partners",
-      "website": "https://rovingpartners.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://rovingpartners.com/"
+      "name": "Anupam Thareja",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://phicapital.in/our-team/anupam-thareja/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Silver Needle",
-      "website": "https://silverneedle.vc/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Ajay Jain",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://startupintros.com/orgs/silverneedle-ventures",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Sistema Asia Fund",
-      "website": "https://sistemaasiafund.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Andrey Terebenin",
+      "title": "Managing Partner, Sistema Asia Capital (India)",
+      "linkedinUrl": "",
+      "sourceUrl": "https://sistemaasiacapital.com/index.html",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Startup-O",
-      "website": "https://startup-o.com",
-      "reason": "homepage-fetch-failed",
-      "detail": 500
+      "name": "Anuj Jain",
+      "title": "Co-Founder & CEO",
+      "linkedinUrl": "https://linkedin.com/in/anujjainprofile",
+      "sourceUrl": "https://www.startup-o.com/about-us/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "SucSEED Indovation",
-      "website": "https://www.sucseed.biz/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.sucseed.biz/aboutus.php"
+      "name": "Vikrant Varshney",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/vikrantvarshney-indovation",
+      "sourceUrl": "https://www.linkedin.com/in/vikrantvarshney-indovation",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Swishin Ventures",
-      "website": "https://swishin.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://swishin.vc/"
-    },
-    {
-      "company": "Takshil Ventures",
-      "website": "https://takshil.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://takshil.vc/"
-    },
-    {
-      "company": "Tavasya Capital",
-      "website": "https://tavasyacapital.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://tavasyacapital.in/"
-    },
-    {
-      "company": "Tenacity Ventures",
-      "website": "https://tenacity.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://tenacity.vc/about-us"
-    },
-    {
-      "company": "Tilt Capital",
-      "website": "https://tiltcap.org/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://tiltcap.org/"
-    },
-    {
-      "company": "TransCon Capital",
-      "website": "https://transconcapital.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://transconcapital.com/about.html"
+      "name": "Mahavir Pratap Sharma",
+      "title": "General Partner",
+      "linkedinUrl": "https://linkedin.com/in/mahavir-pratap-sharma-26476915",
+      "sourceUrl": "https://www.linkedin.com/in/mahavir-pratap-sharma-26476915",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Tryrock Capital",
-      "website": "https://tryrock.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://tryrock.com/"
-    },
-    {
-      "company": "V-Cube Ventures",
-      "website": "https://vcube.one",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Manick Wadhwa",
+      "title": "Leadership (Tryrock Ventures / SKI Capital group)",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.linkedin.com/posts/skicap_our-group-entity-tryrock-ventures-has-signed-activity-7378413659959771136-8GXK",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "ValleyNXT Ventures",
-      "website": "https://valleynxtventures.com/",
-      "reason": "no-usable-text",
-      "detail": ""
-    },
-    {
-      "company": "Venture Gurukool",
-      "website": "https://venturegurukool.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://venturegurukool.com/about-us"
-    },
-    {
-      "company": "Vincere Partners",
-      "website": "https://www.vincerepartners.in/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.vincerepartners.in/about-us/"
+      "name": "Madhu Vasepalli",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/dr-madhu-vasepalli-mds-43a24812",
+      "sourceUrl": "https://www.vccircle.com/valleynxtventures-unveils-debut-fund-to-back-early-stage-startups",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "W Health Ventures",
-      "website": "https://whealthventures.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://whealthventures.com/about-us/"
+      "name": "Pankaj Jethwani",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.vcsheet.com/who/dr-pankaj-jethwani",
+      "method": "manual-research",
+      "confidence": "high"
     }
   ],
+  "unresolved": [],
   "skipped": [
     {
       "company": "Venture Cooperative",
@@ -4910,6 +4787,176 @@
     },
     {
       "company": "Cashfree for Startups",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "888 VC",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Alyxis Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Disruption Fund",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Ekamya",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "FBC Fund",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "First and Fast Capital",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "First Assetz",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "FirstPort Capital",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Fundamental Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Gnan Circle",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "GrowthAlly Capital",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Hegd Investments",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "IKP Venture",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Incube8 Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "J4S Alliance",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Makia Capital",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Merisis Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "New Leaf",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "NilaCap",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "OnePoint44",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "PanIIT Alumni",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Prana Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Refex Capital",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Rockstud Capital",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Roots Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Roving Partners",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Takshil Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Tavasya Capital",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Tenacity Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Tilt Capital",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "TransCon Capital",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "V-Cube Ventures",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Venture Gurukool",
+      "reason": "no-credible-india-lead-or-inactive",
+      "method": "manual-research"
+    },
+    {
+      "company": "Vincere Partners",
       "reason": "no-credible-india-lead-or-inactive",
       "method": "manual-research"
     }
