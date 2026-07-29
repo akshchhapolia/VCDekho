@@ -286,7 +286,7 @@ function renderInvestorPage(investor, related, res) {
   const relatedSection = relatedCards
     ? (
       '<section class="inv-profile-section inv-profile-reveal" id="similar">' +
-        '<div class="inv-profile-section-label">05 — Nearby</div>' +
+        '<div class="inv-profile-section-label">06 — Nearby</div>' +
         '<div class="inv-profile-section-head"><h2>Similar investors</h2><p>Other funds that overlap on stage, sector, or thesis.</p></div>' +
         '<div class="inv-profile-related-grid">' + relatedCards + '</div>' +
       '</section>'
@@ -306,7 +306,7 @@ function renderInvestorPage(investor, related, res) {
   const stagesForExplore = orderedStages.length ? orderedStages : exploreStages;
 
   const exploreHtml = renderExploreRelated({
-    sectionLabel: '06 — Explore',
+    sectionLabel: '07 — Explore',
     title: 'Explore related',
     subtitle: 'Jump into stage, sector, and thesis guides connected to this fund.',
     stages: stagesForExplore,
@@ -324,6 +324,7 @@ function renderInvestorPage(investor, related, res) {
     '<a href="#focus" data-section="focus">Focus</a>',
     themes.length ? '<a href="#thesis" data-section="thesis">Thesis</a>' : '',
     '<a href="#about" data-section="about">About</a>',
+    peopleCards ? '<a href="#people" data-section="people">Team</a>' : '',
     relatedCards ? '<a href="#similar" data-section="similar">Similar</a>' : '',
     '<a href="#explore" data-section="explore">Explore</a>',
     '</nav>'
