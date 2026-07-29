@@ -86,8 +86,14 @@ async function probeUrl(url) {
       signal: controller.signal,
       headers: { 'User-Agent': USER_AGENT, Accept: '*/*' }
     });
-    // some hosts reject HEAD
-    if (res.status === 405 || res.status === 501 || res.status === 403) {
+    // some hosts reject HEAD or return false 404 on HEAD — retry GET
+    if (
+      res.status === 405 ||
+      res.status === 501 ||
+      res.status === 403 ||
+      res.status === 404 ||
+      res.status === 410
+    ) {
       res = await fetch(url, {
         method: 'GET',
         redirect: 'follow',
