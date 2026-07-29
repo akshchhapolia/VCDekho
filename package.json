@@ -13,7 +13,8 @@
     "dedupe:candidates": "node scripts/dedupe_investor_candidates.js",
     "extract:fund-mentions": "node scripts/extract_fund_mentions.js",
     "enrich:links": "node scripts/enrich_missing_links.js",
-    "find:emails": "node scripts/find_emails.js"
+    "find:emails": "node scripts/find_emails.js",
+    "fetch:people-photos": "node scripts/fetch_people_twitter_photos.js"
   },
   "keywords": [],
   "author": "",
