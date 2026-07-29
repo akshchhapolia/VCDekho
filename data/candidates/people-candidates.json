@@ -1765,6 +1765,132 @@
       "sourceUrl": "https://www.privateequityinternational.com/institution-profiles/devc.html",
       "method": "manual-research",
       "confidence": "medium"
+    },
+    {
+      "company": "Kae Capital",
+      "name": "Sasha Mirchandani",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://kae-capital.com/our-team/sasha-mirchandani/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Orios Venture Partners",
+      "name": "Rehan Yar Khan",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/rehanyarkhan",
+      "sourceUrl": "https://www.oriosvp.com/rehan-yar-khan",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Stellaris Venture Partners",
+      "name": "Alok Goyal",
+      "title": "Co-founder & Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.founderthesis.com/p/the-man-who-keeps-a-spreadsheet-of",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Stellaris Venture Partners",
+      "name": "Rahul Chowdhri",
+      "title": "Co-founder & Partner",
+      "linkedinUrl": "https://www.stellarisvp.com/team/rahul-chowdhri",
+      "sourceUrl": "https://www.stellarisvp.com/team/rahul-chowdhri",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Lok Capital",
+      "name": "Vishal Mehta",
+      "title": "Co-founder & Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.lokcapital.com/people/vishal-mehta",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Lok Capital",
+      "name": "Venky Natarajan",
+      "title": "Co-founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.lokcapital.com/people/venky-natarajan",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "AdvantEdge Founders",
+      "name": "Kunal Khattar",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/kkhattar",
+      "sourceUrl": "https://theorg.com/org/advantedge-founders/org-chart/kunal-khattar",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Green Frontier Capital",
+      "name": "Sandiip Bhammer",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.greenfrontiercapital.com/sandiip-bhammer",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Guild Capital",
+      "name": "Iain Shovlin",
+      "title": "Founder, Chairman & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "http://guildcap.com/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Z3Partners",
+      "name": "Gautam Patel",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/gautam-patel-288b3a8",
+      "sourceUrl": "https://www.vccircle.com/z3partnersmarks-final-close-of-tech-fund",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Z3Partners",
+      "name": "Rishi Maheshwari",
+      "title": "Co-founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.vccircle.com/z3partnersmarks-final-close-of-tech-fund",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Nueva Capital",
+      "name": "Ashish Chand",
+      "title": "Founding Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.lighthouse-canton.com/in/our-businesses/asset-management/private-market-funds/lc-nueva-aif",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Nueva Capital",
+      "name": "Sohil Chand",
+      "title": "Founding Partner & CIO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.lighthouse-canton.com/in/our-businesses/asset-management/private-market-funds/lc-nueva-aif",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Appreciate Capital",
+      "name": "Abhishek Agarwal",
+      "title": "Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/aggyabhishek",
+      "sourceUrl": "https://in.linkedin.com/company/appreciate-capital",
+      "method": "manual-research",
+      "confidence": "high"
     }
   ],
   "unresolved": [
@@ -1773,24 +1899,6 @@
       "website": "https://spiral.vc",
       "reason": "homepage-fetch-failed",
       "detail": "The operation was aborted due to timeout"
-    },
-    {
-      "company": "AdvantEdge Founders",
-      "website": "https://advantedgefounders.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "Nueva Capital",
-      "website": "https://nuevacapital.vc",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "Green Frontier Capital",
-      "website": "https://www.greenfrontiercapital.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.greenfrontiercapital.com/about"
     },
     {
       "company": "Lodha Ventures",
@@ -1805,36 +1913,6 @@
       "sourceUrl": "https://wamicapital.com/"
     },
     {
-      "company": "Kae Capital",
-      "website": "https://kaecapital.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://kaecapital.com/"
-    },
-    {
-      "company": "Orios Venture Partners",
-      "website": "https://oriosventurepartners.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "Guild Capital",
-      "website": "https://guild.capital/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://guild.capital/"
-    },
-    {
-      "company": "Stellaris Venture Partners",
-      "website": "https://www.stellarisvp.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.stellarisvp.com/team"
-    },
-    {
-      "company": "Z3Partners",
-      "website": "https://z3partners.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://z3partnersglobal.com/about-us"
-    },
-    {
       "company": "3 Peaks Ventures",
       "website": "https://3peaksventures.com/",
       "reason": "no-usable-text",
@@ -1845,18 +1923,6 @@
       "website": "https://superbcapital.vc",
       "reason": "homepage-fetch-failed",
       "detail": "fetch failed"
-    },
-    {
-      "company": "Lok Capital",
-      "website": "https://www.lokcapital.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.lokcapital.com/about"
-    },
-    {
-      "company": "Appreciate Capital",
-      "website": "https://appreciatecapital.vc/",
-      "reason": "no-usable-text",
-      "detail": ""
     },
     {
       "company": "Agility Ventures",
