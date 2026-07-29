@@ -60,6 +60,7 @@ function toCard(person) {
     companySlug: person.companySlug,
     companyType: person.companyType,
     companyLogo: person.companyLogo || null,
+    photo: person.photo || null,
     email: person.email || '',
     linkedin: person.linkedin || '',
     twitter: person.twitter || ''
