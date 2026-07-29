@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T16:37:26.142Z",
+  "generatedAt": "2026-07-29T16:38:53.649Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -102,6 +102,126 @@
       "name": "Arun Tadanki",
       "title": "Lead Investor",
       "sourceUrl": "https://waveform.vc/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Xeed Ventures",
+      "name": "Sailesh Tulshan",
+      "title": "Founder",
+      "sourceUrl": "https://www.xeed.vc/about-us",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Xeed Ventures",
+      "name": "Shruti Jain",
+      "title": "Principal",
+      "sourceUrl": "https://www.xeed.vc/about-us",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Norwest Venture Partners",
+      "name": "Jeff Crowe",
+      "title": "Senior Managing Partner",
+      "sourceUrl": "https://www.norwest.com/team/",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "Norwest Venture Partners",
+      "name": "Jon Kossow",
+      "title": "Managing Partner",
+      "sourceUrl": "https://www.norwest.com/team/",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "DSG Consumer Partners",
+      "name": "Deepak I. Shahdadpuri",
+      "title": "Managing Director",
+      "sourceUrl": "https://www.dsgcp.com/about-us",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Merak Ventures",
+      "name": "Manu Rikhye",
+      "title": "Partner",
+      "sourceUrl": "https://merakventures.com/about.html",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Merak Ventures",
+      "name": "Sheetal Bahl",
+      "title": "Partner",
+      "sourceUrl": "https://merakventures.com/about.html",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Theia Ventures",
+      "name": "Priya Shah",
+      "title": "Founder and General Partner",
+      "sourceUrl": "https://www.theia-ventures.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Theia Ventures",
+      "name": "Piyush Mathur",
+      "title": "Venture Partner",
+      "sourceUrl": "https://www.theia-ventures.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Manjushree Ventures",
+      "name": "Rajat Kedia",
+      "title": "Managing Partner, Manjushree Ventures",
+      "sourceUrl": "https://www.manjushreeventures.com/about-us",
+      "method": "crawl",
+      "companyType": "VC / Family Office"
+    },
+    {
+      "company": "Manjushree Ventures",
+      "name": "Ankit Kedia",
+      "title": "Managing Partner, Manjushree Ventures",
+      "sourceUrl": "https://www.manjushreeventures.com/about-us",
+      "method": "crawl",
+      "companyType": "VC / Family Office"
+    },
+    {
+      "company": "BackFuture",
+      "name": "Alex Theuma",
+      "title": "GENERAL_PARTNER",
+      "sourceUrl": "https://www.backfuture.vc/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "BackFuture",
+      "name": "Kenneth K Thomas",
+      "title": "PRINCIPAL",
+      "sourceUrl": "https://www.backfuture.vc/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Village Global",
+      "name": "Amrit Rao",
+      "title": "General Partner",
+      "sourceUrl": "https://www.villageglobal.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Village Global",
+      "name": "Anne Dwane",
+      "title": "General Partner",
+      "sourceUrl": "https://www.villageglobal.com/team",
       "method": "crawl",
       "companyType": "VC"
     }
@@ -214,6 +334,138 @@
       "website": "https://nuevacapital.vc",
       "reason": "homepage-fetch-failed",
       "detail": "fetch failed"
+    },
+    {
+      "company": "Green Frontier Capital",
+      "website": "https://www.greenfrontiercapital.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.greenfrontiercapital.com/about"
+    },
+    {
+      "company": "Lodha Ventures",
+      "website": "https://lodhaventures.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Wami Capital - Single Family Office",
+      "website": "https://wamicapital.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://wamicapital.com/"
+    },
+    {
+      "company": "Kae Capital",
+      "website": "https://kaecapital.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://kaecapital.com/"
+    },
+    {
+      "company": "Orios Venture Partners",
+      "website": "https://oriosventurepartners.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Guild Capital",
+      "website": "https://guild.capital/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://guild.capital/"
+    },
+    {
+      "company": "Stellaris Venture Partners",
+      "website": "https://www.stellarisvp.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.stellarisvp.com/team"
+    },
+    {
+      "company": "Z3Partners",
+      "website": "https://z3partners.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://z3partnersglobal.com/about-us"
+    },
+    {
+      "company": "3 Peaks Ventures",
+      "website": "https://3peaksventures.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Superb Capital",
+      "website": "https://superbcapital.vc",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Lok Capital",
+      "website": "https://www.lokcapital.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.lokcapital.com/about"
+    },
+    {
+      "company": "Appreciate Capital",
+      "website": "https://appreciatecapital.vc/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Agility Ventures",
+      "website": "https://agilityventures.vc",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Eternal Capital (India)",
+      "website": "https://eternalcapital.in/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "888vc",
+      "website": "https://888.vc",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Blue Ashva Capital",
+      "website": "https://blueashva.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "1818 Venture Capital",
+      "website": "https://1818vc.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Teja Ventures",
+      "website": "https://www.tejaventures.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.tejaventures.com/about-us"
+    },
+    {
+      "company": "UpsideDown VC",
+      "website": "https://upsidedownvc.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "LightPace VC",
+      "website": "https://www.lightpacevc.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.lightpacevc.com/"
+    },
+    {
+      "company": "OperatorVC",
+      "website": "https://operatorvc.com/OperatorVC-8a33376dede541f08d7d4bfc1a963d68",
+      "reason": "homepage-fetch-failed",
+      "detail": 500
+    },
+    {
+      "company": "Supermorpheus",
+      "website": "https://supermorpheus.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://supermorpheus.com/"
     }
   ]
 }
