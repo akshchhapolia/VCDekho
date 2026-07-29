@@ -13,6 +13,7 @@ const { slugify } = require('./lib/slugify');
 const ROOT = path.join(__dirname, '..');
 const CSV_PATH = path.join(ROOT, 'VC Dekho Sheet - Investor - Individuals.csv');
 const INVESTORS_JSON_PATH = path.join(ROOT, 'data', 'investors.json');
+const PHOTOS_META_PATH = path.join(ROOT, 'data', 'people-photos.json');
 const OUT_PATH = path.join(ROOT, 'data', 'people.json');
 
 function build() {
@@ -86,6 +87,16 @@ function build() {
   const companyTypes = [...typeCounts.entries()]
     .sort((a, b) => b[1] - a[1])
     .map(([label]) => ({ id: slugify(label) || 'other', label }));
+
+  // Preserve previously fetched Twitter/X photos across rebuilds
+  if (fs.existsSync(PHOTOS_META_PATH)) {
+    try {
+      const photosMeta = JSON.parse(fs.readFileSync(PHOTOS_META_PATH, 'utf8'));
+      people.forEach((p) => {
+        if (photosMeta[p.slug] && photosMeta[p.slug].path) p.photo = photosMeta[p.slug].path;
+      });
+    } catch (_) {}
+  }
 
   const linkedCount = people.filter((p) => p.companySlug).length;
 
