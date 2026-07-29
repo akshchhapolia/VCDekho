@@ -171,10 +171,12 @@
   }
 
   function logoHtml(p) {
-    if (p.companyLogo) {
+    const src = p.photo || p.companyLogo;
+    if (src) {
+      const roundStyle = p.photo ? 'border-radius:50%;object-fit:cover;' : '';
       return (
-        '<img class="inv-dir-logo" src="' + esc(p.companyLogo) +
-        '" alt="" width="40" height="40" loading="lazy" decoding="async" onerror="this.classList.add(\'is-broken\');this.nextElementSibling&&this.nextElementSibling.classList.add(\'is-visible\');">' +
+        '<img class="inv-dir-logo" src="' + esc(src) +
+        '" alt="" width="40" height="40" loading="lazy" decoding="async" style="' + roundStyle + '" onerror="this.classList.add(\'is-broken\');this.nextElementSibling&&this.nextElementSibling.classList.add(\'is-visible\');">' +
         '<span class="inv-dir-logo-fallback" aria-hidden="true">' + esc(initialsFor(p.name)) + '</span>'
       );
     }

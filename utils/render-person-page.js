@@ -110,6 +110,7 @@ function renderPersonPage(person, colleagues, res) {
     '@type': 'Person',
     name: person.name,
     jobTitle: person.title || undefined,
+    image: person.photo ? 'https://vcdekho.com' + person.photo : undefined,
     worksFor: person.company ? { '@type': 'Organization', name: person.company } : undefined,
     sameAs: [person.linkedin, person.twitter].filter(Boolean)
   });
@@ -132,6 +133,7 @@ function renderPersonPage(person, colleagues, res) {
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/people/' + escapeHtml(person.slug) + '">',
     '<meta property="og:type" content="profile">',
+    person.photo ? ('<meta property="og:image" content="https://vcdekho.com' + escapeHtml(person.photo) + '">') : '',
     '<script type="application/ld+json">' + schema + '</script>',
     '</head>',
     '<body class="scrollable-page inv-page inv-profile-page">',
@@ -156,9 +158,11 @@ function renderPersonPage(person, colleagues, res) {
     '<div class="inv-profile-hero-wash" aria-hidden="true"></div>',
     '<div class="inv-profile-hero-inner">',
     '<div class="inv-profile-hero-copy">',
-    person.companyLogo
-      ? ('<img class="inv-profile-logo" src="' + escapeHtml(person.companyLogo) + '" alt="" width="56" height="56" loading="eager">')
-      : ('<span class="inv-dir-logo-fallback is-visible" aria-hidden="true" style="display:inline-flex;margin-bottom:14px;">' + escapeHtml(initialsFor(person.name)) + '</span>'),
+    person.photo
+      ? ('<img class="inv-profile-logo" src="' + escapeHtml(person.photo) + '" alt="" width="56" height="56" loading="eager" style="border-radius:50%;object-fit:cover;">')
+      : person.companyLogo
+        ? ('<img class="inv-profile-logo" src="' + escapeHtml(person.companyLogo) + '" alt="" width="56" height="56" loading="eager">')
+        : ('<span class="inv-dir-logo-fallback is-visible" aria-hidden="true" style="display:inline-flex;margin-bottom:14px;">' + escapeHtml(initialsFor(person.name)) + '</span>'),
     '<span class="inv-profile-type">' + escapeHtml(person.title || 'Investor') + '</span>',
     '<h1 class="inv-profile-title">' + escapeHtml(person.name) + '</h1>',
     '<p class="inv-profile-hero-lead">' + escapeHtml((person.title ? person.title + ' at ' : 'Investor at ') + (person.company || '')) + '</p>',
