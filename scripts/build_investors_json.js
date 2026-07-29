@@ -66,7 +66,7 @@ const THESIS_THEMES = [
   { id: 'platform-marketplace', label: 'Platform / marketplace builders', match: [/marketplace/i, /two[-\s]?sided/i, /network effect/i, /platform business/i, /platform play/i] },
   { id: 'gaming-media', label: 'Gaming / media', match: [/gaming/i, /\bgame\b/i, /entertainment/i, /\bmedia\b/i, /content platform/i], sectorIds: ['gaming'] },
   { id: 'proptech', label: 'Proptech / real estate', match: [/prop\s*tech/i, /proptech/i, /real estate/i, /housing tech/i], sectorIds: ['proptech'] },
-  { id: 'accelerator-studio', label: 'Accelerator / studio-linked', match: [/accelerator/i, /incubator/i, /venture studio/i, /startup studio/i], typeIds: ['accelerator'] },
+  { id: 'accelerator-studio', label: 'Accelerator / studio-linked', match: [/accelerator/i, /incubator/i, /venture studio/i, /startup studio/i, /government\s*grant/i, /\bgrant\s*scheme\b/i], typeIds: ['accelerator', 'government-grant'] },
   { id: 'sea-india', label: 'Southeast Asia + India', match: [/southeast asia/i, /\bsea\b/i, /\basean\b/i, /india and southeast/i] },
   { id: 'mobility-ev', label: 'Mobility / EV', match: [/mobility/i, /\bev\b/i, /electric vehicle/i, /auto[-\s]?tech/i, /two[-\s]?wheeler/i, /three[-\s]?wheeler/i, /fleet electr/i] }
 ];
@@ -74,6 +74,7 @@ const THESIS_THEMES = [
 // More specific types listed first so hybrids like "VC / Family Office" classify as FO/CVC/etc.
 const TYPE_CANON = [
   { id: 'family-office', label: 'Family Office', match: [/family\s*office/i] },
+  { id: 'government-grant', label: 'Government Grant', match: [/government\s*grant/i, /\bgrant\s*scheme\b/i] },
   { id: 'accelerator', label: 'Accelerator', match: [/accelerator/i, /incubator/i, /venture\s*studio/i] },
   { id: 'corporate', label: 'Corporate / CVC', match: [/corporate/i, /\bcvc\b/i, /strategic\s*fintech/i] },
   { id: 'syndicate', label: 'Syndicate / Network', match: [/syndicate/i, /angel\s*network/i] },
