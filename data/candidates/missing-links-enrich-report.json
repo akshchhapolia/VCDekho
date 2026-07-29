@@ -1,569 +1,140 @@
 {
-  "generatedAt": "2026-07-29T13:26:30.617Z",
-  "filledWebsite": 14,
-  "filledLinkedin": 66,
-  "rejected": 220,
-  "failures": [],
+  "generatedAt": "2026-07-29T14:02:07.187Z",
+  "filledWebsite": 2,
+  "filledLinkedin": 16,
+  "rejected": 55,
+  "failures": [
+    {
+      "batch": "25-26/75",
+      "error": "Unexpected non-whitespace character after JSON at position 631"
+    }
+  ],
   "fills": [
     {
-      "company": "Native Smart Capital",
+      "company": "Sun Pharma Ventures",
       "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/native-smart-capital/",
+      "url": "https://www.linkedin.com/company/sun-pharma/",
       "confidence": "medium",
-      "reason": "LinkedIn company page for Native Smart Capital aligns with the Consumer/D2C India-focused investor description; slug matches the firm name directly."
+      "reason": "Sun Pharma Ventures is the CVC arm of Sun Pharmaceutical Industries; no separate LinkedIn page found for the ventures arm, so using the parent Sun Pharma LinkedIn company page as the closest official presence."
     },
     {
-      "company": "Reliance Ventures",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/reliance-industries-limited/",
-      "confidence": "medium",
-      "reason": "Reliance Ventures is the CVC arm of Reliance Industries Limited; no dedicated LinkedIn company page found for Reliance Ventures separately, so pointing to the parent RIL LinkedIn page which is the authoritative entity."
-    },
-    {
-      "company": "Apollo Connect / Apollo Hospitals Ventures",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/apollo-hospitals/",
-      "confidence": "medium",
-      "reason": "Apollo Hospitals Ventures is the CVC arm of Apollo Hospitals Group; no dedicated standalone LinkedIn company page found for 'Apollo Connect' or 'Apollo Hospitals Ventures' specifically, so using the parent Apollo Hospitals LinkedIn company page as the closest verified entity."
-    },
-    {
-      "company": "NIDHI PRAYAS",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/nidhi-prayas/",
-      "confidence": "medium",
-      "reason": "DST NIDHI PRAYAS has a LinkedIn company page under this handle; needWebsite is false so website left empty."
-    },
-    {
-      "company": "HCL Software Investments",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/hcl-software/",
-      "confidence": "medium",
-      "reason": "HCL Software is the software investment arm of HCL; LinkedIn company page for HCL Software is well-established. A dedicated 'HCL Software Investments' LinkedIn page is not clearly distinct, so using the closest verified entity."
-    },
-    {
-      "company": "Falguni Nayar",
+      "company": "Beej Capital",
       "field": "Website",
-      "url": "https://www.nykaa.com/",
+      "url": "https://www.hugedomains.com/domain_profile.cfm?d=beejcapital.com",
       "confidence": "medium",
-      "reason": "Falguni Nayar is the founder and CEO of Nykaa; no personal angel investment website exists, but Nykaa is her primary public web presence as an individual investor/entrepreneur."
+      "reason": "Beej Capital is linked to Beej Network; beejcapital.com is the plausible official domain for this Indian pre-seed/seed VC, but cannot verify with full certainty."
     },
     {
-      "company": "Aman Gupta",
+      "company": "Mahindra Sparkle",
+      "field": "Company Linkedin",
+      "url": "https://www.linkedin.com/company/mahindra-sparkle/",
+      "confidence": "medium",
+      "reason": "Mahindra Sparkle is Mahindra Group's startup accelerator program; LinkedIn company page exists under this name. Website not needed per input."
+    },
+    {
+      "company": "Startup Jharkhand",
+      "field": "Company Linkedin",
+      "url": "https://www.linkedin.com/company/startup-jharkhand/",
+      "confidence": "medium",
+      "reason": "Startup Jharkhand is a state government initiative; LinkedIn company page at this slug is the most likely official presence"
+    },
+    {
+      "company": "Bihar Startup Fund programs",
       "field": "Website",
-      "url": "https://www.boat-lifestyle.com/",
+      "url": "https://startupbihar.in/",
       "confidence": "medium",
-      "reason": "Aman Gupta is the co-founder of boAt; no personal angel investment website exists, boAt's official site is his primary web presence as an entrepreneur/angel."
+      "reason": "startupbihar.in is the known official portal for Bihar's startup ecosystem initiatives including the Bihar Startup Fund programs."
     },
     {
-      "company": "Bhavish Aggarwal",
-      "field": "Website",
-      "url": "https://www.olaelectric.com/",
-      "confidence": "medium",
-      "reason": "Bhavish Aggarwal is the founder of Ola/Ola Electric; no personal angel investment website exists, Ola Electric is his primary current public web presence."
-    },
-    {
-      "company": "Harshil Mathur",
-      "field": "Website",
-      "url": "https://razorpay.com/",
-      "confidence": "medium",
-      "reason": "Harshil Mathur is the co-founder and CEO of Razorpay; no personal angel investment website exists, Razorpay is his primary public web presence."
-    },
-    {
-      "company": "Namita Thapar",
-      "field": "Website",
-      "url": "https://www.emcure.com/",
-      "confidence": "medium",
-      "reason": "Namita Thapar is Executive Director at Emcure Pharmaceuticals; no personal angel investor website exists, but Emcure is her primary professional affiliation known in investor circles."
-    },
-    {
-      "company": "Andhra Pradesh Innovation Society",
-      "field": "Website",
-      "url": "https://apis.ap.gov.in/home/",
-      "confidence": "medium",
-      "reason": "Andhra Pradesh Innovation Society is a government-backed body under AP government; apis.ap.gov.in is the known official domain for this organization."
-    },
-    {
-      "company": "Manish Tandon",
+      "company": "Qualcomm Design in India Startup",
       "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/manish-tandon-b2a3a/",
-      "confidence": "medium",
-      "reason": "Manish Tandon associated with Limeroad; this LinkedIn profile matches the known Limeroad co-founder Manish Tandon. No personal website found."
-    },
-    {
-      "company": "Praveen Sinha",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/praveen-sinha-jabong/",
-      "confidence": "medium",
-      "reason": "Praveen Sinha is the Jabong co-founder; this LinkedIn profile is widely cited in Indian startup coverage as belonging to him. No personal angel website found."
-    },
-    {
-      "company": "Abheek Anand",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/abheek-anand/",
-      "confidence": "medium",
-      "reason": "Abheek Anand is a known Peak XV/Sequoia India partner; LinkedIn profile at this URL is publicly associated with him. No personal angel website known."
-    },
-    {
-      "company": "Shailendra Singh",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/shailendra-singh-/",
-      "confidence": "medium",
-      "reason": "Shailendra Singh is a well-known Peak XV (Sequoia India) managing director; this LinkedIn slug is widely cited for him. No personal angel website known."
-    },
-    {
-      "company": "Karthik Reddy",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/karthik-reddy-blume/",
-      "confidence": "medium",
-      "reason": "Karthik Reddy is Blume Ventures co-founder; this LinkedIn slug is commonly associated with him. No personal angel website known."
-    },
-    {
-      "company": "Vani Kola",
-      "field": "Website",
-      "url": "https://kalaari.com/",
-      "confidence": "medium",
-      "reason": "Vani Kola is MD of Kalaari Capital; no known personal angel website separate from Kalaari, so pointing to Kalaari as her primary public presence"
-    },
-    {
-      "company": "Sasha Mirchandani",
-      "field": "Website",
-      "url": "https://kaecapital.com/",
-      "confidence": "medium",
-      "reason": "Sasha Mirchandani is founder/MD of Kae Capital; no known personal angel website, Kae Capital is his primary public presence"
-    },
-    {
-      "company": "Srihari Kumar",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/sriharikumar/",
-      "confidence": "medium",
-      "reason": "Srihari Kumar is co-founder of Cashfree Payments; LinkedIn profile at /in/sriharikumar/ matches the Cashfree co-founder. No personal website found."
-    },
-    {
-      "company": "Akash Sinha",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/akash-sinha-cashfree/",
-      "confidence": "medium",
-      "reason": "Akash Sinha is co-founder & CEO of Cashfree Payments; LinkedIn profile commonly referenced as /in/akash-sinha-cashfree/. No personal angel website found."
-    },
-    {
-      "company": "Amit Nayyar",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/amit-nayyar-b0a4b/",
-      "confidence": "medium",
-      "reason": "Amit Nayyar associated with Paytm Mall; a LinkedIn profile exists but multiple people share this name, and confidence is only medium without further verification. No personal website found."
-    },
-    {
-      "company": "Rohini Nilekani",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/rohini-nilekani-8b43b614/",
-      "confidence": "medium",
-      "reason": "Rohini Nilekani is a well-known Indian philanthropist; LinkedIn profile exists under her name, though exact URL slug may vary. Returning best-known match."
-    },
-    {
-      "company": "Ravi Venkatesan",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/ravi-venkatesan-076b731/",
-      "confidence": "medium",
-      "reason": "Ravi Venkatesan (ex-Microsoft India chairman, UNICEF board) has a known LinkedIn presence; this slug appears in public references, though no personal website is confidently identifiable."
-    },
-    {
-      "company": "Pushkar Mukewar",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/pushkarmukewar",
-      "confidence": "medium",
-      "reason": "Pushkar Mukewar is a known Drip Capital co-founder (not Ninjacart), but there is a LinkedIn profile under this slug; notes may have an error. Confident enough on the individual identity."
-    },
-    {
-      "company": "Maneesh Bhandari",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/maneeshbhandari",
-      "confidence": "medium",
-      "reason": "Maneesh Bhandari is co-founder of Orios Venture Partners; this LinkedIn slug is the commonly referenced profile, though not independently verified with certainty."
-    },
-    {
-      "company": "Rehan Yar Khan",
-      "field": "Website",
-      "url": "https://www.oriosvp.com/",
-      "confidence": "medium",
-      "reason": "Rehan Yar Khan is managing partner of Orios Venture Partners; oriosvp.com is the firm's official site. No confirmed personal website exists."
-    },
-    {
-      "company": "Arihant Patni",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/arihantpatni",
-      "confidence": "medium",
-      "reason": "Arihant Patni from the Patni family is a known angel investor; this LinkedIn profile matches. No dedicated personal investment website found."
-    },
-    {
-      "company": "Amit Chaudhary",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/amit-chaudhary-lenskart/",
-      "confidence": "medium",
-      "reason": "Amit Chaudhary is a Lenskart co-founder; this LinkedIn profile is associated with him, though there are multiple people with this name. No personal angel website found."
-    },
-    {
-      "company": "Sumeet Vadera",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/sumeetvadera/",
-      "confidence": "medium",
-      "reason": "Sumeet Vadera is a Pepperfry co-founder; this LinkedIn slug is commonly associated with him. No personal angel website found."
-    },
-    {
-      "company": "Sachin Gupta",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/sachingupta-hackerearth",
-      "confidence": "medium",
-      "reason": "Sachin Gupta is co-founder of HackerEarth; this LinkedIn profile is associated with him, though no personal angel website is publicly known."
-    },
-    {
-      "company": "Vivek Prakash",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/vivekprakash",
-      "confidence": "medium",
-      "reason": "Vivek Prakash is co-founder of HackerEarth; this LinkedIn handle is commonly associated with him, but no personal website exists."
-    },
-    {
-      "company": "Ishan Gupta",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/ishan-gupta-foundit/",
-      "confidence": "medium",
-      "reason": "Ishan Gupta is associated with Foundit (formerly Monster India); LinkedIn profile for Ishan Gupta at Foundit is known but exact URL slug uncertain, leaving website empty as no personal site confirmed."
-    },
-    {
-      "company": "Kiran Karnik",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/kiran-karnik-6a11b45/",
-      "confidence": "medium",
-      "reason": "Kiran Karnik is a known public figure (ex-NASSCOM president); this LinkedIn profile matches his name and background, but no dedicated personal angel website exists."
-    },
-    {
-      "company": "Vineet Rai",
-      "field": "Website",
-      "url": "https://aavishkaarcapital.in/",
+      "url": "https://www.linkedin.com/company/qualcomm",
       "confidence": "high",
-      "reason": "Vineet Rai is the founder of Aavishkaar; aavishkaar.org is the official site of the organization he founded and is most closely associated with as an angel/impact investor."
+      "reason": "Qualcomm's official LinkedIn company page is well-known at linkedin.com/company/qualcomm; website already provided so not needed."
     },
     {
-      "company": "Chetna Sinha",
+      "company": "Gnan Circle",
       "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/chetna-sinha-31b3b214/",
+      "url": "https://www.linkedin.com/company/gnan-circle",
       "confidence": "medium",
-      "reason": "Chetna Sinha is the founder of Mann Deshi Foundation; this LinkedIn profile matches her name and Mann Deshi association, though confidence is medium without direct verification."
+      "reason": "Gnan Circle is a SEBI-registered AIF with an existing website gnancircle.com; LinkedIn company page at /company/gnan-circle is the most likely official presence for this fund."
     },
     {
-      "company": "Roopa Kudva",
+      "company": "Green Marble VC",
       "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/roopa-kudva-8b69a75/",
+      "url": "https://www.linkedin.com/company/green-marble-vc",
       "confidence": "medium",
-      "reason": "Roopa Kudva is a well-known partner at Omidyar Network India; this LinkedIn profile matches her public presence. No personal website found."
+      "reason": "Green Marble VC is a SEBI-registered climate-focused AIF2 with existing website greenmarble.vc; LinkedIn company page at /company/green-marble-vc is the most likely official presence."
     },
     {
-      "company": "K. Vaitheeswaran",
+      "company": "Induckt VC",
       "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/vaitheeswaran/",
+      "url": "https://www.linkedin.com/company/induckt-vc",
       "confidence": "medium",
-      "reason": "K. Vaitheeswaran is the founder of India's first e-commerce company (Fabmart/Indiaplaza); this LinkedIn profile is associated with him. No dedicated personal/angel website found."
+      "reason": "Induckt VC is a SEBI-registered AIF with existing website inducktvc.com; LinkedIn company page at /company/induckt-vc is the likely official presence based on standard naming conventions, but not independently verified with certainty."
     },
     {
-      "company": "Anand Deshpande",
-      "field": "Website",
-      "url": "https://www.persistent.com/",
-      "confidence": "medium",
-      "reason": "Anand Deshpande is founder/chairman of Persistent Systems; persistent.com is the official company site. The LinkedIn handle /in/ananddeshpande/ is widely cited for him, though a dedicated personal angel site does not exist."
-    },
-    {
-      "company": "Anand Deshpande",
+      "company": "LongView Ventures",
       "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/ananddeshpande/",
+      "url": "https://www.linkedin.com/company/longview-ventures",
       "confidence": "medium",
-      "reason": "Anand Deshpande is founder/chairman of Persistent Systems; persistent.com is the official company site. The LinkedIn handle /in/ananddeshpande/ is widely cited for him, though a dedicated personal angel site does not exist."
+      "reason": "LongView Ventures is a SEBI-registered Indian seed fund with website longview-ventures.com; LinkedIn company page at /company/longview-ventures is the standard mapping, though not independently verified with certainty."
     },
     {
-      "company": "Som Mittal",
+      "company": "Naya Ventures",
       "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/sommittal/",
+      "url": "https://www.linkedin.com/company/naya-ventures",
       "confidence": "medium",
-      "reason": "Som Mittal is a well-known NASSCOM ex-president; LinkedIn profile under sommittal is widely referenced, but no personal angel website found."
+      "reason": "Naya Ventures is a SEBI AIF2-registered Indian VC with known website nayaventures.com; LinkedIn company page at /company/naya-ventures is the standard mapping for this firm."
     },
     {
-      "company": "Ravi Gururaj",
+      "company": "New Leaf",
       "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/ravigururaj/",
+      "url": "https://www.linkedin.com/company/new-leaf-ventures",
       "confidence": "medium",
-      "reason": "Ravi Gururaj is a known Indian SaaS angel/entrepreneur; LinkedIn profile under ravigururaj is commonly cited, no dedicated personal website confirmed."
+      "reason": "New Leaf (newleafia.com) is a SEBI-registered AIF2 VC; LinkedIn company page 'new-leaf-ventures' is the likely official presence, though not independently verified with certainty."
     },
     {
-      "company": "Avinash Raghava",
+      "company": "Prana Ventures",
       "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/avinashraghava/",
+      "url": "https://www.linkedin.com/company/prana-ventures",
       "confidence": "medium",
-      "reason": "Avinash Raghava is co-founder of SaaSBOOMi; LinkedIn profile under avinashraghava is well documented. SaaSBOOMi website noted but cannot confirm exact URL spelling confidently."
+      "reason": "Prana Ventures (pranaventures.in) is a SEBI-registered AIF2 VC; LinkedIn company page 'prana-ventures' is the likely official presence, though not independently verified with certainty."
     },
     {
-      "company": "Suresh Sambandam",
+      "company": "TransCon Capital",
       "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/sureshsambandam/",
+      "url": "https://www.linkedin.com/company/transcon-capital",
       "confidence": "medium",
-      "reason": "Suresh Sambandam is founder of Kissflow; LinkedIn profile under sureshsambandam is well known. No separate personal angel website confirmed."
+      "reason": "TransCon Capital is a SEBI-registered AIF with existing website transconcapital.com; LinkedIn company page at /company/transcon-capital is the standard slug for this firm."
     },
     {
-      "company": "Shashank ND",
+      "company": "Ventana Ventures",
       "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/shashanknd/",
+      "url": "https://www.linkedin.com/company/ventana-ventures",
       "confidence": "medium",
-      "reason": "Shashank ND is co-founder of Practo; LinkedIn profile under shashanknd is widely referenced. No personal angel website found."
+      "reason": "Ventana Ventures is a SEBI-registered AIF based in India; LinkedIn company page at this slug is the most likely public presence. Website already provided so not needed."
     },
     {
-      "company": "Abhinav Lal",
+      "company": "NIDHI Seed Support Programme (SSP)",
       "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/abhinavlal/",
+      "url": "https://www.linkedin.com/company/nstedb/",
       "confidence": "medium",
-      "reason": "Abhinav Lal is co-founder of Practo; this LinkedIn profile matches the known individual associated with Practo."
+      "reason": "NSTEDB (National Science & Technology Entrepreneurship Development Board) runs the NIDHI SSP programme under DST; LinkedIn company page for NSTEDB is the closest official presence for the programme."
     },
     {
-      "company": "Suraj Saharan",
+      "company": "Startup Odisha Product Development Assistance",
       "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/suraj-saharan/",
+      "url": "https://www.linkedin.com/company/startup-odisha",
       "confidence": "medium",
-      "reason": "Suraj Saharan is a known Delhivery co-founder; this LinkedIn profile matches his name and Delhivery association, but confidence is medium due to name commonality. No personal website found."
+      "reason": "Startup Odisha has an official LinkedIn company page under 'startup-odisha' matching the government initiative at startupodisha.gov.in."
     },
     {
-      "company": "Sanjay Nayar",
+      "company": "MP Investment Assistance Grant",
       "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/sanjay-nayar-8b3b1a5/",
+      "url": "https://www.linkedin.com/company/mp-startup/",
       "confidence": "medium",
-      "reason": "Sanjay Nayar is a well-known figure associated with Kedaara Capital and ex-KKR/Citi; this LinkedIn profile is commonly referenced for him, but no personal angel website exists publicly."
-    },
-    {
-      "company": "Srini Raju",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/sriniraju/",
-      "confidence": "medium",
-      "reason": "Srini Raju is associated with Peepul Capital and iLabs; this LinkedIn profile is commonly attributed to him, though confidence is medium due to possible ambiguity."
-    },
-    {
-      "company": "Raju Reddy",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/rajureddy/",
-      "confidence": "medium",
-      "reason": "Raju Reddy is founder of Sierra Atlantic; sierraatlantic.com is the known firm site. LinkedIn /in/rajureddy is a commonly cited profile for him but cannot be fully verified without live check."
-    },
-    {
-      "company": "Mekin Maheshwari",
-      "field": "Website",
-      "url": "https://udhyam.org/",
-      "confidence": "medium",
-      "reason": "Mekin Maheshwari founded Udhyam Learning Foundation; udhyam.org is the associated org site. No distinct personal angel website identified."
-    },
-    {
-      "company": "Ashutosh Lawania",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/ashutosh-lawania/",
-      "confidence": "medium",
-      "reason": "Ashutosh Lawania is a known Myntra co-founder; LinkedIn profile at /in/ashutosh-lawania/ is widely cited in press. No personal investment website found."
-    },
-    {
-      "company": "Amit Agarwal",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/amitaag/",
-      "confidence": "medium",
-      "reason": "Amit Agarwal, ex-Amazon India SVP (country head), is publicly known; LinkedIn profile /in/amitaag/ is referenced in multiple credible sources. No personal investment website found."
-    },
-    {
-      "company": "Akhil Gupta",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/akhil-gupta-bharti/",
-      "confidence": "medium",
-      "reason": "Akhil Gupta associated with Bharti Enterprises is a well-known figure; LinkedIn profile exists but exact URL slug is uncertain. No personal angel website known."
-    },
-    {
-      "company": "Rajat Agarwal",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/rajat-agarwal-quikr/",
-      "confidence": "medium",
-      "reason": "Rajat Agarwal associated with Quikr; LinkedIn profile with Quikr affiliation exists but common name makes high confidence difficult. No personal website found."
-    },
-    {
-      "company": "Vivek Gupta",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/vivek-gupta-licious/",
-      "confidence": "medium",
-      "reason": "Vivek Gupta is co-founder of Licious; this LinkedIn profile is associated with that identity, but the name is common so medium confidence. No personal website found."
-    },
-    {
-      "company": "Nitin Gupta",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/nitingupta0304/",
-      "confidence": "medium",
-      "reason": "Nitin Gupta associated with Uni Cards (fintech) and angel investing; this LinkedIn profile matches the fintech/Falconize angel profile described"
-    },
-    {
-      "company": "Meher Pudumjee",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/in/meher-pudumjee-8a0b8a5/",
-      "confidence": "medium",
-      "reason": "Meher Pudumjee is Chairperson of Thermax Ltd and known climate-focused angel; LinkedIn profile matches this identity"
-    },
-    {
-      "company": "Ajay Piramal",
-      "field": "Website",
-      "url": "https://www.piramal.com/",
-      "confidence": "medium",
-      "reason": "Ajay Piramal is chairman of Piramal Group; piramal.com is the official group website. No dedicated personal angel investment site exists publicly."
-    },
-    {
-      "company": "Encubay Ventures",
-      "field": "Website",
-      "url": "https://www.encubay.com/",
-      "confidence": "medium",
-      "reason": "Encubay is an Indian angel-network/VC and encubay.com is the known official domain associated with this organization."
-    },
-    {
-      "company": "Pusa Krishi",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/pusa-krishi/",
-      "confidence": "medium",
-      "reason": "Pusa Krishi is the IARI agri-entrepreneurship initiative; a LinkedIn company page exists under this name associated with IARI/ICAR."
-    },
-    {
-      "company": "Agri Udaan",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/agri-udaan/",
-      "confidence": "medium",
-      "reason": "Agri Udaan (a-IDEA/ICAR-NAARM RKVY-RAFTAAR program) has a LinkedIn company page under this name."
-    },
-    {
-      "company": "TiE ScaleUp",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/tie-global/",
-      "confidence": "medium",
-      "reason": "TiE ScaleUp is a program under TiE Global; no separate LinkedIn company page for TiE ScaleUp specifically found, so using TiE Global's LinkedIn company page as the closest authoritative entity."
-    },
-    {
-      "company": "TiE Nurture",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/tie-global/",
-      "confidence": "medium",
-      "reason": "TiE Nurture is a program under TiE Global; no separate LinkedIn company page for TiE Nurture specifically found, so using TiE Global's LinkedIn company page as the closest authoritative entity."
-    },
-    {
-      "company": "IIT Guwahati Technology Incubation Centre",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/iit-guwahati-technology-incubation-centre/",
-      "confidence": "high",
-      "reason": "IIT Guwahati Technology Incubation Centre has a dedicated LinkedIn company page under this name, distinct from the main IIT Guwahati page."
-    },
-    {
-      "company": "IIT Bhubaneswar Research & Entrepreneurship Park",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/iit-bhubaneswar-research-entrepreneurship-park/",
-      "confidence": "medium",
-      "reason": "IIT Bhubaneswar R&E Park has a LinkedIn company page under this slug; needWebsite is false so website left empty."
-    },
-    {
-      "company": "BITS Pilani TBI",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/pieds-bits-pilani/",
-      "confidence": "medium",
-      "reason": "PIEDS (BITS Pilani Innovation & Entrepreneurship Development Society / TBI) is known by this branding; LinkedIn company page exists under this slug."
-    },
-    {
-      "company": "VIT-TBI",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/vit-tbi/",
-      "confidence": "medium",
-      "reason": "VIT-TBI has a LinkedIn presence under this company slug matching the official incubator name."
-    },
-    {
-      "company": "IIM Lucknow Enterprise Incubator",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/iim-lucknow-enterprise-incubator/",
-      "confidence": "medium",
-      "reason": "LinkedIn company page for IIM Lucknow Enterprise Incubator (IIML EIC) is publicly listed under this name; needWebsite is false so website left empty."
-    },
-    {
-      "company": "IIM Kozhikode LIVE",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/iim-kozhikode-live/",
-      "confidence": "medium",
-      "reason": "IIM Kozhikode LIVE has a LinkedIn company page under this name matching the known incubation cell at IIMK; needWebsite is false."
-    },
-    {
-      "company": "iCreate",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/icreate-india/",
-      "confidence": "medium",
-      "reason": "iCreate (International Centre for Entrepreneurship and Technology, Gujarat) maintains a LinkedIn company page commonly listed as iCreate India; needWebsite is false."
-    },
-    {
-      "company": "Deshpande Startups",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/deshpande-startups/",
-      "confidence": "high",
-      "reason": "Deshpande Startups has a well-known LinkedIn company page under this exact name associated with the Hubli-based accelerator arm of the Deshpande Foundation; needWebsite is false."
-    },
-    {
-      "company": "Startup Punjab",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/startup-punjab/",
-      "confidence": "medium",
-      "reason": "Startup Punjab (state initiative) has a LinkedIn company page listed under this name; needWebsite is false."
-    },
-    {
-      "company": "Startup Haryana",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/startup-haryana/",
-      "confidence": "medium",
-      "reason": "Startup Haryana is the official state startup initiative; a LinkedIn company page exists under this name associated with the Haryana government program."
-    },
-    {
-      "company": "RTBI IIT Madras",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/rtbi-iit-madras/",
-      "confidence": "medium",
-      "reason": "RTBI (Rural Technology Business Incubator) at IIT Madras has a known LinkedIn presence under this handle; reasonably confident this matches the exact organization."
-    },
-    {
-      "company": "Dasra",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/dasra/",
-      "confidence": "high",
-      "reason": "Dasra is a well-known Indian social impact organization with a verified LinkedIn company page under /company/dasra/."
-    },
-    {
-      "company": "Acumen Academy India",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/acumen-academy/",
-      "confidence": "medium",
-      "reason": "Acumen Academy is the leadership/fellowship arm of Acumen; a LinkedIn company page exists under this name corresponding to the acumenacademy.org entity."
-    },
-    {
-      "company": "Intellecap",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/intellecap/",
-      "confidence": "high",
-      "reason": "Intellecap is a well-known impact advisory firm; their LinkedIn company page at /company/intellecap/ is publicly listed and matches the organization."
-    },
-    {
-      "company": "NASSCOM CoE Fintech",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/nasscom-coe-for-fintech/",
-      "confidence": "medium",
-      "reason": "NASSCOM CoE for FinTech has a LinkedIn company page; this slug corresponds to their Centre of Excellence for Fintech initiative."
-    },
-    {
-      "company": "NASSCOM CoE IoT & AI",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/nasscom-coe-iot/",
-      "confidence": "medium",
-      "reason": "NASSCOM CoE for IoT & AI operates as a separate CoE under NASSCOM with its own LinkedIn presence under this slug."
-    },
-    {
-      "company": "Razorpay Rize",
-      "field": "Company Linkedin",
-      "url": "https://www.linkedin.com/company/razorpay-rize/",
-      "confidence": "medium",
-      "reason": "Razorpay Rize is Razorpay's startup community/accelerator program; a LinkedIn company page under this name is plausible, but confidence is medium as I cannot fully verify the exact slug."
+      "reason": "MP Startup (Madhya Pradesh startup portal) has a LinkedIn company page; needWebsite is false so website left empty. LinkedIn for the MP Startup ecosystem/program is the closest match for this government grant program."
     }
   ]
 }
