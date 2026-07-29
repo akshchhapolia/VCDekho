@@ -52,7 +52,14 @@ const COL = {
 const USER_AGENT = 'Mozilla/5.0 (compatible; VCDekhoLinkEnrich/1.0; +https://vcdekho.com)';
 
 function parseArgs(argv) {
-  const args = { limit: 100, start: 0, batchSize: 6, dryRun: false, saveEvery: 1 };
+  const args = {
+    limit: 100,
+    start: 0,
+    batchSize: 3,
+    dryRun: false,
+    saveEvery: 1,
+    prefer: 'all' // all | orgs | angels
+  };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--limit') args.limit = Number(argv[++i]);
@@ -60,6 +67,7 @@ function parseArgs(argv) {
     else if (a === '--batch-size') args.batchSize = Number(argv[++i]);
     else if (a === '--dry-run') args.dryRun = true;
     else if (a === '--save-every') args.saveEvery = Number(argv[++i]);
+    else if (a === '--prefer') args.prefer = String(argv[++i] || 'all');
   }
   return args;
 }
@@ -132,6 +140,45 @@ async function probeWebsite(url) {
   }
 }
 
+function websiteVariants(url) {
+  const base = normalizeHttpUrl(url);
+  if (!base) return [];
+  const out = new Set([base]);
+  try {
+    const u = new URL(base);
+    const host = u.hostname;
+    const noWww = host.replace(/^www\./i, '');
+    const withWww = host.startsWith('www.') ? host : 'www.' + host;
+    for (const h of [host, noWww, withWww]) {
+      const x = new URL(base);
+      x.hostname = h;
+      x.protocol = 'https:';
+      out.add(x.toString());
+      if (x.pathname === '/') {
+        const y = new URL(x.toString());
+        y.pathname = '';
+        out.add(y.toString().replace(/\/?$/, '/'));
+        out.add(y.toString().replace(/\/$/, ''));
+      }
+    }
+  } catch {
+    /* ignore */
+  }
+  return [...out];
+}
+
+async function probeWebsiteWithVariants(url) {
+  for (const candidate of websiteVariants(url)) {
+    const probe = await probeWebsite(candidate);
+    if (probe.ok) return { ...probe, tried: candidate };
+  }
+  return { ok: false };
+}
+
+function isAngelType(type) {
+  return /angel|individual/i.test(String(type || ''));
+}
+
 function buildBatchPrompt(items) {
   const payload = items.map((it) => ({
     id: it.id,
@@ -139,45 +186,55 @@ function buildBatchPrompt(items) {
     type: it.type,
     stages: it.stages,
     sector: it.sector,
-    notes: (it.notes || '').slice(0, 240),
+    notes: (it.notes || '').slice(0, 280),
+    source: (it.source || '').slice(0, 160),
+    thesis: (it.thesis || '').slice(0, 180),
     needWebsite: it.needWebsite,
     needLinkedin: it.needLinkedin,
     existingWebsite: it.existingWebsite || '',
-    existingLinkedin: it.existingLinkedin || ''
+    existingLinkedin: it.existingLinkedin || '',
+    isAngel: isAngelType(it.type)
   }));
 
-  return `You research official websites and LinkedIn pages for Indian VCs, angels, family offices, accelerators, and startup funds listed in a founder directory.
+  return `Find the official website and/or LinkedIn URL for each investor org/person below.
+These are real Indian-ecosystem VCs, PE firms, angels, accelerators, family offices, and government programs.
 
-For EACH item, return website and/or linkedin ONLY when you are reasonably confident it belongs to that exact organization.
-If unsure, return empty string. Never invent URLs. Prefer official firm sites and LinkedIn company pages (/company/...) for firms, /in/... for individual angels.
+Be diligent: use well-known official domains when you know them (e.g. antler.co, ycombinator.com, peakxv.com, sequoiacap.com, softbank.com, temasek.com.sg, gic.com.sg, kkr.com, blackstone.com, generalatlantic.com, bvp.com, insightpartners.com).
+For Indian angels/founders, LinkedIn /in/ profile URLs are often the best public presence — return those when known.
+For government programs, prefer *.gov.in or official program portals.
+For accelerators/incubators, prefer the institute or program homepage.
+
+Only return a URL if you believe it is the correct entity (not a namesake). If unsure, "".
+Never invent plausible-looking URLs.
 
 INPUT JSON:
 ${JSON.stringify(payload, null, 2)}
 
-Return ONLY a JSON array with one object per input id:
+Return ONLY a JSON array:
 [
   {
     "id": 12,
     "website": "https://... or \"\"",
-    "linkedin": "https://www.linkedin.com/... or \"\"",
+    "linkedin": "https://www.linkedin.com/company/... or https://www.linkedin.com/in/... or \"\"",
     "confidence": "high|medium|low",
-    "reason": "short why this URL is correct"
+    "reason": "brief evidence"
   }
 ]
 
 Rules:
-- Only fill fields where needWebsite/needLinkedin is true; otherwise leave that field "".
-- Do not reuse a URL that already appears as existingWebsite/existingLinkedin unless confirming the same.
-- If the firm is obscure / likely no public site, leave website "".
-- confidence "low" should use empty URLs.`;
+- Fill only fields where needWebsite/needLinkedin is true; else "".
+- For isAngel=true, prioritize linkedin /in/ over website unless they clearly run a fund site.
+- For firms, prefer linkedin /company/.
+- confidence "low" => both URLs must be "".
+- medium/high OK when you recognize the org from public knowledge.`;
 }
 
 async function enrichBatch(anthropic, items) {
   const msg = await anthropic.messages.create({
     model: 'claude-sonnet-4-6',
-    max_tokens: 2500,
+    max_tokens: 2200,
     system:
-      'You are a careful researcher for VCDekho. Output JSON only. Never invent websites or LinkedIn URLs. Empty string when unsure.',
+      'You are a meticulous researcher for VCDekho. Output JSON only. Prefer known official URLs. Never invent. Empty string when unsure.',
     messages: [{ role: 'user', content: buildBatchPrompt(items) }]
   });
   const text = msg.content.map((c) => (c.type === 'text' ? c.text : '')).join('');
@@ -198,19 +255,25 @@ async function main() {
   }
 
   const rows = loadCsv();
-  const candidates = [];
+  let candidates = [];
   for (let i = 0; i < rows.length; i++) {
     const row = rows[i];
     const needWebsite = blank(row[COL.website]);
     const needLinkedin = blank(row[COL.linkedin]);
     if (!needWebsite && !needLinkedin) continue;
+    const type = row[COL.type] || '';
+    const angel = isAngelType(type);
+    if (args.prefer === 'orgs' && angel) continue;
+    if (args.prefer === 'angels' && !angel) continue;
     candidates.push({
       id: i,
       company: row[COL.company],
-      type: row[COL.type] || '',
+      type,
       stages: row[COL.stages] || '',
       sector: row[COL.sector] || '',
       notes: row[COL.notes] || '',
+      source: row[COL.source] || '',
+      thesis: row[COL.thesis] || '',
       needWebsite,
       needLinkedin,
       existingWebsite: row[COL.website] || '',
@@ -218,8 +281,15 @@ async function main() {
     });
   }
 
+  // Prefer orgs first inside "all" for better hit rate early
+  if (args.prefer === 'all') {
+    candidates.sort((a, b) => Number(isAngelType(a.type)) - Number(isAngelType(b.type)));
+  }
+
   const slice = candidates.slice(args.start, args.start + args.limit);
-  console.log(`Missing-link candidates: ${candidates.length}; this run: ${slice.length}`);
+  console.log(
+    `Missing-link candidates: ${candidates.length}; this run: ${slice.length} (prefer=${args.prefer}, batch=${args.batchSize})`
+  );
   if (args.dryRun) {
     slice.slice(0, 20).forEach((c) => {
       console.log(
@@ -269,7 +339,7 @@ async function main() {
       if (item.needWebsite && res.website) {
         let url = normalizeHttpUrl(res.website);
         if (url) {
-          const probe = await probeWebsite(url);
+          const probe = await probeWebsiteWithVariants(url);
           if (probe.ok) {
             rows[item.id][COL.website] = probe.finalUrl || url;
             report.filledWebsite++;
