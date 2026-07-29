@@ -6,6 +6,7 @@ const { getAllStages } = require('./investment-stages');
 const { hasSectorGuide } = require('./sectors');
 const { renderExploreRelated } = require('./render-explore-related');
 const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
+const { getPeopleByCompanySlug } = require('./people');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -253,6 +254,24 @@ function renderInvestorPage(investor, related, res) {
         '<h3>Investment criteria</h3>' +
         '<p>' + escapeHtml(investor.criteria) + '</p>' +
       '</div>'
+    )
+    : '';
+
+  const people = getPeopleByCompanySlug(investor.slug);
+  const peopleCards = people.map((p) => (
+    '<a class="inv-profile-related-card inv-profile-reveal" href="/people/' + escapeHtml(p.slug) + '">' +
+      '<div class="inv-profile-related-type">' + escapeHtml(p.title || 'Investor') + '</div>' +
+      '<h3>' + escapeHtml(p.name) + '</h3>' +
+      '<p>' + escapeHtml(investor.name) + '</p>' +
+    '</a>'
+  )).join('');
+  const peopleSection = peopleCards
+    ? (
+      '<section class="inv-profile-section inv-profile-reveal" id="people">' +
+        '<div class="inv-profile-section-label">05 — Team</div>' +
+        '<div class="inv-profile-section-head"><h2>People at ' + escapeHtml(investor.name) + '</h2><p>Partners and principals mapped to this fund in the directory.</p></div>' +
+        '<div class="inv-profile-related-grid">' + peopleCards + '</div>' +
+      '</section>'
     )
     : '';
 
