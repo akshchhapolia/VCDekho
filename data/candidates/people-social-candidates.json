@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T20:01:45.971Z",
+  "generatedAt": "2026-07-29T20:01:59.628Z",
   "schemaVersion": 1,
   "description": "Staged LinkedIn/Twitter enrichments for existing People rows. Apply via scripts/apply_people_socials.js — patches empty CSV cells only.",
   "found": [
@@ -770,6 +770,232 @@
           "url": "https://www.linkedin.com/in/prachi-jain-windlass-426148",
           "via": "href",
           "page": "https://www.dell.org/employee/prachi-windlass/"
+        }
+      ]
+    },
+    {
+      "key": "priya ramachandran||fosterventures",
+      "name": "Priya Ramachandran",
+      "company": "Foster Ventures",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/sivapriyaramachandran",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.fostervc.com/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital",
+      "evidence": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/sivapriyaramachandran",
+          "via": "href",
+          "page": "https://www.fostervc.com/"
+        }
+      ]
+    },
+    {
+      "key": "rahul chowdhury||n1capital",
+      "name": "Rahul Chowdhury",
+      "company": "N+1 Capital",
+      "title": "Co-Founder & Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/rahulchowdhuryds",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.np1.in/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital",
+      "evidence": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/rahulchowdhuryds",
+          "via": "href",
+          "page": "https://www.np1.in/team/"
+        }
+      ]
+    },
+    {
+      "key": "rahul devjani||indusbridgeventures",
+      "name": "Rahul Devjani",
+      "company": "Indusbridge Ventures",
+      "title": "General Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/rahul-devjani-59b133",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.indusbridgeventures.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital",
+      "evidence": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/rahul-devjani-59b133",
+          "via": "href",
+          "page": "https://www.indusbridgeventures.com/team"
+        }
+      ]
+    },
+    {
+      "key": "rahul mahipal||capitarventures",
+      "name": "Rahul Mahipal",
+      "company": "Capitar Ventures",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "twitterUrl": "https://x.com/CapitarVent",
+      "sourceUrl": "https://capitar.in/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital",
+      "evidence": [
+        {
+          "type": "twitter",
+          "url": "https://x.com/CapitarVent",
+          "via": "href",
+          "page": "https://capitar.in/"
+        }
+      ]
+    },
+    {
+      "key": "ravi kapoor||indusbridgeventures",
+      "name": "Ravi Kapoor",
+      "company": "Indusbridge Ventures",
+      "title": "General Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/ravi-kapoor-5547a896",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.indusbridgeventures.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital",
+      "evidence": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/ravi-kapoor-5547a896",
+          "via": "href",
+          "page": "https://www.indusbridgeventures.com/team"
+        }
+      ]
+    },
+    {
+      "key": "richard averywright||1818venturecapital",
+      "name": "Richard Avery-Wright",
+      "company": "1818 Venture Capital",
+      "title": "Founding Partner & CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/richard-avery-wright",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.1818venturecapital.com/about",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital",
+      "evidence": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/richard-avery-wright",
+          "via": "href",
+          "page": "https://www.1818venturecapital.com/about"
+        }
+      ]
+    },
+    {
+      "key": "robin klein||localglobe",
+      "name": "Robin Klein",
+      "company": "LocalGlobe",
+      "title": "Co-founder & General Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/robinklein",
+      "twitterUrl": "https://x.com/robinklein",
+      "sourceUrl": "https://www.phoenixcourt.vc/localglobe/phoenix-court-team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital",
+      "evidence": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/robinklein",
+          "via": "href",
+          "page": "https://www.phoenixcourt.vc/localglobe/phoenix-court-team"
+        },
+        {
+          "type": "twitter",
+          "url": "https://x.com/robinklein",
+          "via": "href",
+          "page": "https://www.phoenixcourt.vc/localglobe/phoenix-court-team"
+        }
+      ]
+    },
+    {
+      "key": "sagar agarvwal||beamsvc",
+      "name": "Sagar Agarvwal",
+      "company": "Beams VC",
+      "title": "Founder & Managing Partner, Beams Fintech Fund",
+      "linkedinUrl": "https://www.linkedin.com/in/bijna",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/company/beamsvc",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital",
+      "evidence": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/bijna",
+          "via": "href",
+          "page": "https://www.linkedin.com/company/beamsvc"
+        }
+      ]
+    },
+    {
+      "key": "sailesh tulshan||xeedventures",
+      "name": "Sailesh Tulshan",
+      "company": "Xeed Ventures",
+      "title": "Founder",
+      "linkedinUrl": "https://www.linkedin.com/in/st5",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.xeed.vc/about-us",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital",
+      "evidence": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/st5",
+          "via": "href",
+          "page": "https://www.xeed.vc/about-us"
+        }
+      ]
+    },
+    {
+      "key": "sailesh tulshan||021capital",
+      "name": "Sailesh Tulshan",
+      "company": "021 Capital",
+      "title": "Founder",
+      "linkedinUrl": "https://www.linkedin.com/in/st5",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.xeed.vc/about-us",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital",
+      "evidence": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/st5",
+          "via": "href",
+          "page": "https://www.xeed.vc/about-us"
+        }
+      ]
+    },
+    {
+      "key": "sandeep murthy||lightboxventures",
+      "name": "Sandeep Murthy",
+      "company": "Lightbox Ventures",
+      "title": "Partner and Managing Director",
+      "linkedinUrl": "https://www.linkedin.com/in/murthysandeep",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.lightbox.vc/people",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital",
+      "evidence": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/murthysandeep",
+          "via": "href",
+          "page": "https://www.lightbox.vc/people"
         }
       ]
     }
@@ -1548,6 +1774,166 @@
       "company": "Eximus Ventures",
       "reason": "no-socials-near-name",
       "sourceUrl": "https://eximiusvc.com/about-us/",
+      "method": "harvest"
+    },
+    {
+      "key": "prem prabhakar||sbicapsventuressbicapventures",
+      "name": "Prem Prabhakar",
+      "company": "SBI Caps Ventures / SBICAP Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://sbiventures.co.in/about-us/",
+      "method": "harvest"
+    },
+    {
+      "key": "priya mohan||venturehighway",
+      "name": "Priya Mohan",
+      "company": "Venture Highway",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://inc42.com/buzz/venture-highway-founder-samir-sood-steps-down-partner/",
+      "method": "harvest"
+    },
+    {
+      "key": "priya shah||theiaventures",
+      "name": "Priya Shah",
+      "company": "Theia Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.theia-ventures.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "punit shah||alteriacapital",
+      "name": "Punit Shah",
+      "company": "Alteria Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://alteriacapital.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "rahil rangwala||accionventurelab",
+      "name": "Rahil Rangwala",
+      "company": "Accion Venture Lab",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.accion.org/about-accion/",
+      "method": "harvest"
+    },
+    {
+      "key": "rahul chandra||arkamventures",
+      "name": "Rahul Chandra",
+      "company": "Arkam Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.forbesindia.com/article/take-one-big-story-of-the-day/riders-of-the-next-ark-inside-arkams-plan-for-middle-indias-limitless-founders/86139/1",
+      "method": "harvest"
+    },
+    {
+      "key": "rahul kishore||coatuemanagement",
+      "name": "Rahul Kishore",
+      "company": "Coatue Management",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.coatue.com/blog/press/our-continued-partnership-with-anthropic",
+      "method": "harvest"
+    },
+    {
+      "key": "rajeev mantri||navamcapital",
+      "name": "Rajeev Mantri",
+      "company": "Navam Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.navamcapital.com/about",
+      "method": "harvest"
+    },
+    {
+      "key": "rajesh sehgal||equanimityventures",
+      "name": "Rajesh Sehgal",
+      "company": "Equanimity Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.equanimityinvestments.com/discover",
+      "method": "harvest"
+    },
+    {
+      "key": "reshma sohoni||seedcamp",
+      "name": "Reshma Sohoni",
+      "company": "Seedcamp",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://seedcamp.com/our-team/",
+      "method": "harvest"
+    },
+    {
+      "key": "rick gerson||alphawaveglobal",
+      "name": "Rick Gerson",
+      "company": "Alpha Wave Global",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.alphawaveglobal.com/leadership",
+      "method": "harvest"
+    },
+    {
+      "key": "rishi maheshwari||z3partners",
+      "name": "Rishi Maheshwari",
+      "company": "Z3Partners",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://z3partnersglobal.com/about-us",
+      "method": "harvest"
+    },
+    {
+      "key": "rohan malhotra||investopad",
+      "name": "Rohan Malhotra",
+      "company": "Investopad",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.goodcapital.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "rohit bhayana||lumispartners",
+      "name": "Rohit Bhayana",
+      "company": "Lumis Partners",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://lumispartners.com/our-team/",
+      "method": "harvest"
+    },
+    {
+      "key": "s viswanatha prasad||caspianimpactinvestments",
+      "name": "S. Viswanatha Prasad",
+      "company": "Caspian Impact Investments",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "harvest"
+    },
+    {
+      "key": "samyak jain||ecosystemventures",
+      "name": "Samyak Jain",
+      "company": "Ecosystem Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://ecosystemventures.in/about-us/",
+      "method": "harvest"
+    },
+    {
+      "key": "sandeep jethwani||dezerv",
+      "name": "Sandeep Jethwani",
+      "company": "Dezerv",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.dezerv.in/portfolio-management-services/",
+      "method": "harvest"
+    },
+    {
+      "key": "sandeep sinha||lumispartners",
+      "name": "Sandeep Sinha",
+      "company": "Lumis Partners",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://lumispartners.com/our-team/",
+      "method": "harvest"
+    },
+    {
+      "key": "sandiip bhammer||greenfrontiercapital",
+      "name": "Sandiip Bhammer",
+      "company": "Green Frontier Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.greenfrontiercapital.com/about",
+      "method": "harvest"
+    },
+    {
+      "key": "sandro stephen||smallticketfunding",
+      "name": "Sandro Stephen",
+      "company": "Small Ticket Funding",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://smallticketfunding.vc/about/",
       "method": "harvest"
     }
   ]
