@@ -21,6 +21,7 @@ const NEW_FOUND = [
   { company: 'Amicus Capital', name: 'Mahesh Parasuraman', title: 'Partner & Co-Founder', linkedinUrl: '', sourceUrl: 'https://www.amicuscapital.in/news/niif-announces-inr-207-crore-usd-25-mn-commitment-to-amicus-capital/', method: 'manual-research', confidence: 'high' },
   { company: 'Zodius Capital', name: 'Neeraj Bhargava', title: 'Founder, Senior Managing Director & CEO', linkedinUrl: '', sourceUrl: 'https://www.marketsandmarkets.com/leadership/NeerajBhargava.asp', method: 'manual-research', confidence: 'high' },
   { company: 'Soonicorn Club Ventures', name: 'Vijay Singh Rathore', title: 'Co-Founder & CEO', linkedinUrl: 'https://linkedin.com/in/vijayrathorenucleus', sourceUrl: 'https://startupintros.com/orgs/soonicorn-ventures', method: 'manual-research', confidence: 'high' },
+  { company: 'UnLtd India', name: 'Pooja Warier', title: 'Co-Founder & CEO', linkedinUrl: '', sourceUrl: 'https://unltdindia.org/', method: 'manual-research', confidence: 'medium' },
   { company: 'C-CAMP', name: 'Taslimarif Saiyed', title: 'CEO & Director', linkedinUrl: 'https://www.linkedin.com/in/taslimarif', sourceUrl: 'https://indianexpress.com/article/technology/tech-news-technology/antimicrobial-resistance-taslimarif-saiyed-ceo-c-camp-interview-9032500/', method: 'manual-research', confidence: 'high' }
 ];
 
@@ -28,8 +29,7 @@ const UNRESOLVABLE = [
   'Know3 Ventures',
   'Locomotive Ventures',
   'Beej Capital',
-  'Systemiq Capital',
-  'UnLtd India'
+  'Systemiq Capital'
 ];
 
 function main() {
