@@ -1576,99 +1576,198 @@
       "sourceUrl": "https://www.whitewhale.in/about-us",
       "method": "crawl",
       "companyType": "VC"
-    }
-  ],
-  "unresolved": [
+    },
     {
       "company": "Stride Ventures",
-      "website": "https://strideventures.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Ishpreet Singh Gandhi",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/ishpreet-singh-gandhi-539893b",
+      "sourceUrl": "https://www.strideventures.global/team/ishpreet-singh-gandhi",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Better Capital",
-      "website": "https://bettercapital.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://bettercapital.vc/team"
+      "name": "Vaibhav Domkundwar",
+      "title": "Founder & CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/better",
+      "sourceUrl": "https://www.bettercapital.vc/media",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Arkam Ventures",
-      "website": "https://arkam.vc",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Rahul Chandra",
+      "title": "Co-founder & Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.forbesindia.com/article/take-one-big-story-of-the-day/riders-of-the-next-ark-inside-arkams-plan-for-middle-indias-limitless-founders/86139/1",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Arkam Ventures",
+      "name": "Bala Srinivasa",
+      "title": "Co-founder & Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.forbesindia.com/article/take-one-big-story-of-the-day/riders-of-the-next-ark-inside-arkams-plan-for-middle-indias-limitless-founders/86139/1",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Shastra VC",
-      "website": "https://shastravc.com",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Ashis Nayak",
+      "title": "Founding Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/ashisnayak19",
+      "sourceUrl": "https://in.linkedin.com/company/shastravc",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Shastra VC",
+      "name": "Avijeet Alagathi",
+      "title": "Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/avialagathi",
+      "sourceUrl": "https://in.linkedin.com/company/shastravc",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "FreeFlow Ventures",
-      "website": "https://freeflowvc.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Suraj Juneja",
+      "title": "Founder",
+      "linkedinUrl": "https://linkedin.com/in/suraj-juneja-615488a",
+      "sourceUrl": "https://in.linkedin.com/company/freeflow-venture-builders",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
-      "company": "DeVC",
-      "website": "https://devc.in",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "company": "FreeFlow Ventures",
+      "name": "Aaquib Hussain",
+      "title": "Founding Partner",
+      "linkedinUrl": "https://linkedin.com/in/aaquibh",
+      "sourceUrl": "https://in.linkedin.com/company/freeflow-venture-builders",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Venture Highway",
-      "website": "https://venturehighway.vc",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Neeraj Arora",
+      "title": "Co-founder",
+      "linkedinUrl": "",
+      "sourceUrl": "https://inc42.com/buzz/venture-highway-founder-samir-sood-steps-down-partner/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Venture Highway",
+      "name": "Priya Mohan",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://inc42.com/buzz/venture-highway-founder-samir-sood-steps-down-partner/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Sauce.vc",
-      "website": "https://sauce.vc/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://sauce.vc/service-partners/"
+      "name": "Manu Chandra",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/manuchandra",
+      "sourceUrl": "https://sauce.vc/team/",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Saama",
-      "website": "https://www.saama.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.saama.com/revenue-cycle-management/"
+      "name": "Ash Lilani",
+      "title": "Managing Partner & Co-Founder",
+      "linkedinUrl": "https://www.linkedin.com/in/ashlilani",
+      "sourceUrl": "https://startupintros.com/orgs/saama-capital",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Saama",
+      "name": "Suresh Shanmugham",
+      "title": "Managing Partner & Co-Founder",
+      "linkedinUrl": "",
+      "sourceUrl": "https://startupintros.com/orgs/saama-capital",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Tomorrow Capital",
-      "website": "https://tomorrowcapital.vc",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Rohini Prakash",
+      "title": "Founder & CEO",
+      "linkedinUrl": "https://in.linkedin.com/in/rohini-prakash-472b654",
+      "sourceUrl": "https://in.marketscreener.com/insider/ROHINI-PRAKASH-A2OSH0/",
+      "method": "manual-research",
+      "confidence": "medium"
     },
     {
       "company": "Iron Pillar",
-      "website": "https://ironpillar.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
-    },
-    {
-      "company": "GrowthCap Ventures",
-      "website": "https://growthcapvc.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Anand Prasanna",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://theorg.com/org/iron-pillar/org-chart/anand-prasanna",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Inflexor Ventures",
-      "website": "https://inflexor.com/",
-      "reason": "no-names-in-text",
-      "sourceUrl": "https://www.atom.com/name/Inflexor"
+      "name": "Venkat Vallabhaneni",
+      "title": "Founder & Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.inflexor.vc/about",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "Inflexor Ventures",
+      "name": "Jatin Desai",
+      "title": "Founder & Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.inflexor.vc/about",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Sorin Investments",
-      "website": "https://www.sorininvestments.com/",
-      "reason": "no-usable-text",
-      "detail": ""
+      "name": "Sanjay Nayar",
+      "title": "Founder & Chairman",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.sorininvestments.com/team/sanjay-nayar",
+      "method": "manual-research",
+      "confidence": "high"
     },
     {
       "company": "Enzia Ventures",
-      "website": "https://enziaventures.com",
-      "reason": "homepage-fetch-failed",
-      "detail": "fetch failed"
+      "name": "Jayshree Kanther Patodi",
+      "title": "Co-Founder & Managing Partner",
+      "linkedinUrl": "https://linkedin.com/in/jayshreekanther",
+      "sourceUrl": "https://www.enzia.vc/people",
+      "method": "manual-research",
+      "confidence": "high"
     },
+    {
+      "company": "GrowthCap Ventures",
+      "name": "Pratekk Agarwaal",
+      "title": "Founder & General Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/pratekk",
+      "sourceUrl": "https://growthcap.vc/",
+      "method": "manual-research",
+      "confidence": "high"
+    },
+    {
+      "company": "DeVC",
+      "name": "Divyanshi Chowdhary",
+      "title": "Head of Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.privateequityinternational.com/institution-profiles/devc.html",
+      "method": "manual-research",
+      "confidence": "medium"
+    }
+  ],
+  "unresolved": [
     {
       "company": "Spiral Ventures Pte. Ltd.",
       "website": "https://spiral.vc",
