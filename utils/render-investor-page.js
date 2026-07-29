@@ -438,6 +438,8 @@ function renderInvestorPage(investor, related, res) {
     '<p class="inv-profile-confidence">Data confidence: ' + escapeHtml(investor.confidence || 'Unverified – inferred') + '</p>',
     '</section>',
 
+    peopleSection,
+
     relatedSection,
 
     exploreHtml,
