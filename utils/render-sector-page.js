@@ -363,7 +363,7 @@ function renderSectorPage(sector, res) {
     '<link rel="canonical" href="https://vcdekho.com/investors/sectors/' + escapeHtml(sector.id) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/style.css?v=48">',
+    '<link rel="stylesheet" href="/style.css?v=49">',
     '</head>',
     '<body class="scrollable-page inv-page stage-guide-page sector-guide-page">',
     '<div class="app-container">',

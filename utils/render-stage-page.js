@@ -151,7 +151,7 @@ function renderStagePage(stage, res) {
     '<link rel="canonical" href="https://vcdekho.com/investors/stages/' + escapeHtml(stage.id) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/style.css?v=35">',
+    '<link rel="stylesheet" href="/style.css?v=49">',
     '</head>',
     '<body class="scrollable-page inv-page stage-guide-page">',
     '<div class="app-container">',
