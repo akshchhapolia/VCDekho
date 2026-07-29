@@ -1,0 +1,268 @@
+{
+  "researchedAt": "2026-07-29T06:06:25.007Z",
+  "total": 199,
+  "found": 38,
+  "byConfidence": {
+    "high": 7,
+    "medium": 17,
+    "low": 14
+  },
+  "no_fetch": 54,
+  "no_signal": 107,
+  "highMedium": [
+    {
+      "name": "Aagama Ventures",
+      "label": "$964K – $1.8M",
+      "confidence": "high",
+      "website": "https://aagama.vc",
+      "evidence": [
+        "e We typically invest between INR 8–15 crore in Seed to Series A opportunities, with our s",
+        "ities, with our sweet spot at INR 10–12 cro || Ticket Size We typically invest between INR"
+      ]
+    },
+    {
+      "name": "Avaana Capital",
+      "label": "$10M – $24.5M",
+      "confidence": "medium",
+      "website": "https://avaanacapital.com",
+      "evidence": [
+        "nt: Building innovation for a $10 trillion future ⁠Financing Frontier Innovation",
+        "kes first drawdown from GCF’s $24.5m investment READ MORE 30 Jun 2025 Eggoz rais",
+        "MORE 30 Jun 2025 Eggoz raises $20 mill || -Tech Moment: Building innovation for",
+        "MORE 30 Jun 2025 Eggoz raises $20 mill"
+      ]
+    },
+    {
+      "name": "CDM Capital",
+      "label": "$1M",
+      "confidence": "high",
+      "website": "https://cdmcapital.in",
+      "evidence": [
+        "aaS Rovi || Cheque size Up to $1M initial, with reserve and network for follow-o",
+        "e size should I expect? Up to $1M initial, with flexibility to participate meani"
+      ]
+    },
+    {
+      "name": "Energy Impact Partners",
+      "label": "$8M – $136M",
+      "confidence": "medium",
+      "website": "https://www.energyimpactpartners.com",
+      "evidence": [
+        "ewswire News Room Fyld closes $41M for field work software - February 17, 2026 A",
+        "3, 2025 Tech.eu Ciroos Raises $21M to Bring Agentic AI to Operations Teams - Jun",
+        "ewswire Bedrock Energy Raises $12M Series A to Scale Geothermal Heating and Cool",
+        "|| nancial Times FLO Secures $136M Financing to Continue Expansion of North Ame"
+      ]
+    },
+    {
+      "name": "Fundalogical Ventures",
+      "label": "$9.6M – $10M",
+      "confidence": "high",
+      "website": "https://fundalogical.com",
+      "evidence": [
+        "ticket sizes go up to US$ 10M (INR 80 Crore) over multiple rounds; however",
+        "qu || ticket sizes go up to US$ 10M (INR 80 Crore) over multiple rounds; however",
+        "icket sizes go up to US$ 10M (INR 80 Crore) over multiple rounds; however, oppor"
+      ]
+    },
+    {
+      "name": "Insight Partners",
+      "label": "$120M",
+      "confidence": "medium",
+      "website": "https://www.insightpartners.com",
+      "evidence": [
+        "19 we led SentinelOne&#8217;s $120M Series D round. Sector Cybersecurity Market"
+      ]
+    },
+    {
+      "name": "Jungle Ventures",
+      "label": "$500K – $20M",
+      "confidence": "high",
+      "website": "https://www.jungle.vc",
+      "evidence": [
+        "? We typically invest between $500k to $20M depending on the nature of your busi",
+        "cally invest between $500k to $20M depending on the nature of your business & it"
+      ]
+    },
+    {
+      "name": "LocalGlobe",
+      "label": "$3.2M – $47M",
+      "confidence": "medium",
+      "website": "https://www.localglobe.vc",
+      "evidence": [
+        "t news & views Empathy raises $47m in Series B funding to lead the Compassionate",
+        "e Economy Ca || talog secures $3.2m to build the multichannel B2B sales solution",
+        "ion for SMBs A || vail raises $27m to accelerate the unification of Web3 4 inves"
+      ]
+    },
+    {
+      "name": "Multicoin Capital",
+      "label": "$1M – $50M",
+      "confidence": "medium",
+      "website": "https://multicoin.capital",
+      "evidence": [
+        "with investments ranging from $1M-$50M. Request Information / Insights Hyperliqu",
+        "investments ranging from $1M-$50M. Request Information / Insights Hyperliquid (",
+        "t expansionary to the current $7 trillion market cap of gold in the same way tha"
+      ]
+    },
+    {
+      "name": "Openspace Ventures",
+      "label": "$6.8M – $100M",
+      "confidence": "medium",
+      "website": "https://www.openspace.vc",
+      "evidence": [
+        "ergy Raises An Oversubscribed $27.3M Funding Co-Led by Openspace and Kibo Invest",
+        "• Oct 21, 2024 Broom Raises US$25 in Series A+ Led by Openspace to Accelerate In",
+        "Openspace participates in US $15M funding round for leading Indonesian leading",
+        "• Aug 30, 2023 Halodoc Raises $100 Million Series D Funding Joined by Openspace"
+      ]
+    },
+    {
+      "name": "QED Investors",
+      "label": "$3M – $15M",
+      "confidence": "medium",
+      "website": "https://qedinvestors.com",
+      "evidence": [
+        "average size of approximately $15 million, although typical init || checks are i",
+        "cal init || checks are in the $3-10 million. QED anticipates investing in 12-15",
+        "5-7 inv || investment size of $15-20 million. Does QED invest in all stages? QED"
+      ]
+    },
+    {
+      "name": "SIDBI Venture Capital",
+      "label": "$120.5M",
+      "confidence": "medium",
+      "website": "https://www.sidbiventure.co.in",
+      "evidence": [
+        "d loan portfolio of more than ₹1,000 crore with presence in 72 districts in Indi"
+      ]
+    },
+    {
+      "name": "Small Ticket Funding",
+      "label": "$30K – $241K",
+      "confidence": "high",
+      "website": "https://smallticketfunding.vc",
+      "evidence": [
+        "re it’s  || Cheque sizes from ₹25L to ₹2Cr Tech-enabled or tech-led solutions Why We’re Yo",
+        "re it’s  || Cheque sizes from ₹25L to ₹2Cr Tech-enabled or tech-led solutions Wh",
+        "|| Cheque sizes from ₹25L to ₹2Cr Tech-enabled or tech-led solutions Why We’re"
+      ]
+    },
+    {
+      "name": "SOSV",
+      "label": "$550K",
+      "confidence": "medium",
+      "website": "https://sosv.com",
+      "evidence": [
+        "pre-seed investments of up to $550k each, as well as another 150 follow-o || che"
+      ]
+    },
+    {
+      "name": "Swishin Ventures",
+      "label": "$120K – $500K",
+      "confidence": "high",
+      "website": "https://swishin.vc",
+      "evidence": [
+        "size and ownership? We invest $200K–$500K initially, with reserves for select fo",
+        "nd ownership? We invest $200K–$500K initially, with reserves for select follow-o",
+        "t, and glo || Initial cheques ₹1-₹4 crore, with follow-on participation up to Series A for"
+      ]
+    },
+    {
+      "name": "Tenacity Ventures",
+      "label": "$4M – $100M",
+      "confidence": "medium",
+      "website": "https://tenacity.vc",
+      "evidence": [
+        "starting check size will be ~$5M We are investing from a $100M fund and looking",
+        "~$5M We are investing from a $100M fund and looking to build a concentrated por",
+        "ed por || check size will be ~$5M, and our growth capital is ideal for companies",
+        "verage starting check size is $4-5M. We often look to do pro-rata in subsequent"
+      ]
+    },
+    {
+      "name": "TransCon Capital",
+      "label": "$1.8M – $4.8M",
+      "confidence": "medium",
+      "website": "https://transconcapital.com",
+      "evidence": [
+        "investment? We invest between INR 15 to 40 crore in mid-sized Indian businesses. Do you ha"
+      ]
+    },
+    {
+      "name": "Wavemaker Partners",
+      "label": "$3.9M – $125M",
+      "confidence": "medium",
+      "website": "https://wavemaker.vc",
+      "evidence": [
+        "or their Seed round Secured US$110M total to date, the largest-ever funding for",
+        "heir Series A round Secured US$80M in latest round, with a notable 3:1 debt-to-e",
+        "uired by Intuit in 2020 for US$80M, considered one of the largest exits in Singa",
+        "or their Seed round Secured US$40M in Series B funding in 2022, bringing their t"
+      ]
+    },
+    {
+      "name": "Advent International",
+      "label": "$200M",
+      "confidence": "medium",
+      "website": "https://www.adventinternational.com",
+      "evidence": [
+        "ress release Coralogix raises $200M to scale the observability backbone for the"
+      ]
+    },
+    {
+      "name": "Faering Capital",
+      "label": "$96.4M – $200M",
+      "confidence": "medium",
+      "website": "https://faeringcapital.com",
+      "evidence": [
+        "sfully raises Rs. 800 crore (~$150 million) from leading Indian institutions and",
+        "ully raises Rs. 1,300 crore (~$200 million) from marquee international and India",
+        "nc || tal successfully raises Rs. 800 crore (~$150 million) from leading Indian",
+        "off || m successfully raises Rs. 1,300 crore (~$200 million) from marquee inter"
+      ]
+    },
+    {
+      "name": "JM Financial Private Equity",
+      "label": "$18.1M – $120.5M",
+      "confidence": "medium",
+      "website": "https://www.jmfl.com",
+      "evidence": [
+        "agement Ltd. launches its 2nd ₹1000 Crore Credit Alternative Investment Fund (AI",
+        "inancial Private Equity Leads INR 150 Crore Investment in NG Electro Products Pv"
+      ]
+    },
+    {
+      "name": "Piramal Alternatives",
+      "label": "$15.1M",
+      "confidence": "medium",
+      "website": "https://www.piramal.com",
+      "evidence": [
+        "Piramal Alternatives Invests INR 125 Cr in JRG Automotive Industries India to D"
+      ]
+    },
+    {
+      "name": "Vincere Partners",
+      "label": "$5M",
+      "confidence": "high",
+      "website": "https://vincerepartners.in",
+      "evidence": [
+        "cheque sizes of $5-20 mn from Series A to Pre-IPO. Our investment",
+        "experienc || cheque sizes of $5-20 mn from Series A to Pre-IPO. Our investment"
+      ]
+    },
+    {
+      "name": "LetsVenture",
+      "label": "$12.5M – $30.7M",
+      "confidence": "medium",
+      "website": "https://www.letsventure.com",
+      "evidence": [
+        "inay Singhal Recent Milestone $12.5 million in Series B Visit Company Website Yu",
+        "Hemant Gupta Recent Milestone $30 Million ARR Visit Company Website VIEW ALL POR",
+        "ned it’s 100th store & raised ₹255 crore in Series B Visit Company Website Logis",
+        "Misra Recent Milestone Raised ₹113 crore Visit Company Website Regional OTT plat"
+      ]
+    }
+  ]
+}
