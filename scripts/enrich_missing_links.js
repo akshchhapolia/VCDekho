@@ -7,8 +7,23 @@
  *   node scripts/enrich_missing_links.js --limit 200 --batch-size 8
  *   node scripts/enrich_missing_links.js --dry-run --limit 20
  */
-require('dotenv').config({ path: require('path').join(__dirname, '..', '.env.enrich.tmp') });
+require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') });
+require('dotenv').config({ path: require('path').join(__dirname, '..', '.env.production') });
+require('dotenv').config({ path: require('path').join(__dirname, '..', '.env.local') });
 require('dotenv').config();
+
+// Ignore Vercel pull placeholders like [SENSITIVE...]
+if (
+  process.env.ANTHROPIC_API_KEY &&
+  (/^\[SENSITIVE/i.test(process.env.ANTHROPIC_API_KEY) || process.env.ANTHROPIC_API_KEY.length < 20)
+) {
+  delete process.env.ANTHROPIC_API_KEY;
+  require('dotenv').config({ path: require('path').join(__dirname, '..', '.env'), override: true });
+  require('dotenv').config({
+    path: require('path').join(__dirname, '..', '.env.production'),
+    override: false
+  });
+}
 
 const fs = require('fs');
 const path = require('path');
