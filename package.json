@@ -10,7 +10,8 @@
     "check:links:apply": "node scripts/check_investor_links.js --apply",
     "fetch:logos": "node scripts/fetch_investor_logos.js",
     "dedupe:candidates": "node scripts/dedupe_investor_candidates.js",
-    "extract:fund-mentions": "node scripts/extract_fund_mentions.js"
+    "extract:fund-mentions": "node scripts/extract_fund_mentions.js",
+    "enrich:links": "node scripts/enrich_missing_links.js"
   },
   "keywords": [],
   "author": "",
