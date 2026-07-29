@@ -44,7 +44,9 @@ const COL = {
   website: 'Website',
   linkedin: 'Company Linkedin',
   notes: 'Notes',
-  source: 'Source'
+  source: 'Source',
+  thesis: 'Company Thesis',
+  writeup: 'Detailed Writeup (~200 words)'
 };
 
 const USER_AGENT = 'Mozilla/5.0 (compatible; VCDekhoLinkEnrich/1.0; +https://vcdekho.com)';
