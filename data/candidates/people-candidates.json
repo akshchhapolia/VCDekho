@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T16:41:42.342Z",
+  "generatedAt": "2026-07-29T16:57:21.179Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -360,6 +360,798 @@
       "sourceUrl": "https://www.2048.vc/team",
       "method": "crawl",
       "companyType": "VC"
+    },
+    {
+      "company": "M Venture Partners (MVP)",
+      "name": "Eric Brachfeld",
+      "title": "Managing Partner & General Partner",
+      "sourceUrl": "https://www.mvp.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "M Venture Partners (MVP)",
+      "name": "Jared Carmel",
+      "title": "Managing Partner & General Partner",
+      "sourceUrl": "https://www.mvp.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Monk's Hill Venture",
+      "name": "Peng T. Ong",
+      "title": "founder",
+      "sourceUrl": "https://monkshill.com/about-us",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Monk's Hill Venture",
+      "name": "Kuo-Yi Lim",
+      "title": "founder",
+      "sourceUrl": "https://monkshill.com/about-us",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Everywhere Ventures",
+      "name": "Jenny Fielding",
+      "title": "co-founder & GENERAL partner",
+      "sourceUrl": "https://www.everywhere.vc/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Everywhere Ventures",
+      "name": "Scott Hartley",
+      "title": "co-founder & GENERAL partner",
+      "sourceUrl": "https://www.everywhere.vc/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Inflection Point Ventures",
+      "name": "Vinay Bansal",
+      "title": "Founder - IPV",
+      "sourceUrl": "https://ipventures.in/startup-investing-platorm-in-india/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Inflection Point Ventures",
+      "name": "Ankur Mittal",
+      "title": "Co - Founder - IPV",
+      "sourceUrl": "https://ipventures.in/startup-investing-platorm-in-india/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "True North",
+      "name": "Vishal Nevatia",
+      "title": "CEO and Managing Partner",
+      "sourceUrl": "https://www.truenorth.co.in/people/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "True North",
+      "name": "Srikrishna Dwaram",
+      "title": "Co-Managing Partner, Private Equity",
+      "sourceUrl": "https://www.truenorth.co.in/people/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Acumen",
+      "name": "Jacqueline Novogratz",
+      "title": "Founder and CEO of Acumen",
+      "sourceUrl": "https://acumen.org/individual-family-partners/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Quona Capital",
+      "name": "Monica Brand Engel",
+      "title": "MANAGING PARTNER",
+      "sourceUrl": "https://quona.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Quona Capital",
+      "name": "Jonathan Whittle",
+      "title": "MANAGING PARTNER",
+      "sourceUrl": "https://quona.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Flourish Ventures",
+      "name": "Tilman Ehrbeck",
+      "title": "Managing Partner",
+      "sourceUrl": "https://flourishventures.com/about-us/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Entrepreneur First",
+      "name": "Alice Bentinck",
+      "title": "Cofounder and CEO",
+      "sourceUrl": "https://www.joinef.com/about/",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Entrepreneur First",
+      "name": "Matt Clifford",
+      "title": "Cofounder and Chair",
+      "sourceUrl": "https://www.joinef.com/about/",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Antler",
+      "name": "Magnus Grimeland",
+      "title": "Founder & Chief Executive Officer",
+      "sourceUrl": "https://www.antler.co/about",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Antler",
+      "name": "Fady Abdel-Nour",
+      "title": "Partner",
+      "sourceUrl": "https://www.antler.co/about",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "SOSV",
+      "name": "Sean O'Sullivan",
+      "title": "Managing General Partner, SOSV",
+      "sourceUrl": "https://sosv.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "SOSV",
+      "name": "Cyril Ebersweiler",
+      "title": "General Partner, SOSV & Managing Director, HAX",
+      "sourceUrl": "https://sosv.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Openspace Ventures",
+      "name": "Shane Chesson",
+      "title": "Founding Partner",
+      "sourceUrl": "https://www.openspacecapital.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Openspace Ventures",
+      "name": "Hian Goh",
+      "title": "Founding Partner",
+      "sourceUrl": "https://www.openspacecapital.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Golden Gate Ventures",
+      "name": "Vinnie Lauria",
+      "title": "Founding Partner",
+      "sourceUrl": "https://www.goldengate.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Golden Gate Ventures",
+      "name": "Jeffrey Paine",
+      "title": "Founding Partner",
+      "sourceUrl": "https://www.goldengate.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "GIC Private Limited",
+      "name": "Bryan Yeo",
+      "title": "Group Chief Investment Officer",
+      "sourceUrl": "https://www.gic.com.sg/who-we-are/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "GIC Private Limited",
+      "name": "Lim Chow Kiat",
+      "title": "Chief Executive Officer",
+      "sourceUrl": "https://www.gic.com.sg/who-we-are/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "KKR",
+      "name": "Eric Mogelof",
+      "title": "Head of Global Client Solutions",
+      "sourceUrl": "https://www.kkr.com/wealth",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Advent International",
+      "name": "James Brocklebank",
+      "title": "Managing Partner",
+      "sourceUrl": "https://www.adventinternational.com/about-us/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Advent International",
+      "name": "Peter Brooke",
+      "title": "Founder",
+      "sourceUrl": "https://www.adventinternational.com/about-us/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Apax Partners",
+      "name": "Frank Ehmer",
+      "title": "Partner",
+      "sourceUrl": "https://www.apax.com/people/life-at-apax/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Apax Partners",
+      "name": "Nedu Ottih",
+      "title": "Partner",
+      "sourceUrl": "https://www.apax.com/people/life-at-apax/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Qualcomm Ventures",
+      "name": "Quinn Li",
+      "title": "Senior Vice President & Global Head of Qualcomm Ventures",
+      "sourceUrl": "https://www.qualcommventures.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Qualcomm Ventures",
+      "name": "Rama Bethmangalkar",
+      "title": "Managing Director, India",
+      "sourceUrl": "https://www.qualcommventures.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Intel Capital",
+      "name": "Anthony Lin",
+      "title": "Head of Intel Capital Corporate Vice President",
+      "sourceUrl": "https://www.intelcapital.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Intel Capital",
+      "name": "Andy Fligel",
+      "title": "Senior Managing Director",
+      "sourceUrl": "https://www.intelcapital.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "M12",
+      "name": "Michelle Gonzalez",
+      "title": "Corporate Vice President and Global Head, M12",
+      "sourceUrl": "https://m12.vc/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Gradient Ventures",
+      "name": "Darian Shirazi",
+      "title": "General Partner",
+      "sourceUrl": "https://www.gradient.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Gradient Ventures",
+      "name": "Zach Bratun-Glennon",
+      "title": "General Partner",
+      "sourceUrl": "https://www.gradient.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "next47",
+      "name": "Lak Ananth",
+      "title": "Global Managing Partner",
+      "sourceUrl": "https://www.n47.com/team",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "next47",
+      "name": "Matthew Cowan",
+      "title": "General Partner",
+      "sourceUrl": "https://www.n47.com/team",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "SE Ventures",
+      "name": "Amit Chaturvedy",
+      "title": "Global Head & Managing Partner",
+      "sourceUrl": "https://www.seventures.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "SE Ventures",
+      "name": "Varun Jain",
+      "title": "General Partner",
+      "sourceUrl": "https://www.seventures.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Breakthrough Energy Ventures",
+      "name": "Bill Gates",
+      "title": "Founder",
+      "sourceUrl": "https://www.breakthroughenergy.org/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Lowercarbon Capital",
+      "name": "Chris Sacca",
+      "title": "Managing Partner",
+      "sourceUrl": "https://lowercarbon.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Lowercarbon Capital",
+      "name": "Crystal Sacca",
+      "title": "Founding Partner",
+      "sourceUrl": "https://lowercarbon.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Congruent Ventures",
+      "name": "Abe Yokell",
+      "title": "Managing Partner and Co-Founder",
+      "sourceUrl": "https://www.congruentvc.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Congruent Ventures",
+      "name": "Joshua Posamentier",
+      "title": "Managing Partner and Co-Founder",
+      "sourceUrl": "https://www.congruentvc.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "QED Investors",
+      "name": "Nigel Morris",
+      "title": "Co-Founder and Managing Partner",
+      "sourceUrl": "https://qedinvestors.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "QED Investors",
+      "name": "Frank Rotman",
+      "title": "Co-Founder and Partner Emeritus",
+      "sourceUrl": "https://qedinvestors.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Point Nine Capital",
+      "name": "Christoph Janz",
+      "title": "Partner",
+      "sourceUrl": "https://www.pointnine.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Point Nine Capital",
+      "name": "Louis Coppey",
+      "title": "Partner",
+      "sourceUrl": "https://www.pointnine.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "LocalGlobe",
+      "name": "Saul Klein",
+      "title": "Co-founder & Managing Partner",
+      "sourceUrl": "https://www.phoenixcourt.vc/localglobe/phoenix-court-team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "LocalGlobe",
+      "name": "Robin Klein",
+      "title": "Co-founder & General Partner",
+      "sourceUrl": "https://www.phoenixcourt.vc/localglobe/phoenix-court-team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Seedcamp",
+      "name": "Reshma Sohoni",
+      "title": "Co-Founder & Managing Partner",
+      "sourceUrl": "https://seedcamp.com/our-team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Seedcamp",
+      "name": "Carlos Eduardo Espinal",
+      "title": "Managing Partner",
+      "sourceUrl": "https://seedcamp.com/our-team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Pantera Capital",
+      "name": "Dan Morehead",
+      "title": "Founder, Managing Partner",
+      "sourceUrl": "https://panteracapital.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Pantera Capital",
+      "name": "Paul Veradittakit",
+      "title": "Managing Partner",
+      "sourceUrl": "https://panteracapital.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Paradigm",
+      "name": "Matt Huang",
+      "title": "Co-Founder & Managing Partner",
+      "sourceUrl": "https://www.paradigm.xyz/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Paradigm",
+      "name": "Alana Palmedo",
+      "title": "Managing Partner",
+      "sourceUrl": "https://www.paradigm.xyz/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Hero Enterprise",
+      "name": "Sunil Kant Munjal",
+      "title": "chaired",
+      "sourceUrl": "https://www.herocorp.com/hcspl-group/about-us/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Bajaj Labs / Bajaj Finserv Ventures",
+      "name": "Sanjiv Bajaj",
+      "title": "Chairman & Managing Director, Bajaj Finserv Ltd",
+      "sourceUrl": "https://www.aboutbajajfinserv.com/about-us",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Multicoin Capital",
+      "name": "Tushar Jain",
+      "title": "Managing Partner",
+      "sourceUrl": "https://multicoin.capital/about/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Multicoin Capital",
+      "name": "Spencer Applebaum",
+      "title": "General Partner, Co-Head of Venture",
+      "sourceUrl": "https://multicoin.capital/about/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Dr Reddy's Ventures",
+      "name": "G V Prasad",
+      "title": "Co-Chairman & Managing Director",
+      "sourceUrl": "https://www.drreddys.com/about-us",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Dr Reddy's Ventures",
+      "name": "Satish Reddy",
+      "title": "Chairman",
+      "sourceUrl": "https://www.drreddys.com/about-us",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Lupin Digital Health Ventures",
+      "name": "Desh Bandhu Gupta",
+      "title": "Founder",
+      "sourceUrl": "https://www.lupin.com/about-us",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "FITT IIT Delhi",
+      "name": "NC Nigam",
+      "title": "founding Chairman",
+      "sourceUrl": "https://fitt-iitd.in/web/aboutus",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "FITT IIT Delhi",
+      "name": "AK Sengupta",
+      "title": "first full-time Managing Director",
+      "sourceUrl": "https://fitt-iitd.in/web/aboutus",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "TiE Bangalore Angels",
+      "name": "Vani Kola",
+      "title": "Managing Director Kalaari Capital",
+      "sourceUrl": "https://bangalore.tie.org/about-us.php",
+      "method": "crawl",
+      "companyType": "Syndicate / Network"
+    },
+    {
+      "company": "TiE Bangalore Angels",
+      "name": "Ankita Vashistha",
+      "title": "Managing Partner Arise Ventures Founder",
+      "sourceUrl": "https://bangalore.tie.org/about-us.php",
+      "method": "crawl",
+      "companyType": "Syndicate / Network"
+    },
+    {
+      "company": "TiE Hyderabad Angels",
+      "name": "Srini Raju",
+      "title": "President",
+      "sourceUrl": "https://tiehyderabad.org/about",
+      "method": "crawl",
+      "companyType": "Syndicate / Network"
+    },
+    {
+      "company": "IAMAI Angel Network",
+      "name": "Subho Ray",
+      "title": "President",
+      "sourceUrl": "https://www.iamai.in/about-us",
+      "method": "crawl",
+      "companyType": "Syndicate / Network"
+    },
+    {
+      "company": "IAMAI Angel Network",
+      "name": "Gaurav Chopra",
+      "title": "Senior Vice-President",
+      "sourceUrl": "https://www.iamai.in/about-us",
+      "method": "crawl",
+      "companyType": "Syndicate / Network"
+    },
+    {
+      "company": "Bangalore Bioinnovation Centre Angels / BBC",
+      "name": "Dr. Mohamed Adil A.A",
+      "title": "Managing Director",
+      "sourceUrl": "https://www.bioinnovationcentre.com/en/team",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Bangalore Bioinnovation Centre Angels / BBC",
+      "name": "Rahul Sharanappa Sankanur, IAS",
+      "title": "Director",
+      "sourceUrl": "https://www.bioinnovationcentre.com/en/team",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Caspian Impact Investments",
+      "name": "S. Viswanatha Prasad",
+      "title": "Founder and Chairman",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Caspian Impact Investments",
+      "name": "B.V. Narasimham",
+      "title": "Managing Director",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "HDFC Capital",
+      "name": "Vipul Roongta",
+      "title": "CEO HDFC Capital Advisors Limited",
+      "sourceUrl": "https://www.hdfccapital.com/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Zoho Investments",
+      "name": "Santosh Iyer",
+      "title": "Managing Director & CEO at Mercedes-Benz India",
+      "sourceUrl": "https://www.zoho.com/news/mercedes-benz-india-and-zoho-launches-skyline-a-bespoke-and-decentralized-dealer-management-system-redefining-customer-experience-by-offering-a-state-of-art-seamless-and-integrated-customer-journey.html",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Zoho Investments",
+      "name": "Mani Vembu",
+      "title": "CEO, Zoho",
+      "sourceUrl": "https://www.zoho.com/news/mercedes-benz-india-and-zoho-launches-skyline-a-bespoke-and-decentralized-dealer-management-system-redefining-customer-experience-by-offering-a-state-of-art-seamless-and-integrated-customer-journey.html",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Birlasoft Ventures",
+      "name": "Amita Birla",
+      "title": "Chairman",
+      "sourceUrl": "https://www.birlasoft.com/about-us",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Piramal Family Office",
+      "name": "Ajay Piramal",
+      "title": "Chairman, Piramal Group",
+      "sourceUrl": "https://www.piramal.com/",
+      "method": "crawl",
+      "companyType": "Family Office"
+    },
+    {
+      "company": "Piramal Family Office",
+      "name": "Anand Piramal",
+      "title": "Chairman, Piramal Finance Ltd.",
+      "sourceUrl": "https://www.piramal.com/",
+      "method": "crawl",
+      "companyType": "Family Office"
+    },
+    {
+      "company": "Hornbill Capital Advisers",
+      "name": "Manoj Thakur",
+      "title": "Founder",
+      "sourceUrl": "https://hornbillcap.com/index.php",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Lightbox Ventures",
+      "name": "Sandeep Murthy",
+      "title": "Partner and Managing Director",
+      "sourceUrl": "https://www.lightbox.vc/people",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Kerala Angels",
+      "name": "Ajit A Moopan",
+      "title": "Founder President & Head Membership Committee",
+      "sourceUrl": "https://www.keralaangelnetwork.com/",
+      "method": "crawl",
+      "companyType": "Syndicate / Network"
+    },
+    {
+      "company": "Kerala Angels",
+      "name": "Raveendranath Kamath",
+      "title": "President",
+      "sourceUrl": "https://www.keralaangelnetwork.com/",
+      "method": "crawl",
+      "companyType": "Syndicate / Network"
+    },
+    {
+      "company": "Pune Angels Network",
+      "name": "Rahul Jain",
+      "title": "Founder",
+      "sourceUrl": "https://puneangels.network/about-us/",
+      "method": "crawl",
+      "companyType": "Syndicate / Network"
+    },
+    {
+      "company": "Pune Angels Network",
+      "name": "CA Vishal Thakkar",
+      "title": "Co-founder",
+      "sourceUrl": "https://puneangels.network/about-us/",
+      "method": "crawl",
+      "companyType": "Syndicate / Network"
+    },
+    {
+      "company": "Avaana Capital",
+      "name": "Anjali Bansal",
+      "title": "Founding Partner",
+      "sourceUrl": "https://avaanacapital.com/pages/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "NABVENTURES",
+      "name": "Mr. Vikas Bhatt",
+      "title": "Managing Director",
+      "sourceUrl": "https://nabventures.in/team.aspx",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "NABVENTURES",
+      "name": "Mr. Ashish Km Choudhury",
+      "title": "Chief Investment Officer",
+      "sourceUrl": "https://nabventures.in/team.aspx",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Astir Ventures",
+      "name": "Srilalitha Bhattaram",
+      "title": "Founder",
+      "sourceUrl": "https://astir.vc/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Astir Ventures",
+      "name": "Kishore Ganji",
+      "title": "Founder",
+      "sourceUrl": "https://astir.vc/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Encubay Ventures",
+      "name": "Deeksha Ahuja",
+      "title": "founder and ceo",
+      "sourceUrl": "https://www.encubay.com/aboutus",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "India Alternatives",
+      "name": "Shivani Bhasin Sachdeva",
+      "title": "Founder & CEO, India Alternatives",
+      "sourceUrl": "https://www.india-alt.com/people",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "India Alternatives",
+      "name": "Darshan Gandhi",
+      "title": "Senior Principal",
+      "sourceUrl": "https://www.india-alt.com/people",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Headstart Network Foundation",
+      "name": "Netra Parikh",
+      "title": "Co-Founder & CFO",
+      "sourceUrl": "https://www.headstart.in/our-team",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Headstart Network Foundation",
+      "name": "Amit Singh",
+      "title": "Co-Founder & Director",
+      "sourceUrl": "https://www.headstart.in/our-team",
+      "method": "crawl",
+      "companyType": "Accelerator"
     }
   ],
   "unresolved": [
@@ -840,6 +1632,1171 @@
     {
       "company": "Alfa Ventures",
       "website": "https://alfaventures.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Auxano Capital",
+      "website": "https://auxanocapital.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.auxanocapital.com/about/"
+    },
+    {
+      "company": "Saison Capital",
+      "website": "https://saisoncapital.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Integra Partners",
+      "website": "https://integra.partners",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Momentum Capital",
+      "website": "https://www.hugedomains.com/domain_profile.cfm?d=momentumcap.com",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.hugedomains.com/about.cfm"
+    },
+    {
+      "company": "AC Ventures",
+      "website": "https://acventures.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://acventures.vc/about/"
+    },
+    {
+      "company": "Mana Ventures",
+      "website": "https://manaventures.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Silicon Valley Quad (SVQ)",
+      "website": "https://svquad.vc",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Hustle Fund",
+      "website": "https://www.hustlefund.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.hustlefund.vc/founders"
+    },
+    {
+      "company": "N+1 Capital",
+      "website": "https://nplus1.capital",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Superscout",
+      "website": "https://superscout.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://superscout.co/partners/gate"
+    },
+    {
+      "company": "Anay Ventures",
+      "website": "",
+      "reason": "no-website"
+    },
+    {
+      "company": "WaterBridge Ventures",
+      "website": "https://waterbridge.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://waterbridge.vc/about/"
+    },
+    {
+      "company": "SRI Capital",
+      "website": "https://sricapital.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Force Ventures",
+      "website": "https://force.vc",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "9Unicorns",
+      "website": "https://9unicorns.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "LetsVenture",
+      "website": "https://www.letsventure.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://lvxventures.com/founders"
+    },
+    {
+      "company": "Mumbai Angels Network",
+      "website": "https://www.mumbaiangels.com/",
+      "reason": "homepage-fetch-failed",
+      "detail": 403
+    },
+    {
+      "company": "Hyderabad Angels",
+      "website": "https://hyderabadangels.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "The operation was aborted due to timeout"
+    },
+    {
+      "company": "Lead Angels",
+      "website": "https://leadangels.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://leadangels.in/"
+    },
+    {
+      "company": "Calcutta Angels Network",
+      "website": "https://calcuttaangels.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Native Smart Capital",
+      "website": "https://nativesmart.capital",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Info Edge Ventures",
+      "website": "https://www.infoedge.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.infoedge.in/About/Overview"
+    },
+    {
+      "company": "Flipkart Ventures",
+      "website": "https://stories.flipkart.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://stories.flipkart.com/"
+    },
+    {
+      "company": "JioGenNext",
+      "website": "https://www.jiogennext.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.jiogennext.com/"
+    },
+    {
+      "company": "Reliance Ventures",
+      "website": "https://www.ril.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.ril.com/"
+    },
+    {
+      "company": "Mahindra Partners",
+      "website": "https://www.mahindrapartners.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "SIDBI Venture Capital",
+      "website": "https://www.sidbiventure.co.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.sidbiventure.co.in/"
+    },
+    {
+      "company": "Canbank Venture Capital Fund",
+      "website": "https://www.canbankventure.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "IFCI Venture Capital Funds",
+      "website": "https://www.ifciventure.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.ifciventure.com/index.aspx"
+    },
+    {
+      "company": "ICICI Venture",
+      "website": "https://www.iciciventure.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "The operation was aborted due to timeout"
+    },
+    {
+      "company": "Kotak Private Equity",
+      "website": "https://www.kotak.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.kotak.bank.in/en/corporate/cash-management-services.html"
+    },
+    {
+      "company": "Patamar Capital",
+      "website": "https://patamar.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://patamar.com/about-us/"
+    },
+    {
+      "company": "Greyhound Capital",
+      "website": "https://greyhoundcapital.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://greyhoundcapital.com/"
+    },
+    {
+      "company": "Steadview Capital",
+      "website": "https://www.steadview.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.steadview.com/"
+    },
+    {
+      "company": "Rebright Partners",
+      "website": "https://rebrightpartners.com/",
+      "reason": "homepage-fetch-failed",
+      "detail": "The operation was aborted due to timeout"
+    },
+    {
+      "company": "Surge",
+      "website": "https://surge.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.coca-cola.com/us/en/offerings/partners/nascar"
+    },
+    {
+      "company": "Y Combinator",
+      "website": "https://www.ycombinator.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.ycombinator.com/about"
+    },
+    {
+      "company": "Techstars",
+      "website": "https://www.techstars.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.techstars.com/about"
+    },
+    {
+      "company": "500 Global",
+      "website": "https://500.co/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://500.co/founders/flagship"
+    },
+    {
+      "company": "Jungle Ventures",
+      "website": "https://www.jungle.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.jungle.vc/portfolio"
+    },
+    {
+      "company": "Wavemaker Partners",
+      "website": "https://wavemaker.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://wavemaker.vc/"
+    },
+    {
+      "company": "Insignia Ventures Partners",
+      "website": "https://www.insignia.vc/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "JAFCO Asia",
+      "website": "https://www.jafco.asia",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Pavilion Capital",
+      "website": "https://www.pavilioncapital.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "General Atlantic",
+      "website": "https://www.generalatlantic.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.generalatlantic.com/"
+    },
+    {
+      "company": "Bessemer Venture Partners",
+      "website": "https://www.bvp.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.bvp.com/team"
+    },
+    {
+      "company": "Prosus Ventures",
+      "website": "https://www.prosus.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.prosus.com/about-us"
+    },
+    {
+      "company": "Naspers Foundry",
+      "website": "https://www.naspers.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.naspers.com/the-group/leadership"
+    },
+    {
+      "company": "Temasek",
+      "website": "https://www.temasek.com.sg/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.temasek.com.sg/en/about-us"
+    },
+    {
+      "company": "SoftBank Investment Advisers",
+      "website": "https://group.softbank/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://group.softbank/about/corporate_governance"
+    },
+    {
+      "company": "SoftBank Ventures Asia",
+      "website": "https://www.softbank.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "The operation was aborted due to timeout"
+    },
+    {
+      "company": "Insight Partners",
+      "website": "https://www.insightpartners.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.insightpartners.com/onsite/"
+    },
+    {
+      "company": "Coatue Management",
+      "website": "https://www.coatue.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.coatue.com/blog/press/our-continued-partnership-with-anthropic"
+    },
+    {
+      "company": "DST Global",
+      "website": "https://dstglobal.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Dragoneer Investment Group",
+      "website": "https://www.dragoneer.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Blackstone Growth",
+      "website": "https://www.blackstone.com/",
+      "reason": "homepage-fetch-failed",
+      "detail": 403
+    },
+    {
+      "company": "Warburg Pincus",
+      "website": "https://warburgpincus.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://warburgpincus.com/"
+    },
+    {
+      "company": "Bain Capital",
+      "website": "https://www.baincapital.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.baincapital.com/about-us"
+    },
+    {
+      "company": "Carlyle Group",
+      "website": "https://www.carlyle.com/",
+      "reason": "homepage-fetch-failed",
+      "detail": 403
+    },
+    {
+      "company": "Creador",
+      "website": "https://www.creador.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://creador.com/about/our-story/"
+    },
+    {
+      "company": "British International Investment",
+      "website": "https://www.bii.co.uk/",
+      "reason": "homepage-fetch-failed",
+      "detail": 403
+    },
+    {
+      "company": "Norfund",
+      "website": "https://www.norfund.no/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.norfund.no/about-norfund/"
+    },
+    {
+      "company": "FMO Entrepreneurial Development Bank",
+      "website": "https://www.fmo.nl/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.fmo.nl/about-fmo"
+    },
+    {
+      "company": "Proparco",
+      "website": "https://www.proparco.fr/fr",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.proparco.fr/fr"
+    },
+    {
+      "company": "Michael & Susan Dell Foundation",
+      "website": "https://www.dell.org/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.dell.org/"
+    },
+    {
+      "company": "Cisco Investments",
+      "website": "https://www.cisco.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.cisco.com/site/us/en/about/whats-new.html"
+    },
+    {
+      "company": "Samsung Ventures",
+      "website": "https://www.samsungventures.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Amazon Smbhav Venture Fund",
+      "website": "https://www.aboutamazon.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.aboutamazon.in/news/small-business/amazon-india-smbhav-pledges"
+    },
+    {
+      "company": "SC Ventures",
+      "website": "https://www.sc.com/en/about/innovation/sc-ventures/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.sc.com/en/about/"
+    },
+    {
+      "company": "Unilever Ventures",
+      "website": "https://www.unileverventures.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.unileverventures.com/about/"
+    },
+    {
+      "company": "Brand Capital",
+      "website": "https://brandcapital.co.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://brandcapital.co.in/aboutus.html"
+    },
+    {
+      "company": "Nazara Ventures",
+      "website": "https://www.nazara.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Sony Innovation Fund",
+      "website": "https://www.sonyinnovationfund.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.sonyinnovationfund.com/about/"
+    },
+    {
+      "company": "Shell Ventures",
+      "website": "https://www.shell.com/what-we-do/technology-and-innovation/innovate-with-shell/shell-ventures.html",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "BP Ventures",
+      "website": "https://www.bp.com/en-IN",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.bp.com/en-IN/about-us/what-we-do/bp-worldwide"
+    },
+    {
+      "company": "Energy Impact Partners",
+      "website": "https://www.energyimpactpartners.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.energyimpactpartners.com/cdn-cgi/content?id=k4mERg.InpqhGjKftcWqYBzFRWOheFN2nk6UhMjGBYE-1785343691.2414086-1.2.1.1-qcRAchqarovGDaswt0y5IVZFtS8HRDCXTiG_JmiYrj8"
+    },
+    {
+      "company": "Valar Ventures",
+      "website": "https://www.valar.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.valar.com/"
+    },
+    {
+      "company": "Thrive Capital",
+      "website": "https://www.thrivecap.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "New Enterprise Associates",
+      "website": "https://www.nea.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.nea.com/about"
+    },
+    {
+      "company": "Andreessen Horowitz",
+      "website": "https://a16z.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://a16z.com/team/"
+    },
+    {
+      "company": "Founders Fund",
+      "website": "https://foundersfund.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://foundersfund.com/portfolio/"
+    },
+    {
+      "company": "IAN Fund",
+      "website": "https://www.ianfund.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "The operation was aborted due to timeout"
+    },
+    {
+      "company": "CIIE.CO",
+      "website": "https://ciie.co",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "T-Hub",
+      "website": "https://www.t-hub.co/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.t-hub.co/"
+    },
+    {
+      "company": "CIE IIIT Hyderabad",
+      "website": "https://cie.iiit.ac.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://cie.iiit.ac.in/"
+    },
+    {
+      "company": "Zone Startups India",
+      "website": "https://www.zonestartups.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.zonestartups.com/"
+    },
+    {
+      "company": "Piramal Alternatives",
+      "website": "https://www.piramal.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.piramal.com/"
+    },
+    {
+      "company": "Edelweiss Alternative Asset Advisors",
+      "website": "https://www.edelweissfin.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.edelweissfin.com/about-us/"
+    },
+    {
+      "company": "Motilal Oswal Private Equity",
+      "website": "https://www.motilaloswal.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.motilaloswal.com/portfolio-management-services"
+    },
+    {
+      "company": "JM Financial Private Equity",
+      "website": "https://www.jmfl.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.jmfl.com/who-we-are/about-us"
+    },
+    {
+      "company": "Atomico",
+      "website": "https://www.atomico.com",
+      "reason": "homepage-fetch-failed",
+      "detail": 429
+    },
+    {
+      "company": "Balderton Capital",
+      "website": "https://www.balderton.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.balderton.com/about-balderton/"
+    },
+    {
+      "company": "Coinbase Ventures",
+      "website": "https://www.coinbase.com/en-in/ventures",
+      "reason": "homepage-fetch-failed",
+      "detail": 403
+    },
+    {
+      "company": "YZi Labs",
+      "website": "https://www.binance.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Polygon Ventures",
+      "website": "https://polygon.technology/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://polygon.technology/solutions/cross-border-treasury"
+    },
+    {
+      "company": "Woodstock Fund",
+      "website": "https://woodstock.fund",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "SBI Investment",
+      "website": "https://www.sbinvestment.co.jp/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.sbinvestment.co.jp/"
+    },
+    {
+      "company": "Honda Ventures",
+      "website": "https://www.honda.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.honda.com/teamusa"
+    },
+    {
+      "company": "Toyota Ventures",
+      "website": "https://www.toyota.ventures/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.toyota.ventures/"
+    },
+    {
+      "company": "Hyundai CRADLE",
+      "website": "https://cradle.hyundai.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Bosch Ventures",
+      "website": "https://bosch.ventures/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://bosch.ventures/"
+    },
+    {
+      "company": "Invert by Groww",
+      "website": "https://groww.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://groww.in/mutual-funds/amc"
+    },
+    {
+      "company": "Dream Sports Ventures",
+      "website": "https://www.dreamsports.gg",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Cipla New Ventures",
+      "website": "https://www.cipla.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Apollo Connect / Apollo Hospitals Ventures",
+      "website": "https://www.apollohospitals.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.apollohospitals.com/company-overview/the-apollo-story"
+    },
+    {
+      "company": "Varanium Capital Advisors",
+      "website": "https://varanium.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Mechanism Capital",
+      "website": "https://www.mechanism.capital/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.mechanism.capital/writings/million-markets-from-the-bazaar-to-the-dex"
+    },
+    {
+      "company": "CoinDCX Ventures",
+      "website": "https://coindcx.com/",
+      "reason": "homepage-fetch-failed",
+      "detail": 403
+    },
+    {
+      "company": "SBI Caps Ventures / SBICAP Ventures",
+      "website": "https://www.sbicapventures.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://sbiventures.co.in/about-us/"
+    },
+    {
+      "company": "Kerala Startup Mission",
+      "website": "https://startupmission.kerala.gov.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://startupmission.kerala.gov.in/about"
+    },
+    {
+      "company": "NSRCEL",
+      "website": "https://nsrcel.org/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://nsrcel.org/"
+    },
+    {
+      "company": "IIFL Seed Venture Fund / IIFL PE",
+      "website": "https://www.iifl.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.iifl.com/gold-loans/partners"
+    },
+    {
+      "company": "Lighthouse Canton",
+      "website": "https://www.lighthouse-canton.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.lighthouse-canton.com/about"
+    },
+    {
+      "company": "TotalEnergies Ventures",
+      "website": "https://totalenergies.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www2.totalenergies.com/company/strength/totalenergies-and-sport"
+    },
+    {
+      "company": "Nestlé Ventures",
+      "website": "https://www.nestle.com/",
+      "reason": "homepage-fetch-failed",
+      "detail": 403
+    },
+    {
+      "company": "Marico Growth Ventures",
+      "website": "https://marico.com/global",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://marico.com/global/about-us"
+    },
+    {
+      "company": "Sun Pharma Ventures",
+      "website": "https://sunpharma.com/",
+      "reason": "homepage-fetch-failed",
+      "detail": 403
+    },
+    {
+      "company": "Biocon Innovation / Biocon Ventures",
+      "website": "https://www.biocon.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.biocon.com/about-us/"
+    },
+    {
+      "company": "upGrad Ventures",
+      "website": "https://www.upgrad.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.upgrad.com/ctaio-iimu-iiit/"
+    },
+    {
+      "company": "PayU Ventures",
+      "website": "https://payu.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://payu.in/about-us"
+    },
+    {
+      "company": "Mitsubishi UFJ Capital",
+      "website": "https://www.mucap.co.jp/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.mucap.co.jp/team/"
+    },
+    {
+      "company": "Delivery Hero Ventures",
+      "website": "https://www.deliveryhero.com/",
+      "reason": "homepage-fetch-failed",
+      "detail": 403
+    },
+    {
+      "company": "Accion Venture Lab",
+      "website": "https://www.accion.org/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.accion.org/about-accion/"
+    },
+    {
+      "company": "Villgro",
+      "website": "https://villgro.org/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://villgro.org/about/"
+    },
+    {
+      "company": "IIT Madras Incubation Cell",
+      "website": "https://www.incubation.iitm.ac.in",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "SINE IIT Bombay",
+      "website": "https://sineiitb.org",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "SIIC IIT Kanpur",
+      "website": "https://siic.iitk.ac.in",
+      "reason": "homepage-fetch-failed",
+      "detail": "The operation was aborted due to timeout"
+    },
+    {
+      "company": "IIM Calcutta Innovation Park",
+      "website": "https://iimcip.org/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://iimcip.org/about-us/about-iimcip/"
+    },
+    {
+      "company": "ISB DLabs / CEL",
+      "website": "https://cel.isb.edu",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Startup Oasis",
+      "website": "https://startupoasis.in",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Forge Innovation & Ventures",
+      "website": "https://www.forgeforward.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.forge-iv.co/"
+    },
+    {
+      "company": "KIIT-TBI",
+      "website": "https://kiitincubator.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://kiitincubator.in/"
+    },
+    {
+      "company": "PSG-STEP",
+      "website": "https://psgstep.org",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://psgstep.org/index.php?page_id=2"
+    },
+    {
+      "company": "AIC-SMU Technology Business Incubation Foundation",
+      "website": "https://www.smu.edu.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.smu.edu.in/about-sikkim-manipal-university.php"
+    },
+    {
+      "company": "NASSCOM 10000 Startups",
+      "website": "https://10000startups.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Nativelead Foundation / Nativelead Angels",
+      "website": "https://nativelead.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "The operation was aborted due to timeout"
+    },
+    {
+      "company": "TiE Delhi-NCR Angels",
+      "website": "https://delhi.tie.org/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://delhi.tie.org/about/"
+    },
+    {
+      "company": "TiE Mumbai Angels",
+      "website": "https://mumbai.tie.org/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://mumbai.tie.org/about/"
+    },
+    {
+      "company": "TiE Chennai Angels",
+      "website": "https://chennai.tie.org/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://chennai.tie.org/"
+    },
+    {
+      "company": "JITO Angel Network",
+      "website": "https://www.jito.org",
+      "reason": "homepage-fetch-failed",
+      "detail": "The operation was aborted due to timeout"
+    },
+    {
+      "company": "Tata Capital Innovations",
+      "website": "https://www.tatacapital.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.tatacapital.com/wealth.html"
+    },
+    {
+      "company": "NIIF",
+      "website": "https://niifindia.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://niifindia.in/about/"
+    },
+    {
+      "company": "NABKISAN Finance / NABARD ecosystem",
+      "website": "https://www.nabard.org/Hindi/Default.aspx",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.nabard.org/Hindi/team.aspx?id=9"
+    },
+    {
+      "company": "Wipro Ventures",
+      "website": "https://www.wipro.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.wipro.com/about-us/"
+    },
+    {
+      "company": "Freshworks Capital",
+      "website": "https://www.freshworks.com/",
+      "reason": "homepage-fetch-failed",
+      "detail": 403
+    },
+    {
+      "company": "Postman Capital",
+      "website": "https://www.postman.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.postman.com/product/workspaces/"
+    },
+    {
+      "company": "BrowserStack Investments",
+      "website": "https://www.browserstack.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.browserstack.com/test-management"
+    },
+    {
+      "company": "Chargebee Investments",
+      "website": "https://www.chargebee.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.chargebee.com/billing/manage-subscriptions/"
+    },
+    {
+      "company": "Infosys Innovation Fund",
+      "website": "https://www.infosys.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.infosys.com/industries/waste-management.html"
+    },
+    {
+      "company": "TCS Co-Innovation / TCS Ventures",
+      "website": "https://www.tcs.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.tcs.com/who-we-are/alliances-partnerships"
+    },
+    {
+      "company": "Tech Mahindra Ventures",
+      "website": "https://www.techmahindra.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.techmahindra.com/about-us/"
+    },
+    {
+      "company": "HCL Software Investments",
+      "website": "https://www.hcltech.com",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.hcltech.com/product-lifecycle-management-plm"
+    },
+    {
+      "company": "L&T Technology Services Ventures",
+      "website": "https://www.ltts.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.ltts.com/services/asset-care-services"
+    },
+    {
+      "company": "Mphasis NEXT Labs Investments",
+      "website": "https://www.mphasis.com/home.html",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.mphasis.com/home.html"
+    },
+    {
+      "company": "Persistent Ventures",
+      "website": "https://www.persistent.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://validate.perfdrive.com/?ssa=a4a6ba76-f2d4-420d-8935-9723e5e2c793&ssb=13064283440&ssc=https%3A%2F%2Fwww.persistent.com%2F&ssi=343de9d8-d452-4b6b-8f21-ee43e29bd19f&ssk=botmanager_support@radware.com&ssm=26823065069763624106288481548039&ssn=68e0e19bf66d15c5d387abd5c23e789ed42c236447b7-07d1-44ac-82e6c3&sso=253cd72c-79d1c715504870dcc359321b420da97e6b2bcd0659aaa3c1&ssp=86607530011785323634178537859371119&ssq=59102324407885903619044078842911373768927&ssr=MjQwNToyMDE6YTQwNDo1MGI3OmY1MWU6OGJkNTphMGUxOjU3Mjg=&sst=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/124.0.0.0%20Safari/537.36&ssu=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDAyMzY0NDdiNy0wN2QxLTQ0YWMtODcyYy03OWQxYzcxNTUwNDgxLTE3ODUzNDQwNzg4MTcwLTAwNDU0Mzk0ZDc3N2U1MzQ5MzAxMCJ9"
+    },
+    {
+      "company": "Mindtree Ventures / LTIMindtree Investments",
+      "website": "https://www.ltimindtree.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.ltm.com/services/application-management-services"
+    },
+    {
+      "company": "CitiusTech Investments",
+      "website": "https://www.citiustech.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.citiustech.com/market/medtech/revenue-cycle-management"
+    },
+    {
+      "company": "Godrej Family Office",
+      "website": "",
+      "reason": "no-website"
+    },
+    {
+      "company": "Bharti Family Office",
+      "website": "",
+      "reason": "no-website"
+    },
+    {
+      "company": "Murugappa Family Office",
+      "website": "",
+      "reason": "no-website"
+    },
+    {
+      "company": "Goenka Family Office",
+      "website": "",
+      "reason": "no-website"
+    },
+    {
+      "company": "Bajaj Family Office",
+      "website": "",
+      "reason": "no-website"
+    },
+    {
+      "company": "Amansa Holdings",
+      "website": "https://www.amansacapital.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Malabar Investments",
+      "website": "https://www.malabarinvestments.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "KITVEN",
+      "website": "https://www.hugedomains.com/domain_profile.cfm?d=kitven.com",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.hugedomains.com/about.cfm"
+    },
+    {
+      "company": "Helion Venture Partners",
+      "website": "https://www.helionvc.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Stanford Angels & Entrepreneurs India",
+      "website": "https://stanfordangels.co.in/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "IIT Bombay Alumni Angels",
+      "website": "",
+      "reason": "no-website"
+    },
+    {
+      "company": "Chartered Angels Network",
+      "website": "",
+      "reason": "no-website"
+    },
+    {
+      "company": "Maharashtra State Innovation Society",
+      "website": "https://mahasbic.gov.in",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Andhra Pradesh Innovation Society",
+      "website": "https://apis.ap.gov.in/home/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://apis.ap.gov.in/home/"
+    },
+    {
+      "company": "Gujarat Student Startup Innovation Hub / i-Hub",
+      "website": "https://www.startupgujarat.in/",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Karnataka Innovation Authority / Elevate",
+      "website": "https://startup.karnataka.gov.in",
+      "reason": "homepage-fetch-failed",
+      "detail": "The operation was aborted due to timeout"
+    },
+    {
+      "company": "Tamil Nadu Startup & Innovation Mission",
+      "website": "https://startuptn.in/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Odisha Startup / Startup Odisha",
+      "website": "https://startupodisha.gov.in",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Telangana TSIC / T-Hub related programs",
+      "website": "https://enrich.telangana.gov.in",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Unitus Ventures",
+      "website": "https://unitus.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://unitus.vc/"
+    },
+    {
+      "company": "Seedfund",
+      "website": "https://seedfund.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://seedfund.com/team"
+    },
+    {
+      "company": "Infuse Ventures",
+      "website": "https://infuseventures.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "The operation was aborted due to timeout"
+    },
+    {
+      "company": "Asha Impact",
+      "website": "https://ashaimpact.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Circulate Capital",
+      "website": "https://www.circulatecapital.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.circulatecapital.com/about-us/"
+    },
+    {
+      "company": "Amicus Capital",
+      "website": "https://www.amicuscapital.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.amicuscapital.in/about-us/"
+    },
+    {
+      "company": "Zodius Capital",
+      "website": "",
+      "reason": "no-website"
+    },
+    {
+      "company": "Know3 Ventures",
+      "website": "",
+      "reason": "no-website"
+    },
+    {
+      "company": "Locomotive Ventures",
+      "website": "",
+      "reason": "no-website"
+    },
+    {
+      "company": "Soonicorn Club Ventures",
+      "website": "https://soonicornventures.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://soonicornventures.com/"
+    },
+    {
+      "company": "Beej Capital",
+      "website": "https://www.hugedomains.com/domain_profile.cfm?d=beejcapital.com",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.hugedomains.com/about.cfm"
+    },
+    {
+      "company": "Systemiq Capital",
+      "website": "https://www.systemiq.earth/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.systemiq.earth/"
+    },
+    {
+      "company": "UnLtd India",
+      "website": "https://unltdindia.org/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://unltdindia.org/"
+    },
+    {
+      "company": "C-CAMP",
+      "website": "https://www.ccamp.res.in",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "IKP Knowledge Park",
+      "website": "https://ikpknowledgepark.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://ikpknowledgepark.com/"
+    },
+    {
+      "company": "a-IDEA NAARM",
+      "website": "https://www.aidea.naarm.org.in",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Pusa Krishi",
+      "website": "https://pusakrishi.iari.res.in",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Agri Udaan",
+      "website": "https://www.agriudaan.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "NABI Mohali",
+      "website": "https://nabi.res.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://nabi.res.in/cms?slug=%23"
+    },
+    {
+      "company": "Electropreneur Park",
+      "website": "https://www.electropreneurpark.com",
       "reason": "homepage-fetch-failed",
       "detail": "fetch failed"
     }
