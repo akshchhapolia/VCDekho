@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T16:36:14.385Z",
+  "generatedAt": "2026-07-29T16:37:26.142Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -48,6 +48,62 @@
       "sourceUrl": "https://www.alphawaveglobal.com/leadership",
       "method": "crawl",
       "companyType": "VC / Growth"
+    },
+    {
+      "company": "Lumis Partners",
+      "name": "Sandeep Sinha",
+      "title": "Managing Partner and Co-Founder",
+      "sourceUrl": "https://lumispartners.com/our-team/",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "Lumis Partners",
+      "name": "Rohit Bhayana",
+      "title": "Managing Partner & Co-Founder",
+      "sourceUrl": "https://lumispartners.com/our-team/",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "Alteria Capital",
+      "name": "Vinod Murali",
+      "title": "Co-founder, Managing Partner",
+      "sourceUrl": "https://alteriacapital.com/team/",
+      "method": "crawl",
+      "companyType": "Venture Debt"
+    },
+    {
+      "company": "Alteria Capital",
+      "name": "Punit Shah",
+      "title": "Managing Partner",
+      "sourceUrl": "https://alteriacapital.com/team/",
+      "method": "crawl",
+      "companyType": "Venture Debt"
+    },
+    {
+      "company": "July Ventures",
+      "name": "Amitabh Shrivastava",
+      "title": "General Partner",
+      "sourceUrl": "https://www.julyventures.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "July Ventures",
+      "name": "MV Subramanian",
+      "title": "General Partner",
+      "sourceUrl": "https://www.julyventures.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Waveform Ventures",
+      "name": "Arun Tadanki",
+      "title": "Lead Investor",
+      "sourceUrl": "https://waveform.vc/",
+      "method": "crawl",
+      "companyType": "VC"
     }
   ],
   "unresolved": [
@@ -90,6 +146,72 @@
     {
       "company": "Venture Highway",
       "website": "https://venturehighway.vc",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Sauce.vc",
+      "website": "https://sauce.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://sauce.vc/service-partners/"
+    },
+    {
+      "company": "Saama",
+      "website": "https://www.saama.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.saama.com/revenue-cycle-management/"
+    },
+    {
+      "company": "Tomorrow Capital",
+      "website": "https://tomorrowcapital.vc",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Iron Pillar",
+      "website": "https://ironpillar.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "GrowthCap Ventures",
+      "website": "https://growthcapvc.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Inflexor Ventures",
+      "website": "https://inflexor.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.atom.com/name/Inflexor"
+    },
+    {
+      "company": "Sorin Investments",
+      "website": "https://www.sorininvestments.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Enzia Ventures",
+      "website": "https://enziaventures.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Spiral Ventures Pte. Ltd.",
+      "website": "https://spiral.vc",
+      "reason": "homepage-fetch-failed",
+      "detail": "The operation was aborted due to timeout"
+    },
+    {
+      "company": "AdvantEdge Founders",
+      "website": "https://advantedgefounders.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Nueva Capital",
+      "website": "https://nuevacapital.vc",
       "reason": "homepage-fetch-failed",
       "detail": "fetch failed"
     }
