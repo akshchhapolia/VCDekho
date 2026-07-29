@@ -11,7 +11,8 @@
     "fetch:logos": "node scripts/fetch_investor_logos.js",
     "dedupe:candidates": "node scripts/dedupe_investor_candidates.js",
     "extract:fund-mentions": "node scripts/extract_fund_mentions.js",
-    "enrich:links": "node scripts/enrich_missing_links.js"
+    "enrich:links": "node scripts/enrich_missing_links.js",
+    "find:emails": "node scripts/find_emails.js"
   },
   "keywords": [],
   "author": "",
