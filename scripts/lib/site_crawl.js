@@ -111,22 +111,38 @@ async function crawlForTeamPage(website) {
     const text = htmlToText(res.html);
     if (text.length < 200) continue; // too thin to be a real team page
     if (!best || text.length > best.text.length) {
-      best = { url: res.finalUrl || url, text };
+      best = { url: res.finalUrl || url, text, html: res.html };
     }
     // Good enough signal found via an explicit team-labeled link — stop early to save requests.
     if (linkCandidates.includes(url) && text.length > 500) break;
   }
 
   if (best) {
-    return { ok: true, homepageUrl: homeUrl, teamUrl: best.url, text: best.text.slice(0, 8000), sourceUrl: best.url, attempted };
+    return {
+      ok: true,
+      homepageUrl: homeUrl,
+      teamUrl: best.url,
+      text: best.text.slice(0, 8000),
+      html: best.html || '',
+      sourceUrl: best.url,
+      attempted
+    };
   }
 
   // Fall back to homepage text if nothing better was found (some small sites list team on the homepage).
   if (homeText.length > 200) {
-    return { ok: true, homepageUrl: homeUrl, teamUrl: null, text: homeText.slice(0, 8000), sourceUrl: homeUrl, attempted };
+    return {
+      ok: true,
+      homepageUrl: homeUrl,
+      teamUrl: null,
+      text: homeText.slice(0, 8000),
+      html: home.html || '',
+      sourceUrl: homeUrl,
+      attempted
+    };
   }
 
   return { ok: false, reason: 'no-usable-text', attempted };
 }
 
-module.exports = { crawlForTeamPage, htmlToText, extractTeamLinks };
+module.exports = { crawlForTeamPage, htmlToText, extractTeamLinks, fetchOne, normalizeBase };

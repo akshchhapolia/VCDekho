@@ -1,0 +1,7 @@
+{
+  "generatedAt": null,
+  "schemaVersion": 1,
+  "description": "Staged LinkedIn/Twitter enrichments for existing People rows. Apply via scripts/apply_people_socials.js — patches empty CSV cells only.",
+  "found": [],
+  "unresolved": []
+}
