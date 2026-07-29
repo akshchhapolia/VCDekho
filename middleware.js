@@ -56,8 +56,9 @@ export default async function middleware(request) {
   }
 
   const isDirectoryPage = pathname === '/investors' || pathname === '/people';
+  const isPeopleListApi = pathname === '/api/people' && !url.searchParams.get('slug');
   const isDirectoryApi =
-    (pathname === '/api/investors/list' || pathname === '/api/people/list') &&
+    (pathname === '/api/investors/list' || isPeopleListApi) &&
     url.searchParams.get('view') !== 'themes' &&
     url.searchParams.get('view') !== 'stages';
 
@@ -88,5 +89,5 @@ export default async function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/investors', '/people', '/api/investors/list', '/api/people/list']
+  matcher: ['/investors', '/people', '/api/investors/list', '/api/people']
 };

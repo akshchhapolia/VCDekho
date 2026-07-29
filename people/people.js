@@ -256,7 +256,7 @@
       offset: String(state.offset)
     });
 
-    const res = await window.VCAuth.authFetch(`/api/people/list?${params.toString()}`);
+    const res = await window.VCAuth.authFetch(`/api/people?${params.toString()}`);
     if (res.status === 401) {
       window.location.replace(window.VCAuth.loginUrl());
       return;

@@ -34,7 +34,7 @@
     },
     {
       "source": "/people/:slug",
-      "destination": "/api/people/detail?slug=:slug"
+      "destination": "/api/people?slug=:slug"
     },
     {
       "source": "/sitemap.xml",
