@@ -42,8 +42,9 @@ async function isValidToken(token) {
 }
 
 /**
- * Only the investor directory (and its search API) stay behind login on production.
- * Preview / preprod hosts skip auth so UI changes can be reviewed without bouncing to prod.
+ * Only the investor + people directories (and their search APIs) stay behind
+ * login on production. Preview / preprod hosts skip auth so UI changes can be
+ * reviewed without bouncing to prod.
  */
 export default async function middleware(request) {
   const url = new URL(request.url);
@@ -54,9 +55,9 @@ export default async function middleware(request) {
     return;
   }
 
-  const isDirectoryPage = pathname === '/investors';
+  const isDirectoryPage = pathname === '/investors' || pathname === '/people';
   const isDirectoryApi =
-    pathname === '/api/investors/list' &&
+    (pathname === '/api/investors/list' || pathname === '/api/people/list') &&
     url.searchParams.get('view') !== 'themes' &&
     url.searchParams.get('view') !== 'stages';
 
@@ -87,5 +88,5 @@ export default async function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/investors', '/api/investors/list']
+  matcher: ['/investors', '/people', '/api/investors/list', '/api/people/list']
 };

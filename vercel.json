@@ -33,6 +33,10 @@
       "destination": "/api/investors/detail?slug=:slug"
     },
     {
+      "source": "/people/:slug",
+      "destination": "/api/people/detail?slug=:slug"
+    },
+    {
       "source": "/sitemap.xml",
       "destination": "/api/sitemap"
     }

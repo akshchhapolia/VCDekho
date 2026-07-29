@@ -1,5 +1,6 @@
 const db = require('../utils/db');
 const { getAllInvestors } = require('../utils/investors');
+const { getAllPeople } = require('../utils/people');
 const { THESIS_THEMES } = require('../data/thesis-themes');
 const { INVESTMENT_STAGES } = require('../data/investment-stages');
 const { SECTOR_GUIDES } = require('../data/sectors');
@@ -38,6 +39,18 @@ module.exports = async function handler(req, res) {
             });
         } catch (e) {
             console.warn('Investor sitemap skipped:', e.message);
+        }
+
+        try {
+            getAllPeople().forEach(p => {
+                dynamicUrls += `
+  <url>
+    <loc>https://vcdekho.com/people/${p.slug}</loc>
+    <priority>0.6</priority>
+  </url>`;
+            });
+        } catch (e) {
+            console.warn('People sitemap skipped:', e.message);
         }
 
         const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

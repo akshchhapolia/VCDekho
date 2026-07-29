@@ -373,6 +373,7 @@ function renderSectorPage(sector, res) {
     '<nav class="main-nav" id="navigation-bar">',
     '<a href="/" class="nav-link">Home</a>',
     '<a href="/investors" class="nav-link active">Investors</a>',
+    '<a href="/people" class="nav-link">People</a>',
     '<a href="/blog" class="nav-link">Blog</a>',
     '<a href="/news" class="nav-link">News</a>',
     '</nav></header>',
