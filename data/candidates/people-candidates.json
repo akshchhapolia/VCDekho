@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T16:38:53.649Z",
+  "generatedAt": "2026-07-29T16:41:42.342Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -222,6 +222,142 @@
       "name": "Anne Dwane",
       "title": "General Partner",
       "sourceUrl": "https://www.villageglobal.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Investopad",
+      "name": "Arjun Malhotra",
+      "title": "Partner",
+      "sourceUrl": "https://www.goodcapital.vc/team",
+      "method": "crawl",
+      "companyType": "VC / Platform"
+    },
+    {
+      "company": "Investopad",
+      "name": "Rohan Malhotra",
+      "title": "Partner",
+      "sourceUrl": "https://www.goodcapital.vc/team",
+      "method": "crawl",
+      "companyType": "VC / Platform"
+    },
+    {
+      "company": "Lightrock",
+      "name": "Pål Erik Sjåtil",
+      "title": "Managing Partner & CEO",
+      "sourceUrl": "https://www.lightrock.com/about/",
+      "method": "crawl",
+      "companyType": "Impact VC"
+    },
+    {
+      "company": "Lightrock",
+      "name": "Ahmad El Jurdi",
+      "title": "Investment Team, Partner",
+      "sourceUrl": "https://www.lightrock.com/about/",
+      "method": "crawl",
+      "companyType": "Impact VC"
+    },
+    {
+      "company": "C4D Partners",
+      "name": "Arvind Agarwal",
+      "title": "Founder & CEO",
+      "sourceUrl": "https://c4dpartners.com/about-us/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "C4D Partners",
+      "name": "Gaurav Gupta",
+      "title": "Managing Partner",
+      "sourceUrl": "https://c4dpartners.com/about-us/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Beyond Capital Ventures",
+      "name": "Ahmad Radaideh",
+      "title": "Managing Director",
+      "sourceUrl": "https://beyondcapital.vc/",
+      "method": "crawl",
+      "companyType": "Impact VC"
+    },
+    {
+      "company": "Beyond Capital Ventures",
+      "name": "Sharaf Saleh",
+      "title": "Investments",
+      "sourceUrl": "https://beyondcapital.vc/",
+      "method": "crawl",
+      "companyType": "Impact VC"
+    },
+    {
+      "company": "Social Capital",
+      "name": "Chamath Palihapitiya",
+      "title": "founder and CEO",
+      "sourceUrl": "https://www.socialcapital.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "ChrysCapital",
+      "name": "Ashish Dhawan",
+      "title": "Founder",
+      "sourceUrl": "https://chryscapital.com/about-us/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "ChrysCapital",
+      "name": "Kunal Shroff",
+      "title": "Current Partner",
+      "sourceUrl": "https://chryscapital.com/about-us/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "BEENEXT",
+      "name": "Teruhide Sato",
+      "title": "Founder & CEO",
+      "sourceUrl": "https://www.beenext.com/beliefs/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "BEENEXT",
+      "name": "Dirk Van Quaquebeke",
+      "title": "Managing Partner",
+      "sourceUrl": "https://www.beenext.com/beliefs/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Vertex Ventures SE Asia & India",
+      "name": "Kee Lock CHUA",
+      "title": "Managing Partner",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Vertex Ventures SE Asia & India",
+      "name": "Joo Hock CHUA",
+      "title": "Managing Partner",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "2048 Ventures",
+      "name": "Alex Iskold",
+      "title": "Founder and Partner",
+      "sourceUrl": "https://www.2048.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "2048 Ventures",
+      "name": "Zann Ali",
+      "title": "Partner",
+      "sourceUrl": "https://www.2048.vc/team",
       "method": "crawl",
       "companyType": "VC"
     }
@@ -466,6 +602,246 @@
       "website": "https://supermorpheus.com/",
       "reason": "no-names-in-text",
       "sourceUrl": "https://supermorpheus.com/"
+    },
+    {
+      "company": "Unpopular Ventures",
+      "website": "https://unpopularventures.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.unpopular.vc/team"
+    },
+    {
+      "company": "Orbit Startups",
+      "website": "https://orbitstartups.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://orbitventures.com/partnerships/"
+    },
+    {
+      "company": "Wavelaunch VC",
+      "website": "https://wavelaunchvc.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Venture Cooperative",
+      "website": "https://venturecoop.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://venturecoop.com/"
+    },
+    {
+      "company": "Bertelsmann India Investments",
+      "website": "https://bertelsmann-india.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Tiger Global Management",
+      "website": "https://www.tigerglobal.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.tigerglobal.com/"
+    },
+    {
+      "company": "Unitus Capital",
+      "website": "https://unituscapital.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://unituscapital.com/about-us/"
+    },
+    {
+      "company": "Menterra Ventures",
+      "website": "https://www.menterra.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.menterra.com/about-us/"
+    },
+    {
+      "company": "Omidyar Network India",
+      "website": "https://omidyarnetwork.in",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Gaja Capital",
+      "website": "https://gajacapital.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://gajacapital.com/about"
+    },
+    {
+      "company": "Kedaara Capital",
+      "website": "https://kedaaracapital.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Everstone Group ",
+      "website": "https://www.everstonegroup.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.everstonegroup.com/about-us/"
+    },
+    {
+      "company": "Ascent Capital",
+      "website": "https://ascentcapital.in/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Burman Family Holdings",
+      "website": "https://burmanfamily.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Narotam Sekhsaria Family Office",
+      "website": "https://nsfoundation.in",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Samara Capital",
+      "website": "https://samaracapital.in/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Chona Family Office",
+      "website": "https://chonafamily.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "MGA Ventures",
+      "website": "https://mgaventures.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Madison India Capital",
+      "website": "https://madisonindia.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "East Ventures",
+      "website": "https://east.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://east.vc/about-us"
+    },
+    {
+      "company": "PeerCapital",
+      "website": "https://peercapital.vc",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "The Venture Folks",
+      "website": "https://theventurefolks.com",
+      "reason": "homepage-fetch-failed",
+      "detail": 526
+    },
+    {
+      "company": "RPSG Capital Ventures",
+      "website": "https://rpsgcapital.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "GVFL Limited",
+      "website": "https://gvfl.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Marwari Catalysts",
+      "website": "https://www.marwaricatalysts.com/home.php",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.marwaricatalysts.com/mcats-group.php"
+    },
+    {
+      "company": "Tanas Capital",
+      "website": "https://tanascapital.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "VentureStudio",
+      "website": "https://venturestudio.in",
+      "reason": "homepage-fetch-failed",
+      "detail": "The operation was aborted due to timeout"
+    },
+    {
+      "company": "GUSEC",
+      "website": "https://gusec.edu.in/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://gusec.edu.in/about-us/"
+    },
+    {
+      "company": "Axilor Ventures",
+      "website": "https://www.axilor.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.axilor.com/about/"
+    },
+    {
+      "company": "VenturEast",
+      "website": "https://ventureast.net",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "AUM Ventures",
+      "website": "https://aumventures.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "The operation was aborted due to timeout"
+    },
+    {
+      "company": "Ribbit Capital",
+      "website": "https://www.ribbitcap.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.ribbitcap.com/team"
+    },
+    {
+      "company": "Index Ventures ",
+      "website": "https://www.indexventures.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://www.indexventures.com/team/"
+    },
+    {
+      "company": "Cherry Ventures",
+      "website": "https://cherry.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://cherry.vc/founders"
+    },
+    {
+      "company": "Upfront Ventures",
+      "website": "https://upfront.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "TVentures",
+      "website": "https://tventures.vc",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Foster Ventures",
+      "website": "https://fosterventures.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "B Capital ",
+      "website": "https://bcapgroup.com/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://b.capital/about/"
+    },
+    {
+      "company": "Valia Ventures",
+      "website": "https://valiaventures.com/",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "Alfa Ventures",
+      "website": "https://alfaventures.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
     }
   ]
 }
