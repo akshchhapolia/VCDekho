@@ -1,0 +1,97 @@
+{
+  "generatedAt": "2026-07-29T16:36:14.385Z",
+  "found": [
+    {
+      "company": "Sequoia (India) / Peak XV",
+      "name": "Shailendra Singh",
+      "title": "Managing Director",
+      "sourceUrl": "https://www.peakxv.com/our-team",
+      "method": "crawl",
+      "companyType": "VC / Growth (seed to pre-IPO)"
+    },
+    {
+      "company": "Sequoia (India) / Peak XV",
+      "name": "Abhishek Mohan",
+      "title": "Managing Director",
+      "sourceUrl": "https://www.peakxv.com/our-team",
+      "method": "crawl",
+      "companyType": "VC / Growth (seed to pre-IPO)"
+    },
+    {
+      "company": "Eximus Ventures",
+      "name": "Pearl Agarwal",
+      "title": "Founder & Managing Partner",
+      "sourceUrl": "https://eximiusvc.com/about-us/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Eximus Ventures",
+      "name": "Preeti Nellore Sampat",
+      "title": "Partner",
+      "sourceUrl": "https://eximiusvc.com/about-us/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Alpha Wave Global",
+      "name": "Rick Gerson",
+      "title": "Co-Founder, Chairman & Chief Executive Officer",
+      "sourceUrl": "https://www.alphawaveglobal.com/leadership",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "Alpha Wave Global",
+      "name": "Navroz D. Udwadia",
+      "title": "Co-Founder and Partner",
+      "sourceUrl": "https://www.alphawaveglobal.com/leadership",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    }
+  ],
+  "unresolved": [
+    {
+      "company": "Stride Ventures",
+      "website": "https://strideventures.in",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Better Capital",
+      "website": "https://bettercapital.vc/",
+      "reason": "no-names-in-text",
+      "sourceUrl": "https://bettercapital.vc/team"
+    },
+    {
+      "company": "Arkam Ventures",
+      "website": "https://arkam.vc",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Shastra VC",
+      "website": "https://shastravc.com",
+      "reason": "no-usable-text",
+      "detail": ""
+    },
+    {
+      "company": "FreeFlow Ventures",
+      "website": "https://freeflowvc.com",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "DeVC",
+      "website": "https://devc.in",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    },
+    {
+      "company": "Venture Highway",
+      "website": "https://venturehighway.vc",
+      "reason": "homepage-fetch-failed",
+      "detail": "fetch failed"
+    }
+  ]
+}
