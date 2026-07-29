@@ -117,28 +117,144 @@ function uniqueById(items) {
   });
 }
 
+/**
+ * Approximate FX for ticket filters (INR → USD).
+ * Intentional round number so founders can compare bands; not live FX.
+ */
+const INR_PER_USD = 83;
+
+function inrToUsd(inr) {
+  if (inr == null || Number.isNaN(inr)) return null;
+  return Math.round(inr / INR_PER_USD);
+}
+
+function parseInrUnit(unit) {
+  const u = String(unit || '').toLowerCase();
+  if (/^(cr|crs|crore|crores)$/.test(u)) return 1e7;
+  if (/^(lakh|lakhs|lac|lacs|l)$/.test(u)) return 1e5;
+  return 0;
+}
+
+function isFundCorpusContext(raw, matchIndex) {
+  const start = Math.max(0, matchIndex - 40);
+  const window = raw.slice(start, matchIndex + 60).toLowerCase();
+  if (/per\s+(deal|startup|company|cheque|check)/.test(window)) return false;
+  if (/initial|cheque|ticket|per\s*deal/.test(window) && !/corpus|greenshoe/.test(window)) {
+    return false;
+  }
+  return /\b(fund\s*(i{1,3}|[0-9]+|ii)?|corpus|greenshoe|aum|across\s+\d+\+?\s*deals)\b/.test(window);
+}
+
 function parseCheque(text) {
   const raw = String(text || '');
-  const amounts = [];
-  const re = /\$?\s*([\d,.]+)\s*(k|m|mn|million|b|bn|billion)?/gi;
+  const trimmed = raw.trim();
+  if (!trimmed) return { min: null, max: null, label: null };
+  if (/^n\/?a$/i.test(trimmed) || /^not\s+(publicly\s+)?disclosed\b/i.test(trimmed)) {
+    return { min: null, max: null, label: trimmed };
+  }
+
+  const usdAmounts = [];
+  // Prefer explicit $ amounts when present
+  const usdRe = /\$\s*([\d,.]+)\s*(k|m|mn|million|b|bn|billion)?/gi;
   let m;
-  while ((m = re.exec(raw)) !== null) {
+  while ((m = usdRe.exec(raw)) !== null) {
     let n = parseFloat(m[1].replace(/,/g, ''));
     if (Number.isNaN(n)) continue;
     const unit = (m[2] || '').toLowerCase();
     if (unit === 'k') n *= 1e3;
     else if (unit === 'm' || unit === 'mn' || unit === 'million') n *= 1e6;
     else if (unit === 'b' || unit === 'bn' || unit === 'billion') n *= 1e9;
-    else if (n > 0 && n < 1000 && /\$/.test(m[0])) n *= 1e6; // bare $8 often means $8M in VC copy
-    // Heuristic: values like 500 without unit in "500k" already handled; skip tiny noise
-    if (n >= 1000) amounts.push(n);
+    else if (n > 0 && n < 1000) n *= 1e6; // bare $8 → $8M
+    if (n >= 1000) usdAmounts.push(n);
   }
-  if (!amounts.length) return { min: null, max: null, label: raw.trim() || null };
-  return {
-    min: Math.min(...amounts),
-    max: Math.max(...amounts),
-    label: raw.trim() || null
+  if (usdAmounts.length) {
+    return {
+      min: Math.min(...usdAmounts),
+      max: Math.max(...usdAmounts),
+      label: trimmed,
+      source: 'usd'
+    };
+  }
+
+  // INR / ₹ / Rs with Cr / Lakh (and ranges)
+  const inrAmounts = [];
+  const pushInr = (value, unit, index) => {
+    let n = parseFloat(String(value).replace(/,/g, ''));
+    if (Number.isNaN(n)) return;
+    const mult = parseInrUnit(unit);
+    if (!mult) return;
+    const inr = n * mult;
+    // Skip obvious fund/corpus figures unless tiny (lakh-sized)
+    if (mult >= 1e7 && inr >= 50e7 && isFundCorpusContext(raw, index)) return;
+    // "across N deals" aggregates — skip large Cr totals in that phrasing
+    const around = raw.slice(Math.max(0, index - 10), index + 50).toLowerCase();
+    if (/across\s+\d+/.test(around)) return;
+    const usd = inrToUsd(inr);
+    if (usd != null && usd >= 1000) inrAmounts.push(usd);
   };
+
+  // INR 2–5 Cr | INR 1-6 Cr | ₹10 Lakh | Rs. 3cr | INR 3cr-INR 40cr
+  const inrRangeRe =
+    /(?:INR|₹|Rs\.?)\s*([\d,.]+)\s*(Cr|Crore|Crs|Lakh|Lac|Lacs|L)?\s*(?:–|-|—|to)\s*(?:(?:INR|₹|Rs\.?)\s*)?([\d,.]+)\s*(Cr|Crore|Crs|Lakh|Lac|Lacs|L)/gi;
+  while ((m = inrRangeRe.exec(raw)) !== null) {
+    const unitA = m[2] || m[4];
+    const unitB = m[4] || m[2];
+    pushInr(m[1], unitA, m.index);
+    pushInr(m[3], unitB, m.index);
+  }
+
+  // INR 75L–3 Cr style already covered if both units present; also "75L–3 Cr" without INR prefix
+  const bareRangeRe =
+    /([\d,.]+)\s*(Cr|Crore|Crs|Lakh|Lac|Lacs|L)\s*(?:–|-|—|to)\s*([\d,.]+)\s*(Cr|Crore|Crs|Lakh|Lac|Lacs|L)\b/gi;
+  while ((m = bareRangeRe.exec(raw)) !== null) {
+    pushInr(m[1], m[2], m.index);
+    pushInr(m[3], m[4], m.index);
+  }
+
+  // Single INR amounts: INR 10 Cr, ₹12k already not Cr — INR 10 Lakh
+  const inrSingleRe = /(?:INR|₹|Rs\.?)\s*([\d,.]+)\s*(Cr|Crore|Crs|Lakh|Lac|Lacs|L)\b/gi;
+  while ((m = inrSingleRe.exec(raw)) !== null) {
+    pushInr(m[1], m[2], m.index);
+  }
+
+  // Compact: 3cr / 40cr without separator words already handled in ranges; singles like "3cr"
+  const compactRe = /(?<![A-Za-z])([\d,.]+)\s*(cr|crore|crs|lakh|lac|lacs)\b/gi;
+  while ((m = compactRe.exec(raw)) !== null) {
+    // Avoid double-count if already captured via INR prefix at same number — OK to push dupes
+    pushInr(m[1], m[2], m.index);
+  }
+
+  if (inrAmounts.length) {
+    return {
+      min: Math.min(...inrAmounts),
+      max: Math.max(...inrAmounts),
+      label: trimmed,
+      source: 'inr'
+    };
+  }
+
+  // Last resort: unit-less $ style without currency (legacy behaviour for "500k–1m")
+  const loose = [];
+  const looseRe = /([\d,.]+)\s*(k|m|mn|million|b|bn|billion)\b/gi;
+  while ((m = looseRe.exec(raw)) !== null) {
+    let n = parseFloat(m[1].replace(/,/g, ''));
+    if (Number.isNaN(n)) continue;
+    const unit = (m[2] || '').toLowerCase();
+    if (unit === 'k') n *= 1e3;
+    else if (unit === 'm' || unit === 'mn' || unit === 'million') n *= 1e6;
+    else if (unit === 'b' || unit === 'bn' || unit === 'billion') n *= 1e9;
+    if (n >= 1000) loose.push(n);
+  }
+  if (loose.length) {
+    return {
+      min: Math.min(...loose),
+      max: Math.max(...loose),
+      label: trimmed,
+      source: 'loose'
+    };
+  }
+
+  return { min: null, max: null, label: trimmed || null };
 }
 
 function formatUsd(n) {
