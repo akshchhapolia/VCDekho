@@ -15,7 +15,7 @@
     <title>Log in - VC Dekho</title>
     <meta name="description" content="Log in or create a free VC Dekho account to explore Indian VCs, angels, and investment theses.">
     <meta name="robots" content="noindex, follow">
-    <link rel="stylesheet" href="style.css?v=52">
+    <link rel="stylesheet" href="style.css?v=53">
     <link rel="icon" type="image/png" href="/assets/logoforvc.png">
     <link rel="canonical" href="https://vcdekho.com/login">
     <meta property="og:title" content="Log in - VC Dekho">
@@ -103,24 +103,33 @@
                             <p class="auth-status" id="auth-status" hidden></p>
 
                             <form id="auth-form" class="waitlist-form" novalidate>
-                                <div class="form-group is-hidden" id="name-group" hidden>
-                                    <label for="full-name" class="form-label">Full name</label>
-                                    <input type="text" id="full-name" name="fullName" class="form-input" placeholder="e.g. Rahul Sharma" autocomplete="name">
+                                <div id="email-step">
+                                    <div class="form-group is-hidden" id="name-group" hidden>
+                                        <label for="full-name" class="form-label">Full name</label>
+                                        <input type="text" id="full-name" name="fullName" class="form-input" placeholder="e.g. Rahul Sharma" autocomplete="name">
+                                        <span class="form-error-msg" id="name-error">Enter your name.</span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="work-email" class="form-label">Email</label>
+                                        <input type="email" id="work-email" name="email" class="form-input" placeholder="you@startup.com" required autocomplete="email">
+                                        <span class="form-error-msg" id="email-error">Enter a valid email.</span>
+                                    </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="work-email" class="form-label">Email</label>
-                                    <input type="email" id="work-email" name="email" class="form-input" placeholder="you@startup.com" required autocomplete="email">
-                                    <span class="form-error-msg" id="email-error">Enter a valid email.</span>
+                                <div id="otp-step" class="auth-otp-step is-hidden" hidden>
+                                    <div class="form-group">
+                                        <label for="otp-code" class="form-label">One-time code</label>
+                                        <input type="text" id="otp-code" name="otp" class="form-input auth-otp-input" placeholder="6-digit code" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" maxlength="8" enterkeyhint="done">
+                                        <span class="form-error-msg" id="otp-error">Enter the 6-digit code from your email.</span>
+                                    </div>
+                                    <div class="auth-otp-actions">
+                                        <button type="button" class="auth-text-btn" id="resend-otp-btn">Resend code</button>
+                                        <button type="button" class="auth-text-btn" id="change-email-btn">Change email</button>
+                                    </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="password" class="form-label">Password</label>
-                                    <input type="password" id="password" name="password" class="form-input" placeholder="At least 6 characters" required autocomplete="current-password" minlength="6">
-                                    <span class="form-error-msg" id="password-error">Password must be at least 6 characters.</span>
-                                </div>
-
-                                <button type="submit" class="waitlist-submit-btn" id="auth-submit-btn">Log in</button>
+                                <button type="submit" class="waitlist-submit-btn" id="auth-submit-btn">Send code</button>
                             </form>
 
                             <div class="auth-divider"><span>or</span></div>
