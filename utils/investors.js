@@ -104,7 +104,10 @@ function toCard(investor) {
     thesis: investor.thesis,
     chequeSize: investor.chequeSize,
     website: investor.website,
-    logo: investor.logo || null
+    logo: investor.logo || null,
+    activelyDeploying: isActivelyDeploying(investor),
+    lastCheckDate: investor.lastCheckDate || null,
+    lastCheckHighlight: investor.lastCheckHighlight || null
   };
 }
 
@@ -139,5 +142,7 @@ module.exports = {
   hasStageGuide,
   getStageGuideLabel,
   deriveRelatedStages,
+  isActivelyDeploying,
+  ACTIVE_WINDOW_DAYS,
   STAGE_GUIDE_IDS
 };
