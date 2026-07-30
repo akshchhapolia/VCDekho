@@ -67,15 +67,15 @@
       "schedule": "0 14 * * *"
     },
     {
-      "path": "/api/cron/investor-activity",
+      "path": "/api/cron/investor-activity?job=news",
       "schedule": "45 6 * * *"
     },
     {
-      "path": "/api/cron/investor-activity",
+      "path": "/api/cron/investor-activity?job=news",
       "schedule": "25 13 * * *"
     },
     {
-      "path": "/api/cron/investor-activity-backfill",
+      "path": "/api/cron/investor-activity?job=backfill",
       "schedule": "15 14 * * *"
     }
   ]
