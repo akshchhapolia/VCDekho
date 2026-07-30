@@ -121,18 +121,23 @@ function build() {
   }
 
   const linkedCount = people.filter((p) => p.companySlug).length;
+  const validatedCount = people.filter((p) => p.validated).length;
 
   const payload = {
     generatedAt: new Date().toISOString(),
     count: people.length,
     linkedToOrgCount: linkedCount,
+    validatedCount,
+    unvalidatedCount: people.length - validatedCount,
     filters: { companyTypes },
     people
   };
 
   fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
   fs.writeFileSync(OUT_PATH, JSON.stringify(payload), 'utf8');
-  console.log(`Wrote ${people.length} people (${linkedCount} linked to an org) → ${OUT_PATH}`);
+  console.log(
+    `Wrote ${people.length} people (${linkedCount} linked to an org; ${validatedCount} with socials / ${people.length - validatedCount} unvalidated) → ${OUT_PATH}`
+  );
   console.log('Sample:', people[0] && people[0].name, people[0] && people[0].slug, people[0] && people[0].companySlug);
 }
 
