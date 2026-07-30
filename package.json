@@ -19,7 +19,8 @@
     "apply:people-socials": "node scripts/apply_people_socials.js",
     "find:thin-people": "node scripts/find_thin_people.js",
     "apply:people-candidates": "node scripts/apply_people_candidates.js",
-    "enrich:zero-socials": "node scripts/enrich_zero_socials.js"
+    "enrich:zero-socials": "node scripts/enrich_zero_socials.js",
+    "search:zero-socials": "node scripts/search_zero_socials.js"
   },
   "keywords": [],
   "author": "",

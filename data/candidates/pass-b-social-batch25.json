@@ -1,0 +1,8 @@
+{
+  "found": [
+    {"name":"Maninder Singh Juneja","company":"True North","linkedinUrl":"https://www.linkedin.com/in/maninder-singh-juneja-35a01a13","sourceUrl":"https://www.linkedin.com/in/maninder-singh-juneja-35a01a13","method":"search","confidence":"high"},
+    {"name":"Jessica Huang Pouleur","company":"Openspace Ventures","linkedinUrl":"https://www.linkedin.com/in/jessica-huang-pouleur-9529711","sourceUrl":"https://www.linkedin.com/in/jessica-huang-pouleur-9529711","method":"search","confidence":"high"},
+    {"name":"Rafa de la Guia","company":"Quona Capital","linkedinUrl":"https://www.linkedin.com/in/rafadelaguia","sourceUrl":"https://www.linkedin.com/in/rafadelaguia","method":"search","confidence":"high"},
+    {"name":"Ricardo Sequerra Amram","company":"Point Nine Capital","linkedinUrl":"https://www.linkedin.com/in/ricardosequerra","sourceUrl":"https://www.linkedin.com/in/ricardosequerra","method":"search","confidence":"high"}
+  ]
+}
