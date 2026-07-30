@@ -8,7 +8,7 @@
 const db = require('./db');
 
 // Site scrapes can return large official portfolios (e.g. 100Unicorns ~150).
-const MAX_STORED_COMPANIES = 80;
+const MAX_STORED_COMPANIES = 150;
 
 function companyKey(c) {
   if (c && c.companySlug) return String(c.companySlug);

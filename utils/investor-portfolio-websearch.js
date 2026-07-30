@@ -12,7 +12,7 @@ const { generateText } = require('./gemini');
 const { scrapeInvestorPortfolioSite } = require('./investor-portfolio-site');
 
 const MAX_COMPANIES_NEWS = 10;
-const MAX_COMPANIES_SITE = 80;
+const MAX_COMPANIES_SITE = 150;
 const SEARCH_RESULT_COUNT = 10;
 
 const EXTRACTION_SYSTEM_PROMPT = `You are a research assistant for an Indian VC/startup directory. You will be given Google search results about a venture capital fund or angel investor. Based ONLY on those snippets, extract up to ${MAX_COMPANIES_NEWS} DISTINCT portfolio companies / startups they have invested in.
