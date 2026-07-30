@@ -31,7 +31,9 @@ function argVal(name, def) {
 }
 
 const LIMIT = argVal('--limit', 40);
-const CONCURRENCY = argVal('--concurrency', 5);
+// Searlo free tier is ~10 req/min — keep default concurrency low so bulk
+// runs don't trip 429s. Pass --concurrency 2+ only after buying a paid pack.
+const CONCURRENCY = argVal('--concurrency', 2);
 const STALE_AFTER_DAYS = argVal('--stale-after', 30);
 const BUDGET_USD = argVal('--budget', Infinity);
 
@@ -58,7 +60,13 @@ async function withRetry(fn, retries = 3) {
 }
 
 function isFatalAccountError(err) {
-  return err && /credit balance is too low|invalid.?x-api-key|authentication_error/i.test(err.message || '');
+  return (
+    err &&
+    (err.status === 402 ||
+      /credit balance is too low|insufficient credits|invalid.?x-api-key|authentication_error/i.test(
+        err.message || ''
+      ))
+  );
 }
 
 async function runPool(items, worker, concurrency) {

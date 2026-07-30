@@ -8,12 +8,12 @@
  *    and writes the result to investor_activity. No LLM calls, cheap, safe
  *    to run often.
  *
- *  - `backfill`: targeted web search (via Claude) for the ~60 stalest/
- *    never-checked investors, so coverage keeps expanding to the full
- *    investor base over time even when the news pipeline hasn't covered
- *    them yet. The one-time full backfill across the whole investor list is
- *    run manually via scripts/investor_activity_websearch.js — this just
- *    keeps it topped up daily.
+ *  - `backfill`: targeted web search (Searlo + Claude Haiku) for the ~60
+ *    stalest/never-checked investors, so coverage keeps expanding to the
+ *    full investor base over time even when the news pipeline hasn't
+ *    covered them yet. The one-time full backfill across the whole investor
+ *    list is run manually via scripts/investor_activity_websearch.js — this
+ *    just keeps it topped up daily.
  *
  * utils/investors.js#ensureActivityFresh() reads investor_activity live at
  * request time, so results from either job show up without a redeploy.
@@ -27,11 +27,18 @@ const { upsertActivity, getStaleSlugs } = require('../../utils/investor-activity
 const INVESTORS_PATH = path.join(__dirname, '..', '..', 'data', 'investors.json');
 const WINDOW_DAYS = 180;
 const BACKFILL_DAILY_LIMIT = 60;
-const BACKFILL_CONCURRENCY = 6;
+// Searlo free tier ~10 req/min — keep cron concurrency low to avoid 429s.
+const BACKFILL_CONCURRENCY = 2;
 const BACKFILL_STALE_AFTER_DAYS = 30;
 
 function isFatalAccountError(err) {
-  return err && /credit balance is too low|invalid.?x-api-key|authentication_error/i.test(err.message || '');
+  return (
+    err &&
+    (err.status === 402 ||
+      /credit balance is too low|insufficient credits|invalid.?x-api-key|authentication_error/i.test(
+        err.message || ''
+      ))
+  );
 }
 
 async function runPool(items, worker, concurrency) {

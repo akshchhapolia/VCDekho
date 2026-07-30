@@ -5,34 +5,30 @@
  * the fund's deals just haven't appeared in a tracked feed).
  *
  * Split into two cheap steps instead of one expensive one:
- *   1. Serper.dev for the actual Google search (raw SERP, ~$0.0003-0.001/query,
- *      vs. Anthropic's bundled web_search tool at $0.01/query PLUS full page
- *      content billed as input tokens).
+ *   1. Searlo (utils/web-search.js) for the Google SERP — free signup credits,
+ *      then ~$0.0003/query on cheap packs (vs. Serper's $50 minimum top-up).
  *   2. A small Claude Haiku call to extract structured JSON from just the
  *      search snippets (a few hundred tokens, not full pages).
- * Together this runs at roughly $0.002-0.003/investor, ~15-30x cheaper than
- * the original Sonnet + native web_search approach.
+ * Together this runs at roughly $0.002-0.003/investor in Haiku spend, with
+ * search near-$0 while free Searlo credits last.
  */
 const { Anthropic } = require('@anthropic-ai/sdk');
+const { webSearch, SEARLO_COST_PER_QUERY } = require('./web-search');
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY || '' });
 
 const WINDOW_DAYS = 180;
 const MODEL = 'claude-haiku-4-5';
 const MAX_DEALS = 3;
-
-const SERPER_API_KEY = process.env.SERPER_API_KEY || '';
-const SERPER_ENDPOINT = 'https://google.serper.dev/search';
-// Serper bills per query, not per result returned, so asking for more results
-// (better odds of surfacing 2-3 distinct deals) doesn't cost more.
-const SERPER_RESULT_COUNT = 20;
+// Searlo caps web results at 10 per request (1 credit). Enough for multi-deal
+// extraction without burning a second page of credits.
+const SEARCH_RESULT_COUNT = 10;
 
 // Pricing used only to report an estimated spend to the operator — not sent
 // to any API. Update if pricing changes.
 const PRICING = {
   'claude-haiku-4-5': { input: 1, output: 5 } // $ per million tokens
 };
-const SERPER_COST_PER_QUERY = 0.001; // Serper Starter tier ($1/1,000); Ultimate is ~3x cheaper still.
 
 const EXTRACTION_SYSTEM_PROMPT = `You are a research assistant for an Indian VC/startup directory. You will be given a list of Google search results about a venture capital fund/investor. Based ONLY on those snippets, identify up to ${MAX_DEALS} DISTINCT investments (checks they wrote/participated in) into Indian startups.
 
@@ -64,20 +60,6 @@ function extractJson(text) {
   }
 }
 
-async function serperSearch(query) {
-  if (!SERPER_API_KEY) throw new Error('SERPER_API_KEY is not set.');
-  const res = await fetch(SERPER_ENDPOINT, {
-    method: 'POST',
-    headers: { 'X-API-KEY': SERPER_API_KEY, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ q: query, gl: 'in', num: SERPER_RESULT_COUNT })
-  });
-  if (!res.ok) {
-    const body = await res.text().catch(() => '');
-    throw new Error(`Serper search failed (${res.status}): ${body.slice(0, 200)}`);
-  }
-  return res.json();
-}
-
 function formatResultsForPrompt(results) {
   return results
     .map((r, i) => {
@@ -93,7 +75,7 @@ function estimateCostUsd(usage, searchPerformed) {
   const tokenCost = usage
     ? ((usage.input_tokens || 0) / 1e6) * rates.input + ((usage.output_tokens || 0) / 1e6) * rates.output
     : 0;
-  const searchCost = searchPerformed ? SERPER_COST_PER_QUERY : 0;
+  const searchCost = searchPerformed ? SEARLO_COST_PER_QUERY : 0;
   return tokenCost + searchCost;
 }
 
@@ -105,8 +87,7 @@ function estimateCostUsd(usage, searchPerformed) {
  */
 async function lookupInvestorActivity(investorName) {
   const query = `${investorName} latest investment India startup funding round`;
-  const results = await serperSearch(query);
-  const organic = results.organic || [];
+  const { organic } = await webSearch(query, { limit: SEARCH_RESULT_COUNT, gl: 'in', hl: 'en' });
 
   if (!organic.length) {
     return { activity: null, usage: { inputTokens: 0, outputTokens: 0, costUsd: estimateCostUsd(null, true) } };
