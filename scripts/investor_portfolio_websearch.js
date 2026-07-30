@@ -56,7 +56,8 @@ function isFatalAccountError(err) {
   return (
     err &&
     (err.status === 402 ||
-      /credit balance is too low|insufficient credits|invalid.?x-api-key|authentication_error/i.test(
+      err.status === 403 ||
+      /credit balance is too low|insufficient credits|prepayment credits are depleted|RESOURCE_EXHAUSTED|invalid.?x-api-key|authentication_error|API_KEY_INVALID/i.test(
         err.message || ''
       ))
   );

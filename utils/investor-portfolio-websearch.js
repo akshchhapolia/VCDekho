@@ -1,23 +1,16 @@
 /**
- * Per-investor portfolio lookup via Searlo (web search) + Claude Haiku
+ * Per-investor portfolio lookup via Searlo (web search) + Gemini Flash-Lite
  * extraction. Returns up to MAX_COMPANIES structured portfolio entries
  * (company name, amount, stage/series, sector, source, optional website).
  *
- * Cost shape (same pattern as investor-activity-websearch.js):
- *   1 Searlo credit + 1 small Haiku call ≈ $0.002–0.003/investor while
- *   Searlo free/paid credits last.
+ * Cost shape: 1 Searlo credit + 1 small Gemini call ≈ $0.0003–0.0005/investor
+ * (roughly 5–10x cheaper than the previous Claude Haiku extractor).
  */
-const { Anthropic } = require('@anthropic-ai/sdk');
 const { webSearch, SEARLO_COST_PER_QUERY } = require('./web-search');
+const { generateText } = require('./gemini');
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY || '' });
-
-const MODEL = 'claude-haiku-4-5';
 const MAX_COMPANIES = 10;
 const SEARCH_RESULT_COUNT = 10;
-const PRICING = {
-  'claude-haiku-4-5': { input: 1, output: 5 } // $ per million tokens
-};
 
 const EXTRACTION_SYSTEM_PROMPT = `You are a research assistant for an Indian VC/startup directory. You will be given Google search results about a venture capital fund or angel investor. Based ONLY on those snippets, extract up to ${MAX_COMPANIES} DISTINCT portfolio companies / startups they have invested in.
 
@@ -58,12 +51,12 @@ function formatResultsForPrompt(results) {
     .join('\n\n');
 }
 
-function estimateCostUsd(usage, searchPerformed) {
-  const rates = PRICING[MODEL];
-  const tokenCost = usage
-    ? ((usage.input_tokens || 0) / 1e6) * rates.input + ((usage.output_tokens || 0) / 1e6) * rates.output
-    : 0;
-  return tokenCost + (searchPerformed ? SEARLO_COST_PER_QUERY : 0);
+function withSearchCost(usage) {
+  return {
+    inputTokens: usage?.inputTokens || 0,
+    outputTokens: usage?.outputTokens || 0,
+    costUsd: (usage?.costUsd || 0) + SEARLO_COST_PER_QUERY
+  };
 }
 
 function slugifyCompany(name) {
@@ -80,7 +73,6 @@ function logoUrlForWebsite(website) {
   try {
     const host = new URL(website.startsWith('http') ? website : `https://${website}`).hostname.replace(/^www\./, '');
     if (!host) return null;
-    // Free favicon fallback — no Logo.dev token required. Swap later if needed.
     return `https://www.google.com/s2/favicons?domain=${host}&sz=128`;
   } catch (_) {
     return null;
@@ -117,9 +109,6 @@ function normalizeCompany(raw) {
   };
 }
 
-/**
- * Returns { companies, usage } — companies is an array (possibly empty).
- */
 function searchName(investorName) {
   // "Sequoia (India) / Peak XV" → prefer the distinctive right-hand name.
   let name = String(investorName || '').trim();
@@ -131,37 +120,28 @@ function searchName(investorName) {
   return name || investorName;
 }
 
+/**
+ * Returns { companies, usage } — companies is an array (possibly empty).
+ */
 async function lookupInvestorPortfolio(investorName) {
   const nameForSearch = searchName(investorName);
   const query = `${nameForSearch} portfolio companies investments India startups funding rounds`;
   const { organic } = await webSearch(query, { limit: SEARCH_RESULT_COUNT, gl: 'in', hl: 'en' });
 
   if (!organic.length) {
-    return { companies: [], usage: { inputTokens: 0, outputTokens: 0, costUsd: estimateCostUsd(null, true) } };
+    return { companies: [], usage: withSearchCost(null) };
   }
 
-  const msg = await anthropic.messages.create({
-    model: MODEL,
-    max_tokens: 1200,
+  const { text, usage } = await generateText({
     system: EXTRACTION_SYSTEM_PROMPT,
-    messages: [
-      {
-        role: 'user',
-        content: `Investor name: ${investorName}${nameForSearch !== investorName ? ` (also known as ${nameForSearch})` : ''}\n\nSearch results:\n${formatResultsForPrompt(organic)}`
-      }
-    ]
+    user: `Investor name: ${investorName}${nameForSearch !== investorName ? ` (also known as ${nameForSearch})` : ''}\n\nSearch results:\n${formatResultsForPrompt(organic)}`,
+    maxOutputTokens: 1200
   });
 
-  const usage = {
-    inputTokens: msg.usage?.input_tokens || 0,
-    outputTokens: msg.usage?.output_tokens || 0,
-    costUsd: estimateCostUsd(msg.usage, true)
-  };
-
-  const finalText = (msg.content || []).filter((b) => b.type === 'text').map((b) => b.text).join('\n');
-  const parsed = extractJson(finalText);
+  const fullUsage = withSearchCost(usage);
+  const parsed = extractJson(text);
   if (!parsed || !parsed.found || !Array.isArray(parsed.companies)) {
-    return { companies: [], usage };
+    return { companies: [], usage: fullUsage };
   }
 
   const seen = new Set();
@@ -175,14 +155,13 @@ async function lookupInvestorPortfolio(investorName) {
     if (companies.length >= MAX_COMPANIES) break;
   }
 
-  // Prefer more recent first when dates exist.
   companies.sort((a, b) => {
     const da = a.date ? new Date(a.date).getTime() : 0;
     const db = b.date ? new Date(b.date).getTime() : 0;
     return db - da;
   });
 
-  return { companies, usage };
+  return { companies, usage: fullUsage };
 }
 
 module.exports = { lookupInvestorPortfolio, slugifyCompany, logoUrlForWebsite };

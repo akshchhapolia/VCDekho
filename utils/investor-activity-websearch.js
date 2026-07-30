@@ -4,31 +4,17 @@
  * hasn't picked up yet (either because the scraper's history is short, or
  * the fund's deals just haven't appeared in a tracked feed).
  *
- * Split into two cheap steps instead of one expensive one:
- *   1. Searlo (utils/web-search.js) for the Google SERP — free signup credits,
- *      then ~$0.0003/query on cheap packs (vs. Serper's $50 minimum top-up).
- *   2. A small Claude Haiku call to extract structured JSON from just the
- *      search snippets (a few hundred tokens, not full pages).
- * Together this runs at roughly $0.002-0.003/investor in Haiku spend, with
- * search near-$0 while free Searlo credits last.
+ * Split into two cheap steps:
+ *   1. Searlo (utils/web-search.js) for the Google SERP.
+ *   2. Gemini Flash-Lite to extract structured JSON from search snippets
+ *      (~10x cheaper than the previous Claude Haiku extractor).
  */
-const { Anthropic } = require('@anthropic-ai/sdk');
 const { webSearch, SEARLO_COST_PER_QUERY } = require('./web-search');
-
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY || '' });
+const { generateText } = require('./gemini');
 
 const WINDOW_DAYS = 180;
-const MODEL = 'claude-haiku-4-5';
 const MAX_DEALS = 3;
-// Searlo caps web results at 10 per request (1 credit). Enough for multi-deal
-// extraction without burning a second page of credits.
 const SEARCH_RESULT_COUNT = 10;
-
-// Pricing used only to report an estimated spend to the operator — not sent
-// to any API. Update if pricing changes.
-const PRICING = {
-  'claude-haiku-4-5': { input: 1, output: 5 } // $ per million tokens
-};
 
 const EXTRACTION_SYSTEM_PROMPT = `You are a research assistant for an Indian VC/startup directory. You will be given a list of Google search results about a venture capital fund/investor. Based ONLY on those snippets, identify up to ${MAX_DEALS} DISTINCT investments (checks they wrote/participated in) into Indian startups.
 
@@ -70,13 +56,12 @@ function formatResultsForPrompt(results) {
     .join('\n\n');
 }
 
-function estimateCostUsd(usage, searchPerformed) {
-  const rates = PRICING[MODEL];
-  const tokenCost = usage
-    ? ((usage.input_tokens || 0) / 1e6) * rates.input + ((usage.output_tokens || 0) / 1e6) * rates.output
-    : 0;
-  const searchCost = searchPerformed ? SEARLO_COST_PER_QUERY : 0;
-  return tokenCost + searchCost;
+function withSearchCost(usage) {
+  return {
+    inputTokens: usage?.inputTokens || 0,
+    outputTokens: usage?.outputTokens || 0,
+    costUsd: (usage?.costUsd || 0) + SEARLO_COST_PER_QUERY
+  };
 }
 
 /**
@@ -90,32 +75,18 @@ async function lookupInvestorActivity(investorName) {
   const { organic } = await webSearch(query, { limit: SEARCH_RESULT_COUNT, gl: 'in', hl: 'en' });
 
   if (!organic.length) {
-    return { activity: null, usage: { inputTokens: 0, outputTokens: 0, costUsd: estimateCostUsd(null, true) } };
+    return { activity: null, usage: withSearchCost(null) };
   }
 
-  const msg = await anthropic.messages.create({
-    model: MODEL,
-    // Multi-deal JSON can run past 400 tokens; 700 leaves headroom without
-    // meaningfully changing Haiku cost (~$0.001 more per call at worst).
-    max_tokens: 700,
+  const { text, usage } = await generateText({
     system: EXTRACTION_SYSTEM_PROMPT,
-    messages: [
-      {
-        role: 'user',
-        content: `Investor name: ${investorName}\n\nSearch results:\n${formatResultsForPrompt(organic)}`
-      }
-    ]
+    user: `Investor name: ${investorName}\n\nSearch results:\n${formatResultsForPrompt(organic)}`,
+    maxOutputTokens: 700
   });
 
-  const usage = {
-    inputTokens: msg.usage?.input_tokens || 0,
-    outputTokens: msg.usage?.output_tokens || 0,
-    costUsd: estimateCostUsd(msg.usage, true)
-  };
-
-  const finalText = (msg.content || []).filter((b) => b.type === 'text').map((b) => b.text).join('\n');
-  const parsed = extractJson(finalText);
-  if (!parsed || !parsed.found) return { activity: null, usage };
+  const fullUsage = withSearchCost(usage);
+  const parsed = extractJson(text);
+  if (!parsed || !parsed.found) return { activity: null, usage: fullUsage };
 
   const rawDeals = Array.isArray(parsed.deals) ? parsed.deals : [];
   const now = Date.now();
@@ -125,9 +96,7 @@ async function lookupInvestorActivity(investorName) {
     if (!d || !d.date || Number.isNaN(new Date(d.date).getTime())) continue;
     const dateMs = new Date(d.date).getTime();
     const ageDays = (now - dateMs) / (24 * 60 * 60 * 1000);
-    // Sanity check: reject implausible/future dates from a shaky LLM parse.
     if (ageDays < -2 || ageDays > 365 * 5) continue;
-    // Dedupe distinct deals the model may have echoed twice (same startup+date).
     const key = `${String(d.startup || '').toLowerCase()}|${new Date(d.date).toISOString().slice(0, 10)}`;
     if (seen.has(key)) continue;
     seen.add(key);
@@ -141,7 +110,7 @@ async function lookupInvestorActivity(investorName) {
     });
     if (validDeals.length >= MAX_DEALS) break;
   }
-  if (!validDeals.length) return { activity: null, usage };
+  if (!validDeals.length) return { activity: null, usage: fullUsage };
 
   validDeals.sort((a, b) => new Date(b.date) - new Date(a.date));
   const top = validDeals[0];
@@ -159,7 +128,7 @@ async function lookupInvestorActivity(investorName) {
     totalMentions: validDeals.length,
     recentChecks: validDeals
   };
-  return { activity, usage };
+  return { activity, usage: fullUsage };
 }
 
 module.exports = { lookupInvestorActivity };
