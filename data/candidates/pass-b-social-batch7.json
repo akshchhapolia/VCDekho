@@ -1,8 +1,0 @@
-{
-  "found": [
-    {"name":"Ashish Dhawan","company":"ChrysCapital","linkedinUrl":"https://www.linkedin.com/in/ashish-dhawan-241112","sourceUrl":"https://en.wikipedia.org/wiki/Ashish_Dhawan","method":"search","confidence":"high"},
-    {"name":"Srikrishna Dwaram","company":"True North","linkedinUrl":"https://www.linkedin.com/in/srikrishna-dwaram-37682a1","sourceUrl":"https://www.truenorth.co.in/peoples/srikrishna-dwaram/","method":"search","confidence":"high"},
-    {"name":"Shane Chesson","company":"Openspace Ventures","linkedinUrl":"https://www.linkedin.com/in/shanechesson","sourceUrl":"https://www.openspacecapital.com/team/shane-chesson","method":"search","confidence":"high"},
-    {"name":"Vinnie Lauria","company":"Golden Gate Ventures","linkedinUrl":"https://www.linkedin.com/in/vincentlauria","twitterUrl":"https://x.com/vlauria","sourceUrl":"https://www.goldengate.vc/team/vinnie-lauria","method":"search","confidence":"high"}
-  ]
-}
