@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T06:29:43.897Z",
+  "generatedAt": "2026-07-30T06:30:41.719Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -8821,6 +8821,141 @@
       "sourceUrl": "https://www.truenorth.co.in/people/",
       "method": "crawl",
       "companyType": "PE"
+    },
+    {
+      "company": "Verb Ventures",
+      "name": "Igor Burlakov",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://verb.ventures/about/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Verb Ventures",
+      "name": "Stefania Chaitidou",
+      "title": "Investor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://verb.ventures/about/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Verb Ventures",
+      "name": "Abhilash Paul",
+      "title": "Venture Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://verb.ventures/about/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Verb Ventures",
+      "name": "Christos Malikkidis",
+      "title": "Venture Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://verb.ventures/about/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Verb Ventures",
+      "name": "Dureka Oldenburg Carrasquillo",
+      "title": "Member of the Advisory Board",
+      "linkedinUrl": "",
+      "sourceUrl": "https://verb.ventures/about/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Vertex Ventures SE Asia & India",
+      "name": "Ben MATHIAS",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Vertex Ventures SE Asia & India",
+      "name": "Piyush KHARBANDA",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Vertex Ventures SE Asia & India",
+      "name": "Genping LIU",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Vertex Ventures SE Asia & India",
+      "name": "Kanika MAYAR",
+      "title": "Partner, Investment & ESG Officer",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Vertex Ventures SE Asia & India",
+      "name": "Gary KHOENG",
+      "title": "Partner, Investment",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Village Global",
+      "name": "Reid Hoffman",
+      "title": "Chairman",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.villageglobal.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Village Global",
+      "name": "Ben Casnocha",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.villageglobal.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Village Global",
+      "name": "Lindsay M. Pettingill",
+      "title": "Investment Partner & Head of Internal AI",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.villageglobal.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Village Global",
+      "name": "Erik Torenberg",
+      "title": "Partner Emeritus",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.villageglobal.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Village Global",
+      "name": "Liz Factor",
+      "title": "Partner Ops",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.villageglobal.com/team",
+      "method": "crawl",
+      "companyType": "VC"
     }
   ],
   "unresolved": [],
