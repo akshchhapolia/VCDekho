@@ -95,7 +95,9 @@ async function lookupInvestorActivity(investorName) {
 
   const msg = await anthropic.messages.create({
     model: MODEL,
-    max_tokens: 400,
+    // Multi-deal JSON can run past 400 tokens; 700 leaves headroom without
+    // meaningfully changing Haiku cost (~$0.001 more per call at worst).
+    max_tokens: 700,
     system: EXTRACTION_SYSTEM_PROMPT,
     messages: [
       {
