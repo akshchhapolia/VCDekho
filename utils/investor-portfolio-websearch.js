@@ -161,9 +161,11 @@ function companiesFromWriteup(text) {
   for (const name of names) {
     const c = normalizeCompany({
       name,
-      highlight: 'Listed in profile',
-      stage: 'Unknown',
-      investment_type: 'Unknown'
+      // Leave stage/amount/highlight empty — the UI should not show placeholders.
+      // Enrichment later fills date/source/amount from search when available.
+      highlight: null,
+      stage: null,
+      investment_type: null
     });
     if (!c || seen.has(c.companySlug)) continue;
     seen.add(c.companySlug);

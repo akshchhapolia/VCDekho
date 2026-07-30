@@ -5439,10 +5439,28 @@ a.inv-profile-portfolio-card:hover {
   opacity: 0.45;
 }
 
-.inv-profile-portfolio-sector,
-.inv-profile-portfolio-date {
+.inv-profile-portfolio-sector {
   font-size: 0.72rem;
   color: rgba(255, 255, 255, 0.45);
+}
+
+.inv-profile-portfolio-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.15rem;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.inv-profile-portfolio-date,
+.inv-profile-portfolio-source {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+a.inv-profile-portfolio-card:hover .inv-profile-portfolio-source {
+  color: rgba(255, 180, 120, 0.9);
 }
 
 @media (max-width: 720px) {

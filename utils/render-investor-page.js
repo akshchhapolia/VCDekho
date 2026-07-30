@@ -154,6 +154,11 @@ function recentActivitySection(investor) {
   );
 }
 
+function isBlankPortfolioLabel(value) {
+  const v = String(value || '').trim().toLowerCase();
+  return !v || v === 'unknown' || v === 'listed in profile' || v === 'n/a' || v === 'null';
+}
+
 function portfolioSection(investor) {
   const companies = investor.portfolioCompanies || [];
   if (!companies.length) return '';
@@ -167,19 +172,51 @@ function portfolioSection(investor) {
         : '<span class="inv-profile-portfolio-logo is-fallback" aria-hidden="true">' +
           escapeHtml((c.name || '?').charAt(0).toUpperCase()) +
           '</span>';
-      const metaBits = [c.stage, c.amount || c.highlight, c.investmentType && c.investmentType !== 'Unknown' ? c.investmentType : null]
+
+      // Prefer real deal signals; never surface placeholder labels like
+      // "Unknown" / "Listed in profile" that came from thin writeup parses.
+      const stage = !isBlankPortfolioLabel(c.stage) ? c.stage : null;
+      const amount = !isBlankPortfolioLabel(c.amount) ? c.amount : null;
+      const highlight =
+        !amount && !isBlankPortfolioLabel(c.highlight) && !/^listed in /i.test(c.highlight || '')
+          ? c.highlight
+          : null;
+      const investmentType = !isBlankPortfolioLabel(c.investmentType) ? c.investmentType : null;
+
+      const metaBits = [stage, amount || highlight, investmentType]
         .filter(Boolean)
         .map((bit) => '<span>' + escapeHtml(bit) + '</span>');
       const meta = metaBits.length
-        ? '<div class="inv-profile-portfolio-meta">' + metaBits.join('<span class="inv-profile-portfolio-dot" aria-hidden="true">·</span>') + '</div>'
+        ? '<div class="inv-profile-portfolio-meta">' +
+          metaBits.join('<span class="inv-profile-portfolio-dot" aria-hidden="true">·</span>') +
+          '</div>'
         : '';
+
       const sector = c.sector
         ? '<div class="inv-profile-portfolio-sector">' + escapeHtml(c.sector) + '</div>'
         : '';
+
       const dateLabel = c.date ? formatActivityDate(c.date) : '';
-      const date = dateLabel
-        ? '<div class="inv-profile-portfolio-date">' + escapeHtml(dateLabel) + '</div>'
+      const sourceLabel = c.sourceTitle
+        ? String(c.sourceTitle).trim()
+        : c.sourceUrl
+          ? 'View source'
+          : '';
+      const footBits = [];
+      if (dateLabel) footBits.push('<span class="inv-profile-portfolio-date">' + escapeHtml(dateLabel) + '</span>');
+      if (sourceLabel && c.sourceUrl) {
+        footBits.push(
+          '<span class="inv-profile-portfolio-source">' + escapeHtml(sourceLabel.slice(0, 72)) + '</span>'
+        );
+      } else if (sourceLabel) {
+        footBits.push('<span class="inv-profile-portfolio-source">' + escapeHtml(sourceLabel.slice(0, 72)) + '</span>');
+      }
+      const foot = footBits.length
+        ? '<div class="inv-profile-portfolio-foot">' +
+          footBits.join('<span class="inv-profile-portfolio-dot" aria-hidden="true">·</span>') +
+          '</div>'
         : '';
+
       const body =
         logo +
         '<div class="inv-profile-portfolio-copy">' +
@@ -188,10 +225,11 @@ function portfolioSection(investor) {
         '</div>' +
         meta +
         sector +
-        date +
+        foot +
         '</div>';
 
-      const href = c.website || c.sourceUrl;
+      // Prefer the article/source when we have one; company site as fallback.
+      const href = c.sourceUrl || c.website;
       if (href) {
         return (
           '<a class="inv-profile-portfolio-card" href="' +
@@ -208,7 +246,7 @@ function portfolioSection(investor) {
   return (
     '<section class="inv-profile-section inv-profile-reveal" id="portfolio">' +
     '<div class="inv-profile-section-label">01c — Portfolio</div>' +
-    '<div class="inv-profile-section-head"><h2>Portfolio companies</h2><p>Startups this investor has backed, with round, amount, and source where publicly reported.</p></div>' +
+    '<div class="inv-profile-section-head"><h2>Portfolio companies</h2><p>Startups this investor has backed — round, amount, date, and source when we can verify them publicly.</p></div>' +
     '<div class="inv-profile-portfolio-grid">' +
     cards +
     '</div>' +
