@@ -1,0 +1,11 @@
+{
+  "found": [
+    {"name":"Reshma Sohoni","company":"Seedcamp","linkedinUrl":"https://www.linkedin.com/in/reshmasohoni","twitterUrl":"https://x.com/rsohoni","sourceUrl":"https://seedcamp.com/people/reshma-sohoni/","method":"search","confidence":"high"},
+    {"name":"Michelle Gonzalez","company":"M12","linkedinUrl":"https://www.linkedin.com/in/michellehgonzalez","sourceUrl":"https://m12.vc/team/michelle-gonzalez/","method":"search","confidence":"high"},
+    {"name":"Noni Mittal","company":"Goldman Sachs Growth Equity","linkedinUrl":"https://www.linkedin.com/in/noni-mittal","sourceUrl":"https://www.linkedin.com/in/noni-mittal","method":"search","confidence":"high"},
+    {"name":"Vivek Gour","company":"Starfish Growth Partners","linkedinUrl":"https://www.linkedin.com/in/vivek-gour","sourceUrl":"https://himalayas.app/@vivekgour","method":"search","confidence":"high"},
+    {"name":"Aneesa Patel","company":"Peak Sustainability Ventures","linkedinUrl":"https://www.linkedin.com/in/aneesa-patel24","sourceUrl":"https://www.linkedin.com/in/aneesa-patel24","method":"search","confidence":"high"},
+    {"name":"Sanjiv Bajaj","company":"Bajaj Labs / Bajaj Finserv Ventures","linkedinUrl":"https://www.linkedin.com/in/sanjiv-r-bajaj","twitterUrl":"https://x.com/sanjivrbajaj","sourceUrl":"https://www.aboutbajajfinserv.com/sanjiv-bajaj","method":"search","confidence":"high"},
+    {"name":"Sunil Kant Munjal","company":"Hero Enterprise","linkedinUrl":"https://www.linkedin.com/in/sunil-kant-munjal-555994199","sourceUrl":"https://startupintros.com/people/sunil-kant-munjal","method":"search","confidence":"high"}
+  ]
+}
