@@ -260,12 +260,37 @@ function parseJsArrayLiteral(chunk) {
   return null;
 }
 
+function looksLikeCountryOrGeoList(arr) {
+  const sample = (arr || []).filter((x) => x && typeof x === 'object').slice(0, 25);
+  if (sample.length < 5) return false;
+  const geoFields = sample.filter(
+    (x) => x.phoneCode || x.countryCode || (typeof x.code === 'string' && /^[A-Z]{2}$/.test(x.code))
+  ).length;
+  if (geoFields >= 5) return true;
+  const countryHits = sample.filter((x) =>
+    /^(Afghanistan|Albania|Algeria|Andorra|Angola|Argentina|Australia|Austria|Belgium|Brazil|Canada|China|Denmark|France|Germany|India|Japan|United States|United Kingdom|Sweden|Switzerland|Singapore)/i.test(
+      String(x.name || '')
+    )
+  ).length;
+  return countryHits >= 5;
+}
+
 function companiesFromRawArray(arr, pageUrl) {
   if (!Array.isArray(arr) || arr.length < 3) return [];
+  if (looksLikeCountryOrGeoList(arr)) return [];
+
   const withName = arr.filter((x) => x && typeof x === 'object' && (x.name || x.title || x.company));
   if (withName.length < 3) return [];
-  const rich = withName.filter((x) => x.image || x.logo || x.logoUrl || x.website || x.url || x.link);
-  const pick = rich.length >= Math.min(3, withName.length) ? rich : withName;
+
+  // Prefer objects that look like portfolio rows (logo/site/sector), not bare name lists.
+  const rich = withName.filter(
+    (x) => x.image || x.logo || x.logoUrl || x.website || x.url || x.link || x.sector || x.stage
+  );
+  // Large bare name arrays are usually nav/geo/CMS junk — require richness.
+  if (withName.length >= 20 && rich.length < Math.min(8, Math.floor(withName.length * 0.25))) {
+    return [];
+  }
+  const pick = rich.length >= 3 ? rich : withName;
   const companies = [];
   const seen = new Set();
   for (const raw of pick) {
