@@ -88,7 +88,7 @@ async function main() {
 
   await runPool(
     candidates,
-    async (slug) => {
+    async (slug, _i, stopAll) => {
       const inv = bySlug.get(slug);
       if (!inv) return;
       try {
@@ -108,6 +108,10 @@ async function main() {
         // this investor was never actually checked, so it should stay at the
         // front of the stale queue for the next run instead of being skipped
         // for --stale-after days.
+        if (isFatalAccountError(err)) {
+          console.error('\nFatal account-level error detected — stopping the run early instead of burning through the rest of the queue.');
+          stopAll();
+        }
       }
     },
     CONCURRENCY

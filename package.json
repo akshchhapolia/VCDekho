@@ -8,6 +8,7 @@
     "build:investors": "node scripts/build_investors_json.js",
     "build:investor-activity": "node scripts/build_investor_activity.js",
     "build:investor-activity:apply": "node scripts/build_investor_activity.js --apply",
+    "backfill:investor-activity": "node scripts/investor_activity_websearch.js",
     "build:people": "node scripts/build_people_json.js",
     "check:links": "node scripts/check_investor_links.js",
     "check:links:apply": "node scripts/check_investor_links.js --apply",

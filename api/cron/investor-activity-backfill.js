@@ -15,12 +15,17 @@ const DAILY_LIMIT = 60;
 const CONCURRENCY = 6;
 const STALE_AFTER_DAYS = 30;
 
+function isFatalAccountError(err) {
+  return err && /credit balance is too low|invalid.?x-api-key|authentication_error/i.test(err.message || '');
+}
+
 async function runPool(items, worker, concurrency) {
   let idx = 0;
+  let stop = false;
   async function next() {
-    while (idx < items.length) {
+    while (idx < items.length && !stop) {
       const i = idx++;
-      await worker(items[i]);
+      await worker(items[i], () => { stop = true; });
     }
   }
   await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, next));
@@ -44,7 +49,7 @@ module.exports = async function handler(req, res) {
 
     await runPool(
       candidates,
-      async (slug) => {
+      async (slug, stopAll) => {
         const inv = bySlug.get(slug);
         if (!inv) return;
         try {
@@ -56,6 +61,7 @@ module.exports = async function handler(req, res) {
           errors++;
           // Don't bump checked_at on a genuine error (e.g. API/billing issue) —
           // leave it at the front of the stale queue so it's retried next run.
+          if (isFatalAccountError(err)) stopAll();
         }
       },
       CONCURRENCY
