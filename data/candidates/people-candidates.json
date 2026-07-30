@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T06:08:33.465Z",
+  "generatedAt": "2026-07-30T06:09:19.091Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -5815,6 +5815,123 @@
       "sourceUrl": "https://www.primevp.in/about-us",
       "method": "crawl",
       "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Rise Capital",
+      "name": "Nazar Yasin",
+      "title": "Founder",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.risecapital.com/about",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "RPG VENTURES",
+      "name": "Anant Goenka",
+      "title": "Managing Director, Ceat and Member of Management Board, RPG Enterprises",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.rpgventures.in/about",
+      "method": "crawl",
+      "companyType": "Corporate VC + family office"
+    },
+    {
+      "company": "RPG VENTURES",
+      "name": "Kunjan Chikhlikar",
+      "title": "Head - RPG Ventures",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.rpgventures.in/about",
+      "method": "crawl",
+      "companyType": "Corporate VC + family office"
+    },
+    {
+      "company": "Sales Force Ventures",
+      "name": "Paul Drews",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://salesforceventures.com/people/",
+      "method": "crawl",
+      "companyType": "Corporate VC"
+    },
+    {
+      "company": "Sales Force Ventures",
+      "name": "John Somorjai",
+      "title": "President",
+      "linkedinUrl": "",
+      "sourceUrl": "https://salesforceventures.com/people/",
+      "method": "crawl",
+      "companyType": "Corporate VC"
+    },
+    {
+      "company": "Sales Force Ventures",
+      "name": "Ken Asada",
+      "title": "Partner & Head of Japan",
+      "linkedinUrl": "",
+      "sourceUrl": "https://salesforceventures.com/people/",
+      "method": "crawl",
+      "companyType": "Corporate VC"
+    },
+    {
+      "company": "Sales Force Ventures",
+      "name": "Claudine Emeott",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://salesforceventures.com/people/",
+      "method": "crawl",
+      "companyType": "Corporate VC"
+    },
+    {
+      "company": "Sales Force Ventures",
+      "name": "Nowi Kallen",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://salesforceventures.com/people/",
+      "method": "crawl",
+      "companyType": "Corporate VC"
+    },
+    {
+      "company": "SanchiConnect",
+      "name": "Dr. Sunil K Shekhawat",
+      "title": "Co-Founder & CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://sanchiconnect.com/about-us/",
+      "method": "crawl",
+      "companyType": "VC / Platform"
+    },
+    {
+      "company": "SanchiConnect",
+      "name": "Baltej Singh",
+      "title": "Co-Founder & CTO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://sanchiconnect.com/about-us/",
+      "method": "crawl",
+      "companyType": "VC / Platform"
+    },
+    {
+      "company": "SanchiConnect",
+      "name": "Pushpendra V Kaushal",
+      "title": "Program Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://sanchiconnect.com/about-us/",
+      "method": "crawl",
+      "companyType": "VC / Platform"
+    },
+    {
+      "company": "Sangam Ventures",
+      "name": "Karthik Chandrasekar",
+      "title": "Managing Partner, CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://sangam.vc/team/",
+      "method": "crawl",
+      "companyType": "VC (seed & early-stage, climate/cleantech impact)"
+    },
+    {
+      "company": "Sangam Ventures",
+      "name": "Anisha Patnaik",
+      "title": "Venture Partner, Legal Counsel",
+      "linkedinUrl": "",
+      "sourceUrl": "https://sangam.vc/team/",
+      "method": "crawl",
+      "companyType": "VC (seed & early-stage, climate/cleantech impact)"
     }
   ],
   "unresolved": [],
