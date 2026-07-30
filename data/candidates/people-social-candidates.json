@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T05:40:36.832Z",
+  "generatedAt": "2026-07-30T05:43:17.069Z",
   "schemaVersion": 1,
   "description": "Staged LinkedIn/Twitter enrichments for existing People rows. Apply via scripts/apply_people_socials.js — patches empty CSV cells only.",
   "found": [
@@ -3209,6 +3209,18 @@
       "linkedinUrl": "https://www.linkedin.com/in/rahulchowdhri",
       "twitterUrl": "",
       "sourceUrl": "https://www.stellarisvp.com/team/rahul-chowdhri",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "priya mohan||venturehighway",
+      "name": "Priya Mohan",
+      "company": "Venture Highway",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/priyamohan246",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/priyamohan246",
       "method": "search",
       "confidence": "high",
       "companyType": ""
