@@ -170,46 +170,6 @@
       ]
     },
     {
-      "key": "andrey terebenin||sistemaasiafund",
-      "name": "Andrey Terebenin",
-      "company": "Sistema Asia Fund",
-      "title": "Managing Partner, Sistema Asia Capital (India)",
-      "linkedinUrl": "",
-      "twitterUrl": "https://x.com/Qwikcilver",
-      "sourceUrl": "https://sistemaasiacapital.com/index.html",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Venture Capital",
-      "evidence": [
-        {
-          "type": "twitter",
-          "url": "https://x.com/Qwikcilver",
-          "via": "href",
-          "page": "https://sistemaasiacapital.com/index.html"
-        }
-      ]
-    },
-    {
-      "key": "anjali bansal||avaanacapital",
-      "name": "Anjali Bansal",
-      "company": "Avaana Capital",
-      "title": "Founding Partner",
-      "linkedinUrl": "https://www.linkedin.com/in/aastha-paliwal",
-      "twitterUrl": "",
-      "sourceUrl": "https://avaanacapital.com/pages/team",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Venture Capital",
-      "evidence": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/aastha-paliwal",
-          "via": "text",
-          "page": "https://avaanacapital.com/pages/team"
-        }
-      ]
-    },
-    {
       "key": "anne dwane||villageglobal",
       "name": "Anne Dwane",
       "company": "Village Global",
@@ -276,26 +236,6 @@
       ]
     },
     {
-      "key": "arun tadanki||waveformventures",
-      "name": "Arun Tadanki",
-      "company": "Waveform Ventures",
-      "title": "Lead Investor",
-      "linkedinUrl": "",
-      "twitterUrl": "https://x.com/WaveformVC",
-      "sourceUrl": "https://waveform.vc/",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Venture Capital",
-      "evidence": [
-        {
-          "type": "twitter",
-          "url": "https://x.com/WaveformVC",
-          "via": "href",
-          "page": "https://waveform.vc/"
-        }
-      ]
-    },
-    {
       "key": "arvind agarwal||c4dpartners",
       "name": "Arvind Agarwal",
       "company": "C4D Partners",
@@ -332,46 +272,6 @@
           "url": "https://www.linkedin.com/in/ashishsingla1",
           "via": "href",
           "page": "https://www.np1.in/team/"
-        }
-      ]
-    },
-    {
-      "key": "bikramjit singh kalra||capitarventures",
-      "name": "Bikramjit Singh Kalra",
-      "company": "Capitar Ventures",
-      "title": "Managing Partner",
-      "linkedinUrl": "",
-      "twitterUrl": "https://x.com/CapitarVent",
-      "sourceUrl": "https://capitar.in/",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Venture Capital",
-      "evidence": [
-        {
-          "type": "twitter",
-          "url": "https://x.com/CapitarVent",
-          "via": "href",
-          "page": "https://capitar.in/"
-        }
-      ]
-    },
-    {
-      "key": "christoph janz||pointninecapital",
-      "name": "Christoph Janz",
-      "company": "Point Nine Capital",
-      "title": "Partner",
-      "linkedinUrl": "https://www.linkedin.com/in/louiscoppey",
-      "twitterUrl": "",
-      "sourceUrl": "https://www.pointnine.com/team",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Venture Capital",
-      "evidence": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/louiscoppey",
-          "via": "href",
-          "page": "https://www.pointnine.com/team"
         }
       ]
     },
@@ -427,7 +327,7 @@
       "company": "BEENEXT",
       "title": "Managing Partner",
       "linkedinUrl": "https://www.linkedin.com/in/dirkvanquaquebeke",
-      "twitterUrl": "https://x.com/VQIndex",
+      "twitterUrl": "",
       "sourceUrl": "https://www.beenext.com/beliefs/",
       "method": "harvest",
       "confidence": "high",
@@ -588,26 +488,6 @@
       ]
     },
     {
-      "key": "louis coppey||pointninecapital",
-      "name": "Louis Coppey",
-      "company": "Point Nine Capital",
-      "title": "Partner",
-      "linkedinUrl": "https://www.linkedin.com/in/pchudzinski",
-      "twitterUrl": "",
-      "sourceUrl": "https://www.pointnine.com/team",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Venture Capital",
-      "evidence": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/pchudzinski",
-          "via": "href",
-          "page": "https://www.pointnine.com/team"
-        }
-      ]
-    },
-    {
       "key": "manick wadhwa||tryrockcapital",
       "name": "Manick Wadhwa",
       "company": "Tryrock Capital",
@@ -644,46 +524,6 @@
           "url": "https://www.linkedin.com/in/manu-rikhye-b9b9391",
           "via": "href",
           "page": "https://merakventures.com/about.html"
-        }
-      ]
-    },
-    {
-      "key": "maya gadhvi||chakrafund",
-      "name": "Maya Gadhvi",
-      "company": "Chakra Fund",
-      "title": "Founding GP",
-      "linkedinUrl": "https://www.linkedin.com/in/mayagpurisai",
-      "twitterUrl": "",
-      "sourceUrl": "https://chakragrowthcapital.com/team.html",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Venture Capital",
-      "evidence": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/mayagpurisai",
-          "via": "href",
-          "page": "https://chakragrowthcapital.com/team.html"
-        }
-      ]
-    },
-    {
-      "key": "mv subramanian||julyventures",
-      "name": "MV Subramanian",
-      "company": "July Ventures",
-      "title": "General Partner",
-      "linkedinUrl": "https://www.linkedin.com/in/mvsmani",
-      "twitterUrl": "",
-      "sourceUrl": "https://www.julyventures.com/about",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Venture Capital",
-      "evidence": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/mvsmani",
-          "via": "href",
-          "page": "https://www.julyventures.com/about"
         }
       ]
     },
@@ -834,26 +674,6 @@
       ]
     },
     {
-      "key": "rahul mahipal||capitarventures",
-      "name": "Rahul Mahipal",
-      "company": "Capitar Ventures",
-      "title": "Managing Partner",
-      "linkedinUrl": "",
-      "twitterUrl": "https://x.com/CapitarVent",
-      "sourceUrl": "https://capitar.in/",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Venture Capital",
-      "evidence": [
-        {
-          "type": "twitter",
-          "url": "https://x.com/CapitarVent",
-          "via": "href",
-          "page": "https://capitar.in/"
-        }
-      ]
-    },
-    {
       "key": "ravi kapoor||indusbridgeventures",
       "name": "Ravi Kapoor",
       "company": "Indusbridge Ventures",
@@ -920,66 +740,6 @@
       ]
     },
     {
-      "key": "sagar agarvwal||beamsvc",
-      "name": "Sagar Agarvwal",
-      "company": "Beams VC",
-      "title": "Founder & Managing Partner, Beams Fintech Fund",
-      "linkedinUrl": "https://www.linkedin.com/in/bijna",
-      "twitterUrl": "",
-      "sourceUrl": "https://www.linkedin.com/company/beamsvc",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Venture Capital",
-      "evidence": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/bijna",
-          "via": "href",
-          "page": "https://www.linkedin.com/company/beamsvc"
-        }
-      ]
-    },
-    {
-      "key": "sailesh tulshan||xeedventures",
-      "name": "Sailesh Tulshan",
-      "company": "Xeed Ventures",
-      "title": "Founder",
-      "linkedinUrl": "https://www.linkedin.com/in/st5",
-      "twitterUrl": "",
-      "sourceUrl": "https://www.xeed.vc/about-us",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Venture Capital",
-      "evidence": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/st5",
-          "via": "href",
-          "page": "https://www.xeed.vc/about-us"
-        }
-      ]
-    },
-    {
-      "key": "sailesh tulshan||021capital",
-      "name": "Sailesh Tulshan",
-      "company": "021 Capital",
-      "title": "Founder",
-      "linkedinUrl": "https://www.linkedin.com/in/st5",
-      "twitterUrl": "",
-      "sourceUrl": "https://www.xeed.vc/about-us",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Venture Capital",
-      "evidence": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/st5",
-          "via": "href",
-          "page": "https://www.xeed.vc/about-us"
-        }
-      ]
-    },
-    {
       "key": "sandeep murthy||lightboxventures",
       "name": "Sandeep Murthy",
       "company": "Lightbox Ventures",
@@ -1005,7 +765,7 @@
       "company": "LocalGlobe",
       "title": "Co-founder & Managing Partner",
       "linkedinUrl": "https://www.linkedin.com/in/saulklein",
-      "twitterUrl": "https://x.com/cape",
+      "twitterUrl": "",
       "sourceUrl": "https://www.phoenixcourt.vc/localglobe/phoenix-court-team",
       "method": "harvest",
       "confidence": "high",
@@ -1042,26 +802,6 @@
           "url": "https://www.linkedin.com/in/scotthartley",
           "via": "href",
           "page": "https://www.everywhere.vc/"
-        }
-      ]
-    },
-    {
-      "key": "sharaf saleh||beyondcapitalventures",
-      "name": "Sharaf Saleh",
-      "company": "Beyond Capital Ventures",
-      "title": "Investments",
-      "linkedinUrl": "https://www.linkedin.com/in/ahmad-radaideh-16bb46121",
-      "twitterUrl": "",
-      "sourceUrl": "https://beyondcapital.vc/",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Venture Capital",
-      "evidence": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/ahmad-radaideh-16bb46121",
-          "via": "href",
-          "page": "https://beyondcapital.vc/"
         }
       ]
     },
@@ -1182,26 +922,6 @@
           "url": "https://www.linkedin.com/in/sripurisai",
           "via": "href",
           "page": "https://chakragrowthcapital.com/team.html"
-        }
-      ]
-    },
-    {
-      "key": "srilalitha bhattaram||astirventures",
-      "name": "Srilalitha Bhattaram",
-      "company": "Astir Ventures",
-      "title": "Founder",
-      "linkedinUrl": "https://www.linkedin.com/in/kishoreganji",
-      "twitterUrl": "",
-      "sourceUrl": "https://astir.vc/about",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Venture Capital",
-      "evidence": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/kishoreganji",
-          "via": "href",
-          "page": "https://astir.vc/about"
         }
       ]
     },
@@ -1332,26 +1052,6 @@
       ]
     },
     {
-      "key": "vishal goel||ixplifesciences",
-      "name": "Vishal Goel",
-      "company": "IXP Lifesciences",
-      "title": "Partner",
-      "linkedinUrl": "https://www.linkedin.com/in/vishalhbs",
-      "twitterUrl": "",
-      "sourceUrl": "https://ixplifesciences.com/team-ixp/",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Venture Capital",
-      "evidence": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/vishalhbs",
-          "via": "href",
-          "page": "https://ixplifesciences.com/team-ixp/"
-        }
-      ]
-    },
-    {
       "key": "vishal mehta||lokcapital",
       "name": "Vishal Mehta",
       "company": "Lok Capital",
@@ -1452,26 +1152,6 @@
       ]
     },
     {
-      "key": "mr vikas gautam||revantacapital",
-      "name": "Mr. Vikas Gautam",
-      "company": "Revanta Capital",
-      "title": "Co-Founder, MD & CEO",
-      "linkedinUrl": "https://www.linkedin.com/in/pankajrazdan",
-      "twitterUrl": "",
-      "sourceUrl": "https://revantacapital.com/about/",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Private Equity",
-      "evidence": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/pankajrazdan",
-          "via": "href",
-          "page": "https://revantacapital.com/about/"
-        }
-      ]
-    },
-    {
       "key": "siddharth parekh||paragonpartners",
       "name": "Siddharth Parekh",
       "company": "Paragon Partners",
@@ -1488,26 +1168,6 @@
           "url": "https://www.linkedin.com/in/siddharth-parekh-84a61911",
           "via": "href",
           "page": "https://www.paragonpartners.in/our-team/"
-        }
-      ]
-    },
-    {
-      "key": "amit singh||headstartnetworkfoundation",
-      "name": "Amit Singh",
-      "company": "Headstart Network Foundation",
-      "title": "Co-Founder & Director",
-      "linkedinUrl": "https://www.linkedin.com/in/startupamit",
-      "twitterUrl": "",
-      "sourceUrl": "https://www.headstart.in/our-team",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Accelerator",
-      "evidence": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/startupamit",
-          "via": "href",
-          "page": "https://www.headstart.in/our-team"
         }
       ]
     },
@@ -1834,46 +1494,6 @@
           "url": "https://www.linkedin.com/in/jainvarun",
           "via": "href",
           "page": "https://www.seventures.com/team/"
-        }
-      ]
-    },
-    {
-      "key": "perpetuity||angelinvestor",
-      "name": "Perpetuity",
-      "company": "Angel Investor",
-      "title": "Angel Investor",
-      "linkedinUrl": "",
-      "twitterUrl": "https://x.com/studio",
-      "sourceUrl": "https://www.perpetuity.co.in/about",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Angel / Individual",
-      "evidence": [
-        {
-          "type": "twitter",
-          "url": "https://x.com/studio",
-          "via": "href",
-          "page": "https://www.perpetuity.co.in/about"
-        }
-      ]
-    },
-    {
-      "key": "ajit a moopan||keralaangels",
-      "name": "Ajit A Moopan",
-      "company": "Kerala Angels",
-      "title": "Founder President & Head Membership Committee",
-      "linkedinUrl": "https://www.linkedin.com/in/roy-i-varghese-01257219",
-      "twitterUrl": "",
-      "sourceUrl": "https://www.keralaangelnetwork.com/",
-      "method": "harvest",
-      "confidence": "high",
-      "companyType": "Syndicate / Network",
-      "evidence": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/roy-i-varghese-01257219",
-          "via": "href",
-          "page": "https://www.keralaangelnetwork.com/"
         }
       ]
     },
