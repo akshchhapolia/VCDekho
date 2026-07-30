@@ -1,0 +1,10 @@
+{
+  "found": [
+    {"name":"Amias Gerety","company":"QED Investors","linkedinUrl":"https://www.linkedin.com/in/amias-gerety","sourceUrl":"https://www.qedinvestors.com/team/amias-gerety","method":"search","confidence":"high"},
+    {"name":"Amy Saper","company":"Uncork Capital","linkedinUrl":"https://www.linkedin.com/in/amysaper","sourceUrl":"https://www.linkedin.com/in/amysaper","method":"search","confidence":"high"},
+    {"name":"Amit Somani","company":"Prime Venture Partners","linkedinUrl":"https://www.linkedin.com/in/thesomani","sourceUrl":"https://www.linkedin.com/in/thesomani","method":"search","confidence":"high"},
+    {"name":"Vinutha Rallapalli","company":"Innovex Capital","linkedinUrl":"https://www.linkedin.com/in/vinutha-naga-rallapalli-31808a67","sourceUrl":"https://www.linkedin.com/in/vinutha-naga-rallapalli-31808a67","method":"search","confidence":"high"},
+    {"name":"Ranopriyo Choudhury","company":"Growth valley","linkedinUrl":"https://www.linkedin.com/in/ranopriyo-choudhury-853a1b9","sourceUrl":"https://www.linkedin.com/in/ranopriyo-choudhury-853a1b9","method":"search","confidence":"high"},
+    {"name":"Andrew Brackin","company":"Gradient Ventures","linkedinUrl":"https://www.linkedin.com/in/brackin","twitterUrl":"https://twitter.com/brackin","sourceUrl":"https://www.linkedin.com/in/brackin","method":"search","confidence":"high"}
+  ]
+}
