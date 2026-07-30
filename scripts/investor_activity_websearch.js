@@ -13,6 +13,7 @@
  *   node scripts/investor_activity_websearch.js --limit 40                // small daily sweep (used by the cron)
  *   node scripts/investor_activity_websearch.js --limit 1000 --concurrency 8   // one-time full backfill
  *   node scripts/investor_activity_websearch.js --stale-after 45          // re-check anything older than 45 days
+ *   node scripts/investor_activity_websearch.js --budget 5                // stop once estimated spend hits $5
  */
 require('dotenv').config();
 const fs = require('fs');
@@ -32,6 +33,7 @@ function argVal(name, def) {
 const LIMIT = argVal('--limit', 40);
 const CONCURRENCY = argVal('--concurrency', 5);
 const STALE_AFTER_DAYS = argVal('--stale-after', 30);
+const BUDGET_USD = argVal('--budget', Infinity);
 
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));

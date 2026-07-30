@@ -1,39 +1,42 @@
 /**
- * Targeted per-investor lookup using Claude's server-side web_search tool —
- * used to "backfill" activity data for investors that the RSS/news pipeline
- * (utils/investor-activity-matcher.js) hasn't picked up yet (either because
- * the scraper's history is short, or the fund's deals just haven't appeared
- * in a tracked feed).
+ * Targeted per-investor lookup — used to "backfill" activity data for
+ * investors that the RSS/news pipeline (utils/investor-activity-matcher.js)
+ * hasn't picked up yet (either because the scraper's history is short, or
+ * the fund's deals just haven't appeared in a tracked feed).
+ *
+ * Split into two cheap steps instead of one expensive one:
+ *   1. Serper.dev for the actual Google search (raw SERP, ~$0.0003-0.001/query,
+ *      vs. Anthropic's bundled web_search tool at $0.01/query PLUS full page
+ *      content billed as input tokens).
+ *   2. A small Claude Haiku call to extract structured JSON from just the
+ *      search snippets (a few hundred tokens, not full pages).
+ * Together this runs at roughly $0.002-0.003/investor, ~15-30x cheaper than
+ * the original Sonnet + native web_search approach.
  */
 const { Anthropic } = require('@anthropic-ai/sdk');
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY || '' });
 
 const WINDOW_DAYS = 180;
-
-// This is a simple lookup/extraction task, not complex reasoning — Haiku is
-// ~3x cheaper per token than Sonnet and plenty capable here. Combined with
-// capping web_search max_uses at 1 (below), this cuts cost per investor by
-// roughly 5-8x vs. the original Sonnet + max_uses:3 setup, which is what
-// burned through ~$12 of credit in ~170 calls (each extra search round both
-// costs $0.01 flat AND re-injects a full page's worth of content as billable
-// input tokens).
 const MODEL = 'claude-haiku-4-5';
 
-// Anthropic pricing (per million tokens) — used only to report an estimated
-// spend to the operator; not sent to the API. Update if pricing changes.
-const PRICING = {
-  'claude-haiku-4-5': { input: 1, output: 5 },
-  'claude-sonnet-4-6': { input: 3, output: 15 }
-};
-const SEARCH_COST_PER_USE = 0.01; // $10 / 1,000 searches
+const SERPER_API_KEY = process.env.SERPER_API_KEY || '';
+const SERPER_ENDPOINT = 'https://google.serper.dev/search';
+const SERPER_RESULT_COUNT = 10;
 
-const SYSTEM_PROMPT = `You are a research assistant for an Indian VC/startup directory. Given the name of a venture capital fund, angel network, or investor, use web search to find their SINGLE most recent investment (i.e. a check they wrote/participated in) into an Indian startup.
+// Pricing used only to report an estimated spend to the operator — not sent
+// to any API. Update if pricing changes.
+const PRICING = {
+  'claude-haiku-4-5': { input: 1, output: 5 } // $ per million tokens
+};
+const SERPER_COST_PER_QUERY = 0.001; // Serper Starter tier ($1/1,000); Ultimate is ~3x cheaper still.
+
+const EXTRACTION_SYSTEM_PROMPT = `You are a research assistant for an Indian VC/startup directory. You will be given a list of Google search results about a venture capital fund/investor. Based ONLY on those snippets, determine their SINGLE most recent investment (i.e. a check they wrote/participated in) into an Indian startup.
 
 Rules:
 - Only count actual funding rounds (pre-seed, seed, Series A/B/C..., bridge, debt/venture debt) where this investor is listed as a participant. Do NOT count: the fund raising its OWN capital/corpus, exits, acquisitions, unrelated news, or a portfolio company's general business news that just happens to mention past investors.
-- Prefer the most recent deal you can verify, ideally within the last 24 months.
-- If you cannot confidently verify a specific deal, respond with {"found": false} — do not guess.
+- Base your answer only on what's in the snippets below — do not use outside knowledge or guess at details not present.
+- If none of the results describe a specific, verifiable deal, respond with {"found": false}.
 - Respond with ONLY a raw JSON object, no markdown code fences, no other text.
 
 If found:
@@ -55,43 +58,73 @@ function extractJson(text) {
   }
 }
 
-function estimateCostUsd(usage, searchCount) {
-  const rates = PRICING[MODEL] || PRICING['claude-haiku-4-5'];
-  const tokenCost =
-    ((usage?.input_tokens || 0) / 1e6) * rates.input + ((usage?.output_tokens || 0) / 1e6) * rates.output;
-  const searchCost = (searchCount || 0) * SEARCH_COST_PER_USE;
+async function serperSearch(query) {
+  if (!SERPER_API_KEY) throw new Error('SERPER_API_KEY is not set.');
+  const res = await fetch(SERPER_ENDPOINT, {
+    method: 'POST',
+    headers: { 'X-API-KEY': SERPER_API_KEY, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ q: query, gl: 'in', num: SERPER_RESULT_COUNT })
+  });
+  if (!res.ok) {
+    const body = await res.text().catch(() => '');
+    throw new Error(`Serper search failed (${res.status}): ${body.slice(0, 200)}`);
+  }
+  return res.json();
+}
+
+function formatResultsForPrompt(results) {
+  return results
+    .map((r, i) => {
+      const parts = [`${i + 1}. ${r.title || ''}`, r.snippet || '', `URL: ${r.link || ''}`];
+      if (r.date) parts.push(`Date: ${r.date}`);
+      return parts.filter(Boolean).join('\n');
+    })
+    .join('\n\n');
+}
+
+function estimateCostUsd(usage, searchPerformed) {
+  const rates = PRICING[MODEL];
+  const tokenCost = usage
+    ? ((usage.input_tokens || 0) / 1e6) * rates.input + ((usage.output_tokens || 0) / 1e6) * rates.output
+    : 0;
+  const searchCost = searchPerformed ? SERPER_COST_PER_QUERY : 0;
   return tokenCost + searchCost;
 }
 
 /**
  * Returns { activity, usage } where activity is in the same shape as
  * utils/investor-activity-matcher.js's aggregateMentions() output (or null
- * if nothing was confidently found), and usage carries token/search counts
- * plus an estimated USD cost for that one call.
+ * if nothing was confidently found), and usage carries an estimated USD
+ * cost for that one lookup (search + extraction combined).
  */
 async function lookupInvestorActivity(investorName) {
+  const query = `${investorName} latest investment India startup funding round`;
+  const results = await serperSearch(query);
+  const organic = results.organic || [];
+
+  if (!organic.length) {
+    return { activity: null, usage: { inputTokens: 0, outputTokens: 0, costUsd: estimateCostUsd(null, true) } };
+  }
+
   const msg = await anthropic.messages.create({
     model: MODEL,
-    max_tokens: 700,
-    system: SYSTEM_PROMPT,
-    // Capped at 1: each additional search round both costs $0.01 flat AND
-    // re-injects a full page of content as billable input tokens, so this is
-    // the single biggest cost lever. One search is enough for the vast
-    // majority of named funds; ambiguous ones just come back "not found".
-    tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 1 }],
-    messages: [{ role: 'user', content: `Investor name: ${investorName}` }]
+    max_tokens: 400,
+    system: EXTRACTION_SYSTEM_PROMPT,
+    messages: [
+      {
+        role: 'user',
+        content: `Investor name: ${investorName}\n\nSearch results:\n${formatResultsForPrompt(organic)}`
+      }
+    ]
   });
 
-  const searchCount = (msg.content || []).filter((b) => b.type === 'server_tool_use' && b.name === 'web_search').length;
   const usage = {
     inputTokens: msg.usage?.input_tokens || 0,
     outputTokens: msg.usage?.output_tokens || 0,
-    searchCount,
-    costUsd: estimateCostUsd(msg.usage, searchCount)
+    costUsd: estimateCostUsd(msg.usage, true)
   };
 
-  const textBlocks = (msg.content || []).filter((b) => b.type === 'text').map((b) => b.text);
-  const finalText = textBlocks[textBlocks.length - 1];
+  const finalText = (msg.content || []).filter((b) => b.type === 'text').map((b) => b.text).join('\n');
   const parsed = extractJson(finalText);
   if (!parsed || !parsed.found) return { activity: null, usage };
   if (!parsed.date || Number.isNaN(new Date(parsed.date).getTime())) return { activity: null, usage };
