@@ -120,8 +120,20 @@ function normalizeCompany(raw) {
 /**
  * Returns { companies, usage } — companies is an array (possibly empty).
  */
+function searchName(investorName) {
+  // "Sequoia (India) / Peak XV" → prefer the distinctive right-hand name.
+  let name = String(investorName || '').trim();
+  if (name.includes('/')) {
+    const parts = name.split('/').map((p) => p.trim()).filter(Boolean);
+    name = parts[parts.length - 1] || name;
+  }
+  name = name.replace(/\([^)]*\)/g, ' ').replace(/\s+/g, ' ').trim();
+  return name || investorName;
+}
+
 async function lookupInvestorPortfolio(investorName) {
-  const query = `${investorName} portfolio companies investments India startups funding rounds`;
+  const nameForSearch = searchName(investorName);
+  const query = `${nameForSearch} portfolio companies investments India startups funding rounds`;
   const { organic } = await webSearch(query, { limit: SEARCH_RESULT_COUNT, gl: 'in', hl: 'en' });
 
   if (!organic.length) {
@@ -135,7 +147,7 @@ async function lookupInvestorPortfolio(investorName) {
     messages: [
       {
         role: 'user',
-        content: `Investor name: ${investorName}\n\nSearch results:\n${formatResultsForPrompt(organic)}`
+        content: `Investor name: ${investorName}${nameForSearch !== investorName ? ` (also known as ${nameForSearch})` : ''}\n\nSearch results:\n${formatResultsForPrompt(organic)}`
       }
     ]
   });
