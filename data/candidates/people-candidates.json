@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T06:28:47.518Z",
+  "generatedAt": "2026-07-30T06:29:43.897Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -8578,6 +8578,249 @@
       "sourceUrl": "https://seedcamp.com/our-team/",
       "method": "crawl",
       "companyType": "VC"
+    },
+    {
+      "company": "SOSV",
+      "name": "Pae Wu",
+      "title": "General Partner & Chief Technology Officer",
+      "linkedinUrl": "",
+      "sourceUrl": "https://sosv.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "SOSV",
+      "name": "Po Bronson",
+      "title": "General Partner & Managing Director, SOSV SF",
+      "linkedinUrl": "",
+      "sourceUrl": "https://sosv.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "SOSV",
+      "name": "Stephen Chambers",
+      "title": "General Partner & Managing Director, SOSV NY",
+      "linkedinUrl": "",
+      "sourceUrl": "https://sosv.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "SOSV",
+      "name": "Mohan S. Iyer",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://sosv.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "SOSV",
+      "name": "Duncan Turner",
+      "title": "General Partner & Managing Director, SOSV HAX",
+      "linkedinUrl": "",
+      "sourceUrl": "https://sosv.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Sparrow Capital",
+      "name": "Yash Jain",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://sparrowvc.com/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Sparrow Capital",
+      "name": "Aakash Goyal",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://sparrowvc.com/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Speciale Invest",
+      "name": "Vijay Jacob",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.specialeinvest.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Speciale Invest",
+      "name": "Krishnaswamy Srinivasan",
+      "title": "General Partner & Chief Financial Officer",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.specialeinvest.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Speciale Invest",
+      "name": "Vishnu Rajeev",
+      "title": "Investment Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.specialeinvest.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Speciale Invest",
+      "name": "Dr Mridula Menon",
+      "title": "Head of Investor Relations & Chief of Staff",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.specialeinvest.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Speciale Invest",
+      "name": "Sunil Cavale",
+      "title": "Investment Principal",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.specialeinvest.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Sun Icon Ventures",
+      "name": "Suresh Jain",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://sunicon.vc/team",
+      "method": "crawl",
+      "companyType": "VC (early-stage, family-office-backed)"
+    },
+    {
+      "company": "Theia Ventures",
+      "name": "Sanjay Shah",
+      "title": "VENTURE PARTNER",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.theia-ventures.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Thinkuvate",
+      "name": "Ritesh Toshniwal",
+      "title": "Founding General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://thinkuvate.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Thinkuvate",
+      "name": "Vikas Saxena",
+      "title": "Partner & Advisor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://thinkuvate.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Thinkuvate",
+      "name": "Mayank Jain",
+      "title": "Partner & Advisor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://thinkuvate.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Titan Capital",
+      "name": "Kunal Bahl",
+      "title": "CO-FOUNDER",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.titancapital.vc/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Titan Capital",
+      "name": "Rohit Bansal",
+      "title": "CO-FOUNDER",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.titancapital.vc/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Titan Capital",
+      "name": "Manik Pasricha",
+      "title": "VICE PRESIDENT",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.titancapital.vc/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Titan Capital",
+      "name": "Utpal Sharma",
+      "title": "VICE PRESIDENT",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.titancapital.vc/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Titan Capital",
+      "name": "Shiv Kapoor",
+      "title": "VICE PRESIDENT",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.titancapital.vc/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "True North",
+      "name": "Satish Chander",
+      "title": "Co-Managing Partner, Private Equity",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.truenorth.co.in/people/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "True North",
+      "name": "Kapil Singhal",
+      "title": "Managing Partner, Private Credit",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.truenorth.co.in/people/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "True North",
+      "name": "Divya Sehgal",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.truenorth.co.in/people/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "True North",
+      "name": "Maninder Singh Juneja",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.truenorth.co.in/people/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "True North",
+      "name": "Nitin Nayak",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.truenorth.co.in/people/",
+      "method": "crawl",
+      "companyType": "PE"
     }
   ],
   "unresolved": [],
