@@ -1,0 +1,10 @@
+{
+  "found": [
+    {"name":"Jared Carmel","company":"M Venture Partners (MVP)","linkedinUrl":"https://www.linkedin.com/in/carmel","sourceUrl":"https://www.mvp.vc/team/jared-carmel","method":"search","confidence":"high"},
+    {"name":"Eric Brachfeld","company":"M Venture Partners (MVP)","linkedinUrl":"https://www.linkedin.com/in/ericbrachfeld","sourceUrl":"https://www.mvp.vc/team/eric-brachfeld","method":"search","confidence":"high"},
+    {"name":"Pål Erik Sjåtil","company":"Lightrock","linkedinUrl":"https://www.linkedin.com/in/paleriksjatil","sourceUrl":"https://www.lightrock.com/team/pal-erik-sjatil/","method":"search","confidence":"high"},
+    {"name":"Navroz D. Udwadia","company":"Alpha Wave Global","linkedinUrl":"https://www.linkedin.com/in/navroz-d-udwadia-bb9b3372","sourceUrl":"https://www.alphawaveglobal.com/navroz-d-udwadia","method":"search","confidence":"high"},
+    {"name":"Pankaj Jethwani","company":"W Health Ventures","linkedinUrl":"https://www.linkedin.com/in/pankajsj","sourceUrl":"https://www.linkedin.com/in/pankajsj","method":"search","confidence":"high"},
+    {"name":"Kartik Chandra","company":"Morphosis Ventures","linkedinUrl":"https://www.linkedin.com/in/kartikchandra","sourceUrl":"https://www.linkedin.com/in/kartikchandra","method":"search","confidence":"high"}
+  ]
+}

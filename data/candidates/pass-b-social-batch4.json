@@ -1,0 +1,16 @@
+{
+  "found": [
+    {"name":"Matt Huang","company":"Paradigm","linkedinUrl":"https://www.linkedin.com/in/kmhuang","twitterUrl":"https://x.com/matthuang","sourceUrl":"https://www.paradigm.xyz/team/matt-huang","method":"search","confidence":"high"},
+    {"name":"Micky Malka","company":"Ribbit Capital","linkedinUrl":"https://www.linkedin.com/in/meyermalka","twitterUrl":"https://x.com/mickymalka","sourceUrl":"https://www.linkedin.com/in/meyermalka","method":"search","confidence":"high"},
+    {"name":"Nigel Morris","company":"QED Investors","linkedinUrl":"https://www.linkedin.com/in/nigelwmorris","sourceUrl":"https://www.qedinvestors.com/team/nigel-morris","method":"search","confidence":"high"},
+    {"name":"Monica Brand Engel","company":"Quona Capital","linkedinUrl":"https://www.linkedin.com/in/monicabrandengel","sourceUrl":"https://quona.com/team/monica-brand-engel/","method":"search","confidence":"high"},
+    {"name":"Louis Coppey","company":"Point Nine Capital","linkedinUrl":"https://www.linkedin.com/in/louiscoppey","sourceUrl":"https://www.linkedin.com/in/louiscoppey","method":"search","confidence":"high"},
+    {"name":"Neeraj Arora","company":"Venture Highway","linkedinUrl":"https://www.linkedin.com/in/neerajarora","twitterUrl":"https://x.com/neerajarora","sourceUrl":"https://venturehighway.vc/team-post/neeraj-arora/","method":"search","confidence":"high"},
+    {"name":"Kuo-Yi Lim","company":"Monk's Hill Venture","linkedinUrl":"https://www.linkedin.com/in/limky","sourceUrl":"https://www.monkshill.com/team-members/kuo-yi-lim","method":"search","confidence":"high"},
+    {"name":"Peng T. Ong","company":"Monk's Hill Venture","linkedinUrl":"https://www.linkedin.com/in/pengtong","sourceUrl":"https://www.monkshill.com/team-members/peng-t-ong","method":"search","confidence":"high"},
+    {"name":"Mahesh Parasuraman","company":"Amicus Capital","linkedinUrl":"https://www.linkedin.com/in/mahesh-parasuraman-6b3222","sourceUrl":"https://www.amicuscapital.in/team/mahesh-parasuraman/","method":"search","confidence":"high"},
+    {"name":"Kunal Vora","company":"White Whale","linkedinUrl":"https://www.linkedin.com/in/kunal-vora-65b427","sourceUrl":"https://www.linkedin.com/in/kunal-vora-65b427","method":"search","confidence":"high"},
+    {"name":"JP Lee","company":"SoftBank Ventures Asia","linkedinUrl":"https://www.linkedin.com/in/jplee01","sourceUrl":"https://www.linkedin.com/in/jplee01","method":"search","confidence":"high"},
+    {"name":"Neeraj Bhargava","company":"Zodius Capital","linkedinUrl":"https://www.linkedin.com/in/neeraj-bhargava-a87474","sourceUrl":"https://www.linkedin.com/in/neeraj-bhargava-a87474","method":"search","confidence":"medium"}
+  ]
+}
