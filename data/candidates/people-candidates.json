@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T06:22:43.946Z",
+  "generatedAt": "2026-07-30T06:24:07.498Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -7136,6 +7136,348 @@
       "title": "Venture Partner",
       "linkedinUrl": "",
       "sourceUrl": "https://www.equirus.com/vc",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Eximius Ventures",
+      "name": "Pearl Agarwal",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://eximiusvc.com/about-us/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Eximius Ventures",
+      "name": "Preeti Nellore Sampat",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://eximiusvc.com/about-us/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Faering Capital",
+      "name": "Yogesh Mahansaria",
+      "title": "Managing Director, Mahansaria Tyres",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.faeringcapital.com/about-us",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Faering Capital",
+      "name": "Apurva Parekh",
+      "title": "Executive Director, Pidilite Industries",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.faeringcapital.com/about-us",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Faering Capital",
+      "name": "Shyam Patwari",
+      "title": "Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.faeringcapital.com/about-us",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Faering Capital",
+      "name": "Manish Deepak",
+      "title": "Principal",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.faeringcapital.com/about-us",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Faering Capital",
+      "name": "Toshi Yadav",
+      "title": "Principal",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.faeringcapital.com/about-us",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "GetFive",
+      "name": "Aman Jain",
+      "title": "Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://getfive.in/about-us/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "GIC Private Limited",
+      "name": "Choo Yong Cheen",
+      "title": "Chief Investment Officer, Private Equity",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.gic.com.sg/who-we-are/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "GIC Private Limited",
+      "name": "Liew Tzu Mi",
+      "title": "Chief Investment Officer, Fixed Income & Multi Asset and Director, Portfolio Execution & Solutions Group",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.gic.com.sg/who-we-are/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "GIC Private Limited",
+      "name": "Boon Chin Hau",
+      "title": "Chief Investment Officer, Infrastructure",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.gic.com.sg/who-we-are/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "GIC Private Limited",
+      "name": "Mark Ong",
+      "title": "Chief Investment Officer, Public Equities",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.gic.com.sg/who-we-are/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "GIC Private Limited",
+      "name": "Goh Chin Kiong",
+      "title": "Chief Investment Officer and Head, Global Investments & Portfolio Strategy, Real Estate",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.gic.com.sg/who-we-are/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Golden Gate Ventures",
+      "name": "Justin Hall",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.goldengate.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Golden Gate Ventures",
+      "name": "Angela Toy",
+      "title": "Partner & COO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.goldengate.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Golden Gate Ventures",
+      "name": "Michael Lints",
+      "title": "Founding Partner, MENA",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.goldengate.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Golden Gate Ventures",
+      "name": "Hussain Abdulla",
+      "title": "Founding Partner, MENA",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.goldengate.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Golden Gate Ventures",
+      "name": "Jeffrey Chua",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.goldengate.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Good Capital",
+      "name": "Arjun Malhotra",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.goodcapital.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Good Capital",
+      "name": "Rohan Malhotra",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.goodcapital.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Gradient Ventures",
+      "name": "Andrew Brackin",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.gradient.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Gradient Ventures",
+      "name": "Clayton Petty",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.gradient.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Gradient Ventures",
+      "name": "Denise Teng",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.gradient.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Gradient Ventures",
+      "name": "Vig Sachidananda",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.gradient.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Gradient Ventures",
+      "name": "Kyle Duffy",
+      "title": "Operating Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.gradient.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "GSF",
+      "name": "Rajesh Sawhney",
+      "title": "Founder & General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.gsfindia.com/founders-academy",
+      "method": "crawl",
+      "companyType": "Accelerator / VC"
+    },
+    {
+      "company": "India Alternatives",
+      "name": "Harish R",
+      "title": "Principal",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.india-alt.com/people",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "India Alternatives",
+      "name": "Rupa Vora",
+      "title": "Member of Board of Directors",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.india-alt.com/people",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "India Alternatives",
+      "name": "Karan Bhagat",
+      "title": "Investment Advisor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.india-alt.com/people",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "India Alternatives",
+      "name": "Kiran Nadkarni",
+      "title": "Investment Advisor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.india-alt.com/people",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "India Alternatives",
+      "name": "Satish Pillai",
+      "title": "Advisory Council",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.india-alt.com/people",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Indusbridge Ventures",
+      "name": "Yogesh Kulkarni",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.indusbridgeventures.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Indusbridge Ventures",
+      "name": "David Brantner",
+      "title": "Partner, USA",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.indusbridgeventures.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Indusbridge Ventures",
+      "name": "Sandeep Daga",
+      "title": "Investment Committee",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.indusbridgeventures.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Indusbridge Ventures",
+      "name": "SG Murali",
+      "title": "Investment Commitee",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.indusbridgeventures.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Indusbridge Ventures",
+      "name": "Jyoti Devjani",
+      "title": "Partner, Investor Relations",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.indusbridgeventures.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Inflection Point Ventures",
+      "name": "Mitesh Shah",
+      "title": "Co-Founder - IPV",
+      "linkedinUrl": "",
+      "sourceUrl": "https://ipventures.in/startup-investing-platorm-in-india/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Inflection Point Ventures",
+      "name": "Vinod Bansal",
+      "title": "Co-Founder & CFO - IPV",
+      "linkedinUrl": "",
+      "sourceUrl": "https://ipventures.in/startup-investing-platorm-in-india/",
       "method": "crawl",
       "companyType": "VC"
     }
