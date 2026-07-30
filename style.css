@@ -2732,7 +2732,8 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
 }
 
 .inv-dir-type {
-  display: block;
+  display: flex;
+  align-items: center;
   color: var(--color-accent-orange);
   font-size: 0.65rem;
   font-weight: 600;
