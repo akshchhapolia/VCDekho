@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T05:52:23.478Z",
+  "generatedAt": "2026-07-30T05:53:50.158Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -4906,6 +4906,123 @@
       "sourceUrl": "https://b.capital/about/",
       "method": "crawl",
       "companyType": "VC / Growth"
+    },
+    {
+      "company": "Bluehill.vc",
+      "name": "Manu Iyer",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://bluehill.vc/team.html",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Bluehill.vc",
+      "name": "Anoop Mohan",
+      "title": "Investment Manager",
+      "linkedinUrl": "",
+      "sourceUrl": "https://bluehill.vc/team.html",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "BlueLotus Ventures",
+      "name": "Rahul Jindal",
+      "title": "Founding Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://bluelotus.vc/about/",
+      "method": "crawl",
+      "companyType": "Syndicate"
+    },
+    {
+      "company": "Brigade REAP",
+      "name": "Nirupa Shankar",
+      "title": "Joint Managing Director, Brigade Group",
+      "linkedinUrl": "",
+      "sourceUrl": "https://brigadereap.com/team",
+      "method": "crawl",
+      "companyType": "Syndicate"
+    },
+    {
+      "company": "Brigade REAP",
+      "name": "Mohan Parvatikar",
+      "title": "Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://brigadereap.com/team",
+      "method": "crawl",
+      "companyType": "Syndicate"
+    },
+    {
+      "company": "Brigade REAP",
+      "name": "Abhay Garg",
+      "title": "Chief Mentor and Head",
+      "linkedinUrl": "",
+      "sourceUrl": "https://brigadereap.com/team",
+      "method": "crawl",
+      "companyType": "Syndicate"
+    },
+    {
+      "company": "Brigade REAP",
+      "name": "Aiyappa Somayanda",
+      "title": "Chief Business Officer",
+      "linkedinUrl": "",
+      "sourceUrl": "https://brigadereap.com/team",
+      "method": "crawl",
+      "companyType": "Syndicate"
+    },
+    {
+      "company": "Brigade REAP",
+      "name": "Gantavya Kshatree",
+      "title": "Investments Manager",
+      "linkedinUrl": "",
+      "sourceUrl": "https://brigadereap.com/team",
+      "method": "crawl",
+      "companyType": "Syndicate"
+    },
+    {
+      "company": "Campus Fund",
+      "name": "Richa Bajpai",
+      "title": "Founder & CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://yourcampusfund.com/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Campus Fund",
+      "name": "Bharat Shah",
+      "title": "Chief Advisor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://yourcampusfund.com/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Campus Fund",
+      "name": "Bijou Kurien",
+      "title": "Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://yourcampusfund.com/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Campus Fund",
+      "name": "Kartik H",
+      "title": "Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://yourcampusfund.com/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Campus Fund",
+      "name": "Phanindra Sama",
+      "title": "Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://yourcampusfund.com/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
     }
   ],
   "unresolved": [],
