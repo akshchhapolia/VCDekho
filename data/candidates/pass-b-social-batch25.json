@@ -1,8 +1,15 @@
 {
   "found": [
+    {"name":"Ashley Menezes","company":"ChrysCapital","linkedinUrl":"https://www.linkedin.com/in/ashley-menezes-8166b1171","sourceUrl":"https://www.linkedin.com/in/ashley-menezes-8166b1171","method":"search","confidence":"high"},
+    {"name":"Lauren Faber O'Connor","company":"Lowercarbon Capital","linkedinUrl":"https://www.linkedin.com/in/laurenfaber","sourceUrl":"https://lowercarbon.com/team/lfo/","method":"search","confidence":"high"},
+    {"name":"Zack Scott, MD","company":"Norwest Venture Partners","linkedinUrl":"https://www.linkedin.com/in/zack-scott-85aa70","sourceUrl":"https://www.linkedin.com/in/zack-scott-85aa70","method":"search","confidence":"high"},
+    {"name":"Tiba Aynechi, Ph.D.","company":"Norwest Venture Partners","linkedinUrl":"https://www.linkedin.com/in/tiba-aynechi-b5b3651","sourceUrl":"https://www.norwest.com/team/tiba-aynechi/","method":"search","confidence":"high"},
+    {"name":"Liew Tzu Mi","company":"GIC Private Limited","linkedinUrl":"https://www.linkedin.com/in/tzu-mi-liew-b9495193","sourceUrl":"https://www.linkedin.com/in/tzu-mi-liew-b9495193","method":"search","confidence":"high"},
     {"name":"Maninder Singh Juneja","company":"True North","linkedinUrl":"https://www.linkedin.com/in/maninder-singh-juneja-35a01a13","sourceUrl":"https://www.linkedin.com/in/maninder-singh-juneja-35a01a13","method":"search","confidence":"high"},
     {"name":"Jessica Huang Pouleur","company":"Openspace Ventures","linkedinUrl":"https://www.linkedin.com/in/jessica-huang-pouleur-9529711","sourceUrl":"https://www.linkedin.com/in/jessica-huang-pouleur-9529711","method":"search","confidence":"high"},
     {"name":"Rafa de la Guia","company":"Quona Capital","linkedinUrl":"https://www.linkedin.com/in/rafadelaguia","sourceUrl":"https://www.linkedin.com/in/rafadelaguia","method":"search","confidence":"high"},
-    {"name":"Ricardo Sequerra Amram","company":"Point Nine Capital","linkedinUrl":"https://www.linkedin.com/in/ricardosequerra","sourceUrl":"https://www.linkedin.com/in/ricardosequerra","method":"search","confidence":"high"}
+    {"name":"Ricardo Sequerra Amram","company":"Point Nine Capital","linkedinUrl":"https://www.linkedin.com/in/ricardosequerra","sourceUrl":"https://www.linkedin.com/in/ricardosequerra","method":"search","confidence":"high"},
+    {"name":"Mohan S. Iyer","company":"SOSV","linkedinUrl":"https://www.linkedin.com/in/mohansiyer","sourceUrl":"https://sosv.com/meet-mohan-iyer-the-new-general-partner-at-sosvs-indiebio-sf/","method":"search","confidence":"high"},
+    {"name":"Abhinav Asthana","company":"Postman Capital","linkedinUrl":"https://www.linkedin.com/in/abhinavasthana","sourceUrl":"https://www.linkedin.com/in/abhinavasthana","method":"search","confidence":"high"}
   ]
 }
