@@ -279,9 +279,25 @@ function looksLikeCountryOrGeoList(arr) {
   return countryHits >= 5;
 }
 
+function looksLikePersonName(name) {
+  const n = String(name || '').trim();
+  // "Sudhir Kamath", "Ranganathan Srinivasan" — not "CityMall" / "Yellow Metal"
+  return /^[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,2}$/.test(n);
+}
+
+function looksLikeFoundersArray(arr) {
+  const sample = (arr || []).filter((x) => x && typeof x === 'object').slice(0, 15);
+  if (sample.length < 5) return false;
+  const withCompanyAndPerson = sample.filter(
+    (x) => x.company && looksLikePersonName(x.name) && !looksLikePersonName(x.company)
+  ).length;
+  return withCompanyAndPerson >= 4;
+}
+
 function companiesFromRawArray(arr, pageUrl) {
   if (!Array.isArray(arr) || arr.length < 3) return [];
   if (looksLikeCountryOrGeoList(arr)) return [];
+  if (looksLikeFoundersArray(arr)) return [];
 
   const withName = arr.filter((x) => x && typeof x === 'object' && (x.name || x.title || x.company));
   if (withName.length < 3) return [];
@@ -298,11 +314,18 @@ function companiesFromRawArray(arr, pageUrl) {
   const companies = [];
   const seen = new Set();
   for (const raw of pick) {
+    // If row is founder-shaped (person name + company), use the company.
+    let name = raw.name || raw.title || raw.company;
+    if (raw.company && looksLikePersonName(raw.name) && !looksLikePersonName(raw.company)) {
+      name = raw.company;
+    }
+    if (looksLikePersonName(name) && !raw.website && !raw.url) continue;
+
     const c = normalizeSiteCompany(
       {
-        name: raw.name || raw.title || raw.company,
+        name,
         website: raw.website || raw.url || raw.link || null,
-        image: raw.image || raw.logo || raw.logoUrl || raw.img || null,
+        image: raw.logo || raw.image || raw.logoUrl || raw.img || null,
         sector: raw.sector || raw.category || null,
         stage: raw.stage || raw.round || null,
         amount: raw.amount || raw.funding || null
@@ -331,10 +354,31 @@ function extractJsonishCompanies(html, pageUrl) {
     }
   }
 
+  // <script type="application/json"> blobs (e.g. WaterBridge wb-portfolio-data)
+  const jsonScriptRe =
+    /<script[^>]*type=["']application\/json["'][^>]*>([\s\S]*?)<\/script>/gi;
+  let m;
+  while ((m = jsonScriptRe.exec(html))) {
+    try {
+      const data = JSON.parse(m[1]);
+      const queues = [];
+      if (Array.isArray(data)) queues.push(data);
+      else if (data && typeof data === 'object') {
+        for (const [key, val] of Object.entries(data)) {
+          if (!Array.isArray(val)) continue;
+          if (/founder|team|people|partner|employee/i.test(key)) continue;
+          if (/portfolio|compan|invest|startup/i.test(key) || val.length >= 5) queues.push(val);
+        }
+      }
+      for (const arr of queues) absorb(arr);
+    } catch (_) {
+      /* ignore */
+    }
+  }
+
   // Named portfolio arrays: const listData = [ ... ]
   const namedRe =
     /(?:const|let|var)\s+(listData|portfolio|portfolioCompanies|companies|portfolioData|companyList|investments)\s*=\s*\[/gi;
-  let m;
   while ((m = namedRe.exec(html))) {
     const start = m.index + m[0].length - 1;
     const chunk = extractBalancedArray(html, start);
@@ -346,6 +390,9 @@ function extractJsonishCompanies(html, pageUrl) {
   if (companies.length < 8) {
     const hintRe = /\[\s*\{[\s\S]{0,400}?"(?:name|title|company)(?:Name)?"\s*:/gi;
     while ((m = hintRe.exec(html))) {
+      // Skip founder/team arrays by nearby key labels.
+      const nearby = html.slice(Math.max(0, m.index - 40), m.index + 20);
+      if (/FOUNDERS|TEAM|PEOPLE|PARTNERS/i.test(nearby)) continue;
       const start = m.index;
       const chunk = extractBalancedArray(html, start);
       const arr = parseJsArrayLiteral(chunk);
