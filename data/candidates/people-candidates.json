@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T06:24:07.498Z",
+  "generatedAt": "2026-07-30T06:24:51.953Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -7478,6 +7478,150 @@
       "title": "Co-Founder & CFO - IPV",
       "linkedinUrl": "",
       "sourceUrl": "https://ipventures.in/startup-investing-platorm-in-india/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Intel Capital",
+      "name": "Srini Ananth",
+      "title": "Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.intelcapital.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Intel Capital",
+      "name": "Roi Bar-Kat",
+      "title": "Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.intelcapital.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Intel Capital",
+      "name": "Abdul Guefor",
+      "title": "Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.intelcapital.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Intel Capital",
+      "name": "Mark Rostick",
+      "title": "Vice President Senior Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.intelcapital.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Intel Capital",
+      "name": "Tianlin Wang",
+      "title": "Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.intelcapital.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Intellecap",
+      "name": "Jayesh Bhatia",
+      "title": "Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.intellecap.com/about-us/",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Intellecap",
+      "name": "Pramod Kasat",
+      "title": "Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.intellecap.com/about-us/",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Intellecap",
+      "name": "Santosh Singh",
+      "title": "Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.intellecap.com/about-us/",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Intellecap",
+      "name": "Manoj Kumar Nambiar",
+      "title": "Managing Director Arohan & Board Member",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.intellecap.com/about-us/",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Intellecap",
+      "name": "Vineet Chandra Rai",
+      "title": "Founder and Vice Chairman Aavishkaar Group",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.intellecap.com/about-us/",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "IXP Lifesciences",
+      "name": "Ketki Tulpule",
+      "title": "Chief Innovation Officer",
+      "linkedinUrl": "",
+      "sourceUrl": "https://ixplifesciences.com/team-ixp/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "July Ventures",
+      "name": "Ravindra Krishnappa",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.julyventures.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "July Ventures",
+      "name": "Suresh TR",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.julyventures.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "July Ventures",
+      "name": "Vishwanath MS",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.julyventures.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "July Ventures",
+      "name": "Prakash Rao",
+      "title": "Advisor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.julyventures.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "July Ventures",
+      "name": "Bhushan Rao",
+      "title": "Advisor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.julyventures.com/about",
       "method": "crawl",
       "companyType": "VC"
     }
