@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T06:21:59.550Z",
+  "generatedAt": "2026-07-30T06:22:43.946Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -7064,6 +7064,78 @@
       "title": "Partner",
       "linkedinUrl": "",
       "sourceUrl": "https://www.congruentvc.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Endurance Capital",
+      "name": "Abhishek Mittal",
+      "title": "",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.endurancevc.com/",
+      "method": "crawl",
+      "companyType": "Syndicate"
+    },
+    {
+      "company": "Entrepreneur First",
+      "name": "Tom Shinner",
+      "title": "Partner and COO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.joinef.com/about/",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Entrepreneur First",
+      "name": "Jonny Clifford",
+      "title": "Partner and General Manager, London",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.joinef.com/about/",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Entrepreneur First",
+      "name": "Rahul Samat",
+      "title": "Partner and General Manager, Bangalore",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.joinef.com/about/",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Entrepreneur First",
+      "name": "Joe Ros",
+      "title": "Partner and General Manager, North America",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.joinef.com/about/",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Entrepreneur First",
+      "name": "Elspeth Lawson",
+      "title": "Partner and Deputy CPO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.joinef.com/about/",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Equirus Ventures",
+      "name": "Ms. Sadhika Agarwal",
+      "title": "Principal - Equirus InnovateX Fund",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.equirus.com/vc",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Equirus Ventures",
+      "name": "Mr. Gopan V P",
+      "title": "Venture Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.equirus.com/vc",
       "method": "crawl",
       "companyType": "VC"
     }
