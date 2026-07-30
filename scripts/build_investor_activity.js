@@ -143,13 +143,22 @@ async function collectMentions(index) {
     });
   }
 
-  // Source 1: published articles — LLM-extracted "internal_link_entities"
+  // Source 1: published articles — LLM-extracted "internal_link_entities".
+  // `articles.category` is hardcoded to 'funding-round' at write time (see
+  // api/cron/ai-process.js), so it can't be trusted as a real classifier —
+  // fall back to a title keyword check so a fund merely *mentioned* in a
+  // non-funding story (an exit, an acquisition, a corporate earnings piece)
+  // doesn't get counted as a fresh check.
+  const FUNDING_TITLE_RE =
+    /\b(raise[sd]?|round|funding|invest(s|ed|ment)?|back(s|ed)?|led by|co-led|closes?|corpus|seed|series\s*[a-e]|pre[-\s]?seed|pre[-\s]?series|crore|lakh|million|billion|\$|₹|valuation)\b/i;
+
   const articles = await db.query(
     `SELECT slug, title, internal_link_entities, published_at, category
      FROM articles
      WHERE status = 'published' AND internal_link_entities IS NOT NULL AND array_length(internal_link_entities, 1) > 0`
   );
   for (const row of articles.rows) {
+    if (!FUNDING_TITLE_RE.test(row.title || '')) continue;
     for (const entity of row.internal_link_entities) {
       record(
         entity,
@@ -158,7 +167,7 @@ async function collectMentions(index) {
         'article',
         row.slug ? `/news/${row.slug}` : null,
         row.title,
-        row.category
+        null // `category` is a hardcoded stub on this table, not real sector data
       );
     }
   }
