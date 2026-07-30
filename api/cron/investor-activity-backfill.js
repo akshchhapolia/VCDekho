@@ -54,9 +54,8 @@ module.exports = async function handler(req, res) {
           await upsertActivity(slug, activity, 'web_search_backfill');
         } catch (err) {
           errors++;
-          try {
-            await upsertActivity(slug, null, 'web_search_backfill');
-          } catch (_) {}
+          // Don't bump checked_at on a genuine error (e.g. API/billing issue) —
+          // leave it at the front of the stale queue so it's retried next run.
         }
       },
       CONCURRENCY

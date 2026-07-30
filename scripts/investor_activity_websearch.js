@@ -55,13 +55,18 @@ async function withRetry(fn, retries = 3) {
   throw lastErr;
 }
 
+function isFatalAccountError(err) {
+  return err && /credit balance is too low|invalid.?x-api-key|authentication_error/i.test(err.message || '');
+}
+
 async function runPool(items, worker, concurrency) {
   const results = [];
   let idx = 0;
+  let stop = false;
   async function next() {
-    while (idx < items.length) {
+    while (idx < items.length && !stop) {
       const i = idx++;
-      results[i] = await worker(items[i], i);
+      results[i] = await worker(items[i], i, () => { stop = true; });
     }
   }
   await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, next));
@@ -99,10 +104,10 @@ async function main() {
       } catch (err) {
         errors++;
         console.error(`✗ ${inv.name} → error: ${err.message}`);
-        // Still bump checked_at so a persistently-failing lookup doesn't block the queue forever.
-        try {
-          await upsertActivity(slug, null, 'web_search_backfill');
-        } catch (_) {}
+        // Deliberately do NOT bump checked_at here — an API/billing error means
+        // this investor was never actually checked, so it should stay at the
+        // front of the stale queue for the next run instead of being skipped
+        // for --stale-after days.
       }
     },
     CONCURRENCY
