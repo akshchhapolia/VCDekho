@@ -1,7 +1,7 @@
 /**
  * Editorial investor profile page renderer.
  */
-const { hasStageGuide, deriveRelatedStages, loadInvestorsData } = require('./investors');
+const { hasStageGuide, deriveRelatedStages, loadInvestorsData, isActivelyDeploying, ACTIVE_WINDOW_DAYS } = require('./investors');
 const { getAllStages } = require('./investment-stages');
 const { hasSectorGuide } = require('./sectors');
 const { renderExploreRelated } = require('./render-explore-related');
@@ -90,6 +90,68 @@ function aboutProse(text) {
     return '<p class="inv-profile-prose muted">Profile summary coming soon.</p>';
   }
   return parts.map(p => '<p class="inv-profile-prose">' + escapeHtml(p) + '</p>').join('');
+}
+
+function formatActivityDate(dateStr) {
+  if (!dateStr) return '';
+  try {
+    return new Date(dateStr).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+  } catch (_) {
+    return '';
+  }
+}
+
+function activityBadge(investor) {
+  if (!isActivelyDeploying(investor)) return '';
+  return (
+    '<span class="inv-profile-active-badge" title="Named in a funding-related news story within the last ' +
+    ACTIVE_WINDOW_DAYS +
+    ' days">' +
+    '<span class="inv-profile-active-dot" aria-hidden="true"></span>Actively deploying' +
+    '</span>'
+  );
+}
+
+function recentActivitySection(investor) {
+  const checks = investor.recentChecks || [];
+  if (!checks.length) return '';
+
+  const rows = checks
+    .map((c) => {
+      const dateLabel = formatActivityDate(c.date);
+      const highlight = escapeHtml(c.highlight || '');
+      const sector = c.sector ? '<span class="inv-profile-activity-sector">' + escapeHtml(c.sector) + '</span>' : '';
+      const inner =
+        '<span class="inv-profile-activity-date">' + escapeHtml(dateLabel) + '</span>' +
+        '<span class="inv-profile-activity-highlight">' + highlight + '</span>' +
+        sector;
+      if (c.source && String(c.source).startsWith('/news/')) {
+        return '<a class="inv-profile-activity-row" href="' + escapeHtml(c.source) + '">' + inner + '</a>';
+      }
+      if (c.source) {
+        return (
+          '<a class="inv-profile-activity-row" href="' +
+          escapeHtml(c.source) +
+          '" target="_blank" rel="noopener noreferrer">' +
+          inner +
+          '</a>'
+        );
+      }
+      return '<div class="inv-profile-activity-row">' + inner + '</div>';
+    })
+    .join('');
+
+  return (
+    '<section class="inv-profile-section inv-profile-reveal" id="activity">' +
+    '<div class="inv-profile-section-label">01b — Activity</div>' +
+    '<div class="inv-profile-section-head"><h2>Recent activity</h2><p>Checks and mentions picked up from India startup news over the last ' +
+    ACTIVE_WINDOW_DAYS +
+    ' days.</p></div>' +
+    '<div class="inv-profile-activity-list">' +
+    rows +
+    '</div>' +
+    '</section>'
+  );
 }
 
 function thesisWidget(investor) {
@@ -387,6 +449,7 @@ function renderInvestorPage(investor, related, res) {
       ? ('<img class="inv-profile-logo" src="' + escapeHtml(investor.logo) + '" alt="" width="56" height="56" loading="eager">')
       : '',
     '<span class="inv-profile-type">' + escapeHtml(investor.type) + '</span>',
+    activityBadge(investor),
     '<h1 class="inv-profile-title">' + escapeHtml(investor.name) + '</h1>',
     thesisLead,
     '<div class="inv-profile-hero-actions">' + websiteBtn + linkedinBtn + '</div>',
