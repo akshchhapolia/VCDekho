@@ -1,0 +1,1032 @@
+{
+  "generatedAt": "2026-07-30T12:32:20.220Z",
+  "windowDays": 180,
+  "matchedCount": 74,
+  "matchedInvestorCount": 46,
+  "mentions": [
+    {
+      "investorSlug": "alpha-wave-global",
+      "investorName": "Alpha Wave Global",
+      "matchedMentionName": "Alpha Wave Ventures",
+      "date": "2026-06-25T06:40:58.244Z",
+      "highlight": "Alpha Wave Ventures Exits Delhivery Via ₹665 Cr Bulk Deals",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/alpha-wave-ventures-exits-delhivery-665-crore-bulk-deal",
+      "sourceTitle": "Alpha Wave Ventures Exits Delhivery Via ₹665 Cr Bulk Deals"
+    },
+    {
+      "investorSlug": "bessemer-venture-partners",
+      "investorName": "Bessemer Venture Partners",
+      "matchedMentionName": "Bessemer Venture Partners",
+      "date": "2026-06-25T06:41:59.195Z",
+      "highlight": "Mitigata raises $15M in Series B funding round led by Bessemer Venture Partners\r\n\r\n",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/mitigata-raises-15m-series-b-bessemer-venture-partners",
+      "sourceTitle": "Mitigata raises $15M in Series B funding round led by Bessemer Venture Partners\r\n\r\n"
+    },
+    {
+      "investorSlug": "amazon-smbhav-venture-fund",
+      "investorName": "Amazon Smbhav Venture Fund",
+      "matchedMentionName": "Amazon",
+      "date": "2026-06-25T09:15:53.000Z",
+      "highlight": "Amazon Announces Additional $13 Bn Investment In India To Boost AI, Cloud Infra",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/amazon-13-billion-ai-cloud-infrastructure-investment-india",
+      "sourceTitle": "Amazon Announces Additional $13 Bn Investment In India To Boost AI, Cloud Infra"
+    },
+    {
+      "investorSlug": "cloud-capital",
+      "investorName": "Cloud Capital",
+      "matchedMentionName": "Google Cloud",
+      "date": "2026-06-25T09:15:53.000Z",
+      "highlight": "Amazon Announces Additional $13 Bn Investment In India To Boost AI, Cloud Infra",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/amazon-13-billion-ai-cloud-infrastructure-investment-india",
+      "sourceTitle": "Amazon Announces Additional $13 Bn Investment In India To Boost AI, Cloud Infra"
+    },
+    {
+      "investorSlug": "bessemer-venture-partners",
+      "investorName": "Bessemer Venture Partners",
+      "matchedMentionName": "Bessemer Venture Partners",
+      "date": "2026-06-26T10:10:43.000Z",
+      "highlight": "PharmEasy Cofounders’ Home Interiors Startup AllHome Raises ₹200 Cr",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/allhome-raises-200-cr-series-b-bessemer-venture-partners",
+      "sourceTitle": "PharmEasy Cofounders’ Home Interiors Startup AllHome Raises ₹200 Cr"
+    },
+    {
+      "investorSlug": "sequoia-india-peak-xv",
+      "investorName": "Sequoia (India) / Peak XV",
+      "matchedMentionName": "Peak XV Partners",
+      "date": "2026-06-27T05:30:47.000Z",
+      "highlight": "Turtlemint IPO: Peak XV Nets ₹66.2 Cr, Nexus Venture Books 8.8X Gain",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/turtlemint-ipo-peak-xv-nexus-venture-returns",
+      "sourceTitle": "Turtlemint IPO: Peak XV Nets ₹66.2 Cr, Nexus Venture Books 8.8X Gain"
+    },
+    {
+      "investorSlug": "nexus-venture-partners",
+      "investorName": "Nexus Venture Partners",
+      "matchedMentionName": "Nexus Venture Partners",
+      "date": "2026-06-27T05:30:47.000Z",
+      "highlight": "Turtlemint IPO: Peak XV Nets ₹66.2 Cr, Nexus Venture Books 8.8X Gain",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/turtlemint-ipo-peak-xv-nexus-venture-returns",
+      "sourceTitle": "Turtlemint IPO: Peak XV Nets ₹66.2 Cr, Nexus Venture Books 8.8X Gain"
+    },
+    {
+      "investorSlug": "3one4-capital",
+      "investorName": "3one4 Capital",
+      "matchedMentionName": "3one4 Capital",
+      "date": "2026-06-30T01:00:22.000Z",
+      "highlight": "3one4 Capital Floats $15 Mn Fund To Back Under-Represented Founders",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/3one4-capital-15m-fund-under-represented-founders-bii",
+      "sourceTitle": "3one4 Capital Floats $15 Mn Fund To Back Under-Represented Founders"
+    },
+    {
+      "investorSlug": "british-international-investment",
+      "investorName": "British International Investment",
+      "matchedMentionName": "British International Investment",
+      "date": "2026-06-30T01:00:22.000Z",
+      "highlight": "3one4 Capital Floats $15 Mn Fund To Back Under-Represented Founders",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/3one4-capital-15m-fund-under-represented-founders-bii",
+      "sourceTitle": "3one4 Capital Floats $15 Mn Fund To Back Under-Represented Founders"
+    },
+    {
+      "investorSlug": "sequoia-india-peak-xv",
+      "investorName": "Sequoia (India) / Peak XV",
+      "matchedMentionName": "Peak XV Partners",
+      "date": "2026-06-29T13:01:49.000Z",
+      "highlight": "Exclusive: Lightbox-Backed Nua In Talks To Raise $25 Mn From Peak XV, Others",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/nua-raises-25m-funding-round-led-by-peak-xv",
+      "sourceTitle": "Exclusive: Lightbox-Backed Nua In Talks To Raise $25 Mn From Peak XV, Others"
+    },
+    {
+      "investorSlug": "sequoia-india-peak-xv",
+      "investorName": "Sequoia (India) / Peak XV",
+      "matchedMentionName": "Sequoia Capital India",
+      "date": "2026-06-29T13:01:49.000Z",
+      "highlight": "Exclusive: Lightbox-Backed Nua In Talks To Raise $25 Mn From Peak XV, Others",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/nua-raises-25m-funding-round-led-by-peak-xv",
+      "sourceTitle": "Exclusive: Lightbox-Backed Nua In Talks To Raise $25 Mn From Peak XV, Others"
+    },
+    {
+      "investorSlug": "golden-sparrow",
+      "investorName": "Golden Sparrow",
+      "matchedMentionName": "Sparrow Capital",
+      "date": "2026-07-02T07:37:32.000Z",
+      "highlight": "Sparrow Capital Closes Third Fund At ₹475 Cr To Back Seed Stage Startups",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/sparrow-capital-fund-iii-475-crore-seed-stage-india",
+      "sourceTitle": "Sparrow Capital Closes Third Fund At ₹475 Cr To Back Seed Stage Startups"
+    },
+    {
+      "investorSlug": "bhavin-turakhia",
+      "investorName": "Bhavin Turakhia",
+      "matchedMentionName": "Bhavin Turakhia",
+      "date": "2026-07-02T08:40:15.000Z",
+      "highlight": "Bhavin Turakhia launches AI-native work platform Neo with $30M investment\r\n",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/neo-raises-30m-seed-funding-ai-native-enterprise-work-platform",
+      "sourceTitle": "Bhavin Turakhia launches AI-native work platform Neo with $30M investment\r\n"
+    },
+    {
+      "investorSlug": "insight-partners",
+      "investorName": "Insight Partners",
+      "matchedMentionName": "Insight Partners",
+      "date": "2026-07-06T11:34:06.000Z",
+      "highlight": "Exclusive: Graph AI In Talks To Raise $14 Mn From Insight Partners, Others",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/graph-ai-14m-series-a-insight-partners-ai-pharmaceuticals",
+      "sourceTitle": "Exclusive: Graph AI In Talks To Raise $14 Mn From Insight Partners, Others"
+    },
+    {
+      "investorSlug": "bharat-angels-fund",
+      "investorName": "Bharat Angels Fund",
+      "matchedMentionName": "Next Bharat Ventures",
+      "date": "2026-07-06T07:06:03.000Z",
+      "highlight": "Next Bharat Ventures Launches ₹2,000 Cr Second Impact Fund",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/next-bharat-ventures-2000-crore-second-impact-fund-suzuki-motor",
+      "sourceTitle": "Next Bharat Ventures Launches ₹2,000 Cr Second Impact Fund"
+    },
+    {
+      "investorSlug": "the-fundamentum-partnership",
+      "investorName": "The Fundamentum Partnership",
+      "matchedMentionName": "Fundamentum Partnership",
+      "date": "2026-07-09T14:56:18.000Z",
+      "highlight": "Fundamentum Launches ₹2,200 Cr Fund; Nandan Nilekani Steps Back From GP Role",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/fundamentum-partnership-fund-iii-2200-crore-growth-stage",
+      "sourceTitle": "Fundamentum Launches ₹2,200 Cr Fund; Nandan Nilekani Steps Back From GP Role"
+    },
+    {
+      "investorSlug": "tata-capital-innovations",
+      "investorName": "Tata Capital Innovations",
+      "matchedMentionName": "Tata Group",
+      "date": "2026-07-10T20:57:26.000Z",
+      "highlight": "Justdial Posts ₹166 Cr Profit In Q1, CEO VSS Mani To Step Down After 30 Years",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/justdial-q1-profit-166-crore-vss-mani-steps-down",
+      "sourceTitle": "Justdial Posts ₹166 Cr Profit In Q1, CEO VSS Mani To Step Down After 30 Years"
+    },
+    {
+      "investorSlug": "in-space-seed-fund-scheme",
+      "investorName": "IN-SPACe Seed Fund Scheme",
+      "matchedMentionName": "IN-SPACe",
+      "date": "2026-07-13T12:05:55.000Z",
+      "highlight": "Centre’s Spacetech Fund Makes Maiden Investment, Backs Dhruva Space With ₹60 Cr",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/dhruva-space-raises-60-crore-antariksh-venture-fund-inspace",
+      "sourceTitle": "Centre’s Spacetech Fund Makes Maiden Investment, Backs Dhruva Space With ₹60 Cr"
+    },
+    {
+      "investorSlug": "avendus",
+      "investorName": "Avendus",
+      "matchedMentionName": "Avendus",
+      "date": "2026-07-14T07:49:14.000Z",
+      "highlight": "Avendus Eyes Final Close Of Future Leaders Fund III At ₹1,800 Cr By July-End",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/avendus-future-leaders-fund-iii-final-close-1800-crore",
+      "sourceTitle": "Avendus Eyes Final Close Of Future Leaders Fund III At ₹1,800 Cr By July-End"
+    },
+    {
+      "investorSlug": "elevation-capital",
+      "investorName": "Elevation Capital",
+      "matchedMentionName": "Elevation Capital",
+      "date": "2026-07-14T06:46:46.000Z",
+      "highlight": "Elevation Capital Launches Fund IX With $500 Mn Corpus To Back AI-Led Startups",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/elevation-capital-fund-ix-500m-india-ai-startups",
+      "sourceTitle": "Elevation Capital Launches Fund IX With $500 Mn Corpus To Back AI-Led Startups"
+    },
+    {
+      "investorSlug": "elevation-capital",
+      "investorName": "Elevation Capital",
+      "matchedMentionName": "Elevation Capital",
+      "date": "2026-07-14T10:03:23.000Z",
+      "highlight": "Elevation Capital launches $500M fund with focus on Indian AI startups\r\n",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/elevation-capital-500m-ai-fund-india-startups",
+      "sourceTitle": "Elevation Capital launches $500M fund with focus on Indian AI startups\r\n"
+    },
+    {
+      "investorSlug": "elevation-capital",
+      "investorName": "Elevation Capital",
+      "matchedMentionName": "Elevation Capital",
+      "date": "2026-07-16T15:04:51.000Z",
+      "highlight": "Reo.Dev raises $11.3M in Series A led by Elevation Capital",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/reo-dev-series-a-11-3m-elevation-capital",
+      "sourceTitle": "Reo.Dev raises $11.3M in Series A led by Elevation Capital"
+    },
+    {
+      "investorSlug": "norwest-venture-partners",
+      "investorName": "Norwest Venture Partners",
+      "matchedMentionName": "Norwest Capital",
+      "date": "2026-07-20T11:31:37.000Z",
+      "highlight": "Norwest Capital Co-Leads $40 Mn Round In Raghu Vamsi Aerospace",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/raghu-vamsi-aerospace-group-40m-funding-norwest-capital",
+      "sourceTitle": "Norwest Capital Co-Leads $40 Mn Round In Raghu Vamsi Aerospace"
+    },
+    {
+      "investorSlug": "accel",
+      "investorName": "Accel",
+      "matchedMentionName": "Accel",
+      "date": "2026-07-20T07:16:57.000Z",
+      "highlight": "Plazza raises $15M from Accel, Elevation, Nexus to expand rapid medicine delivery",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/plazza-raises-15-million-medicine-delivery-india",
+      "sourceTitle": "Plazza raises $15M from Accel, Elevation, Nexus to expand rapid medicine delivery"
+    },
+    {
+      "investorSlug": "elevation-capital",
+      "investorName": "Elevation Capital",
+      "matchedMentionName": "Elevation Capital",
+      "date": "2026-07-20T07:16:57.000Z",
+      "highlight": "Plazza raises $15M from Accel, Elevation, Nexus to expand rapid medicine delivery",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/plazza-raises-15-million-medicine-delivery-india",
+      "sourceTitle": "Plazza raises $15M from Accel, Elevation, Nexus to expand rapid medicine delivery"
+    },
+    {
+      "investorSlug": "nexus-venture-partners",
+      "investorName": "Nexus Venture Partners",
+      "matchedMentionName": "Nexus Venture Partners",
+      "date": "2026-07-20T07:16:57.000Z",
+      "highlight": "Plazza raises $15M from Accel, Elevation, Nexus to expand rapid medicine delivery",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/plazza-raises-15-million-medicine-delivery-india",
+      "sourceTitle": "Plazza raises $15M from Accel, Elevation, Nexus to expand rapid medicine delivery"
+    },
+    {
+      "investorSlug": "transition-vc",
+      "investorName": "Transition VC",
+      "matchedMentionName": "Transition VC",
+      "date": "2026-07-21T00:30:18.000Z",
+      "highlight": "Transition VC Launches ₹1,500 Cr Fund To Back Deeptech Startups",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/transition-vc-fund-ii-1500-crore-deeptech-energy-transition",
+      "sourceTitle": "Transition VC Launches ₹1,500 Cr Fund To Back Deeptech Startups"
+    },
+    {
+      "investorSlug": "bharat-angels-fund",
+      "investorName": "Bharat Angels Fund",
+      "matchedMentionName": "Bharat Value Fund",
+      "date": "2026-07-24T12:52:55.000Z",
+      "highlight": "Exclusive: Zetwerk Bags ₹500 Cr Pre-IPO Funding From Bharat Value Fund",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/zetwerk-raises-500-crore-pre-ipo-round-bharat-value-fund",
+      "sourceTitle": "Exclusive: Zetwerk Bags ₹500 Cr Pre-IPO Funding From Bharat Value Fund"
+    },
+    {
+      "investorSlug": "lightspeed",
+      "investorName": "Lightspeed",
+      "matchedMentionName": "Lightspeed",
+      "date": "2026-07-21T05:22:20.000Z",
+      "highlight": "MS Dhoni invests in SolarSquare as part of $53 Mn Series C round ",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/solarsquare-53m-series-c-lightspeed-ms-dhoni",
+      "sourceTitle": "MS Dhoni invests in SolarSquare as part of $53 Mn Series C round "
+    },
+    {
+      "investorSlug": "lowercarbon-capital",
+      "investorName": "Lowercarbon Capital",
+      "matchedMentionName": "Lowercarbon Capital",
+      "date": "2026-07-21T05:22:20.000Z",
+      "highlight": "MS Dhoni invests in SolarSquare as part of $53 Mn Series C round ",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/solarsquare-53m-series-c-lightspeed-ms-dhoni",
+      "sourceTitle": "MS Dhoni invests in SolarSquare as part of $53 Mn Series C round "
+    },
+    {
+      "investorSlug": "elevation-capital",
+      "investorName": "Elevation Capital",
+      "matchedMentionName": "Elevation Capital",
+      "date": "2026-07-21T05:22:20.000Z",
+      "highlight": "MS Dhoni invests in SolarSquare as part of $53 Mn Series C round ",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/solarsquare-53m-series-c-lightspeed-ms-dhoni",
+      "sourceTitle": "MS Dhoni invests in SolarSquare as part of $53 Mn Series C round "
+    },
+    {
+      "investorSlug": "norwest-venture-partners",
+      "investorName": "Norwest Venture Partners",
+      "matchedMentionName": "Norwest",
+      "date": "2026-07-20T08:48:35.000Z",
+      "highlight": "Raghu Vamsi Aerospace Group raises $40 Mn led by Norwest, Skegen Asset Management ",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/raghu-vamsi-aerospace-group-40m-series-b-norwest-skegen",
+      "sourceTitle": "Raghu Vamsi Aerospace Group raises $40 Mn led by Norwest, Skegen Asset Management "
+    },
+    {
+      "investorSlug": "accel",
+      "investorName": "Accel",
+      "matchedMentionName": "Accel",
+      "date": "2026-07-20T04:45:39.000Z",
+      "highlight": "Instant medicine delivery startup Plazza raises $15 Mn led by Accel, Elevation and Nexus ",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/plazza-raises-15m-series-a-pharmacy-quick-commerce-india",
+      "sourceTitle": "Instant medicine delivery startup Plazza raises $15 Mn led by Accel, Elevation and Nexus "
+    },
+    {
+      "investorSlug": "elevation-capital",
+      "investorName": "Elevation Capital",
+      "matchedMentionName": "Elevation Capital",
+      "date": "2026-07-20T04:45:39.000Z",
+      "highlight": "Instant medicine delivery startup Plazza raises $15 Mn led by Accel, Elevation and Nexus ",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/plazza-raises-15m-series-a-pharmacy-quick-commerce-india",
+      "sourceTitle": "Instant medicine delivery startup Plazza raises $15 Mn led by Accel, Elevation and Nexus "
+    },
+    {
+      "investorSlug": "nexus-venture-partners",
+      "investorName": "Nexus Venture Partners",
+      "matchedMentionName": "Nexus Venture Partners",
+      "date": "2026-07-20T04:45:39.000Z",
+      "highlight": "Instant medicine delivery startup Plazza raises $15 Mn led by Accel, Elevation and Nexus ",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/plazza-raises-15m-series-a-pharmacy-quick-commerce-india",
+      "sourceTitle": "Instant medicine delivery startup Plazza raises $15 Mn led by Accel, Elevation and Nexus "
+    },
+    {
+      "investorSlug": "better-capital",
+      "investorName": "Better Capital",
+      "matchedMentionName": "Better Capital",
+      "date": "2026-07-20T04:45:39.000Z",
+      "highlight": "Instant medicine delivery startup Plazza raises $15 Mn led by Accel, Elevation and Nexus ",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/plazza-raises-15m-series-a-pharmacy-quick-commerce-india",
+      "sourceTitle": "Instant medicine delivery startup Plazza raises $15 Mn led by Accel, Elevation and Nexus "
+    },
+    {
+      "investorSlug": "sorin-investments",
+      "investorName": "Sorin Investments",
+      "matchedMentionName": "Sorin Investments",
+      "date": "2026-07-24T02:30:26.000Z",
+      "highlight": "Sorin Investments set to launch second fund with a  ₹2,000 crore corpus",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/sorin-investments-fund-ii-2000-crore-india-startups",
+      "sourceTitle": "Sorin Investments set to launch second fund with a  ₹2,000 crore corpus"
+    },
+    {
+      "investorSlug": "sanjay-nayar",
+      "investorName": "Sanjay Nayar",
+      "matchedMentionName": "Sanjay Nayar",
+      "date": "2026-07-24T02:30:26.000Z",
+      "highlight": "Sorin Investments set to launch second fund with a  ₹2,000 crore corpus",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/sorin-investments-fund-ii-2000-crore-india-startups",
+      "sourceTitle": "Sorin Investments set to launch second fund with a  ₹2,000 crore corpus"
+    },
+    {
+      "investorSlug": "accel",
+      "investorName": "Accel",
+      "matchedMentionName": "Accel",
+      "date": "2026-07-25T07:41:58.000Z",
+      "highlight": "Funding and acquisitions in Indian startups this week [July 20 - July 25] ",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/plazza-raises-15m-series-a-quick-commerce-india",
+      "sourceTitle": "Funding and acquisitions in Indian startups this week [July 20 - July 25] "
+    },
+    {
+      "investorSlug": "elevation-capital",
+      "investorName": "Elevation Capital",
+      "matchedMentionName": "Elevation Capital",
+      "date": "2026-07-25T07:41:58.000Z",
+      "highlight": "Funding and acquisitions in Indian startups this week [July 20 - July 25] ",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/plazza-raises-15m-series-a-quick-commerce-india",
+      "sourceTitle": "Funding and acquisitions in Indian startups this week [July 20 - July 25] "
+    },
+    {
+      "investorSlug": "nexus-venture-partners",
+      "investorName": "Nexus Venture Partners",
+      "matchedMentionName": "Nexus Venture Partners",
+      "date": "2026-07-25T07:41:58.000Z",
+      "highlight": "Funding and acquisitions in Indian startups this week [July 20 - July 25] ",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/plazza-raises-15m-series-a-quick-commerce-india",
+      "sourceTitle": "Funding and acquisitions in Indian startups this week [July 20 - July 25] "
+    },
+    {
+      "investorSlug": "info-edge-ventures",
+      "investorName": "Info Edge Ventures",
+      "matchedMentionName": "Info Edge",
+      "date": "2026-07-23T12:14:14.000Z",
+      "highlight": "Exclusive: Urban Harvest board to approve Rs 341 Cr Series D round from 58 investors ",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/urban-harvest-raises-35-9m-series-d-info-edge-162m-valuation",
+      "sourceTitle": "Exclusive: Urban Harvest board to approve Rs 341 Cr Series D round from 58 investors "
+    },
+    {
+      "investorSlug": "nueva-capital",
+      "investorName": "Nueva Capital",
+      "matchedMentionName": "Lc Nueva Advisors",
+      "date": "2026-07-23T12:14:14.000Z",
+      "highlight": "Exclusive: Urban Harvest board to approve Rs 341 Cr Series D round from 58 investors ",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/urban-harvest-raises-35-9m-series-d-info-edge-162m-valuation",
+      "sourceTitle": "Exclusive: Urban Harvest board to approve Rs 341 Cr Series D round from 58 investors "
+    },
+    {
+      "investorSlug": "nvidia-inception",
+      "investorName": "NVIDIA Inception",
+      "matchedMentionName": "Nvidia",
+      "date": "2026-07-27T11:00:44.000Z",
+      "highlight": "A $250 billion AI boost? Nvidia reportedly in talks to back OpenAI’s Ohio data centre project",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/nvidia-openai-ohio-data-centre-strategic-investment",
+      "sourceTitle": "A $250 billion AI boost? Nvidia reportedly in talks to back OpenAI’s Ohio data centre project"
+    },
+    {
+      "investorSlug": "softbank-investment-advisers",
+      "investorName": "SoftBank Investment Advisers",
+      "matchedMentionName": "SoftBank",
+      "date": "2026-07-27T11:00:44.000Z",
+      "highlight": "A $250 billion AI boost? Nvidia reportedly in talks to back OpenAI’s Ohio data centre project",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/nvidia-openai-ohio-data-centre-strategic-investment",
+      "sourceTitle": "A $250 billion AI boost? Nvidia reportedly in talks to back OpenAI’s Ohio data centre project"
+    },
+    {
+      "investorSlug": "norwest-venture-partners",
+      "investorName": "Norwest Venture Partners",
+      "matchedMentionName": "Norwest Venture Partners",
+      "date": "2026-07-20T16:22:18.000Z",
+      "highlight": "Wealthtech platform Veriqus raises Rs 387 Cr in funding round led by Norwest ",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/veriqus-group-raises-387-crore-norwest-venture-partners",
+      "sourceTitle": "Wealthtech platform Veriqus raises Rs 387 Cr in funding round led by Norwest "
+    },
+    {
+      "investorSlug": "inflexor-ventures",
+      "investorName": "Inflexor Ventures",
+      "matchedMentionName": "Inflexor Ventures",
+      "date": "2026-07-28T09:35:45.000Z",
+      "highlight": "Inflexor Ventures raises  ₹400 crore in first close of  ₹1,250 crore Fund III",
+      "sector": "funding-round",
+      "sourceType": "article",
+      "sourceUrl": "/news/inflexor-ventures-fund-iii-first-close-400-crore",
+      "sourceTitle": "Inflexor Ventures raises  ₹400 crore in first close of  ₹1,250 crore Fund III"
+    },
+    {
+      "investorSlug": "sofina",
+      "investorName": "Sofina",
+      "matchedMentionName": "Sofina Ventures",
+      "date": "2026-06-25T15:27:31.000Z",
+      "highlight": "Sofina Ventures sells stake via ₹177 Cr bulk deal",
+      "sector": "Beauty & Personal Care",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://inc42.com/buzz/sofina-ventures-offloads-honasa-consumers-shares-via-%e2%82%b9177-cr-bulk-deal/",
+      "sourceTitle": "Sofina Ventures Offloads Honasa Consumer’s Shares Via ₹177 Cr Bulk Deal"
+    },
+    {
+      "investorSlug": "accel",
+      "investorName": "Accel",
+      "matchedMentionName": "Accel",
+      "date": "2026-06-24T06:32:08.000Z",
+      "highlight": "$3.3M Seed",
+      "sector": "Space Technology",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://inc42.com/buzz/qosmic-bags-3-3-mn-to-build-laser-based-satellite-communication-systems/",
+      "sourceTitle": "QOSMIC Bags $3.3 Mn To Build Laser-Based Satellite Communication Systems"
+    },
+    {
+      "investorSlug": "prosus-ventures",
+      "investorName": "Prosus Ventures",
+      "matchedMentionName": "Prosus",
+      "date": "2026-06-24T06:32:08.000Z",
+      "highlight": "$3.3M Seed",
+      "sector": "Space Technology",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://inc42.com/buzz/qosmic-bags-3-3-mn-to-build-laser-based-satellite-communication-systems/",
+      "sourceTitle": "QOSMIC Bags $3.3 Mn To Build Laser-Based Satellite Communication Systems"
+    },
+    {
+      "investorSlug": "lightspeed",
+      "investorName": "Lightspeed",
+      "matchedMentionName": "Lightspeed",
+      "date": "2026-06-25T08:28:56.000Z",
+      "highlight": "$7M Series A",
+      "sector": "Health & Wellness",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://yourstory.com/2026/06/superliving-raises-7-million-in-series-a-led-by-lightspeed",
+      "sourceTitle": "SuperLiving raises $7M in Series A led by Lightspeed\r\n\r\n"
+    },
+    {
+      "investorSlug": "bajaj-labs-bajaj-finserv-ventures",
+      "investorName": "Bajaj Labs / Bajaj Finserv Ventures",
+      "matchedMentionName": "Bajaj Finserv Ventures",
+      "date": "2026-06-30T01:00:00.000Z",
+      "highlight": "$10M Funding Round",
+      "sector": "Customer Experience / CX Technology",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://yourstory.com/2026/06/kapture-cx-raises-10-million-led-by-bajaj-finserv-ventures",
+      "sourceTitle": "Kapture CX raises $10M led by Bajaj Finserv Ventures\r\n\r\n"
+    },
+    {
+      "investorSlug": "arkam-ventures",
+      "investorName": "Arkam Ventures",
+      "matchedMentionName": "Arkam Ventures",
+      "date": "2026-07-01T12:54:43.000Z",
+      "highlight": "$2.8M Raised from Arkam Ventures",
+      "sector": "Fintech",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://inc42.com/buzz/spense-raises-2-8-mn-from-arkam-ventures-to-build-secured-lending-infra/",
+      "sourceTitle": "Spense Raises $2.8 Mn From Arkam Ventures To Build Secured Lending Infra"
+    },
+    {
+      "investorSlug": "info-edge-ventures",
+      "investorName": "Info Edge Ventures",
+      "matchedMentionName": "Info Edge",
+      "date": "2026-07-06T18:11:21.000Z",
+      "highlight": "Acquired remaining 45% stake for ₹39.9 Cr",
+      "sector": "EdTech",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://inc42.com/buzz/info-edge-to-acquire-remaining-45-stake-in-coding-ninjas-for-%e2%82%b940-cr/",
+      "sourceTitle": "Info Edge To Acquire Remaining 45% Stake In Coding Ninjas For ₹40 Cr"
+    },
+    {
+      "investorSlug": "vijay-shekhar-sharma",
+      "investorName": "Vijay Shekhar Sharma",
+      "matchedMentionName": "Vijay Shekhar Sharma",
+      "date": "2026-07-07T08:53:14.000Z",
+      "highlight": "$3.75M Pre-Seed",
+      "sector": "Live Entertainment / Ticketing",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://inc42.com/buzz/exclusive-live-entertainment-discovery-platform-thumpn-nets-3-75-mn-from-vijay-shekhar-sharma-others/",
+      "sourceTitle": "Exclusive: Live Entertainment Discovery Platform thumpN Nets $3.75 Mn From Vijay Shekhar Sharma, Others"
+    },
+    {
+      "investorSlug": "zoho-investments",
+      "investorName": "Zoho Investments",
+      "matchedMentionName": "Zoho",
+      "date": "2026-07-11T09:39:24.000Z",
+      "highlight": "₹2.6 Cr Profit in FY26, Eyes ₹150 Cr Series B",
+      "sector": "Robotics",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://inc42.com/buzz/zoho-backed-genrobotics-posts-%e2%82%b92-6-cr-profit-in-fy26-eyes-%e2%82%b9150-cr-series-b-round/",
+      "sourceTitle": "Zoho-Backed Genrobotics Posts ₹2.6 Cr Profit In FY26, Eyes ₹150 Cr Series B Round"
+    },
+    {
+      "investorSlug": "fireside-ventures",
+      "investorName": "Fireside Ventures",
+      "matchedMentionName": "Fireside Ventures",
+      "date": "2026-07-15T11:41:21.000Z",
+      "highlight": "₹30Cr Pre-Series A",
+      "sector": "Mother & Baby Care",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://inc42.com/buzz/promom-bags-%e2%82%b930-cr-from-fireside-ventures-to-expand-mom-baby-care-portfolio/",
+      "sourceTitle": "Promom Bags ₹30 Cr From Fireside Ventures To Expand Mom & Baby Care Portfolio"
+    },
+    {
+      "investorSlug": "info-edge-ventures",
+      "investorName": "Info Edge Ventures",
+      "matchedMentionName": "Info Edge",
+      "date": "2026-07-16T12:00:30.000Z",
+      "highlight": "$5.5M Seed",
+      "sector": "AI Hardware",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://inc42.com/buzz/aina-raises-5-5-mn-from-info-edge-ventures-360-one-asset-to-build-ai-native-interfaces/",
+      "sourceTitle": "Aina Raises $5.5 Mn From Info Edge, Others To Build AI Hardware Interface"
+    },
+    {
+      "investorSlug": "ivycap-ventures",
+      "investorName": "IvyCap Ventures",
+      "matchedMentionName": "IvyCap Ventures",
+      "date": "2026-07-16T07:56:10.000Z",
+      "highlight": "$8M Pre-Series B",
+      "sector": "Manufacturing Technology",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://yourstory.com/2026/07/manufacturing-tech-startup-switchon-pre-series-b-funding-ivycap-ventures",
+      "sourceTitle": "Manufacturing tech startup SwitchOn raises $8M in pre-Series B funding round led by IvyCap Ventures"
+    },
+    {
+      "investorSlug": "bessemer-venture-partners",
+      "investorName": "Bessemer Venture Partners",
+      "matchedMentionName": "Bessemer Venture Partners",
+      "date": "2026-07-21T06:06:28.000Z",
+      "highlight": "₹61 Cr Series A",
+      "sector": "Traveltech",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://inc42.com/buzz/traveltech-startup-30-sundays-raises-%e2%82%b961-cr-to-expand-ai-powered-holiday-planning/",
+      "sourceTitle": "Traveltech Startup 30 Sundays Raises ₹61 Cr To Expand AI-Powered Holiday Planning"
+    },
+    {
+      "investorSlug": "sequoia-india-peak-xv",
+      "investorName": "Sequoia (India) / Peak XV",
+      "matchedMentionName": "Peak XV Partners",
+      "date": "2026-07-23T06:45:22.000Z",
+      "highlight": "Rs 446 Cr Revenue & Rs 77 Cr Profit in FY26",
+      "sector": "Pharmaceuticals / Healthcare",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://entrackr.com/fintrackr/akumentis-healthcare-records-rs-446-cr-revenue-and-rs-77-cr-profit-in-fy26-12190109",
+      "sourceTitle": "Akumentis Healthcare records Rs 446 Cr revenue and Rs 77 Cr profit in FY26 "
+    },
+    {
+      "investorSlug": "inflection-point-ventures",
+      "investorName": "Inflection Point Ventures",
+      "matchedMentionName": "Inflection Point Ventures",
+      "date": "2026-07-23T06:02:27.000Z",
+      "highlight": "Rs 2.35Cr Seed",
+      "sector": "AI Insurtech / Industrial Safety",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://entrackr.com/snippets/ai-insurtech-startup-neuralkart-raises-seed-funding-led-by-inflection-point-ventures-12189954",
+      "sourceTitle": "AI insurtech startup NeuralKart raises seed funding led by Inflection Point Ventures "
+    },
+    {
+      "investorSlug": "transition-vc",
+      "investorName": "Transition VC",
+      "matchedMentionName": "Transition Venture Capital Fund",
+      "date": "2026-07-20T05:17:44.000Z",
+      "highlight": "Rs 20.5 Cr Pre-Series A at Rs 80 Cr valuation",
+      "sector": "Agriculture Drones / AgriTech",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://entrackr.com/exclusive/exclusive-agriculture-drone-startup-suind-set-to-raise-rs-205-cr-at-rs-80-cr-valuation-12180327",
+      "sourceTitle": "Exclusive: Agriculture drone startup Suind set to raise Rs 20.5 Cr at Rs 80 Cr valuation "
+    },
+    {
+      "investorSlug": "ciie-co",
+      "investorName": "CIIE.CO",
+      "matchedMentionName": "CIIE Initiatives",
+      "date": "2026-07-20T05:17:44.000Z",
+      "highlight": "Rs 20.5 Cr Pre-Series A at Rs 80 Cr valuation",
+      "sector": "Agriculture Drones / AgriTech",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://entrackr.com/exclusive/exclusive-agriculture-drone-startup-suind-set-to-raise-rs-205-cr-at-rs-80-cr-valuation-12180327",
+      "sourceTitle": "Exclusive: Agriculture drone startup Suind set to raise Rs 20.5 Cr at Rs 80 Cr valuation "
+    },
+    {
+      "investorSlug": "bessemer-venture-partners",
+      "investorName": "Bessemer Venture Partners",
+      "matchedMentionName": "Bessemer Venture Partners",
+      "date": "2026-07-21T03:29:12.000Z",
+      "highlight": "$6.7M Series A",
+      "sector": "Travel Tech",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://entrackr.com/snippets/bessemer-leads-67-mn-round-in-travel-tech-startup-30-sundays-12183146",
+      "sourceTitle": "Bessemer leads $6.7 Mn round in travel tech startup 30 Sundays "
+    },
+    {
+      "investorSlug": "info-edge-ventures",
+      "investorName": "Info Edge Ventures",
+      "matchedMentionName": "Info Edge Ventures",
+      "date": "2026-07-21T03:29:12.000Z",
+      "highlight": "$6.7M Series A",
+      "sector": "Travel Tech",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://entrackr.com/snippets/bessemer-leads-67-mn-round-in-travel-tech-startup-30-sundays-12183146",
+      "sourceTitle": "Bessemer leads $6.7 Mn round in travel tech startup 30 Sundays "
+    },
+    {
+      "investorSlug": "eximius-ventures",
+      "investorName": "Eximius Ventures",
+      "matchedMentionName": "Eximius",
+      "date": "2026-07-21T03:29:12.000Z",
+      "highlight": "$6.7M Series A",
+      "sector": "Travel Tech",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://entrackr.com/snippets/bessemer-leads-67-mn-round-in-travel-tech-startup-30-sundays-12183146",
+      "sourceTitle": "Bessemer leads $6.7 Mn round in travel tech startup 30 Sundays "
+    },
+    {
+      "investorSlug": "unicorn-india-ventures",
+      "investorName": "Unicorn India Ventures",
+      "matchedMentionName": "Unicorn India Ventures",
+      "date": "2026-07-22T05:55:31.000Z",
+      "highlight": "$1M Seed Round",
+      "sector": "Medtech",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://entrackr.com/snippets/medtech-startup-bioscan-research-raises-1-mn-in-seed-round-led-by-unicorn-india-ventures-12186756",
+      "sourceTitle": "Medtech startup Bioscan Research raises $1 Mn in seed round led by Unicorn India Ventures "
+    },
+    {
+      "investorSlug": "qed-investors",
+      "investorName": "QED Investors",
+      "matchedMentionName": "Angel investors",
+      "date": "2026-07-23T09:21:11.000Z",
+      "highlight": "Rs 1.6Cr Pre-Seed",
+      "sector": "EdTech",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://entrackr.com/snippets/pedalstart-leads-pre-seed-round-in-extracurricular-learning-platform-upkraft-12190685",
+      "sourceTitle": "PedalStart leads pre-seed round in extracurricular learning platform UpKraft "
+    },
+    {
+      "investorSlug": "rainmatter",
+      "investorName": "Rainmatter",
+      "matchedMentionName": "Rainmatter",
+      "date": "2026-07-23T07:11:47.000Z",
+      "highlight": "Rs 32.5 Cr Pre-Series A",
+      "sector": "Agribusiness / Clean Energy",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://entrackr.com/snippets/farm-watt-innovations-raises-rs-325-cr-co-led-by-ian-alpha-fund-and-rainmatter-12190175",
+      "sourceTitle": "Farm Watt Innovations raises Rs 32.5 Cr co-led by IAN Alpha Fund and Rainmatter "
+    },
+    {
+      "investorSlug": "sucseed-indovation",
+      "investorName": "SucSEED Indovation",
+      "matchedMentionName": "SucSEED Indovation Fund",
+      "date": "2026-07-21T09:41:20.000Z",
+      "highlight": "Rs 2.5 Cr Pre-Seed/Early Stage",
+      "sector": "Enterprise SaaS / AI / Decision Intelligence",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://entrackr.com/snippets/fireai-raises-rs-25-cr-from-sucseed-indovation-fund-12184501",
+      "sourceTitle": "FireAI raises Rs 2.5 Cr from SucSEED Indovation Fund "
+    },
+    {
+      "investorSlug": "rukam-capital",
+      "investorName": "Rukam Capital",
+      "matchedMentionName": "Rukam Capital",
+      "date": "2026-07-20T10:45:38.000Z",
+      "highlight": "Rs 5Cr Seed Round",
+      "sector": "Beauty & Personal Care / Skincare",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://entrackr.com/snippets/rukam-capital-leads-seed-round-in-skin-longevity-beauty-brand-lngvty-12181648",
+      "sourceTitle": "Rukam Capital leads seed round in skin longevity beauty brand LNGVTY "
+    },
+    {
+      "investorSlug": "sequoia-india-peak-xv",
+      "investorName": "Sequoia (India) / Peak XV",
+      "matchedMentionName": "Peak XV Partners",
+      "date": "2026-07-20T06:10:56.000Z",
+      "highlight": "First Profitable Quarter; Eyes Full-Year Profit in FY27",
+      "sector": "Insurtech",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://entrackr.com/news/turtlemint-shares-jump-over-10-as-company-eyes-profitable-fy27-on-growing-renewal-business-12180533",
+      "sourceTitle": "Turtlemint shares jump over 10% as company eyes profitable FY27 on growing renewal business "
+    },
+    {
+      "investorSlug": "nexus-venture-partners",
+      "investorName": "Nexus Venture Partners",
+      "matchedMentionName": "Nexus Venture Partners",
+      "date": "2026-07-20T06:10:56.000Z",
+      "highlight": "First Profitable Quarter; Eyes Full-Year Profit in FY27",
+      "sector": "Insurtech",
+      "sourceType": "raw_content",
+      "sourceUrl": "https://entrackr.com/news/turtlemint-shares-jump-over-10-as-company-eyes-profitable-fy27-on-growing-renewal-business-12180533",
+      "sourceTitle": "Turtlemint shares jump over 10% as company eyes profitable FY27 on growing renewal business "
+    }
+  ],
+  "unmatched": [
+    {
+      "name": "ServiceNow Ventures",
+      "count": 2
+    },
+    {
+      "name": "Actis",
+      "count": 1
+    },
+    {
+      "name": "Government of India",
+      "count": 1
+    },
+    {
+      "name": "Amazon Web Services",
+      "count": 1
+    },
+    {
+      "name": "Microsoft Azure",
+      "count": 1
+    },
+    {
+      "name": "Foxconn Singapore",
+      "count": 1
+    },
+    {
+      "name": "Foxconn Hon Hai Technology India",
+      "count": 1
+    },
+    {
+      "name": "Suzuki Motor",
+      "count": 1
+    },
+    {
+      "name": "Antariksh Venture Fund",
+      "count": 1
+    },
+    {
+      "name": "Stakeboat Capital",
+      "count": 1
+    },
+    {
+      "name": "Mukesh Ambani",
+      "count": 1
+    },
+    {
+      "name": "OrbiMed",
+      "count": 1
+    },
+    {
+      "name": "ServiceNow",
+      "count": 1
+    },
+    {
+      "name": "Sarvam AI",
+      "count": 1
+    },
+    {
+      "name": "HCLTech",
+      "count": 1
+    },
+    {
+      "name": "NGP Capital",
+      "count": 1
+    },
+    {
+      "name": "Skegen Asset Management",
+      "count": 1
+    },
+    {
+      "name": "Indus Bridge Ventures",
+      "count": 1
+    },
+    {
+      "name": "GJNX Ventures",
+      "count": 1
+    },
+    {
+      "name": "Ashish Kacholia",
+      "count": 1
+    },
+    {
+      "name": "All In Capital",
+      "count": 1
+    },
+    {
+      "name": "KKR India",
+      "count": 1
+    },
+    {
+      "name": "Reid Hoffman",
+      "count": 1
+    },
+    {
+      "name": "Mark Pincus",
+      "count": 1
+    },
+    {
+      "name": "J & A Partners",
+      "count": 1
+    },
+    {
+      "name": "Sandeep Kapadia",
+      "count": 1
+    },
+    {
+      "name": "Oracle",
+      "count": 1
+    },
+    {
+      "name": "Welspun One",
+      "count": 1
+    },
+    {
+      "name": "PhysicsWallah",
+      "count": 1
+    },
+    {
+      "name": "Andrew Parker",
+      "count": 1
+    },
+    {
+      "name": "Papa.com cofounders",
+      "count": 1
+    },
+    {
+      "name": "Centre Court Capital",
+      "count": 1
+    },
+    {
+      "name": "Colossa Ventures",
+      "count": 1
+    },
+    {
+      "name": "Version One",
+      "count": 1
+    },
+    {
+      "name": "BlackSoil",
+      "count": 1
+    },
+    {
+      "name": "Existing Investor",
+      "count": 1
+    },
+    {
+      "name": "Desai",
+      "count": 1
+    },
+    {
+      "name": "US-based seed fund",
+      "count": 1
+    },
+    {
+      "name": "IFC",
+      "count": 1
+    },
+    {
+      "name": "Earth Fund",
+      "count": 1
+    },
+    {
+      "name": "Persol Holdings",
+      "count": 1
+    },
+    {
+      "name": "Capria Ventures",
+      "count": 1
+    },
+    {
+      "name": "PedalStart",
+      "count": 1
+    },
+    {
+      "name": "IAN Alpha Fund",
+      "count": 1
+    },
+    {
+      "name": "Zaggle",
+      "count": 1
+    },
+    {
+      "name": "Saltwater Sutra",
+      "count": 1
+    },
+    {
+      "name": "Nirmitsu Inspirational Ventures",
+      "count": 1
+    },
+    {
+      "name": "Gautam Verlekar",
+      "count": 1
+    },
+    {
+      "name": "Glen Fernandes",
+      "count": 1
+    },
+    {
+      "name": "Richard McCallum",
+      "count": 1
+    },
+    {
+      "name": "Ali Moosa",
+      "count": 1
+    },
+    {
+      "name": "Unilodgers",
+      "count": 1
+    }
+  ]
+}
