@@ -29,9 +29,10 @@ const WINDOW_DAYS = windowIdx >= 0 ? Number(args[windowIdx + 1]) || 180 : 180;
 // Words that add no matching signal — stripped before comparing fund names.
 const FILLER_WORDS = new Set([
   'ventures', 'venture', 'capital', 'partners', 'partner', 'fund', 'funds', 'vc',
-  'investment', 'investments', 'associates', 'group', 'holdings', 'llp', 'pvt',
-  'ltd', 'limited', 'inc', 'co', 'company', 'network', 'networks', 'syndicate',
-  'angels', 'angel', 'ecosystem', 'accelerator', 'studio', 'the', 'and', 'india'
+  'investment', 'investments', 'investor', 'investors', 'associates', 'group',
+  'holdings', 'llp', 'pvt', 'ltd', 'limited', 'inc', 'co', 'company', 'network',
+  'networks', 'syndicate', 'angels', 'angel', 'ecosystem', 'accelerator', 'studio',
+  'the', 'and', 'india'
 ]);
 
 function coreTokens(name) {
@@ -45,25 +46,48 @@ function coreTokens(name) {
 }
 
 /**
- * Returns a confidence match score, or null if the names don't correspond.
- * High-confidence only: the smaller token set must be fully contained in the
- * larger one, and at least one shared token must be long enough to be
- * distinctive (avoids matching on short/common fragments).
+ * Returns a match descriptor, or null if the names don't correspond with high
+ * enough confidence. Two ways to match, both deliberately conservative:
+ *
+ *  - "exact": token sets are identical after filler-stripping (e.g.
+ *    "Norwest Capital" / "Norwest Venture Partners" both reduce to
+ *    {norwest}). Single shared distinctive words are fine here because
+ *    there's nothing left over on either side to disagree about.
+ *
+ *  - "multi": the smaller token set is fully contained in the larger one AND
+ *    at least 2 distinct tokens are shared. This is what catches
+ *    "Peak XV Partners" -> "Sequoia (India) / Peak XV" without also letting
+ *    a single common word (e.g. "Bharat", "Amazon", "Tata", "Cloud") pull in
+ *    an unrelated fund that just happens to share that one word.
+ *
+ * A lone shared token where the two sets otherwise differ (one side has
+ * extra words the other doesn't) is rejected — that's exactly the shape of
+ * the false positives seen in testing (e.g. "Google Cloud" vs. "Cloud
+ * Capital", "Bharat Value Fund" vs. "Bharat Angels Fund").
  */
 function matchScore(mentionName, investorTokens) {
   const mentionTokens = coreTokens(mentionName);
   if (!mentionTokens.length || !investorTokens.length) return null;
 
-  const [small, large] = mentionTokens.length <= investorTokens.length
-    ? [mentionTokens, investorTokens]
-    : [investorTokens, mentionTokens];
+  const mentionSet = new Set(mentionTokens);
+  const investorSet = new Set(investorTokens);
 
-  const largeSet = new Set(large);
-  const shared = small.filter((t) => largeSet.has(t));
-  if (shared.length < small.length) return null; // smaller set must be fully covered
-  if (!shared.some((t) => t.length >= 4)) return null; // need a distinctive token
+  const isIdentical =
+    mentionSet.size === investorSet.size && [...mentionSet].every((t) => investorSet.has(t));
+  if (isIdentical) {
+    if ([...mentionSet].some((t) => t.length >= 3)) return { kind: 'exact', shared: mentionSet.size };
+    return null;
+  }
 
-  return { shared: shared.length, distinctiveLen: Math.max(...shared.map((t) => t.length)) };
+  const [smallSet, largeSet] = mentionSet.size <= investorSet.size
+    ? [mentionSet, investorSet]
+    : [investorSet, mentionSet];
+  const fullyContained = [...smallSet].every((t) => largeSet.has(t));
+  if (fullyContained && smallSet.size >= 2) {
+    return { kind: 'multi', shared: smallSet.size };
+  }
+
+  return null;
 }
 
 function loadInvestorIndex() {
@@ -77,13 +101,15 @@ function loadInvestorIndex() {
 
 function findBestMatch(mentionName, index) {
   let best = null;
+  const matches = [];
   for (const inv of index) {
     const score = matchScore(mentionName, inv.tokens);
-    if (!score) continue;
-    if (!best || score.distinctiveLen > best.score.distinctiveLen || score.shared > best.score.shared) {
-      best = { inv, score };
-    }
+    if (score) matches.push({ inv, score });
   }
+  if (!matches.length) return null;
+  // If more than one investor matches the same mention, it's too ambiguous to trust — skip.
+  if (matches.length > 1) return null;
+  best = matches[0];
   return best;
 }
 
