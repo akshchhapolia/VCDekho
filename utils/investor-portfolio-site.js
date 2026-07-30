@@ -218,26 +218,22 @@ function extractBalancedArray(html, startIdx) {
 
 function parseJsArrayLiteral(chunk) {
   if (!chunk || chunk.length < 10) return null;
-  const cleaned = chunk
-    .replace(/\/\/[^\n\r]*/g, '')
-    .replace(/\/\*[\s\S]*?\*\//g, '')
-    .replace(/,\s*([}\]])/g, '$1');
 
+  // Try strict JSON first (with trailing-comma fix only — do NOT strip //
+  // comments; that destroys http:// URLs inside string values).
   try {
-    const arr = JSON.parse(cleaned);
+    const asJson = chunk.replace(/,\s*([}\]])/g, '$1');
+    const arr = JSON.parse(asJson);
     if (Array.isArray(arr)) return arr;
   } catch (_) {
-    /* fall through to Function */
+    /* fall through */
   }
 
-  // Many fund sites embed JS object literals (unescaped quotes in strings, etc.)
-  // that JSON.parse rejects. Evaluate as a literal only — no free identifiers.
+  // Many fund sites embed JS object literals that JSON.parse rejects
+  // (smart quotes, unescaped apostrophes in desc, etc.). Evaluate as a
+  // literal expression only.
   try {
-    if (/[;`]|constructor|require|process|global|Function|eval/i.test(cleaned)) {
-      // Still allow normal company text; block obvious code injection markers
-      // only when they look like statements rather than string content.
-    }
-    const arr = Function('"use strict"; return (' + cleaned + ');')();
+    const arr = Function('"use strict"; return (' + chunk + ');')();
     if (Array.isArray(arr)) return arr;
   } catch (_) {
     return null;
