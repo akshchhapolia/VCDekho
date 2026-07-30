@@ -6,6 +6,18 @@ let cache = null;
 
 const STAGE_GUIDE_IDS = new Set(INVESTMENT_STAGES.map(s => s.id));
 
+// How recent a mined news mention has to be for an investor to be shown as
+// "actively deploying". Kept as a rolling window (not a stored boolean) so
+// the badge ages out correctly even if data/investor-activity.json isn't
+// regenerated for a while — see scripts/build_investor_activity.js.
+const ACTIVE_WINDOW_DAYS = 180;
+
+function isActivelyDeploying(inv) {
+  if (!inv || !inv.lastCheckDate) return false;
+  const ageDays = (Date.now() - new Date(inv.lastCheckDate).getTime()) / (24 * 60 * 60 * 1000);
+  return ageDays >= 0 && ageDays <= ACTIVE_WINDOW_DAYS;
+}
+
 function loadInvestorsData() {
   if (cache) return cache;
   const filePath = path.join(__dirname, '..', 'data', 'investors.json');
@@ -53,6 +65,9 @@ function filterInvestors(query = {}) {
   const type = query.type || '';
   const thesis = query.thesis || '';
   const cheque = query.cheque || '';
+  const active = query.active === '1' || query.active === 'true';
+
+  if (active) list = list.filter(isActivelyDeploying);
 
   if (q) {
     list = list.filter(i =>
