@@ -1,0 +1,10 @@
+{
+  "found": [
+    {"name":"Narayanan Muralidharan","company":"Morphosis Ventures","linkedinUrl":"https://www.linkedin.com/in/narayanan-muralidharan-8ba51651","sourceUrl":"https://www.morphosisvc.com/team/narayanan-muralidharan/","method":"search","confidence":"high"},
+    {"name":"Mukesh Sharma","company":"Menterra Ventures","linkedinUrl":"https://www.linkedin.com/in/mukesh-sharma-ca-cfa-9b09475","sourceUrl":"https://www.menterra.com/people-post/mukesh-sharma/","method":"search","confidence":"high"},
+    {"name":"Paul Basil","company":"Menterra Ventures","linkedinUrl":"https://www.linkedin.com/in/paul-basil-73736a12","sourceUrl":"https://www.menterra.com/people-post/paul-basil/","method":"search","confidence":"high"},
+    {"name":"Pranav Sharma","company":"Woodstock Fund","linkedinUrl":"https://www.linkedin.com/in/pranav-sharma-7a05b13","twitterUrl":"https://x.com/pranavsharma35","sourceUrl":"https://startupintros.com/people/pranav-sharma","method":"search","confidence":"high"},
+    {"name":"Kenneth K Thomas","company":"BackFuture","linkedinUrl":"https://www.linkedin.com/in/kennethkashifthomas","sourceUrl":"https://www.backfuture.vc/","method":"search","confidence":"high"},
+    {"name":"Chris Kaptein","company":"Integra Partners","linkedinUrl":"https://www.linkedin.com/in/chriskaptein","sourceUrl":"https://integrapartners.co/team/chris-kaptein/","method":"search","confidence":"high"}
+  ]
+}
