@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T06:03:10.538Z",
+  "generatedAt": "2026-07-30T06:05:51.944Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -5500,6 +5500,177 @@
       "sourceUrl": "https://www.kkr.com/wealth",
       "method": "crawl",
       "companyType": "PE"
+    },
+    {
+      "company": "Leo Capital",
+      "name": "Rajul Garg",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://leo.capital/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Leo Capital",
+      "name": "Shwetank Verma",
+      "title": "Co-founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://leo.capital/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Leo Capital",
+      "name": "Ravi Srivastava",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://leo.capital/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Leo Capital",
+      "name": "Madhusmita Das",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://leo.capital/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Leo Capital",
+      "name": "Henry Goodwin",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://leo.capital/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Lightbox Ventures",
+      "name": "Rashmi Guptey",
+      "title": "CFO and General Counsel",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.lightbox.vc/people",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "LongView Ventures",
+      "name": "Jitha Thathachari",
+      "title": "Team Member",
+      "linkedinUrl": "",
+      "sourceUrl": "https://longview-ventures.com/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "LongView Ventures",
+      "name": "Punit Chokhani",
+      "title": "Team Member",
+      "linkedinUrl": "",
+      "sourceUrl": "https://longview-ventures.com/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Mindtree Ventures / LTIMindtree Investments",
+      "name": "Pandiya Kumar Rajamony",
+      "title": "Head Application Management Services",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.ltm.com/services/application-management-services",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Multiple Ventures",
+      "name": "Sanjay Ramakrishnan",
+      "title": "Founder & General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.multiplyventures.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Multiple Ventures",
+      "name": "Raveen Sastry",
+      "title": "Founder & General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.multiplyventures.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Multiple Ventures",
+      "name": "Shruti Singhal",
+      "title": "Vice President - Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.multiplyventures.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Multiple Ventures",
+      "name": "Natarajan Ranganathan",
+      "title": "Operating Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.multiplyventures.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Multiple Ventures",
+      "name": "Ayush Jain",
+      "title": "Principal",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.multiplyventures.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Naya Ventures",
+      "name": "Gokul Dixit",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.dallasvc.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Naya Ventures",
+      "name": "Kiran Kalluri",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.dallasvc.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Naya Ventures",
+      "name": "Ravish Ailinani",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.dallasvc.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Naya Ventures",
+      "name": "Shyam Penumaka",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.dallasvc.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Next Star Venture Capital LLP",
+      "name": "Nikhil Rathi",
+      "title": "Founder & Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.nextstarvc.com/",
+      "method": "crawl",
+      "companyType": "Corporate Venture Capital (CVC) + startup incubator (small/emerging)"
     }
   ],
   "unresolved": [],
