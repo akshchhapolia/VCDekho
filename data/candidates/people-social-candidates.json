@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T09:19:41.369Z",
+  "generatedAt": "2026-07-30T09:30:11.934Z",
   "schemaVersion": 1,
   "description": "Staged LinkedIn/Twitter enrichments for existing People rows. Apply via scripts/apply_people_socials.js — patches empty CSV cells only.",
   "found": [
@@ -3560,6 +3560,1458 @@
       "method": "harvest",
       "confidence": "high",
       "companyType": "Accelerator"
+    },
+    {
+      "key": "vineet chandra rai||intellecap",
+      "name": "Vineet Chandra Rai",
+      "company": "Intellecap",
+      "title": "Founder and Vice Chairman Aavishkaar Group",
+      "linkedinUrl": "https://www.linkedin.com/in/vineet-rai-536160",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.intellecap.com/about-us/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Accelerator"
+    },
+    {
+      "key": "carlos ck kokron||seventures",
+      "name": "Carlos (CK) Kokron",
+      "company": "SE Ventures",
+      "title": "General Partner | Menlo Park",
+      "linkedinUrl": "https://www.linkedin.com/in/carloskokron",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.seventures.com/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "key": "gemma odena bult||seventures",
+      "name": "Gemma Odena Bultó",
+      "company": "SE Ventures",
+      "title": "Operating Partner | Menlo Park",
+      "linkedinUrl": "https://www.linkedin.com/in/gemma-odena-bulto",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.seventures.com/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "key": "dr amritendu mukherjee||goldensparrow",
+      "name": "Dr. Amritendu Mukherjee",
+      "company": "Golden Sparrow",
+      "title": "Artificial Intelligence",
+      "linkedinUrl": "https://www.linkedin.com/in/amritendu-mukherjee",
+      "twitterUrl": "",
+      "sourceUrl": "https://goldensparrow.vc/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Syndicate / Network"
+    },
+    {
+      "key": "dr anand rao||goldensparrow",
+      "name": "Dr. Anand Rao",
+      "company": "Golden Sparrow",
+      "title": "Artificial Intelligence",
+      "linkedinUrl": "https://www.linkedin.com/in/anandsrao",
+      "twitterUrl": "",
+      "sourceUrl": "https://goldensparrow.vc/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Syndicate / Network"
+    },
+    {
+      "key": "aakash goyal||sparrowcapital",
+      "name": "Aakash Goyal",
+      "company": "Sparrow Capital",
+      "title": "General Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/aakashmgoyal",
+      "twitterUrl": "",
+      "sourceUrl": "https://sparrowvc.com/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "abhilash paul||verbventures",
+      "name": "Abhilash Paul",
+      "company": "Verb Ventures",
+      "title": "Venture Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/abhilashpaul",
+      "twitterUrl": "",
+      "sourceUrl": "https://verb.ventures/about/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "abhiram bhalerao||v3venturesverlinvest",
+      "name": "Abhiram Bhalerao",
+      "company": "V3 Ventures (Verlinvest)",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/abhirambhalerao",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.v3.ventures/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "abhishek dhawan||precoginnovationpartners",
+      "name": "Abhishek Dhawan",
+      "company": "Precog Innovation Partners",
+      "title": "Venture Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/abhishek-dhawan-2428007",
+      "twitterUrl": "",
+      "sourceUrl": "https://precoginnovations.com/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "abhishek gupta||trifectacapital",
+      "name": "Abhishek Gupta",
+      "company": "Trifecta Capital",
+      "title": "Partner, Credit",
+      "linkedinUrl": "https://www.linkedin.com/in/guptaabhi",
+      "twitterUrl": "",
+      "sourceUrl": "https://trifectacapital.in/people/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "abhishek sharman||cdmcapital",
+      "name": "Abhishek Sharman",
+      "company": "CDM Capital",
+      "title": "Growth Equity · Carpediem Capital",
+      "linkedinUrl": "https://www.linkedin.com/in/abhishek-sharman-45bb32",
+      "twitterUrl": "",
+      "sourceUrl": "https://cdmcapital.in/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "abraham thomas||merakventures",
+      "name": "Abraham Thomas",
+      "company": "Merak Ventures",
+      "title": "Startup Advisor & Investor ex Co-Founder @ Quandl",
+      "linkedinUrl": "https://www.linkedin.com/in/athomasq",
+      "twitterUrl": "",
+      "sourceUrl": "https://merakventures.com/about.html",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "aditya siroya||aeravtiventures",
+      "name": "Aditya Siroya",
+      "company": "Aeravti Ventures",
+      "title": "CIO - Repurpose Global",
+      "linkedinUrl": "https://www.linkedin.com/in/aditya-siroya",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.aeravti.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "aditya somani||ecosystemventures",
+      "name": "Aditya Somani",
+      "company": "Ecosystem Ventures",
+      "title": "Mentor",
+      "linkedinUrl": "https://www.linkedin.com/in/aditya-somani-3a46a21",
+      "twitterUrl": "",
+      "sourceUrl": "https://ecosystemventures.in/about-us/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "amit dhamija||precoginnovationpartners",
+      "name": "Amit Dhamija",
+      "company": "Precog Innovation Partners",
+      "title": "Venture Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/amit-dhamija-86a9433",
+      "twitterUrl": "",
+      "sourceUrl": "https://precoginnovations.com/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "amit dutta||hunchventuresinvestmentspvtltd",
+      "name": "Amit Dutta",
+      "company": "Hunch Ventures & Investments Pvt Ltd",
+      "title": "Managing Director, Hunch Mobility",
+      "linkedinUrl": "https://www.linkedin.com/in/amit-dutta-6b7b9510",
+      "twitterUrl": "",
+      "sourceUrl": "https://hunchventures.com/approach",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "amit thakkar||kathyawadventures",
+      "name": "Amit Thakkar",
+      "company": "Kathyawad Ventures",
+      "title": "Venture Partner - Investments",
+      "linkedinUrl": "https://www.linkedin.com/in/amit-thakkar-4233261",
+      "twitterUrl": "",
+      "sourceUrl": "https://kathyawadventures.in/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "amrish rau||whiteventurecapital",
+      "name": "Amrish Rau",
+      "company": "White Venture Capital",
+      "title": "Advisor",
+      "linkedinUrl": "https://www.linkedin.com/in/amrish-rau-4158339",
+      "twitterUrl": "https://x.com/amrishrau",
+      "sourceUrl": "https://www.whiteventurecap.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "amy grimshaw||localglobe",
+      "name": "Amy Grimshaw",
+      "company": "LocalGlobe",
+      "title": "Partner, Marketing, Brand and Communications",
+      "linkedinUrl": "",
+      "twitterUrl": "https://x.com/AmyGrimmers",
+      "sourceUrl": "https://www.phoenixcourt.vc/localglobe/phoenix-court-team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "anirudh garg||beenext",
+      "name": "Anirudh Garg",
+      "company": "BEENEXT",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/anirudh-garg98",
+      "twitterUrl": "https://x.com/Anirudhgarg24",
+      "sourceUrl": "https://www.beenext.com/beliefs/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "anisha patnaik||sangamventures",
+      "name": "Anisha Patnaik",
+      "company": "Sangam Ventures",
+      "title": "Venture Partner, Legal Counsel",
+      "linkedinUrl": "https://www.linkedin.com/in/anishapatnaik",
+      "twitterUrl": "",
+      "sourceUrl": "https://sangam.vc/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "anoop mohan||bluehillvc",
+      "name": "Anoop Mohan",
+      "company": "Bluehill.vc",
+      "title": "Investment Manager",
+      "linkedinUrl": "https://www.linkedin.com/in/anoop-mohan-6b19689b",
+      "twitterUrl": "",
+      "sourceUrl": "https://bluehill.vc/team.html",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "anuraag srivastava||cdmcapital",
+      "name": "Anuraag Srivastava",
+      "company": "CDM Capital",
+      "title": "Media · Consumer",
+      "linkedinUrl": "https://www.linkedin.com/in/anuraagsrivastava",
+      "twitterUrl": "",
+      "sourceUrl": "https://cdmcapital.in/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "arjun malhotra||lumispartners",
+      "name": "Arjun Malhotra",
+      "company": "Lumis Partners",
+      "title": "Entrepreneur, Industrialist, Board of Advisor and Philanthropist",
+      "linkedinUrl": "https://www.linkedin.com/in/arjun-malhotra-5b07005",
+      "twitterUrl": "",
+      "sourceUrl": "https://lumispartners.com/our-team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "arun scaria||tanglinventurepartners",
+      "name": "Arun Scaria",
+      "company": "Tanglin Venture Partners",
+      "title": "General Counsel",
+      "linkedinUrl": "https://www.linkedin.com/in/arun-scaria-118404ba",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.tanglinvp.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "asha venugopal||a99vc",
+      "name": "Asha Venugopal",
+      "company": "a99 VC",
+      "title": "PARTNER",
+      "linkedinUrl": "https://www.linkedin.com/in/ashavenugopal",
+      "twitterUrl": "",
+      "sourceUrl": "https://a99.vc/about",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "ashish kumar||kathyawadventures",
+      "name": "Ashish Kumar",
+      "company": "Kathyawad Ventures",
+      "title": "Venture Partner - Innovations",
+      "linkedinUrl": "https://www.linkedin.com/in/ashishkumar579",
+      "twitterUrl": "",
+      "sourceUrl": "https://kathyawadventures.in/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "baltej singh||sanchiconnect",
+      "name": "Baltej Singh",
+      "company": "SanchiConnect",
+      "title": "Co-Founder & CTO",
+      "linkedinUrl": "https://www.linkedin.com/in/baltej-singh-46b78112",
+      "twitterUrl": "",
+      "sourceUrl": "https://sanchiconnect.com/about-us/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "ben casnocha||villageglobal",
+      "name": "Ben Casnocha",
+      "company": "Village Global",
+      "title": "General Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/bencasnocha",
+      "twitterUrl": "https://x.com/bencasnocha",
+      "sourceUrl": "https://www.villageglobal.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "benjamin grol||localglobe",
+      "name": "Benjamin Grol",
+      "company": "LocalGlobe",
+      "title": "Technology Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/benjamingrol",
+      "twitterUrl": "https://x.com/bengrol",
+      "sourceUrl": "https://www.phoenixcourt.vc/localglobe/phoenix-court-team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "bhumika singh||precoginnovationpartners",
+      "name": "Bhumika Singh",
+      "company": "Precog Innovation Partners",
+      "title": "Venture Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/bhumikasingh",
+      "twitterUrl": "",
+      "sourceUrl": "https://precoginnovations.com/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "bhushan rao||julyventures",
+      "name": "Bhushan Rao",
+      "company": "July Ventures",
+      "title": "Advisor",
+      "linkedinUrl": "https://www.linkedin.com/in/bhushan-rao-0b14b91b",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.julyventures.com/about",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "brian smith||multicoincapital",
+      "name": "Brian Smith",
+      "company": "Multicoin Capital",
+      "title": "Partner, CFO and COO",
+      "linkedinUrl": "https://www.linkedin.com/in/briansmith32",
+      "twitterUrl": "",
+      "sourceUrl": "https://multicoin.capital/about/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "chinmaya saxena||beenext",
+      "name": "Chinmaya Saxena",
+      "company": "BEENEXT",
+      "title": "Partner, Community Strategy",
+      "linkedinUrl": "https://www.linkedin.com/in/chinmayasaxena",
+      "twitterUrl": "https://x.com/ChinmayaSaxena",
+      "sourceUrl": "https://www.beenext.com/beliefs/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "cosmo jiang||panteracapital",
+      "name": "Cosmo Jiang",
+      "company": "Pantera Capital",
+      "title": "General Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/cosmojiang",
+      "twitterUrl": "https://x.com/cosmo_jiang",
+      "sourceUrl": "https://panteracapital.com/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "daniella cohen||2048ventures",
+      "name": "Daniella Cohen",
+      "company": "2048 Ventures",
+      "title": "Principal",
+      "linkedinUrl": "https://www.linkedin.com/in/daniellacohen",
+      "twitterUrl": "https://x.com/daniellarcohen",
+      "sourceUrl": "https://www.2048.vc/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "david brantner||indusbridgeventures",
+      "name": "David Brantner",
+      "company": "Indusbridge Ventures",
+      "title": "Partner, USA",
+      "linkedinUrl": "https://www.linkedin.com/in/davidmbrantner",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.indusbridgeventures.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "debamita banerjee||gradcapital",
+      "name": "Debamita Banerjee",
+      "company": "gradCapital",
+      "title": "Team",
+      "linkedinUrl": "https://www.linkedin.com/in/debamita-banerjee",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.gradcapital.in/philosophy",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "deepak mohan||trifectacapital",
+      "name": "Deepak Mohan",
+      "company": "Trifecta Capital",
+      "title": "Partner, Financial Solutions",
+      "linkedinUrl": "https://www.linkedin.com/in/deepak-mohan-56243450",
+      "twitterUrl": "",
+      "sourceUrl": "https://trifectacapital.in/people/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "erik torenberg||villageglobal",
+      "name": "Erik Torenberg",
+      "company": "Village Global",
+      "title": "Partner Emeritus",
+      "linkedinUrl": "https://www.linkedin.com/in/eriktorenberg",
+      "twitterUrl": "https://x.com/eriktorenberg",
+      "sourceUrl": "https://www.villageglobal.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "franklin bi||panteracapital",
+      "name": "Franklin Bi",
+      "company": "Pantera Capital",
+      "title": "General Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/franklinbi",
+      "twitterUrl": "https://x.com/FranklinBi",
+      "sourceUrl": "https://panteracapital.com/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "ganesh sathyamurthy||a99vc",
+      "name": "Ganesh Sathyamurthy",
+      "company": "a99 VC",
+      "title": "PARTNER",
+      "linkedinUrl": "https://www.linkedin.com/in/ganesh-sathyamurthy-5626a015",
+      "twitterUrl": "",
+      "sourceUrl": "https://a99.vc/about",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "greg xethalis||multicoincapital",
+      "name": "Greg Xethalis",
+      "company": "Multicoin Capital",
+      "title": "Partner, General Counsel",
+      "linkedinUrl": "",
+      "twitterUrl": "https://x.com/xethalis",
+      "sourceUrl": "https://multicoin.capital/about/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "haya haffar||beyondcapitalventures",
+      "name": "Haya Haffar",
+      "company": "Beyond Capital Ventures",
+      "title": "Investments",
+      "linkedinUrl": "https://www.linkedin.com/in/haya-haffar",
+      "twitterUrl": "",
+      "sourceUrl": "https://beyondcapital.vc/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "henry goodwin||leocapital",
+      "name": "Henry Goodwin",
+      "company": "Leo Capital",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/henry-goodwin",
+      "twitterUrl": "",
+      "sourceUrl": "https://leo.capital/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "hero choudhary||beenext",
+      "name": "Hero Choudhary",
+      "company": "BEENEXT",
+      "title": "Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/herochoudhary",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.beenext.com/beliefs/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "hiro maeda||beenext",
+      "name": "Hiro Maeda",
+      "company": "BEENEXT",
+      "title": "Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/hironorimaeda",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.beenext.com/beliefs/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "hithendra ramachandran||cdmcapital",
+      "name": "Hithendra Ramachandran",
+      "company": "CDM Capital",
+      "title": "Growth Equity · Carpediem Capital",
+      "linkedinUrl": "https://www.linkedin.com/in/hithendraramachandran",
+      "twitterUrl": "",
+      "sourceUrl": "https://cdmcapital.in/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "rahul mahipal||capitarventures",
+      "name": "Rahul Mahipal",
+      "company": "Capitar Ventures",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/mahipalrahul",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/mahipalrahul",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "mr ajit deshmukh||equirusventures",
+      "name": "Mr. Ajit Deshmukh",
+      "company": "Equirus Ventures",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/ajit-deshmukh-9020502a",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/ajit-deshmukh-9020502a",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "virginia tan||tejaventures",
+      "name": "Virginia Tan",
+      "company": "Teja Ventures",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/virginia-tan-a58b6b14",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/virginia-tan-a58b6b14",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "maya gadhvi||chakrafund",
+      "name": "Maya Gadhvi",
+      "company": "Chakra Fund",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/mayapgadhvi",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/mayapgadhvi",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "anil saldanha||fundalogicalventures",
+      "name": "Anil Saldanha",
+      "company": "Fundalogical Ventures",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/anil-saldanha-721bb51b5",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/anil-saldanha-721bb51b5",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "poornima nayak||ventanaventures",
+      "name": "Poornima Nayak",
+      "company": "Ventana Ventures",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/poornima-g-nayak",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/poornima-g-nayak",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "shrikant goyal||getfive",
+      "name": "Shrikant Goyal",
+      "company": "GetFive",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/shrikant-goyal",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/shrikant-goyal",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "jay desai||allvest",
+      "name": "Jay Desai",
+      "company": "Allvest",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/jay-desai-ab82753b2",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.allvest.co/",
+      "method": "search",
+      "confidence": "medium",
+      "companyType": ""
+    },
+    {
+      "key": "igor burlakov||verbventures",
+      "name": "Igor Burlakov",
+      "company": "Verb Ventures",
+      "title": "General Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/igor-burlakov-a6257826",
+      "twitterUrl": "",
+      "sourceUrl": "https://verb.ventures/about/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "jimmy dietz||v3venturesverlinvest",
+      "name": "Jimmy Dietz",
+      "company": "V3 Ventures (Verlinvest)",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/jimmy-dietz-186ab042",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.v3.ventures/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "jitendra gupta||whiteventurecapital",
+      "name": "Jitendra Gupta",
+      "company": "White Venture Capital",
+      "title": "Advisor",
+      "linkedinUrl": "https://www.linkedin.com/in/guptajiten",
+      "twitterUrl": "https://x.com/guptajiten",
+      "sourceUrl": "https://www.whiteventurecap.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "jitha thathachari||longviewventures",
+      "name": "Jitha Thathachari",
+      "company": "LongView Ventures",
+      "title": "Team Member",
+      "linkedinUrl": "https://www.linkedin.com/in/jithat",
+      "twitterUrl": "",
+      "sourceUrl": "https://longview-ventures.com/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "john zeratsky||character",
+      "name": "John Zeratsky",
+      "company": "Character",
+      "title": "Co-Founder & General Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/johnzeratsky",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.character.vc/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "julia svennerstlhawkins||localglobe",
+      "name": "Julia Svennerstål-Hawkins",
+      "company": "LocalGlobe",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "twitterUrl": "https://x.com/svennj",
+      "sourceUrl": "https://www.phoenixcourt.vc/localglobe/phoenix-court-team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "julie wolf||2048ventures",
+      "name": "Julie Wolf",
+      "company": "2048 Ventures",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/juliemariewolf",
+      "twitterUrl": "https://x.com/JulieMarieWolf",
+      "sourceUrl": "https://www.2048.vc/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "jyoti devjani||indusbridgeventures",
+      "name": "Jyoti Devjani",
+      "company": "Indusbridge Ventures",
+      "title": "Partner, Investor Relations",
+      "linkedinUrl": "https://www.linkedin.com/in/jyoti-devjani-54260375",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.indusbridgeventures.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "karanpal singh||hunchventuresinvestmentspvtltd",
+      "name": "Karanpal Singh",
+      "company": "Hunch Ventures & Investments Pvt Ltd",
+      "title": "Founder, Hunch Ventures",
+      "linkedinUrl": "https://www.linkedin.com/in/karanpal-singh-5707645a",
+      "twitterUrl": "",
+      "sourceUrl": "https://hunchventures.com/approach",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "karthik chandrasekar||sangamventures",
+      "name": "Karthik Chandrasekar",
+      "company": "Sangam Ventures",
+      "title": "Managing Partner, CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/karthikchandrasekar",
+      "twitterUrl": "",
+      "sourceUrl": "https://sangam.vc/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "ketki tulpule||ixplifesciences",
+      "name": "Ketki Tulpule",
+      "company": "IXP Lifesciences",
+      "title": "Chief Innovation Officer",
+      "linkedinUrl": "https://www.linkedin.com/in/ketkitulpule",
+      "twitterUrl": "",
+      "sourceUrl": "https://ixplifesciences.com/team-ixp/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "kristen brillantes||character",
+      "name": "Kristen Brillantes",
+      "company": "Character",
+      "title": "Head of Programs & Community",
+      "linkedinUrl": "https://www.linkedin.com/in/kristen-brillantes",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.character.vc/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "kshitij khandelwal||gradcapital",
+      "name": "Kshitij Khandelwal",
+      "company": "gradCapital",
+      "title": "Visiting Partners",
+      "linkedinUrl": "https://www.linkedin.com/in/khandelwalkshitij",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.gradcapital.in/philosophy",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "kunal bahl||titancapital",
+      "name": "Kunal Bahl",
+      "company": "Titan Capital",
+      "title": "CO-FOUNDER",
+      "linkedinUrl": "https://www.linkedin.com/in/kunalbahl",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.titancapital.vc/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "kushal bhagia||allincapital",
+      "name": "Kushal Bhagia",
+      "company": "All In Capital",
+      "title": "Founding Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/kushalbhagia",
+      "twitterUrl": "https://x.com/kushalbhagia",
+      "sourceUrl": "https://www.allincapital.vc/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "lavanya ashok||trifectacapital",
+      "name": "Lavanya Ashok",
+      "company": "Trifecta Capital",
+      "title": "Partner, Growth Equity",
+      "linkedinUrl": "https://www.linkedin.com/in/lavanya-ashok-97657a45",
+      "twitterUrl": "",
+      "sourceUrl": "https://trifectacapital.in/people/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "lavanya ashok||aeravtiventures",
+      "name": "Lavanya Ashok",
+      "company": "Aeravti Ventures",
+      "title": "Partner - Trifecta Capital",
+      "linkedinUrl": "https://www.linkedin.com/in/lavanya-ashok-97657a45",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.aeravti.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "liz factor||villageglobal",
+      "name": "Liz Factor",
+      "company": "Village Global",
+      "title": "Partner Ops",
+      "linkedinUrl": "https://www.linkedin.com/in/liz-factor-800253205",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.villageglobal.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "lopo champalimaud||v3venturesverlinvest",
+      "name": "Lopo Champalimaud",
+      "company": "V3 Ventures (Verlinvest)",
+      "title": "Co-Founder and Investment Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/lopochampalimaud",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.v3.ventures/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "madhusmita das||leocapital",
+      "name": "Madhusmita Das",
+      "company": "Leo Capital",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/madhusmitadas",
+      "twitterUrl": "",
+      "sourceUrl": "https://leo.capital/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "mahendra jain||chakrafund",
+      "name": "Mahendra Jain",
+      "company": "Chakra Fund",
+      "title": "Founding GP",
+      "linkedinUrl": "https://www.linkedin.com/in/mahendra-jain-aa8a651",
+      "twitterUrl": "",
+      "sourceUrl": "https://chakragrowthcapital.com/team.html",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "manu iyer||bluehillvc",
+      "name": "Manu Iyer",
+      "company": "Bluehill.vc",
+      "title": "Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/manuiyer",
+      "twitterUrl": "",
+      "sourceUrl": "https://bluehill.vc/team.html",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "mark joseph||chakrafund",
+      "name": "Mark Joseph",
+      "company": "Chakra Fund",
+      "title": "Founding GP",
+      "linkedinUrl": "https://www.linkedin.com/in/mark-joseph-5a2182a8",
+      "twitterUrl": "",
+      "sourceUrl": "https://chakragrowthcapital.com/team.html",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "matt gorham||panteracapital",
+      "name": "Matt Gorham",
+      "company": "Pantera Capital",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/matt-gorham-cfa-036bb84",
+      "twitterUrl": "",
+      "sourceUrl": "https://panteracapital.com/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "matt shapiro||multicoincapital",
+      "name": "Matt Shapiro",
+      "company": "Multicoin Capital",
+      "title": "Partner, Head of Investor Relations",
+      "linkedinUrl": "",
+      "twitterUrl": "https://x.com/mattshap1",
+      "sourceUrl": "https://multicoin.capital/about/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "mohammad majali||beyondcapitalventures",
+      "name": "Mohammad Majali",
+      "company": "Beyond Capital Ventures",
+      "title": "Programs",
+      "linkedinUrl": "https://www.linkedin.com/in/mohammadalmajali",
+      "twitterUrl": "",
+      "sourceUrl": "https://beyondcapital.vc/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "nilesh kothari||trifectacapital",
+      "name": "Nilesh Kothari",
+      "company": "Trifecta Capital",
+      "title": "Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/nilesh-kothari-9126588",
+      "twitterUrl": "",
+      "sourceUrl": "https://trifectacapital.in/people/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "nitin wadhwa||aroaventurepartners",
+      "name": "Nitin Wadhwa",
+      "company": "Aroa Venture Partners",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/nitin-wadhwa-93787a6",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.aroaventures.com/about",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "pankaj anand||kathyawadventures",
+      "name": "Pankaj Anand",
+      "company": "Kathyawad Ventures",
+      "title": "Co- Founder & COO",
+      "linkedinUrl": "https://www.linkedin.com/in/pankajanand1",
+      "twitterUrl": "",
+      "sourceUrl": "https://kathyawadventures.in/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "pankaj singh||aagamaventures",
+      "name": "Pankaj Singh",
+      "company": "Aagama Ventures",
+      "title": "Co-founder & Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/pankaj-singh-6546ab2b",
+      "twitterUrl": "",
+      "sourceUrl": "https://aagama.vc/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "paul bishop||localglobe",
+      "name": "Paul Bishop",
+      "company": "LocalGlobe",
+      "title": "General Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/paul-bishop-283695a",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.phoenixcourt.vc/localglobe/phoenix-court-team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "prakash rao||julyventures",
+      "name": "Prakash Rao",
+      "company": "July Ventures",
+      "title": "Advisor",
+      "linkedinUrl": "https://www.linkedin.com/in/prakash-rao-7a16ab17",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.julyventures.com/about",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "pranav sanghvi||merakventures",
+      "name": "Pranav Sanghvi",
+      "company": "Merak Ventures",
+      "title": "Director",
+      "linkedinUrl": "https://www.linkedin.com/in/pranav-sanghvi",
+      "twitterUrl": "",
+      "sourceUrl": "https://merakventures.com/about.html",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "prateek behera||gradcapital",
+      "name": "Prateek Behera",
+      "company": "gradCapital",
+      "title": "Team",
+      "linkedinUrl": "https://www.linkedin.com/in/prateekbehera96",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.gradcapital.in/philosophy",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "punit chokhani||longviewventures",
+      "name": "Punit Chokhani",
+      "company": "LongView Ventures",
+      "title": "Team Member",
+      "linkedinUrl": "https://www.linkedin.com/in/punit-chokhani-086664a",
+      "twitterUrl": "",
+      "sourceUrl": "https://longview-ventures.com/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "rahul khanna||trifectacapital",
+      "name": "Rahul Khanna",
+      "company": "Trifecta Capital",
+      "title": "Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/khannarahul",
+      "twitterUrl": "",
+      "sourceUrl": "https://trifectacapital.in/people/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "rajul garg||leocapital",
+      "name": "Rajul Garg",
+      "company": "Leo Capital",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/rajulgarg",
+      "twitterUrl": "",
+      "sourceUrl": "https://leo.capital/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "rampi kandadai||chakrafund",
+      "name": "Rampi Kandadai",
+      "company": "Chakra Fund",
+      "title": "Founding GP",
+      "linkedinUrl": "https://www.linkedin.com/in/rampikandadai",
+      "twitterUrl": "",
+      "sourceUrl": "https://chakragrowthcapital.com/team.html",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "rashmi guptey||lightboxventures",
+      "name": "Rashmi Guptey",
+      "company": "Lightbox Ventures",
+      "title": "CFO and General Counsel",
+      "linkedinUrl": "https://www.linkedin.com/in/rashmi-limaye-guptey-9b6a045",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.lightbox.vc/people",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "ravi srivastava||leocapital",
+      "name": "Ravi Srivastava",
+      "company": "Leo Capital",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/rpsrivastava",
+      "twitterUrl": "",
+      "sourceUrl": "https://leo.capital/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "ravi venkatesh||tanglinventurepartners",
+      "name": "Ravi Venkatesh",
+      "company": "Tanglin Venture Partners",
+      "title": "Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/ravivenkatesh",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.tanglinvp.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "ravindra krishnappa||julyventures",
+      "name": "Ravindra Krishnappa",
+      "company": "July Ventures",
+      "title": "General Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/ravindrakrishnappa",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.julyventures.com/about",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "ravish ratnam||pointonecapital",
+      "name": "Ravish Ratnam",
+      "company": "PointOne Capital",
+      "title": "Founding Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/ravish-ratnam-732a7757",
+      "twitterUrl": "",
+      "sourceUrl": "https://pointone.capital/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "reid hoffman||villageglobal",
+      "name": "Reid Hoffman",
+      "company": "Village Global",
+      "title": "Chairman",
+      "linkedinUrl": "https://www.linkedin.com/in/reidhoffman",
+      "twitterUrl": "https://x.com/reidhoffman",
+      "sourceUrl": "https://www.villageglobal.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "remus brett||localglobe",
+      "name": "Remus Brett",
+      "company": "LocalGlobe",
+      "title": "General Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/remus-brett-5245181",
+      "twitterUrl": "https://x.com/remusbrett",
+      "sourceUrl": "https://www.phoenixcourt.vc/localglobe/phoenix-court-team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "ritesh toshniwal||thinkuvate",
+      "name": "Ritesh Toshniwal",
+      "company": "Thinkuvate",
+      "title": "Founding General Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/riteshtoshniwal",
+      "twitterUrl": "",
+      "sourceUrl": "https://thinkuvate.com/about",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "rob liu||athena",
+      "name": "Rob Liu",
+      "company": "Athena",
+      "title": "Founder, CEO, ContactOut",
+      "linkedinUrl": "https://www.linkedin.com/in/robliu",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.athena.vc/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "rohan sharma||8iventures",
+      "name": "Rohan Sharma",
+      "company": "8i Ventures",
+      "title": "Principal",
+      "linkedinUrl": "https://www.linkedin.com/in/sharmarohan029",
+      "twitterUrl": "",
+      "sourceUrl": "https://8ivc.com/teams",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "rohit bansal||titancapital",
+      "name": "Rohit Bansal",
+      "company": "Titan Capital",
+      "title": "CO-FOUNDER",
+      "linkedinUrl": "https://www.linkedin.com/in/rohitkbansal",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.titancapital.vc/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "rudra dalmia||hunchventuresinvestmentspvtltd",
+      "name": "Rudra Dalmia",
+      "company": "Hunch Ventures & Investments Pvt Ltd",
+      "title": "Managing Partner, Green Frontier Capital | Advisor: Green Finance and Food Security",
+      "linkedinUrl": "https://www.linkedin.com/in/rudradalmia",
+      "twitterUrl": "",
+      "sourceUrl": "https://hunchventures.com/approach",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "sagar agarvwal||beamsvc",
+      "name": "Sagar Agarvwal",
+      "company": "Beams VC",
+      "title": "Founder & Managing Partner, Beams Fintech Fund",
+      "linkedinUrl": "https://www.linkedin.com/in/sagar-agarwal-8502333",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/company/beamsvc",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "salil bhargava||cdmcapital",
+      "name": "Salil Bhargava",
+      "company": "CDM Capital",
+      "title": "Gaming · Internet",
+      "linkedinUrl": "https://www.linkedin.com/in/bhargavasalil",
+      "twitterUrl": "",
+      "sourceUrl": "https://cdmcapital.in/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "saloni jiwrajka||whiteventurecapital",
+      "name": "Saloni Jiwrajka",
+      "company": "White Venture Capital",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/salonijiwrajka",
+      "twitterUrl": "https://x.com/salonijiwrajka",
+      "sourceUrl": "https://www.whiteventurecap.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "sambhav jain||gradcapital",
+      "name": "Sambhav Jain",
+      "company": "gradCapital",
+      "title": "Visiting Partners",
+      "linkedinUrl": "https://www.linkedin.com/in/sambhavanandjain",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.gradcapital.in/philosophy",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "sandeep daga||indusbridgeventures",
+      "name": "Sandeep Daga",
+      "company": "Indusbridge Ventures",
+      "title": "Investment Committee",
+      "linkedinUrl": "https://www.linkedin.com/in/sandeep-daga-05b318",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.indusbridgeventures.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "sankalp gupta||tanglinventurepartners",
+      "name": "Sankalp Gupta",
+      "company": "Tanglin Venture Partners",
+      "title": "Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/sankalpgupta",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.tanglinvp.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "santiago gomez||aeravtiventures",
+      "name": "Santiago Gomez",
+      "company": "Aeravti Ventures",
+      "title": "Managing Partner - Cascada Growth",
+      "linkedinUrl": "https://www.linkedin.com/in/santiago-gomez-garcia-0aa93476",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.aeravti.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "sekhar puli||aroaventurepartners",
+      "name": "Sekhar Puli",
+      "company": "Aroa Venture Partners",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/sekharpuli",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.aroaventures.com/about",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "sg murali||indusbridgeventures",
+      "name": "SG Murali",
+      "company": "Indusbridge Ventures",
+      "title": "Investment Commitee",
+      "linkedinUrl": "https://www.linkedin.com/in/murali-s-g-89951244",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.indusbridgeventures.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "shardul singh||aeravtiventures",
+      "name": "Shardul Singh",
+      "company": "Aeravti Ventures",
+      "title": "Partner - Symphoni",
+      "linkedinUrl": "https://www.linkedin.com/in/shardulsingh0926",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.aeravti.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "shashank sabesan||tanglinventurepartners",
+      "name": "Shashank Sabesan",
+      "company": "Tanglin Venture Partners",
+      "title": "Principal",
+      "linkedinUrl": "https://www.linkedin.com/in/shashanksabesan",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.tanglinvp.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "shayon sengupta||multicoincapital",
+      "name": "Shayon Sengupta",
+      "company": "Multicoin Capital",
+      "title": "General Partner, Co-Head of Venture",
+      "linkedinUrl": "",
+      "twitterUrl": "https://x.com/shayonsengupta",
+      "sourceUrl": "https://multicoin.capital/about/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "shiv kapoor||titancapital",
+      "name": "Shiv Kapoor",
+      "company": "Titan Capital",
+      "title": "VICE PRESIDENT",
+      "linkedinUrl": "https://www.linkedin.com/in/shivkapoor21",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.titancapital.vc/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "shruti jain||021capital",
+      "name": "Shruti Jain",
+      "company": "021 Capital",
+      "title": "Principal",
+      "linkedinUrl": "https://www.linkedin.com/in/shruti-jain-60661657",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.xeed.vc/about-us",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "shweta tripathi||v3venturesverlinvest",
+      "name": "Shweta Tripathi",
+      "company": "V3 Ventures (Verlinvest)",
+      "title": "Investor",
+      "linkedinUrl": "https://www.linkedin.com/in/shweta-tripathi-weh",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.v3.ventures/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
     }
   ],
   "unresolved": [
@@ -6341,6 +7793,1382 @@
       "company": "True North",
       "reason": "no-socials-near-name",
       "sourceUrl": "https://www.truenorth.co.in/people/",
+      "method": "harvest"
+    },
+    {
+      "key": "pandiya kumar rajamony||mindtreeventuresltimindtreeinvestments",
+      "name": "Pandiya Kumar Rajamony",
+      "company": "Mindtree Ventures / LTIMindtree Investments",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.ltm.com/services/application-management-services",
+      "method": "harvest"
+    },
+    {
+      "key": "ajit a moopan||keralaangels",
+      "name": "Ajit A Moopan",
+      "company": "Kerala Angels",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.keralaangelnetwork.com/",
+      "method": "harvest"
+    },
+    {
+      "key": "basant kumar mohata||manjushreeventures",
+      "name": "Basant Kumar Mohata",
+      "company": "Manjushree Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.manjushreeventures.com/about-us",
+      "method": "harvest"
+    },
+    {
+      "key": "dr ranjan pai||aarincapital",
+      "name": "Dr. Ranjan Pai",
+      "company": "Aarin Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://aarincapital.com/about/",
+      "method": "harvest"
+    },
+    {
+      "key": "swati a piramal||piramalfamilyoffice",
+      "name": "Swati A. Piramal",
+      "company": "Piramal Family Office",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.piramal.com/",
+      "method": "harvest"
+    },
+    {
+      "key": "tv mohandas pai||aarincapital",
+      "name": "TV Mohandas Pai",
+      "company": "Aarin Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://aarincapital.com/about/",
+      "method": "harvest"
+    },
+    {
+      "key": "aadil chitalwala||peaksustainabilityventures",
+      "name": "Aadil Chitalwala",
+      "company": "Peak Sustainability Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://peakventures.in/team",
+      "method": "harvest"
+    },
+    {
+      "key": "aakash shah||peaksustainabilityventures",
+      "name": "Aakash Shah",
+      "company": "Peak Sustainability Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://peakventures.in/team",
+      "method": "harvest"
+    },
+    {
+      "key": "abhishek sanghvi||ecosystemventures",
+      "name": "Abhishek Sanghvi",
+      "company": "Ecosystem Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://ecosystemventures.in/about-us/",
+      "method": "harvest"
+    },
+    {
+      "key": "aditya jadhav||ecosystemventures",
+      "name": "Aditya Jadhav",
+      "company": "Ecosystem Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://ecosystemventures.in/about-us/",
+      "method": "harvest"
+    },
+    {
+      "key": "aditya mathur||innovencapital",
+      "name": "Aditya Mathur",
+      "company": "Innoven Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://innovencapital.com/OurTeam_in?lang=in",
+      "method": "harvest"
+    },
+    {
+      "key": "ahana advani||peaksustainabilityventures",
+      "name": "Ahana Advani",
+      "company": "Peak Sustainability Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://peakventures.in/team",
+      "method": "harvest"
+    },
+    {
+      "key": "ajay hattangdi||alteriacapital",
+      "name": "Ajay Hattangdi",
+      "company": "Alteria Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://alteriacapital.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "ajay srinivasan||lumispartners",
+      "name": "Ajay Srinivasan",
+      "company": "Lumis Partners",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://lumispartners.com/our-team/",
+      "method": "harvest"
+    },
+    {
+      "key": "akshat saxena||alteriacapital",
+      "name": "Akshat Saxena",
+      "company": "Alteria Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://alteriacapital.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "aleksandra zorylo||pointninecapital",
+      "name": "Aleksandra Zorylo",
+      "company": "Point Nine Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.pointnine.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "aman jain||getfive",
+      "name": "Aman Jain",
+      "company": "GetFive",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://getfive.in/about-us/",
+      "method": "harvest"
+    },
+    {
+      "key": "amias gerety||qedinvestors",
+      "name": "Amias Gerety",
+      "company": "QED Investors",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://qedinvestors.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "amit behl||capital2b",
+      "name": "Amit Behl",
+      "company": "Capital 2B",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.capital2b.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "amit somani||primeventurepartners",
+      "name": "Amit Somani",
+      "company": "Prime Venture Partners",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.primevp.in/about-us",
+      "method": "harvest"
+    },
+    {
+      "key": "amy saper||uncorkcapital",
+      "name": "Amy Saper",
+      "company": "Uncork Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://uncorkcapital.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "andy mcloughlin||uncorkcapital",
+      "name": "Andy McLoughlin",
+      "company": "Uncork Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://uncorkcapital.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "angela toy||goldengateventures",
+      "name": "Angela Toy",
+      "company": "Golden Gate Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.goldengate.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "anirudh iyer||021capital",
+      "name": "Anirudh Iyer",
+      "company": "021 Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.xeed.vc/about-us",
+      "method": "harvest"
+    },
+    {
+      "key": "anirudh iyer||xeedventures",
+      "name": "Anirudh Iyer",
+      "company": "Xeed Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.xeed.vc/about-us",
+      "method": "harvest"
+    },
+    {
+      "key": "ankit agarwal||alteriacapital",
+      "name": "Ankit Agarwal",
+      "company": "Alteria Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://alteriacapital.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "arjun malhotra||bharatfoundersfund",
+      "name": "Arjun Malhotra",
+      "company": "Bharat Founders Fund",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.goodcapital.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "arjun malhotra||goodcapital",
+      "name": "Arjun Malhotra",
+      "company": "Good Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.goodcapital.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "ashish sharma||innovencapital",
+      "name": "Ashish Sharma",
+      "company": "Innoven Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://innovencapital.com/OurTeam_in?lang=in",
+      "method": "harvest"
+    },
+    {
+      "key": "ayu tanoesoedibjo||openspaceventures",
+      "name": "Ayu Tanoesoedibjo",
+      "company": "Openspace Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.openspacecapital.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "ayush jain||multipleventures",
+      "name": "Ayush Jain",
+      "company": "Multiple Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.multiplyventures.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "bv narasimham||caspianequity",
+      "name": "B.V. Narasimham",
+      "company": "Caspian Equity",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "harvest"
+    },
+    {
+      "key": "ben mathias||vertexventures",
+      "name": "Ben MATHIAS",
+      "company": "Vertex Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "harvest"
+    },
+    {
+      "key": "ben mathias||vertexventuresseasiaindia",
+      "name": "Ben MATHIAS",
+      "company": "Vertex Ventures SE Asia & India",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "harvest"
+    },
+    {
+      "key": "bharat shah||campusfund",
+      "name": "Bharat Shah",
+      "company": "Campus Fund",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://yourcampusfund.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "bijou kurien||campusfund",
+      "name": "Bijou Kurien",
+      "company": "Campus Fund",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://yourcampusfund.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "bill cilluffo||qedinvestors",
+      "name": "Bill Cilluffo",
+      "company": "QED Investors",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://qedinvestors.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "bradley fishman||mventurepartnersmvp",
+      "name": "Bradley Fishman",
+      "company": "M Venture Partners (MVP)",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.mvp.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "brij bhushan||primeventurepartners",
+      "name": "Brij Bhushan",
+      "company": "Prime Venture Partners",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.primevp.in/about-us",
+      "method": "harvest"
+    },
+    {
+      "key": "caie kelley||lowercarboncapital",
+      "name": "Caie Kelley",
+      "company": "Lowercarbon Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://lowercarbon.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "camila vieira||qedinvestors",
+      "name": "Camila Vieira",
+      "company": "QED Investors",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://qedinvestors.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "cathy weist||alphawaveglobal",
+      "name": "Cathy Weist",
+      "company": "Alpha Wave Global",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.alphawaveglobal.com/leadership",
+      "method": "harvest"
+    },
+    {
+      "key": "chirag gupta||8xventures",
+      "name": "Chirag Gupta",
+      "company": "8X Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.8xventures.co/about",
+      "method": "harvest"
+    },
+    {
+      "key": "christos malikkidis||verbventures",
+      "name": "Christos Malikkidis",
+      "company": "Verb Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://verb.ventures/about/",
+      "method": "harvest"
+    },
+    {
+      "key": "clay dumas||lowercarboncapital",
+      "name": "Clay Dumas",
+      "company": "Lowercarbon Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://lowercarbon.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "david mathewson||quonacapital",
+      "name": "David Mathewson",
+      "company": "Quona Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://quona.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "deepak malik||alteriacapital",
+      "name": "Deepak Malik",
+      "company": "Alteria Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://alteriacapital.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "deepak parekh||hdfccapital",
+      "name": "Deepak Parekh",
+      "company": "HDFC Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.hdfccapital.com/",
+      "method": "harvest"
+    },
+    {
+      "key": "devin hunt||seedcamp",
+      "name": "Devin Hunt",
+      "company": "Seedcamp",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://seedcamp.com/our-team/",
+      "method": "harvest"
+    },
+    {
+      "key": "dror nahumi||norwestventurepartners",
+      "name": "Dror Nahumi",
+      "company": "Norwest Venture Partners",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.norwest.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "duncan turner||sosv",
+      "name": "Duncan Turner",
+      "company": "SOSV",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://sosv.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "eduardo saverin||bcapital",
+      "name": "Eduardo Saverin",
+      "company": "B Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://b.capital/about/",
+      "method": "harvest"
+    },
+    {
+      "key": "eliza cushman||congruentventures",
+      "name": "Eliza Cushman",
+      "company": "Congruent Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.congruentvc.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "emmanuel murray||caspianequity",
+      "name": "Emmanuel Murray",
+      "company": "Caspian Equity",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "harvest"
+    },
+    {
+      "key": "emmanuel murray||caspianimpactinvestments",
+      "name": "Emmanuel Murray",
+      "company": "Caspian Impact Investments",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "harvest"
+    },
+    {
+      "key": "esha arya||8xventures",
+      "name": "Esha Arya",
+      "company": "8X Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.8xventures.co/about",
+      "method": "harvest"
+    },
+    {
+      "key": "felix martinez||seedcamp",
+      "name": "Felix Martinez",
+      "company": "Seedcamp",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://seedcamp.com/our-team/",
+      "method": "harvest"
+    },
+    {
+      "key": "francis suarez||alphawaveglobal",
+      "name": "Francis Suarez",
+      "company": "Alpha Wave Global",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.alphawaveglobal.com/leadership",
+      "method": "harvest"
+    },
+    {
+      "key": "frank amato||a100xventures",
+      "name": "Frank Amato",
+      "company": "A100x Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.a100x.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "ganesh balakrishnan||ecosystemventures",
+      "name": "Ganesh Balakrishnan",
+      "company": "Ecosystem Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://ecosystemventures.in/about-us/",
+      "method": "harvest"
+    },
+    {
+      "key": "ganesh rengaswamy||quonacapital",
+      "name": "Ganesh Rengaswamy",
+      "company": "Quona Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://quona.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "gary khoeng||vertexventuresseasiaindia",
+      "name": "Gary KHOENG",
+      "company": "Vertex Ventures SE Asia & India",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "harvest"
+    },
+    {
+      "key": "gbenga ajayi||qedinvestors",
+      "name": "Gbenga Ajayi",
+      "company": "QED Investors",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://qedinvestors.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "genping liu||vertexventures",
+      "name": "Genping LIU",
+      "company": "Vertex Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "harvest"
+    },
+    {
+      "key": "genping liu||vertexventuresseasiaindia",
+      "name": "Genping LIU",
+      "company": "Vertex Ventures SE Asia & India",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "harvest"
+    },
+    {
+      "key": "george thomas||menterraventures",
+      "name": "George Thomas",
+      "company": "Menterra Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.menterra.com/about-us/",
+      "method": "harvest"
+    },
+    {
+      "key": "girish mathrubootham||together",
+      "name": "Girish Mathrubootham",
+      "company": "Together",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.together.fund/about",
+      "method": "harvest"
+    },
+    {
+      "key": "gokul dixit||nayaventures",
+      "name": "Gokul Dixit",
+      "company": "Naya Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.dallasvc.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "gray robinson||congruentventures",
+      "name": "Gray Robinson",
+      "company": "Congruent Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.congruentvc.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "hardik doshi||whitewhale",
+      "name": "Hardik Doshi",
+      "company": "White Whale",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.whitewhale.in/about-us",
+      "method": "harvest"
+    },
+    {
+      "key": "harish r||indiaalternatives",
+      "name": "Harish R",
+      "company": "India Alternatives",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.india-alt.com/people",
+      "method": "harvest"
+    },
+    {
+      "key": "harshal g||araliventures",
+      "name": "Harshal G",
+      "company": "Arali Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://araliventures.in/about",
+      "method": "harvest"
+    },
+    {
+      "key": "hilary howe||seedcamp",
+      "name": "Hilary Howe",
+      "company": "Seedcamp",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://seedcamp.com/our-team/",
+      "method": "harvest"
+    },
+    {
+      "key": "himangini singh||hunchventuresinvestmentspvtltd",
+      "name": "Himangini Singh",
+      "company": "Hunch Ventures & Investments Pvt Ltd",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://hunchventures.com/approach",
+      "method": "harvest"
+    },
+    {
+      "key": "howard morgan||bcapital",
+      "name": "Howard Morgan",
+      "company": "B Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://b.capital/about/",
+      "method": "harvest"
+    },
+    {
+      "key": "hussain abdulla||goldengateventures",
+      "name": "Hussain Abdulla",
+      "company": "Golden Gate Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.goldengate.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "jeff clavier||uncorkcapital",
+      "name": "Jeff Clavier",
+      "company": "Uncork Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://uncorkcapital.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "jeffrey chua||goldengateventures",
+      "name": "Jeffrey Chua",
+      "company": "Golden Gate Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.goldengate.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "jinal gandhi||alteriacapital",
+      "name": "Jinal Gandhi",
+      "company": "Alteria Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://alteriacapital.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "johan bosini||quonacapital",
+      "name": "Johan Bosini",
+      "company": "Quona Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://quona.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "justin hall||goldengateventures",
+      "name": "Justin Hall",
+      "company": "Golden Gate Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.goldengate.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "kanika mayar||vertexventuresseasiaindia",
+      "name": "Kanika MAYAR",
+      "company": "Vertex Ventures SE Asia & India",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "harvest"
+    },
+    {
+      "key": "karan bhagat||indiaalternatives",
+      "name": "Karan Bhagat",
+      "company": "India Alternatives",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.india-alt.com/people",
+      "method": "harvest"
+    },
+    {
+      "key": "karl bornefalk||mventurepartnersmvp",
+      "name": "Karl Bornefalk",
+      "company": "M Venture Partners (MVP)",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.mvp.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "kartik h||campusfund",
+      "name": "Kartik H",
+      "company": "Campus Fund",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://yourcampusfund.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "kaushik ram||yalicapital",
+      "name": "Kaushik Ram",
+      "company": "Yali Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://yali.vc/about-yali/",
+      "method": "harvest"
+    },
+    {
+      "key": "keki mistry||hdfccapital",
+      "name": "Keki Mistry",
+      "company": "HDFC Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.hdfccapital.com/",
+      "method": "harvest"
+    },
+    {
+      "key": "kelvin goh||openspaceventures",
+      "name": "Kelvin Goh",
+      "company": "Openspace Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.openspacecapital.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "ketan kothari||aariiventures",
+      "name": "Ketan Kothari",
+      "company": "Aarii Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.aariiventures.com/about",
+      "method": "harvest"
+    },
+    {
+      "key": "kevin kopczynski||congruentventures",
+      "name": "Kevin Kopczynski",
+      "company": "Congruent Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.congruentvc.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "kiran kalluri||nayaventures",
+      "name": "Kiran Kalluri",
+      "company": "Naya Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.dallasvc.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "kiran nadkarni||indiaalternatives",
+      "name": "Kiran Nadkarni",
+      "company": "India Alternatives",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.india-alt.com/people",
+      "method": "harvest"
+    },
+    {
+      "key": "kolja hebenstreit||pointninecapital",
+      "name": "Kolja Hebenstreit",
+      "company": "Point Nine Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.pointnine.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "krishnaswamy srinivasan||specialeinvest",
+      "name": "Krishnaswamy Srinivasan",
+      "company": "Speciale Invest",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.specialeinvest.com/about",
+      "method": "harvest"
+    },
+    {
+      "key": "lakshmi shankar||together",
+      "name": "Lakshmi Shankar",
+      "company": "Together",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.together.fund/about",
+      "method": "harvest"
+    },
+    {
+      "key": "laura bock||qedinvestors",
+      "name": "Laura Bock",
+      "company": "QED Investors",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://qedinvestors.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "laxmikanth v||pavestonevc",
+      "name": "Laxmikanth V",
+      "company": "Pavestone VC",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://pavestone.vc/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "lipbu tan||yalicapital",
+      "name": "Lip-Bu Tan",
+      "company": "Yali Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://yali.vc/about-yali/",
+      "method": "harvest"
+    },
+    {
+      "key": "manav garg||together",
+      "name": "Manav Garg",
+      "company": "Together",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.together.fund/about",
+      "method": "harvest"
+    },
+    {
+      "key": "manik pasricha||titancapital",
+      "name": "Manik Pasricha",
+      "company": "Titan Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.titancapital.vc/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "manikandan n||pavestonevc",
+      "name": "Manikandan N",
+      "company": "Pavestone VC",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://pavestone.vc/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "marc selfon||panteracapital",
+      "name": "Marc Selfon",
+      "company": "Pantera Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://panteracapital.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "marianne wu||congruentventures",
+      "name": "Marianne Wu",
+      "company": "Congruent Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.congruentvc.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "mathew cyriac||yalicapital",
+      "name": "Mathew Cyriac",
+      "company": "Yali Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://yali.vc/about-yali/",
+      "method": "harvest"
+    },
+    {
+      "key": "matthew corey||alphawaveglobal",
+      "name": "Matthew Corey",
+      "company": "Alpha Wave Global",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.alphawaveglobal.com/leadership",
+      "method": "harvest"
+    },
+    {
+      "key": "mayank jain||thinkuvate",
+      "name": "Mayank Jain",
+      "company": "Thinkuvate",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://thinkuvate.com/about",
+      "method": "harvest"
+    },
+    {
+      "key": "memet yazici||mventurepartnersmvp",
+      "name": "Memet Yazici",
+      "company": "M Venture Partners (MVP)",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.mvp.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "michael lints||goldengateventures",
+      "name": "Michael Lints",
+      "company": "Golden Gate Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.goldengate.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "michael wolfe||pointninecapital",
+      "name": "Michael Wolfe",
+      "company": "Point Nine Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.pointnine.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "mitesh shah||inflectionpointventures",
+      "name": "Mitesh Shah",
+      "company": "Inflection Point Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://ipventures.in/startup-investing-platorm-in-india/",
+      "method": "harvest"
+    },
+    {
+      "key": "mohammed junaid||caspianimpactinvestments",
+      "name": "Mohammed Junaid",
+      "company": "Caspian Impact Investments",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "harvest"
+    },
+    {
+      "key": "ms bala||turbostart",
+      "name": "MS Bala",
+      "company": "Turbostart",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://turbostart.co/network",
+      "method": "harvest"
+    },
+    {
+      "key": "mukesh aghi||lumispartners",
+      "name": "Mukesh Aghi",
+      "company": "Lumis Partners",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://lumispartners.com/our-team/",
+      "method": "harvest"
+    },
+    {
+      "key": "nao ito||beenext",
+      "name": "Nao Ito",
+      "company": "BEENEXT",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.beenext.com/beliefs/",
+      "method": "harvest"
+    },
+    {
+      "key": "natarajan ranganathan||multipleventures",
+      "name": "Natarajan Ranganathan",
+      "company": "Multiple Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.multiplyventures.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "nazar yasin||risecapital",
+      "name": "Nazar Yasin",
+      "company": "Rise Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.risecapital.com/about",
+      "method": "harvest"
+    },
+    {
+      "key": "neelam dhawan||lumispartners",
+      "name": "Neelam Dhawan",
+      "company": "Lumis Partners",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://lumispartners.com/our-team/",
+      "method": "harvest"
+    },
+    {
+      "key": "nikhil chandna||innovencapital",
+      "name": "Nikhil Chandna",
+      "company": "Innoven Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://innovencapital.com/OurTeam_in?lang=in",
+      "method": "harvest"
+    },
+    {
+      "key": "nirav sheth||kathyawadventures",
+      "name": "Nirav Sheth",
+      "company": "Kathyawad Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://kathyawadventures.in/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "nisa amoils||a100xventures",
+      "name": "Nisa Amoils",
+      "company": "A100x Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.a100x.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "omesh fabiani||openspaceventures",
+      "name": "Omesh Fabiani",
+      "company": "Openspace Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.openspacecapital.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "pae wu||sosv",
+      "name": "Pae Wu",
+      "company": "SOSV",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://sosv.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "pavan bakshi||hunchventuresinvestmentspvtltd",
+      "name": "Pavan Bakshi",
+      "company": "Hunch Ventures & Investments Pvt Ltd",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://hunchventures.com/approach",
+      "method": "harvest"
+    },
+    {
+      "key": "pawel chudzinski||pointninecapital",
+      "name": "Pawel Chudzinski",
+      "company": "Point Nine Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.pointnine.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "pearl agarwal||eximiusventures",
+      "name": "Pearl Agarwal",
+      "company": "Eximius Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://eximiusvc.com/about-us/",
+      "method": "harvest"
+    },
+    {
+      "key": "phanindra sama||campusfund",
+      "name": "Phanindra Sama",
+      "company": "Campus Fund",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://yourcampusfund.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "piyush kharbanda||vertexventures",
+      "name": "Piyush KHARBANDA",
+      "company": "Vertex Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "harvest"
+    },
+    {
+      "key": "piyush kharbanda||vertexventuresseasiaindia",
+      "name": "Piyush KHARBANDA",
+      "company": "Vertex Ventures SE Asia & India",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "harvest"
+    },
+    {
+      "key": "po bronson||sosv",
+      "name": "Po Bronson",
+      "company": "SOSV",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://sosv.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "priyank kothari||aariiventures",
+      "name": "Priyank Kothari",
+      "company": "Aarii Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.aariiventures.com/about",
+      "method": "harvest"
+    },
+    {
+      "key": "radika agarwal||bharatfoundersfund",
+      "name": "Radika Agarwal",
+      "company": "Bharat Founders Fund",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.goodcapital.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "rahul chopra||chakrafund",
+      "name": "Rahul Chopra",
+      "company": "Chakra Fund",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://chakragrowthcapital.com/team.html",
+      "method": "harvest"
+    },
+    {
+      "key": "raj ganguly||bcapital",
+      "name": "Raj Ganguly",
+      "company": "B Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://b.capital/about/",
+      "method": "harvest"
+    },
+    {
+      "key": "rajagopal koushik||turbostart",
+      "name": "Rajagopal Koushik",
+      "company": "Turbostart",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://turbostart.co/network",
+      "method": "harvest"
+    },
+    {
+      "key": "rajiv r||araliventures",
+      "name": "Rajiv R",
+      "company": "Arali Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://araliventures.in/about",
+      "method": "harvest"
+    },
+    {
+      "key": "ran ding||norwestventurepartners",
+      "name": "Ran Ding",
+      "company": "Norwest Venture Partners",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.norwest.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "raveen sastry||multipleventures",
+      "name": "Raveen Sastry",
+      "company": "Multiple Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.multiplyventures.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "ravi rao||turbostart",
+      "name": "Ravi Rao",
+      "company": "Turbostart",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://turbostart.co/network",
+      "method": "harvest"
+    },
+    {
+      "key": "ravi thakran||alphawaveglobal",
+      "name": "Ravi Thakran",
+      "company": "Alpha Wave Global",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.alphawaveglobal.com/leadership",
+      "method": "harvest"
+    },
+    {
+      "key": "ravish ailinani||nayaventures",
+      "name": "Ravish Ailinani",
+      "company": "Naya Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.dallasvc.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "ria das||caspianimpactinvestments",
+      "name": "Ria Das",
+      "company": "Caspian Impact Investments",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "harvest"
+    },
+    {
+      "key": "richa bajpai||campusfund",
+      "name": "Richa Bajpai",
+      "company": "Campus Fund",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://yourcampusfund.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "rohan c||araliventures",
+      "name": "Rohan C",
+      "company": "Arali Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://araliventures.in/about",
+      "method": "harvest"
+    },
+    {
+      "key": "rohan malhotra||bharatfoundersfund",
+      "name": "Rohan Malhotra",
+      "company": "Bharat Founders Fund",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.goodcapital.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "rohan malhotra||goodcapital",
+      "name": "Rohan Malhotra",
+      "company": "Good Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.goodcapital.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "rupa vora||indiaalternatives",
+      "name": "Rupa Vora",
+      "company": "India Alternatives",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.india-alt.com/people",
+      "method": "harvest"
+    },
+    {
+      "key": "russell dreisenstock||tanglinventurepartners",
+      "name": "Russell Dreisenstock",
+      "company": "Tanglin Venture Partners",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.tanglinvp.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "ryan khoury||alphawaveglobal",
+      "name": "Ryan Khoury",
+      "company": "Alpha Wave Global",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.alphawaveglobal.com/leadership",
+      "method": "harvest"
+    },
+    {
+      "key": "ryan orbuch||lowercarboncapital",
+      "name": "Ryan Orbuch",
+      "company": "Lowercarbon Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://lowercarbon.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "sal ternullo||a100xventures",
+      "name": "Sal Ternullo",
+      "company": "A100x Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.a100x.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "sameer mansukhani||innovencapital",
+      "name": "Sameer Mansukhani",
+      "company": "Innoven Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://innovencapital.com/OurTeam_in?lang=in",
+      "method": "harvest"
+    },
+    {
+      "key": "samir shah||peaksustainabilityventures",
+      "name": "Samir Shah",
+      "company": "Peak Sustainability Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://peakventures.in/team",
+      "method": "harvest"
+    },
+    {
+      "key": "sanjay nayar||peaksustainabilityventures",
+      "name": "Sanjay Nayar",
+      "company": "Peak Sustainability Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://peakventures.in/team",
+      "method": "harvest"
+    },
+    {
+      "key": "sanjay ramakrishnan||multipleventures",
+      "name": "Sanjay Ramakrishnan",
+      "company": "Multiple Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.multiplyventures.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "sanjay shah||theiaventures",
+      "name": "Sanjay Shah",
+      "company": "Theia Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.theia-ventures.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "sanjay swamy||primeventurepartners",
+      "name": "Sanjay Swamy",
+      "company": "Prime Venture Partners",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.primevp.in/about-us",
+      "method": "harvest"
+    },
+    {
+      "key": "santosh rao||mventurepartnersmvp",
+      "name": "Santosh Rao",
+      "company": "M Venture Partners (MVP)",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.mvp.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "satish pillai||indiaalternatives",
+      "name": "Satish Pillai",
+      "company": "India Alternatives",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.india-alt.com/people",
+      "method": "harvest"
+    },
+    {
+      "key": "scott lawin||panteracapital",
+      "name": "Scott Lawin",
+      "company": "Pantera Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://panteracapital.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "sera arora||bharatfoundersfund",
+      "name": "Sera Arora",
+      "company": "Bharat Founders Fund",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.goodcapital.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "shawn xu||lowercarboncapital",
+      "name": "Shawn Xu",
+      "company": "Lowercarbon Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://lowercarbon.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "shilpa sudhakar||caspianequity",
+      "name": "Shilpa Sudhakar",
+      "company": "Caspian Equity",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "harvest"
+    },
+    {
+      "key": "shilpa sudhakar||caspianimpactinvestments",
+      "name": "Shilpa Sudhakar",
+      "company": "Caspian Impact Investments",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "harvest"
+    },
+    {
+      "key": "shivani kulkarni||primeventurepartners",
+      "name": "Shivani Kulkarni",
+      "company": "Prime Venture Partners",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.primevp.in/about-us",
+      "method": "harvest"
+    },
+    {
+      "key": "shreyans salecha||bharatfoundersfund",
+      "name": "Shreyans Salecha",
+      "company": "Bharat Founders Fund",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.goodcapital.vc/team",
+      "method": "harvest"
+    },
+    {
+      "key": "shripati acharya||primeventurepartners",
+      "name": "Shripati Acharya",
+      "company": "Prime Venture Partners",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.primevp.in/about-us",
+      "method": "harvest"
+    },
+    {
+      "key": "shruti singhal||multipleventures",
+      "name": "Shruti Singhal",
+      "company": "Multiple Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.multiplyventures.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "shwetank verma||leocapital",
+      "name": "Shwetank Verma",
+      "company": "Leo Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://leo.capital/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "shwetha balnadu||turbostart",
+      "name": "Shwetha Balnadu",
+      "company": "Turbostart",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://turbostart.co/network",
+      "method": "harvest"
+    },
+    {
+      "key": "shyam penumaka||nayaventures",
+      "name": "Shyam Penumaka",
+      "company": "Naya Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.dallasvc.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "sia houchangnia||seedcamp",
+      "name": "Sia Houchangnia",
+      "company": "Seedcamp",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://seedcamp.com/our-team/",
+      "method": "harvest"
+    },
+    {
+      "key": "sonya brown||norwestventurepartners",
+      "name": "Sonya Brown",
+      "company": "Norwest Venture Partners",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.norwest.com/team/",
       "method": "harvest"
     }
   ]
