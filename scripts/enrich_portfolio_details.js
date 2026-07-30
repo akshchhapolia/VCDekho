@@ -31,9 +31,13 @@ const ONLY_SLUG = argVal('--slug', null);
 const LIMIT = argVal('--limit', 30);
 const CONCURRENCY = argVal('--concurrency', 2);
 
-const PROMPT = `You extract one funding deal detail. Given search results about an investor backing a specific startup, return JSON only:
-{"found": true, "amount": "string or null", "stage": "Pre-Seed|Seed|Series A|Series B|Series C+|Bridge|Debt|Angel|null", "date": "YYYY-MM-DD or null", "highlight": "short phrase or null", "source_url": "best article URL", "source_title": "article title", "website": "startup website or null", "sector": "string or null"}
-or {"found": false}
+// Pipe format — Gemini flash often truncates wide JSON objects mid-string.
+const PROMPT = `Extract one funding/exit detail from the search results about this investor and startup.
+Reply with EXACTLY one line in this format (use - for unknown fields):
+FOUND|AMOUNT|STAGE|DATE|HIGHLIGHT|SOURCE_URL|SOURCE_TITLE
+Example:
+YES|$7M|Series A|2021-09-28|$7M Series A led by 9Unicorns|https://example.com/story|Zypp raises \$7M
+If nothing verifiable: NO||||||
 Only use the snippets. Do not invent.`;
 
 function needsEnrichment(c) {
@@ -45,27 +49,46 @@ function needsEnrichment(c) {
   return !hasSource || (!hasAmount && !hasDate);
 }
 
-function extractJson(text) {
-  let t = String(text || '').trim();
-  t = t.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```\s*$/i, '');
-  const start = t.indexOf('{');
-  const end = t.lastIndexOf('}');
-  if (start === -1 || end === -1 || end < start) return null;
-  try {
-    return JSON.parse(t.slice(start, end + 1));
-  } catch (_) {
-    return null;
+function parseEnrichLine(text) {
+  const line = String(text || '')
+    .split('\n')
+    .map((l) => l.trim())
+    .find((l) => /^(YES|NO)\|/i.test(l) || /^FOUND\|/i.test(l));
+  if (!line) return null;
+  const parts = line.split('|').map((p) => p.trim());
+  // Allow FOUND|... or YES|...
+  const flag = (parts[0] || '').toUpperCase();
+  if (flag === 'NO' || flag === 'FOUND' && parts.length < 3) {
+    if (flag === 'NO') return { found: false };
   }
+  if (flag !== 'YES' && flag !== 'FOUND') return null;
+  // If format is FOUND|true|... shift — we use YES/NO.
+  if (flag === 'FOUND') return null;
+  const dash = (v) => (!v || v === '-' || v.toLowerCase() === 'null' || v.toLowerCase() === 'unknown' ? null : v);
+  const dateRaw = dash(parts[3]);
+  let date = null;
+  if (dateRaw && !Number.isNaN(new Date(dateRaw).getTime())) {
+    date = new Date(dateRaw).toISOString().slice(0, 10);
+  }
+  return {
+    found: true,
+    amount: dash(parts[1]),
+    stage: dash(parts[2]),
+    date,
+    highlight: dash(parts[4]),
+    source_url: dash(parts[5]),
+    source_title: dash(parts[6])
+  };
 }
 
 function investorAliases(inv) {
   const names = new Set([inv.name]);
   const blob = [inv.name, inv.writeup, inv.notes].filter(Boolean).join(' ');
   // "formerly 9Unicorns" / "rebranded from X"
-  const formerly = blob.match(/formerly\s+([A-Z0-9][\w .&-]{1,40})/i);
-  if (formerly) names.add(formerly[1].trim().replace(/[.,;].*$/, ''));
-  const aka = blob.match(/(?:also known as|aka|rebranded from)\s+([A-Z0-9][\w .&-]{1,40})/i);
-  if (aka) names.add(aka[1].trim().replace(/[.,;].*$/, ''));
+  const formerly = blob.match(/formerly\s+([A-Z0-9][\w .&-]{1,40}?)(?:\s+[—–-]|\s+is\b|[.,;]|$)/i);
+  if (formerly) names.add(formerly[1].trim());
+  const aka = blob.match(/(?:also known as|aka|rebranded from)\s+([A-Z0-9][\w .&-]{1,40}?)(?:\s+[—–-]|\s+is\b|[.,;]|$)/i);
+  if (aka) names.add(aka[1].trim());
   // Common short form before slash: "Sequoia (India) / Peak XV"
   if (inv.name.includes('/')) {
     inv.name.split('/').forEach((p) => names.add(p.trim()));
@@ -85,32 +108,29 @@ async function enrichOne(inv, company) {
     user: `Investor: ${aliases.join(' / ')}\nStartup: ${company.name}\n\nResults:\n${organic
       .map((r, i) => `${i + 1}. ${r.title}\n${r.snippet || ''}\nURL: ${r.link}`)
       .join('\n\n')}`,
-    maxOutputTokens: 500,
+    maxOutputTokens: 200,
     jsonMode: false
   });
 
-  const parsed = extractJson(text);
+  const parsed = parseEnrichLine(text);
   const costUsd = (usage?.costUsd || 0) + SEARLO_COST_PER_QUERY;
   if (!parsed || !parsed.found) return { company, costUsd, updated: false };
 
   const next = { ...company };
   if (parsed.amount) next.amount = String(parsed.amount);
-  if (parsed.stage && String(parsed.stage).toLowerCase() !== 'null') next.stage = String(parsed.stage);
+  if (parsed.stage) next.stage = String(parsed.stage);
   if (parsed.highlight) next.highlight = String(parsed.highlight);
-  if (parsed.date && !Number.isNaN(new Date(parsed.date).getTime())) {
-    next.date = new Date(parsed.date).toISOString().slice(0, 10);
-  }
+  if (parsed.date) next.date = parsed.date;
   if (parsed.source_url) {
     next.sourceUrl = String(parsed.source_url);
     next.sourceTitle = parsed.source_title ? String(parsed.source_title) : next.sourceTitle;
   }
-  if (parsed.website) {
-    let website = String(parsed.website).trim();
-    if (website && !/^https?:\/\//i.test(website)) website = 'https://' + website;
-    next.website = website;
-    next.logoUrl = next.logoUrl || logoUrlForWebsite(website);
+  // Fallback: if model gave amount/stage but forgot URL, take top organic article.
+  if (!next.sourceUrl && organic[0] && organic[0].link) {
+    next.sourceUrl = organic[0].link;
+    next.sourceTitle = organic[0].title || next.sourceTitle;
   }
-  if (parsed.sector) next.sector = String(parsed.sector);
+  if (!next.logoUrl && next.website) next.logoUrl = logoUrlForWebsite(next.website);
 
   const changed = JSON.stringify(next) !== JSON.stringify(company);
   return { company: next, costUsd, updated: changed };
