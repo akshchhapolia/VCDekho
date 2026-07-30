@@ -1,4 +1,4 @@
-const { filterInvestors, getFilters, toCard } = require('../../utils/investors');
+const { filterInvestors, getFilters, toCard, ensureActivityFresh } = require('../../utils/investors');
 const { getAllThemes } = require('../../utils/thesis-themes');
 const { getAllStages } = require('../../utils/investment-stages');
 const { getAllSectorGuides } = require('../../utils/sectors');
@@ -16,6 +16,8 @@ module.exports = async function handler(req, res) {
       const user = await requireAuth(req, res);
       if (!user) return;
     }
+
+    await ensureActivityFresh();
 
     if (query.view === 'themes') {
       const themes = getAllThemes().map(t => ({

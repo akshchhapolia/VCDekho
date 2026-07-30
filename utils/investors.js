@@ -3,6 +3,8 @@ const path = require('path');
 const { INVESTMENT_STAGES } = require('../data/investment-stages');
 
 let cache = null;
+let activityCacheAt = 0;
+const ACTIVITY_CACHE_TTL_MS = 5 * 60 * 1000; // 5 min — avoids a DB round trip on every request
 
 const STAGE_GUIDE_IDS = new Set(INVESTMENT_STAGES.map(s => s.id));
 
@@ -23,6 +25,42 @@ function loadInvestorsData() {
   const filePath = path.join(__dirname, '..', 'data', 'investors.json');
   cache = JSON.parse(fs.readFileSync(filePath, 'utf8'));
   return cache;
+}
+
+/**
+ * Merges the live investor_activity table (kept fresh by
+ * api/cron/investor-activity.js and api/cron/investor-activity-backfill.js)
+ * on top of the static investors.json data, in place, with a short TTL so
+ * request handlers can just `await` this once and use the normal sync
+ * getters/filters. Failures fall back silently to whatever's already cached
+ * (badge freshness degrades gracefully; the site never breaks on a DB hiccup).
+ */
+async function ensureActivityFresh() {
+  const now = Date.now();
+  if (now - activityCacheAt < ACTIVITY_CACHE_TTL_MS) return;
+  try {
+    const db = require('./db');
+    const { rows } = await db.query(
+      `SELECT slug, last_check_date, last_check_sector, last_check_highlight, last_check_source, last_check_source_title, recent_check_count, recent_checks
+       FROM investor_activity WHERE last_check_date IS NOT NULL`
+    );
+    const bySlug = new Map(rows.map((r) => [r.slug, r]));
+    const data = loadInvestorsData();
+    data.investors.forEach((inv) => {
+      const r = bySlug.get(inv.slug);
+      if (!r) return;
+      inv.lastCheckDate = r.last_check_date;
+      inv.lastCheckSector = r.last_check_sector;
+      inv.lastCheckHighlight = r.last_check_highlight;
+      inv.lastCheckSource = r.last_check_source;
+      inv.lastCheckSourceTitle = r.last_check_source_title;
+      inv.recentCheckCount = r.recent_check_count;
+      inv.recentChecks = r.recent_checks || [];
+    });
+    activityCacheAt = now;
+  } catch (err) {
+    console.error('ensureActivityFresh: failed to load investor_activity from DB:', err.message);
+  }
 }
 
 function getFilters() {
@@ -143,6 +181,7 @@ module.exports = {
   getStageGuideLabel,
   deriveRelatedStages,
   isActivelyDeploying,
+  ensureActivityFresh,
   ACTIVE_WINDOW_DAYS,
   STAGE_GUIDE_IDS
 };

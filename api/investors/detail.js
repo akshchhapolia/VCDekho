@@ -1,4 +1,4 @@
-const { getInvestorBySlug, filterInvestors, toCard, hasStageGuide, deriveRelatedStages } = require('../../utils/investors');
+const { getInvestorBySlug, filterInvestors, toCard, hasStageGuide, deriveRelatedStages, ensureActivityFresh } = require('../../utils/investors');
 const { getThemePage, getAllThemes } = require('../../utils/thesis-themes');
 const { getStagePage } = require('../../utils/investment-stages');
 const { getSectorPage } = require('../../utils/sectors');
@@ -168,6 +168,8 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+    await ensureActivityFresh();
+
     if (view === 'theme') {
       const theme = getThemePage(slug);
       if (!theme) return res.status(404).send('<h1>404 - Thesis theme not found</h1>');
