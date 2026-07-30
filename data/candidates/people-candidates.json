@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T06:15:44.412Z",
+  "generatedAt": "2026-07-30T06:17:57.984Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -5932,6 +5932,276 @@
       "sourceUrl": "https://sangam.vc/team/",
       "method": "crawl",
       "companyType": "VC (seed & early-stage, climate/cleantech impact)"
+    },
+    {
+      "company": "Tanglin Venture Partners",
+      "name": "Ravi Venkatesh",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.tanglinvp.com/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Tanglin Venture Partners",
+      "name": "Sankalp Gupta",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.tanglinvp.com/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Tanglin Venture Partners",
+      "name": "Russell Dreisenstock",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.tanglinvp.com/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Tanglin Venture Partners",
+      "name": "Shashank Sabesan",
+      "title": "Principal",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.tanglinvp.com/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Tanglin Venture Partners",
+      "name": "Arun Scaria",
+      "title": "General Counsel",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.tanglinvp.com/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Together",
+      "name": "Manav Garg",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.together.fund/about",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Together",
+      "name": "Girish Mathrubootham",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.together.fund/about",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Together",
+      "name": "Lakshmi Shankar",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.together.fund/about",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Trifecta Capital",
+      "name": "Rahul Khanna",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://trifectacapital.in/people/",
+      "method": "crawl",
+      "companyType": "Venture Debt / VC"
+    },
+    {
+      "company": "Trifecta Capital",
+      "name": "Nilesh Kothari",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://trifectacapital.in/people/",
+      "method": "crawl",
+      "companyType": "Venture Debt / VC"
+    },
+    {
+      "company": "Trifecta Capital",
+      "name": "Lavanya Ashok",
+      "title": "Partner, Growth Equity",
+      "linkedinUrl": "",
+      "sourceUrl": "https://trifectacapital.in/people/",
+      "method": "crawl",
+      "companyType": "Venture Debt / VC"
+    },
+    {
+      "company": "Trifecta Capital",
+      "name": "Abhishek Gupta",
+      "title": "Partner, Credit",
+      "linkedinUrl": "",
+      "sourceUrl": "https://trifectacapital.in/people/",
+      "method": "crawl",
+      "companyType": "Venture Debt / VC"
+    },
+    {
+      "company": "Trifecta Capital",
+      "name": "Deepak Mohan",
+      "title": "Partner, Financial Solutions",
+      "linkedinUrl": "",
+      "sourceUrl": "https://trifectacapital.in/people/",
+      "method": "crawl",
+      "companyType": "Venture Debt / VC"
+    },
+    {
+      "company": "Turbostart",
+      "name": "Venkat Raju",
+      "title": "Global CEO & Founding Partner, TS Global",
+      "linkedinUrl": "",
+      "sourceUrl": "https://turbostart.co/network",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Turbostart",
+      "name": "Rajagopal Koushik",
+      "title": "CEO & Founding Partner, TS India, and President of CoEs",
+      "linkedinUrl": "",
+      "sourceUrl": "https://turbostart.co/network",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Turbostart",
+      "name": "Ravi Rao",
+      "title": "Founding Partner, TS MEA",
+      "linkedinUrl": "",
+      "sourceUrl": "https://turbostart.co/network",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Turbostart",
+      "name": "MS Bala",
+      "title": "Founding Partner, TS India",
+      "linkedinUrl": "",
+      "sourceUrl": "https://turbostart.co/network",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Turbostart",
+      "name": "Shwetha Balnadu",
+      "title": "CFO & Founding Partner, TS Global",
+      "linkedinUrl": "",
+      "sourceUrl": "https://turbostart.co/network",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Uncork Capital",
+      "name": "Andy McLoughlin",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://uncorkcapital.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Uncork Capital",
+      "name": "Jeff Clavier",
+      "title": "Founding Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://uncorkcapital.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Uncork Capital",
+      "name": "Amy Saper",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://uncorkcapital.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Uncork Capital",
+      "name": "Susan Liu",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://uncorkcapital.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Uncork Capital",
+      "name": "Tripp Jones",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://uncorkcapital.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Upekkha",
+      "name": "Prasanna",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.upekkha.io/team",
+      "method": "crawl",
+      "companyType": "Accelerator / VC"
+    },
+    {
+      "company": "Upekkha",
+      "name": "Shekar",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.upekkha.io/team",
+      "method": "crawl",
+      "companyType": "Accelerator / VC"
+    },
+    {
+      "company": "Upekkha",
+      "name": "Thiyagarajan (Rajan)",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.upekkha.io/team",
+      "method": "crawl",
+      "companyType": "Accelerator / VC"
+    },
+    {
+      "company": "V3 Ventures (Verlinvest)",
+      "name": "Lopo Champalimaud",
+      "title": "Co-Founder and Investment Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.v3.ventures/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "V3 Ventures (Verlinvest)",
+      "name": "Jimmy Dietz",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.v3.ventures/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "V3 Ventures (Verlinvest)",
+      "name": "Abhiram Bhalerao",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.v3.ventures/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "V3 Ventures (Verlinvest)",
+      "name": "Shweta Tripathi",
+      "title": "Investor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.v3.ventures/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
     }
   ],
   "unresolved": [],
