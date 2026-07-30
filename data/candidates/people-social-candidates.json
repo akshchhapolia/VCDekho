@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T11:00:11.190Z",
+  "generatedAt": "2026-07-30T11:01:15.554Z",
   "schemaVersion": 1,
   "description": "Staged LinkedIn/Twitter enrichments for existing People rows. Apply via scripts/apply_people_socials.js — patches empty CSV cells only.",
   "found": [
@@ -6115,6 +6115,30 @@
       "sourceUrl": "https://www.linkedin.com/in/anish-babu-39157719",
       "method": "search",
       "confidence": "medium",
+      "companyType": ""
+    },
+    {
+      "key": "a balachandran||vittbi",
+      "name": "A. Balachandran",
+      "company": "VIT-TBI",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/balachandrana",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/balachandrana",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "mohanlal parameshwara menon||77eastventures",
+      "name": "Mohanlal Parameshwara Menon",
+      "company": "77 East Ventures",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/mohanlalmenon",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/mohanlalmenon",
+      "method": "search",
+      "confidence": "high",
       "companyType": ""
     }
   ],
