@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T11:38:40.315Z",
+  "generatedAt": "2026-07-30T11:41:36.707Z",
   "schemaVersion": 1,
   "description": "Staged LinkedIn/Twitter enrichments for existing People rows. Apply via scripts/apply_people_socials.js — patches empty CSV cells only.",
   "found": [
@@ -6883,6 +6883,78 @@
       "sourceUrl": "https://www.linkedin.com/posts/maheshyagna_this-one-is-worth-noting-acumen-has-been-activity-7442272484986503168-TUtB",
       "method": "search",
       "confidence": "medium",
+      "companyType": ""
+    },
+    {
+      "key": "narendra ostawal||warburgpincus",
+      "name": "Narendra Ostawal",
+      "company": "Warburg Pincus",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/narendra-ostawal-4658b41",
+      "twitterUrl": "",
+      "sourceUrl": "https://in.linkedin.com/in/narendra-ostawal-4658b41",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "nisa amoils||a100xventures",
+      "name": "Nisa Amoils",
+      "company": "A100x Ventures",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/nisaamoils",
+      "twitterUrl": "",
+      "sourceUrl": "https://icoholder.com/ar/companies/a100x-ventures-28196",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "nitish mittersain||nazaraventures",
+      "name": "Nitish Mittersain",
+      "company": "Nazara Ventures",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/mittersain",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/mittersain",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "marianne wu||congruentventures",
+      "name": "Marianne Wu",
+      "company": "Congruent Ventures",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/mariannewu",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/mariannewu",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "nikhil chandna||innovencapital",
+      "name": "Nikhil Chandna",
+      "company": "Innoven Capital",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/nikhil-chandna-77986018",
+      "twitterUrl": "",
+      "sourceUrl": "https://in.linkedin.com/in/nikhil-chandna-77986018",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "nowi kallen||salesforceventures",
+      "name": "Nowi Kallen",
+      "company": "Sales Force Ventures",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/kallennowi",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/kallennowi",
+      "method": "search",
+      "confidence": "high",
       "companyType": ""
     }
   ],
