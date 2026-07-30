@@ -11,23 +11,54 @@
  */
 const db = require('./db');
 
+// Must match utils/investors.js ACTIVE_WINDOW_DAYS — kept as a separate
+// constant here (like elsewhere in this feature) to avoid a circular import.
+const WINDOW_DAYS = 180;
+const MAX_STORED_CHECKS = 5;
+
+function checkKey(c) {
+  if (c && c.source) return 'src:' + String(c.source).toLowerCase();
+  const day = c && c.date ? String(c.date).slice(0, 10) : '';
+  return 'day:' + day + '|' + String((c && c.highlight) || '').toLowerCase().slice(0, 40);
+}
+
 /**
- * Upsert one investor's activity signal. Whichever source has the *newer*
- * lastCheckDate wins for the display fields — this lets news-pipeline hits
- * and web-search backfill results coexist safely without one clobbering a
- * fresher result from the other. `checked_at` always advances to now.
+ * Merge two recentChecks arrays (one already stored, one freshly found),
+ * deduping by source URL (or date+highlight when there's no URL) so the
+ * same deal reported by both the news pipeline and web-search backfill
+ * doesn't show up twice. Keeps the newest MAX_STORED_CHECKS entries.
+ */
+function mergeChecks(existing, incoming) {
+  const map = new Map();
+  [...(existing || []), ...(incoming || [])].forEach((c) => {
+    if (!c || !c.date) return;
+    const key = checkKey(c);
+    const prev = map.get(key);
+    if (!prev || new Date(c.date) > new Date(prev.date)) map.set(key, c);
+  });
+  return [...map.values()]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, MAX_STORED_CHECKS);
+}
+
+/**
+ * Upsert one investor's activity signal. Unlike a plain "freshest wins"
+ * overwrite, this MERGES the incoming recentChecks into whatever is already
+ * stored — so a rich, multi-deal list from the news pipeline doesn't get
+ * truncated down to one entry the next time the (leaner) web-search backfill
+ * touches the same investor, and vice versa. `checked_at` always advances to
+ * now, which doubles as the backfill queue cursor.
  */
 async function upsertActivity(slug, found /* null | { lastCheckDate, lastCheckSector, lastCheckHighlight, lastCheckSource, lastCheckSourceTitle, recentCheckCount, totalMentions, recentChecks } */, sourceMethod) {
   const existing = await db.query(`SELECT * FROM investor_activity WHERE slug = $1`, [slug]);
   const row = existing.rows[0] || null;
+  const existingChecks = (row && row.recent_checks) || [];
 
-  const existingDate = row && row.last_check_date ? new Date(row.last_check_date).getTime() : 0;
-  const newDate = found && found.lastCheckDate ? new Date(found.lastCheckDate).getTime() : 0;
-  const newIsFresher = newDate > 0 && newDate >= existingDate;
+  const merged = found ? mergeChecks(existingChecks, found.recentChecks || []) : existingChecks;
 
-  if (!found || !newIsFresher) {
-    // Nothing found, or what we found is staler than what's already stored —
-    // just bump checked_at so the backfill queue moves on.
+  if (!found || !merged.length) {
+    // Nothing new found (or nothing at all stored yet) — just bump
+    // checked_at so the backfill queue moves on.
     await db.query(
       `INSERT INTO investor_activity (slug, checked_at, source_method, updated_at)
        VALUES ($1, NOW(), COALESCE($2, (SELECT source_method FROM investor_activity WHERE slug = $1)), NOW())
@@ -36,6 +67,13 @@ async function upsertActivity(slug, found /* null | { lastCheckDate, lastCheckSe
     );
     return { slug, updated: false };
   }
+
+  const top = merged[0];
+  const now = Date.now();
+  const recentCheckCount = merged.filter(
+    (c) => (now - new Date(c.date).getTime()) / (24 * 60 * 60 * 1000) <= WINDOW_DAYS
+  ).length;
+  const totalMentions = Math.max((row && row.total_mentions) || 0, found.totalMentions || 0, merged.length);
 
   await db.query(
     `INSERT INTO investor_activity
@@ -56,14 +94,14 @@ async function upsertActivity(slug, found /* null | { lastCheckDate, lastCheckSe
        updated_at = NOW()`,
     [
       slug,
-      found.lastCheckDate,
-      found.lastCheckSector || null,
-      found.lastCheckHighlight || null,
-      found.lastCheckSource || null,
-      found.lastCheckSourceTitle || null,
-      found.recentCheckCount || 0,
-      found.totalMentions || 0,
-      JSON.stringify(found.recentChecks || []),
+      top.date,
+      top.sector || null,
+      top.highlight || null,
+      top.source || null,
+      top.sourceTitle || null,
+      recentCheckCount,
+      totalMentions,
+      JSON.stringify(merged),
       sourceMethod
     ]
   );
