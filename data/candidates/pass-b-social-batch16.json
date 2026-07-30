@@ -1,0 +1,9 @@
+{
+  "found": [
+    {"name":"Vani Kola","company":"TiE Bangalore Angels","linkedinUrl":"https://www.linkedin.com/in/vanikola","sourceUrl":"https://kalaari.com/kalaari_team/vani-kola/","method":"search","confidence":"high"},
+    {"name":"Srini Raju","company":"TiE Hyderabad Angels","linkedinUrl":"https://www.linkedin.com/in/srinivasacraju-156887135","sourceUrl":"https://hyderabad.tie.org/charter-member/srini-raju/","method":"search","confidence":"high"},
+    {"name":"Anand Piramal","company":"Piramal Family Office","linkedinUrl":"https://www.linkedin.com/in/anand-piramal-ed-piramalgroup","sourceUrl":"https://www.piramalrealty.com/anand-piramal","method":"search","confidence":"high"},
+    {"name":"Chinmaya Sharma","company":"Info Edge Ventures","linkedinUrl":"https://www.linkedin.com/in/chinmaya-sharma","sourceUrl":"https://www.vcsheet.com/who/chinmaya-sharma","method":"search","confidence":"high"},
+    {"name":"Ankita Vashistha","company":"TiE Bangalore Angels","linkedinUrl":"https://www.linkedin.com/in/ankitavashistha","sourceUrl":"https://www.linkedin.com/in/ankitavashistha","method":"search","confidence":"high"}
+  ]
+}
