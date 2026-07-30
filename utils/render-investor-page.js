@@ -104,7 +104,7 @@ function formatActivityDate(dateStr) {
 function activityBadge(investor) {
   if (!isActivelyDeploying(investor)) return '';
   return (
-    '<span class="inv-profile-active-badge" title="Named in a funding-related news story within the last ' +
+    '<span class="inv-profile-active-badge" title="Linked to a funding round within the last ' +
     ACTIVE_WINDOW_DAYS +
     ' days">' +
     '<span class="inv-profile-active-dot" aria-hidden="true"></span>Actively deploying' +

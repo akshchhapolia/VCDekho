@@ -274,7 +274,7 @@
         <div class="inv-dir-col inv-dir-col-fund">
           <span class="inv-dir-fund-mark">${logoHtml(inv)}</span>
           <span class="inv-dir-fund-text">
-            <span class="inv-dir-type">${esc(inv.type || 'Investor')}${inv.activelyDeploying ? ' <span class="inv-dir-active-dot" title="Actively deploying — named in a recent funding story" aria-label="Actively deploying"></span>' : ''}</span>
+            <span class="inv-dir-type">${esc(inv.type || 'Investor')}${inv.activelyDeploying ? ' <span class="inv-dir-active-dot" title="Actively deploying — linked to a funding round in the last 6 months" aria-label="Actively deploying"></span>' : ''}</span>
             <span class="inv-dir-name">${esc(inv.name)}</span>
           </span>
         </div>
