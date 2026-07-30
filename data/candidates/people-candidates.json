@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T05:50:17.069Z",
+  "generatedAt": "2026-07-30T05:51:20.792Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -4845,21 +4845,39 @@
       "companyType": "VC (healthcare & wellness, early-growth; women-led, IFC-backed)"
     },
     {
-      "company": "Fireside Ventures",
-      "name": "Kanwaljit Singh",
-      "title": "Founder & Managing Partner",
-      "linkedinUrl": "https://www.linkedin.com/in/singhkanwaljit",
-      "sourceUrl": "https://firesideventures.com/pages/kanwaljit-singh",
-      "method": "agent-verified",
-      "companyType": "VC"
+      "company": "Anchorage Capital",
+      "name": "Arjun Sheth",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://anchoragecap.in/team.html",
+      "method": "crawl",
+      "companyType": "Family Office"
     },
     {
-      "company": "Inflexor Ventures",
-      "name": "Pratip Mazumdar",
-      "title": "Co-Founder And Partner",
+      "company": "Anchorage Capital",
+      "name": "Ravi Sheth",
+      "title": "Partner",
       "linkedinUrl": "",
-      "sourceUrl": "https://www.inflexor.vc/about",
-      "method": "agent-verified",
+      "sourceUrl": "https://anchoragecap.in/team.html",
+      "method": "crawl",
+      "companyType": "Family Office"
+    },
+    {
+      "company": "Anchorage Capital",
+      "name": "Geet Lulla",
+      "title": "Senior Advisor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://anchoragecap.in/team.html",
+      "method": "crawl",
+      "companyType": "Family Office"
+    },
+    {
+      "company": "Athena",
+      "name": "Rob Liu",
+      "title": "Founder, CEO, ContactOut",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.athena.vc/",
+      "method": "crawl",
       "companyType": "VC"
     }
   ],
