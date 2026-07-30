@@ -11,11 +11,17 @@ const parser = new Parser({
 
 // VCCircle no longer exposes a public RSS feed (endpoints return HTML/500).
 // LiveMint Companies is used as the PE/VC-adjacent Indian business source.
+// yourstory-funding / startuptalky / cnbctv18-startups were added to widen
+// coverage for the investor-activity signal (see utils/investor-activity-matcher.js) —
+// more funding-news sources means faster, broader "actively deploying" coverage.
 const SOURCES = [
     { name: 'inc42', url: 'https://inc42.com/buzz/feed/' },
     { name: 'entrackr', url: 'https://entrackr.com/rss' },
     { name: 'yourstory', url: 'https://yourstory.com/feed' },
-    { name: 'livemint', url: 'https://www.livemint.com/rss/companies' }
+    { name: 'yourstory-funding', url: 'https://yourstory.com/category/funding/feed' },
+    { name: 'livemint', url: 'https://www.livemint.com/rss/companies' },
+    { name: 'startuptalky', url: 'https://startuptalky.com/feed/' },
+    { name: 'cnbctv18-startups', url: 'https://www.cnbctv18.com/commonfeeds/v1/cne/rss/startup.xml' }
 ];
 
 function scoreRelevance(item, sourceName) {
