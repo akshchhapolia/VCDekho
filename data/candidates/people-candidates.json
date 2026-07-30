@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T06:05:51.944Z",
+  "generatedAt": "2026-07-30T06:08:33.465Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -5671,6 +5671,150 @@
       "sourceUrl": "https://www.nextstarvc.com/",
       "method": "crawl",
       "companyType": "Corporate Venture Capital (CVC) + startup incubator (small/emerging)"
+    },
+    {
+      "company": "Pavestone VC",
+      "name": "Sridhar Rampalli",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://pavestone.vc/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Pavestone VC",
+      "name": "Srikanth V J Tanikella",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://pavestone.vc/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Pavestone VC",
+      "name": "Laxmikanth V",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://pavestone.vc/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Pavestone VC",
+      "name": "Manikandan N",
+      "title": "Founding Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://pavestone.vc/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Pavestone VC",
+      "name": "Sridhar B",
+      "title": "Founding Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://pavestone.vc/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Peak Sustainability Ventures",
+      "name": "Samir Shah",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://peakventures.in/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Peak Sustainability Ventures",
+      "name": "Sanjay Nayar",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://peakventures.in/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Peak Sustainability Ventures",
+      "name": "Aakash Shah",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://peakventures.in/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Peak Sustainability Ventures",
+      "name": "Aadil Chitalwala",
+      "title": "Vice President",
+      "linkedinUrl": "",
+      "sourceUrl": "https://peakventures.in/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Peak Sustainability Ventures",
+      "name": "Ahana Advani",
+      "title": "Senior Associate",
+      "linkedinUrl": "",
+      "sourceUrl": "https://peakventures.in/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "PointOne Capital",
+      "name": "Ravish Ratnam",
+      "title": "Founding Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://pointone.capital/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Prime Venture Partners",
+      "name": "Sanjay Swamy",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.primevp.in/about-us",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Prime Venture Partners",
+      "name": "Shripati Acharya",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.primevp.in/about-us",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Prime Venture Partners",
+      "name": "Amit Somani",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.primevp.in/about-us",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Prime Venture Partners",
+      "name": "Brij Bhushan",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.primevp.in/about-us",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Prime Venture Partners",
+      "name": "Shivani Kulkarni",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.primevp.in/about-us",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
     }
   ],
   "unresolved": [],
