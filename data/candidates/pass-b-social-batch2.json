@@ -1,0 +1,93 @@
+{
+  "found": [
+    {
+      "name": "Aditya Kedia",
+      "company": "Pivot Ventures",
+      "linkedinUrl": "https://www.linkedin.com/in/aditya-kedia-7257181b5",
+      "sourceUrl": "https://www.linkedin.com/in/aditya-kedia-7257181b5",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Ahmad El Jurdi",
+      "company": "Lightrock",
+      "linkedinUrl": "https://www.linkedin.com/in/ahmad-el-jurdi-41933114",
+      "sourceUrl": "https://www.lightrock.com/team/ahmad-el-jurdi/",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Alex Theuma",
+      "company": "BackFuture",
+      "linkedinUrl": "https://www.linkedin.com/in/alextheuma",
+      "sourceUrl": "https://www.linkedin.com/in/alextheuma",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Ankur Pahwa",
+      "company": "PeerCapital",
+      "linkedinUrl": "https://www.linkedin.com/in/ankur-pahwa-201b5083",
+      "sourceUrl": "https://www.linkedin.com/in/ankur-pahwa-201b5083",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Arun Tadanki",
+      "company": "Waveform Ventures",
+      "linkedinUrl": "https://www.linkedin.com/in/aruntadanki",
+      "sourceUrl": "https://www.linkedin.com/in/aruntadanki",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Shailendra Singh",
+      "company": "Sequoia (India) / Peak XV",
+      "linkedinUrl": "https://www.linkedin.com/in/shailendraj1",
+      "sourceUrl": "https://www.linkedin.com/in/shailendraj1",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Jeff Crowe",
+      "company": "Norwest Venture Partners",
+      "linkedinUrl": "https://www.linkedin.com/in/jeff-crowe-7ba43",
+      "twitterUrl": "https://x.com/jeffmcrowe",
+      "sourceUrl": "https://www.norwest.com/team/jeff-crowe/",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Pearl Agarwal",
+      "company": "Eximus Ventures",
+      "linkedinUrl": "https://www.linkedin.com/in/pearl-agarwal",
+      "sourceUrl": "https://www.linkedin.com/in/pearl-agarwal",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Vinod Murali",
+      "company": "Alteria Capital",
+      "linkedinUrl": "https://www.linkedin.com/in/vinod-murali-a2568752",
+      "sourceUrl": "https://alteriacapital.com/team/vinod-murali/",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Rick Gerson",
+      "company": "Alpha Wave Global",
+      "linkedinUrl": "https://www.linkedin.com/in/rick-gerson",
+      "sourceUrl": "https://www.alphawaveglobal.com/rick-gerson",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Nitya Agarwal",
+      "company": "3one4 Capital",
+      "linkedinUrl": "https://www.linkedin.com/in/nitya-agarwal-61593486",
+      "sourceUrl": "https://www.linkedin.com/in/nitya-agarwal-61593486",
+      "method": "search",
+      "confidence": "high"
+    }
+  ]
+}
