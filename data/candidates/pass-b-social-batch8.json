@@ -1,0 +1,11 @@
+{
+  "found": [
+    {"name":"Sean O'Sullivan","company":"SOSV","linkedinUrl":"https://www.linkedin.com/in/sean-sosv","sourceUrl":"https://sosv.com/team/sean-osullivan/","method":"search","confidence":"high"},
+    {"name":"Tilman Ehrbeck","company":"Flourish Ventures","linkedinUrl":"https://www.linkedin.com/in/tilman-ehrbeck","sourceUrl":"https://flourishventures.com/profile/tilman-ehrbeck/","method":"search","confidence":"high"},
+    {"name":"Alice Bentinck","company":"Entrepreneur First","linkedinUrl":"https://www.linkedin.com/in/alicebentinck","sourceUrl":"https://www.joinef.com/about/","method":"search","confidence":"high"},
+    {"name":"Tushar Jain","company":"Multicoin Capital","linkedinUrl":"https://www.linkedin.com/in/tjain251","twitterUrl":"https://x.com/tusharjain_","sourceUrl":"https://blockworks.com/speaker/tushar-jain","method":"search","confidence":"high"},
+    {"name":"Spencer Applebaum","company":"Multicoin Capital","linkedinUrl":"https://www.linkedin.com/in/spencer-applebaum-bb6466108","twitterUrl":"https://x.com/spencerapplebau","sourceUrl":"https://startupintros.com/people/spencer-applebaum","method":"search","confidence":"high"},
+    {"name":"Lak Ananth","company":"next47","linkedinUrl":"https://www.linkedin.com/in/lananth","sourceUrl":"https://www.kauffmanfellows.org/fellows/lak-ananth","method":"search","confidence":"high"},
+    {"name":"Darian Shirazi","company":"Gradient Ventures","linkedinUrl":"https://www.linkedin.com/in/darian314","twitterUrl":"https://x.com/darian314","sourceUrl":"https://www.gradient.com/team/darian-shirazi/","method":"search","confidence":"high"}
+  ]
+}
