@@ -114,9 +114,34 @@ async function getStalePortfolioSlugs(allSlugs, limit, staleAfterDays) {
   return candidates.slice(0, limit);
 }
 
+/**
+ * Investors whose stored portfolio is empty or thin (company_count <= maxCompanies).
+ * Used to re-run improved lookups against weak coverage. Ordered by fewest
+ * companies first, then oldest checked_at.
+ */
+async function getLowCoverageSlugs(allSlugs, limit, maxCompanies) {
+  const { rows } = await db.query(
+    `SELECT slug, company_count, checked_at FROM investor_portfolio WHERE company_count <= $1`,
+    [maxCompanies]
+  );
+  const bySlug = new Map(rows.map((r) => [r.slug, r]));
+  // Include never-rowed slugs as count 0.
+  const candidates = allSlugs
+    .map((slug) => {
+      const row = bySlug.get(slug);
+      if (row) return { slug, count: row.company_count || 0, checkedAt: row.checked_at ? new Date(row.checked_at).getTime() : 0 };
+      return { slug, count: 0, checkedAt: 0 };
+    })
+    .filter((c) => c.count <= maxCompanies);
+
+  candidates.sort((a, b) => a.count - b.count || a.checkedAt - b.checkedAt);
+  return candidates.slice(0, limit).map((c) => c.slug);
+}
+
 module.exports = {
   upsertPortfolio,
   getAllPortfolios,
   getStalePortfolioSlugs,
+  getLowCoverageSlugs,
   mergeCompanies
 };

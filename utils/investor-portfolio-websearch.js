@@ -15,15 +15,19 @@ const SEARCH_RESULT_COUNT = 10;
 const EXTRACTION_SYSTEM_PROMPT = `You are a research assistant for an Indian VC/startup directory. You will be given Google search results about a venture capital fund or angel investor. Based ONLY on those snippets, extract up to ${MAX_COMPANIES} DISTINCT portfolio companies / startups they have invested in.
 
 Rules:
-- Only include companies where this investor is listed as an investor/participant in a funding round (pre-seed, seed, Series A/B/C..., bridge, venture debt). Do NOT include: the fund itself, LPs, exits/acquisitions as the only signal, or companies merely mentioned without an investment link.
-- Each entry must be a different company — do not list the same startup twice.
-- Prefer more recent / better-documented deals when you have to choose.
-- Base your answer only on the snippets — do not invent amounts, stages, or websites not present.
+- Include a company if ANY of these are true in the snippets:
+  (a) they are named on this investor's official portfolio / investments page,
+  (b) a funding article lists this investor as a participant/lead/backer,
+  (c) an exit/follow-on story clearly says this investor had invested earlier.
+- Do NOT include: the fund itself, LPs, other VCs, accelerators as "companies", or unrelated brands with no investment link.
+- Amount/stage/date may be null when only the portfolio listing is known — still include the company.
+- Each entry must be a different company. Prefer more recent / better-documented deals when choosing.
+- Base your answer only on the snippets — do not invent names, amounts, or stages not present.
 - If nothing verifiable is found, respond with {"found": false}.
 - Respond with ONLY a raw JSON object, no markdown fences, no other text.
 
 If found:
-{"found": true, "companies": [{"name": "string", "website": "string or null", "amount": "string or null", "stage": "Pre-Seed|Seed|Series A|Series B|Series C+|Bridge|Debt|Angel|Unknown", "investment_type": "Lead|Participant|Angel|Unknown", "sector": "string or null", "date": "YYYY-MM-DD or null", "highlight": "short phrase e.g. '$5M Series A'", "source_url": "string", "source_title": "string"}]}
+{"found": true, "companies": [{"name": "string", "website": "string or null", "amount": "string or null", "stage": "Pre-Seed|Seed|Series A|Series B|Series C+|Bridge|Debt|Angel|Unknown", "investment_type": "Lead|Participant|Angel|Unknown", "sector": "string or null", "date": "YYYY-MM-DD or null", "highlight": "short phrase e.g. '$5M Series A' or 'Portfolio company'", "source_url": "string", "source_title": "string"}]}
 
 If not found:
 {"found": false}`;
@@ -120,25 +124,80 @@ function searchName(investorName) {
   return name || investorName;
 }
 
+function dedupeOrganic(results) {
+  const seen = new Set();
+  const out = [];
+  for (const r of results || []) {
+    const key = String(r.link || r.title || '').toLowerCase();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push(r);
+  }
+  return out;
+}
+
 /**
  * Returns { companies, usage } — companies is an array (possibly empty).
+ * opts.website: optional fund website for a site:-scoped portfolio search.
+ * opts.writeup: optional profile text that may already name portfolio cos.
  */
-async function lookupInvestorPortfolio(investorName) {
+async function lookupInvestorPortfolio(investorName, opts = {}) {
   const nameForSearch = searchName(investorName);
-  const query = `${nameForSearch} portfolio companies investments India startups funding rounds`;
-  const { organic } = await webSearch(query, { limit: SEARCH_RESULT_COUNT, gl: 'in', hl: 'en' });
-
-  if (!organic.length) {
-    return { companies: [], usage: withSearchCost(null) };
+  const queries = [
+    `${nameForSearch} portfolio companies startups India`,
+    `${nameForSearch} invested in OR backed OR led funding round India startup`
+  ];
+  if (opts.website) {
+    try {
+      const host = new URL(
+        opts.website.startsWith('http') ? opts.website : `https://${opts.website}`
+      ).hostname.replace(/^www\./, '');
+      if (host) queries.push(`site:${host} portfolio OR investments OR startups`);
+    } catch (_) {
+      /* ignore bad website */
+    }
   }
+
+  let organic = [];
+  let searchCalls = 0;
+  for (const q of queries) {
+    try {
+      const res = await webSearch(q, { limit: SEARCH_RESULT_COUNT, gl: 'in', hl: 'en' });
+      searchCalls += 1;
+      organic = organic.concat(res.organic || []);
+    } catch (err) {
+      // One failed query shouldn't kill the whole lookup.
+      if (err.status === 402 || /insufficient credits/i.test(err.message || '')) throw err;
+    }
+  }
+  organic = dedupeOrganic(organic).slice(0, 18);
+
+  if (!organic.length && !opts.writeup) {
+    return {
+      companies: [],
+      usage: {
+        inputTokens: 0,
+        outputTokens: 0,
+        costUsd: SEARLO_COST_PER_QUERY * Math.max(1, searchCalls)
+      }
+    };
+  }
+
+  const writeupBlock = opts.writeup
+    ? `\n\nProfile notes (may list known portfolio companies — only use names clearly presented as investments):\n${String(opts.writeup).slice(0, 1200)}`
+    : '';
 
   const { text, usage } = await generateText({
     system: EXTRACTION_SYSTEM_PROMPT,
-    user: `Investor name: ${investorName}${nameForSearch !== investorName ? ` (also known as ${nameForSearch})` : ''}\n\nSearch results:\n${formatResultsForPrompt(organic)}`,
-    maxOutputTokens: 1200
+    user: `Investor name: ${investorName}${nameForSearch !== investorName ? ` (also known as ${nameForSearch})` : ''}\n\nSearch results:\n${formatResultsForPrompt(organic) || '(none)'}${writeupBlock}`,
+    maxOutputTokens: 1400
   });
 
-  const fullUsage = withSearchCost(usage);
+  const fullUsage = {
+    inputTokens: usage?.inputTokens || 0,
+    outputTokens: usage?.outputTokens || 0,
+    costUsd: (usage?.costUsd || 0) + SEARLO_COST_PER_QUERY * Math.max(1, searchCalls)
+  };
   const parsed = extractJson(text);
   if (!parsed || !parsed.found || !Array.isArray(parsed.companies)) {
     return { companies: [], usage: fullUsage };

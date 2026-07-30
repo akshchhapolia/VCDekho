@@ -1,17 +1,22 @@
 #!/usr/bin/env node
 /**
- * Backfills investor portfolio companies via Searlo web search + Haiku
- * extraction for every investor (or a stale slice).
+ * Backfills investor portfolio companies via Searlo web search + Gemini
+ * extraction for every investor (or a stale / low-coverage slice).
  *
  * Usage:
  *   node scripts/investor_portfolio_websearch.js --limit 40
  *   node scripts/investor_portfolio_websearch.js --limit 1017 --concurrency 5 --stale-after 0 --budget 10
+ *   node scripts/investor_portfolio_websearch.js --max-companies 1 --limit 800 --concurrency 3 --budget 5
  */
 require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const { lookupInvestorPortfolio } = require('../utils/investor-portfolio-websearch');
-const { upsertPortfolio, getStalePortfolioSlugs } = require('../utils/investor-portfolio-store');
+const {
+  upsertPortfolio,
+  getStalePortfolioSlugs,
+  getLowCoverageSlugs
+} = require('../utils/investor-portfolio-store');
 
 const INVESTORS_PATH = path.join(__dirname, '..', 'data', 'investors.json');
 
@@ -23,9 +28,14 @@ function argVal(name, def) {
 }
 
 const LIMIT = argVal('--limit', 40);
-const CONCURRENCY = argVal('--concurrency', 5);
+const CONCURRENCY = argVal('--concurrency', 3);
 const STALE_AFTER_DAYS = argVal('--stale-after', 30);
 const BUDGET_USD = argVal('--budget', Infinity);
+// When set (incl. 0), re-run investors with company_count <= this value
+// instead of the stale queue. Use --max-companies 1 for empty/near-empty.
+const MAX_COMPANIES_FILTER = process.argv.includes('--max-companies')
+  ? argVal('--max-companies', 0)
+  : null;
 
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
@@ -82,10 +92,18 @@ async function main() {
   const allSlugs = payload.investors.map((i) => i.slug);
   const bySlug = new Map(payload.investors.map((i) => [i.slug, i]));
 
-  console.log(
-    `Loaded ${allSlugs.length} investors. Selecting up to ${LIMIT} stale/never-checked (staleAfter=${STALE_AFTER_DAYS}d)...`
-  );
-  const candidates = await getStalePortfolioSlugs(allSlugs, LIMIT, STALE_AFTER_DAYS);
+  let candidates;
+  if (MAX_COMPANIES_FILTER != null) {
+    console.log(
+      `Loaded ${allSlugs.length} investors. Re-running up to ${LIMIT} with company_count <= ${MAX_COMPANIES_FILTER}...`
+    );
+    candidates = await getLowCoverageSlugs(allSlugs, LIMIT, MAX_COMPANIES_FILTER);
+  } else {
+    console.log(
+      `Loaded ${allSlugs.length} investors. Selecting up to ${LIMIT} stale/never-checked (staleAfter=${STALE_AFTER_DAYS}d)...`
+    );
+    candidates = await getStalePortfolioSlugs(allSlugs, LIMIT, STALE_AFTER_DAYS);
+  }
   const budgetLabel = Number.isFinite(BUDGET_USD) ? `$${BUDGET_USD.toFixed(2)}` : 'none';
   console.log(`Checking ${candidates.length} investors (concurrency=${CONCURRENCY}, budget=${budgetLabel})...\n`);
 
@@ -102,7 +120,13 @@ async function main() {
       const inv = bySlug.get(slug);
       if (!inv) return;
       try {
-        const { companies, usage } = await withRetry(() => lookupInvestorPortfolio(inv.name));
+        const writeup = [inv.writeup, inv.notes, inv.thesis].filter(Boolean).join('\n\n');
+        const { companies, usage } = await withRetry(() =>
+          lookupInvestorPortfolio(inv.name, {
+            website: inv.website || null,
+            writeup: writeup || null
+          })
+        );
         checked++;
         spentUsd += usage?.costUsd || 0;
         if (companies.length) {
