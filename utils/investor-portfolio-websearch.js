@@ -1,18 +1,21 @@
 /**
- * Per-investor portfolio lookup via Searlo (web search) + Gemini Flash-Lite
- * extraction. Returns up to MAX_COMPANIES structured portfolio entries
- * (company name, amount, stage/series, sector, source, optional website).
+ * Per-investor portfolio lookup.
  *
- * Cost shape: 1 Searlo credit + 1 small Gemini call ≈ $0.0003–0.0005/investor
- * (roughly 5–10x cheaper than the previous Claude Haiku extractor).
+ * Order of sources (as product requires):
+ *   1. Investor's own website portfolio page (logos, names, company links)
+ *   2. News/articles via Searlo + Gemini (amounts, stages, dates) — also the
+ *      fallback when no portfolio page exists
+ *   3. Free parse of our own profile writeup ("Portfolio names include…")
  */
 const { webSearch, SEARLO_COST_PER_QUERY } = require('./web-search');
 const { generateText } = require('./gemini');
+const { scrapeInvestorPortfolioSite } = require('./investor-portfolio-site');
 
-const MAX_COMPANIES = 10;
+const MAX_COMPANIES_NEWS = 10;
+const MAX_COMPANIES_SITE = 80;
 const SEARCH_RESULT_COUNT = 10;
 
-const EXTRACTION_SYSTEM_PROMPT = `You are a research assistant for an Indian VC/startup directory. You will be given Google search results about a venture capital fund or angel investor. Based ONLY on those snippets, extract up to ${MAX_COMPANIES} DISTINCT portfolio companies / startups they have invested in.
+const EXTRACTION_SYSTEM_PROMPT = `You are a research assistant for an Indian VC/startup directory. You will be given Google search results about a venture capital fund or angel investor. Based ONLY on those snippets, extract up to ${MAX_COMPANIES_NEWS} DISTINCT portfolio companies / startups they have invested in.
 
 Rules:
 - Include a company if ANY of these are true in the snippets:
@@ -186,27 +189,12 @@ function dedupeOrganic(results) {
   return out;
 }
 
-/**
- * Returns { companies, usage } — companies is an array (possibly empty).
- * opts.website: optional fund website for a site:-scoped portfolio search.
- * opts.writeup: optional profile text that may already name portfolio cos.
- */
-async function lookupInvestorPortfolio(investorName, opts = {}) {
+async function lookupFromNews(investorName, opts = {}) {
   const nameForSearch = searchName(investorName);
   const queries = [
     `${nameForSearch} portfolio companies startups India`,
     `${nameForSearch} invested in OR backed OR led funding round India startup`
   ];
-  if (opts.website) {
-    try {
-      const host = new URL(
-        opts.website.startsWith('http') ? opts.website : `https://${opts.website}`
-      ).hostname.replace(/^www\./, '');
-      if (host) queries.push(`site:${host} portfolio OR investments OR startups`);
-    } catch (_) {
-      /* ignore bad website */
-    }
-  }
 
   let organic = [];
   let searchCalls = 0;
@@ -216,21 +204,19 @@ async function lookupInvestorPortfolio(investorName, opts = {}) {
       searchCalls += 1;
       organic = organic.concat(res.organic || []);
     } catch (err) {
-      // One failed query shouldn't kill the whole lookup.
       if (err.status === 402 || /insufficient credits/i.test(err.message || '')) throw err;
     }
   }
   organic = dedupeOrganic(organic).slice(0, 18);
 
+  const emptyUsage = {
+    inputTokens: 0,
+    outputTokens: 0,
+    costUsd: SEARLO_COST_PER_QUERY * searchCalls
+  };
+
   if (!organic.length && !opts.writeup) {
-    return {
-      companies: [],
-      usage: {
-        inputTokens: 0,
-        outputTokens: 0,
-        costUsd: SEARLO_COST_PER_QUERY * Math.max(1, searchCalls)
-      }
-    };
+    return { companies: [], usage: emptyUsage };
   }
 
   const writeupBlock = opts.writeup
@@ -246,37 +232,109 @@ async function lookupInvestorPortfolio(investorName, opts = {}) {
   const fullUsage = {
     inputTokens: usage?.inputTokens || 0,
     outputTokens: usage?.outputTokens || 0,
-    costUsd: (usage?.costUsd || 0) + SEARLO_COST_PER_QUERY * Math.max(1, searchCalls || 0)
+    costUsd: (usage?.costUsd || 0) + SEARLO_COST_PER_QUERY * searchCalls
   };
-  const parsed = extractJson(text);
-  const seen = new Set();
-  const companies = [];
 
-  function pushCompany(c) {
+  const parsed = extractJson(text);
+  const companies = [];
+  const seen = new Set();
+  const push = (c) => {
     if (!c || seen.has(c.companySlug)) return;
     seen.add(c.companySlug);
     companies.push(c);
-  }
+  };
 
   if (parsed && parsed.found && Array.isArray(parsed.companies)) {
     for (const raw of parsed.companies) {
-      pushCompany(normalizeCompany(raw));
-      if (companies.length >= MAX_COMPANIES) break;
+      push(normalizeCompany(raw));
+      if (companies.length >= MAX_COMPANIES_NEWS) break;
     }
   }
-  // Always merge free writeup-derived names (fills gaps when the LLM is shy).
   for (const c of companiesFromWriteup(opts.writeup)) {
-    pushCompany(c);
-    if (companies.length >= MAX_COMPANIES) break;
+    push(c);
+    if (companies.length >= MAX_COMPANIES_NEWS) break;
+  }
+
+  return { companies, usage: fullUsage };
+}
+
+/**
+ * Returns { companies, usage, source } — companies is an array (possibly empty).
+ * opts.website: fund website — scraped FIRST for the official portfolio.
+ * opts.writeup: profile text used only in the news/writeup fallback path.
+ * opts.skipNews: if true, do not fall back to Searlo/news (site-only pass).
+ */
+async function lookupInvestorPortfolio(investorName, opts = {}) {
+  const usage = { inputTokens: 0, outputTokens: 0, costUsd: 0 };
+  let companies = [];
+  let source = null;
+
+  // 1) Website portfolio page — primary source of truth for names + logos.
+  if (opts.website) {
+    try {
+      const site = await scrapeInvestorPortfolioSite(opts.website);
+      if (site.companies && site.companies.length) {
+        companies = site.companies.slice(0, MAX_COMPANIES_SITE);
+        source = site.method || 'site_scrape';
+      }
+    } catch (err) {
+      // Site failures should not block the news fallback.
+      if (err.status === 402 || /insufficient credits|prepayment|GEMINI_API_KEY/i.test(err.message || '')) {
+        // Only rethrow hard Gemini/billing errors if we have nothing else to try.
+        if (opts.skipNews) throw err;
+      }
+    }
+  }
+
+  // 2) News/articles fallback — used when site has nothing, OR to enrich
+  //    amount/stage/date onto a thin site list (merge by companySlug in store).
+  const needNews = !opts.skipNews && companies.length < 3;
+  if (needNews) {
+    const news = await lookupFromNews(investorName, opts);
+    usage.inputTokens += news.usage.inputTokens || 0;
+    usage.outputTokens += news.usage.outputTokens || 0;
+    usage.costUsd += news.usage.costUsd || 0;
+
+    if (!companies.length) {
+      companies = news.companies;
+      source = news.companies.length ? 'web_search' : source;
+    } else {
+      // Merge news details onto site names (news wins on amount/date/source).
+      const bySlug = new Map(companies.map((c) => [c.companySlug, { ...c }]));
+      for (const n of news.companies) {
+        const prev = bySlug.get(n.companySlug);
+        if (!prev) {
+          if (bySlug.size < MAX_COMPANIES_SITE) bySlug.set(n.companySlug, n);
+          continue;
+        }
+        bySlug.set(n.companySlug, {
+          ...prev,
+          amount: n.amount || prev.amount,
+          stage: n.stage || prev.stage,
+          date: n.date || prev.date,
+          highlight: n.highlight || prev.highlight,
+          sourceUrl: n.sourceUrl || prev.sourceUrl,
+          sourceTitle: n.sourceTitle || prev.sourceTitle,
+          website: prev.website || n.website,
+          logoUrl: prev.logoUrl || n.logoUrl,
+          sector: prev.sector || n.sector
+        });
+      }
+      companies = [...bySlug.values()];
+      source = source || 'web_search';
+    }
+  } else if (!companies.length && opts.writeup) {
+    companies = companiesFromWriteup(opts.writeup);
+    if (companies.length) source = 'profile_writeup';
   }
 
   companies.sort((a, b) => {
     const da = a.date ? new Date(a.date).getTime() : 0;
     const db = b.date ? new Date(b.date).getTime() : 0;
-    return db - da;
+    return db - da || a.name.localeCompare(b.name);
   });
 
-  return { companies, usage: fullUsage };
+  return { companies, usage, source };
 }
 
 module.exports = {
