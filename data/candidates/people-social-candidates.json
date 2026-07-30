@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T05:30:48.466Z",
+  "generatedAt": "2026-07-30T05:40:36.832Z",
   "schemaVersion": 1,
   "description": "Staged LinkedIn/Twitter enrichments for existing People rows. Apply via scripts/apply_people_socials.js — patches empty CSV cells only.",
   "found": [
@@ -3137,6 +3137,78 @@
       "linkedinUrl": "https://www.linkedin.com/in/ankitavashistha",
       "twitterUrl": "",
       "sourceUrl": "https://www.linkedin.com/in/ankitavashistha",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "vipul roongta||hdfccapital",
+      "name": "Vipul Roongta",
+      "company": "HDFC Capital",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/vipul-roongta-44a42a2a",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/vipul-roongta-44a42a2a",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "surya mantha||unitusventures",
+      "name": "Surya Mantha",
+      "company": "Unitus Ventures",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/surya-mantha-842280",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/surya-mantha-842280",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "manoj thakur||hornbillcapitaladvisers",
+      "name": "Manoj Thakur",
+      "company": "Hornbill Capital Advisers",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/manoj-thakur-5522812",
+      "twitterUrl": "",
+      "sourceUrl": "https://hornbillcap.com/team.php",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "mr vikas bhatt||nabventures",
+      "name": "Mr. Vikas Bhatt",
+      "company": "NABVENTURES",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/vikas-bhatt-162bb810",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/vikas-bhatt-162bb810",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "shivani bhasin sachdeva||indiaalternatives",
+      "name": "Shivani Bhasin Sachdeva",
+      "company": "India Alternatives",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/shivani-bhasin-sachdeva-47234757",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/shivani-bhasin-sachdeva-47234757",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "rahul chowdhri||stellarisventurepartners",
+      "name": "Rahul Chowdhri",
+      "company": "Stellaris Venture Partners",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/rahulchowdhri",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.stellarisvp.com/team/rahul-chowdhri",
       "method": "search",
       "confidence": "high",
       "companyType": ""

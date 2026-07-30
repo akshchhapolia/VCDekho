@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T17:07:37.261Z",
+  "generatedAt": "2026-07-30T05:40:36.501Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -4456,6 +4456,195 @@
       "sourceUrl": "https://www.vcsheet.com/who/dr-pankaj-jethwani",
       "method": "manual-research",
       "confidence": "high"
+    },
+    {
+      "company": "Omnivore",
+      "name": "Mark Kahn",
+      "title": "Co-Founder & Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/mark-kahn-20490a",
+      "sourceUrl": "https://www.linkedin.com/in/mark-kahn-20490a",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Omnivore",
+      "name": "Jinesh Shah",
+      "title": "Co-Founder & Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/jinesh-shah-b810813",
+      "sourceUrl": "https://www.linkedin.com/in/jinesh-shah-b810813",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Elevar Equity",
+      "name": "Sandeep Farias",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/sandeepfarias",
+      "sourceUrl": "https://elevarequity.com/team/sandeep-farias/",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Elevar Equity",
+      "name": "Jyotsna Krishnan",
+      "title": "Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/jyotsna-krishnan",
+      "sourceUrl": "https://elevarequity.com/team/jyotsna-krishnan/",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Jungle Ventures",
+      "name": "Arpit Beri",
+      "title": "Managing Partner, India",
+      "linkedinUrl": "https://www.linkedin.com/in/arpitberi",
+      "sourceUrl": "https://www.jungle.vc/team",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Jungle Ventures",
+      "name": "Yash Sankrityayan",
+      "title": "Managing Partner, Southeast Asia",
+      "linkedinUrl": "https://www.linkedin.com/in/yashskn",
+      "sourceUrl": "https://www.jungle.vc/team/yash-sankrityayan",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Jungle Ventures",
+      "name": "Rishab Malik",
+      "title": "Managing Partner, Pre-Seed/Seed",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.jungle.vc/team",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Sixth Sense Ventures",
+      "name": "Nikhil Vora",
+      "title": "Founder & CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/nikhil-vora-07713622",
+      "sourceUrl": "https://sixthsenseventures.com/team/nikhil-vora/",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Bessemer Venture Partners",
+      "name": "Anant Vidur Puri",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/avpuri",
+      "sourceUrl": "https://www.bvp.com/team/anant-vidur-puri",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Bessemer Venture Partners",
+      "name": "Nithin Kaimal",
+      "title": "Partner & COO, India",
+      "linkedinUrl": "https://www.linkedin.com/in/nithinkaimal",
+      "sourceUrl": "https://www.linkedin.com/in/nithinkaimal",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "SoftBank Investment Advisers",
+      "name": "Sarthak Misra",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/sarthakmisra",
+      "sourceUrl": "https://www.linkedin.com/in/sarthakmisra",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Sequoia (India) / Peak XV",
+      "name": "Rajan Anandan",
+      "title": "Managing Director",
+      "linkedinUrl": "https://www.linkedin.com/in/rajan-anandan-2481b814",
+      "sourceUrl": "https://www.peakxv.com/our-team",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Sequoia (India) / Peak XV",
+      "name": "Mohit Bhatnagar",
+      "title": "Managing Director",
+      "linkedinUrl": "https://www.linkedin.com/in/mohit-bhatnagar-8228474",
+      "sourceUrl": "https://www.peakxv.com/our-team",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Sequoia (India) / Peak XV",
+      "name": "GV Ravishankar",
+      "title": "Managing Director",
+      "linkedinUrl": "https://www.linkedin.com/in/ravishankar-gv-423436223",
+      "sourceUrl": "https://www.peakxv.com/our-team",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Sequoia (India) / Peak XV",
+      "name": "Sakshi Chopra",
+      "title": "Managing Director",
+      "linkedinUrl": "https://www.linkedin.com/in/sakshi-chopra-4aa1881",
+      "sourceUrl": "https://www.peakxv.com/team/sakshi-chopra",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Sequoia (India) / Peak XV",
+      "name": "Rohit Agarwal",
+      "title": "Managing Director",
+      "linkedinUrl": "https://www.linkedin.com/in/rohit-agarwal-5951b014",
+      "sourceUrl": "https://www.peakxv.com/our-team",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Matrix Partners",
+      "name": "Avnish Bajaj",
+      "title": "Founder & Managing Partner (Z47 / fka Matrix Partners India)",
+      "linkedinUrl": "https://www.linkedin.com/in/avnish-bajaj",
+      "sourceUrl": "https://www.linkedin.com/in/avnish-bajaj",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Matrix Partners",
+      "name": "Tarun Davda",
+      "title": "Managing Director",
+      "linkedinUrl": "https://www.linkedin.com/in/tarundavda",
+      "sourceUrl": "https://www.linkedin.com/in/tarundavda",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Lightspeed India",
+      "name": "Bejul Somaia",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/bejul-somaia-ba415",
+      "sourceUrl": "https://lsvp.com/team-member/bejul-somaia/",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "India Quotient",
+      "name": "Anand Lunia",
+      "title": "Founding Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/anand-lunia-9816a53",
+      "sourceUrl": "https://www.linkedin.com/in/anand-lunia-9816a53",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "India Quotient",
+      "name": "Madhukar Sinha",
+      "title": "Co-Founder & General Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/madhukar-sinha-1288701",
+      "sourceUrl": "https://www.linkedin.com/in/madhukar-sinha-1288701",
+      "method": "agent-verified",
+      "companyType": "VC"
     }
   ],
   "unresolved": [],
