@@ -383,6 +383,7 @@ function renderInvestorPage(investor, related, res) {
   const stickyNav = [
     '<nav class="inv-profile-sticky" id="inv-profile-sticky" aria-label="On this page">',
     '<a href="#snapshot" data-section="snapshot">Snapshot</a>',
+    (investor.recentChecks || []).length ? '<a href="#activity" data-section="activity">Activity</a>' : '',
     '<a href="#focus" data-section="focus">Focus</a>',
     themes.length ? '<a href="#thesis" data-section="thesis">Thesis</a>' : '',
     '<a href="#about" data-section="about">About</a>',
@@ -467,6 +468,8 @@ function renderInvestorPage(investor, related, res) {
     '<div class="inv-profile-section-head"><h2>At a glance</h2><p>Key signals founders use to decide if this investor is worth a conversation.</p></div>',
     '<div class="inv-profile-metric-strip">' + snapshotStrip + '</div>',
     '</section>',
+
+    recentActivitySection(investor),
 
     '<section class="inv-profile-section inv-profile-reveal" id="focus">',
     '<div class="inv-profile-section-label">02 — Focus</div>',
