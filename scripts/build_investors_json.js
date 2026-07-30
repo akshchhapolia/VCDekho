@@ -410,6 +410,29 @@ function build() {
     } catch (_) {}
   }
 
+  // Merge "actively deploying" signal built by scripts/build_investor_activity.js
+  // (mined from the news pipeline). activelyDeploying itself is NOT stored here —
+  // it's derived at request time in utils/investors.js from lastCheckDate, so the
+  // badge correctly ages out even between activity-data refreshes.
+  const activityPath = path.join(ROOT, 'data', 'investor-activity.json');
+  if (fs.existsSync(activityPath)) {
+    try {
+      const payload = JSON.parse(fs.readFileSync(activityPath, 'utf8'));
+      const activity = payload.activity || {};
+      investors.forEach((inv) => {
+        const a = activity[inv.slug];
+        if (!a) return;
+        inv.lastCheckDate = a.lastCheckDate || null;
+        inv.lastCheckSector = a.lastCheckSector || null;
+        inv.lastCheckHighlight = a.lastCheckHighlight || null;
+        inv.lastCheckSource = a.lastCheckSource || null;
+        inv.lastCheckSourceTitle = a.lastCheckSourceTitle || null;
+        inv.recentCheckCount = a.recentCheckCount || 0;
+        inv.recentChecks = a.recentChecks || [];
+      });
+    } catch (_) {}
+  }
+
   const payload = {
     generatedAt: new Date().toISOString(),
     count: investors.length,
