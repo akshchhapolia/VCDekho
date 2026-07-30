@@ -42,6 +42,9 @@ function coreTokens(name) {
     .replace(/[^a-z0-9\s]/g, ' ')
     .split(/\s+/)
     .filter(Boolean)
+    // Drop single-letter tokens (initials) — "J & A Partners" vs "J.A. Chowdary"
+    // would otherwise "share" two tokens ("j", "a") that carry no real signal.
+    .filter((t) => t.length >= 2)
     .filter((t) => !FILLER_WORDS.has(t));
 }
 
