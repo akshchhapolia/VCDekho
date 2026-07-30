@@ -57,6 +57,25 @@ function normalizeLinkedIn(urlOrPath) {
   return `https://www.linkedin.com/in/${slug}`;
 }
 
+/** Require LinkedIn slug to share first or last name token with the person. */
+function linkedinSlugMatchesName(linkedinUrl, name) {
+  const m = String(linkedinUrl || '').match(/linkedin\.com\/in\/([^/?#]+)/i);
+  if (!m) return false;
+  const slug = decodeURIComponent(m[1])
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ');
+  const parts = normalizeNameParts(name);
+  if (!parts.length) return false;
+  const last = parts[parts.length - 1];
+  const first = parts[0];
+  // Last name is the strongest signal; allow first-only for single-token names.
+  if (parts.length === 1) return slug.includes(first) || first.includes(slug.replace(/\s/g, ''));
+  if (slug.includes(last) || last.length >= 4 && slug.replace(/\s/g, '').includes(last)) return true;
+  // Compound / initial-heavy slugs: require first AND a meaningful chunk of last
+  if (slug.includes(first) && last.length >= 4 && slug.includes(last.slice(0, 4))) return true;
+  return false;
+}
+
 function normalizeTwitter(urlOrHandle) {
   const s = String(urlOrHandle || '').trim();
   if (!s) return '';
@@ -68,6 +87,15 @@ function normalizeTwitter(urlOrHandle) {
   if (!handle || TWITTER_RESERVED.has(handle.toLowerCase())) return '';
   if (!/^[A-Za-z0-9_]{1,15}$/.test(handle)) return '';
   return `https://x.com/${handle}`;
+}
+
+function twitterHandleMatchesName(twitterUrl, name) {
+  const m = String(twitterUrl || '').match(/x\.com\/([^/?#]+)/i);
+  if (!m) return false;
+  const handle = m[1].toLowerCase();
+  const parts = normalizeNameParts(name).filter((p) => p.length > 2);
+  if (!parts.length) return false;
+  return parts.some((p) => handle.includes(p.slice(0, Math.min(5, p.length))) || p.includes(handle));
 }
 
 /**
@@ -92,12 +120,12 @@ function extractSocialsNearName(html, name) {
     if (!nameAppearsIn(windowText, name)) continue;
 
     const li = normalizeLinkedIn(href);
-    if (li && !linkedinUrl) {
+    if (li && !linkedinUrl && linkedinSlugMatchesName(li, name)) {
       linkedinUrl = li;
       evidence.push({ type: 'linkedin', url: li, via: 'href' });
     }
     const tw = normalizeTwitter(href);
-    if (tw && !twitterUrl) {
+    if (tw && !twitterUrl && twitterHandleMatchesName(tw, name)) {
       twitterUrl = tw;
       evidence.push({ type: 'twitter', url: tw, via: 'href' });
     }
@@ -113,7 +141,7 @@ function extractSocialsNearName(html, name) {
       const chunk = text.slice(start, lm.index + lm[0].length + 80);
       if (!nameAppearsIn(chunk, name)) continue;
       const li = normalizeLinkedIn(lm[0]);
-      if (li) {
+      if (li && linkedinSlugMatchesName(li, name)) {
         linkedinUrl = li;
         evidence.push({ type: 'linkedin', url: li, via: 'text' });
         break;
@@ -128,7 +156,7 @@ function extractSocialsNearName(html, name) {
       const chunk = text.slice(start, tm.index + tm[0].length + 80);
       if (!nameAppearsIn(chunk, name)) continue;
       const tw = normalizeTwitter(tm[0]);
-      if (tw) {
+      if (tw && twitterHandleMatchesName(tw, name)) {
         twitterUrl = tw;
         evidence.push({ type: 'twitter', url: tw, via: 'text' });
         break;
@@ -152,6 +180,8 @@ module.exports = {
   extractSocialsNearName,
   normalizeLinkedIn,
   normalizeTwitter,
+  linkedinSlugMatchesName,
+  twitterHandleMatchesName,
   nameAppearsIn,
   personKey
 };
