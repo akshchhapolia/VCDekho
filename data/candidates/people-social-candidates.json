@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T11:33:46.574Z",
+  "generatedAt": "2026-07-30T11:36:15.384Z",
   "schemaVersion": 1,
   "description": "Staged LinkedIn/Twitter enrichments for existing People rows. Apply via scripts/apply_people_socials.js — patches empty CSV cells only.",
   "found": [
@@ -6667,6 +6667,114 @@
       "sourceUrl": "https://in.linkedin.com/in/gaurav-deepak-47a286",
       "method": "search",
       "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "kevin kopczynski||congruentventures",
+      "name": "Kevin Kopczynski",
+      "company": "Congruent Ventures",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/kevin-kopczynski",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/kevin-kopczynski",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "krish subramanian||chargebeeinvestments",
+      "name": "Krish Subramanian",
+      "company": "Chargebee Investments",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/krishs",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/krishs",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "kaushal aggarwal||avendus",
+      "name": "Kaushal Aggarwal",
+      "company": "Avendus",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/kaushal-aggarwal-635b2",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/kaushal-aggarwal-635b2",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "keki mistry||hdfccapital",
+      "name": "Keki Mistry",
+      "company": "HDFC Capital",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/keki-mistry-55bb88107",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/keki-mistry-55bb88107",
+      "method": "search",
+      "confidence": "medium",
+      "companyType": ""
+    },
+    {
+      "key": "justin hall||goldengateventures",
+      "name": "Justin Hall",
+      "company": "Golden Gate Ventures",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/justinhallvc",
+      "twitterUrl": "",
+      "sourceUrl": "https://sg.linkedin.com/in/justinhallvc",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "jonny clifford||entrepreneurfirst",
+      "name": "Jonny Clifford",
+      "company": "Entrepreneur First",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/jonnyclifford",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/jonnyclifford",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "laura bock||qedinvestors",
+      "name": "Laura Bock",
+      "company": "QED Investors",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/laura-bock-03492a35",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/laura-bock-03492a35",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "frank amato||a100xventures",
+      "name": "Frank Amato",
+      "company": "A100x Ventures",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/ftaiii",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/ftaiii",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "harish r||indiaalternatives",
+      "name": "Harish R",
+      "company": "India Alternatives",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/harish-ravichandran-4a3b7a1a",
+      "twitterUrl": "",
+      "sourceUrl": "https://in.linkedin.com/in/harish-ravichandran-4a3b7a1a",
+      "method": "search",
+      "confidence": "medium",
       "companyType": ""
     }
   ],
