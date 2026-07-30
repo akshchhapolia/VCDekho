@@ -269,4 +269,9 @@ async function lookupInvestorPortfolio(investorName, opts = {}) {
   return { companies, usage: fullUsage };
 }
 
-module.exports = { lookupInvestorPortfolio, slugifyCompany, logoUrlForWebsite };
+module.exports = {
+  lookupInvestorPortfolio,
+  slugifyCompany,
+  logoUrlForWebsite,
+  companiesFromWriteup
+};
