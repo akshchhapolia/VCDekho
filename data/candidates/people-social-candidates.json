@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T05:55:45.124Z",
+  "generatedAt": "2026-07-30T09:19:41.369Z",
   "schemaVersion": 1,
   "description": "Staged LinkedIn/Twitter enrichments for existing People rows. Apply via scripts/apply_people_socials.js — patches empty CSV cells only.",
   "found": [
@@ -3404,6 +3404,162 @@
       "method": "search",
       "confidence": "high",
       "companyType": ""
+    },
+    {
+      "key": "dr sunil k shekhawat||sanchiconnect",
+      "name": "Dr. Sunil K Shekhawat",
+      "company": "SanchiConnect",
+      "title": "Co-Founder & CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/dr-sunil-k-shekhawat",
+      "twitterUrl": "",
+      "sourceUrl": "https://sanchiconnect.com/about-us/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "xiang rong anthony yeo||whiteventurecapital",
+      "name": "Xiang Rong (Anthony) Yeo",
+      "company": "White Venture Capital",
+      "title": "operator-investor",
+      "linkedinUrl": "https://www.linkedin.com/in/xiang-rong-yeo-a840ba172",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.whiteventurecap.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "b ganesh shenoy||precoginnovationpartners",
+      "name": "B. Ganesh Shenoy",
+      "company": "Precog Innovation Partners",
+      "title": "Sr. Venture Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/b-ganesh-shenoy-48765945",
+      "twitterUrl": "",
+      "sourceUrl": "https://precoginnovations.com/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "dureka oldenburg carrasquillo||verbventures",
+      "name": "Dureka Oldenburg Carrasquillo",
+      "company": "Verb Ventures",
+      "title": "Member of the Advisory Board",
+      "linkedinUrl": "https://www.linkedin.com/in/dureka-oldenburg-carrasquillo-8aa7a34",
+      "twitterUrl": "",
+      "sourceUrl": "https://verb.ventures/about/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "john robert reed||multicoincapital",
+      "name": "John Robert Reed",
+      "company": "Multicoin Capital",
+      "title": "Partner, Head of Marketing and Communications",
+      "linkedinUrl": "",
+      "twitterUrl": "https://x.com/johnrobertreed",
+      "sourceUrl": "https://multicoin.capital/about/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "lindsay m pettingill||villageglobal",
+      "name": "Lindsay M. Pettingill",
+      "company": "Village Global",
+      "title": "Investment Partner & Head of Internal AI",
+      "linkedinUrl": "https://www.linkedin.com/in/lpettingill",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.villageglobal.com/team",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "pushpendra v kaushal||sanchiconnect",
+      "name": "Pushpendra V Kaushal",
+      "company": "SanchiConnect",
+      "title": "Program Director",
+      "linkedinUrl": "https://www.linkedin.com/in/pushpendra-vishal-kaushal-cissp",
+      "twitterUrl": "",
+      "sourceUrl": "https://sanchiconnect.com/about-us/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "saurabh devendra singh||cdmcapital",
+      "name": "Saurabh Devendra Singh",
+      "company": "CDM Capital",
+      "title": "Capital markets · Strategy",
+      "linkedinUrl": "https://www.linkedin.com/in/saurabh-devendra-singh-727605",
+      "twitterUrl": "",
+      "sourceUrl": "https://cdmcapital.in/team/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Venture Capital"
+    },
+    {
+      "key": "mr gautam shroff||revantacapital",
+      "name": "Mr. Gautam Shroff",
+      "company": "Revanta Capital",
+      "title": "Independent Director",
+      "linkedinUrl": "https://www.linkedin.com/in/gautam-shroff-aba8061b",
+      "twitterUrl": "",
+      "sourceUrl": "https://revantacapital.com/about/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Private Equity"
+    },
+    {
+      "key": "mr vikas gautam||revantacapital",
+      "name": "Mr. Vikas Gautam",
+      "company": "Revanta Capital",
+      "title": "Co-Founder, MD & CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/vikas-gautam-5304407",
+      "twitterUrl": "",
+      "sourceUrl": "https://revantacapital.com/about/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Private Equity"
+    },
+    {
+      "key": "amit kumar sinha||mahindrasparkle",
+      "name": "Amit Kumar Sinha",
+      "company": "Mahindra Sparkle",
+      "title": "MD & CEO - Mahindra Lifespaces",
+      "linkedinUrl": "https://www.linkedin.com/in/amitsinha3",
+      "twitterUrl": "https://x.com/amitsinha73",
+      "sourceUrl": "https://www.mahindra.com/about-us",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Accelerator"
+    },
+    {
+      "key": "manoj kumar nambiar||intellecap",
+      "name": "Manoj Kumar Nambiar",
+      "company": "Intellecap",
+      "title": "Managing Director Arohan & Board Member",
+      "linkedinUrl": "https://www.linkedin.com/in/manoj-kumar-nambiar-671662b",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.intellecap.com/about-us/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Accelerator"
+    },
+    {
+      "key": "ms sanskriti sharma||aicbanasthali",
+      "name": "MS. SANSKRITI SHARMA",
+      "company": "AIC Banasthali",
+      "title": "Incubation Executive",
+      "linkedinUrl": "https://www.linkedin.com/in/sanskriti-sharma-70a3b6263",
+      "twitterUrl": "",
+      "sourceUrl": "https://aicbanasthali.org/",
+      "method": "harvest",
+      "confidence": "high",
+      "companyType": "Accelerator"
     }
   ],
   "unresolved": [
@@ -5929,6 +6085,262 @@
       "name": "Yaswanth Sai",
       "company": "Yaswanth Sai",
       "reason": "no-website",
+      "method": "harvest"
+    },
+    {
+      "key": "mr gopan v p||equirusventures",
+      "name": "Mr. Gopan V P",
+      "company": "Equirus Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.equirus.com/vc",
+      "method": "harvest"
+    },
+    {
+      "key": "mr nandu j naik||nabventures",
+      "name": "Mr. Nandu J Naik",
+      "company": "NABVENTURES",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://nabventures.in/team.aspx",
+      "method": "harvest"
+    },
+    {
+      "key": "mr shashwat s goyal||nabventures",
+      "name": "Mr. Shashwat S Goyal",
+      "company": "NABVENTURES",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://nabventures.in/team.aspx",
+      "method": "harvest"
+    },
+    {
+      "key": "rafa de la guia||quonacapital",
+      "name": "Rafa de la Guia",
+      "company": "Quona Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://quona.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "srikanth v j tanikella||pavestonevc",
+      "name": "Srikanth V J Tanikella",
+      "company": "Pavestone VC",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://pavestone.vc/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "mr arif sayed alkazim||revantacapital",
+      "name": "Mr. Arif Sayed Alkazim",
+      "company": "Revanta Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://revantacapital.com/about/",
+      "method": "harvest"
+    },
+    {
+      "key": "ajay singh rajput||8xventures",
+      "name": "Ajay Singh Rajput",
+      "company": "8X Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.8xventures.co/about",
+      "method": "harvest"
+    },
+    {
+      "key": "bikramjit singh kalra||capitarventures",
+      "name": "Bikramjit Singh Kalra",
+      "company": "Capitar Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://capitar.in/",
+      "method": "harvest"
+    },
+    {
+      "key": "dr mridula menon||specialeinvest",
+      "name": "Dr Mridula Menon",
+      "company": "Speciale Invest",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.specialeinvest.com/about",
+      "method": "harvest"
+    },
+    {
+      "key": "dr mansi aggarwal||alkemigrowthcapital",
+      "name": "Dr. Mansi Aggarwal",
+      "company": "Alkemi Growth Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.alkemivp.com/",
+      "method": "harvest"
+    },
+    {
+      "key": "jessica huang pouleur||openspaceventures",
+      "name": "Jessica Huang Pouleur",
+      "company": "Openspace Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.openspacecapital.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "joo hock chua||vertexventures",
+      "name": "Joo Hock CHUA",
+      "company": "Vertex Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "harvest"
+    },
+    {
+      "key": "karthikeyan karthik madathil||yalicapital",
+      "name": "Karthikeyan 'Karthik' Madathil",
+      "company": "Yali Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://yali.vc/about-yali/",
+      "method": "harvest"
+    },
+    {
+      "key": "kee lock chua||vertexventures",
+      "name": "Kee Lock CHUA",
+      "company": "Vertex Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "harvest"
+    },
+    {
+      "key": "lauren faber oconnor||lowercarboncapital",
+      "name": "Lauren Faber O'Connor",
+      "company": "Lowercarbon Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://lowercarbon.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "mohan s iyer||sosv",
+      "name": "Mohan S. Iyer",
+      "company": "SOSV",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://sosv.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "mr ankit bhatnagar||nabventures",
+      "name": "Mr. Ankit Bhatnagar",
+      "company": "NABVENTURES",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://nabventures.in/team.aspx",
+      "method": "harvest"
+    },
+    {
+      "key": "mr mohd khalid||nabventures",
+      "name": "Mr. Mohd. Khalid",
+      "company": "NABVENTURES",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://nabventures.in/team.aspx",
+      "method": "harvest"
+    },
+    {
+      "key": "ms deepti paliwal||nabventures",
+      "name": "Ms. Deepti Paliwal",
+      "company": "NABVENTURES",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://nabventures.in/team.aspx",
+      "method": "harvest"
+    },
+    {
+      "key": "ms sadhika agarwal||equirusventures",
+      "name": "Ms. Sadhika Agarwal",
+      "company": "Equirus Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.equirus.com/vc",
+      "method": "harvest"
+    },
+    {
+      "key": "preeti nellore sampat||eximiusventures",
+      "name": "Preeti Nellore Sampat",
+      "company": "Eximius Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://eximiusvc.com/about-us/",
+      "method": "harvest"
+    },
+    {
+      "key": "renu sud karnad||hdfccapital",
+      "name": "Renu Sud Karnad",
+      "company": "HDFC Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.hdfccapital.com/",
+      "method": "harvest"
+    },
+    {
+      "key": "ricardo sequerra amram||pointninecapital",
+      "name": "Ricardo Sequerra Amram",
+      "company": "Point Nine Capital",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.pointnine.com/team",
+      "method": "harvest"
+    },
+    {
+      "key": "s viswanatha prasad||caspianequity",
+      "name": "S. Viswanatha Prasad",
+      "company": "Caspian Equity",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "harvest"
+    },
+    {
+      "key": "shiv gaurav bhargava||capitarventures",
+      "name": "Shiv Gaurav Bhargava",
+      "company": "Capitar Ventures",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://capitar.in/",
+      "method": "harvest"
+    },
+    {
+      "key": "tiba aynechi phd||norwestventurepartners",
+      "name": "Tiba Aynechi, Ph.D.",
+      "company": "Norwest Venture Partners",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.norwest.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "zack scott md||norwestventurepartners",
+      "name": "Zack Scott, MD",
+      "company": "Norwest Venture Partners",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.norwest.com/team/",
+      "method": "harvest"
+    },
+    {
+      "key": "boon chin hau||gicprivatelimited",
+      "name": "Boon Chin Hau",
+      "company": "GIC Private Limited",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.gic.com.sg/who-we-are/",
+      "method": "harvest"
+    },
+    {
+      "key": "choo yong cheen||gicprivatelimited",
+      "name": "Choo Yong Cheen",
+      "company": "GIC Private Limited",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.gic.com.sg/who-we-are/",
+      "method": "harvest"
+    },
+    {
+      "key": "goh chin kiong||gicprivatelimited",
+      "name": "Goh Chin Kiong",
+      "company": "GIC Private Limited",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.gic.com.sg/who-we-are/",
+      "method": "harvest"
+    },
+    {
+      "key": "liew tzu mi||gicprivatelimited",
+      "name": "Liew Tzu Mi",
+      "company": "GIC Private Limited",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.gic.com.sg/who-we-are/",
+      "method": "harvest"
+    },
+    {
+      "key": "maninder singh juneja||truenorth",
+      "name": "Maninder Singh Juneja",
+      "company": "True North",
+      "reason": "no-socials-near-name",
+      "sourceUrl": "https://www.truenorth.co.in/people/",
       "method": "harvest"
     }
   ]
