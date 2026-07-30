@@ -16,7 +16,9 @@
     "find:emails": "node scripts/find_emails.js",
     "fetch:people-photos": "node scripts/fetch_people_twitter_photos.js",
     "enrich:people-socials": "node scripts/enrich_people_socials.js",
-    "apply:people-socials": "node scripts/apply_people_socials.js"
+    "apply:people-socials": "node scripts/apply_people_socials.js",
+    "find:thin-people": "node scripts/find_thin_people.js",
+    "apply:people-candidates": "node scripts/apply_people_candidates.js"
   },
   "keywords": [],
   "author": "",
