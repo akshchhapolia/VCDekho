@@ -43,6 +43,51 @@ function mergeCompanies(existing, incoming) {
       name: prev.name || c.name
     });
   }
+  return sortAndCap(map);
+}
+
+/**
+ * Official website portfolios are authoritative for the company *set*.
+ * Keep news-enriched fields (amount/date/article) from existing rows when
+ * the same companySlug appears in the site list; drop junk names that are
+ * no longer on the official page.
+ */
+function mergePreferOfficialSet(existing, official) {
+  const existingBy = new Map();
+  for (const c of existing || []) {
+    const key = companyKey(c);
+    if (key) existingBy.set(key, c);
+  }
+  const map = new Map();
+  for (const c of official || []) {
+    if (!c || !c.name) continue;
+    const key = companyKey(c);
+    if (!key) continue;
+    const prev = existingBy.get(key);
+    if (!prev) {
+      map.set(key, { ...c, companySlug: key });
+      continue;
+    }
+    map.set(key, {
+      ...c,
+      amount: prev.amount || c.amount,
+      stage: prev.stage || c.stage,
+      date: prev.date || c.date,
+      highlight: prev.highlight || c.highlight,
+      investmentType: prev.investmentType || c.investmentType,
+      sourceUrl: c.sourceUrl || prev.sourceUrl,
+      sourceTitle: c.sourceTitle || prev.sourceTitle,
+      website: c.website || prev.website,
+      logoUrl: c.logoUrl || prev.logoUrl,
+      sector: c.sector || prev.sector,
+      companySlug: key,
+      name: c.name || prev.name
+    });
+  }
+  return sortAndCap(map);
+}
+
+function sortAndCap(map) {
   return [...map.values()]
     .sort((a, b) => {
       const da = a.date ? new Date(a.date).getTime() : 0;
@@ -52,17 +97,28 @@ function mergeCompanies(existing, incoming) {
     .slice(0, MAX_STORED_COMPANIES);
 }
 
+function isOfficialSiteSource(sourceMethod) {
+  return /^(site_json|site_paths|site_scrape)$/i.test(String(sourceMethod || ''));
+}
+
 /**
  * Upsert portfolio for one investor. Always bumps checked_at (queue cursor).
  * If companies is empty/null, only bumps checked_at unless the row is new.
+ * Official site scrapes (json/paths, >=8 cos) replace the company set so
+ * junk logo-alt rows don't stick forever.
  */
 async function upsertPortfolio(slug, companies, sourceMethod) {
   const existing = await db.query(`SELECT * FROM investor_portfolio WHERE slug = $1`, [slug]);
   const row = existing.rows[0] || null;
   const existingCompanies = (row && row.companies) || [];
-  const merged = companies && companies.length
-    ? mergeCompanies(existingCompanies, companies)
-    : existingCompanies;
+  let merged = existingCompanies;
+  if (companies && companies.length) {
+    if (isOfficialSiteSource(sourceMethod) && companies.length >= 8) {
+      merged = mergePreferOfficialSet(existingCompanies, companies);
+    } else {
+      merged = mergeCompanies(existingCompanies, companies);
+    }
+  }
 
   if (!merged.length) {
     await db.query(

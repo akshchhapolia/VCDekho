@@ -130,15 +130,34 @@ function discoverPortfolioUrls(origin, homeHtml) {
 
 function isJunkName(name) {
   const n = String(name || '').trim();
-  if (!n || n.length < 2 || n.length > 80) return true;
-  if (/^(logo|home|menu|next|prev|all|filter|image|icon|banner)$/i.test(n)) return true;
+  if (!n || n.length < 2 || n.length > 60) return true;
+  if (
+    /^(logo|home|menu|next|prev|all|filter|image|icon|banner|preview|blume|white|dark|client)$/i.test(
+      n
+    )
+  ) {
+    return true;
+  }
   if (/\.(png|jpe?g|gif|svg|webp)$/i.test(n)) return true;
   if (/^img[-_]?\d+$/i.test(n)) return true;
+  if (/\d{3,}px/i.test(n)) return true;
+  if (/funding|led by|secures|raises|series [a-d]\b|crore|million/i.test(n)) return true;
+  if (/\b(logo|transparent|dark|white|final|preview)\b/i.test(n) && n.split(/\s+/).length > 3) {
+    return true;
+  }
+  // UUID / asset-hash alts: "Ce9c689e f24d 4705 a10d f1ef65a42801"
+  if (/^[a-f0-9]{6,}(\s+[a-f0-9]{2,}){2,}$/i.test(n)) return true;
+  // Broken token soup: "Ru C Ea4 PZ", "1 KNL yn C Qd..."
+  const tokens = n.split(/\s+/);
+  if (tokens.length >= 4 && tokens.filter((t) => t.length <= 3).length >= 3) return true;
+  if (tokens.length >= 5 && tokens.every((t) => t.length <= 4)) return true;
   return false;
 }
 
 function normalizeSiteCompany(raw, pageUrl) {
-  const name = String((raw && raw.name) || '').trim();
+  let name = String((raw && raw.name) || '')
+    .replace(/\s+logo$/i, '')
+    .trim();
   if (isJunkName(name)) return null;
 
   let website = raw.website ? String(raw.website).trim() : null;
@@ -419,21 +438,10 @@ Include as many distinct portfolio startups as clearly listed (up to 40). Skip t
 function scoreExtraction(arr, method) {
   if (!arr || !arr.length) return -1;
   const rich = arr.filter((c) => c.logoUrl || c.website).length;
+  // Prefer structured portfolio data over noisy <img alt> grids.
   const methodBonus =
-    method === 'site_json' ? 40 : method === 'site_paths' ? 25 : method === 'site_logos' ? 10 : 0;
+    method === 'site_json' ? 500 : method === 'site_paths' ? 300 : method === 'site_logos' ? 0 : 50;
   return arr.length * 2 + rich + methodBonus;
-}
-
-function methodFor(jsonish, pathLinks, logos, geminiOnes, best) {
-  if (jsonish.length && scoreExtraction(jsonish, 'site_json') >= scoreExtraction(best, '')) {
-    if (jsonish === best || jsonish.length >= best.length * 0.7) return 'site_json';
-  }
-  if (pathLinks.length >= best.length * 0.7) return 'site_paths';
-  if (logos.length >= best.length * 0.7) return 'site_logos';
-  if (geminiOnes.length >= best.length * 0.7) return 'site_gemini';
-  if (jsonish.length >= pathLinks.length && jsonish.length >= logos.length) return 'site_json';
-  if (pathLinks.length >= logos.length) return 'site_paths';
-  return logos.length ? 'site_logos' : 'site_gemini';
 }
 
 /**
@@ -465,14 +473,25 @@ async function scrapeInvestorPortfolioSite(website) {
     const pathLinks = extractCompanyPathLinks(html, page.url);
     const logos = extractLogoGrid(html, page.url);
 
-    const ranked = [
-      { arr: jsonish, method: 'site_json' },
-      { arr: pathLinks, method: 'site_paths' },
-      { arr: logos, method: 'site_logos' }
-    ].sort((a, b) => scoreExtraction(b.arr, b.method) - scoreExtraction(a.arr, a.method));
-
-    let best = ranked[0].arr;
-    let method = ranked[0].method;
+    // Structured extracts win when present — never let a larger junk logo
+    // grid override a real portfolio JSON/path list.
+    let best;
+    let method;
+    if (jsonish.length >= 8) {
+      best = jsonish;
+      method = 'site_json';
+    } else if (pathLinks.length >= 8) {
+      best = pathLinks;
+      method = 'site_paths';
+    } else {
+      const ranked = [
+        { arr: jsonish, method: 'site_json' },
+        { arr: pathLinks, method: 'site_paths' },
+        { arr: logos, method: 'site_logos' }
+      ].sort((a, b) => scoreExtraction(b.arr, b.method) - scoreExtraction(a.arr, a.method));
+      best = ranked[0].arr;
+      method = ranked[0].method;
+    }
 
     if (best.length < 3 && (page.score >= 2 || /portfolio|companies|investments/i.test(page.url))) {
       const geminiOnes = await extractWithGemini(html, page.url);
