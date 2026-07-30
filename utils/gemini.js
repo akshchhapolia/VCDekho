@@ -8,8 +8,10 @@
  * to gemini-flash-latest if the preferred model isn't available).
  */
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
-const DEFAULT_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
-const FALLBACK_MODEL = 'gemini-flash-latest';
+// flash-lite avoids the "thinking" truncation we saw on gemini-flash-latest
+// (answers like "YES|$7M|" cut mid-line).
+const DEFAULT_MODEL = process.env.GEMINI_MODEL || 'gemini-flash-lite-latest';
+const FALLBACK_MODEL = 'gemini-3.1-flash-lite';
 const ENDPOINT = (model) =>
   `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
 
