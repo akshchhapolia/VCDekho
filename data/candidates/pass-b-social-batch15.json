@@ -1,0 +1,14 @@
+{
+  "found": [
+    {"name":"Vishal Bakshi","company":"Avatar Growth Capital","linkedinUrl":"https://www.linkedin.com/in/vishal-bakshi-52927b","sourceUrl":"https://www.avatargcp.com/","method":"search","confidence":"high"},
+    {"name":"Abhay Havaldar","company":"Avatar Growth Capital","linkedinUrl":"https://www.linkedin.com/in/abhay-havaldar-a4a46523","sourceUrl":"https://www.avatargcp.com/agc/","method":"search","confidence":"high"},
+    {"name":"Aditya Parekh","company":"Faering Capital","linkedinUrl":"https://www.linkedin.com/in/aditya-parekh-7333901a","sourceUrl":"https://www.faeringcapital.com/about-us","method":"search","confidence":"high"},
+    {"name":"Brahmal Vasudevan","company":"Creador","linkedinUrl":"https://www.linkedin.com/in/brahmal-vasudevan-0242ab70","sourceUrl":"https://malaysia.endeavor.org/brahmal-vasudevan/","method":"search","confidence":"high"},
+    {"name":"Sanjeev Bikhchandani","company":"Info Edge Ventures","linkedinUrl":"https://www.linkedin.com/in/sanjeev-bikhchandani-501261","sourceUrl":"https://en.wikipedia.org/wiki/Sanjeev_Bikhchandani","method":"search","confidence":"high"},
+    {"name":"Ajay Piramal","company":"Piramal Family Office","linkedinUrl":"https://www.linkedin.com/in/ajaypiramal","sourceUrl":"https://www.piramalrealty.com/ajay-piramal","method":"search","confidence":"high"},
+    {"name":"Mani Vembu","company":"Zoho Investments","linkedinUrl":"https://www.linkedin.com/in/mani-vembu","sourceUrl":"https://www.zoho.com/the-long-game/author/mani","method":"search","confidence":"high"},
+    {"name":"G V Prasad","company":"Dr Reddy's Ventures","linkedinUrl":"https://www.linkedin.com/in/gvprasadster","sourceUrl":"https://drils.org/team/g-v-prasad/","method":"search","confidence":"high"},
+    {"name":"Satish Reddy","company":"Dr Reddy's Ventures","linkedinUrl":"https://www.linkedin.com/in/satishreddy1","sourceUrl":"https://drils.org/team/satish-reddy/","method":"search","confidence":"high"},
+    {"name":"Mr. Krishna Jha","company":"Equirus Ventures","linkedinUrl":"https://www.linkedin.com/in/krishnajha","sourceUrl":"https://www.linkedin.com/in/krishnajha","method":"search","confidence":"high"}
+  ]
+}
