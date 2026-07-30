@@ -1,0 +1,135 @@
+{
+  "found": [
+    {
+      "name": "Abe Yokell",
+      "company": "Congruent Ventures",
+      "linkedinUrl": "https://www.linkedin.com/in/abe-yokell",
+      "sourceUrl": "https://www.linkedin.com/in/abe-yokell",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Abhishek Mohan",
+      "company": "Sequoia (India) / Peak XV",
+      "linkedinUrl": "https://www.linkedin.com/in/abhishek-mohan-b01b023",
+      "sourceUrl": "https://www.linkedin.com/in/abhishek-mohan-b01b023",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Anjali Bansal",
+      "company": "Avaana Capital",
+      "linkedinUrl": "https://www.linkedin.com/in/anjali-bansal-8489091",
+      "sourceUrl": "https://www.linkedin.com/in/anjali-bansal-8489091",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Christoph Janz",
+      "company": "Point Nine Capital",
+      "linkedinUrl": "https://www.linkedin.com/in/christophjanz",
+      "sourceUrl": "https://www.linkedin.com/in/christophjanz",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Chamath Palihapitiya",
+      "company": "Social Capital",
+      "linkedinUrl": "https://www.linkedin.com/in/chamath",
+      "sourceUrl": "https://www.linkedin.com/in/chamath",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Elizabeth Yin",
+      "company": "Hustle Fund",
+      "linkedinUrl": "https://www.linkedin.com/in/elizabethyin",
+      "sourceUrl": "https://www.linkedin.com/in/elizabethyin",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Chris Sacca",
+      "company": "Lowercarbon Capital",
+      "linkedinUrl": "https://www.linkedin.com/in/chrissacca",
+      "twitterUrl": "https://x.com/sacca",
+      "sourceUrl": "https://www.linkedin.com/in/chrissacca",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Crystal Sacca",
+      "company": "Lowercarbon Capital",
+      "linkedinUrl": "https://www.linkedin.com/in/crystalenglishsacca",
+      "sourceUrl": "https://www.linkedin.com/in/crystalenglishsacca",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Bharati Jacob",
+      "company": "Seedfund",
+      "linkedinUrl": "https://www.linkedin.com/in/bharati-jacob-a702403",
+      "sourceUrl": "https://www.linkedin.com/in/bharati-jacob-a702403",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Bala Srinivasa",
+      "company": "Arkam Ventures",
+      "linkedinUrl": "https://www.linkedin.com/in/bala-srinivasa-454646",
+      "sourceUrl": "https://www.linkedin.com/in/bala-srinivasa-454646",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Ankur Mittal",
+      "company": "Inflection Point Ventures",
+      "linkedinUrl": "https://www.linkedin.com/in/ankur-mittal-3ba773",
+      "sourceUrl": "https://www.linkedin.com/in/ankur-mittal-3ba773",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Frank Rotman",
+      "company": "QED Investors",
+      "linkedinUrl": "https://www.linkedin.com/in/frank-rotman",
+      "sourceUrl": "https://www.linkedin.com/in/frank-rotman",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Hian Goh",
+      "company": "Openspace Ventures",
+      "linkedinUrl": "https://www.linkedin.com/in/hiangoh-ai-investor",
+      "sourceUrl": "https://www.openspacecapital.com/team/hian-goh",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Deepak I. Shahdadpuri",
+      "company": "DSG Consumer Partners",
+      "linkedinUrl": "https://www.linkedin.com/in/deepakishahdadpuri",
+      "twitterUrl": "https://x.com/dishahdadpuri",
+      "sourceUrl": "https://www.linkedin.com/in/deepakishahdadpuri",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Carlos Eduardo Espinal",
+      "company": "Seedcamp",
+      "linkedinUrl": "https://www.linkedin.com/in/carloseduardoespinal",
+      "sourceUrl": "https://seedcamp.com/people/carlos-eduardo-espinal/",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Anand Prasanna",
+      "company": "Iron Pillar",
+      "linkedinUrl": "https://www.linkedin.com/in/anand-prasanna-6bb0052",
+      "twitterUrl": "https://x.com/anand_ip",
+      "sourceUrl": "https://www.linkedin.com/in/anand-prasanna-6bb0052",
+      "method": "search",
+      "confidence": "high"
+    }
+  ]
+}
