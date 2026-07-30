@@ -1,0 +1,122 @@
+/**
+ * Reads/writes the `investor_portfolio` table — portfolio companies per
+ * investor. Primary producer today is the Searlo+Haiku backfill
+ * (scripts/investor_portfolio_websearch.js). Future enrichments (fund-site
+ * scrape, news-pipeline cross-ref) call the same upsert and merge by
+ * companySlug so lists only grow / get richer, never get clobbered.
+ */
+const db = require('./db');
+
+const MAX_STORED_COMPANIES = 25;
+
+function companyKey(c) {
+  if (c && c.companySlug) return String(c.companySlug);
+  return String((c && c.name) || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/**
+ * Merge two company lists. Incoming wins on non-null field values when the
+ * same companySlug already exists; otherwise the company is appended.
+ * Sorted by date desc (undated last), capped at MAX_STORED_COMPANIES.
+ */
+function mergeCompanies(existing, incoming) {
+  const map = new Map();
+  for (const c of [...(existing || []), ...(incoming || [])]) {
+    if (!c || !c.name) continue;
+    const key = companyKey(c);
+    if (!key) continue;
+    const prev = map.get(key);
+    if (!prev) {
+      map.set(key, { ...c, companySlug: key });
+      continue;
+    }
+    map.set(key, {
+      ...prev,
+      ...Object.fromEntries(
+        Object.entries(c).filter(([, v]) => v != null && v !== '')
+      ),
+      companySlug: key,
+      name: prev.name || c.name
+    });
+  }
+  return [...map.values()]
+    .sort((a, b) => {
+      const da = a.date ? new Date(a.date).getTime() : 0;
+      const db_ = b.date ? new Date(b.date).getTime() : 0;
+      return db_ - da;
+    })
+    .slice(0, MAX_STORED_COMPANIES);
+}
+
+/**
+ * Upsert portfolio for one investor. Always bumps checked_at (queue cursor).
+ * If companies is empty/null, only bumps checked_at unless the row is new.
+ */
+async function upsertPortfolio(slug, companies, sourceMethod) {
+  const existing = await db.query(`SELECT * FROM investor_portfolio WHERE slug = $1`, [slug]);
+  const row = existing.rows[0] || null;
+  const existingCompanies = (row && row.companies) || [];
+  const merged = companies && companies.length
+    ? mergeCompanies(existingCompanies, companies)
+    : existingCompanies;
+
+  if (!merged.length) {
+    await db.query(
+      `INSERT INTO investor_portfolio (slug, checked_at, source_method, updated_at)
+       VALUES ($1, NOW(), COALESCE($2, (SELECT source_method FROM investor_portfolio WHERE slug = $1)), NOW())
+       ON CONFLICT (slug) DO UPDATE SET checked_at = NOW(), updated_at = NOW()`,
+      [slug, row ? null : sourceMethod]
+    );
+    return { slug, updated: false, companyCount: 0 };
+  }
+
+  await db.query(
+    `INSERT INTO investor_portfolio
+       (slug, companies, company_count, source_method, checked_at, updated_at)
+     VALUES ($1, $2, $3, $4, NOW(), NOW())
+     ON CONFLICT (slug) DO UPDATE SET
+       companies = EXCLUDED.companies,
+       company_count = EXCLUDED.company_count,
+       source_method = EXCLUDED.source_method,
+       checked_at = NOW(),
+       updated_at = NOW()`,
+    [slug, JSON.stringify(merged), merged.length, sourceMethod]
+  );
+  return { slug, updated: true, companyCount: merged.length };
+}
+
+async function getAllPortfolios() {
+  const { rows } = await db.query(
+    `SELECT slug, companies, company_count FROM investor_portfolio WHERE company_count > 0`
+  );
+  return rows;
+}
+
+/**
+ * Slugs least-recently checked first (never-checked first).
+ */
+async function getStalePortfolioSlugs(allSlugs, limit, staleAfterDays) {
+  const { rows } = await db.query(
+    `SELECT slug, checked_at FROM investor_portfolio WHERE checked_at > NOW() - INTERVAL '1 day' * $1`,
+    [staleAfterDays]
+  );
+  const recentlyChecked = new Set(rows.map((r) => r.slug));
+  const candidates = allSlugs.filter((slug) => !recentlyChecked.has(slug));
+
+  const { rows: allRows } = await db.query(`SELECT slug, checked_at FROM investor_portfolio`);
+  const checkedAtBySlug = new Map(
+    allRows.map((r) => [r.slug, r.checked_at ? new Date(r.checked_at).getTime() : 0])
+  );
+  candidates.sort((a, b) => (checkedAtBySlug.get(a) || 0) - (checkedAtBySlug.get(b) || 0));
+  return candidates.slice(0, limit);
+}
+
+module.exports = {
+  upsertPortfolio,
+  getAllPortfolios,
+  getStalePortfolioSlugs,
+  mergeCompanies
+};

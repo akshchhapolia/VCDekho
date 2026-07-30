@@ -4,7 +4,9 @@ const { INVESTMENT_STAGES } = require('../data/investment-stages');
 
 let cache = null;
 let activityCacheAt = 0;
+let portfolioCacheAt = 0;
 const ACTIVITY_CACHE_TTL_MS = 5 * 60 * 1000; // 5 min — avoids a DB round trip on every request
+const PORTFOLIO_CACHE_TTL_MS = 5 * 60 * 1000;
 
 const STAGE_GUIDE_IDS = new Set(INVESTMENT_STAGES.map(s => s.id));
 
@@ -60,6 +62,32 @@ async function ensureActivityFresh() {
     activityCacheAt = now;
   } catch (err) {
     console.error('ensureActivityFresh: failed to load investor_activity from DB:', err.message);
+  }
+}
+
+/**
+ * Merges live investor_portfolio rows onto cached investor profiles so the
+ * portfolio widget updates without a redeploy. Same TTL pattern as activity.
+ */
+async function ensurePortfolioFresh() {
+  const now = Date.now();
+  if (now - portfolioCacheAt < PORTFOLIO_CACHE_TTL_MS) return;
+  try {
+    const db = require('./db');
+    const { rows } = await db.query(
+      `SELECT slug, companies, company_count FROM investor_portfolio WHERE company_count > 0`
+    );
+    const bySlug = new Map(rows.map((r) => [r.slug, r]));
+    const data = loadInvestorsData();
+    data.investors.forEach((inv) => {
+      const r = bySlug.get(inv.slug);
+      if (!r) return;
+      inv.portfolioCompanies = r.companies || [];
+      inv.portfolioCount = r.company_count || 0;
+    });
+    portfolioCacheAt = now;
+  } catch (err) {
+    console.error('ensurePortfolioFresh: failed to load investor_portfolio from DB:', err.message);
   }
 }
 
@@ -182,6 +210,7 @@ module.exports = {
   deriveRelatedStages,
   isActivelyDeploying,
   ensureActivityFresh,
+  ensurePortfolioFresh,
   ACTIVE_WINDOW_DAYS,
   STAGE_GUIDE_IDS
 };

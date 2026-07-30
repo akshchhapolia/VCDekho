@@ -154,6 +154,68 @@ function recentActivitySection(investor) {
   );
 }
 
+function portfolioSection(investor) {
+  const companies = investor.portfolioCompanies || [];
+  if (!companies.length) return '';
+
+  const cards = companies
+    .map((c) => {
+      const logo = c.logoUrl
+        ? '<img class="inv-profile-portfolio-logo" src="' +
+          escapeHtml(c.logoUrl) +
+          '" alt="" width="40" height="40" loading="lazy" decoding="async">'
+        : '<span class="inv-profile-portfolio-logo is-fallback" aria-hidden="true">' +
+          escapeHtml((c.name || '?').charAt(0).toUpperCase()) +
+          '</span>';
+      const metaBits = [c.stage, c.amount || c.highlight, c.investmentType && c.investmentType !== 'Unknown' ? c.investmentType : null]
+        .filter(Boolean)
+        .map((bit) => '<span>' + escapeHtml(bit) + '</span>');
+      const meta = metaBits.length
+        ? '<div class="inv-profile-portfolio-meta">' + metaBits.join('<span class="inv-profile-portfolio-dot" aria-hidden="true">·</span>') + '</div>'
+        : '';
+      const sector = c.sector
+        ? '<div class="inv-profile-portfolio-sector">' + escapeHtml(c.sector) + '</div>'
+        : '';
+      const dateLabel = c.date ? formatActivityDate(c.date) : '';
+      const date = dateLabel
+        ? '<div class="inv-profile-portfolio-date">' + escapeHtml(dateLabel) + '</div>'
+        : '';
+      const body =
+        logo +
+        '<div class="inv-profile-portfolio-copy">' +
+        '<div class="inv-profile-portfolio-name">' +
+        escapeHtml(c.name) +
+        '</div>' +
+        meta +
+        sector +
+        date +
+        '</div>';
+
+      const href = c.website || c.sourceUrl;
+      if (href) {
+        return (
+          '<a class="inv-profile-portfolio-card" href="' +
+          escapeHtml(href) +
+          '" target="_blank" rel="noopener noreferrer">' +
+          body +
+          '</a>'
+        );
+      }
+      return '<div class="inv-profile-portfolio-card">' + body + '</div>';
+    })
+    .join('');
+
+  return (
+    '<section class="inv-profile-section inv-profile-reveal" id="portfolio">' +
+    '<div class="inv-profile-section-label">01c — Portfolio</div>' +
+    '<div class="inv-profile-section-head"><h2>Portfolio companies</h2><p>Startups this investor has backed, with round, amount, and source where publicly reported.</p></div>' +
+    '<div class="inv-profile-portfolio-grid">' +
+    cards +
+    '</div>' +
+    '</section>'
+  );
+}
+
 function thesisWidget(investor) {
   const labels = investor.thesisThemes || [];
   const ids = investor.thesisThemeIds || [];
@@ -384,6 +446,7 @@ function renderInvestorPage(investor, related, res) {
     '<nav class="inv-profile-sticky" id="inv-profile-sticky" aria-label="On this page">',
     '<a href="#snapshot" data-section="snapshot">Snapshot</a>',
     (investor.recentChecks || []).length ? '<a href="#activity" data-section="activity">Activity</a>' : '',
+    (investor.portfolioCompanies || []).length ? '<a href="#portfolio" data-section="portfolio">Portfolio</a>' : '',
     '<a href="#focus" data-section="focus">Focus</a>',
     themes.length ? '<a href="#thesis" data-section="thesis">Thesis</a>' : '',
     '<a href="#about" data-section="about">About</a>',
@@ -417,7 +480,7 @@ function renderInvestorPage(investor, related, res) {
     '<link rel="canonical" href="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/style.css?v=49">',
+    '<link rel="stylesheet" href="/style.css?v=59">',
     '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
@@ -470,6 +533,7 @@ function renderInvestorPage(investor, related, res) {
     '</section>',
 
     recentActivitySection(investor),
+    portfolioSection(investor),
 
     '<section class="inv-profile-section inv-profile-reveal" id="focus">',
     '<div class="inv-profile-section-label">02 — Focus</div>',

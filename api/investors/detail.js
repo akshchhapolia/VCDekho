@@ -1,4 +1,4 @@
-const { getInvestorBySlug, filterInvestors, toCard, hasStageGuide, deriveRelatedStages, ensureActivityFresh } = require('../../utils/investors');
+const { getInvestorBySlug, filterInvestors, toCard, hasStageGuide, deriveRelatedStages, ensureActivityFresh, ensurePortfolioFresh } = require('../../utils/investors');
 const { getThemePage, getAllThemes } = require('../../utils/thesis-themes');
 const { getStagePage } = require('../../utils/investment-stages');
 const { getSectorPage } = require('../../utils/sectors');
@@ -169,6 +169,7 @@ module.exports = async function handler(req, res) {
 
   try {
     await ensureActivityFresh();
+    await ensurePortfolioFresh();
 
     if (view === 'theme') {
       const theme = getThemePage(slug);
