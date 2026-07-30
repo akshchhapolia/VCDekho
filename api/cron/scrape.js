@@ -43,9 +43,16 @@ function scoreRelevance(item, sourceName) {
         }
     }
 
-    // LiveMint is broad business news — require funding/deal signals
-    if (sourceName === 'livemint') {
-        if (!(/raise|round|seed|series [abcd]|fund|backs|invests|vc|venture|ipo|acquires|merger|crore|lakh|million|billion|\$|₹/i.test(title))) {
+    // Dedicated funding-tag feed — everything here is already on-topic.
+    if (sourceName === 'yourstory-funding') {
+        score += 2;
+    }
+
+    // LiveMint, StartupTalky, and CNBC-TV18's startup feed are broad business/
+    // startup news — require funding/deal signals so non-funding stories
+    // (product launches, layoffs, IPO chatter, etc.) don't get queued.
+    if (sourceName === 'livemint' || sourceName === 'startuptalky' || sourceName === 'cnbctv18-startups') {
+        if (!(/raise[sd]?|round|seed|pre-seed|series [abcde]|fund(s|ing)?|backs?|invests?|investment|vc|venture|acquires|merger|crore|lakh|million|billion|\$|₹/i.test(title))) {
             return 0;
         }
         score += 1;
