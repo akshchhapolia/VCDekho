@@ -163,11 +163,15 @@ async function collectMentions(index) {
     }
   }
 
-  // Source 2: raw_content.extracted_facts — lead_investors / other_investors
+  // Source 2: raw_content.extracted_facts — lead_investors / other_investors.
+  // Restrict to news_category = 'Funding': other categories (Milestone,
+  // Product Launch, Acquisition...) often name a company's *existing*
+  // investors in passing (e.g. a profitability update), which is not a
+  // "check" and would make a fund look active when it isn't.
   const facts = await db.query(
     `SELECT id, title, source_url, source_name, published_at_source, scraped_at, extracted_facts
      FROM raw_content
-     WHERE extracted_facts IS NOT NULL`
+     WHERE extracted_facts IS NOT NULL AND extracted_facts->>'news_category' = 'Funding'`
   );
   for (const row of facts.rows) {
     const f = row.extracted_facts || {};
