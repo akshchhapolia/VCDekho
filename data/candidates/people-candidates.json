@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T05:43:16.981Z",
+  "generatedAt": "2026-07-30T05:50:17.069Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -4706,6 +4706,159 @@
       "title": "Partner",
       "linkedinUrl": "https://www.linkedin.com/in/bejul-somaia-ba415",
       "sourceUrl": "https://lsvp.com/team-member/bejul-somaia/",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "021 Capital",
+      "name": "Shruti Jain",
+      "title": "Principal",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.xeed.vc/about-us",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "021 Capital",
+      "name": "Anirudh Iyer",
+      "title": "Principal",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.xeed.vc/about-us",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "8X Ventures",
+      "name": "Chirag Gupta",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.8xventures.co/about",
+      "method": "crawl",
+      "companyType": "VC (DeepTech specialist)"
+    },
+    {
+      "company": "8X Ventures",
+      "name": "Esha Arya",
+      "title": "Partner and Board Advisor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.8xventures.co/about",
+      "method": "crawl",
+      "companyType": "VC (DeepTech specialist)"
+    },
+    {
+      "company": "8X Ventures",
+      "name": "Ajay Singh Rajput",
+      "title": "Partner and Board Advisor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.8xventures.co/about",
+      "method": "crawl",
+      "companyType": "VC (DeepTech specialist)"
+    },
+    {
+      "company": "8X Ventures",
+      "name": "Vinod Agarwal",
+      "title": "Partner and Board Advisor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.8xventures.co/about",
+      "method": "crawl",
+      "companyType": "VC (DeepTech specialist)"
+    },
+    {
+      "company": "A100x Ventures",
+      "name": "Nisa Amoils",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.a100x.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "A100x Ventures",
+      "name": "Frank Amato",
+      "title": "Venture Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.a100x.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "A100x Ventures",
+      "name": "Sal Ternullo",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.a100x.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "A100x Ventures",
+      "name": "Uri Stav",
+      "title": "Venture Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.a100x.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Aarii Ventures",
+      "name": "Ketan Kothari",
+      "title": "Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.aariiventures.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Aarii Ventures",
+      "name": "Priyank Kothari",
+      "title": "Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.aariiventures.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Aarin Capital",
+      "name": "Dr. Ranjan Pai",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://aarincapital.com/about/",
+      "method": "crawl",
+      "companyType": "Proprietary Venture Fund + Fund-of-Funds / Family Office (multi-asset)"
+    },
+    {
+      "company": "Aarin Capital",
+      "name": "TV Mohandas Pai",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://aarincapital.com/about/",
+      "method": "crawl",
+      "companyType": "Proprietary Venture Fund + Fund-of-Funds / Family Office (multi-asset)"
+    },
+    {
+      "company": "Alkemi Growth Capital",
+      "name": "Dr. Mansi Aggarwal",
+      "title": "PARTNER",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.alkemivp.com/",
+      "method": "crawl",
+      "companyType": "VC (healthcare & wellness, early-growth; women-led, IFC-backed)"
+    },
+    {
+      "company": "Fireside Ventures",
+      "name": "Kanwaljit Singh",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/singhkanwaljit",
+      "sourceUrl": "https://firesideventures.com/pages/kanwaljit-singh",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Inflexor Ventures",
+      "name": "Pratip Mazumdar",
+      "title": "Co-Founder And Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.inflexor.vc/about",
       "method": "agent-verified",
       "companyType": "VC"
     }
