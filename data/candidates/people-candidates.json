@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T06:01:35.578Z",
+  "generatedAt": "2026-07-30T06:03:10.538Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -5392,6 +5392,114 @@
       "sourceUrl": "https://www.ifc.org/en/about",
       "method": "crawl",
       "companyType": "Development Finance Institution / VC"
+    },
+    {
+      "company": "Ecosystem Ventures",
+      "name": "Abhishek Sanghvi",
+      "title": "Founder",
+      "linkedinUrl": "",
+      "sourceUrl": "https://ecosystemventures.in/about-us/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Ecosystem Ventures",
+      "name": "Aditya Jadhav",
+      "title": "Consulting Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://ecosystemventures.in/about-us/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Ecosystem Ventures",
+      "name": "Sudiip Maathur",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://ecosystemventures.in/about-us/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Ecosystem Ventures",
+      "name": "Ganesh Balakrishnan",
+      "title": "Consulting Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://ecosystemventures.in/about-us/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Ecosystem Ventures",
+      "name": "Aditya Somani",
+      "title": "Mentor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://ecosystemventures.in/about-us/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Kathyawad Ventures",
+      "name": "Nirav Sheth",
+      "title": "FOUNDER & CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://kathyawadventures.in/team/",
+      "method": "crawl",
+      "companyType": "VC (early-stage, small/emerging)"
+    },
+    {
+      "company": "Kathyawad Ventures",
+      "name": "Pankaj Anand",
+      "title": "Co- Founder & COO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://kathyawadventures.in/team/",
+      "method": "crawl",
+      "companyType": "VC (early-stage, small/emerging)"
+    },
+    {
+      "company": "Kathyawad Ventures",
+      "name": "Amit Thakkar",
+      "title": "Venture Partner - Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://kathyawadventures.in/team/",
+      "method": "crawl",
+      "companyType": "VC (early-stage, small/emerging)"
+    },
+    {
+      "company": "Kathyawad Ventures",
+      "name": "Ashish Kumar",
+      "title": "Venture Partner - Innovations",
+      "linkedinUrl": "",
+      "sourceUrl": "https://kathyawadventures.in/team/",
+      "method": "crawl",
+      "companyType": "VC (early-stage, small/emerging)"
+    },
+    {
+      "company": "Kathyawad Ventures",
+      "name": "Gaurav",
+      "title": "Venture Partner - Alliances",
+      "linkedinUrl": "",
+      "sourceUrl": "https://kathyawadventures.in/team/",
+      "method": "crawl",
+      "companyType": "VC (early-stage, small/emerging)"
+    },
+    {
+      "company": "KKR",
+      "name": "Doug Krupa",
+      "title": "Global Wealth Solutions",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.kkr.com/wealth",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "KKR",
+      "name": "Markus Egloff",
+      "title": "Global Wealth Solutions",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.kkr.com/wealth",
+      "method": "crawl",
+      "companyType": "PE"
     }
   ],
   "unresolved": [],
