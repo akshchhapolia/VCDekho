@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T05:59:58.953Z",
+  "generatedAt": "2026-07-30T06:01:35.578Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -5284,6 +5284,114 @@
       "sourceUrl": "https://iimaventures.com/team/",
       "method": "crawl",
       "companyType": "VC / Accelerator"
+    },
+    {
+      "company": "IKP Knowledge Park",
+      "name": "Deepanwita Chattopadhyay",
+      "title": "CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://ikpknowledgepark.com/",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Inno-Vest Advisors",
+      "name": "Prateek Mittal",
+      "title": "Registered Valuer",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.inno-vest.in/ma-team",
+      "method": "crawl",
+      "companyType": "Syndicate / Advisory"
+    },
+    {
+      "company": "Inno-Vest Advisors",
+      "name": "Sreekanth Kurella",
+      "title": "Partner - Technology",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.inno-vest.in/ma-team",
+      "method": "crawl",
+      "companyType": "Syndicate / Advisory"
+    },
+    {
+      "company": "Inno-Vest Advisors",
+      "name": "Abhishek Bhandari",
+      "title": "Partner - Deals & Diligence",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.inno-vest.in/ma-team",
+      "method": "crawl",
+      "companyType": "Syndicate / Advisory"
+    },
+    {
+      "company": "Inno-Vest Advisors",
+      "name": "Arundhati Mukherjee",
+      "title": "v-CMO Services",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.inno-vest.in/ma-team",
+      "method": "crawl",
+      "companyType": "Syndicate / Advisory"
+    },
+    {
+      "company": "Inno-Vest Advisors",
+      "name": "Pradnya Shelke",
+      "title": "VP - Deal Value Creation",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.inno-vest.in/ma-team",
+      "method": "crawl",
+      "companyType": "Syndicate / Advisory"
+    },
+    {
+      "company": "Innoven Capital",
+      "name": "Ashish Sharma",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://innovencapital.com/OurTeam_in?lang=in",
+      "method": "crawl",
+      "companyType": "Venture Debt"
+    },
+    {
+      "company": "Innoven Capital",
+      "name": "Tarana Lalwani",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://innovencapital.com/OurTeam_in?lang=in",
+      "method": "crawl",
+      "companyType": "Venture Debt"
+    },
+    {
+      "company": "Innoven Capital",
+      "name": "Sameer Mansukhani",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://innovencapital.com/OurTeam_in?lang=in",
+      "method": "crawl",
+      "companyType": "Venture Debt"
+    },
+    {
+      "company": "Innoven Capital",
+      "name": "Aditya Mathur",
+      "title": "Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://innovencapital.com/OurTeam_in?lang=in",
+      "method": "crawl",
+      "companyType": "Venture Debt"
+    },
+    {
+      "company": "Innoven Capital",
+      "name": "Nikhil Chandna",
+      "title": "Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://innovencapital.com/OurTeam_in?lang=in",
+      "method": "crawl",
+      "companyType": "Venture Debt"
+    },
+    {
+      "company": "International Finance Corporation (IFC)",
+      "name": "Makhtar Diop",
+      "title": "Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.ifc.org/en/about",
+      "method": "crawl",
+      "companyType": "Development Finance Institution / VC"
     }
   ],
   "unresolved": [],
