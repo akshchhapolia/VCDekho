@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T05:51:20.792Z",
+  "generatedAt": "2026-07-30T05:52:23.478Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -4879,6 +4879,33 @@
       "sourceUrl": "https://www.athena.vc/",
       "method": "crawl",
       "companyType": "VC"
+    },
+    {
+      "company": "B Capital",
+      "name": "Eduardo Saverin",
+      "title": "Leader",
+      "linkedinUrl": "",
+      "sourceUrl": "https://b.capital/about/",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "B Capital",
+      "name": "Raj Ganguly",
+      "title": "Leader",
+      "linkedinUrl": "",
+      "sourceUrl": "https://b.capital/about/",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "B Capital",
+      "name": "Howard Morgan",
+      "title": "Leader",
+      "linkedinUrl": "",
+      "sourceUrl": "https://b.capital/about/",
+      "method": "crawl",
+      "companyType": "VC / Growth"
     }
   ],
   "unresolved": [],
