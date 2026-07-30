@@ -1,0 +1,11 @@
+{
+  "found": [
+    {"name":"Zach Bratun-Glennon","company":"Gradient Ventures","linkedinUrl":"https://www.linkedin.com/in/zachary-bratun-glennon-b4a16026","sourceUrl":"https://www.gradient.com/team/zach-bratun-glennon/","method":"search","confidence":"high"},
+    {"name":"Matthew Cowan","company":"next47","linkedinUrl":"https://www.linkedin.com/in/matthewtcowan","sourceUrl":"https://next47.com/team-members/matthew-cowan","method":"search","confidence":"high"},
+    {"name":"Quinn Li","company":"Qualcomm Ventures","linkedinUrl":"https://www.linkedin.com/in/liquinn","sourceUrl":"https://www.qualcommventures.com/team/quinn-li/","method":"search","confidence":"high"},
+    {"name":"Anthony Lin","company":"Intel Capital","linkedinUrl":"https://www.linkedin.com/in/anthony-lin-%E6%9E%97%E7%AB%8B%E4%B8%AD-0818371","sourceUrl":"https://www.intelcapital.com/team/anthony-lin/","method":"search","confidence":"high"},
+    {"name":"Andy Fligel","company":"Intel Capital","linkedinUrl":"https://www.linkedin.com/in/andy-fligel-018797","sourceUrl":"https://www.intelcapital.com/team/andy-fligel/","method":"search","confidence":"high"},
+    {"name":"James Brocklebank","company":"Advent International","linkedinUrl":"https://www.linkedin.com/in/jamesbrocklebank","sourceUrl":"https://www.adventinternational.com/our-team/james-brocklebank/","method":"search","confidence":"high"},
+    {"name":"Bryan Yeo","company":"GIC Private Limited","linkedinUrl":"https://www.linkedin.com/in/bryanyeokm","sourceUrl":"https://www.gic.com.sg/who-we-are/board-of-directors/bryan-yeo/","method":"search","confidence":"high"}
+  ]
+}

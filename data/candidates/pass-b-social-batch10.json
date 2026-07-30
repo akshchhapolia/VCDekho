@@ -1,0 +1,10 @@
+{
+  "found": [
+    {"name":"Lim Chow Kiat","company":"GIC Private Limited","linkedinUrl":"https://www.linkedin.com/in/limchowkiat","sourceUrl":"https://www.gic.com.sg/who-we-are/executive-management/lim-chow-kiat/","method":"search","confidence":"high"},
+    {"name":"Eric Mogelof","company":"KKR","linkedinUrl":"https://www.linkedin.com/in/ericmogelof","sourceUrl":"https://www.kkr.com/about/our-people/eric-mogelof","method":"search","confidence":"high"},
+    {"name":"Frank Ehmer","company":"Apax Partners","linkedinUrl":"https://www.linkedin.com/in/frank-ehmer-a31169","sourceUrl":"https://www.apax.com/people/our-team/frank-ehmer/","method":"search","confidence":"high"},
+    {"name":"Nedu Ottih","company":"Apax Partners","linkedinUrl":"https://www.linkedin.com/in/nedu-ottih-1007208","sourceUrl":"https://www.apax.com/people/our-team/nedu-ottih/","method":"search","confidence":"high"},
+    {"name":"Rama Bethmangalkar","company":"Qualcomm Ventures","linkedinUrl":"https://www.linkedin.com/in/rama-bethmangalkar-1664a4","sourceUrl":"https://www.qualcommventures.com/team/rama-bethmangalkar/","method":"search","confidence":"high"},
+    {"name":"Anthony Lin","company":"Intel Capital","linkedinUrl":"https://www.linkedin.com/in/anthony-lin-0818371","sourceUrl":"https://www.intelcapital.com/team/anthony-lin/","method":"search","confidence":"high"}
+  ]
+}
