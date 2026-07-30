@@ -22,7 +22,8 @@ Rules:
 - Do NOT include: the fund itself, LPs, other VCs, accelerators as "companies", or unrelated brands with no investment link.
 - Amount/stage/date may be null when only the portfolio listing is known — still include the company.
 - Each entry must be a different company. Prefer more recent / better-documented deals when choosing.
-- Base your answer only on the snippets — do not invent names, amounts, or stages not present.
+- Profile notes (when provided) often explicitly list portfolio companies — ALWAYS include those names even if amount/stage are unknown.
+- Base your answer only on the snippets and profile notes — do not invent names, amounts, or stages not present.
 - If nothing verifiable is found, respond with {"found": false}.
 - Respond with ONLY a raw JSON object, no markdown fences, no other text.
 
@@ -124,6 +125,45 @@ function searchName(investorName) {
   return name || investorName;
 }
 
+/**
+ * Free extraction from our own profile writeups/notes, which often already
+ * list portfolio names ("Portfolio: A, B, C" / "Portfolio names include…").
+ */
+function companiesFromWriteup(text) {
+  const t = String(text || '');
+  if (!t) return [];
+  const patterns = [
+    /portfolio(?:\s+names)?(?:\s+include|\s*:)\s*([^.!\n]+)/i,
+    /(?:notable\s+)?investments?(?:\s+include|\s*:)\s*([^.!\n]+)/i,
+    /backed\s+([A-Z][^.]{10,180}?)(?:\.|$)/
+  ];
+  const names = [];
+  for (const re of patterns) {
+    const m = t.match(re);
+    if (!m) continue;
+    String(m[1])
+      .split(/,|;&| and /i)
+      .map((s) => s.replace(/\s+/g, ' ').trim())
+      .filter((s) => s.length >= 2 && s.length <= 60)
+      .filter((s) => !/^(include|including|such as|e\.g\.?|etc)$/i.test(s))
+      .forEach((name) => names.push(name));
+  }
+  const seen = new Set();
+  const out = [];
+  for (const name of names) {
+    const c = normalizeCompany({
+      name,
+      highlight: 'Listed in profile',
+      stage: 'Unknown',
+      investment_type: 'Unknown'
+    });
+    if (!c || seen.has(c.companySlug)) continue;
+    seen.add(c.companySlug);
+    out.push(c);
+  }
+  return out;
+}
+
 function dedupeOrganic(results) {
   const seen = new Set();
   const out = [];
@@ -196,21 +236,27 @@ async function lookupInvestorPortfolio(investorName, opts = {}) {
   const fullUsage = {
     inputTokens: usage?.inputTokens || 0,
     outputTokens: usage?.outputTokens || 0,
-    costUsd: (usage?.costUsd || 0) + SEARLO_COST_PER_QUERY * Math.max(1, searchCalls)
+    costUsd: (usage?.costUsd || 0) + SEARLO_COST_PER_QUERY * Math.max(1, searchCalls || 0)
   };
   const parsed = extractJson(text);
-  if (!parsed || !parsed.found || !Array.isArray(parsed.companies)) {
-    return { companies: [], usage: fullUsage };
-  }
-
   const seen = new Set();
   const companies = [];
-  for (const raw of parsed.companies) {
-    const c = normalizeCompany(raw);
-    if (!c) continue;
-    if (seen.has(c.companySlug)) continue;
+
+  function pushCompany(c) {
+    if (!c || seen.has(c.companySlug)) return;
     seen.add(c.companySlug);
     companies.push(c);
+  }
+
+  if (parsed && parsed.found && Array.isArray(parsed.companies)) {
+    for (const raw of parsed.companies) {
+      pushCompany(normalizeCompany(raw));
+      if (companies.length >= MAX_COMPANIES) break;
+    }
+  }
+  // Always merge free writeup-derived names (fills gaps when the LLM is shy).
+  for (const c of companiesFromWriteup(opts.writeup)) {
+    pushCompany(c);
     if (companies.length >= MAX_COMPANIES) break;
   }
 
