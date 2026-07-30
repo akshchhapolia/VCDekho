@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T05:29:47.886Z",
+  "generatedAt": "2026-07-30T05:30:48.466Z",
   "schemaVersion": 1,
   "description": "Staged LinkedIn/Twitter enrichments for existing People rows. Apply via scripts/apply_people_socials.js — patches empty CSV cells only.",
   "found": [
@@ -3077,6 +3077,66 @@
       "linkedinUrl": "https://www.linkedin.com/in/krishnajha",
       "twitterUrl": "",
       "sourceUrl": "https://www.linkedin.com/in/krishnajha",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "vani kola||tiebangaloreangels",
+      "name": "Vani Kola",
+      "company": "TiE Bangalore Angels",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/vanikola",
+      "twitterUrl": "",
+      "sourceUrl": "https://kalaari.com/kalaari_team/vani-kola/",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "srini raju||tiehyderabadangels",
+      "name": "Srini Raju",
+      "company": "TiE Hyderabad Angels",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/srinivasacraju-156887135",
+      "twitterUrl": "",
+      "sourceUrl": "https://hyderabad.tie.org/charter-member/srini-raju/",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "anand piramal||piramalfamilyoffice",
+      "name": "Anand Piramal",
+      "company": "Piramal Family Office",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/anand-piramal-ed-piramalgroup",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.piramalrealty.com/anand-piramal",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "chinmaya sharma||infoedgeventures",
+      "name": "Chinmaya Sharma",
+      "company": "Info Edge Ventures",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/chinmaya-sharma",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.vcsheet.com/who/chinmaya-sharma",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "ankita vashistha||tiebangaloreangels",
+      "name": "Ankita Vashistha",
+      "company": "TiE Bangalore Angels",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/ankitavashistha",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/ankitavashistha",
       "method": "search",
       "confidence": "high",
       "companyType": ""
