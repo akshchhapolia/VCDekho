@@ -78,6 +78,7 @@ async function runBackfillJob() {
   let found = 0;
   let checked = 0;
   let errors = 0;
+  let spentUsd = 0;
 
   await runPool(
     candidates,
@@ -85,8 +86,9 @@ async function runBackfillJob() {
       const inv = bySlug.get(slug);
       if (!inv) return;
       try {
-        const activity = await lookupInvestorActivity(inv.name);
+        const { activity, usage } = await lookupInvestorActivity(inv.name);
         checked++;
+        spentUsd += usage?.costUsd || 0;
         if (activity) found++;
         await upsertActivity(slug, activity, 'web_search_backfill');
       } catch (err) {
@@ -99,7 +101,7 @@ async function runBackfillJob() {
     BACKFILL_CONCURRENCY
   );
 
-  return { job: 'backfill', candidates: candidates.length, checked, found, errors };
+  return { job: 'backfill', candidates: candidates.length, checked, found, errors, estimatedSpendUsd: Number(spentUsd.toFixed(4)) };
 }
 
 module.exports = async function handler(req, res) {

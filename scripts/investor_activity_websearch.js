@@ -82,27 +82,35 @@ async function main() {
 
   console.log(`Loaded ${allSlugs.length} investors. Selecting up to ${LIMIT} stale/never-checked (staleAfter=${STALE_AFTER_DAYS}d)...`);
   const candidates = await getStaleSlugs(allSlugs, LIMIT, STALE_AFTER_DAYS);
-  console.log(`Checking ${candidates.length} investors (concurrency=${CONCURRENCY})...\n`);
+  const budgetLabel = Number.isFinite(BUDGET_USD) ? `$${BUDGET_USD.toFixed(2)}` : 'none';
+  console.log(`Checking ${candidates.length} investors (concurrency=${CONCURRENCY}, budget=${budgetLabel})...\n`);
 
   let found = 0;
   let checked = 0;
   let errors = 0;
+  let spentUsd = 0;
 
   await runPool(
     candidates,
     async (slug, _i, stopAll) => {
+      if (spentUsd >= BUDGET_USD) return;
       const inv = bySlug.get(slug);
       if (!inv) return;
       try {
-        const activity = await withRetry(() => lookupInvestorActivity(inv.name));
+        const { activity, usage } = await withRetry(() => lookupInvestorActivity(inv.name));
         checked++;
+        spentUsd += usage?.costUsd || 0;
         if (activity) {
           found++;
-          console.log(`✓ ${inv.name} → ${activity.lastCheckHighlight || ''} (${activity.lastCheckDate.slice(0, 10)})`);
+          console.log(`✓ ${inv.name} → ${activity.lastCheckHighlight || ''} (${activity.lastCheckDate.slice(0, 10)}) [$${(usage?.costUsd || 0).toFixed(4)}]`);
         } else {
-          console.log(`- ${inv.name} → no recent deal found`);
+          console.log(`- ${inv.name} → no recent deal found [$${(usage?.costUsd || 0).toFixed(4)}]`);
         }
         await upsertActivity(slug, activity, 'web_search_backfill');
+        if (spentUsd >= BUDGET_USD) {
+          console.log(`\nBudget of $${BUDGET_USD.toFixed(2)} reached — stopping the run.`);
+          stopAll();
+        }
       } catch (err) {
         errors++;
         console.error(`✗ ${inv.name} → error: ${err.message}`);
@@ -119,7 +127,7 @@ async function main() {
     CONCURRENCY
   );
 
-  console.log(`\nDone. Checked ${checked}/${candidates.length}, found activity for ${found}, errors ${errors}.`);
+  console.log(`\nDone. Checked ${checked}/${candidates.length}, found activity for ${found}, errors ${errors}. Estimated spend: $${spentUsd.toFixed(4)}.`);
   process.exit(0);
 }
 
