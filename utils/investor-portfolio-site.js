@@ -140,6 +140,8 @@ function isJunkName(name) {
   }
   if (/^(name|email|phone|message|subject|company|first name|last name)\s*\d*$/i.test(n)) return true;
   if (/^you are\b/i.test(n)) return true;
+  if (/\|/.test(n)) return true;
+  if (/portfolio\s*$/i.test(n) && n.length > 28) return true;
   if (/\.(png|jpe?g|gif|svg|webp)$/i.test(n)) return true;
   if (/^img[-_]?\d+$/i.test(n)) return true;
   if (/\d{3,}px/i.test(n)) return true;
@@ -471,10 +473,46 @@ function scoreExtraction(arr, method) {
   return arr.length * 2 + rich + methodBonus;
 }
 
+function filterOutFundSelf(companies, investorName) {
+  if (!investorName || !companies.length) return companies;
+  const fund = String(investorName)
+    .toLowerCase()
+    .replace(/\b(ventures|venture|capital|partners|partner|fund|llp|pvt|ltd|limited|india)\b/g, '')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+  const fundCompact = fund.replace(/\s+/g, '');
+  if (fundCompact.length < 3) return companies;
+  return companies.filter((c) => {
+    const n = String(c.name || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim();
+    const compact = n.replace(/\s+/g, '');
+    if (compact === fundCompact) return false;
+    if (n === String(investorName).toLowerCase()) return false;
+    if (compact.startsWith(fundCompact) && /partners|ventures|capital|india|pvt|ltd/.test(n)) {
+      return false;
+    }
+    return true;
+  });
+}
+
+function isAcceptableSiteResult(companies, method) {
+  const cos = companies || [];
+  const rich = cos.filter((c) => c.logoUrl || c.website).length;
+  if (method === 'site_json') return cos.length >= 8 || (cos.length >= 5 && rich >= 4);
+  if (method === 'site_paths') return cos.length >= 5;
+  if (method === 'site_logos') return cos.length >= 5 && rich >= 4;
+  if (method === 'site_gemini') return cos.length >= 5;
+  return cos.length >= 5 && rich >= 3;
+}
+
 /**
+ * @param {string} website
+ * @param {{ investorName?: string }} [opts]
  * @returns {Promise<{ companies: array, portfolioUrl: string|null, method: string|null }>}
  */
-async function scrapeInvestorPortfolioSite(website) {
+async function scrapeInvestorPortfolioSite(website, opts = {}) {
   const origin = originOf(website);
   if (!origin) return { companies: [], portfolioUrl: null, method: null };
 
@@ -528,10 +566,11 @@ async function scrapeInvestorPortfolioSite(website) {
       }
     }
 
-    const score = scoreExtraction(best, method) + page.score;
+    const cleaned = filterOutFundSelf(best, opts.investorName).slice(0, MAX_SITE_COMPANIES);
+    const score = scoreExtraction(cleaned, method) + page.score;
     if (score > bestResult.score) {
       bestResult = {
-        companies: best.slice(0, MAX_SITE_COMPANIES),
+        companies: cleaned,
         portfolioUrl: page.url,
         method,
         score
@@ -539,17 +578,11 @@ async function scrapeInvestorPortfolioSite(website) {
     }
 
     // Strong official JSON/path portfolio — no need to keep hunting.
-    if ((method === 'site_json' || method === 'site_paths') && best.length >= 20) break;
+    if ((method === 'site_json' || method === 'site_paths') && cleaned.length >= 20) break;
   }
 
   const cos = bestResult.companies || [];
-  const rich = cos.filter((c) => c.logoUrl || c.website).length;
-  // Drop weak / form-field false positives (e.g. 3 CMS labels).
-  const ok =
-    cos.length >= 8 ||
-    (cos.length >= 5 && rich >= 2) ||
-    (cos.length >= 3 && rich >= 3 && bestResult.method !== 'site_gemini');
-  if (!ok) {
+  if (!isAcceptableSiteResult(cos, bestResult.method)) {
     return { companies: [], portfolioUrl: null, method: null };
   }
   return {

@@ -272,7 +272,9 @@ async function lookupInvestorPortfolio(investorName, opts = {}) {
   // 1) Website portfolio page — primary source of truth for names + logos.
   if (opts.website) {
     try {
-      const site = await scrapeInvestorPortfolioSite(opts.website);
+      const site = await scrapeInvestorPortfolioSite(opts.website, {
+        investorName
+      });
       if (site.companies && site.companies.length) {
         companies = site.companies.slice(0, MAX_COMPANIES_SITE);
         source = site.method || 'site_scrape';
