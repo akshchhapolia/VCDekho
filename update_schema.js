@@ -38,6 +38,19 @@ async function migrate() {
         `);
         await pool.query(`CREATE INDEX IF NOT EXISTS idx_investor_activity_checked_at ON investor_activity (checked_at);`);
 
+        console.log("Creating investor_portfolio table...");
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS investor_portfolio (
+                slug TEXT PRIMARY KEY,
+                companies JSONB DEFAULT '[]'::jsonb,
+                company_count INTEGER DEFAULT 0,
+                source_method TEXT,
+                checked_at TIMESTAMPTZ DEFAULT NOW(),
+                updated_at TIMESTAMPTZ DEFAULT NOW()
+            );
+        `);
+        await pool.query(`CREATE INDEX IF NOT EXISTS idx_investor_portfolio_checked_at ON investor_portfolio (checked_at);`);
+
         console.log("Migration successful.");
     } catch (e) {
         console.error("Migration failed:", e);

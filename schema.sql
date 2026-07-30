@@ -66,3 +66,16 @@ CREATE TABLE IF NOT EXISTS investor_activity (
     checked_at TIMESTAMPTZ DEFAULT NOW(), -- last time we *attempted* a check, even if nothing was found
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- 5. investor_portfolio table
+-- Portfolio companies per investor (name, logo, amount, stage/series, source).
+-- Populated primarily via Searlo web search + Haiku extraction; news DB and
+-- fund-site scrapes can merge in later as enrichments.
+CREATE TABLE IF NOT EXISTS investor_portfolio (
+    slug TEXT PRIMARY KEY,
+    companies JSONB DEFAULT '[]'::jsonb,
+    company_count INTEGER DEFAULT 0,
+    source_method TEXT, -- 'web_search' | 'site_scrape' | 'news_pipeline'
+    checked_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
