@@ -123,6 +123,14 @@
       "sourceUrl": "https://www.linkedin.com/in/andreyterebenin",
       "method": "search",
       "confidence": "high"
+    },
+    {
+      "name": "Joo Hock CHUA",
+      "company": "Vertex Ventures SE Asia & India",
+      "linkedinUrl": "https://www.linkedin.com/in/joo-hock-chua-8b87181",
+      "sourceUrl": "https://www.vertexventures.sg/team-members/joo-hock-chua/",
+      "method": "search",
+      "confidence": "medium"
     }
   ]
 }
