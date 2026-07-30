@@ -61,10 +61,7 @@ async function generateText({
   async function call(modelName) {
     const generationConfig = {
       temperature: 0.1,
-      maxOutputTokens,
-      // gemini-flash-latest can burn output budget on "thinking" tokens and
-      // return truncated answers (e.g. "YES|$7M|"). Disable thinking.
-      thinkingConfig: { thinkingBudget: 0 }
+      maxOutputTokens
     };
     // jsonMode helps most extractors, but some flash builds truncate mid-object
     // when the schema is wide — callers can turn it off for longer payloads.
