@@ -58,17 +58,35 @@ function extractJson(text) {
   }
 }
 
-async function enrichOne(investorName, company) {
-  const q = `${investorName} ${company.name} funding investment round India`;
+function investorAliases(inv) {
+  const names = new Set([inv.name]);
+  const blob = [inv.name, inv.writeup, inv.notes].filter(Boolean).join(' ');
+  // "formerly 9Unicorns" / "rebranded from X"
+  const formerly = blob.match(/formerly\s+([A-Z0-9][\w .&-]{1,40})/i);
+  if (formerly) names.add(formerly[1].trim().replace(/[.,;].*$/, ''));
+  const aka = blob.match(/(?:also known as|aka|rebranded from)\s+([A-Z0-9][\w .&-]{1,40})/i);
+  if (aka) names.add(aka[1].trim().replace(/[.,;].*$/, ''));
+  // Common short form before slash: "Sequoia (India) / Peak XV"
+  if (inv.name.includes('/')) {
+    inv.name.split('/').forEach((p) => names.add(p.trim()));
+  }
+  return [...names].filter(Boolean);
+}
+
+async function enrichOne(inv, company) {
+  const aliases = investorAliases(inv);
+  const aliasClause = aliases.map((a) => `"${a}"`).join(' OR ');
+  const q = `"${company.name}" (${aliasClause}) (funding OR investment OR invested OR exit OR backed OR led)`;
   const { organic } = await webSearch(q, { limit: 8, gl: 'in', hl: 'en' });
   if (!organic.length) return { company, costUsd: SEARLO_COST_PER_QUERY, updated: false };
 
   const { text, usage } = await generateText({
     system: PROMPT,
-    user: `Investor: ${investorName}\nStartup: ${company.name}\n\nResults:\n${organic
+    user: `Investor: ${aliases.join(' / ')}\nStartup: ${company.name}\n\nResults:\n${organic
       .map((r, i) => `${i + 1}. ${r.title}\n${r.snippet || ''}\nURL: ${r.link}`)
       .join('\n\n')}`,
-    maxOutputTokens: 400
+    maxOutputTokens: 500,
+    jsonMode: false
   });
 
   const parsed = extractJson(text);
@@ -143,7 +161,7 @@ async function main() {
       thinIdx,
       async (i) => {
         try {
-          const { company, costUsd, updated } = await enrichOne(inv.name, companies[i]);
+          const { company, costUsd, updated } = await enrichOne(inv, companies[i]);
           spent += costUsd;
           if (updated) {
             nextCompanies[i] = company;

@@ -49,10 +49,24 @@ function isFatalGeminiError(err) {
  * @param {string} [opts.model]
  * @returns {Promise<{ text: string, usage: { inputTokens: number, outputTokens: number, costUsd: number }, model: string }>}
  */
-async function generateText({ system, user, maxOutputTokens = 1200, model = DEFAULT_MODEL }) {
+async function generateText({
+  system,
+  user,
+  maxOutputTokens = 1200,
+  model = DEFAULT_MODEL,
+  jsonMode = true
+}) {
   if (!GEMINI_API_KEY) throw new Error('GEMINI_API_KEY is not set.');
 
   async function call(modelName) {
+    const generationConfig = {
+      temperature: 0.1,
+      maxOutputTokens
+    };
+    // jsonMode helps most extractors, but some flash builds truncate mid-object
+    // when the schema is wide — callers can turn it off for longer payloads.
+    if (jsonMode) generationConfig.responseMimeType = 'application/json';
+
     const res = await fetch(ENDPOINT(modelName), {
       method: 'POST',
       headers: {
@@ -62,12 +76,7 @@ async function generateText({ system, user, maxOutputTokens = 1200, model = DEFA
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: system }] },
         contents: [{ role: 'user', parts: [{ text: user }] }],
-        generationConfig: {
-          temperature: 0.1,
-          maxOutputTokens,
-          // Prefer raw JSON when the model supports it.
-          responseMimeType: 'application/json'
-        }
+        generationConfig
       })
     });
 
