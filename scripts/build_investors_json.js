@@ -410,10 +410,15 @@ function build() {
     } catch (_) {}
   }
 
-  // Merge "actively deploying" signal built by scripts/build_investor_activity.js
-  // (mined from the news pipeline). activelyDeploying itself is NOT stored here —
-  // it's derived at request time in utils/investors.js from lastCheckDate, so the
-  // badge correctly ages out even between activity-data refreshes.
+  // Static fallback for the "actively deploying" signal — a one-time snapshot
+  // from the early manual runs of scripts/build_investor_activity.js. The live
+  // source of truth is now the investor_activity DB table, refreshed
+  // automatically by api/cron/investor-activity.js (news pipeline) and
+  // api/cron/investor-activity-backfill.js (targeted web search), and merged
+  // in at request time by utils/investors.js#ensureActivityFresh(). This file
+  // is no longer regenerated — it only matters if the DB is briefly
+  // unreachable. activelyDeploying itself is NOT stored here — it's derived
+  // at request time from lastCheckDate, so the badge correctly ages out.
   const activityPath = path.join(ROOT, 'data', 'investor-activity.json');
   if (fs.existsSync(activityPath)) {
     try {
