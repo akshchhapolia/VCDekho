@@ -2564,6 +2564,38 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
   min-width: 0;
 }
 
+.inv-dir-checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+  padding: 0.2rem 0;
+}
+
+.inv-dir-checkbox-field input {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--color-accent-orange);
+  cursor: pointer;
+}
+
+.inv-dir-checkbox-field span {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.inv-dir-active-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 0.4rem;
+  border-radius: 50%;
+  background: #6be895;
+  box-shadow: 0 0 0 3px rgba(107, 232, 149, 0.18);
+  vertical-align: middle;
+}
+
 .inv-dir-clear {
   align-self: flex-start;
   margin-top: 0.35rem;

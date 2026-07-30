@@ -15,6 +15,7 @@
     type: '',
     thesis: '',
     cheque: '',
+    active: '',
     offset: 0,
     total: 0,
     filters: null
@@ -22,6 +23,7 @@
 
   const els = {
     search: document.getElementById('inv-search'),
+    active: document.getElementById('filter-active'),
     clear: document.getElementById('inv-clear'),
     count: document.getElementById('inv-count'),
     guideSlot: document.getElementById('inv-guide-slot'),
@@ -272,7 +274,7 @@
         <div class="inv-dir-col inv-dir-col-fund">
           <span class="inv-dir-fund-mark">${logoHtml(inv)}</span>
           <span class="inv-dir-fund-text">
-            <span class="inv-dir-type">${esc(inv.type || 'Investor')}</span>
+            <span class="inv-dir-type">${esc(inv.type || 'Investor')}${inv.activelyDeploying ? ' <span class="inv-dir-active-dot" title="Actively deploying — named in a recent funding story" aria-label="Actively deploying"></span>' : ''}</span>
             <span class="inv-dir-name">${esc(inv.name)}</span>
           </span>
         </div>
@@ -342,6 +344,7 @@
       type: state.type,
       thesis: state.thesis,
       cheque: state.cheque,
+      active: state.active,
       limit: String(PAGE_SIZE),
       offset: String(state.offset)
     });
@@ -398,14 +401,22 @@
   dropdowns.thesis.setOnChange(v => { state.thesis = v; resetOffsetAndLoad(); });
   dropdowns.cheque.setOnChange(v => { state.cheque = v; resetOffsetAndLoad(); });
 
+  if (els.active) {
+    els.active.addEventListener('change', () => {
+      state.active = els.active.checked ? '1' : '';
+      resetOffsetAndLoad();
+    });
+  }
+
   els.clear.addEventListener('click', () => {
-    state.q = state.sector = state.stage = state.type = state.thesis = state.cheque = '';
+    state.q = state.sector = state.stage = state.type = state.thesis = state.cheque = state.active = '';
     els.search.value = '';
     dropdowns.sector.value = '';
     dropdowns.stage.value = '';
     dropdowns.type.value = '';
     dropdowns.thesis.value = '';
     dropdowns.cheque.value = '';
+    if (els.active) els.active.checked = false;
     resetOffsetAndLoad();
   });
 
@@ -439,6 +450,10 @@
   if (params0.get('sector')) state.sector = params0.get('sector');
   if (params0.get('type')) state.type = params0.get('type');
   if (params0.get('cheque')) state.cheque = params0.get('cheque');
+  if (params0.get('active') === '1') {
+    state.active = '1';
+    if (els.active) els.active.checked = true;
+  }
   if (params0.get('q')) {
     state.q = params0.get('q');
     els.search.value = state.q;

@@ -63,11 +63,12 @@ module.exports = async function handler(req, res) {
       type = '',
       thesis = '',
       cheque = '',
+      active = '',
       limit = '100',
       offset = '0'
     } = query;
 
-    const all = filterInvestors({ q, sector, stage, type, thesis, cheque });
+    const all = filterInvestors({ q, sector, stage, type, thesis, cheque, active });
     const start = Math.max(0, parseInt(offset, 10) || 0);
     const take = Math.min(200, Math.max(1, parseInt(limit, 10) || 100));
     const page = all.slice(start, start + take).map(toCard);
