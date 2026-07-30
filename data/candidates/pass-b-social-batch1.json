@@ -130,6 +130,55 @@
       "sourceUrl": "https://www.linkedin.com/in/anand-prasanna-6bb0052",
       "method": "search",
       "confidence": "high"
+    },
+    {
+      "name": "Gagan Goyal",
+      "company": "India Quotient",
+      "linkedinUrl": "https://www.linkedin.com/in/gagangoyal",
+      "sourceUrl": "https://www.linkedin.com/in/gagangoyal",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Bill Gates",
+      "company": "Breakthrough Energy Ventures",
+      "linkedinUrl": "https://www.linkedin.com/in/williamhgates",
+      "sourceUrl": "https://www.linkedin.com/in/williamhgates",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Dhianu Das",
+      "company": "Agility Ventures",
+      "linkedinUrl": "https://www.linkedin.com/in/dhianu",
+      "sourceUrl": "https://www.linkedin.com/in/dhianu",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Cyril Ebersweiler",
+      "company": "SOSV",
+      "linkedinUrl": "https://www.linkedin.com/in/cyrilebersweiler",
+      "twitterUrl": "https://x.com/cebersweiler",
+      "sourceUrl": "https://sosv.com/team/cyril-ebersweiler/",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Iain Shovlin",
+      "company": "Guild Capital",
+      "linkedinUrl": "https://www.linkedin.com/in/iain-shovlin-b3923",
+      "sourceUrl": "https://www.linkedin.com/in/iain-shovlin-b3923",
+      "method": "search",
+      "confidence": "high"
+    },
+    {
+      "name": "Dayakar Puskoor",
+      "company": "Naya Ventures",
+      "linkedinUrl": "https://www.linkedin.com/in/dayakarp",
+      "sourceUrl": "https://www.linkedin.com/in/dayakarp",
+      "method": "search",
+      "confidence": "high"
     }
   ]
 }
