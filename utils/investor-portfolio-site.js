@@ -138,6 +138,8 @@ function isJunkName(name) {
   ) {
     return true;
   }
+  if (/^(name|email|phone|message|subject|company|first name|last name)\s*\d*$/i.test(n)) return true;
+  if (/^you are\b/i.test(n)) return true;
   if (/\.(png|jpe?g|gif|svg|webp)$/i.test(n)) return true;
   if (/^img[-_]?\d+$/i.test(n)) return true;
   if (/\d{3,}px/i.test(n)) return true;
@@ -540,11 +542,18 @@ async function scrapeInvestorPortfolioSite(website) {
     if ((method === 'site_json' || method === 'site_paths') && best.length >= 20) break;
   }
 
-  if (bestResult.companies.length < 1) {
+  const cos = bestResult.companies || [];
+  const rich = cos.filter((c) => c.logoUrl || c.website).length;
+  // Drop weak / form-field false positives (e.g. 3 CMS labels).
+  const ok =
+    cos.length >= 8 ||
+    (cos.length >= 5 && rich >= 2) ||
+    (cos.length >= 3 && rich >= 3 && bestResult.method !== 'site_gemini');
+  if (!ok) {
     return { companies: [], portfolioUrl: null, method: null };
   }
   return {
-    companies: bestResult.companies,
+    companies: cos,
     portfolioUrl: bestResult.portfolioUrl,
     method: bestResult.method
   };
