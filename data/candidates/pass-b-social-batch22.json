@@ -1,0 +1,12 @@
+{
+  "found": [
+    {"name":"Rahul Mahipal","company":"Capitar Ventures","linkedinUrl":"https://www.linkedin.com/in/mahipalrahul","sourceUrl":"https://www.linkedin.com/in/mahipalrahul","method":"search","confidence":"high"},
+    {"name":"Mr. Ajit Deshmukh","company":"Equirus Ventures","linkedinUrl":"https://www.linkedin.com/in/ajit-deshmukh-9020502a","sourceUrl":"https://www.linkedin.com/in/ajit-deshmukh-9020502a","method":"search","confidence":"high"},
+    {"name":"Virginia Tan","company":"Teja Ventures","linkedinUrl":"https://www.linkedin.com/in/virginia-tan-a58b6b14","sourceUrl":"https://www.linkedin.com/in/virginia-tan-a58b6b14","method":"search","confidence":"high"},
+    {"name":"Maya Gadhvi","company":"Chakra Fund","linkedinUrl":"https://www.linkedin.com/in/mayapgadhvi","sourceUrl":"https://www.linkedin.com/in/mayapgadhvi","method":"search","confidence":"high"},
+    {"name":"Anil Saldanha","company":"Fundalogical Ventures","linkedinUrl":"https://www.linkedin.com/in/anil-saldanha-721bb51b5","sourceUrl":"https://www.linkedin.com/in/anil-saldanha-721bb51b5","method":"search","confidence":"high"},
+    {"name":"Poornima Nayak","company":"Ventana Ventures","linkedinUrl":"https://www.linkedin.com/in/poornima-g-nayak","sourceUrl":"https://www.linkedin.com/in/poornima-g-nayak","method":"search","confidence":"high"},
+    {"name":"Shrikant Goyal","company":"GetFive","linkedinUrl":"https://www.linkedin.com/in/shrikant-goyal","sourceUrl":"https://www.linkedin.com/in/shrikant-goyal","method":"search","confidence":"high"},
+    {"name":"Jay Desai","company":"Allvest","linkedinUrl":"https://www.linkedin.com/in/jay-desai-ab82753b2","sourceUrl":"https://www.allvest.co/","method":"search","confidence":"medium"}
+  ]
+}

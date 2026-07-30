@@ -77,6 +77,13 @@ function build() {
     }
     usedSlugs.add(slug);
 
+    const linkedin = (row['LinkedIn URL'] || '').trim();
+    const twitter = (row['Twitter URL'] || '').trim();
+    const hasSocial = Boolean(
+      (linkedin && !/^(n\/?a|-|none|na)$/i.test(linkedin)) ||
+        (twitter && !/^(n\/?a|-|none|na)$/i.test(twitter))
+    );
+
     people.push({
       id: String(people.length + 1),
       slug,
@@ -87,8 +94,10 @@ function build() {
       companyType,
       companyLogo,
       email: (row.Email || '').trim(),
-      linkedin: (row['LinkedIn URL'] || '').trim(),
-      twitter: (row['Twitter URL'] || '').trim()
+      linkedin,
+      twitter,
+      // Contact treated as validated only when we have at least one real social profile.
+      validated: hasSocial
     });
   }
 
