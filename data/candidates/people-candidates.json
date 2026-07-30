@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T06:30:41.719Z",
+  "generatedAt": "2026-07-30T06:31:06.851Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -8954,6 +8954,60 @@
       "title": "Partner Ops",
       "linkedinUrl": "",
       "sourceUrl": "https://www.villageglobal.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "White Whale",
+      "name": "Hardik Doshi",
+      "title": "Head, Portfolio Management",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.whitewhale.in/about-us",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Xeed Ventures",
+      "name": "Anirudh Iyer",
+      "title": "Principal",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.xeed.vc/about-us",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Yali Capital",
+      "name": "Mathew Cyriac",
+      "title": "Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://yali.vc/about-yali/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Yali Capital",
+      "name": "Karthikeyan 'Karthik' Madathil",
+      "title": "Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://yali.vc/about-yali/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Yali Capital",
+      "name": "Kaushik Ram",
+      "title": "Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://yali.vc/about-yali/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Yali Capital",
+      "name": "Lip-Bu Tan",
+      "title": "Advisor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://yali.vc/about-yali/",
       "method": "crawl",
       "companyType": "VC"
     }
