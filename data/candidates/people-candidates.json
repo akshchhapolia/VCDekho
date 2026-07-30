@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T06:27:50.238Z",
+  "generatedAt": "2026-07-30T06:28:47.518Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -8488,6 +8488,96 @@
       "sourceUrl": "https://revantacapital.com/about/",
       "method": "crawl",
       "companyType": "PE"
+    },
+    {
+      "company": "SE Ventures",
+      "name": "Julien Cristiani",
+      "title": "General Partner | France",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.seventures.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "SE Ventures",
+      "name": "Carlos (CK) Kokron",
+      "title": "General Partner | Menlo Park",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.seventures.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "SE Ventures",
+      "name": "Siddharth Mehta",
+      "title": "Partner | India",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.seventures.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "SE Ventures",
+      "name": "Brad Jones",
+      "title": "Principal | Menlo Park",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.seventures.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "SE Ventures",
+      "name": "Gemma Odena Bultó",
+      "title": "Operating Partner | Menlo Park",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.seventures.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Seedcamp",
+      "name": "Tom Wilson",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://seedcamp.com/our-team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Seedcamp",
+      "name": "Sia Houchangnia",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://seedcamp.com/our-team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Seedcamp",
+      "name": "Felix Martinez",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://seedcamp.com/our-team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Seedcamp",
+      "name": "Hilary Howe",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://seedcamp.com/our-team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Seedcamp",
+      "name": "Devin Hunt",
+      "title": "Venture Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://seedcamp.com/our-team/",
+      "method": "crawl",
+      "companyType": "VC"
     }
   ],
   "unresolved": [],
