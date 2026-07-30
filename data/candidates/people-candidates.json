@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T06:17:57.984Z",
+  "generatedAt": "2026-07-30T06:21:59.550Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -6202,6 +6202,870 @@
       "sourceUrl": "https://www.v3.ventures/",
       "method": "crawl",
       "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Vertex Ventures",
+      "name": "Kee Lock CHUA",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Vertex Ventures",
+      "name": "Joo Hock CHUA",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Vertex Ventures",
+      "name": "Ben MATHIAS",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Vertex Ventures",
+      "name": "Piyush KHARBANDA",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Vertex Ventures",
+      "name": "Genping LIU",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.vertexventures.sg/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "White Venture Capital",
+      "name": "Sweta Rau",
+      "title": "Founder and General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.whiteventurecap.com/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "White Venture Capital",
+      "name": "Amrish Rau",
+      "title": "Advisor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.whiteventurecap.com/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "White Venture Capital",
+      "name": "Jitendra Gupta",
+      "title": "Advisor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.whiteventurecap.com/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "White Venture Capital",
+      "name": "Xiang Rong (Anthony) Yeo",
+      "title": "operator-investor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.whiteventurecap.com/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "White Venture Capital",
+      "name": "Saloni Jiwrajka",
+      "title": "",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.whiteventurecap.com/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "100X.VC",
+      "name": "Abhishek Agarwal",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.100x.vc/vc-partners",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "100X.VC",
+      "name": "Aditya Pittie",
+      "title": "Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.100x.vc/vc-partners",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "100X.VC",
+      "name": "Anand Lunia",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.100x.vc/vc-partners",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "100X.VC",
+      "name": "Anil Joshi",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.100x.vc/vc-partners",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "100X.VC",
+      "name": "Anupam Mittal",
+      "title": "Founder & CEO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.100x.vc/vc-partners",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "2048 Ventures",
+      "name": "Julie Wolf",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.2048.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "2048 Ventures",
+      "name": "Daniella Cohen",
+      "title": "Principal",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.2048.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "8i Ventures",
+      "name": "Vikram Chachra",
+      "title": "GENERAL PARTNER & CIO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://8ivc.com/teams",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "8i Ventures",
+      "name": "Vishwanath V",
+      "title": "GENERAL PARTNER",
+      "linkedinUrl": "",
+      "sourceUrl": "https://8ivc.com/teams",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "8i Ventures",
+      "name": "Rohan Sharma",
+      "title": "Principal",
+      "linkedinUrl": "",
+      "sourceUrl": "https://8ivc.com/teams",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "a99 VC",
+      "name": "Vignesh Shankar",
+      "title": "MANAGING PARTNER",
+      "linkedinUrl": "",
+      "sourceUrl": "https://a99.vc/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "a99 VC",
+      "name": "Ganesh Sathyamurthy",
+      "title": "PARTNER",
+      "linkedinUrl": "",
+      "sourceUrl": "https://a99.vc/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "a99 VC",
+      "name": "Asha Venugopal",
+      "title": "PARTNER",
+      "linkedinUrl": "",
+      "sourceUrl": "https://a99.vc/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Aagama Ventures",
+      "name": "Pankaj Singh",
+      "title": "Co-founder & Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://aagama.vc/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Aeravti Ventures",
+      "name": "Lavanya Ashok",
+      "title": "Partner - Trifecta Capital",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.aeravti.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Aeravti Ventures",
+      "name": "Santiago Gomez",
+      "title": "Managing Partner - Cascada Growth",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.aeravti.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Aeravti Ventures",
+      "name": "Vivek Sivanandam",
+      "title": "Partner & CIO - Bulleon Ventures",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.aeravti.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Aeravti Ventures",
+      "name": "Shardul Singh",
+      "title": "Partner - Symphoni",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.aeravti.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Aeravti Ventures",
+      "name": "Aditya Siroya",
+      "title": "CIO - Repurpose Global",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.aeravti.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "AIC Banasthali",
+      "name": "BINNY KHANNA",
+      "title": "Senior Program Manager",
+      "linkedinUrl": "",
+      "sourceUrl": "https://aicbanasthali.org/",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "AIC Banasthali",
+      "name": "MS. SANSKRITI SHARMA",
+      "title": "Incubation Executive",
+      "linkedinUrl": "",
+      "sourceUrl": "https://aicbanasthali.org/",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "All In Capital",
+      "name": "Kushal Bhagia",
+      "title": "Founding Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.allincapital.vc/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Alpha Wave Global",
+      "name": "Ryan Khoury",
+      "title": "Co-Founder and Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.alphawaveglobal.com/leadership",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "Alpha Wave Global",
+      "name": "Ravi Thakran",
+      "title": "Partner, Former Group Chairman, LVMH Moët Hennessy Louis Vuitton Group Asia",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.alphawaveglobal.com/leadership",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "Alpha Wave Global",
+      "name": "Francis Suarez",
+      "title": "President",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.alphawaveglobal.com/leadership",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "Alpha Wave Global",
+      "name": "Matthew Corey",
+      "title": "Co-Chief Operating Officer and Chief Financial Officer",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.alphawaveglobal.com/leadership",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "Alpha Wave Global",
+      "name": "Cathy Weist",
+      "title": "Co-Chief Operating Officer and General Counsel",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.alphawaveglobal.com/leadership",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "Alteria Capital",
+      "name": "Ankit Agarwal",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://alteriacapital.com/team/",
+      "method": "crawl",
+      "companyType": "Venture Debt"
+    },
+    {
+      "company": "Alteria Capital",
+      "name": "Ajay Hattangdi",
+      "title": "Co-founder & Senior Advisor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://alteriacapital.com/team/",
+      "method": "crawl",
+      "companyType": "Venture Debt"
+    },
+    {
+      "company": "Alteria Capital",
+      "name": "Jinal Gandhi",
+      "title": "Director - Finance, Head - IR",
+      "linkedinUrl": "",
+      "sourceUrl": "https://alteriacapital.com/team/",
+      "method": "crawl",
+      "companyType": "Venture Debt"
+    },
+    {
+      "company": "Alteria Capital",
+      "name": "Deepak Malik",
+      "title": "Director – Head, Capital",
+      "linkedinUrl": "",
+      "sourceUrl": "https://alteriacapital.com/team/",
+      "method": "crawl",
+      "companyType": "Venture Debt"
+    },
+    {
+      "company": "Alteria Capital",
+      "name": "Akshat Saxena",
+      "title": "Principal",
+      "linkedinUrl": "",
+      "sourceUrl": "https://alteriacapital.com/team/",
+      "method": "crawl",
+      "companyType": "Venture Debt"
+    },
+    {
+      "company": "Antler",
+      "name": "Lavanya Indralingam",
+      "title": "Partner, Head of Scouting",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.antler.co/about",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Antler",
+      "name": "Bede Moore",
+      "title": "Chief Commercial Officer",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.antler.co/about",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Antler",
+      "name": "Frank Stevenaar",
+      "title": "Chief Financial Officer",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.antler.co/about",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Arali Ventures",
+      "name": "Rajiv R",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://araliventures.in/about",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Arali Ventures",
+      "name": "Sujata K",
+      "title": "Partner & CFO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://araliventures.in/about",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Arali Ventures",
+      "name": "Rohan C",
+      "title": "Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://araliventures.in/about",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Arali Ventures",
+      "name": "Svetha R",
+      "title": "Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://araliventures.in/about",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Arali Ventures",
+      "name": "Harshal G",
+      "title": "Investor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://araliventures.in/about",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Aroa Venture Partners",
+      "name": "Sekhar Puli",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.aroaventures.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Aroa Venture Partners",
+      "name": "Nitin Wadhwa",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.aroaventures.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Aroa Venture Partners",
+      "name": "Suren Gounder",
+      "title": "Venture Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.aroaventures.com/about",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Avatar Growth Capital",
+      "name": "Rajiv Gupta",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.avatargcp.com/core-team/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Avendus",
+      "name": "Gaurav Deepak",
+      "title": "Co-founder & CEO, Avendus",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.avendus.com/about",
+      "method": "crawl",
+      "companyType": "Investment Bank / Growth PE"
+    },
+    {
+      "company": "Avendus",
+      "name": "Kaushal Aggarwal",
+      "title": "Co-founder, Avendus",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.avendus.com/about",
+      "method": "crawl",
+      "companyType": "Investment Bank / Growth PE"
+    },
+    {
+      "company": "Avendus",
+      "name": "Ranu Vohra",
+      "title": "Co-founder & Executive Vice Chairman, Avendus",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.avendus.com/about",
+      "method": "crawl",
+      "companyType": "Investment Bank / Growth PE"
+    },
+    {
+      "company": "BEENEXT",
+      "name": "Hiro Maeda",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.beenext.com/beliefs/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "BEENEXT",
+      "name": "Hero Choudhary",
+      "title": "Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.beenext.com/beliefs/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "BEENEXT",
+      "name": "Nao Ito",
+      "title": "Operating Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.beenext.com/beliefs/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "BEENEXT",
+      "name": "Chinmaya Saxena",
+      "title": "Partner, Community Strategy",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.beenext.com/beliefs/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "BEENEXT",
+      "name": "Anirudh Garg",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.beenext.com/beliefs/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Beyond Capital Ventures",
+      "name": "Haya Haffar",
+      "title": "Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://beyondcapital.vc/",
+      "method": "crawl",
+      "companyType": "Impact VC"
+    },
+    {
+      "company": "Beyond Capital Ventures",
+      "name": "Mohammad Majali",
+      "title": "Programs",
+      "linkedinUrl": "",
+      "sourceUrl": "https://beyondcapital.vc/",
+      "method": "crawl",
+      "companyType": "Impact VC"
+    },
+    {
+      "company": "Bharat Founders Fund",
+      "name": "Arjun Malhotra",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.goodcapital.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Bharat Founders Fund",
+      "name": "Rohan Malhotra",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.goodcapital.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Bharat Founders Fund",
+      "name": "Sera Arora",
+      "title": "Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.goodcapital.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Bharat Founders Fund",
+      "name": "Radika Agarwal",
+      "title": "Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.goodcapital.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Bharat Founders Fund",
+      "name": "Shreyans Salecha",
+      "title": "Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.goodcapital.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "C4D Partners",
+      "name": "Sowmya Arunkumar",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://c4dpartners.com/about-us/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Capitar Ventures",
+      "name": "Shiv Gaurav Bhargava",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://capitar.in/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Caspian Impact Investments",
+      "name": "Vijayalakshmi N.M",
+      "title": "Director - Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Caspian Impact Investments",
+      "name": "Shilpa Sudhakar",
+      "title": "Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Caspian Impact Investments",
+      "name": "Emmanuel Murray",
+      "title": "Investment Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Caspian Impact Investments",
+      "name": "Ria Das",
+      "title": "Senior Manager - Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Caspian Impact Investments",
+      "name": "Mohammed Junaid",
+      "title": "Senior Analyst - investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "CDM Capital",
+      "name": "Abhishek Sharman",
+      "title": "Growth Equity · Carpediem Capital",
+      "linkedinUrl": "",
+      "sourceUrl": "https://cdmcapital.in/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "CDM Capital",
+      "name": "Hithendra Ramachandran",
+      "title": "Growth Equity · Carpediem Capital",
+      "linkedinUrl": "",
+      "sourceUrl": "https://cdmcapital.in/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "CDM Capital",
+      "name": "Saurabh Devendra Singh",
+      "title": "Capital markets · Strategy",
+      "linkedinUrl": "",
+      "sourceUrl": "https://cdmcapital.in/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "CDM Capital",
+      "name": "Anuraag Srivastava",
+      "title": "Media · Consumer",
+      "linkedinUrl": "",
+      "sourceUrl": "https://cdmcapital.in/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "CDM Capital",
+      "name": "Salil Bhargava",
+      "title": "Gaming · Internet",
+      "linkedinUrl": "",
+      "sourceUrl": "https://cdmcapital.in/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Chakra Fund",
+      "name": "Mark Joseph",
+      "title": "Founding GP",
+      "linkedinUrl": "",
+      "sourceUrl": "https://chakragrowthcapital.com/team.html",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Chakra Fund",
+      "name": "Rampi Kandadai",
+      "title": "Founding GP",
+      "linkedinUrl": "",
+      "sourceUrl": "https://chakragrowthcapital.com/team.html",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Chakra Fund",
+      "name": "Mahendra Jain",
+      "title": "Founding GP",
+      "linkedinUrl": "",
+      "sourceUrl": "https://chakragrowthcapital.com/team.html",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Chakra Fund",
+      "name": "Vineeta Gupta",
+      "title": "Principal",
+      "linkedinUrl": "",
+      "sourceUrl": "https://chakragrowthcapital.com/team.html",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Chakra Fund",
+      "name": "Rahul Chopra",
+      "title": "Venture Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://chakragrowthcapital.com/team.html",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Character",
+      "name": "John Zeratsky",
+      "title": "Co-Founder & General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.character.vc/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Character",
+      "name": "Kristen Brillantes",
+      "title": "Head of Programs & Community",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.character.vc/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "ChrysCapital",
+      "name": "Ashley Menezes",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://chryscapital.com/about-us/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "ChrysCapital",
+      "name": "Sanjay Kukreja",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://chryscapital.com/about-us/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "ChrysCapital",
+      "name": "Sanjiv Kaul",
+      "title": "Current Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://chryscapital.com/about-us/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Congruent Ventures",
+      "name": "Tanuj Dutta",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.congruentvc.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Congruent Ventures",
+      "name": "Kevin Kopczynski",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.congruentvc.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Congruent Ventures",
+      "name": "Marianne Wu",
+      "title": "Venture Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.congruentvc.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Congruent Ventures",
+      "name": "Eliza Cushman",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.congruentvc.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Congruent Ventures",
+      "name": "Gray Robinson",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.congruentvc.com/team",
+      "method": "crawl",
+      "companyType": "VC"
     }
   ],
   "unresolved": [],
