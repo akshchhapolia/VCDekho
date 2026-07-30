@@ -120,19 +120,35 @@ async function getStalePortfolioSlugs(allSlugs, limit, staleAfterDays) {
  * companies first, then oldest checked_at.
  */
 async function getLowCoverageSlugs(allSlugs, limit, maxCompanies) {
-  const { rows } = await db.query(
-    `SELECT slug, company_count, checked_at FROM investor_portfolio WHERE company_count <= $1`,
-    [maxCompanies]
-  );
+  // Load ALL rows so investors with company_count > max are excluded correctly.
+  // (Previously we only SELECTed low-count rows, then treated everyone missing
+  // from that map as count 0 — which incorrectly re-queued rich portfolios.)
+  const { rows } = await db.query(`SELECT slug, company_count, checked_at FROM investor_portfolio`);
   const bySlug = new Map(rows.map((r) => [r.slug, r]));
-  // Include never-rowed slugs as count 0.
-  const candidates = allSlugs
-    .map((slug) => {
-      const row = bySlug.get(slug);
-      if (row) return { slug, count: row.company_count || 0, checkedAt: row.checked_at ? new Date(row.checked_at).getTime() : 0 };
-      return { slug, count: 0, checkedAt: 0 };
-    })
-    .filter((c) => c.count <= maxCompanies);
+  const allowed = new Set(allSlugs);
+  const candidates = [];
+  for (const slug of allSlugs) {
+    const row = bySlug.get(slug);
+    const count = row ? Number(row.company_count) || 0 : 0;
+    if (count > maxCompanies) continue;
+    candidates.push({
+      slug,
+      count,
+      checkedAt: row && row.checked_at ? new Date(row.checked_at).getTime() : 0
+    });
+  }
+  // Also include any DB low-coverage rows whose slug is still in our directory.
+  for (const row of rows) {
+    if (!allowed.has(row.slug)) continue;
+    if (candidates.some((c) => c.slug === row.slug)) continue;
+    const count = Number(row.company_count) || 0;
+    if (count > maxCompanies) continue;
+    candidates.push({
+      slug: row.slug,
+      count,
+      checkedAt: row.checked_at ? new Date(row.checked_at).getTime() : 0
+    });
+  }
 
   candidates.sort((a, b) => a.count - b.count || a.checkedAt - b.checkedAt);
   return candidates.slice(0, limit).map((c) => c.slug);
