@@ -92,12 +92,30 @@ async function main() {
   const allSlugs = payload.investors.map((i) => i.slug);
   const bySlug = new Map(payload.investors.map((i) => [i.slug, i]));
 
+  // Institutional funds first — angels/grants are less likely to have public portfolios.
+  const PRIORITY_TYPES = new Set([
+    'vc',
+    'pe',
+    'accelerator',
+    'corporate',
+    'family-office',
+    'syndicate'
+  ]);
+
   let candidates;
   if (MAX_COMPANIES_FILTER != null) {
     console.log(
       `Loaded ${allSlugs.length} investors. Re-running up to ${LIMIT} with company_count <= ${MAX_COMPANIES_FILTER}...`
     );
-    candidates = await getLowCoverageSlugs(allSlugs, LIMIT, MAX_COMPANIES_FILTER);
+    candidates = await getLowCoverageSlugs(allSlugs, Math.max(LIMIT * 3, LIMIT), MAX_COMPANIES_FILTER);
+    candidates.sort((a, b) => {
+      const pa = PRIORITY_TYPES.has((bySlug.get(a) || {}).typeId) ? 0 : 1;
+      const pb = PRIORITY_TYPES.has((bySlug.get(b) || {}).typeId) ? 0 : 1;
+      return pa - pb;
+    });
+    candidates = candidates.slice(0, LIMIT);
+    const priorityN = candidates.filter((s) => PRIORITY_TYPES.has((bySlug.get(s) || {}).typeId)).length;
+    console.log(`Prioritized ${priorityN}/${candidates.length} institutional funds (VC/PE/accelerator/etc).`);
   } else {
     console.log(
       `Loaded ${allSlugs.length} investors. Selecting up to ${LIMIT} stale/never-checked (staleAfter=${STALE_AFTER_DAYS}d)...`
