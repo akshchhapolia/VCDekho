@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T05:58:46.557Z",
+  "generatedAt": "2026-07-30T05:59:58.953Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -5167,6 +5167,123 @@
       "sourceUrl": "https://www.gradcapital.in/philosophy",
       "method": "crawl",
       "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "HDFC Capital",
+      "name": "Deepak Parekh",
+      "title": "Non-Executive Director, HDFC Capital",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.hdfccapital.com/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "HDFC Capital",
+      "name": "Renu Sud Karnad",
+      "title": "Non-Executive Director, HDFC Capital",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.hdfccapital.com/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "HDFC Capital",
+      "name": "Keki Mistry",
+      "title": "Non-Executive Director, HDFC Capital",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.hdfccapital.com/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Hunch Ventures & Investments Pvt Ltd",
+      "name": "Karanpal Singh",
+      "title": "Founder, Hunch Ventures",
+      "linkedinUrl": "",
+      "sourceUrl": "https://hunchventures.com/approach",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Hunch Ventures & Investments Pvt Ltd",
+      "name": "Himangini Singh",
+      "title": "Founder, Hunch Ventures",
+      "linkedinUrl": "",
+      "sourceUrl": "https://hunchventures.com/approach",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Hunch Ventures & Investments Pvt Ltd",
+      "name": "Amit Dutta",
+      "title": "Managing Director, Hunch Mobility",
+      "linkedinUrl": "",
+      "sourceUrl": "https://hunchventures.com/approach",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Hunch Ventures & Investments Pvt Ltd",
+      "name": "Pavan Bakshi",
+      "title": "Partner, Hunch Ventures",
+      "linkedinUrl": "",
+      "sourceUrl": "https://hunchventures.com/approach",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Hunch Ventures & Investments Pvt Ltd",
+      "name": "Rudra Dalmia",
+      "title": "Managing Partner, Green Frontier Capital | Advisor: Green Finance and Food Security",
+      "linkedinUrl": "",
+      "sourceUrl": "https://hunchventures.com/approach",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "IIMA Ventures",
+      "name": "Priyanka Chopra",
+      "title": "CEO & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://iimaventures.com/team/",
+      "method": "crawl",
+      "companyType": "VC / Accelerator"
+    },
+    {
+      "company": "IIMA Ventures",
+      "name": "Vipul Patel",
+      "title": "Partner - Seed Investing",
+      "linkedinUrl": "",
+      "sourceUrl": "https://iimaventures.com/team/",
+      "method": "crawl",
+      "companyType": "VC / Accelerator"
+    },
+    {
+      "company": "IIMA Ventures",
+      "name": "Supriya Sharma",
+      "title": "Partner - Insights",
+      "linkedinUrl": "",
+      "sourceUrl": "https://iimaventures.com/team/",
+      "method": "crawl",
+      "companyType": "VC / Accelerator"
+    },
+    {
+      "company": "IIMA Ventures",
+      "name": "Chintan Bakshi",
+      "title": "Partner - Incubation",
+      "linkedinUrl": "",
+      "sourceUrl": "https://iimaventures.com/team/",
+      "method": "crawl",
+      "companyType": "VC / Accelerator"
+    },
+    {
+      "company": "IIMA Ventures",
+      "name": "Sandeep Koujalgi",
+      "title": "SVP - Seed & Acceleration",
+      "linkedinUrl": "",
+      "sourceUrl": "https://iimaventures.com/team/",
+      "method": "crawl",
+      "companyType": "VC / Accelerator"
     }
   ],
   "unresolved": [],
