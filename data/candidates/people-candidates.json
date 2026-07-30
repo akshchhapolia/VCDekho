@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T06:24:51.953Z",
+  "generatedAt": "2026-07-30T06:27:50.238Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -7624,6 +7624,870 @@
       "sourceUrl": "https://www.julyventures.com/about",
       "method": "crawl",
       "companyType": "VC"
+    },
+    {
+      "company": "LocalGlobe",
+      "name": "Paul Bishop",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.phoenixcourt.vc/localglobe/phoenix-court-team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "LocalGlobe",
+      "name": "Remus Brett",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.phoenixcourt.vc/localglobe/phoenix-court-team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "LocalGlobe",
+      "name": "Julia Svennerstål-Hawkins",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.phoenixcourt.vc/localglobe/phoenix-court-team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "LocalGlobe",
+      "name": "Amy Grimshaw",
+      "title": "Partner, Marketing, Brand and Communications",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.phoenixcourt.vc/localglobe/phoenix-court-team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "LocalGlobe",
+      "name": "Benjamin Grol",
+      "title": "Technology Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.phoenixcourt.vc/localglobe/phoenix-court-team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Lowercarbon Capital",
+      "name": "Clay Dumas",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://lowercarbon.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Lowercarbon Capital",
+      "name": "Caie Kelley",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://lowercarbon.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Lowercarbon Capital",
+      "name": "Ryan Orbuch",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://lowercarbon.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Lowercarbon Capital",
+      "name": "Shawn Xu",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://lowercarbon.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Lowercarbon Capital",
+      "name": "Lauren Faber O'Connor",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://lowercarbon.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Lumis Partners",
+      "name": "Ajay Srinivasan",
+      "title": "Director, Lumis Partners",
+      "linkedinUrl": "",
+      "sourceUrl": "https://lumispartners.com/our-team/",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "Lumis Partners",
+      "name": "Neelam Dhawan",
+      "title": "Advisor, Technology BoD - ICICI, Yatra, IIIT",
+      "linkedinUrl": "",
+      "sourceUrl": "https://lumispartners.com/our-team/",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "Lumis Partners",
+      "name": "Mukesh Aghi",
+      "title": "President & CEO at US-India Strategic Partnership Forum",
+      "linkedinUrl": "",
+      "sourceUrl": "https://lumispartners.com/our-team/",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "Lumis Partners",
+      "name": "Arjun Malhotra",
+      "title": "Entrepreneur, Industrialist, Board of Advisor and Philanthropist",
+      "linkedinUrl": "",
+      "sourceUrl": "https://lumispartners.com/our-team/",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "M Venture Partners (MVP)",
+      "name": "Bradley Fishman",
+      "title": "Managing Partner & General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.mvp.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "M Venture Partners (MVP)",
+      "name": "SooMan Wolffs",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.mvp.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "M Venture Partners (MVP)",
+      "name": "Memet Yazici",
+      "title": "Senior Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.mvp.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "M Venture Partners (MVP)",
+      "name": "Karl Bornefalk",
+      "title": "Partner - Head of Europe",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.mvp.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "M Venture Partners (MVP)",
+      "name": "Santosh Rao",
+      "title": "Partner - Head of Research & Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.mvp.vc/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Mahindra Sparkle",
+      "name": "Rajesh Jejurikar",
+      "title": "ED & CEO, Auto & Farm Sectors",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.mahindra.com/about-us",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Mahindra Sparkle",
+      "name": "Amarjyoti Barua",
+      "title": "Group Chief Financial Officer",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.mahindra.com/about-us",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Mahindra Sparkle",
+      "name": "Mohit Joshi",
+      "title": "MD & CEO - Tech Mahindra",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.mahindra.com/about-us",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Mahindra Sparkle",
+      "name": "Raul Rebello",
+      "title": "MD & CEO - Mahindra Finance",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.mahindra.com/about-us",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Mahindra Sparkle",
+      "name": "Amit Kumar Sinha",
+      "title": "MD & CEO - Mahindra Lifespaces",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.mahindra.com/about-us",
+      "method": "crawl",
+      "companyType": "Accelerator"
+    },
+    {
+      "company": "Manjushree Ventures",
+      "name": "Vimal Kedia",
+      "title": "Group Chairman & Founder, Manjushree Ventures",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.manjushreeventures.com/about-us",
+      "method": "crawl",
+      "companyType": "VC / Family Office"
+    },
+    {
+      "company": "Manjushree Ventures",
+      "name": "Surendra Kedia",
+      "title": "Co-Chairman & Founder, Manjushree Ventures",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.manjushreeventures.com/about-us",
+      "method": "crawl",
+      "companyType": "VC / Family Office"
+    },
+    {
+      "company": "Manjushree Ventures",
+      "name": "Basant Kumar Mohata",
+      "title": "CEO - Manjushree Ventures Family, Group CFO - Businesses",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.manjushreeventures.com/about-us",
+      "method": "crawl",
+      "companyType": "VC / Family Office"
+    },
+    {
+      "company": "Menterra Ventures",
+      "name": "George Thomas",
+      "title": "Operating Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.menterra.com/about-us/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Merak Ventures",
+      "name": "Pranav Sanghvi",
+      "title": "Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://merakventures.com/about.html",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Merak Ventures",
+      "name": "Sreya Rakshit",
+      "title": "Director, Brand & Communications",
+      "linkedinUrl": "",
+      "sourceUrl": "https://merakventures.com/about.html",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Merak Ventures",
+      "name": "Abraham Thomas",
+      "title": "Startup Advisor & Investor ex Co-Founder @ Quandl",
+      "linkedinUrl": "",
+      "sourceUrl": "https://merakventures.com/about.html",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Merak Ventures",
+      "name": "Soumitra Mishra",
+      "title": "Co-Founder @ Claro Energy Angel Investor",
+      "linkedinUrl": "",
+      "sourceUrl": "https://merakventures.com/about.html",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Multicoin Capital",
+      "name": "Brian Smith",
+      "title": "Partner, CFO and COO",
+      "linkedinUrl": "",
+      "sourceUrl": "https://multicoin.capital/about/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Multicoin Capital",
+      "name": "Matt Shapiro",
+      "title": "Partner, Head of Investor Relations",
+      "linkedinUrl": "",
+      "sourceUrl": "https://multicoin.capital/about/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Multicoin Capital",
+      "name": "Shayon Sengupta",
+      "title": "General Partner, Co-Head of Venture",
+      "linkedinUrl": "",
+      "sourceUrl": "https://multicoin.capital/about/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Multicoin Capital",
+      "name": "John Robert Reed",
+      "title": "Partner, Head of Marketing and Communications",
+      "linkedinUrl": "",
+      "sourceUrl": "https://multicoin.capital/about/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Multicoin Capital",
+      "name": "Greg Xethalis",
+      "title": "Partner, General Counsel",
+      "linkedinUrl": "",
+      "sourceUrl": "https://multicoin.capital/about/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "NABVENTURES",
+      "name": "Mr. Nandu J Naik",
+      "title": "DGM",
+      "linkedinUrl": "",
+      "sourceUrl": "https://nabventures.in/team.aspx",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "NABVENTURES",
+      "name": "Mr. Mohd. Khalid",
+      "title": "DGM",
+      "linkedinUrl": "",
+      "sourceUrl": "https://nabventures.in/team.aspx",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "NABVENTURES",
+      "name": "Mr. Ankit Bhatnagar",
+      "title": "Vice president",
+      "linkedinUrl": "",
+      "sourceUrl": "https://nabventures.in/team.aspx",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "NABVENTURES",
+      "name": "Ms. Deepti Paliwal",
+      "title": "Company Secretary & Compliance Officer",
+      "linkedinUrl": "",
+      "sourceUrl": "https://nabventures.in/team.aspx",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "NABVENTURES",
+      "name": "Mr. Shashwat S Goyal",
+      "title": "Assistant Vice President",
+      "linkedinUrl": "",
+      "sourceUrl": "https://nabventures.in/team.aspx",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "next47",
+      "name": "T.J. Rylander",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.n47.com/team",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "next47",
+      "name": "Moshe Zilberstein",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.n47.com/team",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "next47",
+      "name": "Vivian Cheng",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.n47.com/team",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "next47",
+      "name": "Colton Dempsey",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.n47.com/team",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "next47",
+      "name": "Fred Ellis",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.n47.com/team",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Norwest Venture Partners",
+      "name": "Sonya Brown",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.norwest.com/team/",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "Norwest Venture Partners",
+      "name": "Ran Ding",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.norwest.com/team/",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "Norwest Venture Partners",
+      "name": "Tiba Aynechi, Ph.D.",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.norwest.com/team/",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "Norwest Venture Partners",
+      "name": "Dror Nahumi",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.norwest.com/team/",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "Norwest Venture Partners",
+      "name": "Zack Scott, MD",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.norwest.com/team/",
+      "method": "crawl",
+      "companyType": "VC / Growth"
+    },
+    {
+      "company": "Openspace Ventures",
+      "name": "Jessica Huang Pouleur",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.openspacecapital.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Openspace Ventures",
+      "name": "Udhay Furtado",
+      "title": "Chief Investment Officer, Orbit",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.openspacecapital.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Openspace Ventures",
+      "name": "Ayu Tanoesoedibjo",
+      "title": "Executive Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.openspacecapital.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Openspace Ventures",
+      "name": "Kelvin Goh",
+      "title": "Executive Director, General Counsel",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.openspacecapital.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Openspace Ventures",
+      "name": "Omesh Fabiani",
+      "title": "Co-Head of Private Credit, Onyx",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.openspacecapital.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Pantera Capital",
+      "name": "Cosmo Jiang",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://panteracapital.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Pantera Capital",
+      "name": "Franklin Bi",
+      "title": "General Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://panteracapital.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Pantera Capital",
+      "name": "Scott Lawin",
+      "title": "President",
+      "linkedinUrl": "",
+      "sourceUrl": "https://panteracapital.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Pantera Capital",
+      "name": "Marc Selfon",
+      "title": "Chief Financial Officer",
+      "linkedinUrl": "",
+      "sourceUrl": "https://panteracapital.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Pantera Capital",
+      "name": "Matt Gorham",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://panteracapital.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Piramal Family Office",
+      "name": "Swati A. Piramal",
+      "title": "Vice Chairperson, Piramal Group",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.piramal.com/",
+      "method": "crawl",
+      "companyType": "Family Office"
+    },
+    {
+      "company": "Piramal Family Office",
+      "name": "Nandini Piramal",
+      "title": "Chairperson, Piramal Pharma Ltd.",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.piramal.com/",
+      "method": "crawl",
+      "companyType": "Family Office"
+    },
+    {
+      "company": "Point Nine Capital",
+      "name": "Pawel Chudzinski",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.pointnine.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Point Nine Capital",
+      "name": "Ricardo Sequerra Amram",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.pointnine.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Point Nine Capital",
+      "name": "Kolja Hebenstreit",
+      "title": "Venture Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.pointnine.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Point Nine Capital",
+      "name": "Michael Wolfe",
+      "title": "Venture Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.pointnine.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Point Nine Capital",
+      "name": "Aleksandra Zorylo",
+      "title": "Operating Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.pointnine.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Pratithi Investments",
+      "name": "Kris Gopalakrishnan",
+      "title": "co-founded of Infosys",
+      "linkedinUrl": "",
+      "sourceUrl": "https://pratithi.com/people/",
+      "method": "crawl",
+      "companyType": "Single Family Office (Kris Gopalakrishnan family) — SEBI Cat-II AIF + FoF"
+    },
+    {
+      "company": "Pratithi Investments",
+      "name": "Saumya Jain",
+      "title": "Investment Principal",
+      "linkedinUrl": "",
+      "sourceUrl": "https://pratithi.com/people/",
+      "method": "crawl",
+      "companyType": "Single Family Office (Kris Gopalakrishnan family) — SEBI Cat-II AIF + FoF"
+    },
+    {
+      "company": "Pratithi Investments",
+      "name": "Abhishek Panda",
+      "title": "Investment Associate",
+      "linkedinUrl": "",
+      "sourceUrl": "https://pratithi.com/people/",
+      "method": "crawl",
+      "companyType": "Single Family Office (Kris Gopalakrishnan family) — SEBI Cat-II AIF + FoF"
+    },
+    {
+      "company": "Pratithi Investments",
+      "name": "Sakshi Budhadev",
+      "title": "Compliance Officer",
+      "linkedinUrl": "",
+      "sourceUrl": "https://pratithi.com/people/",
+      "method": "crawl",
+      "companyType": "Single Family Office (Kris Gopalakrishnan family) — SEBI Cat-II AIF + FoF"
+    },
+    {
+      "company": "Precog Innovation Partners",
+      "name": "Sumit Dhanuka",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://precoginnovations.com/team/",
+      "method": "crawl",
+      "companyType": "Venture-building / Co-creation platform (CleanTech) — makes strategic investments, JVs, acquisitions"
+    },
+    {
+      "company": "Precog Innovation Partners",
+      "name": "B. Ganesh Shenoy",
+      "title": "Sr. Venture Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://precoginnovations.com/team/",
+      "method": "crawl",
+      "companyType": "Venture-building / Co-creation platform (CleanTech) — makes strategic investments, JVs, acquisitions"
+    },
+    {
+      "company": "Precog Innovation Partners",
+      "name": "Amit Dhamija",
+      "title": "Venture Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://precoginnovations.com/team/",
+      "method": "crawl",
+      "companyType": "Venture-building / Co-creation platform (CleanTech) — makes strategic investments, JVs, acquisitions"
+    },
+    {
+      "company": "Precog Innovation Partners",
+      "name": "Abhishek Dhawan",
+      "title": "Venture Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://precoginnovations.com/team/",
+      "method": "crawl",
+      "companyType": "Venture-building / Co-creation platform (CleanTech) — makes strategic investments, JVs, acquisitions"
+    },
+    {
+      "company": "Precog Innovation Partners",
+      "name": "Bhumika Singh",
+      "title": "Venture Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://precoginnovations.com/team/",
+      "method": "crawl",
+      "companyType": "Venture-building / Co-creation platform (CleanTech) — makes strategic investments, JVs, acquisitions"
+    },
+    {
+      "company": "QED Investors",
+      "name": "Amias Gerety",
+      "title": "Partner, Head of U.S.",
+      "linkedinUrl": "",
+      "sourceUrl": "https://qedinvestors.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "QED Investors",
+      "name": "Bill Cilluffo",
+      "title": "Partner and Head of Early Stage Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://qedinvestors.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "QED Investors",
+      "name": "Camila Vieira",
+      "title": "Partner, Head of Brazil",
+      "linkedinUrl": "",
+      "sourceUrl": "https://qedinvestors.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "QED Investors",
+      "name": "Gbenga Ajayi",
+      "title": "Partner, Head of Africa and Middle East",
+      "linkedinUrl": "",
+      "sourceUrl": "https://qedinvestors.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "QED Investors",
+      "name": "Laura Bock",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://qedinvestors.com/team",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Qualcomm Ventures",
+      "name": "Tushar Gupta",
+      "title": "Managing Director, North America",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.qualcommventures.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Qualcomm Ventures",
+      "name": "Song Mao",
+      "title": "Managing Director, China",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.qualcommventures.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Qualcomm Ventures",
+      "name": "Boaz Peer",
+      "title": "Managing Director, Israel & Europe",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.qualcommventures.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Qualcomm Ventures",
+      "name": "Varsha Tagare",
+      "title": "Senior Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.qualcommventures.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Qualcomm Ventures",
+      "name": "Albert Wang",
+      "title": "Senior Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.qualcommventures.com/team/",
+      "method": "crawl",
+      "companyType": "Corporate / CVC"
+    },
+    {
+      "company": "Quona Capital",
+      "name": "Ganesh Rengaswamy",
+      "title": "MANAGING PARTNER",
+      "linkedinUrl": "",
+      "sourceUrl": "https://quona.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Quona Capital",
+      "name": "David Mathewson",
+      "title": "PARTNER/COO & CHIEF COMPLIANCE OFFICER",
+      "linkedinUrl": "",
+      "sourceUrl": "https://quona.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Quona Capital",
+      "name": "Johan Bosini",
+      "title": "PARTNER",
+      "linkedinUrl": "",
+      "sourceUrl": "https://quona.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Quona Capital",
+      "name": "Rafa de la Guia",
+      "title": "PARTNER",
+      "linkedinUrl": "",
+      "sourceUrl": "https://quona.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Quona Capital",
+      "name": "Varun Malhotra",
+      "title": "PARTNER",
+      "linkedinUrl": "",
+      "sourceUrl": "https://quona.com/team/",
+      "method": "crawl",
+      "companyType": "VC"
+    },
+    {
+      "company": "Revanta Capital",
+      "name": "Mr. Arif Sayed Alkazim",
+      "title": "Independent Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://revantacapital.com/about/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Revanta Capital",
+      "name": "Mr. Gautam Shroff",
+      "title": "Independent Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://revantacapital.com/about/",
+      "method": "crawl",
+      "companyType": "PE"
+    },
+    {
+      "company": "Revanta Capital",
+      "name": "Suraj Gaydhane",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://revantacapital.com/about/",
+      "method": "crawl",
+      "companyType": "PE"
     }
   ],
   "unresolved": [],
