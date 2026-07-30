@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T05:53:50.158Z",
+  "generatedAt": "2026-07-30T05:58:46.557Z",
   "found": [
     {
       "company": "Sequoia (India) / Peak XV",
@@ -5021,6 +5021,150 @@
       "title": "Director",
       "linkedinUrl": "",
       "sourceUrl": "https://yourcampusfund.com/team/",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Capital 2B",
+      "name": "Amit Behl",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.capital2b.com/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Caspian Equity",
+      "name": "S. Viswanatha Prasad",
+      "title": "Founder and Chairman",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Caspian Equity",
+      "name": "B.V. Narasimham",
+      "title": "Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Caspian Equity",
+      "name": "Vijayalakshmi N.M",
+      "title": "Director - Investments",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Caspian Equity",
+      "name": "Emmanuel Murray",
+      "title": "Investment Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "Caspian Equity",
+      "name": "Shilpa Sudhakar",
+      "title": "Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.caspian.in/team",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "DHOLAKIA VENTURES",
+      "name": "Nitin Savaliya",
+      "title": "Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.dholakiaventures.com/teams",
+      "method": "crawl",
+      "companyType": "Family Office"
+    },
+    {
+      "company": "Golden Sparrow",
+      "name": "Ritik Singh",
+      "title": "Principal",
+      "linkedinUrl": "",
+      "sourceUrl": "https://goldensparrow.vc/",
+      "method": "crawl",
+      "companyType": "VC / Syndicate"
+    },
+    {
+      "company": "Golden Sparrow",
+      "name": "Michael Marmor",
+      "title": "Operating Partner-AI",
+      "linkedinUrl": "",
+      "sourceUrl": "https://goldensparrow.vc/",
+      "method": "crawl",
+      "companyType": "VC / Syndicate"
+    },
+    {
+      "company": "Golden Sparrow",
+      "name": "Venkat Raju",
+      "title": "Operating Partner-Deep Tech",
+      "linkedinUrl": "",
+      "sourceUrl": "https://goldensparrow.vc/",
+      "method": "crawl",
+      "companyType": "VC / Syndicate"
+    },
+    {
+      "company": "Golden Sparrow",
+      "name": "Dr. Amritendu Mukherjee",
+      "title": "Artificial Intelligence",
+      "linkedinUrl": "",
+      "sourceUrl": "https://goldensparrow.vc/",
+      "method": "crawl",
+      "companyType": "VC / Syndicate"
+    },
+    {
+      "company": "Golden Sparrow",
+      "name": "Dr. Anand Rao",
+      "title": "Artificial Intelligence",
+      "linkedinUrl": "",
+      "sourceUrl": "https://goldensparrow.vc/",
+      "method": "crawl",
+      "companyType": "VC / Syndicate"
+    },
+    {
+      "company": "gradCapital",
+      "name": "Prateek Behera",
+      "title": "Team",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.gradcapital.in/philosophy",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "gradCapital",
+      "name": "Debamita Banerjee",
+      "title": "Team",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.gradcapital.in/philosophy",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "gradCapital",
+      "name": "Kshitij Khandelwal",
+      "title": "Visiting Partners",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.gradcapital.in/philosophy",
+      "method": "crawl",
+      "companyType": "Venture Capital Firm"
+    },
+    {
+      "company": "gradCapital",
+      "name": "Sambhav Jain",
+      "title": "Visiting Partners",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.gradcapital.in/philosophy",
       "method": "crawl",
       "companyType": "Venture Capital Firm"
     }

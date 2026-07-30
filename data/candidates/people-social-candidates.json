@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T05:50:17.147Z",
+  "generatedAt": "2026-07-30T05:55:45.124Z",
   "schemaVersion": 1,
   "description": "Staged LinkedIn/Twitter enrichments for existing People rows. Apply via scripts/apply_people_socials.js — patches empty CSV cells only.",
   "found": [
@@ -3353,6 +3353,54 @@
       "linkedinUrl": "https://www.linkedin.com/in/pankajmakkar",
       "twitterUrl": "",
       "sourceUrl": "https://www.linkedin.com/in/pankajmakkar",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "kunal khattar||advantedgefounders",
+      "name": "Kunal Khattar",
+      "company": "AdvantEdge Founders",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/kkhattar",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/kkhattar",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "rishi maheshwari||z3partners",
+      "name": "Rishi Maheshwari",
+      "company": "Z3Partners",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/rishi-maheshwari-3166b116",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/rishi-maheshwari-3166b116",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "shylaja rao||ventanaventures",
+      "name": "Shylaja Rao",
+      "company": "Ventana Ventures",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/shylaja-rao-3a830b15",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/shylaja-rao-3a830b15",
+      "method": "search",
+      "confidence": "high",
+      "companyType": ""
+    },
+    {
+      "key": "shapath parikh||whitewhale",
+      "name": "Shapath Parikh",
+      "company": "White Whale",
+      "title": "",
+      "linkedinUrl": "https://www.linkedin.com/in/shapath-parikh-759211",
+      "twitterUrl": "",
+      "sourceUrl": "https://www.linkedin.com/in/shapath-parikh-759211",
       "method": "search",
       "confidence": "high",
       "companyType": ""
