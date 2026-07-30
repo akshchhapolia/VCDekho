@@ -1,12 +1,16 @@
 #!/usr/bin/env node
 /**
- * Backfills investor portfolio companies via Searlo web search + Gemini
- * extraction for every investor (or a stale / low-coverage slice).
+ * Backfills investor portfolio companies.
+ *
+ * Flow per investor (see utils/investor-portfolio-websearch.js):
+ *   1. Scrape the fund's own website portfolio page (names, logos, links)
+ *   2. Fall back to Searlo news/articles + Gemini if the site yields little
  *
  * Usage:
  *   node scripts/investor_portfolio_websearch.js --limit 40
  *   node scripts/investor_portfolio_websearch.js --limit 1017 --concurrency 5 --stale-after 0 --budget 10
  *   node scripts/investor_portfolio_websearch.js --max-companies 1 --limit 800 --concurrency 3 --budget 5
+ *   node scripts/investor_portfolio_websearch.js --with-website --skip-news --limit 801 --concurrency 4
  */
 require('dotenv').config();
 const fs = require('fs');
@@ -36,6 +40,8 @@ const BUDGET_USD = argVal('--budget', Infinity);
 const MAX_COMPANIES_FILTER = process.argv.includes('--max-companies')
   ? argVal('--max-companies', 0)
   : null;
+const WITH_WEBSITE_ONLY = process.argv.includes('--with-website');
+const SKIP_NEWS = process.argv.includes('--skip-news');
 
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
@@ -102,12 +108,18 @@ async function main() {
     'syndicate'
   ]);
 
+  let pool = allSlugs;
+  if (WITH_WEBSITE_ONLY) {
+    pool = allSlugs.filter((s) => (bySlug.get(s) || {}).website);
+    console.log(`Filtered to ${pool.length} investors with a website.`);
+  }
+
   let candidates;
   if (MAX_COMPANIES_FILTER != null) {
     console.log(
       `Loaded ${allSlugs.length} investors. Re-running up to ${LIMIT} with company_count <= ${MAX_COMPANIES_FILTER}...`
     );
-    candidates = await getLowCoverageSlugs(allSlugs, Math.max(LIMIT * 3, LIMIT), MAX_COMPANIES_FILTER);
+    candidates = await getLowCoverageSlugs(pool, Math.max(LIMIT * 3, LIMIT), MAX_COMPANIES_FILTER);
     candidates.sort((a, b) => {
       const pa = PRIORITY_TYPES.has((bySlug.get(a) || {}).typeId) ? 0 : 1;
       const pb = PRIORITY_TYPES.has((bySlug.get(b) || {}).typeId) ? 0 : 1;
@@ -120,10 +132,12 @@ async function main() {
     console.log(
       `Loaded ${allSlugs.length} investors. Selecting up to ${LIMIT} stale/never-checked (staleAfter=${STALE_AFTER_DAYS}d)...`
     );
-    candidates = await getStalePortfolioSlugs(allSlugs, LIMIT, STALE_AFTER_DAYS);
+    candidates = await getStalePortfolioSlugs(pool, LIMIT, STALE_AFTER_DAYS);
   }
   const budgetLabel = Number.isFinite(BUDGET_USD) ? `$${BUDGET_USD.toFixed(2)}` : 'none';
-  console.log(`Checking ${candidates.length} investors (concurrency=${CONCURRENCY}, budget=${budgetLabel})...\n`);
+  console.log(
+    `Checking ${candidates.length} investors (concurrency=${CONCURRENCY}, budget=${budgetLabel}, skipNews=${SKIP_NEWS})...\n`
+  );
 
   let found = 0;
   let checked = 0;
@@ -139,27 +153,29 @@ async function main() {
       if (!inv) return;
       try {
         const writeup = [inv.writeup, inv.notes, inv.thesis].filter(Boolean).join('\n\n');
-        const { companies, usage } = await withRetry(() =>
+        const { companies, usage, source } = await withRetry(() =>
           lookupInvestorPortfolio(inv.name, {
             website: inv.website || null,
-            writeup: writeup || null
+            writeup: writeup || null,
+            skipNews: SKIP_NEWS
           })
         );
         checked++;
         spentUsd += usage?.costUsd || 0;
+        const src = source || 'none';
         if (companies.length) {
           found++;
           companiesTotal += companies.length;
           console.log(
-            `✓ ${inv.name} → ${companies.length} cos (${companies
+            `✓ ${inv.name} → ${companies.length} cos via ${src} (${companies
               .slice(0, 3)
               .map((c) => c.name)
               .join(', ')}${companies.length > 3 ? '…' : ''}) [$${(usage?.costUsd || 0).toFixed(4)}]`
           );
         } else {
-          console.log(`- ${inv.name} → none found [$${(usage?.costUsd || 0).toFixed(4)}]`);
+          console.log(`- ${inv.name} → none found [${src}] [$${(usage?.costUsd || 0).toFixed(4)}]`);
         }
-        await upsertPortfolio(slug, companies, 'web_search');
+        await upsertPortfolio(slug, companies, src === 'none' ? 'web_search' : src);
         if (spentUsd >= BUDGET_USD) {
           console.log(`\nBudget of $${BUDGET_USD.toFixed(2)} reached — stopping the run.`);
           stopAll();
