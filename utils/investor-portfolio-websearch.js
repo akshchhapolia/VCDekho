@@ -129,23 +129,31 @@ function searchName(investorName) {
  * Free extraction from our own profile writeups/notes, which often already
  * list portfolio names ("Portfolio: A, B, C" / "Portfolio names include…").
  */
+const WRITEUP_NOISE = new Set([
+  'saas', 'fintech', 'deeptech', 'deep tech', 'healthtech', 'climate', 'consumer',
+  'd2c', 'b2b', 'india', 'bharat', 'ai', 'ml', 'etc', 'and more', 'others'
+]);
+
 function companiesFromWriteup(text) {
   const t = String(text || '');
   if (!t) return [];
+  // Only high-precision list phrases — avoid loose "backed …" matches.
   const patterns = [
-    /portfolio(?:\s+names)?(?:\s+include|\s*:)\s*([^.!\n]+)/i,
-    /(?:notable\s+)?investments?(?:\s+include|\s*:)\s*([^.!\n]+)/i,
-    /backed\s+([A-Z][^.]{10,180}?)(?:\.|$)/
+    /portfolio\s+names?\s+include\s*[:\-]?\s*([^.!\n]+)/i,
+    /portfolio\s*(?:companies)?\s*:\s*([^.!\n]+)/i,
+    /notable\s+investments?\s+include\s*[:\-]?\s*([^.!\n]+)/i
   ];
   const names = [];
   for (const re of patterns) {
     const m = t.match(re);
     if (!m) continue;
     String(m[1])
-      .split(/,|;&| and /i)
-      .map((s) => s.replace(/\s+/g, ' ').trim())
-      .filter((s) => s.length >= 2 && s.length <= 60)
-      .filter((s) => !/^(include|including|such as|e\.g\.?|etc)$/i.test(s))
+      .split(/,|;|\/|&| and /i)
+      .map((s) => s.replace(/\s+/g, ' ').replace(/^[(\[]|[)\]]$/g, '').trim())
+      .filter((s) => s.length >= 2 && s.length <= 50)
+      .filter((s) => /[A-Za-z]/.test(s))
+      .filter((s) => !WRITEUP_NOISE.has(s.toLowerCase()))
+      .filter((s) => !/^(include|including|such as|e\.g\.?|etc|acq\.?|acquired)$/i.test(s))
       .forEach((name) => names.push(name));
   }
   const seen = new Set();
