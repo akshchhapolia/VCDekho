@@ -31,7 +31,7 @@ function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-async function withRetry(fn, retries = 4) {
+async function withRetry(fn, retries = 5) {
   let lastErr;
   for (let i = 0; i < retries; i++) {
     try {
@@ -41,8 +41,11 @@ async function withRetry(fn, retries = 4) {
       const isRateLimit = err && (err.status === 429 || /rate.?limit/i.test(err.message || ''));
       const isOverloaded = err && (err.status === 529 || err.status === 503);
       if (!isRateLimit && !isOverloaded) throw err;
-      const backoffMs = 3000 * Math.pow(2, i);
-      console.warn(`  Rate/overload hit, retrying in ${backoffMs}ms... (${err.message})`);
+      // Searlo often returns retryAfter: 60 on free/micro minute buckets.
+      const match = String(err.message || '').match(/retryAfter["\s:]+(\d+)/i);
+      const retryAfterSec = match ? Number(match[1]) : 0;
+      const backoffMs = Math.max(retryAfterSec * 1000, 5000 * Math.pow(2, i));
+      console.warn(`  Rate/overload hit, retrying in ${Math.round(backoffMs / 1000)}s...`);
       await sleep(backoffMs);
     }
   }
