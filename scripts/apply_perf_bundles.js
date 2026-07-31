@@ -8,7 +8,7 @@ const CSS_V = '65';
 const BUNDLES = {
   home: ['/css/base.css', '/css/hero.css', '/css/blog.css'],
   blog: ['/css/base.css', '/css/hero.css', '/css/ambient.css', '/css/blog.css'],
-  directory: ['/css/base.css', '/css/hero.css', '/css/directory.css'],
+  directory: ['/css/base.css', '/css/hero.css', '/css/ambient.css', '/css/directory.css'],
   login: ['/css/base.css', '/css/hero.css', '/css/ambient.css']
 };
 

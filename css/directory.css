@@ -29,6 +29,22 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
   background-color: #0b0b0d;
 }
 
+/* SSR profile / guide pages — dark canvas (ambient.css provides orbs) */
+body.scrollable-page.inv-page,
+body.scrollable-page.inv-profile-page {
+  background-color: #0b0b0d;
+}
+
+.hero-showcase.inv-detail-main {
+  background-color: #0b0b0d;
+  box-shadow: none;
+}
+
+body.inv-page .hero-showcase,
+body.inv-profile-page .hero-showcase {
+  background-color: #0b0b0d;
+}
+
 .inv-dir-page .inv-dir-ambient {
   opacity: 1;
 }
