@@ -5,16 +5,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroShowcase = document.getElementById('main-viewport');
     const heroBg = document.getElementById('hero-background-media');
     const heroFallback = document.getElementById('hero-bg-fallback');
-    const trendCard = document.getElementById('ai-trend-card');
     const exploreBtn = document.getElementById('explore-btn');
 
-    // Autoplay policy detection (Low Power Mode/Safari)
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.matchMedia('(max-width: 992px)').matches;
+
+    // Hero video: skip on mobile / reduced motion; lazy-load on desktop after first paint
     if (heroBg && heroFallback) {
-        heroBg.play().catch(err => {
-            // Autoplay failed, hide video and show static fallback background
+        if (prefersReducedMotion || isMobile) {
             heroBg.style.display = 'none';
             heroFallback.style.display = 'block';
-        });
+        } else {
+            const startVideo = () => {
+                heroBg.play().catch(() => {
+                    heroBg.style.display = 'none';
+                    heroFallback.style.display = 'block';
+                });
+            };
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(startVideo, { timeout: 2000 });
+            } else {
+                setTimeout(startVideo, 150);
+            }
+        }
     }
 
     // 1. Mobile Navigation Toggle
@@ -24,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
             mainNav.classList.toggle('active');
         });
 
-        // Close navigation menu if a link is clicked
         const navLinks = mainNav.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -38,14 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroShowcase && heroBg) {
         const handleMove = (clientX, clientY) => {
             const { width, height } = heroShowcase.getBoundingClientRect();
-            // Get position relative to center of the showcase container (-0.5 to 0.5)
             const x = (clientX - heroShowcase.offsetLeft) / width - 0.5;
             const y = (clientY - heroShowcase.offsetTop) / height - 0.5;
 
-            // Parallax the background (subtle slide)
             const bgMoveX = x * 25;
             const bgMoveY = y * 25;
-            
+
             const transformStr = `scale(1.05) translate(${bgMoveX}px, ${bgMoveY}px)`;
             heroBg.style.transform = transformStr;
             if (heroFallback) {
@@ -53,19 +63,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Desktop mouse movement
         heroShowcase.addEventListener('mousemove', (e) => {
             handleMove(e.clientX, e.clientY);
         });
 
-        // Mobile touch movement
         heroShowcase.addEventListener('touchmove', (e) => {
             if (e.touches && e.touches.length > 0) {
                 handleMove(e.touches[0].clientX, e.touches[0].clientY);
             }
         }, { passive: true });
 
-        // Reset positions
         const handleReset = () => {
             const resetStr = 'scale(1) translate(0, 0)';
             heroBg.style.transform = resetStr;
@@ -81,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (exploreBtn) {
         exploreBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            // Ripple or feedback animation
             exploreBtn.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 exploreBtn.style.transform = 'scale(1)';
@@ -97,15 +103,13 @@ document.addEventListener('DOMContentLoaded', () => {
     faqQuestions.forEach(question => {
         question.addEventListener('click', () => {
             const faqItem = question.closest('.faq-item');
-            
-            // Close other open FAQs
+
             document.querySelectorAll('.faq-item.open').forEach(item => {
                 if (item !== faqItem) {
                     item.classList.remove('open');
                 }
             });
-            
-            // Toggle current FAQ
+
             faqItem.classList.toggle('open');
         });
     });
