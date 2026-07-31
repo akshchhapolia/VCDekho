@@ -180,21 +180,8 @@ function websiteHostLabel(url) {
   }
 }
 
-function isFundPortfolioPage(url) {
-  try {
-    const u = new URL(url);
-    return /\/(companies|portfolio|investments)(\/|$)/i.test(u.pathname);
-  } catch (_) {
-    return false;
-  }
-}
-
 const PORTFOLIO_PAGE_SIZE = 36;
 const PORTFOLIO_TOOLBAR_MIN = 24;
-
-function isGenericPortfolioSource(label) {
-  return /^portfolio\s*page$/i.test(String(label || '').trim());
-}
 
 function portfolioLogoHtml(c) {
   const initial = escapeHtml((c.name || '?').charAt(0).toUpperCase());

@@ -5516,11 +5516,13 @@ img.inv-profile-portfolio-logo.is-broken + .inv-profile-portfolio-logo.is-fallba
 }
 
 .inv-profile-portfolio-date,
-.inv-profile-portfolio-source {
+.inv-profile-portfolio-source,
+.inv-profile-portfolio-site {
   color: rgba(255, 255, 255, 0.45);
 }
 
-a.inv-profile-portfolio-card:hover .inv-profile-portfolio-source {
+a.inv-profile-portfolio-card:hover .inv-profile-portfolio-source,
+a.inv-profile-portfolio-card:hover .inv-profile-portfolio-site {
   color: rgba(255, 180, 120, 0.9);
 }
 

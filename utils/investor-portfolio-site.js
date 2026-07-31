@@ -431,9 +431,15 @@ function extractCompanyPathLinks(html, pageUrl) {
     // Prefer logo-like images; skip hero/slider shots when possible.
     const logo =
       imgAbs && !/hero_|slider|banner|cover/i.test(imgAbs) ? imgAbs : imgAbs;
-    const c = normalizeSiteCompany({ name, image: logo }, pageUrl);
+    const c = normalizeSiteCompany({ name, image: logo, url: href }, pageUrl);
     if (!c || seen.has(c.companySlug)) continue;
     if (/^(companies|our companies|portfolio|view all)$/i.test(c.name)) continue;
+    // Keep the fund's company detail page as source (not as website — that is
+    // stripped in normalizeSiteCompany when it matches the fund host).
+    if (href) {
+      c.sourceUrl = href;
+      c.sourceTitle = 'Company page';
+    }
     seen.add(c.companySlug);
     companies.push(c);
   }
