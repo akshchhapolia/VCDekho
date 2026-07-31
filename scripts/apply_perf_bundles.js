@@ -24,13 +24,18 @@ function cssLinkTagsJs(bundleKey) {
     .join('\n    ');
 }
 
-const GA_HTML =
-  /<!-- Google tag \(gtag\.js\) -->[\s\S]*?gtag\('config', 'G-BJ23KLLWFM'\);\s*\}<\/script>\s*\n?/g;
+const GA_HTML = /<!-- Google tag \(gtag\.js\) -->[\s\S]*?<\/script>\s*\n?/g;
+const GA_INLINE = /<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-BJ23KLLWFM"><\/script>\s*<script>[\s\S]*?<\/script>\s*\n?/g;
 
 const STYLE_SINGLE = /\s*<link rel="stylesheet" href="(\/)?style\.css\?v=\d+">\s*\n?/g;
 
 function patchHtml(content, bundleKey) {
-  let out = content.replace(GA_HTML, '    <script src="/js/analytics.js" defer></script>\n');
+  let out = content;
+  out = out.replace(GA_HTML, '    <script src="/js/analytics.js" defer></script>\n');
+  out = out.replace(GA_INLINE, '    <script src="/js/analytics.js" defer></script>\n');
+  if (!out.includes('/js/analytics.js')) {
+    out = out.replace(/<head>\s*\n/, '<head>\n    <script src="/js/analytics.js" defer></script>\n');
+  }
   out = out.replace(STYLE_SINGLE, '\n    ' + cssLinkTags(bundleKey) + '\n');
   out = out.replace(/\/assets\/(blog_[a-z0-9_]+)\.png/g, '/assets/$1.webp');
   return out;
@@ -39,9 +44,15 @@ function patchHtml(content, bundleKey) {
 function patchSsr(content, bundleKey) {
   let out = content;
   out = out.replace(
-    /'<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-BJ23KLLWFM"><\/script>',\s*'<script>[\s\S]*?gtag\('config', 'G-BJ23KLLWFM'\);\s*<\/script>',/,
+    /'<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-BJ23KLLWFM"><\/script>',\s*'[\s\S]*?gtag\('config', 'G-BJ23KLLWFM'\);[\s\S]*?<\/script>',/,
     "'<script src=\"/js/analytics.js\" defer></script>',"
   );
+  if (!out.includes('/js/analytics.js')) {
+    out = out.replace(
+      /'<meta charset="UTF-8">',/,
+      "'<script src=\"/js/analytics.js\" defer></script>',\n    '<meta charset=\"UTF-8\">',"
+    );
+  }
   out = out.replace(
     /'<link rel="stylesheet" href="\/style\.css\?v=\d+">',/,
     cssLinkTagsJs(bundleKey)
@@ -71,7 +82,6 @@ walk(ROOT, '.html', htmlFiles);
 for (const file of htmlFiles) {
   const rel = path.relative(ROOT, file);
   fs.writeFileSync(file, patchHtml(fs.readFileSync(file, 'utf8'), bundleForHtml(rel)));
-  console.log('html', rel, bundleForHtml(rel));
 }
 
 for (const rel of [
@@ -82,9 +92,7 @@ for (const rel of [
   'utils/render-sector-page.js',
   'utils/render-stage-page.js'
 ]) {
-  const file = path.join(ROOT, rel);
-  fs.writeFileSync(file, patchSsr(fs.readFileSync(file, 'utf8'), 'directory'));
-  console.log('ssr', rel);
+  fs.writeFileSync(path.join(ROOT, rel), patchSsr(fs.readFileSync(path.join(ROOT, rel), 'utf8'), 'directory'));
 }
 
-console.log('Applied CSS bundles v' + CSS_V + ', WebP refs, deferred analytics.');
+console.log('Patched analytics, CSS bundles, WebP.');
