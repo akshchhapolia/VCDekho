@@ -984,12 +984,10 @@ body.home-page .home-ambient .glow-orb {
 }
 
 body.home-page .announcement-strip {
-    background: rgba(11, 11, 13, 0.92);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: #0b0b0d;
+    border-bottom: none;
     position: relative;
-    z-index: 3;
+    z-index: 4;
 }
 
 body.home-page .announcement-text {
@@ -1000,11 +998,19 @@ body.home-page .app-container {
     position: relative;
     z-index: 2;
     background: transparent;
+    padding-top: 0;
+    gap: 1rem;
 }
 
 body.home-page .site-header {
     position: relative;
-    z-index: 3;
+    z-index: 4;
+    background: #0b0b0d;
+    margin-left: calc(-1 * var(--page-padding));
+    margin-right: calc(-1 * var(--page-padding));
+    width: calc(100% + 2 * var(--page-padding));
+    padding: 0.65rem var(--page-padding) 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 body.home-page .site-header .nav-link {
@@ -1034,6 +1040,14 @@ body.home-page .hero-content {
 }
 
 @media (max-width: 768px) {
+    body.home-page .site-header {
+        margin-left: -1rem;
+        margin-right: -1rem;
+        width: calc(100% + 2rem);
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
     body.home-page .main-nav {
         background: rgba(14, 14, 16, 0.98);
         border-left: 1px solid rgba(255, 255, 255, 0.08);
