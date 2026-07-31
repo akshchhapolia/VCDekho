@@ -596,10 +596,10 @@ function renderInvestorPage(investor, related, res) {
     '<link rel="canonical" href="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/css/base.css?v=78">',
-    '<link rel="stylesheet" href="/css/hero.css?v=78">',
-    '<link rel="stylesheet" href="/css/ambient.css?v=78">',
-    '<link rel="stylesheet" href="/css/directory.css?v=78">',
+    '<link rel="stylesheet" href="/css/base.css?v=79">',
+    '<link rel="stylesheet" href="/css/hero.css?v=79">',
+    '<link rel="stylesheet" href="/css/ambient.css?v=79">',
+    '<link rel="stylesheet" href="/css/directory.css?v=79">',
     '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
@@ -641,10 +641,6 @@ function renderInvestorPage(investor, related, res) {
     '</div>',
     '</section>',
     directoryWidget(),
-    '</div>',
-
-    stickyNav,
-
     '</div>',
 
     '<div class="inv-profile-sticky-host" id="inv-profile-sticky-host">' + stickyNav + '</div>',
@@ -709,6 +705,7 @@ function renderInvestorPage(investor, related, res) {
     '<script src="/js/auth.js"></script>',
     '<script src="/app.js" defer></script>',
     '<script src="/investors/portfolio-section.js?v=1"></script>',
+    '<script src="/investors/profile-sticky.js?v=1"></script>',
     '<script>',
     '(function(){',
     'var nav=document.getElementById("inv-profile-sticky");',
