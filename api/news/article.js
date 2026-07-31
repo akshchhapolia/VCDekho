@@ -289,11 +289,14 @@ module.exports = async function handler(req, res) {
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
     <title>${article.meta_title} | ${titleSuffix}</title>
     <meta name="description" content="${article.meta_description}">
     
     <link rel="icon" type="image/png" href="/assets/logoforvc.png">
-    <link rel="stylesheet" href="/style.css?v=52">
+    <link rel="stylesheet" href="/style.css?v=64">
     <link rel="canonical" href="https://vcdekho.com/${pathPrefix}/${article.slug}">
     
     <meta property="og:title" content="${article.meta_title}">
@@ -399,7 +402,7 @@ module.exports = async function handler(req, res) {
             </div>
         </main>
     </div>
-    <script src="/app.js"></script>
+    <script src="/app.js" defer></script>
 </body>
 </html>
         `;

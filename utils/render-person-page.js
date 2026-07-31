@@ -122,13 +122,16 @@ function renderPersonPage(person, colleagues, res) {
     '<script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ23KLLWFM"></script>',
     '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js", new Date());gtag("config","G-BJ23KLLWFM");</script>',
     '<meta charset="UTF-8">',
-    '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+    '<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">',
     '<title>' + escapeHtml(person.name) + ' | People | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<link rel="canonical" href="https://vcdekho.com/people/' + escapeHtml(person.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/style.css?v=49">',
+    '<link rel="stylesheet" href="/style.css?v=64">',
     '<meta property="og:title" content="' + escapeHtml(person.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/people/' + escapeHtml(person.slug) + '">',
@@ -191,7 +194,7 @@ function renderPersonPage(person, colleagues, res) {
 
     '</div></main></div>',
     '<script src="/js/auth.js"></script>',
-    '<script src="/app.js"></script>',
+    '<script src="/app.js" defer></script>',
     '<script>',
     '(function(){',
     'var reveals=document.querySelectorAll(".inv-profile-reveal:not(.is-visible)");',
