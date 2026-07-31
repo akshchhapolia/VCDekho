@@ -163,17 +163,23 @@ async function main() {
         checked++;
         spentUsd += usage?.costUsd || 0;
         const src = source || 'none';
+        const via =
+          src === 'web_search' && inv.website
+            ? 'web_search (no site portfolio)'
+            : src === 'web_search'
+              ? 'web_search (no website)'
+              : src;
         if (companies.length) {
           found++;
           companiesTotal += companies.length;
           console.log(
-            `✓ ${inv.name} → ${companies.length} cos via ${src} (${companies
+            `✓ ${inv.name} → ${companies.length} cos via ${via} (${companies
               .slice(0, 3)
               .map((c) => c.name)
               .join(', ')}${companies.length > 3 ? '…' : ''}) [$${(usage?.costUsd || 0).toFixed(4)}]`
           );
         } else {
-          console.log(`- ${inv.name} → none found [${src}] [$${(usage?.costUsd || 0).toFixed(4)}]`);
+          console.log(`- ${inv.name} → none found [${via}] [$${(usage?.costUsd || 0).toFixed(4)}]`);
         }
         await upsertPortfolio(slug, companies, src === 'none' ? 'web_search' : src);
         if (spentUsd >= BUDGET_USD) {
