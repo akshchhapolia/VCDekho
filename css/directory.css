@@ -2565,6 +2565,34 @@ a.inv-chip:hover {
   }
 }
 
+@media (max-width: 768px) {
+  body.inv-dir-page .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    background: #0d0d0d;
+  }
+
+  .inv-dir-header {
+    position: sticky;
+    top: calc(50px + env(safe-area-inset-top, 0px));
+    z-index: 80;
+    background: #0b0b0d;
+    margin-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .inv-dir-row {
+    padding: 0.75rem 0;
+    gap: 0.45rem 0.85rem;
+  }
+
+  .inv-dir-wrap {
+    padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 @media (max-width: 640px) {
   body.scrollable-page.inv-page .app-container,
   body.scrollable-page:not(.inv-page) .app-container {
