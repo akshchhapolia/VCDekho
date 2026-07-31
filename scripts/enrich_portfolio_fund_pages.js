@@ -30,6 +30,7 @@ const ALL_THIN = process.argv.includes('--all-thin');
 const LIMIT = argVal('--limit', ALL_THIN ? 9999 : 5);
 const CONCURRENCY = argVal('--concurrency', 4);
 const MIN_COMPANIES = argVal('--min-companies', 8);
+const MAX_COMPANIES = argVal('--max-companies', null);
 
 function loadInvestorsBySlug() {
   const data = JSON.parse(fs.readFileSync(INVESTORS_PATH, 'utf8'));
@@ -71,6 +72,10 @@ async function loadPortfolioRows(bySlug) {
   if (METHOD) {
     params.push(METHOD);
     sql += ` AND source_method = $${params.length}`;
+  }
+  if (MAX_COMPANIES != null) {
+    params.push(MAX_COMPANIES);
+    sql += ` AND company_count <= $${params.length}`;
   }
   sql += ` ORDER BY company_count DESC`;
   const r = await db.query(sql, params);
