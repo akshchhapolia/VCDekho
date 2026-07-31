@@ -11,6 +11,12 @@
     /* Warm grey backup color */
 }
 
+body.home-page .hero-showcase {
+    background-color: #E2DDD5;
+    box-shadow: var(--shadow-premium);
+    border-radius: var(--border-radius-main);
+}
+
 /* Background image with high-quality styling */
 .hero-bg {
     position: absolute;
