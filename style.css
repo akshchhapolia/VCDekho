@@ -457,6 +457,14 @@ body {
     color: var(--color-text-muted);
 }
 
+.trend-card-note {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
 .trend-card-btn {
     align-self: flex-end;
     background-color: var(--color-text-main);
