@@ -26,55 +26,7 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
    INVESTORS DIRECTORY (dense / IndianVCs-style)
    ========================================================================== */
 .inv-dir-page .hero-showcase.inv-list-main {
-  background-color: #0b0b0d;
-}
-
-/* SSR profile / guide pages — dark canvas (ambient.css provides orbs) */
-body.scrollable-page.inv-page,
-body.scrollable-page.inv-profile-page {
-  background-color: #0b0b0d;
-}
-
-.hero-showcase.inv-detail-main {
-  background-color: #0b0b0d;
-  box-shadow: none;
-}
-
-body.inv-page .hero-showcase,
-body.inv-profile-page .hero-showcase {
-  background-color: #0b0b0d;
-}
-
-body.inv-page .site-header .nav-link,
-body.inv-profile-page .site-header .nav-link {
-  color: rgba(255, 255, 255, 0.82);
-}
-
-body.inv-page .site-header .nav-link.active,
-body.inv-profile-page .site-header .nav-link.active {
-  color: var(--color-accent-orange);
-}
-
-body.inv-page .nav-toggle span,
-body.inv-profile-page .nav-toggle span {
-  background-color: #fff;
-}
-
-body.inv-page .inv-breadcrumbs,
-body.inv-profile-page .inv-breadcrumbs {
-  color: rgba(255, 255, 255, 0.45);
-}
-
-body.inv-page .inv-breadcrumbs a,
-body.inv-profile-page .inv-breadcrumbs a {
-  color: rgba(255, 255, 255, 0.55);
-}
-
-body.inv-page .inv-breadcrumbs .current,
-body.inv-profile-page .inv-breadcrumbs .current,
-body.inv-page .inv-breadcrumbs a:hover,
-body.inv-profile-page .inv-breadcrumbs a:hover {
-  color: var(--color-accent-orange);
+  background-color: transparent;
 }
 
 .inv-dir-page .inv-dir-ambient {
@@ -82,12 +34,13 @@ body.inv-profile-page .inv-breadcrumbs a:hover {
 }
 
 .inv-dir-page .inv-dir-ambient .waitlist-bg {
-  background-color: #0b0b0d;
+  background-color: transparent;
+  background-image: none;
 }
 
 .inv-dir-page .inv-dir-ambient .glow-orb {
-  filter: blur(90px);
-  opacity: 0.28;
+  filter: blur(110px);
+  opacity: 0.18;
 }
 
 .inv-dir-wrap {
@@ -2619,17 +2572,17 @@ a.inv-chip:hover {
     position: sticky;
     top: 0;
     z-index: 90;
-    background: #0d0d0d;
+    background: transparent;
   }
 
   .inv-dir-header {
     position: sticky;
     top: calc(50px + env(safe-area-inset-top, 0px));
     z-index: 80;
-    background: #0b0b0d;
+    background: transparent;
     margin-bottom: 0.5rem;
     padding-top: 0.5rem;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
   }
 
   .inv-dir-header .inv-dir-meta {
@@ -3068,8 +3021,9 @@ a.inv-chip:hover {
   padding: 0.75rem 0.25rem;
   overflow-x: auto;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  background: rgba(6, 8, 14, 0.96);
-  backdrop-filter: blur(12px);
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   scrollbar-width: none;
 }
 
