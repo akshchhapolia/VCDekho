@@ -41,16 +41,29 @@ function fundHost(website) {
 }
 
 /**
- * Resolve a fetchable fund company-detail URL for a portfolio row.
+ * Resolve candidate fund company-detail URLs for a portfolio row.
  */
-function detailUrlForCompany(company, investorWebsite) {
+function detailUrlsForCompany(company, investorWebsite) {
+  const urls = [];
   const src = company.sourceUrl || '';
-  if (/\/companies\/[a-z0-9][a-z0-9-]+/i.test(src)) return src;
+  if (/\/(companies|portfolio|investments|startups)\/[a-z0-9][a-z0-9-]+/i.test(src)) {
+    urls.push(src);
+  }
 
   const origin = originOf(investorWebsite);
   const slug = companyKey(company);
-  if (!origin || !slug) return null;
-  return `${origin}/companies/${slug}`;
+  if (origin && slug) {
+    for (const path of ['companies', 'portfolio', 'investments', 'startups']) {
+      const u = `${origin}/${path}/${slug}`;
+      if (!urls.includes(u)) urls.push(u);
+    }
+  }
+  return urls;
+}
+
+function detailUrlForCompany(company, investorWebsite) {
+  const urls = detailUrlsForCompany(company, investorWebsite);
+  return urls[0] || null;
 }
 
 function needsFundPageEnrichment(company) {
@@ -187,13 +200,28 @@ function parseFundCompanyPage(html, pageUrl, fundHostname) {
  * Enrich one company by fetching its fund detail page.
  */
 async function enrichCompanyFromFundPage(company, investorWebsite) {
-  const detailUrl = detailUrlForCompany(company, investorWebsite);
-  if (!detailUrl) return { company, updated: false };
-  const host = fundHost(investorWebsite) || fundHost(detailUrl);
-  const html = await fetchHtml(detailUrl);
-  const parsed = parseFundCompanyPage(html, detailUrl, host);
+  const candidates = detailUrlsForCompany(company, investorWebsite);
+  if (!candidates.length) return { company, updated: false };
+  const host = fundHost(investorWebsite) || fundHost(candidates[0]);
+
+  let parsed = null;
+  let detailUrl = candidates[0];
+  for (const url of candidates) {
+    const html = await fetchHtml(url);
+    if (!html || html.length < 500) continue;
+    const hit = parseFundCompanyPage(html, url, host);
+    if (hit) {
+      parsed = hit;
+      detailUrl = url;
+      break;
+    }
+    // Keep detail page as source even when parse is thin.
+    if (!parsed && /\/(companies|portfolio|investments|startups)\//i.test(url)) {
+      detailUrl = url;
+    }
+  }
+
   if (!parsed) {
-    // Still upgrade sourceUrl to the detail page when we can resolve it.
     if (detailUrl !== company.sourceUrl) {
       return {
         company: {
@@ -216,10 +244,8 @@ async function enrichCompanyFromFundPage(company, investorWebsite) {
       changed = true;
     }
   }
-  // Prefer real company website logo when we just found the site.
   if (parsed.website && parsed.logoUrl && (!company.website || !company.logoUrl)) {
-    if (!next.logoUrl || /accel\.com|peakxv\.com|sanity\.io/i.test(String(next.logoUrl))) {
-      // Keep scraped fund logo if present; only fill favicon when missing.
+    if (!next.logoUrl || /accel\.com|peakxv\.com|sanity\.io|blume\.vc/i.test(String(next.logoUrl))) {
       if (!next.logoUrl) next.logoUrl = parsed.logoUrl;
     }
   }
@@ -272,6 +298,7 @@ async function enrichCompaniesFromFundPages(companies, investorWebsite, opts = {
 
 module.exports = {
   detailUrlForCompany,
+  detailUrlsForCompany,
   needsFundPageEnrichment,
   parseFundCompanyPage,
   enrichCompanyFromFundPage,
