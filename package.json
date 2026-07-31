@@ -10,6 +10,7 @@
     "build:investor-activity:apply": "node scripts/build_investor_activity.js --apply",
     "backfill:investor-activity": "node scripts/investor_activity_websearch.js",
     "backfill:investor-portfolio": "node scripts/investor_portfolio_websearch.js",
+    "enrich:portfolio-websites": "node scripts/enrich_portfolio_websites.js",
     "build:people": "node scripts/build_people_json.js",
     "build:css": "node scripts/split_css.js",
     "check:links": "node scripts/check_investor_links.js",
