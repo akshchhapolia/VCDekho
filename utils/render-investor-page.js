@@ -7,6 +7,7 @@ const { hasSectorGuide } = require('./sectors');
 const { renderExploreRelated } = require('./render-explore-related');
 const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
 const { getPeopleByCompanySlug } = require('./people');
+const { portfolioCardHref } = require('./portfolio-card-href');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -263,11 +264,7 @@ function portfolioSection(investor) {
       const cardAttrs =
         ' class="inv-profile-portfolio-card" data-name="' + dataName + '"' + hiddenAttr;
 
-      // Prefer the startup website; else a company detail page; else any source.
-      const href =
-        c.website ||
-        (c.sourceUrl && /\/companies\/[^/]+/i.test(c.sourceUrl) ? c.sourceUrl : null) ||
-        c.sourceUrl;
+      const href = portfolioCardHref(c, investor.website);
       if (href) {
         return (
           '<a' +
