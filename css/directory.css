@@ -45,6 +45,38 @@ body.inv-profile-page .hero-showcase {
   background-color: #0b0b0d;
 }
 
+body.inv-page .site-header .nav-link,
+body.inv-profile-page .site-header .nav-link {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+body.inv-page .site-header .nav-link.active,
+body.inv-profile-page .site-header .nav-link.active {
+  color: var(--color-accent-orange);
+}
+
+body.inv-page .nav-toggle span,
+body.inv-profile-page .nav-toggle span {
+  background-color: #fff;
+}
+
+body.inv-page .inv-breadcrumbs,
+body.inv-profile-page .inv-breadcrumbs {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+body.inv-page .inv-breadcrumbs a,
+body.inv-profile-page .inv-breadcrumbs a {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+body.inv-page .inv-breadcrumbs .current,
+body.inv-profile-page .inv-breadcrumbs .current,
+body.inv-page .inv-breadcrumbs a:hover,
+body.inv-profile-page .inv-breadcrumbs a:hover {
+  color: var(--color-accent-orange);
+}
+
 .inv-dir-page .inv-dir-ambient {
   opacity: 1;
 }
