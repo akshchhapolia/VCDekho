@@ -733,6 +733,15 @@ body:not(.home-page) .hero-tagline {
     color: var(--color-text-light);
 }
 
+body:not(.home-page) .hero-content,
+body:not(.home-page) .blog-content,
+body:not(.home-page) .inv-detail-wrap,
+body:not(.home-page) .inv-dir-wrap,
+body:not(.home-page) .waitlist-content {
+    position: relative;
+    z-index: 2;
+}
+
 @media (max-width: 768px) {
     body:not(.home-page).inv-dir-page .site-header,
     body:not(.home-page) .site-header {
