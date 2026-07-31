@@ -348,28 +348,35 @@
 /* Custom waitlist CTA Banner card in blog */
 .blog-cta-banner {
     position: relative;
-    padding: 3.5rem 2rem;
+    padding: 2.75rem 2rem;
     margin: 4.5rem 0;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 1.5rem;
-    background: #000;
+    gap: 1.25rem;
+    background: rgba(255, 255, 255, 0.025);
 }
 
-.blog-cta-bg {
+.blog-cta-banner::before {
+    content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.35;
-    z-index: 1;
+    inset: -50%;
+    background:
+        radial-gradient(ellipse 75% 55% at 50% 15%, rgba(237, 87, 47, 0.14), transparent 68%),
+        radial-gradient(ellipse 55% 45% at 15% 85%, rgba(237, 87, 47, 0.06), transparent 62%);
+    filter: blur(36px);
+    opacity: 0.9;
     pointer-events: none;
+    z-index: 0;
+}
+
+/* Legacy image — hidden; grey PNG/WebP box clashes with dark canvas */
+.blog-cta-bg {
+    display: none !important;
 }
 
 .blog-cta-content {
@@ -383,7 +390,7 @@
 
 .blog-cta-title {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
     color: var(--color-text-light);
     margin-bottom: 0.75rem;
     font-weight: normal;
@@ -393,16 +400,16 @@
 .blog-cta-desc {
     font-family: var(--font-sans);
     font-size: 0.95rem;
-    opacity: 0.85;
-    margin-bottom: 1.75rem;
-    color: var(--color-text-light);
+    opacity: 0.78;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.82);
     line-height: 1.6;
 }
 
 .blog-cta-btn {
     display: inline-block;
-    background-color: var(--color-text-light);
-    color: var(--color-text-main);
+    background-color: var(--color-accent-orange);
+    color: var(--color-text-light);
     text-decoration: none;
     padding: 0.85rem 2rem;
     font-size: 0.85rem;
@@ -410,12 +417,26 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     transition: var(--transition-smooth);
+    min-height: 44px;
+    line-height: 1.2;
 }
 
 .blog-cta-btn:hover {
-    background-color: var(--color-accent-orange);
+    background-color: var(--color-accent-orange-hover);
     color: var(--color-text-light);
-    box-shadow: 0 4px 15px rgba(237, 87, 47, 0.3);
+    box-shadow: 0 4px 15px rgba(237, 87, 47, 0.35);
+}
+
+@media (max-width: 768px) {
+    .blog-cta-banner {
+        padding: 2rem 1.25rem;
+        margin: 3rem 0;
+        border-radius: 20px;
+    }
+
+    .blog-cta-title {
+        font-size: 1.65rem;
+    }
 }
 
 /* Collapsible FAQ Section styling */
