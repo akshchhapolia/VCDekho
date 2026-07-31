@@ -110,6 +110,15 @@
     .highlight-text {
         padding: 0 6px;
     }
+
+    .hero-tagline-container {
+        display: none;
+    }
+
+    .hero-tagline,
+    .hero-sub-tagline {
+        font-size: 0.95rem;
+    }
 }
 
 /* ==========================================================================

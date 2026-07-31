@@ -227,3 +227,118 @@ body {
     }
 }
 
+/* ==========================================================================
+   SCROLLABLE CONTENT PAGES
+   ========================================================================== */
+html.scrollable-page,
+body.scrollable-page {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+}
+
+html.scrollable-page .app-container,
+body.scrollable-page .app-container {
+    height: auto !important;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-bottom: 0;
+}
+
+html.scrollable-page .hero-showcase,
+body.scrollable-page .hero-showcase {
+    flex: none !important;
+    height: auto !important;
+    min-height: calc(100vh - 120px);
+    min-height: calc(100dvh - 120px);
+    overflow: visible !important;
+}
+
+/* ==========================================================================
+   MOBILE WEB — PHASE 1
+   ========================================================================== */
+@media (max-width: 992px) {
+    html,
+    body {
+        overflow-y: auto !important;
+        overflow-x: hidden;
+        height: auto !important;
+        min-height: 100dvh;
+    }
+
+    .app-container {
+        height: auto !important;
+        min-height: 100dvh;
+        padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    .hero-showcase {
+        flex: none !important;
+        height: auto !important;
+        min-height: 0;
+        overflow: visible !important;
+    }
+
+    body.has-announcement {
+        height: auto !important;
+        overflow-y: auto !important;
+    }
+
+    body.has-announcement .app-container {
+        height: auto !important;
+        flex: none;
+    }
+}
+
+/* Mobile nav backdrop */
+.nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 98;
+    background: rgba(0, 0, 0, 0.45);
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-backdrop[hidden] {
+    display: none !important;
+}
+
+body.nav-open {
+    overflow: hidden !important;
+}
+
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 0.5rem;
+    }
+
+    .main-nav {
+        width: min(85vw, 320px);
+        padding-top: calc(2rem + env(safe-area-inset-top, 0px));
+        padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        overscroll-behavior: contain;
+    }
+
+    .site-header {
+        padding-top: env(safe-area-inset-top, 0px);
+    }
+
+    /* Prevent iOS input zoom */
+    input,
+    select,
+    textarea,
+    .inv-dd-trigger {
+        font-size: 16px !important;
+    }
+}
+

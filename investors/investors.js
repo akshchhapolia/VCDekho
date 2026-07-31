@@ -430,7 +430,10 @@
   });
 
   if (els.filtersToggle) {
-    els.filtersToggle.addEventListener('click', () => setFiltersOpen(true));
+    els.filtersToggle.addEventListener('click', () => {
+      if (window.VCNav) window.VCNav.close();
+      setFiltersOpen(true);
+    });
   }
   if (els.filtersClose) {
     els.filtersClose.addEventListener('click', () => setFiltersOpen(false));
@@ -441,7 +444,10 @@
 
   document.addEventListener('click', () => closeAllDropdowns());
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeAllDropdowns();
+    if (e.key === 'Escape') {
+      closeAllDropdowns();
+      setFiltersOpen(false);
+    }
   });
 
   const params0 = new URLSearchParams(window.location.search);

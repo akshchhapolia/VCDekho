@@ -2,29 +2,7 @@
    BLOG LAYOUT & TYPOGRAPHY STYLES
    ========================================================================== */
 
-/* Blog Pages Scrollable Configuration */
-html.scrollable-page,
-body.scrollable-page {
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    overflow: visible !important;
-    height: auto !important;
-}
-
-html.scrollable-page .app-container,
-body.scrollable-page .app-container {
-    height: auto !important;
-    min-height: 100vh;
-    padding-bottom: 0;
-}
-
-html.scrollable-page .hero-showcase,
-body.scrollable-page .hero-showcase {
-    flex: none !important;
-    height: auto !important;
-    min-height: calc(100vh - 120px);
-    overflow: visible !important;
-}
+/* Blog Pages Scrollable Configuration — canonical rules live in base.css */
 
 /* Blog Content Container */
 .blog-content {
@@ -1291,5 +1269,19 @@ body.has-announcement .app-container {
 @media (max-width: 480px) {
     .announcement-tag {
         display: none;
+    }
+
+    .announcement-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.35rem;
+    }
+
+    .announcement-text {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        margin-right: 0;
+        line-height: 1.35;
     }
 }

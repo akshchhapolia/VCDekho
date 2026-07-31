@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Select elements
-    const menuToggle = document.getElementById('menu-toggle');
-    const mainNav = document.getElementById('navigation-bar');
     const heroShowcase = document.getElementById('main-viewport');
     const heroBg = document.getElementById('hero-background-media');
     const heroFallback = document.getElementById('hero-bg-fallback');
@@ -9,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobile = window.matchMedia('(max-width: 992px)').matches;
+    const enableParallax = !prefersReducedMotion && !isMobile;
 
-    // Hero video: skip on mobile / reduced motion; lazy-load on desktop after first paint
     if (heroBg && heroFallback) {
         if (prefersReducedMotion || isMobile) {
             heroBg.style.display = 'none';
@@ -30,24 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 1. Mobile Navigation Toggle
-    if (menuToggle && mainNav) {
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            mainNav.classList.toggle('active');
-        });
-
-        const navLinks = mainNav.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                mainNav.classList.remove('active');
-            });
-        });
-    }
-
-    // 2. Premium Parallax Hover & Touch Effect (Desktop & Mobile)
-    if (heroShowcase && heroBg) {
+    if (enableParallax && heroShowcase && heroBg) {
         const handleMove = (clientX, clientY) => {
             const { width, height } = heroShowcase.getBoundingClientRect();
             const x = (clientX - heroShowcase.offsetLeft) / width - 0.5;
@@ -67,12 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
             handleMove(e.clientX, e.clientY);
         });
 
-        heroShowcase.addEventListener('touchmove', (e) => {
-            if (e.touches && e.touches.length > 0) {
-                handleMove(e.touches[0].clientX, e.touches[0].clientY);
-            }
-        }, { passive: true });
-
         const handleReset = () => {
             const resetStr = 'scale(1) translate(0, 0)';
             heroBg.style.transform = resetStr;
@@ -82,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         heroShowcase.addEventListener('mouseleave', handleReset);
-        heroShowcase.addEventListener('touchend', handleReset);
     }
 
     if (exploreBtn) {
@@ -97,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// FAQ Toggle Logic
 document.addEventListener('DOMContentLoaded', () => {
     const faqQuestions = document.querySelectorAll('.faq-question');
     faqQuestions.forEach(question => {
@@ -115,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Reading Progress Bar
 document.addEventListener('DOMContentLoaded', () => {
     const progressBar = document.getElementById('reading-progress');
     if (progressBar) {

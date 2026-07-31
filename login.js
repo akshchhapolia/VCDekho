@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const menuToggle = document.getElementById('menu-toggle');
-  const mainNav = document.getElementById('navigation-bar');
   const form = document.getElementById('auth-form');
   const emailStep = document.getElementById('email-step');
   const otpStep = document.getElementById('otp-step');
@@ -121,13 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
       otpInput.value = '';
     }
     clearFieldErrors();
-  }
-
-  if (menuToggle && mainNav) {
-    menuToggle.addEventListener('click', () => {
-      menuToggle.classList.toggle('active');
-      mainNav.classList.toggle('active');
-    });
   }
 
   function sanitizeOtpValue(raw) {

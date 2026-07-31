@@ -2437,12 +2437,13 @@ a.inv-chip:hover {
     z-index: 120;
     background: #141414;
     border-right: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 1.25rem 1.15rem 1.5rem;
+    padding: calc(1.25rem + env(safe-area-inset-top, 0px)) 1.15rem calc(1.5rem + env(safe-area-inset-bottom, 0px));
     transform: translateX(-105%);
     transition: transform 0.25s ease;
     overflow-y: auto;
     overflow-x: hidden;
     gap: 1rem;
+    overscroll-behavior: contain;
   }
 
   .inv-dir-sidebar .inv-dd-menu {
