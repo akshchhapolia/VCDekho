@@ -3,7 +3,7 @@
  * CSS sticky breaks inside .hero-showcase { overflow-x: hidden }.
  */
 (function () {
-  var header = document.querySelector('body.inv-profile-page .site-header');
+  var header = document.querySelector('body.inv-investor-profile .site-header');
   var host = document.getElementById('inv-profile-sticky-host');
   var nav = document.getElementById('inv-profile-sticky');
   if (!nav || !host) return;
