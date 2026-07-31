@@ -290,10 +290,10 @@ module.exports = async function handler(req, res) {
     <meta name="description" content="${article.meta_description}">
     
     <link rel="icon" type="image/png" href="/assets/logoforvc.png">
-    <link rel="stylesheet" href="/css/base.css?v=68">
-    <link rel="stylesheet" href="/css/hero.css?v=68">
-    <link rel="stylesheet" href="/css/ambient.css?v=68">
-    <link rel="stylesheet" href="/css/blog.css?v=68">
+    <link rel="stylesheet" href="/css/base.css?v=69">
+    <link rel="stylesheet" href="/css/hero.css?v=69">
+    <link rel="stylesheet" href="/css/ambient.css?v=69">
+    <link rel="stylesheet" href="/css/blog.css?v=69">
     <link rel="canonical" href="https://vcdekho.com/${pathPrefix}/${article.slug}">
     
     <meta property="og:title" content="${article.meta_title}">
