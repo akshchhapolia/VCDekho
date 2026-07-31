@@ -958,8 +958,9 @@ body.home-page::before {
     pointer-events: none;
     background-color: #0b0b0d;
     background-image:
-        radial-gradient(ellipse 160% 120% at 15% -10%, rgba(237, 87, 47, 0.1), transparent 58%),
-        radial-gradient(ellipse 120% 90% at 85% 15%, rgba(237, 87, 47, 0.05), transparent 55%),
+        linear-gradient(180deg, #0b0b0d 0%, #0b0b0d 11%, transparent 18%),
+        radial-gradient(ellipse 160% 120% at 15% -10%, rgba(237, 87, 47, 0.08), transparent 58%),
+        radial-gradient(ellipse 120% 90% at 85% 15%, rgba(237, 87, 47, 0.04), transparent 55%),
         radial-gradient(ellipse 100% 80% at 50% 110%, rgba(237, 87, 47, 0.04), transparent 52%);
 }
 
