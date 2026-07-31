@@ -356,6 +356,8 @@
     }
   });
 
+  window.addEventListener('resize', updateMobileFiltersLabel);
+
   const params0 = new URLSearchParams(window.location.search);
   if (params0.get('companyType')) state.companyType = params0.get('companyType');
   if (params0.get('q')) {
