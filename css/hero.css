@@ -7,13 +7,15 @@
     border-radius: var(--border-radius-main);
     overflow: hidden;
     box-shadow: var(--shadow-premium);
-    background-color: #E2DDD5;
-    /* Warm grey backup color */
+    background-color: #0a0a0c;
 }
 
 body.home-page .hero-showcase {
-    background-color: #E2DDD5;
-    box-shadow: var(--shadow-premium);
+    background-color: #0a0a0c;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.07),
+        0 24px 80px rgba(0, 0, 0, 0.55),
+        0 0 120px rgba(237, 87, 47, 0.06);
     border-radius: var(--border-radius-main);
 }
 
@@ -36,9 +38,11 @@ body.home-page .hero-showcase {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('assets/sand_bg.jpg');
-    background-size: cover;
-    background-position: center;
+    background-image: none;
+    background:
+        radial-gradient(ellipse 120% 90% at 20% 20%, rgba(237, 87, 47, 0.14), transparent 55%),
+        radial-gradient(ellipse 90% 70% at 85% 75%, rgba(255, 255, 255, 0.05), transparent 50%),
+        linear-gradient(160deg, #0b0b0d 0%, #121214 45%, #0a0a0c 100%);
     z-index: 1;
     display: none;
     transition: transform 10s ease-out;
@@ -66,11 +70,18 @@ body.home-page .hero-showcase {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg,
-            rgba(0, 0, 0, 0.4) 0%,
-            rgba(0, 0, 0, 0.15) 50%,
-            rgba(0, 0, 0, 0.3) 100%);
+    background: linear-gradient(145deg,
+            rgba(0, 0, 0, 0.72) 0%,
+            rgba(0, 0, 0, 0.42) 42%,
+            rgba(0, 0, 0, 0.58) 100%);
     z-index: 2;
+}
+
+body.home-page .hero-overlay {
+    background: linear-gradient(145deg,
+            rgba(0, 0, 0, 0.78) 0%,
+            rgba(11, 11, 13, 0.45) 45%,
+            rgba(0, 0, 0, 0.68) 100%);
 }
 
 /* Overlay Content Wrapper */
@@ -153,11 +164,10 @@ body.home-page .hero-showcase {
     position: relative;
     display: inline-block;
     padding: 0 12px;
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-radius: 0px;
-    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     margin-top: 0.5rem;
     white-space: nowrap;
 }
@@ -217,69 +227,106 @@ body.home-page .hero-showcase {
     position: absolute;
     bottom: 2rem;
     right: 2rem;
-    background-color: var(--color-card-bg);
-    border-radius: var(--border-radius-card);
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.09) 0%,
+        rgba(255, 255, 255, 0.03) 50%,
+        rgba(237, 87, 47, 0.05) 100%
+    );
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
     padding: 1.75rem;
     max-width: 320px;
     width: 100%;
-    box-shadow: var(--shadow-card);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.06) inset,
+        0 20px 48px rgba(0, 0, 0, 0.45);
     display: flex;
     flex-direction: column;
     gap: 1rem;
     transition: var(--transition-smooth);
-    border: none;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+body.home-page .trend-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(237, 87, 47, 0.5) 40%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(237, 87, 47, 0.5) 60%,
+        transparent 100%
+    );
+    pointer-events: none;
 }
 
 .trend-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.08) inset,
+        0 28px 56px rgba(0, 0, 0, 0.5);
 }
 
 .trend-card-title {
     font-family: var(--font-sans);
-    font-weight: 700;
+    font-weight: 600;
     font-size: 1.05rem;
     line-height: 1.4;
-    color: var(--color-text-main);
-    letter-spacing: -0.2px;
+    color: #fff;
+    letter-spacing: -0.02em;
 }
 
 .trend-card-desc {
     font-family: var(--font-sans);
     font-size: 0.85rem;
     line-height: 1.5;
-    color: var(--color-text-muted);
+    color: rgba(255, 255, 255, 0.55);
 }
 
 .trend-card-note {
     font-family: var(--font-sans);
     font-size: 0.8rem;
     line-height: 1.4;
-    color: var(--color-text-muted);
+    color: rgba(255, 255, 255, 0.42);
     margin: 0;
 }
 
 .trend-card-btn {
     align-self: flex-end;
-    background-color: var(--color-text-main);
-    color: var(--color-text-light);
+    background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.92) 100%);
+    color: #0b0b0d;
     border: none;
-    padding: 0.65rem 1.25rem;
+    padding: 0.7rem 1.35rem;
     font-family: var(--font-sans);
     font-size: 0.8rem;
     font-weight: 600;
-    border-radius: 0px;
+    border-radius: 999px;
     cursor: pointer;
     transition: var(--transition-smooth);
-    letter-spacing: 0.2px;
+    letter-spacing: 0.02em;
     margin-top: 0.25rem;
     text-decoration: none;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
 .trend-card-btn:hover {
-    background-color: var(--color-accent-orange);
-    box-shadow: 0 4px 12px rgba(237, 87, 47, 0.25);
+    background: linear-gradient(135deg, var(--color-accent-orange) 0%, #f06a45 100%);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(237, 87, 47, 0.35);
+    transform: translateY(-1px);
 }
 
 @media (max-width: 992px) {
@@ -336,18 +383,19 @@ body.home-page .hero-showcase {
         gap: 0.35rem;
         min-height: 48px;
         padding: 0.85rem 1.25rem calc(0.85rem + env(safe-area-inset-bottom, 0px));
-        background: var(--color-text-main);
-        color: var(--color-text-light);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.88) 100%);
+        color: #0b0b0d;
         font-family: var(--font-sans);
         font-size: 0.9rem;
         font-weight: 600;
         text-decoration: none;
         letter-spacing: 0.02em;
-        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.4);
     }
 
     .mobile-sticky-cta:active {
         background: var(--color-accent-orange);
+        color: #fff;
     }
 
     .highlight-text {
