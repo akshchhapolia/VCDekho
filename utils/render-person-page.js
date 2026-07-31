@@ -28,17 +28,43 @@ function peopleDirectoryWidget() {
   const data = loadPeopleData();
   const peopleCount = data.count || 0;
   const orgCount = new Set((data.people || []).map((p) => p.companySlug).filter(Boolean)).size;
+  const roleCount = (data.filters?.companyTypes || []).length;
   const countLabel = peopleCount >= 100 ? String(Math.floor(peopleCount / 10) * 10) + '+' : String(peopleCount);
 
   return (
-    '<aside class="inv-profile-dir-widget" aria-label="People directory">' +
+    '<aside class="inv-profile-dir-widget inv-profile-dir-widget--people" aria-label="People directory">' +
+      '<div class="inv-profile-dir-visual" aria-hidden="true">' +
+        '<svg class="inv-profile-dir-svg" viewBox="0 0 220 132" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+          '<rect x="8" y="8" width="204" height="36" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.16)"/>' +
+          '<circle cx="28" cy="26" r="10" fill="rgba(237,87,47,0.35)" stroke="rgba(237,87,47,0.55)"/>' +
+          '<text x="28" y="30" text-anchor="middle" fill="#fff" font-size="8" font-weight="700" font-family="system-ui,sans-serif">AB</text>' +
+          '<rect x="46" y="17" width="72" height="7" rx="3.5" fill="rgba(255,255,255,0.55)"/>' +
+          '<rect x="46" y="28" width="42" height="8" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.16)"/>' +
+          '<rect x="92" y="28" width="36" height="8" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>' +
+
+          '<rect x="8" y="50" width="204" height="36" rx="12" fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.12)"/>' +
+          '<circle cx="28" cy="68" r="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)"/>' +
+          '<text x="28" y="72" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8" font-weight="700" font-family="system-ui,sans-serif">SK</text>' +
+          '<rect x="46" y="59" width="68" height="7" rx="3.5" fill="rgba(255,255,255,0.45)"/>' +
+          '<rect x="46" y="70" width="36" height="8" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.16)"/>' +
+          '<rect x="86" y="70" width="46" height="8" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>' +
+
+          '<rect x="8" y="92" width="204" height="32" rx="12" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.1)"/>' +
+          '<circle cx="28" cy="108" r="10" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.16)"/>' +
+          '<text x="28" y="112" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="8" font-weight="700" font-family="system-ui,sans-serif">PM</text>' +
+          '<rect x="46" y="100" width="60" height="7" rx="3.5" fill="rgba(255,255,255,0.32)"/>' +
+          '<rect x="46" y="111" width="44" height="7" rx="3.5" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>' +
+        '</svg>' +
+      '</div>' +
       '<div class="inv-profile-dir-stats">' +
         '<div class="inv-profile-dir-stat"><strong>' + escapeHtml(countLabel) + '</strong><span>People</span></div>' +
         '<div class="inv-profile-dir-stat"><strong>' + orgCount + '</strong><span>Firms</span></div>' +
+        '<div class="inv-profile-dir-stat"><strong>' + roleCount + '</strong><span>Roles</span></div>' +
+        '<div class="inv-profile-dir-stat"><strong>' + (data.linkedToOrgCount || orgCount) + '</strong><span>Linked</span></div>' +
       '</div>' +
       '<div class="inv-profile-dir-copy">' +
-        '<h2 class="inv-profile-dir-title">Find more investors like this</h2>' +
-        '<p class="inv-profile-dir-desc">Browse partners, principals and founders across every fund in the directory.</p>' +
+        '<h2 class="inv-profile-dir-title">Explore the people directory</h2>' +
+        '<p class="inv-profile-dir-desc">Browse partners, principals, and founders across every fund in India.</p>' +
         '<a class="inv-profile-cta is-ghost" href="/people">People Directory</a>' +
       '</div>' +
     '</aside>'
