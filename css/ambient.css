@@ -632,3 +632,25 @@
     }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .glow-orb {
+        animation: none !important;
+        opacity: 0.25 !important;
+    }
+
+    .waitlist-bg {
+        transition: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .checkbox-label-wrapper {
+        min-height: 44px;
+        padding: 0.35rem 0;
+    }
+
+    .waitlist-content {
+        overscroll-behavior: contain;
+    }
+}
+

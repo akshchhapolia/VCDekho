@@ -1313,3 +1313,40 @@ body.has-announcement .app-container {
         font-size: 1.4rem;
     }
 }
+
+@media (max-width: 768px) {
+    .blog-table-wrapper {
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .blog-post-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    a.breadcrumb-link {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .blog-skel-block,
+    .blog-skel-line {
+        animation: none !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .blog-post-card:hover,
+    .vc-card:hover,
+    .info-card:hover {
+        transform: none !important;
+    }
+
+    .announcement-cta:hover .announcement-arrow {
+        transform: none;
+    }
+}

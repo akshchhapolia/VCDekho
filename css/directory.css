@@ -263,6 +263,7 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
   list-style: none;
   max-height: min(280px, 50vh);
   overflow-y: auto;
+  overscroll-behavior: contain;
   background: #161616;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
@@ -2583,6 +2584,17 @@ a.inv-chip:hover {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   }
 
+  .inv-dir-header .inv-dir-meta {
+    display: none;
+  }
+
+  .inv-dir-filters-toggle {
+    margin-left: auto;
+    max-width: 100%;
+    font-size: 0.78rem;
+    letter-spacing: 0.01em;
+  }
+
   .inv-dir-row {
     padding: 0.75rem 0;
     gap: 0.45rem 0.85rem;
@@ -2590,6 +2602,47 @@ a.inv-chip:hover {
 
   .inv-dir-wrap {
     padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .inv-dd-trigger {
+    min-height: 44px;
+    padding: 0.65rem 0;
+  }
+
+  .inv-dd-option {
+    min-height: 44px;
+    padding: 0.65rem 0.85rem;
+  }
+
+  .inv-dir-checkbox-field {
+    min-height: 44px;
+    padding: 0.35rem 0;
+  }
+
+  .inv-dir-checkbox-field input {
+    width: 20px;
+    height: 20px;
+  }
+
+  .inv-dir-clear,
+  .inv-dir-sidebar-close {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.5rem;
+    margin-left: -0.5rem;
+  }
+
+  .inv-dir-empty-action {
+    min-height: 44px;
+    padding: 0.65rem 1.15rem;
+  }
+
+  .inv-dir-guide-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.15rem 0;
   }
 }
 

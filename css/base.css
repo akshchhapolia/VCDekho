@@ -389,3 +389,52 @@ body.nav-open {
     }
 }
 
+/* Phase 3: reduced motion + mobile touch polish */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .glow-orb,
+    .blog-skel-block,
+    .blog-skel-line {
+        animation: none !important;
+    }
+
+    .hero-bg,
+    .hero-bg-fallback,
+    .waitlist-bg {
+        transition: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-link {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .announcement-cta {
+        min-height: 44px;
+        padding: 0.35rem 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-showcase:hover .hero-bg,
+    .hero-showcase:hover .hero-bg-fallback,
+    .trend-card:hover,
+    .blog-post-card:hover,
+    .vc-card:hover,
+    .info-card:hover,
+    .logo-container:hover .logo-img {
+        transform: none !important;
+    }
+}
+
