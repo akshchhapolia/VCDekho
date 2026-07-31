@@ -958,9 +958,10 @@ body.home-page::before {
     pointer-events: none;
     background-color: #000;
     background-image:
-        radial-gradient(ellipse 90% 55% at 50% -5%, rgba(237, 87, 47, 0.14), transparent 62%),
-        radial-gradient(ellipse 50% 45% at 0% 40%, rgba(237, 87, 47, 0.06), transparent 55%),
-        radial-gradient(ellipse 50% 45% at 100% 60%, rgba(237, 87, 47, 0.05), transparent 55%);
+        radial-gradient(ellipse 100% 65% at 50% -8%, rgba(237, 87, 47, 0.28), transparent 68%),
+        radial-gradient(ellipse 70% 55% at -5% 35%, rgba(237, 87, 47, 0.14), transparent 58%),
+        radial-gradient(ellipse 70% 55% at 105% 55%, rgba(237, 87, 47, 0.12), transparent 58%),
+        radial-gradient(ellipse 90% 50% at 50% 100%, rgba(237, 87, 47, 0.08), transparent 55%);
 }
 
 body.home-page .home-ambient {
@@ -974,17 +975,17 @@ body.home-page .home-ambient {
 }
 
 body.home-page .home-ambient .waitlist-bg {
-    background-color: #000;
+    background-color: transparent;
     background-image: none;
 }
 
 body.home-page .home-ambient .glow-orb {
-    opacity: 0.1;
-    filter: blur(140px);
+    opacity: 0.2;
+    filter: blur(120px);
 }
 
 body.home-page .announcement-strip {
-    background: #000;
+    background: transparent;
     border-bottom: none;
     position: relative;
     z-index: 4;
@@ -997,19 +998,19 @@ body.home-page .announcement-text {
 body.home-page .app-container {
     position: relative;
     z-index: 2;
-    background: #000;
+    background: transparent;
     padding-top: 0;
-    gap: 0;
+    gap: 1.35rem;
 }
 
 body.home-page .site-header {
     position: relative;
     z-index: 4;
-    background: #000;
+    background: transparent;
     margin-left: calc(-1 * var(--page-padding));
     margin-right: calc(-1 * var(--page-padding));
     width: calc(100% + 2 * var(--page-padding));
-    padding: 0.65rem var(--page-padding) 0.75rem;
+    padding: 0.5rem var(--page-padding) 0.25rem;
     border-bottom: none;
 }
 
@@ -1041,12 +1042,17 @@ body.home-page .hero-content {
 }
 
 @media (max-width: 768px) {
+    body.home-page .app-container {
+        gap: 1rem;
+    }
+
     body.home-page .site-header {
         margin-left: -1rem;
         margin-right: -1rem;
         width: calc(100% + 2rem);
         padding-left: 1rem;
         padding-right: 1rem;
+        padding-bottom: 0.15rem;
     }
 
     body.home-page .main-nav {
