@@ -282,7 +282,7 @@ module.exports = async function handler(req, res) {
     <script src="/js/analytics.js" defer></script>
     <script src="/js/nav.js" defer></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
@@ -290,10 +290,10 @@ module.exports = async function handler(req, res) {
     <meta name="description" content="${article.meta_description}">
     
     <link rel="icon" type="image/png" href="/assets/logoforvc.png">
-    <link rel="stylesheet" href="/css/base.css?v=67">
-    <link rel="stylesheet" href="/css/hero.css?v=67">
-    <link rel="stylesheet" href="/css/ambient.css?v=67">
-    <link rel="stylesheet" href="/css/blog.css?v=67">
+    <link rel="stylesheet" href="/css/base.css?v=68">
+    <link rel="stylesheet" href="/css/hero.css?v=68">
+    <link rel="stylesheet" href="/css/ambient.css?v=68">
+    <link rel="stylesheet" href="/css/blog.css?v=68">
     <link rel="canonical" href="https://vcdekho.com/${pathPrefix}/${article.slug}">
     
     <meta property="og:title" content="${article.meta_title}">
