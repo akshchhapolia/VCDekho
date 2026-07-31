@@ -156,7 +156,37 @@ function recentActivitySection(investor) {
 
 function isBlankPortfolioLabel(value) {
   const v = String(value || '').trim().toLowerCase();
-  return !v || v === 'unknown' || v === 'listed in profile' || v === 'n/a' || v === 'null';
+  return (
+    !v ||
+    v === 'unknown' ||
+    v === 'listed in profile' ||
+    v === 'n/a' ||
+    v === 'null' ||
+    v === 'portfolio company' ||
+    v === 'notable investment' ||
+    v === 'defining win' ||
+    /^fund\s+.+\s+portfolio$/i.test(v) ||
+    /^listed in /i.test(v)
+  );
+}
+
+function websiteHostLabel(url) {
+  try {
+    const host = new URL(url).hostname.replace(/^www\./i, '');
+    if (!host || /accel\.com|peakxv\.com|sequoiacap\.com|blume\.vc$/i.test(host)) return '';
+    return host;
+  } catch (_) {
+    return '';
+  }
+}
+
+function isFundPortfolioPage(url) {
+  try {
+    const u = new URL(url);
+    return /\/(companies|portfolio|investments)(\/|$)/i.test(u.pathname);
+  } catch (_) {
+    return false;
+  }
 }
 
 const PORTFOLIO_PAGE_SIZE = 36;
@@ -196,17 +226,12 @@ function portfolioSection(investor) {
     .map((c, index) => {
       const logo = portfolioLogoHtml(c);
 
-      // Prefer real deal signals; never surface placeholder labels like
-      // "Unknown" / "Listed in profile" that came from thin writeup parses.
+      // Prefer real deal signals; never surface placeholder / marketing labels.
       const stage = !isBlankPortfolioLabel(c.stage) ? c.stage : null;
       const amount = !isBlankPortfolioLabel(c.amount) ? c.amount : null;
-      const highlight =
-        !amount && !isBlankPortfolioLabel(c.highlight) && !/^listed in /i.test(c.highlight || '')
-          ? c.highlight
-          : null;
       const investmentType = !isBlankPortfolioLabel(c.investmentType) ? c.investmentType : null;
 
-      const metaBits = [stage, amount || highlight, investmentType]
+      const metaBits = [amount, stage, investmentType]
         .filter(Boolean)
         .map((bit) => '<span>' + escapeHtml(bit) + '</span>');
       const meta = metaBits.length
@@ -220,20 +245,13 @@ function portfolioSection(investor) {
         : '';
 
       const dateLabel = c.date ? formatActivityDate(c.date) : '';
-      const rawSource = c.sourceTitle
-        ? String(c.sourceTitle).trim()
-        : c.sourceUrl
-          ? 'View source'
-          : '';
-      // Skip noisy generic "Portfolio page" when there's no date to pair with.
-      const sourceLabel =
-        rawSource && !(isGenericPortfolioSource(rawSource) && !dateLabel) ? rawSource : '';
+      const siteHost = websiteHostLabel(c.website);
       const footBits = [];
-      if (dateLabel) footBits.push('<span class="inv-profile-portfolio-date">' + escapeHtml(dateLabel) + '</span>');
-      if (sourceLabel) {
-        footBits.push(
-          '<span class="inv-profile-portfolio-source">' + escapeHtml(sourceLabel.slice(0, 72)) + '</span>'
-        );
+      if (dateLabel) {
+        footBits.push('<span class="inv-profile-portfolio-date">' + escapeHtml(dateLabel) + '</span>');
+      }
+      if (siteHost) {
+        footBits.push('<span class="inv-profile-portfolio-site">' + escapeHtml(siteHost) + '</span>');
       }
       const foot = footBits.length
         ? '<div class="inv-profile-portfolio-foot">' +
@@ -258,8 +276,11 @@ function portfolioSection(investor) {
       const cardAttrs =
         ' class="inv-profile-portfolio-card" data-name="' + dataName + '"' + hiddenAttr;
 
-      // Prefer the article/source when we have one; company site as fallback.
-      const href = c.sourceUrl || c.website;
+      // Prefer the startup website; else a company detail page; else any source.
+      const href =
+        c.website ||
+        (c.sourceUrl && /\/companies\/[^/]+/i.test(c.sourceUrl) ? c.sourceUrl : null) ||
+        c.sourceUrl;
       if (href) {
         return (
           '<a' +
@@ -588,7 +609,7 @@ function renderInvestorPage(investor, related, res) {
     '<link rel="canonical" href="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/style.css?v=61">',
+    '<link rel="stylesheet" href="/style.css?v=62">',
     '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
