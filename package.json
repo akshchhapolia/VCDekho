@@ -11,6 +11,7 @@
     "backfill:investor-activity": "node scripts/investor_activity_websearch.js",
     "backfill:investor-portfolio": "node scripts/investor_portfolio_websearch.js",
     "build:people": "node scripts/build_people_json.js",
+    "build:css": "node scripts/split_css.js",
     "check:links": "node scripts/check_investor_links.js",
     "check:links:apply": "node scripts/check_investor_links.js --apply",
     "fetch:logos": "node scripts/fetch_investor_logos.js",
