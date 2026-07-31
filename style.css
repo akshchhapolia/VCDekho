@@ -5370,11 +5370,12 @@ a.inv-profile-activity-row:hover {
   }
 }
 
-.inv-profile-portfolio-count {
+.inv-profile-section-head .inv-profile-portfolio-count {
   margin: 0.15rem 0 0.35rem;
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.55);
   letter-spacing: 0.02em;
+  max-width: none;
 }
 
 .inv-profile-portfolio-toolbar {
