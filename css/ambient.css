@@ -146,6 +146,10 @@
         display: inline-flex;
         align-items: center;
     }
+
+    .auth-google-btn {
+        min-height: 48px;
+    }
 }
 
 /* Form controls */
@@ -368,6 +372,135 @@
 
 .waitlist-submit-btn:active {
     transform: scale(0.98);
+}
+
+/* Auth login form (login + contact pages) */
+.auth-card-title {
+    margin: 0 0 0.35rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.auth-card-subtitle {
+    margin: 0 0 1.1rem;
+    font-size: 0.92rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.auth-status {
+    margin: 0 0 0.9rem;
+    padding: 0.7rem 0.85rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.auth-status.is-error {
+    background: rgba(220, 60, 60, 0.18);
+    color: #ffc9c9;
+}
+
+.auth-status.is-success {
+    background: rgba(46, 160, 90, 0.18);
+    color: #c9f0d6;
+}
+
+.auth-otp-step.is-hidden,
+.auth-otp-step[hidden],
+#email-step.is-hidden,
+#email-step[hidden] {
+    display: none;
+}
+
+.auth-otp-input {
+    letter-spacing: 0.28em;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+}
+
+.auth-otp-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.1rem;
+    margin: -0.15rem 0 1rem;
+}
+
+.auth-text-btn {
+    border: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.72);
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+}
+
+.auth-text-btn:hover {
+    color: #fff;
+}
+
+.auth-text-btn:disabled {
+    opacity: 0.55;
+    cursor: default;
+    text-decoration: none;
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1rem 0;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.85rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.auth-google-btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    padding: 0.85rem 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.auth-google-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+.auth-google-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.waitlist-submit-btn.is-busy,
+.auth-card .waitlist-submit-btn.is-busy {
+    opacity: 0.75;
+    cursor: wait;
+    pointer-events: none;
 }
 
 /* Success panel styling */
