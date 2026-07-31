@@ -677,6 +677,30 @@ body:not(.home-page) .hero-showcase {
     background: transparent;
     box-shadow: none;
     border-radius: 0;
+    overflow: visible;
+}
+
+body:not(.home-page)::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-color: #0b0b0d;
+    background-image:
+        radial-gradient(ellipse 160% 120% at 15% -10%, rgba(237, 87, 47, 0.1), transparent 58%),
+        radial-gradient(ellipse 120% 90% at 85% 15%, rgba(237, 87, 47, 0.05), transparent 55%),
+        radial-gradient(ellipse 100% 80% at 50% 110%, rgba(237, 87, 47, 0.04), transparent 52%);
+}
+
+body:not(.home-page) .waitlist-bg {
+    background-color: transparent;
+    background-image: none;
+}
+
+body:not(.home-page) .glow-orb {
+    opacity: 0.12;
+    filter: blur(130px);
 }
 
 body:not(.home-page) .hero-overlay {
