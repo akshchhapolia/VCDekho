@@ -3038,6 +3038,39 @@ a.inv-chip:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
+.inv-profile-sticky::-webkit-scrollbar { display: none; }
+
+.inv-profile-sticky a {
+  position: relative;
+  flex: 0 0 auto;
+  text-decoration: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.8rem;
+  font-weight: 650;
+  padding: 0.35rem 0.1rem 0.55rem;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.inv-profile-sticky a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: transparent;
+}
+
+.inv-profile-sticky a:hover,
+.inv-profile-sticky a.is-active {
+  color: #fff;
+}
+
+.inv-profile-sticky a.is-active::after {
+  background: var(--color-accent-orange);
+}
+
 body.inv-profile-page .hero-showcase.inv-detail-main {
   overflow: visible;
 }
