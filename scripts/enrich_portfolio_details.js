@@ -4,7 +4,7 @@
  *
  * Usage:
  *   node scripts/enrich_portfolio_details.js --slug 100unicorns
- *   node scripts/enrich_portfolio_details.js --all --budget 15 --concurrency 2
+ *   node scripts/enrich_portfolio_details.js --all --budget 25 --concurrency 1 --delay-ms 7000
  */
 require('dotenv').config();
 const fs = require('fs');
@@ -28,9 +28,10 @@ function argVal(name, def) {
 const ONLY_SLUG = argVal('--slug', null);
 const ALL = process.argv.includes('--all');
 const LIMIT = argVal('--limit', ALL ? 9999 : 30);
-const CONCURRENCY = argVal('--concurrency', 2);
+const CONCURRENCY = argVal('--concurrency', ALL ? 1 : 2);
 const BUDGET_USD = argVal('--budget', ALL ? 25 : Infinity);
 const MAX_COMPANIES = argVal('--max-companies', Infinity);
+const DELAY_MS = argVal('--delay-ms', ALL ? 7000 : 350);
 
 const PROMPT = `Extract one funding/exit detail from the search results about this investor and startup.
 Reply with EXACTLY one line in this format (use - for unknown fields):
@@ -49,7 +50,33 @@ function needsAmountDate(c) {
   const hasAmount =
     c.amount && String(c.amount).trim() && !/^unknown$/i.test(String(c.amount));
   const hasDate = Boolean(c.date);
+  // Resume: skip rows that already have both fields.
+  if (hasAmount && hasDate) return false;
   return !hasAmount || !hasDate;
+}
+
+function retryAfterMs(err) {
+  const msg = String(err && err.message ? err.message : '');
+  const m = msg.match(/retryAfter["']?\s*:\s*(\d+)/i);
+  if (m) return Math.max(15000, (Number(m[1]) + 2) * 1000);
+  return 65000;
+}
+
+async function webSearchWithRetry(query, opts) {
+  for (let attempt = 0; attempt < 6; attempt++) {
+    try {
+      return await webSearch(query, opts);
+    } catch (err) {
+      if (err.status === 429 && attempt < 5) {
+        const wait = retryAfterMs(err);
+        console.warn(`  … rate limited, waiting ${Math.round(wait / 1000)}s`);
+        await sleep(wait);
+        continue;
+      }
+      throw err;
+    }
+  }
+  return { organic: [], costUsd: 0 };
 }
 
 function parseEnrichLine(text) {
@@ -99,19 +126,8 @@ async function enrichOne(inv, company) {
   const q = `"${company.name}" (${aliasClause}) (funding OR investment OR invested OR exit OR backed OR led)`;
 
   let organic = [];
-  for (let attempt = 0; attempt < 3; attempt++) {
-    try {
-      const res = await webSearch(q, { limit: 8, gl: 'in', hl: 'en' });
-      organic = res.organic;
-      break;
-    } catch (err) {
-      if (err.status === 429 && attempt < 2) {
-        await sleep(8000 * (attempt + 1));
-        continue;
-      }
-      throw err;
-    }
-  }
+  const res = await webSearchWithRetry(q, { limit: 8, gl: 'in', hl: 'en' });
+  organic = res.organic || [];
   if (!organic.length) return { company, costUsd: SEARLO_COST_PER_QUERY, updated: false };
 
   const { text, usage } = await generateText({
@@ -179,7 +195,7 @@ async function main() {
 
   const budgetLabel = Number.isFinite(BUDGET_USD) ? `$${BUDGET_USD.toFixed(2)}` : 'none';
   console.log(
-    `News enrichment for ${rows.length} investor(s) (budget=${budgetLabel}, concurrency=${CONCURRENCY})…\n`
+    `News enrichment for ${rows.length} investor(s) (budget=${budgetLabel}, concurrency=${CONCURRENCY}, delay=${DELAY_MS}ms)…\n`
   );
 
   let spent = 0;
@@ -218,8 +234,9 @@ async function main() {
         } catch (err) {
           console.error(`  ✗ ${companies[i].name}: ${err.message}`);
           if (err.status === 402) spent = BUDGET_USD;
+          if (err.status === 429) await sleep(retryAfterMs(err));
         }
-        await sleep(350);
+        await sleep(DELAY_MS);
       },
       CONCURRENCY
     );
