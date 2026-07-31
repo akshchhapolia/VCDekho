@@ -2426,6 +2426,10 @@ a.inv-chip:hover {
 
   .inv-dir-filters-toggle {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.65rem 1rem;
   }
 
   .inv-dir-sidebar {
@@ -2512,6 +2516,7 @@ a.inv-chip:hover {
   .inv-dir-pager-btn {
     width: 100%;
     justify-content: center;
+    min-height: 44px;
   }
 
   .inv-filter-grid {
