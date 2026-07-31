@@ -42,22 +42,30 @@ function fundHost(website) {
 
 /**
  * Resolve candidate fund company-detail URLs for a portfolio row.
+ * Keep the list short — most funds only expose one detail-page pattern.
  */
 function detailUrlsForCompany(company, investorWebsite) {
   const urls = [];
   const src = company.sourceUrl || '';
   if (/\/(companies|portfolio|investments|startups)\/[a-z0-9][a-z0-9-]+/i.test(src)) {
     urls.push(src);
+    return urls;
   }
 
   const origin = originOf(investorWebsite);
   const slug = companyKey(company);
-  if (origin && slug) {
-    for (const path of ['companies', 'portfolio', 'investments', 'startups']) {
-      const u = `${origin}/${path}/${slug}`;
-      if (!urls.includes(u)) urls.push(u);
-    }
+  if (!origin || !slug) return urls;
+
+  urls.push(`${origin}/companies/${slug}`);
+
+  // Blume and a few others use /startups/{slug}.
+  try {
+    const host = new URL(origin).hostname.replace(/^www\./, '');
+    if (/blume\.vc$/i.test(host)) urls.push(`${origin}/startups/${slug}`);
+  } catch (_) {
+    /* ignore */
   }
+
   return urls;
 }
 
@@ -215,10 +223,8 @@ async function enrichCompanyFromFundPage(company, investorWebsite) {
       detailUrl = url;
       break;
     }
-    // Keep detail page as source even when parse is thin.
-    if (!parsed && /\/(companies|portfolio|investments|startups)\//i.test(url)) {
-      detailUrl = url;
-    }
+    detailUrl = url;
+    break; // Page exists but no parseable fields — don't probe more paths.
   }
 
   if (!parsed) {
