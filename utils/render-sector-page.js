@@ -355,6 +355,7 @@ function renderSectorPage(sector, res) {
     '<html lang="en" class="scrollable-page">',
     '<head>',
     '<script src="/js/analytics.js" defer></script>',
+    '<script src="/js/nav.js" defer></script>',
     '<meta charset="UTF-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
     '<link rel="preconnect" href="https://fonts.googleapis.com">',
