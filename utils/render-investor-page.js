@@ -645,6 +645,10 @@ function renderInvestorPage(investor, related, res) {
 
     stickyNav,
 
+    '</div>',
+
+    '<div class="inv-profile-sticky-host" id="inv-profile-sticky-host">' + stickyNav + '</div>',
+
     '<section class="inv-profile-section inv-profile-reveal is-visible" id="snapshot">',
     '<div class="inv-profile-section-label">01 — Snapshot</div>',
     '<div class="inv-profile-section-head"><h2>At a glance</h2><p>Key signals founders use to decide if this investor is worth a conversation.</p></div>',
