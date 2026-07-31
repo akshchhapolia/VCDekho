@@ -159,19 +159,42 @@ function isBlankPortfolioLabel(value) {
   return !v || v === 'unknown' || v === 'listed in profile' || v === 'n/a' || v === 'null';
 }
 
+const PORTFOLIO_PAGE_SIZE = 36;
+const PORTFOLIO_TOOLBAR_MIN = 24;
+
+function isGenericPortfolioSource(label) {
+  return /^portfolio\s*page$/i.test(String(label || '').trim());
+}
+
+function portfolioLogoHtml(c) {
+  const initial = escapeHtml((c.name || '?').charAt(0).toUpperCase());
+  const fallback =
+    '<span class="inv-profile-portfolio-logo is-fallback" aria-hidden="true">' + initial + '</span>';
+  if (!c.logoUrl) {
+    return (
+      '<span class="inv-profile-portfolio-logo is-fallback is-visible" aria-hidden="true">' +
+      initial +
+      '</span>'
+    );
+  }
+  return (
+    '<img class="inv-profile-portfolio-logo" src="' +
+    escapeHtml(c.logoUrl) +
+    '" alt="" width="32" height="32" loading="lazy" decoding="async" onerror="this.classList.add(\'is-broken\')">' +
+    fallback
+  );
+}
+
 function portfolioSection(investor) {
   const companies = investor.portfolioCompanies || [];
   if (!companies.length) return '';
 
+  const total = companies.length;
+  const useToolbar = total >= PORTFOLIO_TOOLBAR_MIN;
+
   const cards = companies
-    .map((c) => {
-      const logo = c.logoUrl
-        ? '<img class="inv-profile-portfolio-logo" src="' +
-          escapeHtml(c.logoUrl) +
-          '" alt="" width="40" height="40" loading="lazy" decoding="async">'
-        : '<span class="inv-profile-portfolio-logo is-fallback" aria-hidden="true">' +
-          escapeHtml((c.name || '?').charAt(0).toUpperCase()) +
-          '</span>';
+    .map((c, index) => {
+      const logo = portfolioLogoHtml(c);
 
       // Prefer real deal signals; never surface placeholder labels like
       // "Unknown" / "Listed in profile" that came from thin writeup parses.
@@ -197,19 +220,20 @@ function portfolioSection(investor) {
         : '';
 
       const dateLabel = c.date ? formatActivityDate(c.date) : '';
-      const sourceLabel = c.sourceTitle
+      const rawSource = c.sourceTitle
         ? String(c.sourceTitle).trim()
         : c.sourceUrl
           ? 'View source'
           : '';
+      // Skip noisy generic "Portfolio page" when there's no date to pair with.
+      const sourceLabel =
+        rawSource && !(isGenericPortfolioSource(rawSource) && !dateLabel) ? rawSource : '';
       const footBits = [];
       if (dateLabel) footBits.push('<span class="inv-profile-portfolio-date">' + escapeHtml(dateLabel) + '</span>');
-      if (sourceLabel && c.sourceUrl) {
+      if (sourceLabel) {
         footBits.push(
           '<span class="inv-profile-portfolio-source">' + escapeHtml(sourceLabel.slice(0, 72)) + '</span>'
         );
-      } else if (sourceLabel) {
-        footBits.push('<span class="inv-profile-portfolio-source">' + escapeHtml(sourceLabel.slice(0, 72)) + '</span>');
       }
       const foot = footBits.length
         ? '<div class="inv-profile-portfolio-foot">' +
@@ -228,28 +252,74 @@ function portfolioSection(investor) {
         foot +
         '</div>';
 
+      const dataName = escapeHtml(String(c.name || '').toLowerCase());
+      const hiddenAttr =
+        useToolbar && index >= PORTFOLIO_PAGE_SIZE ? ' hidden' : '';
+      const cardAttrs =
+        ' class="inv-profile-portfolio-card" data-name="' + dataName + '"' + hiddenAttr;
+
       // Prefer the article/source when we have one; company site as fallback.
       const href = c.sourceUrl || c.website;
       if (href) {
         return (
-          '<a class="inv-profile-portfolio-card" href="' +
+          '<a' +
+          cardAttrs +
+          ' href="' +
           escapeHtml(href) +
           '" target="_blank" rel="noopener noreferrer">' +
           body +
           '</a>'
         );
       }
-      return '<div class="inv-profile-portfolio-card">' + body + '</div>';
+      return '<div' + cardAttrs + '>' + body + '</div>';
     })
     .join('');
 
+  const countLabel = total === 1 ? '1 company' : total + ' companies';
+  const subtitle =
+    'Startups this investor has backed — round, amount, date, and source when we can verify them publicly.';
+
+  const initialShowing = useToolbar ? Math.min(PORTFOLIO_PAGE_SIZE, total) : total;
+  const toolbar = useToolbar
+    ? '<div class="inv-profile-portfolio-toolbar">' +
+      '<label class="inv-profile-portfolio-search-wrap">' +
+      '<input type="search" class="inv-profile-portfolio-search" id="inv-portfolio-search" placeholder="Search portfolio" autocomplete="off" aria-label="Search portfolio">' +
+      '</label>' +
+      '<p class="inv-profile-portfolio-status" id="inv-portfolio-status" aria-live="polite">' +
+      'Showing ' +
+      initialShowing +
+      ' of ' +
+      total +
+      '</p>' +
+      '</div>'
+    : '';
+
+  const loadMore =
+    useToolbar && total > PORTFOLIO_PAGE_SIZE
+      ? '<div class="inv-profile-portfolio-more-wrap">' +
+        '<button type="button" class="inv-profile-portfolio-more" id="inv-portfolio-more" data-page-size="' +
+        PORTFOLIO_PAGE_SIZE +
+        '" data-total="' +
+        total +
+        '">Load more</button>' +
+        '</div>'
+      : '';
+
   return (
-    '<section class="inv-profile-section inv-profile-reveal" id="portfolio">' +
+    '<section class="inv-profile-section inv-profile-reveal" id="portfolio" data-portfolio-total="' +
+    total +
+    '">' +
     '<div class="inv-profile-section-label">01c — Portfolio</div>' +
-    '<div class="inv-profile-section-head"><h2>Portfolio companies</h2><p>Startups this investor has backed — round, amount, date, and source when we can verify them publicly.</p></div>' +
-    '<div class="inv-profile-portfolio-grid">' +
+    '<div class="inv-profile-section-head"><h2>Portfolio companies</h2><p class="inv-profile-portfolio-count">' +
+    escapeHtml(countLabel) +
+    '</p><p>' +
+    subtitle +
+    '</p></div>' +
+    toolbar +
+    '<div class="inv-profile-portfolio-grid" id="inv-portfolio-grid">' +
     cards +
     '</div>' +
+    loadMore +
     '</section>'
   );
 }
@@ -518,7 +588,7 @@ function renderInvestorPage(investor, related, res) {
     '<link rel="canonical" href="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/style.css?v=60">',
+    '<link rel="stylesheet" href="/style.css?v=61">',
     '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
@@ -623,6 +693,7 @@ function renderInvestorPage(investor, related, res) {
     '</div></main></div>',
     '<script src="/js/auth.js"></script>',
     '<script src="/app.js"></script>',
+    '<script src="/investors/portfolio-section.js?v=1"></script>',
     '<script>',
     '(function(){',
     'var nav=document.getElementById("inv-profile-sticky");',
