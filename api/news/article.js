@@ -279,14 +279,7 @@ module.exports = async function handler(req, res) {
 <!DOCTYPE html>
 <html lang="en" class="scrollable-page">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ23KLLWFM"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BJ23KLLWFM');
-    </script>
-
+    <script src="/js/analytics.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -296,7 +289,10 @@ module.exports = async function handler(req, res) {
     <meta name="description" content="${article.meta_description}">
     
     <link rel="icon" type="image/png" href="/assets/logoforvc.png">
-    <link rel="stylesheet" href="/style.css?v=64">
+    <link rel="stylesheet" href="/css/base.css?v=65">
+    <link rel="stylesheet" href="/css/hero.css?v=65">
+    <link rel="stylesheet" href="/css/ambient.css?v=65">
+    <link rel="stylesheet" href="/css/blog.css?v=65">
     <link rel="canonical" href="https://vcdekho.com/${pathPrefix}/${article.slug}">
     
     <meta property="og:title" content="${article.meta_title}">
@@ -372,7 +368,7 @@ module.exports = async function handler(req, res) {
 
                 <!-- Waitlist CTA Card -->
                 <section class="blog-cta-banner" style="margin: 3.5rem 0;">
-                    <img src="/assets/blog_vc_dekho_cta.png" alt="VC Dekho Brand Graphic Banner" class="blog-cta-bg">
+                    <img src="/assets/blog_vc_dekho_cta.webp" alt="VC Dekho Brand Graphic Banner" class="blog-cta-bg">
                     <div class="blog-cta-content">
                         <h2 class="blog-cta-title">Stop guessing. Start matching.</h2>
                         <p class="blog-cta-desc">
