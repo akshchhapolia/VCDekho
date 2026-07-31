@@ -3060,6 +3060,55 @@ a.inv-chip:hover {
   background: var(--color-accent-orange);
 }
 
+/* Sticky site nav + section tabs on investor/person profiles */
+body.inv-profile-page .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  margin-left: calc(-1 * var(--page-padding));
+  margin-right: calc(-1 * var(--page-padding));
+  width: calc(100% + 2 * var(--page-padding));
+  padding-left: var(--page-padding);
+  padding-right: var(--page-padding);
+  padding-top: calc(0.15rem + env(safe-area-inset-top, 0px));
+  padding-bottom: 0.45rem;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+body.inv-profile-page .inv-profile-sticky {
+  top: calc(50px + env(safe-area-inset-top, 0px) + 0.35rem);
+  z-index: 90;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+body.inv-profile-page .inv-profile-section {
+  scroll-margin-top: calc(7.25rem + env(safe-area-inset-top, 0px));
+}
+
+@media (max-width: 768px) {
+  body.inv-profile-page .site-header {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    width: calc(100% + 2rem);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.inv-profile-page .site-header,
+  body.inv-profile-page .inv-profile-sticky {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(0, 0, 0, 0.96);
+  }
+}
+
 .inv-profile-section {
   margin: 0 0 2.75rem;
   scroll-margin-top: 4.5rem;
