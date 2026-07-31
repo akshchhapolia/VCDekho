@@ -318,6 +318,31 @@
     els.guideSlot.innerHTML = '';
   }
 
+  function activeFilterCount() {
+    var n = 0;
+    if (state.q) n++;
+    if (state.sector) n++;
+    if (state.stage) n++;
+    if (state.type) n++;
+    if (state.thesis) n++;
+    if (state.cheque) n++;
+    if (state.active) n++;
+    return n;
+  }
+
+  function updateMobileFiltersLabel() {
+    if (!els.filtersToggle) return;
+    if (!window.matchMedia('(max-width: 768px)').matches) {
+      els.filtersToggle.textContent = 'Filters';
+      return;
+    }
+    var total = state.total ? state.total.toLocaleString('en-IN') : '…';
+    var active = activeFilterCount();
+    els.filtersToggle.textContent = active > 0
+      ? 'Filters (' + active + ') · ' + total
+      : 'Filters · ' + total;
+  }
+
   function updatePager() {
     const page = Math.floor(state.offset / PAGE_SIZE) + 1;
     const pages = Math.max(1, Math.ceil(state.total / PAGE_SIZE));
@@ -330,6 +355,7 @@
     els.next.disabled = state.offset + PAGE_SIZE >= state.total;
     els.count.textContent = `${state.total.toLocaleString('en-IN')} funds`;
     updateGuideSlot();
+    updateMobileFiltersLabel();
   }
 
   async function load() {
@@ -449,6 +475,8 @@
       setFiltersOpen(false);
     }
   });
+
+  window.addEventListener('resize', updateMobileFiltersLabel);
 
   const params0 = new URLSearchParams(window.location.search);
   if (params0.get('stage')) state.stage = params0.get('stage');
