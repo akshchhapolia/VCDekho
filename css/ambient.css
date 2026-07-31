@@ -1,0 +1,462 @@
+/* ==========================================================================
+   WAITLIST PAGE & FORM STYLING
+   ========================================================================== */
+.waitlist-content {
+    overflow-y: auto;
+}
+
+.waitlist-layout-grid {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 992px) {
+    .waitlist-layout-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        height: auto;
+        overflow-y: visible;
+        padding-bottom: 2rem;
+    }
+    .waitlist-content {
+        overflow-y: auto;
+    }
+}
+
+.waitlist-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: left;
+}
+
+.waitlist-header-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Social Proof benefits block */
+.why-join-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.why-join-title {
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text-light);
+    letter-spacing: -0.2px;
+}
+
+.why-join-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.why-join-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.why-join-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    margin-top: 3px;
+}
+
+.why-join-icon-svg {
+    color: var(--color-accent-orange);
+    display: block;
+}
+
+.why-join-text {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--color-text-light);
+    opacity: 0.85;
+}
+
+/* Frosted Form Container */
+.waitlist-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0px;
+    padding: 1.75rem;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .waitlist-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Form controls */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.85rem;
+    text-align: left;
+}
+
+.form-group.is-hidden,
+.form-group[hidden] {
+    display: none !important;
+}
+
+.form-label {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-text-light);
+    opacity: 0.95;
+    letter-spacing: 0.2px;
+}
+
+.label-optional {
+    font-weight: 400;
+    opacity: 0.6;
+    font-size: 0.75rem;
+}
+
+.form-input,
+.form-select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--color-text-light);
+    padding: 0.7rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    border-radius: 0px;
+    outline: none;
+    transition: var(--transition-smooth);
+}
+
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.form-input:focus,
+.form-select:focus {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+/* Error States */
+.form-input.invalid,
+.form-select.invalid {
+    border-color: var(--color-accent-orange) !important;
+    background: rgba(237, 87, 47, 0.05) !important;
+}
+
+.form-error-msg {
+    display: none;
+    color: var(--color-accent-orange);
+    font-size: 0.7rem;
+    font-weight: 500;
+    margin-top: 0.25rem;
+}
+
+/* Form columns split */
+.form-row-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 576px) {
+    .form-row-split {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+/* Custom Dropdown Arrow */
+.custom-select-wrapper {
+    position: relative;
+}
+
+.custom-select-wrapper::after {
+    content: '▼';
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding-right: 2.5rem;
+}
+
+.form-select option {
+    background: #1A1A1A;
+    color: var(--color-text-light);
+}
+
+/* Custom Checkbox controls */
+.checkbox-group-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.25rem;
+}
+
+@media (min-width: 769px) {
+    .checkbox-group-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem 1rem;
+    }
+}
+
+.checkbox-label-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+}
+
+.form-checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.custom-checkbox {
+    height: 18px;
+    width: 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0px;
+    display: inline-block;
+    flex-shrink: 0;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.checkbox-label-wrapper:hover .custom-checkbox {
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.form-checkbox:checked ~ .custom-checkbox {
+    background-color: var(--color-accent-orange);
+    border-color: var(--color-accent-orange);
+}
+
+.custom-checkbox::after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 4px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.form-checkbox:checked ~ .custom-checkbox::after {
+    display: block;
+}
+
+.checkbox-text-content {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+    opacity: 0.85;
+    line-height: 1.4;
+}
+
+.form-checkbox:checked ~ .checkbox-text-content {
+    opacity: 1;
+}
+
+/* Submit Waitlist Button */
+.waitlist-submit-btn {
+    width: 100%;
+    background-color: var(--color-text-light);
+    color: var(--color-text-main);
+    border: none;
+    padding: 0.8rem;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 0px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    letter-spacing: 0.5px;
+    margin-top: 1.25rem;
+    text-transform: uppercase;
+}
+
+.waitlist-submit-btn:hover {
+    background-color: var(--color-accent-orange);
+    color: var(--color-text-light);
+    box-shadow: 0 4px 15px rgba(237, 87, 47, 0.3);
+}
+
+.waitlist-submit-btn:active {
+    transform: scale(0.98);
+}
+
+/* Success panel styling */
+.waitlist-success-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1rem;
+    animation: waitlistFadeIn 0.5s ease-out;
+}
+
+.success-animation-icon {
+    font-size: 3rem;
+    margin-bottom: 1.25rem;
+    animation: waitlistBounce 2s infinite;
+}
+
+.success-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--color-text-light);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+}
+
+.ticker-number-highlight {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    color: var(--color-accent-orange);
+    text-shadow: 0 0 15px rgba(237, 87, 47, 0.3);
+}
+
+.success-desc {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    opacity: 0.85;
+}
+
+@keyframes waitlistFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes waitlistBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Waitlist Page Custom Ambient Background */
+.ambient-bg-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: inherit; /* Maintain rounded corners of the parent container */
+}
+
+.waitlist-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0b0b0d; /* Premium deep dark slate/black background */
+    overflow: hidden;
+    z-index: 1;
+    transition: transform 0.5s ease-out; /* Parallax transitions */
+}
+
+.glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    mix-blend-mode: screen;
+    animation: orbPulse 12s infinite alternate ease-in-out;
+    pointer-events: none;
+}
+
+.orb-1 {
+    top: -10%;
+    left: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, rgba(237, 87, 47, 0.25) 0%, transparent 70%);
+    animation-duration: 15s;
+}
+
+.orb-2 {
+    bottom: -15%;
+    right: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+    animation-duration: 20s;
+    animation-delay: -5s;
+}
+
+.orb-3 {
+    top: 40%;
+    left: 50%;
+    width: 35vw;
+    height: 35vw;
+    background: radial-gradient(circle, rgba(237, 87, 47, 0.12) 0%, transparent 70%);
+    animation-duration: 18s;
+    animation-delay: -2s;
+}
+
+@keyframes orbPulse {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translate(3%, 5%) scale(1.1);
+        opacity: 0.45;
+    }
+    100% {
+        transform: translate(-2%, -3%) scale(0.95);
+        opacity: 0.25;
+    }
+}
+
