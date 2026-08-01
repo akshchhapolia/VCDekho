@@ -360,6 +360,26 @@
 
   window.addEventListener('resize', updateMobileFiltersLabel);
 
+  // Mweb: visible press state on Firm / Links tiles (iOS :active is unreliable)
+  if (els.results) {
+    var clearMetaPress = function () {
+      els.results.querySelectorAll('.inv-dir-col-stages.is-pressed, .inv-dir-col-ticket.is-pressed')
+        .forEach(function (el) { el.classList.remove('is-pressed'); });
+    };
+    els.results.addEventListener('touchstart', function (e) {
+      if (!window.matchMedia('(max-width: 768px)').matches) return;
+      var link = e.target.closest(
+        '.inv-dir-col-stages .inv-dir-inline-link, .inv-dir-col-ticket .inv-dir-inline-link'
+      );
+      if (!link) return;
+      clearMetaPress();
+      var tile = link.closest('.inv-dir-col-stages, .inv-dir-col-ticket');
+      if (tile) tile.classList.add('is-pressed');
+    }, { passive: true });
+    els.results.addEventListener('touchend', clearMetaPress, { passive: true });
+    els.results.addEventListener('touchcancel', clearMetaPress, { passive: true });
+  }
+
   const params0 = new URLSearchParams(window.location.search);
   if (params0.get('companyType')) state.companyType = params0.get('companyType');
   if (params0.get('q')) {
