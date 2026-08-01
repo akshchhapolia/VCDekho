@@ -14,6 +14,12 @@
  * sourceMethod = 'site_scrape'.
  */
 const { generateText } = require('./gemini');
+const {
+  isJunkPortfolioName,
+  isFooterLinkShape,
+  isPortfolioNavSlug,
+  filterPortfolioJunk
+} = require('./portfolio-junk-filter');
 
 const FETCH_TIMEOUT_MS = 12000;
 const MAX_HTML_BYTES = 1_500_000;
@@ -129,33 +135,7 @@ function discoverPortfolioUrls(origin, homeHtml) {
 }
 
 function isJunkName(name) {
-  const n = String(name || '').trim();
-  if (!n || n.length < 2 || n.length > 60) return true;
-  if (
-    /^(logo|home|menu|next|prev|all|filter|image|icon|banner|preview|blume|white|dark|client)$/i.test(
-      n
-    )
-  ) {
-    return true;
-  }
-  if (/^(name|email|phone|message|subject|company|first name|last name)\s*\d*$/i.test(n)) return true;
-  if (/^you are\b/i.test(n)) return true;
-  if (/\|/.test(n)) return true;
-  if (/portfolio\s*$/i.test(n) && n.length > 28) return true;
-  if (/\.(png|jpe?g|gif|svg|webp)$/i.test(n)) return true;
-  if (/^img[-_]?\d+$/i.test(n)) return true;
-  if (/\d{3,}px/i.test(n)) return true;
-  if (/funding|led by|secures|raises|series [a-d]\b|crore|million/i.test(n)) return true;
-  if (/\b(logo|transparent|dark|white|final|preview)\b/i.test(n) && n.split(/\s+/).length > 3) {
-    return true;
-  }
-  // UUID / asset-hash alts: "Ce9c689e f24d 4705 a10d f1ef65a42801"
-  if (/^[a-f0-9]{6,}(\s+[a-f0-9]{2,}){2,}$/i.test(n)) return true;
-  // Broken token soup: "Ru C Ea4 PZ", "1 KNL yn C Qd..."
-  const tokens = n.split(/\s+/);
-  if (tokens.length >= 4 && tokens.filter((t) => t.length <= 3).length >= 3) return true;
-  if (tokens.length >= 5 && tokens.every((t) => t.length <= 4)) return true;
-  return false;
+  return isJunkPortfolioName(name);
 }
 
 function normalizeSiteCompany(raw, pageUrl) {
@@ -314,6 +294,7 @@ function companiesFromRawArray(arr, pageUrl) {
   const companies = [];
   const seen = new Set();
   for (const raw of pick) {
+    if (isFooterLinkShape(raw)) continue;
     // If row is founder-shaped (person name + company), use the company.
     let name = raw.name || raw.title || raw.company;
     if (raw.company && looksLikePersonName(raw.name) && !looksLikePersonName(raw.company)) {
@@ -340,19 +321,105 @@ function companiesFromRawArray(arr, pageUrl) {
 }
 
 /**
+ * Next.js / Strapi pages often embed the real portfolio in __NEXT_DATA__
+ * while footer nav links sit in sibling arrays — parse portfolio keys only.
+ */
+function extractNextDataPortfolio(html, pageUrl) {
+  const m = html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/i);
+  if (!m) return [];
+
+  try {
+    const root = JSON.parse(m[1]);
+    const companies = [];
+    const seen = new Set();
+
+    function imageUrl(raw) {
+      if (!raw) return null;
+      if (typeof raw === 'string') return raw;
+      return raw.url || raw.src || null;
+    }
+
+    function absorbPortfolioArray(arr) {
+      for (const raw of arr || []) {
+        if (!raw || typeof raw !== 'object') continue;
+        if (isFooterLinkShape(raw)) continue;
+
+        let name = raw.name || raw.title || raw.company_name || raw.organization || raw.company;
+        if (raw.company && looksLikePersonName(raw.name) && !looksLikePersonName(raw.company)) {
+          name = raw.company;
+        }
+        if (looksLikePersonName(name) && !raw.website && !raw.url) continue;
+
+        const website =
+          raw.website ||
+          (raw.url && /^https?:\/\//i.test(String(raw.url)) ? raw.url : null);
+
+        const c = normalizeSiteCompany(
+          {
+            name,
+            website,
+            image: imageUrl(raw.image) || imageUrl(raw.logo) || imageUrl(raw.logoUrl),
+            sector: raw.sector || raw.category,
+            stage: raw.stage || raw.round,
+            amount: raw.amount || raw.funding
+          },
+          pageUrl
+        );
+        if (!c || seen.has(c.companySlug)) continue;
+        seen.add(c.companySlug);
+        companies.push(c);
+      }
+    }
+
+    function walk(o, keyPath) {
+      if (!o || typeof o !== 'object') return;
+      if (Array.isArray(o)) {
+        if (/portfolios?|portfolioCompanies|investments|startups/i.test(keyPath)) {
+          absorbPortfolioArray(o);
+        }
+        return;
+      }
+      for (const [k, v] of Object.entries(o)) {
+        if (/footer|navbar|nav|menu|breadcrumb/i.test(k)) continue;
+        const path = keyPath ? `${keyPath}.${k}` : k;
+        if (Array.isArray(v) && /portfolios?|portfolioCompanies|investments|startups/i.test(k)) {
+          absorbPortfolioArray(v);
+        } else {
+          walk(v, path);
+        }
+      }
+    }
+
+    walk(root, '');
+    return companies;
+  } catch (_) {
+    return [];
+  }
+}
+
+/**
  * Extract portfolio company objects from embedded JS/JSON arrays.
  */
 function extractJsonishCompanies(html, pageUrl) {
   const companies = [];
   const seen = new Set();
 
-  function absorb(arr) {
+  function absorb(arr, contextKey) {
+    if (/footer|navbar|nav|menu|breadcrumb|bottom\.links/i.test(String(contextKey || ''))) return;
     for (const c of companiesFromRawArray(arr, pageUrl)) {
       if (seen.has(c.companySlug)) continue;
       seen.add(c.companySlug);
       companies.push(c);
     }
   }
+
+  const nextData = extractNextDataPortfolio(html, pageUrl);
+  for (const c of nextData) {
+    if (seen.has(c.companySlug)) continue;
+    seen.add(c.companySlug);
+    companies.push(c);
+  }
+  if (companies.length >= 5) return companies;
 
   // <script type="application/json"> blobs (e.g. WaterBridge wb-portfolio-data)
   const jsonScriptRe =
@@ -366,11 +433,11 @@ function extractJsonishCompanies(html, pageUrl) {
       else if (data && typeof data === 'object') {
         for (const [key, val] of Object.entries(data)) {
           if (!Array.isArray(val)) continue;
-          if (/founder|team|people|partner|employee/i.test(key)) continue;
-          if (/portfolio|compan|invest|startup/i.test(key) || val.length >= 5) queues.push(val);
+          if (/founder|team|people|partner|employee|footer|nav|menu|link/i.test(key)) continue;
+          if (/portfolio|compan|invest|startup/i.test(key) || val.length >= 5) queues.push({ arr: val, key });
         }
       }
-      for (const arr of queues) absorb(arr);
+      for (const { arr, key } of queues) absorb(arr, key);
     } catch (_) {
       /* ignore */
     }
@@ -412,6 +479,7 @@ function extractCompanyPathLinks(html, pageUrl) {
   while ((m = re.exec(html))) {
     const href = absolutize(pageUrl, m[1]);
     const slug = m[2];
+    if (isPortfolioNavSlug(slug)) continue;
     const inner = m[3];
     if (/logo-hover|hover|filter|all-companies/i.test(href || '')) continue;
     let name =
@@ -619,7 +687,10 @@ async function scrapeInvestorPortfolioSite(website, opts = {}) {
       }
     }
 
-    const cleaned = filterOutFundSelf(best, opts.investorName).slice(0, MAX_SITE_COMPANIES);
+    const cleaned = filterPortfolioJunk(filterOutFundSelf(best, opts.investorName)).slice(
+      0,
+      MAX_SITE_COMPANIES
+    );
     const score = scoreExtraction(cleaned, method) + page.score;
     if (score > bestResult.score) {
       bestResult = {
