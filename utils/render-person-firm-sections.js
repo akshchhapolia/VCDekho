@@ -8,6 +8,7 @@ const { getAllStages } = require('./investment-stages');
 const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
 const { renderExploreRelated } = require('./render-explore-related');
 const { portfolioCardHref } = require('./portfolio-card-href');
+const { filterPortfolioJunk } = require('./portfolio-junk-filter');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -201,10 +202,11 @@ function isBlankPortfolioLabel(value) {
 }
 
 function firmPortfolioSection(person, investor, limit) {
-  const companies = (investor.portfolioCompanies || []).slice(0, limit || 9);
+  const all = filterPortfolioJunk(investor.portfolioCompanies || []);
+  const companies = all.slice(0, limit || 9);
   if (!companies.length) return '';
 
-  const total = (investor.portfolioCompanies || []).length;
+  const total = all.length;
   const cards = companies.map((c) => {
     const fallback = '<span class="inv-profile-portfolio-logo-fallback" aria-hidden="true">' +
       escapeHtml(String(c.name || '?').slice(0, 1).toUpperCase()) + '</span>';

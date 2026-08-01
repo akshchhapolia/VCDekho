@@ -6,6 +6,7 @@
  * companySlug so lists only grow / get richer, never get clobbered.
  */
 const db = require('./db');
+const { filterPortfolioJunk } = require('./portfolio-junk-filter');
 
 // Site scrapes can return large official portfolios (e.g. 100Unicorns ~150).
 const MAX_STORED_COMPANIES = 150;
@@ -113,12 +114,15 @@ async function upsertPortfolio(slug, companies, sourceMethod) {
   const existingCompanies = (row && row.companies) || [];
   let merged = existingCompanies;
   if (companies && companies.length) {
+    companies = filterPortfolioJunk(companies);
     if (isOfficialSiteSource(sourceMethod) && companies.length >= 8) {
       merged = mergePreferOfficialSet(existingCompanies, companies);
     } else {
       merged = mergeCompanies(existingCompanies, companies);
     }
   }
+
+  merged = filterPortfolioJunk(merged);
 
   if (!merged.length) {
     await db.query(

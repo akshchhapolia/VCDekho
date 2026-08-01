@@ -463,7 +463,7 @@ function extractJsonishCompanies(html, pageUrl) {
       const start = m.index;
       const chunk = extractBalancedArray(html, start);
       const arr = parseJsArrayLiteral(chunk);
-      if (arr) absorb(arr, m[1]);
+      if (arr) absorb(arr, nearby);
       if (companies.length >= 40) break;
     }
   }

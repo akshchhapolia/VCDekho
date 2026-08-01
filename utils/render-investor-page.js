@@ -8,6 +8,7 @@ const { renderExploreRelated } = require('./render-explore-related');
 const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
 const { getPeopleByCompanySlug } = require('./people');
 const { portfolioCardHref } = require('./portfolio-card-href');
+const { filterPortfolioJunk } = require('./portfolio-junk-filter');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -155,6 +156,10 @@ function recentActivitySection(investor) {
   );
 }
 
+function filteredPortfolioCompanies(investor) {
+  return filterPortfolioJunk(investor.portfolioCompanies || []);
+}
+
 function isBlankPortfolioLabel(value) {
   const v = String(value || '').trim().toLowerCase();
   return (
@@ -204,7 +209,7 @@ function portfolioLogoHtml(c) {
 }
 
 function portfolioSection(investor) {
-  const companies = investor.portfolioCompanies || [];
+  const companies = filterPortfolioJunk(investor.portfolioCompanies || []);
   if (!companies.length) return '';
 
   const total = companies.length;
@@ -559,7 +564,7 @@ function renderInvestorPage(investor, related, res) {
     '<nav class="inv-profile-sticky" id="inv-profile-sticky" aria-label="On this page">',
     '<a href="#snapshot" data-section="snapshot">Snapshot</a>',
     (investor.recentChecks || []).length ? '<a href="#activity" data-section="activity">Activity</a>' : '',
-    (investor.portfolioCompanies || []).length ? '<a href="#portfolio" data-section="portfolio">Portfolio</a>' : '',
+    filteredPortfolioCompanies(investor).length ? '<a href="#portfolio" data-section="portfolio">Portfolio</a>' : '',
     '<a href="#focus" data-section="focus">Focus</a>',
     themes.length ? '<a href="#thesis" data-section="thesis">Thesis</a>' : '',
     '<a href="#about" data-section="about">About</a>',
