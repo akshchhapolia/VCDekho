@@ -73,7 +73,7 @@ function renderThemePage(theme, res) {
     '<a class="theme-other-card" href="/investors/themes/' + escapeHtml(t.id) + '">' +
       '<div class="theme-other-top">' +
         getThesisThemeIconSvg(t.id, 'theme-other-icon') +
-        '<div class="theme-other-count">' + t.investorCount + ' investors</div>' +
+        '<div class="theme-other-count">' + t.investorCount + ' funds</div>' +
       '</div>' +
       '<h3>' + escapeHtml(t.label) + '</h3>' +
       '<p>' + escapeHtml(t.summary) + '</p>' +
