@@ -3200,6 +3200,86 @@ body.inv-person-profile .inv-profile-hero-inner {
   margin-top: 0.15rem;
 }
 
+/* Person profile — firm sections + colleague avatars (scoped; does not affect investor pages) */
+body.inv-person-profile .inv-person-firm-attribution {
+  margin-top: 0.65rem;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+body.inv-person-profile .inv-person-firm-attribution a {
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+body.inv-person-profile .inv-person-firm-attribution a:hover {
+  color: var(--color-accent-orange);
+}
+
+body.inv-person-profile .inv-person-firm-thesis-lead {
+  margin: 0 0 1rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 44rem;
+}
+
+body.inv-person-profile .inv-person-firm-metrics {
+  margin-bottom: 1.15rem;
+}
+
+body.inv-person-profile .inv-person-firm-active {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-left: 0.35rem;
+}
+
+body.inv-person-profile .inv-person-firm-portfolio-grid {
+  margin-bottom: 0.75rem;
+}
+
+body.inv-person-profile .inv-person-colleague-grid .inv-person-colleague-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+body.inv-person-profile .inv-person-colleague-avatar {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+body.inv-person-profile .inv-person-colleague-avatar.is-firm {
+  border-radius: 10px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+body.inv-person-profile .inv-person-colleague-avatar.is-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+body.inv-person-profile .inv-person-colleague-copy {
+  min-width: 0;
+}
+
+body.inv-person-profile .inv-profile-hero-actions .inv-profile-cta span {
+  word-break: break-all;
+}
+
 .inv-profile-section {
   margin: 0 0 2.75rem;
   scroll-margin-top: 4.5rem;

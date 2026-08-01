@@ -7,6 +7,7 @@
  *   GET /api/people?q=&companyType=&...      -> gated JSON list (used by /people)
  */
 const { filterPeople, getFilters, toCard, getPersonBySlug, getPeopleByCompanySlug } = require('../utils/people');
+const { getInvestorBySlug, ensureActivityFresh, ensurePortfolioFresh } = require('../utils/investors');
 const { requireAuth } = require('../utils/require-auth');
 const { renderPersonPage } = require('../utils/render-person-page');
 
@@ -15,11 +16,15 @@ module.exports = async function handler(req, res) {
 
   if (query.slug) {
     try {
+      await ensureActivityFresh();
+      await ensurePortfolioFresh();
+
       const person = getPersonBySlug(query.slug);
       if (!person) return res.status(404).send('<h1>404 - Person Not Found</h1>');
 
       const colleagues = getPeopleByCompanySlug(person.companySlug, person.slug).map(toCard);
-      return renderPersonPage(person, colleagues, res);
+      const investor = person.companySlug ? getInvestorBySlug(person.companySlug) : null;
+      return renderPersonPage(person, colleagues, investor, res);
     } catch (error) {
       console.error('person detail error:', error);
       return res.status(500).send('<h1>500 - Internal Server Error</h1>');
