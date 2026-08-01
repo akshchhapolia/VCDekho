@@ -249,20 +249,22 @@
       return;
     }
 
+    const isMobileList = window.matchMedia('(max-width: 768px)').matches;
+
     els.results.innerHTML = investors.map(inv => {
       const stagesHtml = joinLinked(
         inv.stages,
         inv.stageIds,
         id => (STAGE_GUIDE_IDS[id] ? '/investors/stages/' + id : null),
-        4
+        isMobileList ? 3 : 4
       );
       const thesisHtml = joinLinked(
         inv.thesisThemes,
         inv.thesisThemeIds,
         id => (id && id !== 'general' ? '/investors/themes/' + id : null),
-        3
+        isMobileList ? 1 : 3
       );
-      const sectorsText = joinList(inv.sectors, 3);
+      const sectorsText = joinList(inv.sectors, isMobileList ? 2 : 3);
       const sectorsThesis = [sectorsText !== '—' ? esc(sectorsText) : '', thesisHtml !== '—' ? thesisHtml : '']
         .filter(Boolean)
         .join(' · ') || '—';
