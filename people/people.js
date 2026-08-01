@@ -130,13 +130,34 @@
 
   dropdowns.companyType = createDropdown(document.getElementById('filter-company-type'), 'companyType');
 
+  // Mweb: portal drawer to <body> so it isn't trapped under .inv-dir-wrap / backdrop.
+  const sidebarHome = els.sidebar ? els.sidebar.parentNode : null;
+  const sidebarBefore = els.sidebar ? els.sidebar.nextSibling : null;
+
+  function restoreFiltersSidebar() {
+    if (!els.sidebar || !sidebarHome || els.sidebar.parentNode === sidebarHome) return;
+    if (sidebarBefore && sidebarBefore.parentNode === sidebarHome) {
+      sidebarHome.insertBefore(els.sidebar, sidebarBefore);
+    } else {
+      sidebarHome.insertBefore(els.sidebar, sidebarHome.firstChild);
+    }
+  }
+
   function setFiltersOpen(open) {
     if (!els.sidebar) return;
+    var isMobile = window.matchMedia('(max-width: 768px)').matches;
     els.sidebar.classList.toggle('is-open', open);
     if (els.backdrop) els.backdrop.hidden = !open;
     if (els.filtersToggle) els.filtersToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     document.body.classList.toggle('inv-dir-filters-open', open);
     if (!open) closeAllDropdowns();
+
+    if (isMobile && open) {
+      if (els.backdrop) document.body.appendChild(els.backdrop);
+      document.body.appendChild(els.sidebar);
+    } else {
+      restoreFiltersSidebar();
+    }
   }
 
   function renderSkeleton(count) {
