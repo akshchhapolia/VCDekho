@@ -3737,7 +3737,7 @@ a.inv-profile-activity-row:hover {
 
 .inv-profile-portfolio-card {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.65rem;
   padding: 0.55rem 0.7rem;
   border-radius: 12px;
@@ -3766,6 +3766,7 @@ a.inv-profile-portfolio-card:hover {
   padding: 3px;
   box-sizing: border-box;
   flex-shrink: 0;
+  margin-top: 0.05rem;
 }
 
 .inv-profile-portfolio-logo.is-broken {
@@ -3789,13 +3790,24 @@ img.inv-profile-portfolio-logo.is-broken + .inv-profile-portfolio-logo.is-fallba
 }
 
 .inv-profile-portfolio-copy {
+  flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 0.12rem;
 }
 
+.inv-profile-portfolio-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
 .inv-profile-portfolio-name {
+  flex: 1;
+  min-width: 0;
   font-family: var(--font-heading);
   font-size: 0.95rem;
   color: var(--color-text-light);
@@ -3803,6 +3815,8 @@ img.inv-profile-portfolio-logo.is-broken + .inv-profile-portfolio-logo.is-fallba
 }
 
 .inv-profile-portfolio-meta {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -3816,18 +3830,37 @@ img.inv-profile-portfolio-logo.is-broken + .inv-profile-portfolio-logo.is-fallba
 }
 
 .inv-profile-portfolio-sector {
+  flex-shrink: 0;
+  max-width: 46%;
+  text-align: right;
   font-size: 0.68rem;
   color: rgba(255, 255, 255, 0.45);
+  line-height: 1.25;
+}
+
+.inv-profile-portfolio-sector:empty,
+.inv-profile-portfolio-date:empty,
+.inv-profile-portfolio-meta:empty {
+  display: none;
+}
+
+.inv-profile-portfolio-date {
+  flex-shrink: 0;
+  max-width: 46%;
+  text-align: right;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.25;
+}
+
+.inv-profile-portfolio-site {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.25;
 }
 
 .inv-profile-portfolio-foot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.3rem;
-  margin-top: 0.1rem;
-  font-size: 0.68rem;
-  color: rgba(255, 255, 255, 0.45);
+  display: none;
 }
 
 .inv-profile-portfolio-date,

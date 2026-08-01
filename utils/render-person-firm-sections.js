@@ -9,6 +9,7 @@ const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
 const { renderExploreRelated } = require('./render-explore-related');
 const { portfolioCardHref } = require('./portfolio-card-href');
 const { filterPortfolioJunk } = require('./portfolio-junk-filter');
+const { portfolioCardBodyHtml } = require('./render-portfolio-card');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -190,17 +191,6 @@ function firmActivitySection(person, investor, limit) {
   );
 }
 
-function isBlankPortfolioLabel(value) {
-  const v = String(value || '').trim().toLowerCase();
-  return (
-    !v ||
-    v === 'unknown' ||
-    v === 'listed in profile' ||
-    v === 'n/a' ||
-    v === 'null'
-  );
-}
-
 function firmPortfolioSection(person, investor, limit) {
   const all = filterPortfolioJunk(investor.portfolioCompanies || []);
   const companies = all.slice(0, limit || 9);
@@ -208,25 +198,7 @@ function firmPortfolioSection(person, investor, limit) {
 
   const total = all.length;
   const cards = companies.map((c) => {
-    const fallback = '<span class="inv-profile-portfolio-logo-fallback" aria-hidden="true">' +
-      escapeHtml(String(c.name || '?').slice(0, 1).toUpperCase()) + '</span>';
-    const logo = c.logoUrl
-      ? '<img class="inv-profile-portfolio-logo" src="' + escapeHtml(c.logoUrl) + '" alt="" width="32" height="32" loading="lazy" decoding="async" onerror="this.classList.add(\'is-broken\')">' + fallback
-      : fallback;
-
-    const stage = !isBlankPortfolioLabel(c.stage) ? c.stage : null;
-    const amount = !isBlankPortfolioLabel(c.amount) ? c.amount : null;
-    const metaBits = [amount, stage].filter(Boolean).map((bit) => '<span>' + escapeHtml(bit) + '</span>');
-    const meta = metaBits.length
-      ? '<div class="inv-profile-portfolio-meta">' + metaBits.join('<span class="inv-profile-portfolio-dot" aria-hidden="true">·</span>') + '</div>'
-      : '';
-
-    const body =
-      logo +
-      '<div class="inv-profile-portfolio-copy">' +
-      '<div class="inv-profile-portfolio-name">' + escapeHtml(c.name) + '</div>' +
-      meta +
-      '</div>';
+    const body = portfolioCardBodyHtml(c, { includeInvestmentType: false });
 
     const href = portfolioCardHref(c, investor.website);
     if (href) {
