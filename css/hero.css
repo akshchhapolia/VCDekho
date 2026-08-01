@@ -180,6 +180,11 @@ body.home-page .hero-overlay {
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
+/* Desktop keeps title on one flow; mweb uses .mweb-title-break */
+.mweb-title-break {
+    display: none;
+}
+
 /* Lighter highlighted phrase */
 .highlight-text {
     position: relative;
@@ -605,14 +610,14 @@ body.home-page .trend-card::before {
         z-index: 3;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
         width: 100%;
         max-width: 100%;
         min-width: 0;
         height: 100%;
         min-height: 550px;
         padding: 2rem;
-        gap: 3rem;
+        gap: 1.25rem;
         box-sizing: border-box;
         overflow: visible;
     }
@@ -640,7 +645,12 @@ body.home-page .trend-card::before {
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
     }
 
-    /* Second line in frosted pill — same treatment as reference */
+    /* Force highlight onto its own line like the reference <br> */
+    body.home-page .mweb-title-break {
+        display: block;
+        content: '';
+    }
+
     body.home-page .highlight-text {
         display: inline-block;
         white-space: normal;
@@ -658,7 +668,7 @@ body.home-page .trend-card::before {
         display: none !important;
     }
 
-    /* Reference puts this mid/lower via space-between + order */
+    /* Screenshot: tagline sits directly under the title */
     body.home-page .hero-tagline-container {
         display: block !important;
         width: 100%;
@@ -668,7 +678,7 @@ body.home-page .trend-card::before {
         order: 2;
         grid-column: auto;
         grid-row: auto;
-        align-self: end;
+        align-self: start;
         flex-shrink: 0;
     }
 
@@ -683,14 +693,14 @@ body.home-page .trend-card::before {
         text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     }
 
-    /* Pure white sharp card — reference tokens */
+    /* Pure white sharp card pinned to bottom of hero */
     body.home-page .trend-card {
         position: static;
         order: 3;
         width: 100%;
         max-width: 100%;
         min-width: 0;
-        margin: 0;
+        margin-top: auto;
         flex-shrink: 0;
         display: flex;
         flex-direction: column;
