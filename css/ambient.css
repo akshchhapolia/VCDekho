@@ -1056,20 +1056,24 @@ body.home-page .hero-content {
 }
 
 @media (max-width: 768px) {
-    /* Cream page chrome — hero.css owns inset hero layout */
+    /* Same dark + orange gradient chrome as dweb; layout stays in hero.css */
     html.home-page,
     body.home-page {
-        background-color: #faf9f6 !important;
-        color: #1a1a1a;
+        background-color: #000 !important;
+        color: rgba(255, 255, 255, 0.88);
     }
 
     body.home-page::before {
-        background-color: #faf9f6;
-        background-image: none;
+        background-color: #000;
+        background-image:
+            radial-gradient(ellipse 100% 65% at 50% -8%, rgba(237, 87, 47, 0.28), transparent 68%),
+            radial-gradient(ellipse 70% 55% at -5% 35%, rgba(237, 87, 47, 0.14), transparent 58%),
+            radial-gradient(ellipse 70% 55% at 105% 55%, rgba(237, 87, 47, 0.12), transparent 58%),
+            radial-gradient(ellipse 90% 50% at 50% 100%, rgba(237, 87, 47, 0.08), transparent 55%);
     }
 
     body.home-page .home-ambient {
-        display: none;
+        display: block;
     }
 
     body.home-page .site-header {
@@ -1081,7 +1085,7 @@ body.home-page .hero-content {
     }
 
     body.home-page .nav-toggle span {
-        background-color: #1a1a1a;
+        background-color: #fff;
     }
 
     body.home-page .announcement-strip {
@@ -1094,16 +1098,16 @@ body.home-page .hero-content {
     }
 
     body.home-page .main-nav {
-        background: #fff;
-        border-left: none;
+        background: rgba(14, 14, 16, 0.98);
+        border-left: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     body.home-page .main-nav .nav-link {
-        color: #1a1a1a;
+        color: rgba(255, 255, 255, 0.88);
     }
 
     body.home-page .home-ambient .glow-orb {
-        opacity: 0;
+        opacity: 0.15;
     }
 }
 
