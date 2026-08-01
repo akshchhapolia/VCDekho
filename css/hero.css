@@ -56,6 +56,27 @@ body.home-page .hero-showcase {
     }
 }
 
+/* Home mweb: keep hero video (dweb unchanged; still respects reduced motion) */
+@media (max-width: 992px) {
+    body.home-page .hero-bg {
+        display: block;
+    }
+
+    body.home-page .hero-bg-fallback {
+        display: none;
+    }
+}
+
+@media (max-width: 992px) and (prefers-reduced-motion: reduce) {
+    body.home-page .hero-bg {
+        display: none;
+    }
+
+    body.home-page .hero-bg-fallback {
+        display: block;
+    }
+}
+
 .hero-showcase:hover .hero-bg,
 .hero-showcase:hover .hero-bg-fallback {
     transform: scale(1.03); /* Subtle continuous movement look */
@@ -414,18 +435,104 @@ body.home-page .trend-card::before {
    ========================================================================== */
 @media (max-width: 768px) {
     body.home-page.has-announcement {
+        display: grid;
+        grid-template-areas:
+            "header"
+            "strip"
+            "hero"
+            "cta";
+        grid-template-rows: auto auto 1fr auto;
         height: auto;
         min-height: 100dvh;
         overflow-x: hidden;
         overflow-y: auto;
+        padding: 0 1rem;
         padding-bottom: calc(3.25rem + env(safe-area-inset-bottom, 0px));
+        gap: 0;
+    }
+
+    body.home-page.has-announcement .app-container {
+        display: contents;
+    }
+
+    body.home-page .site-header {
+        grid-area: header;
+        margin: 0;
+        width: 100%;
+        padding: calc(0.35rem + env(safe-area-inset-top, 0px)) 0 0.5rem;
+        height: auto;
+        min-height: 48px;
+        align-items: center;
+    }
+
+    body.home-page .logo-img {
+        height: 38px;
+        width: auto;
+    }
+
+    body.home-page .announcement-strip {
+        grid-area: strip;
+        position: relative;
+        z-index: 5;
+        width: 100%;
+        margin: 0 0 0.65rem;
+        padding: 0.55rem 0.75rem;
+        background: rgba(10, 10, 12, 0.96);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    body.home-page .announcement-wrapper {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        max-width: none;
+        width: 100%;
+    }
+
+    body.home-page .announcement-tag {
+        display: inline-flex;
+        margin-right: 0;
+        font-size: 0.58rem;
+        padding: 2px 7px;
+        flex-shrink: 0;
+        background: rgba(237, 87, 47, 0.14);
+        border-color: rgba(237, 87, 47, 0.35);
+        color: #ffb89c;
+    }
+
+    body.home-page .announcement-text {
+        flex: 1;
+        min-width: 0;
+        margin-right: 0;
+        font-size: 0.72rem;
+        line-height: 1.35;
+        color: rgba(255, 255, 255, 0.82);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    body.home-page .announcement-cta {
+        flex-shrink: 0;
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--color-accent-orange);
+        white-space: nowrap;
+        gap: 0.2rem;
+    }
+
+    body.home-page .announcement-cta .announcement-arrow {
+        font-size: 0.85rem;
     }
 
     body.home-page.has-announcement .app-container {
         height: auto;
         flex: none;
         min-height: 0;
-        padding-bottom: 0.5rem;
+        padding-bottom: 0;
     }
 
     body.home-page.has-announcement .hero-showcase {
@@ -433,11 +540,17 @@ body.home-page .trend-card::before {
     }
 
     body.home-page .hero-showcase {
+        grid-area: hero;
         flex: none;
-        min-height: 0;
+        width: 100%;
+        min-height: clamp(380px, 62vh, 560px);
         height: auto;
         border-radius: 12px;
         overflow: hidden;
+    }
+
+    body.home-page .mobile-sticky-cta {
+        grid-area: cta;
     }
 
     body.home-page .hero-content {

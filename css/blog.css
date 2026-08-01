@@ -1478,6 +1478,23 @@ body.has-announcement .app-container {
     }
 }
 
+@media (max-width: 480px) {
+    body.home-page .announcement-tag {
+        display: inline-flex;
+    }
+
+    body.home-page .announcement-wrapper {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    body.home-page .announcement-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
 @media (max-width: 768px) {
     .blog-body-heading {
         font-size: 1.5rem;

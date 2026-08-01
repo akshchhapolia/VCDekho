@@ -1053,19 +1053,6 @@ body.home-page .hero-content {
 }
 
 @media (max-width: 768px) {
-    body.home-page .app-container {
-        gap: 1rem;
-    }
-
-    body.home-page .site-header {
-        margin-left: -1rem;
-        margin-right: -1rem;
-        width: calc(100% + 2rem);
-        padding-left: 1rem;
-        padding-right: 1rem;
-        padding-bottom: 0.15rem;
-    }
-
     body.home-page .main-nav {
         background: rgba(14, 14, 16, 0.98);
         border-left: 1px solid rgba(255, 255, 255, 0.08);
@@ -1077,19 +1064,6 @@ body.home-page .hero-content {
 
     body.home-page .home-ambient .glow-orb {
         opacity: 0.08;
-    }
-
-    body.home-page .announcement-strip {
-        padding: 0.5rem 1rem;
-    }
-
-    body.home-page .announcement-text {
-        color: rgba(255, 255, 255, 0.68);
-        font-size: 0.78rem;
-    }
-
-    body.home-page .announcement-cta {
-        color: var(--color-accent-orange);
     }
 }
 

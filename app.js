@@ -6,13 +6,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobile = window.matchMedia('(max-width: 992px)').matches;
+    const isHomePage = document.body.classList.contains('home-page');
     const enableParallax = !prefersReducedMotion && !isMobile;
 
     if (heroBg && heroFallback) {
-        if (prefersReducedMotion || isMobile) {
+        if (prefersReducedMotion || (isMobile && !isHomePage)) {
             heroBg.style.display = 'none';
             heroFallback.style.display = 'block';
         } else {
+            heroBg.style.display = '';
+            heroFallback.style.display = 'none';
             const startVideo = () => {
                 heroBg.play().catch(() => {
                     heroBg.style.display = 'none';
