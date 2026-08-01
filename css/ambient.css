@@ -1061,21 +1061,26 @@ body.home-page .hero-content {
 }
 
 @media (max-width: 768px) {
-    /* Cancel desktop full-bleed bleed — hero.css owns home mweb layout */
+    /* Cancel desktop bleed; hero.css owns full-viewport home mweb */
     body.home-page .site-header {
         margin-left: 0;
         margin-right: 0;
         width: 100%;
-        padding-left: 0;
-        padding-right: 0;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 
     body.home-page .announcement-strip {
         margin-left: 0;
         margin-right: 0;
         width: 100%;
-        padding-left: 0.65rem;
-        padding-right: 0.65rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    body.home-page .app-container {
+        gap: 0;
+        padding-top: 0;
     }
 
     body.home-page .main-nav {
@@ -1088,7 +1093,7 @@ body.home-page .hero-content {
     }
 
     body.home-page .home-ambient .glow-orb {
-        opacity: 0.08;
+        opacity: 0.1;
     }
 }
 

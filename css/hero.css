@@ -56,14 +56,16 @@ body.home-page .hero-showcase {
     }
 }
 
-/* Home mweb: keep hero video (dweb unchanged; still respects reduced motion) */
+/* Home ≤992px: video as stage; fallback always under video as base paint */
 @media (max-width: 992px) {
-    body.home-page .hero-bg {
+    body.home-page .hero-bg-fallback {
         display: block;
+        z-index: 1;
     }
 
-    body.home-page .hero-bg-fallback {
-        display: none;
+    body.home-page .hero-bg {
+        display: block;
+        z-index: 1;
     }
 }
 
@@ -430,98 +432,101 @@ body.home-page .trend-card::before {
 }
 
 /* ==========================================================================
-   HOME — MOBILE ONLY (body.home-page, max-width: 768px)
-   Desktop home layout/colors unchanged above this block.
-   No display:contents — app-container stays a real width container.
+   HOME — MOBILE ONLY: single 100dvh viewport, full-bleed video stage
+   Desktop (≥769px) unchanged. Overrides Phase-1 height:auto !important.
    ========================================================================== */
 @media (max-width: 768px) {
     html.home-page,
     body.home-page {
-        overflow-x: clip;
+        width: 100%;
         max-width: 100%;
+        height: 100%;
+        height: 100dvh;
+        overflow: hidden;
+        overflow-x: clip;
     }
 
     body.home-page.has-announcement {
         display: flex;
         flex-direction: column;
-        height: auto;
-        min-height: 100dvh;
-        overflow-x: clip;
-        overflow-y: auto;
+        height: 100dvh !important;
+        max-height: 100dvh;
+        overflow: hidden !important;
         padding: 0;
-        padding-bottom: calc(3.5rem + env(safe-area-inset-bottom, 0px));
+        margin: 0;
     }
 
     body.home-page.has-announcement .app-container {
         display: flex;
         flex-direction: column;
+        flex: 1 1 auto;
         width: 100%;
         max-width: 100%;
         min-width: 0;
-        height: auto;
-        flex: 1 1 auto;
-        min-height: 0;
+        min-height: 0 !important;
+        height: 100% !important;
         box-sizing: border-box;
-        padding: calc(0.35rem + env(safe-area-inset-top, 0px)) 1rem 0.75rem;
-        gap: 0.65rem;
-        overflow-x: clip;
+        padding: 0;
+        gap: 0;
+        overflow: hidden;
     }
 
     body.home-page .site-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-shrink: 0;
         margin: 0;
         width: 100%;
         max-width: 100%;
         min-width: 0;
         height: auto;
-        min-height: 48px;
-        padding: 0;
+        min-height: 44px;
+        padding: calc(0.3rem + env(safe-area-inset-top, 0px)) 1rem 0.35rem;
         box-sizing: border-box;
-        flex-shrink: 0;
+        z-index: 6;
     }
 
     body.home-page .logo-container {
         flex-shrink: 0;
-        min-width: 0;
     }
 
     body.home-page .logo-img {
-        height: 36px;
+        height: 34px;
         width: auto;
-        max-width: 140px;
+        max-width: 130px;
         display: block;
     }
 
     body.home-page .nav-toggle {
         flex-shrink: 0;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.16);
         border-radius: 10px;
     }
 
     body.home-page .nav-toggle span {
-        width: 22px;
+        width: 20px;
         height: 2px;
         background-color: #fff;
     }
 
-    /* Compact announcement pill — fits phone width */
+    /* Slim full-width band — no floating card gutters */
     body.home-page .announcement-strip {
         position: relative;
         z-index: 5;
+        flex-shrink: 0;
         width: 100%;
         max-width: 100%;
         min-width: 0;
         margin: 0;
-        padding: 0.5rem 0.65rem;
+        padding: 0.4rem 1rem;
         box-sizing: border-box;
-        background: rgba(10, 10, 12, 0.96);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 10px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-        flex-shrink: 0;
+        background: rgba(0, 0, 0, 0.55);
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 0;
+        box-shadow: none;
         overflow: hidden;
     }
 
@@ -529,22 +534,20 @@ body.home-page .trend-card::before {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: flex-start;
         gap: 0.4rem;
-        max-width: 100%;
         width: 100%;
+        max-width: 100%;
         min-width: 0;
-        box-sizing: border-box;
     }
 
     body.home-page .announcement-tag {
         display: inline-flex;
         margin-right: 0;
-        font-size: 0.55rem;
+        font-size: 0.52rem;
         padding: 2px 6px;
         flex-shrink: 0;
-        background: rgba(237, 87, 47, 0.14);
-        border-color: rgba(237, 87, 47, 0.35);
+        background: rgba(237, 87, 47, 0.16);
+        border-color: rgba(237, 87, 47, 0.4);
         color: #ffb89c;
     }
 
@@ -552,9 +555,9 @@ body.home-page .trend-card::before {
         flex: 1 1 auto;
         min-width: 0;
         margin-right: 0;
-        font-size: 0.7rem;
-        line-height: 1.3;
-        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.68rem;
+        line-height: 1.25;
+        color: rgba(255, 255, 255, 0.8);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -562,56 +565,81 @@ body.home-page .trend-card::before {
 
     body.home-page .announcement-cta {
         flex: 0 0 auto;
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         font-weight: 600;
         color: var(--color-accent-orange);
         white-space: nowrap;
-        gap: 0.15rem;
         min-height: 0;
         padding: 0;
+        gap: 0.15rem;
     }
 
-    /* Shorter CTA label on narrow phones */
     body.home-page .announcement-cta span:first-child {
         display: none;
-    }
-
-    body.home-page .announcement-cta .announcement-arrow {
-        font-size: 0.9rem;
-        display: inline;
     }
 
     body.home-page .announcement-cta::before {
         content: 'Guide';
     }
 
+    body.home-page .announcement-cta .announcement-arrow {
+        display: inline;
+    }
+
+    /* Full-bleed video stage fills leftover viewport */
     body.home-page .hero-showcase {
-        flex: 1 1 auto;
+        position: relative;
+        flex: 1 1 auto !important;
         width: 100%;
         max-width: 100%;
         min-width: 0;
-        min-height: 55dvh;
-        height: auto;
-        border-radius: 12px;
+        min-height: 0 !important;
+        height: auto !important;
+        border-radius: 0;
         overflow: hidden !important;
         box-sizing: border-box;
-        padding-bottom: 0;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
     }
 
-    body.home-page .hero-bg,
-    body.home-page .hero-bg-fallback,
+    body.home-page .hero-bg-fallback {
+        display: block !important;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    body.home-page .hero-bg {
+        display: block !important;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 1;
+    }
+
     body.home-page .hero-overlay {
-        max-width: 100%;
+        z-index: 2;
     }
 
     body.home-page .hero-content {
+        position: relative;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         width: 100%;
         max-width: 100%;
         min-width: 0;
         height: 100%;
-        min-height: 55dvh;
-        padding: 1rem 0.9rem 1.15rem;
-        gap: 1rem;
+        min-height: 0;
+        padding: 0.85rem 1rem calc(3.75rem + env(safe-area-inset-bottom, 0px));
+        gap: 0.75rem;
         box-sizing: border-box;
         overflow: hidden;
     }
@@ -622,70 +650,85 @@ body.home-page .trend-card::before {
         width: 100%;
         max-width: 100%;
         min-width: 0;
+        flex-shrink: 0;
     }
 
     body.home-page .hero-title {
         color: #fff;
-        font-size: clamp(1.35rem, 7vw, 1.85rem) !important;
-        line-height: 1.15;
+        font-size: clamp(1.4rem, 6.5vw, 1.75rem) !important;
+        line-height: 1.12;
         max-width: 100%;
         overflow-wrap: anywhere;
         word-break: break-word;
-        text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+        text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
     }
 
     body.home-page .highlight-text {
         display: inline;
         white-space: normal;
-        background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.16);
         color: #fff;
         padding: 0 0.25em;
         margin-top: 0;
     }
 
     body.home-page .hero-sub-tagline {
-        color: rgba(255, 255, 255, 0.78);
+        color: rgba(255, 255, 255, 0.8);
         max-width: 100%;
-        font-size: 0.88rem !important;
-        line-height: 1.45;
-        margin-top: 0.65rem;
+        font-size: 0.84rem !important;
+        line-height: 1.4;
+        margin-top: 0.5rem;
         display: -webkit-box;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+    }
+
+    body.home-page .hero-tagline-container {
+        display: none;
     }
 
     body.home-page .trend-card {
         width: 100%;
         max-width: 100%;
         min-width: 0;
+        flex-shrink: 0;
         box-sizing: border-box;
+        padding: 0.9rem 1rem;
+        gap: 0.4rem;
+        order: 3;
         background: linear-gradient(
             145deg,
-            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.12) 0%,
             rgba(255, 255, 255, 0.04) 52%,
-            rgba(237, 87, 47, 0.08) 100%
+            rgba(237, 87, 47, 0.1) 100%
         );
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.14);
         box-shadow:
             0 1px 0 rgba(255, 255, 255, 0.06) inset,
-            0 16px 40px rgba(0, 0, 0, 0.45);
+            0 12px 32px rgba(0, 0, 0, 0.4);
     }
 
     body.home-page .trend-card-title {
         color: #fff;
+        font-size: 0.95rem;
         max-width: 100%;
-        overflow-wrap: anywhere;
     }
 
     body.home-page .trend-card-note {
-        color: rgba(255, 255, 255, 0.52);
-        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 0.75rem;
         max-width: 100%;
     }
 
+    body.home-page .trend-card-desc,
+    body.home-page .trend-card-btn {
+        display: none;
+    }
+
     body.home-page .mobile-sticky-cta {
+        display: flex;
         position: fixed;
         left: 0;
         right: 0;
@@ -694,16 +737,22 @@ body.home-page .trend-card::before {
         max-width: 100%;
         margin: 0;
         box-sizing: border-box;
-        border-top: 1px solid rgba(237, 87, 47, 0.4);
+        min-height: 48px;
+        padding: 0.75rem 1.25rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+        border-top: 1px solid rgba(237, 87, 47, 0.45);
         background: rgba(8, 8, 10, 0.97);
         color: #fff;
         font-size: 0.88rem;
         font-weight: 600;
         letter-spacing: 0.01em;
-        box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.55);
+        box-shadow: 0 -10px 32px rgba(0, 0, 0, 0.5);
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
-        z-index: 85;
+        z-index: 90;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        text-decoration: none;
     }
 
     body.home-page .mobile-sticky-cta span {
@@ -711,7 +760,7 @@ body.home-page .trend-card::before {
     }
 
     body.home-page .mobile-sticky-cta:active {
-        background: rgba(237, 87, 47, 0.18);
+        background: rgba(237, 87, 47, 0.2);
         color: #fff;
     }
 
