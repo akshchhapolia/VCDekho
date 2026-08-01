@@ -9,6 +9,7 @@ const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
 const { getPeopleByCompanySlug } = require('./people');
 const { portfolioCardHref } = require('./portfolio-card-href');
 const { filterPortfolioJunk } = require('./portfolio-junk-filter');
+const { portfolioCardBodyHtml } = require('./render-portfolio-card');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -160,54 +161,9 @@ function filteredPortfolioCompanies(investor) {
   return filterPortfolioJunk(investor.portfolioCompanies || []);
 }
 
-function isBlankPortfolioLabel(value) {
-  const v = String(value || '').trim().toLowerCase();
-  return (
-    !v ||
-    v === 'unknown' ||
-    v === 'listed in profile' ||
-    v === 'n/a' ||
-    v === 'null' ||
-    v === 'portfolio company' ||
-    v === 'notable investment' ||
-    v === 'defining win' ||
-    /^fund\s+.+\s+portfolio$/i.test(v) ||
-    /^listed in /i.test(v)
-  );
-}
-
-function websiteHostLabel(url) {
-  try {
-    const host = new URL(url).hostname.replace(/^www\./i, '');
-    if (!host || /accel\.com|peakxv\.com|sequoiacap\.com|blume\.vc$/i.test(host)) return '';
-    return host;
-  } catch (_) {
-    return '';
-  }
-}
-
 const PORTFOLIO_INITIAL_SIZE = 12;
 const PORTFOLIO_LOAD_STEP = 12;
 const PORTFOLIO_SEARCH_MIN = 24;
-
-function portfolioLogoHtml(c) {
-  const initial = escapeHtml((c.name || '?').charAt(0).toUpperCase());
-  const fallback =
-    '<span class="inv-profile-portfolio-logo is-fallback" aria-hidden="true">' + initial + '</span>';
-  if (!c.logoUrl) {
-    return (
-      '<span class="inv-profile-portfolio-logo is-fallback is-visible" aria-hidden="true">' +
-      initial +
-      '</span>'
-    );
-  }
-  return (
-    '<img class="inv-profile-portfolio-logo" src="' +
-    escapeHtml(c.logoUrl) +
-    '" alt="" width="32" height="32" loading="lazy" decoding="async" onerror="this.classList.add(\'is-broken\')">' +
-    fallback
-  );
-}
 
 function portfolioSection(investor) {
   const companies = filterPortfolioJunk(investor.portfolioCompanies || []);
@@ -219,51 +175,7 @@ function portfolioSection(investor) {
 
   const cards = companies
     .map((c, index) => {
-      const logo = portfolioLogoHtml(c);
-
-      // Prefer real deal signals; never surface placeholder / marketing labels.
-      const stage = !isBlankPortfolioLabel(c.stage) ? c.stage : null;
-      const amount = !isBlankPortfolioLabel(c.amount) ? c.amount : null;
-      const investmentType = !isBlankPortfolioLabel(c.investmentType) ? c.investmentType : null;
-
-      const metaBits = [amount, stage, investmentType]
-        .filter(Boolean)
-        .map((bit) => '<span>' + escapeHtml(bit) + '</span>');
-      const meta = metaBits.length
-        ? '<div class="inv-profile-portfolio-meta">' +
-          metaBits.join('<span class="inv-profile-portfolio-dot" aria-hidden="true">·</span>') +
-          '</div>'
-        : '';
-
-      const sector = c.sector
-        ? '<div class="inv-profile-portfolio-sector">' + escapeHtml(c.sector) + '</div>'
-        : '';
-
-      const dateLabel = c.date ? formatActivityDate(c.date) : '';
-      const siteHost = websiteHostLabel(c.website);
-      const footBits = [];
-      if (dateLabel) {
-        footBits.push('<span class="inv-profile-portfolio-date">' + escapeHtml(dateLabel) + '</span>');
-      }
-      if (siteHost) {
-        footBits.push('<span class="inv-profile-portfolio-site">' + escapeHtml(siteHost) + '</span>');
-      }
-      const foot = footBits.length
-        ? '<div class="inv-profile-portfolio-foot">' +
-          footBits.join('<span class="inv-profile-portfolio-dot" aria-hidden="true">·</span>') +
-          '</div>'
-        : '';
-
-      const body =
-        logo +
-        '<div class="inv-profile-portfolio-copy">' +
-        '<div class="inv-profile-portfolio-name">' +
-        escapeHtml(c.name) +
-        '</div>' +
-        meta +
-        sector +
-        foot +
-        '</div>';
+      const body = portfolioCardBodyHtml(c);
 
       const dataName = escapeHtml(String(c.name || '').toLowerCase());
       const hiddenAttr =
@@ -610,7 +522,7 @@ function renderInvestorPage(investor, related, res) {
     '<link rel="stylesheet" href="/css/base.css?v=86">',
     '<link rel="stylesheet" href="/css/hero.css?v=86">',
     '<link rel="stylesheet" href="/css/ambient.css?v=86">',
-    '<link rel="stylesheet" href="/css/directory.css?v=98">',
+    '<link rel="stylesheet" href="/css/directory.css?v=99">',
     '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
