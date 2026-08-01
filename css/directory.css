@@ -3115,6 +3115,12 @@ body.inv-investor-profile .inv-profile-dir-widget {
 
 body.inv-person-profile .hero-showcase.inv-detail-main {
   position: relative;
+  overflow: visible;
+  background: transparent !important;
+}
+
+body.inv-person-profile .inv-profile-section {
+  scroll-margin-top: calc(3.25rem + env(safe-area-inset-top, 0px));
 }
 
 body.inv-person-profile .inv-detail-wrap {
