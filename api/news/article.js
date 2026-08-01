@@ -280,7 +280,7 @@ module.exports = async function handler(req, res) {
 <html lang="en" class="scrollable-page">
 <head>
     <script src="/js/analytics.js" defer></script>
-    <script src="/js/nav.js" defer></script>
+    <script src="/js/nav.js?v=98" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -290,9 +290,9 @@ module.exports = async function handler(req, res) {
     <meta name="description" content="${article.meta_description}">
     
     <link rel="icon" type="image/png" href="/assets/logoforvc.png">
-    <link rel="stylesheet" href="/css/base.css?v=73">
+    <link rel="stylesheet" href="/css/base.css?v=98">
     <link rel="stylesheet" href="/css/hero.css?v=73">
-    <link rel="stylesheet" href="/css/ambient.css?v=73">
+    <link rel="stylesheet" href="/css/ambient.css?v=98">
     <link rel="stylesheet" href="/css/blog.css?v=74">
     <link rel="canonical" href="https://vcdekho.com/${pathPrefix}/${article.slug}">
     
