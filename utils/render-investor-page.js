@@ -10,6 +10,7 @@ const { getPeopleByCompanySlug } = require('./people');
 const { portfolioCardHref } = require('./portfolio-card-href');
 const { filterPortfolioJunk } = require('./portfolio-junk-filter');
 const { portfolioCardBodyHtml } = require('./render-portfolio-card');
+const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('./site-labels');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -29,7 +30,7 @@ function directoryWidget() {
   const countLabel = investorCount >= 100 ? String(Math.floor(investorCount / 10) * 10) + '+' : String(investorCount);
 
   return (
-    '<aside class="inv-profile-dir-widget" aria-label="Investor directory">' +
+    '<aside class="inv-profile-dir-widget" aria-label="Fund directory">' +
       '<div class="inv-profile-dir-visual" aria-hidden="true">' +
         '<svg class="inv-profile-dir-svg" viewBox="0 0 220 132" fill="none" xmlns="http://www.w3.org/2000/svg">' +
           '<rect x="8" y="8" width="204" height="36" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.16)"/>' +
@@ -55,15 +56,15 @@ function directoryWidget() {
         '</svg>' +
       '</div>' +
       '<div class="inv-profile-dir-stats">' +
-        '<div class="inv-profile-dir-stat"><strong>' + escapeHtml(countLabel) + '</strong><span>Investors</span></div>' +
+        '<div class="inv-profile-dir-stat"><strong>' + escapeHtml(countLabel) + '</strong><span>Funds</span></div>' +
         '<div class="inv-profile-dir-stat"><strong>' + stageCount + '</strong><span>Stages</span></div>' +
         '<div class="inv-profile-dir-stat"><strong>' + sectorCount + '</strong><span>Sectors</span></div>' +
         '<div class="inv-profile-dir-stat"><strong>' + themeCount + '</strong><span>Themes</span></div>' +
       '</div>' +
       '<div class="inv-profile-dir-copy">' +
-        '<h2 class="inv-profile-dir-title">Find more investors like this</h2>' +
+        '<h2 class="inv-profile-dir-title">Find more funds like this</h2>' +
         '<p class="inv-profile-dir-desc">Filter by stage, sector, cheque size, and thesis.</p>' +
-        '<a class="inv-profile-cta is-ghost" href="/investors">Investor Directory</a>' +
+        '<a class="inv-profile-cta is-ghost" href="' + FUNDS_PATH + '">Browse funds</a>' +
       '</div>' +
     '</aside>'
   );
@@ -428,8 +429,8 @@ function renderInvestorPage(investor, related, res) {
   const peopleSection = peopleCards
     ? (
       '<section class="inv-profile-section inv-profile-reveal" id="people">' +
-        '<div class="inv-profile-section-label">05 — Team</div>' +
-        '<div class="inv-profile-section-head"><h2>People at ' + escapeHtml(investor.name) + '</h2><p>Partners and principals mapped to this fund in the directory.</p></div>' +
+        '<div class="inv-profile-section-label">05 — Investors</div>' +
+        '<div class="inv-profile-section-head"><h2>Investors at ' + escapeHtml(investor.name) + '</h2><p>Partners and principals mapped to this fund in the directory.</p></div>' +
         '<div class="inv-profile-related-grid">' + peopleCards + '</div>' +
       '</section>'
     )
@@ -486,7 +487,7 @@ function renderInvestorPage(investor, related, res) {
     '<a href="#focus" data-section="focus">Focus</a>',
     themes.length ? '<a href="#thesis" data-section="thesis">Thesis</a>' : '',
     '<a href="#about" data-section="about">About</a>',
-    peopleCards ? '<a href="#people" data-section="people">Team</a>' : '',
+    peopleCards ? '<a href="#people" data-section="people">' + INVESTORS_LABEL + '</a>' : '',
     relatedCards ? '<a href="#similar" data-section="similar">Similar</a>' : '',
     '<a href="#explore" data-section="explore">Explore</a>',
     '</nav>'
@@ -514,7 +515,7 @@ function renderInvestorPage(investor, related, res) {
     '<link rel="preconnect" href="https://fonts.googleapis.com">',
     '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">',
-    '<title>' + escapeHtml(investor.name) + ' | Investors | VC Dekho</title>',
+    '<title>' + escapeHtml(investor.name) + ' | Funds | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<link rel="canonical" href="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
