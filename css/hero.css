@@ -432,8 +432,10 @@ body.home-page .trend-card::before {
 }
 
 /* ==========================================================================
-   HOME — MOBILE ONLY: single 100dvh viewport, full-bleed video stage
-   Desktop (≥769px) unchanged. Overrides Phase-1 height:auto !important.
+   HOME — MOBILE ONLY
+   Structure aligned to https://vrushy.github.io/VC_Dekho/
+   logo + menu → full hero (video) → title/sub → bottom card with CTA
+   No playbook strip. No sticky footer bar. Dweb text. Desktop unchanged.
    ========================================================================== */
 @media (max-width: 768px) {
     html.home-page,
@@ -444,6 +446,7 @@ body.home-page .trend-card::before {
         height: 100dvh !important;
         overflow: hidden !important;
         overflow-x: clip !important;
+        background: #faf9f6;
     }
 
     body.home-page.has-announcement {
@@ -454,6 +457,7 @@ body.home-page .trend-card::before {
         overflow: hidden !important;
         padding: 0;
         margin: 0;
+        background: #faf9f6;
     }
 
     body.home-page.has-announcement .app-container {
@@ -469,22 +473,26 @@ body.home-page .trend-card::before {
         padding: 0;
         gap: 0;
         overflow: hidden;
+        background: #faf9f6;
     }
 
+    /* Reference-style light chrome */
     body.home-page .site-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         flex-shrink: 0;
-        margin: 0;
-        width: 100%;
+        margin: 0 !important;
+        width: 100% !important;
         max-width: 100%;
         min-width: 0;
         height: auto;
-        min-height: 44px;
-        padding: calc(0.3rem + env(safe-area-inset-top, 0px)) 1rem 0.35rem;
+        min-height: 52px;
+        padding: calc(0.45rem + env(safe-area-inset-top, 0px)) 1.15rem 0.55rem !important;
         box-sizing: border-box;
         z-index: 6;
+        background: #faf9f6;
+        border-bottom: none;
     }
 
     body.home-page .logo-container {
@@ -492,101 +500,49 @@ body.home-page .trend-card::before {
     }
 
     body.home-page .logo-img {
-        height: 34px;
+        height: 36px;
         width: auto;
-        max-width: 130px;
+        max-width: 140px;
         display: block;
     }
 
     body.home-page .nav-toggle {
         flex-shrink: 0;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        border-radius: 10px;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 0.4rem;
     }
 
     body.home-page .nav-toggle span {
-        width: 20px;
+        width: 22px;
         height: 2px;
-        background-color: #fff;
-    }
-
-    /* Slim full-width band — no floating card gutters */
-    body.home-page .announcement-strip {
-        position: relative;
-        z-index: 5;
-        flex-shrink: 0;
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
+        background-color: #1a1a1a;
         margin: 0;
-        padding: 0.4rem 1rem;
-        box-sizing: border-box;
-        background: rgba(0, 0, 0, 0.55);
-        border: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 0;
-        box-shadow: none;
-        overflow: hidden;
     }
 
-    body.home-page .announcement-wrapper {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 0.4rem;
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
+    body.home-page .main-nav {
+        background: #faf9f6;
+        border-left: 1px solid rgba(0, 0, 0, 0.08);
     }
 
-    body.home-page .announcement-tag {
-        display: inline-flex;
-        margin-right: 0;
-        font-size: 0.52rem;
-        padding: 2px 6px;
-        flex-shrink: 0;
-        background: rgba(237, 87, 47, 0.16);
-        border-color: rgba(237, 87, 47, 0.4);
-        color: #ffb89c;
+    body.home-page .main-nav .nav-link {
+        color: #1a1a1a;
     }
 
-    body.home-page .announcement-text {
-        flex: 1 1 auto;
-        min-width: 0;
-        margin-right: 0;
-        font-size: 0.68rem;
-        line-height: 1.25;
-        color: rgba(255, 255, 255, 0.8);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    /* No playbook strip on mweb */
+    body.home-page .announcement-strip {
+        display: none !important;
     }
 
-    body.home-page .announcement-cta {
-        flex: 0 0 auto;
-        font-size: 0.68rem;
-        font-weight: 600;
-        color: var(--color-accent-orange);
-        white-space: nowrap;
-        min-height: 0;
-        padding: 0;
-        gap: 0.15rem;
+    /* No sticky footer — CTA lives in the card */
+    body.home-page .mobile-sticky-cta {
+        display: none !important;
     }
 
-    body.home-page .announcement-cta span:first-child {
-        display: none;
-    }
-
-    body.home-page .announcement-cta::before {
-        content: 'Guide';
-    }
-
-    body.home-page .announcement-cta .announcement-arrow {
-        display: inline;
-    }
-
-    /* Full-bleed video stage fills leftover viewport */
+    /* Full-bleed video hero fills remaining viewport */
     body.home-page .hero-showcase {
         position: relative;
         flex: 1 1 auto !important;
@@ -599,8 +555,13 @@ body.home-page .trend-card::before {
         overflow: hidden !important;
         box-sizing: border-box;
         margin: 0;
-        padding: 0;
+        padding: 0 !important;
         box-shadow: none;
+        background: #0b0b0d;
+    }
+
+    body.home-page.has-announcement .hero-showcase {
+        padding-bottom: 0 !important;
     }
 
     body.home-page .hero-bg-fallback {
@@ -610,6 +571,9 @@ body.home-page .trend-card::before {
         width: 100%;
         height: 100%;
         z-index: 1;
+        background-image: url('/assets/sand_bg.jpg');
+        background-size: cover;
+        background-position: center;
     }
 
     body.home-page .hero-bg {
@@ -625,6 +589,12 @@ body.home-page .trend-card::before {
 
     body.home-page .hero-overlay {
         z-index: 2;
+        background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.35) 0%,
+            rgba(0, 0, 0, 0.2) 40%,
+            rgba(0, 0, 0, 0.45) 100%
+        );
     }
 
     body.home-page .hero-content {
@@ -638,8 +608,8 @@ body.home-page .trend-card::before {
         min-width: 0;
         height: 100%;
         min-height: 0;
-        padding: 0.85rem 1rem calc(3.75rem + env(safe-area-inset-bottom, 0px));
-        gap: 0.75rem;
+        padding: 1.25rem 1.15rem calc(1.15rem + env(safe-area-inset-bottom, 0px));
+        gap: 1rem;
         box-sizing: border-box;
         overflow: hidden;
     }
@@ -651,121 +621,132 @@ body.home-page .trend-card::before {
         max-width: 100%;
         min-width: 0;
         flex-shrink: 0;
+        order: 1;
     }
 
     body.home-page .hero-title {
         color: #fff;
-        font-size: clamp(1.4rem, 6.5vw, 1.75rem) !important;
-        line-height: 1.12;
+        font-size: clamp(1.65rem, 7.5vw, 2.15rem) !important;
+        line-height: 1.15;
         max-width: 100%;
         overflow-wrap: anywhere;
         word-break: break-word;
-        text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+        font-weight: 400;
     }
 
     body.home-page .highlight-text {
-        display: inline;
+        display: inline-block;
         white-space: normal;
-        background: rgba(255, 255, 255, 0.12);
-        border-color: rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.22);
         color: #fff;
-        padding: 0 0.25em;
-        margin-top: 0;
+        padding: 0.15em 0.4em;
+        margin-top: 0.35rem;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
     }
 
+    /* Long product subcopy — keep short like the reference */
     body.home-page .hero-sub-tagline {
-        color: rgba(255, 255, 255, 0.8);
-        max-width: 100%;
-        font-size: 0.84rem !important;
-        line-height: 1.4;
-        margin-top: 0.5rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+        display: none !important;
     }
 
+    /* Reference-style line under title (dweb bottom tagline copy) */
     body.home-page .hero-tagline-container {
-        display: none;
+        display: block;
+        order: 2;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        grid-column: auto;
+        grid-row: auto;
+        align-self: start;
+    }
+
+    body.home-page .hero-tagline-container .hero-tagline {
+        max-width: 100%;
+        font-size: 0.92rem;
+        line-height: 1.45;
+        color: rgba(255, 255, 255, 0.92);
+        opacity: 1;
+        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Group title + tagline at top like the reference */
+    body.home-page .hero-content {
+        justify-content: flex-start;
+    }
+
+    body.home-page .hero-headline-container,
+    body.home-page .hero-tagline-container {
+        flex-shrink: 0;
     }
 
     body.home-page .trend-card {
         width: 100%;
         max-width: 100%;
         min-width: 0;
+        margin-top: auto;
         flex-shrink: 0;
         box-sizing: border-box;
-        padding: 0.9rem 1rem;
-        gap: 0.4rem;
+        padding: 1.15rem 1.15rem 1.05rem;
+        gap: 0.55rem;
         order: 3;
-        background: linear-gradient(
-            145deg,
-            rgba(255, 255, 255, 0.12) 0%,
-            rgba(255, 255, 255, 0.04) 52%,
-            rgba(237, 87, 47, 0.1) 100%
-        );
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        box-shadow:
-            0 1px 0 rgba(255, 255, 255, 0.06) inset,
-            0 12px 32px rgba(0, 0, 0, 0.4);
+        position: static;
+        border-radius: 0;
+        background: #fff;
+        border: none;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+        isolation: auto;
+        overflow: visible;
+    }
+
+    body.home-page .trend-card::before {
+        display: none;
     }
 
     body.home-page .trend-card-title {
-        color: #fff;
-        font-size: 0.95rem;
+        color: #1a1a1a;
+        font-size: 1.05rem;
+        font-weight: 700;
+        line-height: 1.3;
+        max-width: 100%;
+        letter-spacing: -0.01em;
+    }
+
+    body.home-page .trend-card-desc {
+        display: block !important;
+        color: #5e5e5e;
+        font-size: 0.88rem;
+        line-height: 1.45;
         max-width: 100%;
     }
 
     body.home-page .trend-card-note {
-        color: rgba(255, 255, 255, 0.55);
-        font-size: 0.75rem;
-        max-width: 100%;
-    }
-
-    body.home-page .trend-card-desc,
-    body.home-page .trend-card-btn {
         display: none;
     }
 
-    body.home-page .mobile-sticky-cta {
-        display: flex;
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        max-width: 100%;
-        margin: 0;
-        box-sizing: border-box;
-        min-height: 48px;
-        padding: 0.75rem 1.25rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
-        border-top: 1px solid rgba(237, 87, 47, 0.45);
-        background: rgba(8, 8, 10, 0.97);
+    body.home-page .trend-card-btn {
+        display: inline-flex !important;
+        align-self: flex-end;
+        margin-top: 0.35rem;
+        background: #1a1a1a;
         color: #fff;
-        font-size: 0.88rem;
+        border-radius: 0;
+        padding: 0.65rem 1.15rem;
+        font-size: 0.8rem;
         font-weight: 600;
-        letter-spacing: 0.01em;
-        box-shadow: 0 -10px 32px rgba(0, 0, 0, 0.5);
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-        z-index: 90;
-        align-items: center;
-        justify-content: center;
-        gap: 0.35rem;
-        text-decoration: none;
+        box-shadow: none;
     }
 
-    body.home-page .mobile-sticky-cta span {
-        color: var(--color-accent-orange);
-    }
-
-    body.home-page .mobile-sticky-cta:active {
-        background: rgba(237, 87, 47, 0.2);
+    body.home-page .trend-card-btn:hover,
+    body.home-page .trend-card-btn:active {
+        background: var(--color-accent-orange);
         color: #fff;
-    }
-
-    body.home-page .mobile-sticky-cta:active span {
-        color: #fff;
+        transform: none;
+        box-shadow: none;
     }
 }
 
