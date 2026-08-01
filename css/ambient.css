@@ -693,6 +693,17 @@ body:not(.home-page)::before {
         radial-gradient(ellipse 100% 80% at 50% 110%, rgba(237, 87, 47, 0.04), transparent 52%);
 }
 
+body.inv-investor-profile::before {
+    background-image:
+        radial-gradient(ellipse 140% 100% at 18% -8%, rgba(237, 87, 47, 0.28), transparent 62%),
+        radial-gradient(ellipse 120% 90% at 85% 12%, rgba(237, 87, 47, 0.12), transparent 55%),
+        radial-gradient(ellipse 100% 80% at 50% 110%, rgba(237, 87, 47, 0.06), transparent 52%);
+}
+
+body.inv-investor-profile .glow-orb {
+    opacity: 0.18;
+}
+
 body:not(.home-page) .waitlist-bg {
     background-color: transparent;
     background-image: none;

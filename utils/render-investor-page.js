@@ -22,16 +22,45 @@ function directoryWidget() {
   const filters = data.filters || {};
   const investorCount = data.count || (data.investors || []).length || 0;
   const stageCount = (filters.stages || []).length;
+  const sectorCount = (filters.sectors || []).length;
+  const themeCount = (filters.thesisThemes || []).length;
   const countLabel = investorCount >= 100 ? String(Math.floor(investorCount / 10) * 10) + '+' : String(investorCount);
 
   return (
-    '<aside class="inv-profile-dir-widget inv-profile-dir-widget--investor" aria-label="Investor directory">' +
+    '<aside class="inv-profile-dir-widget" aria-label="Investor directory">' +
+      '<div class="inv-profile-dir-visual" aria-hidden="true">' +
+        '<svg class="inv-profile-dir-svg" viewBox="0 0 220 132" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+          '<rect x="8" y="8" width="204" height="36" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.16)"/>' +
+          '<rect x="18" y="16" width="20" height="20" rx="6" fill="rgba(255,255,255,0.9)" stroke="rgba(237,87,47,0.55)"/>' +
+          '<text x="28" y="30" text-anchor="middle" fill="#ED572F" font-size="9" font-weight="700" font-family="system-ui,sans-serif">VC</text>' +
+          '<rect x="46" y="17" width="78" height="7" rx="3.5" fill="rgba(255,255,255,0.55)"/>' +
+          '<rect x="46" y="28" width="34" height="8" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.16)"/>' +
+          '<rect x="84" y="28" width="40" height="8" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>' +
+          '<path d="M186 20l6 6-6 6" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+
+          '<rect x="8" y="50" width="204" height="36" rx="12" fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.12)"/>' +
+          '<rect x="18" y="58" width="20" height="20" rx="6" fill="rgba(255,255,255,0.88)"/>' +
+          '<text x="28" y="72" text-anchor="middle" fill="#334" font-size="8" font-weight="700" font-family="system-ui,sans-serif">A</text>' +
+          '<rect x="46" y="59" width="70" height="7" rx="3.5" fill="rgba(255,255,255,0.45)"/>' +
+          '<rect x="46" y="70" width="38" height="8" rx="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.16)"/>' +
+          '<rect x="88" y="70" width="44" height="8" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>' +
+
+          '<rect x="8" y="92" width="204" height="32" rx="12" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.1)"/>' +
+          '<rect x="18" y="98" width="20" height="20" rx="6" fill="rgba(255,255,255,0.8)"/>' +
+          '<text x="28" y="112" text-anchor="middle" fill="#445" font-size="8" font-weight="700" font-family="system-ui,sans-serif">P</text>' +
+          '<rect x="46" y="100" width="64" height="7" rx="3.5" fill="rgba(255,255,255,0.32)"/>' +
+          '<rect x="46" y="111" width="48" height="7" rx="3.5" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>' +
+        '</svg>' +
+      '</div>' +
       '<div class="inv-profile-dir-stats">' +
         '<div class="inv-profile-dir-stat"><strong>' + escapeHtml(countLabel) + '</strong><span>Investors</span></div>' +
         '<div class="inv-profile-dir-stat"><strong>' + stageCount + '</strong><span>Stages</span></div>' +
+        '<div class="inv-profile-dir-stat"><strong>' + sectorCount + '</strong><span>Sectors</span></div>' +
+        '<div class="inv-profile-dir-stat"><strong>' + themeCount + '</strong><span>Themes</span></div>' +
       '</div>' +
       '<div class="inv-profile-dir-copy">' +
         '<h2 class="inv-profile-dir-title">Find more investors like this</h2>' +
+        '<p class="inv-profile-dir-desc">Filter by stage, sector, cheque size, and thesis.</p>' +
         '<a class="inv-profile-cta is-ghost" href="/investors">Investor Directory</a>' +
       '</div>' +
     '</aside>'
@@ -567,10 +596,10 @@ function renderInvestorPage(investor, related, res) {
     '<link rel="canonical" href="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/css/base.css?v=84">',
-    '<link rel="stylesheet" href="/css/hero.css?v=84">',
-    '<link rel="stylesheet" href="/css/ambient.css?v=84">',
-    '<link rel="stylesheet" href="/css/directory.css?v=84">',
+    '<link rel="stylesheet" href="/css/base.css?v=85">',
+    '<link rel="stylesheet" href="/css/hero.css?v=85">',
+    '<link rel="stylesheet" href="/css/ambient.css?v=85">',
+    '<link rel="stylesheet" href="/css/directory.css?v=85">',
     '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
@@ -579,8 +608,6 @@ function renderInvestorPage(investor, related, res) {
     '</head>',
     '<body class="scrollable-page inv-page inv-investor-profile">',
     '<div class="app-container">',
-    '<main class="hero-showcase inv-detail-main">',
-    '<div class="ambient-bg-wrapper"><div class="waitlist-bg"><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div><div class="glow-orb orb-3"></div></div></div>',
     '<header class="site-header">',
     '<a href="/" class="logo-container"><img src="/assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img"></a>',
     '<button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>',
@@ -591,6 +618,8 @@ function renderInvestorPage(investor, related, res) {
     '<a href="/blog" class="nav-link">Blog</a>',
     '<a href="/news" class="nav-link">News</a>',
     '</nav></header>',
+    '<main class="hero-showcase inv-detail-main">',
+    '<div class="ambient-bg-wrapper"><div class="waitlist-bg"><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div><div class="glow-orb orb-3"></div></div></div>',
     '<div class="inv-detail-wrap inv-profile-wrap">',
     '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="/investors">Investors</a><span>›</span><span class="current">' + escapeHtml(investor.name) + '</span></div>',
 
