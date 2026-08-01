@@ -293,7 +293,7 @@ module.exports = async function handler(req, res) {
     <link rel="stylesheet" href="/css/base.css?v=73">
     <link rel="stylesheet" href="/css/hero.css?v=73">
     <link rel="stylesheet" href="/css/ambient.css?v=73">
-    <link rel="stylesheet" href="/css/blog.css?v=73">
+    <link rel="stylesheet" href="/css/blog.css?v=74">
     <link rel="canonical" href="https://vcdekho.com/${pathPrefix}/${article.slug}">
     
     <meta property="og:title" content="${article.meta_title}">
@@ -313,7 +313,7 @@ module.exports = async function handler(req, res) {
     }
     </script>
 </head>
-<body class="scrollable-page">
+<body class="scrollable-page pub-page">
     <div class="app-container">
         <header class="site-header">
             <a href="/" class="logo-container">
@@ -332,7 +332,7 @@ module.exports = async function handler(req, res) {
             </nav>
         </header>
 
-        <main class="hero-showcase" style="padding-top: 120px; padding-bottom: 80px;">
+        <main class="hero-showcase">
             <!-- Ambient Glow Background -->
             <div class="ambient-bg-wrapper">
                 <div class="waitlist-bg" id="waitlist-ambient-bg">

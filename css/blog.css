@@ -2,12 +2,26 @@
    BLOG LAYOUT & TYPOGRAPHY STYLES
    ========================================================================== */
 
+/* Blog + news list pages — match investors/people directory top spacing */
+body.scrollable-page.pub-page .app-container {
+  padding-top: 1rem;
+  padding-bottom: 0;
+  gap: 0.75rem;
+}
+
+body.scrollable-page.pub-page .hero-showcase {
+  padding-top: 1.25rem !important;
+  padding-bottom: 2.5rem !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+
 /* Blog Pages Scrollable Configuration — canonical rules live in base.css */
 
 /* Blog Content Container */
 .blog-content {
-    padding: 3rem 2.5rem;
-    max-width: 1100px;
+    padding: 0 20px 3rem;
+    max-width: 1180px;
     margin: 0 auto;
     width: 100%;
     z-index: 2;
@@ -17,7 +31,7 @@
 
 @media (max-width: 768px) {
     .blog-content {
-        padding: 2rem 1.25rem;
+        padding: 0 16px 2rem;
     }
 }
 
@@ -1003,6 +1017,33 @@ a.breadcrumb-link:hover {
     color: var(--color-text-light);
     font-family: var(--font-heading);
     line-height: 1.3;
+}
+
+/* -------------------------------------------------------------------------- */
+/* News index page */
+/* -------------------------------------------------------------------------- */
+.news-page-content {
+    text-align: left;
+}
+
+.news-breadcrumbs {
+    margin-bottom: 0.85rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+.news-page-content > .blog-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.35rem;
+    text-align: left;
+}
+
+.news-page-lead {
+    color: var(--color-text-muted);
+    margin: 0 0 2rem;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    max-width: 640px;
 }
 
 /* -------------------------------------------------------------------------- */
