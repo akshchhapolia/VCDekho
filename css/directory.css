@@ -3227,13 +3227,99 @@ body.inv-person-profile .inv-person-firm-thesis-lead {
 }
 
 body.inv-person-profile .inv-person-firm-metrics {
-  margin-bottom: 1.15rem;
+  margin-bottom: 0.85rem;
+}
+
+body.inv-person-profile .inv-person-firm-head-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 0.85rem;
+}
+
+body.inv-person-profile .inv-person-firm-head-row h2 {
+  margin: 0;
 }
 
 body.inv-person-profile .inv-person-firm-active {
   display: inline-flex;
-  vertical-align: middle;
-  margin-left: 0.35rem;
+  margin: 0;
+}
+
+body.inv-person-profile .inv-person-firm-focus-card {
+  padding: 0.95rem 1rem 0.85rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+body.inv-person-profile .inv-person-firm-chip-block {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 7rem) minmax(0, 1fr);
+  gap: 0.65rem 1rem;
+  align-items: start;
+  padding: 0.55rem 0;
+}
+
+body.inv-person-profile .inv-person-firm-chip-block + .inv-person-firm-chip-block {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 0.15rem;
+  padding-top: 0.85rem;
+}
+
+body.inv-person-profile .inv-person-firm-chip-label {
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  padding-top: 0.45rem;
+}
+
+body.inv-person-profile .inv-person-firm-chip-row {
+  margin: 0;
+  gap: 0.45rem;
+}
+
+body.inv-person-profile .inv-person-firm-chip-row .inv-profile-chip {
+  padding: 0.42rem 0.72rem;
+  font-size: 0.8rem;
+  border-radius: 999px;
+}
+
+body.inv-person-profile .inv-person-firm-focus-foot {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.inv-person-profile .inv-person-firm-focus-foot .inv-profile-panel-link {
+  margin: 0;
+}
+
+body.inv-person-profile .inv-person-firm-metrics .inv-profile-metric-value {
+  font-size: clamp(0.92rem, 1.35vw, 1.05rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 720px) {
+  body.inv-person-profile .inv-person-firm-chip-block {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+
+  body.inv-person-profile .inv-person-firm-chip-label {
+    padding-top: 0;
+  }
+
+  body.inv-person-profile .inv-person-firm-metrics .inv-profile-metric-value {
+    white-space: normal;
+  }
 }
 
 body.inv-person-profile .inv-person-firm-portfolio-grid {

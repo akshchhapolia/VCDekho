@@ -83,21 +83,51 @@ function firmFocusSection(person, investor) {
     ? '<span class="inv-profile-active-badge inv-person-firm-active"><span class="inv-profile-active-dot" aria-hidden="true"></span>Actively deploying</span>'
     : '';
 
+  const sectorBlock = sectors.length
+    ? (
+      '<div class="inv-person-firm-chip-block">' +
+        '<div class="inv-person-firm-chip-label">Sector focus</div>' +
+        '<div class="inv-profile-chip-row inv-person-firm-chip-row">' + sectorChips + '</div>' +
+      '</div>'
+    )
+    : '';
+
+  const stageBlock = stages.length
+    ? (
+      '<div class="inv-person-firm-chip-block">' +
+        '<div class="inv-person-firm-chip-label">Stages</div>' +
+        '<div class="inv-profile-chip-row inv-person-firm-chip-row">' + stageChips + '</div>' +
+      '</div>'
+    )
+    : '';
+
+  const chipsPanel = (stageBlock || sectorBlock)
+    ? (
+      '<div class="inv-person-firm-focus-card">' +
+        stageBlock +
+        sectorBlock +
+        '<div class="inv-person-firm-focus-foot">' +
+          '<a class="inv-profile-panel-link" href="/investors/' + escapeHtml(investor.slug) + '#focus">Full focus on firm profile →</a>' +
+        '</div>' +
+      '</div>'
+    )
+    : (
+      '<a class="inv-profile-panel-link" href="/investors/' + escapeHtml(investor.slug) + '#focus">Full focus on firm profile →</a>'
+    );
+
   return (
     '<section class="inv-profile-section inv-person-firm-section inv-profile-reveal" id="firm-focus">' +
     '<div class="inv-profile-section-label">02 — Firm focus</div>' +
     '<div class="inv-profile-section-head">' +
+    '<div class="inv-person-firm-head-row">' +
     '<h2>Where ' + escapeHtml(person.company || investor.name) + ' invests</h2>' +
-    '<p>Stage, sector, and cheque signals from the linked fund profile.' + (activeBadge ? ' ' + activeBadge : '') + '</p>' +
+    activeBadge +
+    '</div>' +
+    '<p>Stage, sector, and cheque signals from the linked fund profile.</p>' +
     firmAttribution(person, investor) +
     '</div>' +
     '<div class="inv-profile-metric-strip inv-person-firm-metrics">' + metrics + '</div>' +
-    '<div class="inv-profile-focus-panel">' +
-    '<div class="inv-profile-focus-grid">' +
-    '<div class="inv-profile-focus-col"><h3>Lead / invest stages</h3><div class="inv-profile-chip-row">' + stageChips + '</div></div>' +
-    '<div class="inv-profile-focus-col"><h3>Sector focus</h3><div class="inv-profile-chip-row">' + sectorChips + '</div></div>' +
-    '</div></div>' +
-    '<a class="inv-profile-panel-link" href="/investors/' + escapeHtml(investor.slug) + '#focus">Full focus on firm profile →</a>' +
+    chipsPanel +
     '</section>'
   );
 }
