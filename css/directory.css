@@ -4629,6 +4629,11 @@ a.inv-profile-chip:hover .inv-profile-chip-icon {
   body.inv-investor-profile .inv-profile-dir-widget:not(.inv-profile-dir-widget--people) {
     display: none !important;
   }
+
+  /* Person profiles: drop "Browse investors" directory widget on mweb only */
+  body.inv-person-profile .inv-profile-dir-widget--people {
+    display: none !important;
+  }
 }
 
 @media (max-width: 640px) {
