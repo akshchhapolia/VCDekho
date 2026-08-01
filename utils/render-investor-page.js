@@ -6,6 +6,7 @@ const { getAllStages } = require('./investment-stages');
 const { hasSectorGuide } = require('./sectors');
 const { renderExploreRelated } = require('./render-explore-related');
 const { setPublicHtmlCache } = require('./public-html-cache');
+const { renderProfileHeadAssets } = require('./profile-page-assets');
 const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
 const { getPeopleByCompanySlug } = require('./people');
 const { portfolioCardHref } = require('./portfolio-card-href');
@@ -285,7 +286,16 @@ function thesisWidget(investor) {
   );
 }
 
-function renderInvestorPage(investor, related, res) {
+function renderInvestorExtrasHtml(investor) {
+  return {
+    activityHtml: recentActivitySection(investor) || '',
+    portfolioHtml: portfolioSection(investor) || ''
+  };
+}
+
+function renderInvestorPage(investor, related, res, opts) {
+  opts = opts || {};
+  const deferExtras = Boolean(opts.deferExtras);
   const metaDesc = investor.thesis ||
     (investor.name + ' — ' + investor.type + '. Stages: ' + (investor.stages || []).join(', ') + '. Explore on VC Dekho.');
 
