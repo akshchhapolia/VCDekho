@@ -2441,9 +2441,10 @@ a.inv-chip:hover {
     left: 0;
     bottom: 0;
     width: min(320px, 88vw);
-    z-index: 120;
-    background: #141414;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    /* Above page chrome + dimmer; below main nav (10040+) when that is open */
+    z-index: 10035;
+    background: #161618;
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
     padding: calc(1.25rem + env(safe-area-inset-top, 0px)) 1.15rem calc(1.5rem + env(safe-area-inset-bottom, 0px));
     transform: translateX(-105%);
     transition: transform 0.25s ease;
@@ -2451,10 +2452,12 @@ a.inv-chip:hover {
     overflow-x: hidden;
     gap: 1rem;
     overscroll-behavior: contain;
+    pointer-events: auto;
+    box-shadow: 8px 0 28px rgba(0, 0, 0, 0.45);
   }
 
   .inv-dir-sidebar .inv-dd-menu {
-    z-index: 130;
+    z-index: 10036;
   }
 
   .inv-dir-sidebar.is-open {
@@ -2463,14 +2466,51 @@ a.inv-chip:hover {
 
   .inv-dir-sidebar-head {
     display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+  }
+
+  /* Match menu X: two bars crossed */
+  .inv-dir-sidebar-close {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin: 0 -0.35rem 0 0;
+    padding: 0;
+    color: transparent;
+    font-size: 0;
+    line-height: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .inv-dir-sidebar-close span {
+    position: absolute;
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 0;
+  }
+
+  .inv-dir-sidebar-close span:nth-child(1) {
+    transform: rotate(45deg);
+  }
+
+  .inv-dir-sidebar-close span:nth-child(2) {
+    transform: rotate(-45deg);
   }
 
   .inv-dir-backdrop {
     display: block;
     position: fixed;
     inset: 0;
-    z-index: 110;
-    background: rgba(0, 0, 0, 0.55);
+    z-index: 10025;
+    background: rgba(0, 0, 0, 0.45);
   }
 
   .inv-dir-backdrop[hidden] {
@@ -2479,6 +2519,34 @@ a.inv-chip:hover {
 
   body.inv-dir-filters-open {
     overflow: hidden;
+  }
+
+  /* Brighter, readable filter controls on the drawer */
+  body.inv-dir-page .inv-dir-sidebar .inv-dir-field > span {
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  body.inv-dir-page .inv-dir-sidebar .inv-dir-field input,
+  body.inv-dir-page .inv-dir-sidebar .inv-dd-trigger,
+  body.inv-dir-page .inv-dir-sidebar .inv-dd-value {
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  body.inv-dir-page .inv-dir-sidebar .inv-dd-value {
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  body.inv-dir-page .inv-dir-sidebar .inv-dd.has-value .inv-dd-value {
+    color: #fff;
+  }
+
+  body.inv-dir-page .inv-dir-sidebar .inv-dir-field input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  body.inv-dir-page .inv-dir-sidebar .inv-dir-checkbox-field span,
+  body.inv-dir-page .inv-dir-sidebar .inv-dir-clear {
+    color: rgba(255, 255, 255, 0.78);
   }
 
   .inv-dir-table-head {
