@@ -340,7 +340,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     '</body></html>'
   ].join('\n');
 
-  setPublicHtmlCache(res, { varyMobile: Boolean(deferExtras) });
+  setPublicHtmlCache(res, { varyMobile: true });
   return res.status(200).send(html);
 }
 

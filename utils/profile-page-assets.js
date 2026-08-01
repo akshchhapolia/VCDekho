@@ -43,7 +43,6 @@ const PROFILE_CRITICAL_CSS = [
   '.inv-profile-hero-lead{color:rgba(255,255,255,.72);font-size:.95rem;line-height:1.5;margin:0 0 1rem}',
   '.inv-profile-hero-actions{display:flex;flex-wrap:wrap;gap:.5rem}',
   '.inv-profile-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.65rem 1rem;border-radius:12px;text-decoration:none;font-size:.85rem;font-weight:600;color:#fff;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06)}',
-  '.inv-profile-dir-widget{display:none!important}',
   '.inv-profile-sticky-host{width:100vw;max-width:100vw;margin-left:calc(50% - 50vw)}',
   '.inv-profile-sticky{display:flex;flex-wrap:nowrap;gap:.15rem 1rem;overflow-x:auto;padding:.75rem max(1rem,env(safe-area-inset-left)) .65rem;border-bottom:1px solid rgba(255,255,255,.1);-webkit-overflow-scrolling:touch;scrollbar-width:none}',
   '.inv-profile-sticky a{flex:0 0 auto;color:rgba(255,255,255,.5);font-size:.82rem;font-weight:650;text-decoration:none;white-space:nowrap;padding:.45rem .35rem .6rem}',
@@ -51,7 +50,9 @@ const PROFILE_CRITICAL_CSS = [
   '.inv-profile-section{margin:1.5rem 0;color:rgba(255,255,255,.85)}',
   '.inv-profile-section-label{color:#ffb89c;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}',
   '.inv-profile-section-head h2{font-family:var(--font-heading);font-size:1.45rem;font-weight:400;color:#fff;margin:0 0 .35rem}',
-  '@media(min-width:769px){.inv-profile-dir-widget{display:block!important}.main-nav{display:flex}.nav-toggle{display:none}.app-container{padding:var(--page-padding)}}'
+  /* Mweb-only first paint: hide dir widgets + hamburger shell (full CSS restores desktop) */
+  '@media(max-width:768px){.inv-profile-dir-widget{display:none!important}.main-nav{display:none}.nav-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}}',
+  '@media(min-width:769px){.main-nav{display:flex}.nav-toggle{display:none}.app-container{padding:var(--page-padding)}.inv-profile-sticky-host{width:auto;max-width:none;margin-left:0}.inv-profile-sticky{overflow:visible;flex-wrap:wrap}}'
 ].join('');
 
 function renderProfileHeadAssets() {

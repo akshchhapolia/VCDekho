@@ -702,7 +702,8 @@ function renderInvestorPage(investor, related, res, opts) {
     '</body></html>'
   ].join('\n');
 
-  setPublicHtmlCache(res, { varyMobile: Boolean(deferExtras) });
+  // Always vary — mweb may omit SSR extras while desktop includes them
+  setPublicHtmlCache(res, { varyMobile: true });
   return res.status(200).send(html);
 }
 
