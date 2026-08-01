@@ -60,10 +60,14 @@ function portfolioLogoHtml(c) {
       '</span>'
     );
   }
+  // Defer real URL until near viewport (lazy-portfolio-logos.js) so below-fold
+  // third-party logos don't compete with LCP on mweb.
   return (
-    '<img class="inv-profile-portfolio-logo" src="' +
+    '<img class="inv-profile-portfolio-logo" data-src="' +
     escapeHtml(c.logoUrl) +
-    '" alt="" width="32" height="32" loading="lazy" decoding="async" onerror="this.classList.add(\'is-broken\')">' +
+    '" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22%3E%3C/svg%3E"' +
+    ' alt="" width="32" height="32" loading="lazy" decoding="async" fetchpriority="low"' +
+    ' onerror="this.classList.add(\'is-broken\')">' +
     fallback
   );
 }
