@@ -5,13 +5,9 @@
     if (!menuToggle || !mainNav) return;
 
     var header = menuToggle.closest('.site-header') || menuToggle.parentNode;
-    var appContainer = document.querySelector('.app-container');
-    var mobileHost = appContainer || document.body;
     var mobileMq = window.matchMedia('(max-width: 768px)');
+    var togglePlaceholder = null;
 
-    // Keep drawer + dimmer in the same stacking context as the page chrome.
-    // A body-level backdrop paints above .app-container (z-index: 2) and
-    // intercepts every tap, so links only appear to "close the menu".
     var backdrop = document.getElementById('nav-backdrop');
     if (!backdrop) {
       backdrop = document.createElement('button');
@@ -23,6 +19,14 @@
       backdrop.setAttribute('aria-hidden', 'true');
     }
 
+    function ensureTogglePlaceholder() {
+      if (togglePlaceholder || !header) return;
+      togglePlaceholder = document.createElement('span');
+      togglePlaceholder.className = 'nav-toggle-spacer';
+      togglePlaceholder.setAttribute('aria-hidden', 'true');
+      header.appendChild(togglePlaceholder);
+    }
+
     function setOpen(open) {
       menuToggle.classList.toggle('active', open);
       mainNav.classList.toggle('active', open);
@@ -30,17 +34,43 @@
       backdrop.hidden = !open;
       backdrop.setAttribute('aria-hidden', open ? 'false' : 'true');
       document.body.classList.toggle('nav-open', open);
+
+      if (!mobileMq.matches) return;
+
+      if (open) {
+        // Escape page stacking contexts so dark drawer + X always paint on top.
+        ensureTogglePlaceholder();
+        document.body.appendChild(backdrop);
+        document.body.appendChild(mainNav);
+        document.body.appendChild(menuToggle);
+      } else if (header) {
+        if (togglePlaceholder && togglePlaceholder.parentNode === header) {
+          header.insertBefore(menuToggle, togglePlaceholder);
+        } else {
+          header.appendChild(menuToggle);
+        }
+      }
     }
 
     function placeForViewport() {
       if (mobileMq.matches) {
-        mobileHost.appendChild(backdrop);
-        mobileHost.appendChild(mainNav);
+        document.body.appendChild(backdrop);
+        document.body.appendChild(mainNav);
+        if (header && menuToggle.parentNode !== header && !menuToggle.classList.contains('active')) {
+          if (togglePlaceholder && togglePlaceholder.parentNode === header) {
+            header.insertBefore(menuToggle, togglePlaceholder);
+          } else {
+            header.appendChild(menuToggle);
+          }
+        }
       } else {
         setOpen(false);
         if (backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
-        if (header && mainNav.parentNode !== header) {
-          header.appendChild(mainNav);
+        if (header && mainNav.parentNode !== header) header.appendChild(mainNav);
+        if (header && menuToggle.parentNode !== header) header.appendChild(menuToggle);
+        if (togglePlaceholder && togglePlaceholder.parentNode) {
+          togglePlaceholder.parentNode.removeChild(togglePlaceholder);
+          togglePlaceholder = null;
         }
       }
     }
@@ -74,11 +104,9 @@
           setOpen(false);
           return;
         }
-        if (!mobileMq.matches) return; // desktop: allow normal navigation
-        // Force navigation on mobile so overlays cannot swallow the gesture.
+        if (!mobileMq.matches) return;
         e.preventDefault();
         setOpen(false);
-        // Free the 2.5MB hero download so login/next page can use the radio.
         if (window.VCHero && typeof window.VCHero.release === 'function') {
           window.VCHero.release();
         }

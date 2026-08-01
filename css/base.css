@@ -198,7 +198,7 @@ body {
 }
 
 @media (max-width: 768px) {
-    /* Global mweb menu button — all pages. Desktop (≥769px) unchanged. */
+    /* Global mweb menu — all pages. Desktop (≥769px) unchanged. */
     .nav-toggle {
         display: flex !important;
         flex-direction: column !important;
@@ -208,14 +208,23 @@ body {
         min-width: 44px;
         min-height: 44px;
         padding: 0.5rem;
-        background: none;
-        border: none;
+        background: none !important;
+        border: none !important;
         border-radius: 0;
-        box-shadow: none;
+        box-shadow: none !important;
         overflow: visible;
         position: relative;
-        z-index: 220;
+        z-index: 230;
         -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Keep the X above the full-screen drawer */
+    .nav-toggle.active,
+    body.nav-open .nav-toggle {
+        position: fixed !important;
+        top: calc(0.65rem + env(safe-area-inset-top, 0px));
+        right: 1rem;
+        z-index: 10050 !important;
     }
 
     .nav-toggle span {
@@ -224,13 +233,15 @@ body {
         height: 2px;
         margin: 0 !important;
         flex-shrink: 0;
-        background-color: #fff;
+        background-color: #fff !important;
         border-radius: 0;
         transform-origin: center;
         opacity: 1;
     }
 
-    .main-nav {
+    .main-nav,
+    nav.main-nav,
+    #navigation-bar {
         position: fixed;
         top: 0;
         right: -100%;
@@ -241,31 +252,37 @@ body {
         flex-direction: column;
         justify-content: center;
         gap: 3rem;
-        z-index: 210;
+        z-index: 10040 !important;
         flex: none;
-        background-color: rgba(14, 14, 16, 0.98);
-        border-left: 1px solid rgba(255, 255, 255, 0.08);
+        background: #121214 !important;
+        background-color: #121214 !important;
+        border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
         box-shadow: -10px 0 30px rgba(0, 0, 0, 0.45);
         transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         pointer-events: auto;
     }
 
-    .main-nav.active {
+    .main-nav.active,
+    nav.main-nav.active,
+    #navigation-bar.active {
         right: 0;
     }
 
-    .main-nav .nav-link {
-        color: rgba(255, 255, 255, 0.88);
+    .main-nav .nav-link,
+    #navigation-bar .nav-link {
+        color: rgba(255, 255, 255, 0.9) !important;
         font-size: 1.3rem;
-        opacity: 0.9;
+        opacity: 1;
         pointer-events: auto;
     }
 
-    .main-nav .nav-link.active {
-        color: var(--color-accent-orange);
+    .main-nav .nav-link.active,
+    #navigation-bar .nav-link.active {
+        color: var(--color-accent-orange) !important;
     }
 
-    .main-nav .nav-link::after {
+    .main-nav .nav-link::after,
+    #navigation-bar .nav-link::after {
         background-color: rgba(255, 255, 255, 0.85);
     }
 
@@ -274,11 +291,16 @@ body {
     }
 
     .nav-toggle.active span:nth-child(2) {
-        opacity: 0;
+        opacity: 0 !important;
     }
 
     .nav-toggle.active span:nth-child(3) {
         transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .nav-backdrop {
+        z-index: 10030 !important;
+        background: rgba(0, 0, 0, 0.55) !important;
     }
 }
 
@@ -396,6 +418,14 @@ body.nav-open {
 
     .site-header {
         padding-top: env(safe-area-inset-top, 0px);
+    }
+
+    /* Reserves hamburger space in the header while the toggle is portaled to <body> */
+    .nav-toggle-spacer {
+        display: block;
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
     }
 
     /* Prevent iOS input zoom */
