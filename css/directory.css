@@ -3748,6 +3748,10 @@ a.inv-profile-activity-row:hover {
   transition: border-color 0.15s ease, background 0.15s ease;
 }
 
+.inv-profile-portfolio-card[hidden] {
+  display: none !important;
+}
+
 a.inv-profile-portfolio-card:hover {
   border-color: rgba(255, 122, 47, 0.45);
   background: rgba(20, 22, 32, 0.75);
