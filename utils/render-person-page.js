@@ -1,10 +1,15 @@
 /**
  * Person profile page renderer — a lighter sibling of render-investor-page.js.
- * Note: the person's email is intentionally NOT printed on this public,
- * search-indexed page (it stays inside the logged-in /people list + API,
- * mirroring how the fuller investor directory is gated).
+ * Firm-context sections are joined via companySlug (see render-person-firm-sections.js).
  */
 const { loadPeopleData } = require('./people');
+const {
+  firmFocusSection,
+  firmThesisSection,
+  firmActivitySection,
+  firmPortfolioSection,
+  firmExploreSection
+} = require('./render-person-firm-sections');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -44,7 +49,21 @@ function peopleDirectoryWidget() {
   );
 }
 
-function renderPersonPage(person, colleagues, res) {
+function colleagueAvatarHtml(colleague) {
+  if (colleague.photo) {
+    return (
+      '<img class="inv-person-colleague-avatar" src="' + escapeHtml(colleague.photo) + '" alt="" width="40" height="40" loading="lazy">'
+    );
+  }
+  if (colleague.companyLogo) {
+    return (
+      '<img class="inv-person-colleague-avatar is-firm" src="' + escapeHtml(colleague.companyLogo) + '" alt="" width="40" height="40" loading="lazy">'
+    );
+  }
+  return '<span class="inv-person-colleague-avatar is-fallback" aria-hidden="true">' + escapeHtml(initialsFor(colleague.name)) + '</span>';
+}
+
+function renderPersonPage(person, colleagues, investor, res) {
   const metaDesc = (person.title ? person.title + ' at ' + person.company : 'Investor at ' + person.company) +
     '. Explore on VC Dekho.';
 
@@ -62,9 +81,17 @@ function renderPersonPage(person, colleagues, res) {
     '<svg class="inv-profile-cta-icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
       '<path d="M23 4.6c-.8.4-1.7.6-2.6.8.9-.6 1.6-1.5 2-2.5-.9.5-1.8.9-2.8 1.1a4.4 4.4 0 0 0-7.5 4c-3.6-.2-6.9-1.9-9-4.6a4.4 4.4 0 0 0 1.4 5.9c-.7 0-1.4-.2-2-.6v.1c0 2.1 1.5 3.9 3.5 4.3-.6.2-1.3.2-2 .1.6 1.8 2.3 3.1 4.3 3.1A8.9 8.9 0 0 1 1 19.5a12.6 12.6 0 0 0 6.8 2c8.1 0 12.6-6.9 12.6-12.9v-.6c.9-.6 1.6-1.4 2.2-2.3z"/>' +
     '</svg>';
+  const iconEmail =
+    '<svg class="inv-profile-cta-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
+      '<rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/>' +
+      '<path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+    '</svg>';
 
   const linkedinBtn = person.linkedin
     ? '<a class="inv-profile-cta is-primary" href="' + escapeHtml(person.linkedin) + '" target="_blank" rel="noopener noreferrer">' + iconLinkedin + '<span>LinkedIn</span></a>'
+    : '';
+  const emailBtn = person.email
+    ? '<a class="inv-profile-cta is-ghost" href="mailto:' + escapeHtml(person.email) + '">' + iconEmail + '<span>' + escapeHtml(person.email) + '</span></a>'
     : '';
   const twitterBtn = person.twitter
     ? '<a class="inv-profile-cta is-ghost" href="' + escapeHtml(person.twitter) + '" target="_blank" rel="noopener noreferrer">' + iconTwitter + '<span>Twitter / X</span></a>'
@@ -73,11 +100,24 @@ function renderPersonPage(person, colleagues, res) {
     ? '<a class="inv-profile-cta is-ghost" href="/investors/' + escapeHtml(person.companySlug) + '">' + iconExternal + '<span>View ' + escapeHtml(person.company) + '</span></a>'
     : '';
 
-  const snapshotStrip = [
+  const snapshotItems = [
     { label: 'Role', value: person.title || 'Investor', lead: true },
     { label: 'Company', value: person.company || '—', href: person.companySlug ? '/investors/' + person.companySlug : null },
     { label: 'Company type', value: person.companyType || '—' }
-  ].map((item) => {
+  ];
+
+  if (investor && investor.chequeSize) {
+    snapshotItems.push({ label: 'Firm ticket size', value: investor.chequeSize, href: '/investors/' + investor.slug + '#firm-focus' });
+  }
+  if (investor && (investor.stages || []).length) {
+    snapshotItems.push({
+      label: 'Firm stages',
+      value: investor.stages.slice(0, 2).join(' · ') + (investor.stages.length > 2 ? ' +' + (investor.stages.length - 2) : ''),
+      href: '/investors/' + investor.slug + '#firm-focus'
+    });
+  }
+
+  const snapshotStrip = snapshotItems.map((item) => {
     const inner =
       '<div class="inv-profile-metric-label">' + escapeHtml(item.label) + '</div>' +
       '<div class="inv-profile-metric-value">' + escapeHtml(item.value) + '</div>';
@@ -87,28 +127,38 @@ function renderPersonPage(person, colleagues, res) {
   }).join('');
 
   const colleagueCards = (colleagues || []).slice(0, 6).map((c) => (
-    '<a class="inv-profile-related-card inv-profile-reveal" href="/people/' + escapeHtml(c.slug) + '">' +
-      '<div class="inv-profile-related-type">' + escapeHtml(c.title || 'Investor') + '</div>' +
-      '<h3>' + escapeHtml(c.name) + '</h3>' +
-      '<p>' + escapeHtml(c.company || '') + '</p>' +
+    '<a class="inv-profile-related-card inv-person-colleague-card inv-profile-reveal" href="/people/' + escapeHtml(c.slug) + '">' +
+      colleagueAvatarHtml(c) +
+      '<div class="inv-person-colleague-copy">' +
+        '<div class="inv-profile-related-type">' + escapeHtml(c.title || 'Investor') + '</div>' +
+        '<h3>' + escapeHtml(c.name) + '</h3>' +
+        '<p>' + escapeHtml(c.company || '') + '</p>' +
+      '</div>' +
     '</a>'
   )).join('');
 
   const colleagueSection = colleagueCards
     ? (
-      '<section class="inv-profile-section inv-profile-reveal" id="colleagues">' +
-        '<div class="inv-profile-section-label">02 — Team</div>' +
+      '<section class="inv-profile-section inv-person-team-section inv-profile-reveal" id="colleagues">' +
+        '<div class="inv-profile-section-label">06 — Team</div>' +
         '<div class="inv-profile-section-head"><h2>Others at ' + escapeHtml(person.company) + '</h2><p>More people mapped to this firm in the directory.</p></div>' +
-        '<div class="inv-profile-related-grid">' + colleagueCards + '</div>' +
+        '<div class="inv-profile-related-grid inv-person-colleague-grid">' + colleagueCards + '</div>' +
       '</section>'
     )
     : '';
+
+  const focusSection = firmFocusSection(person, investor);
+  const thesisSection = firmThesisSection(person, investor);
+  const activitySection = investor ? firmActivitySection(person, investor, 5) : '';
+  const portfolioSection = investor ? firmPortfolioSection(person, investor, 9) : '';
+  const exploreSection = firmExploreSection(investor);
 
   const schema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: person.name,
     jobTitle: person.title || undefined,
+    email: person.email || undefined,
     image: person.photo ? 'https://vcdekho.com' + person.photo : undefined,
     worksFor: person.company ? { '@type': 'Organization', name: person.company } : undefined,
     sameAs: [person.linkedin, person.twitter].filter(Boolean)
@@ -130,10 +180,10 @@ function renderPersonPage(person, colleagues, res) {
     '<link rel="canonical" href="https://vcdekho.com/people/' + escapeHtml(person.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/css/base.css?v=85">',
-    '<link rel="stylesheet" href="/css/hero.css?v=85">',
-    '<link rel="stylesheet" href="/css/ambient.css?v=85">',
-    '<link rel="stylesheet" href="/css/directory.css?v=85">',
+    '<link rel="stylesheet" href="/css/base.css?v=87">',
+    '<link rel="stylesheet" href="/css/hero.css?v=87">',
+    '<link rel="stylesheet" href="/css/ambient.css?v=87">',
+    '<link rel="stylesheet" href="/css/directory.css?v=87">',
     '<meta property="og:title" content="' + escapeHtml(person.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/people/' + escapeHtml(person.slug) + '">',
@@ -171,7 +221,7 @@ function renderPersonPage(person, colleagues, res) {
     '<span class="inv-profile-type">' + escapeHtml(person.title || 'Investor') + '</span>',
     '<h1 class="inv-profile-title">' + escapeHtml(person.name) + '</h1>',
     '<p class="inv-profile-hero-lead">' + escapeHtml((person.title ? person.title + ' at ' : 'Investor at ') + (person.company || '')) + '</p>',
-    '<div class="inv-profile-hero-actions">' + linkedinBtn + companyBtn + twitterBtn + '</div>',
+    '<div class="inv-profile-hero-actions">' + linkedinBtn + emailBtn + companyBtn + twitterBtn + '</div>',
     '</div>',
     '</div>',
     '</section>',
@@ -180,17 +230,22 @@ function renderPersonPage(person, colleagues, res) {
 
     '<section class="inv-profile-section inv-profile-reveal is-visible" id="snapshot">',
     '<div class="inv-profile-section-label">01 — Snapshot</div>',
-    '<div class="inv-profile-section-head"><h2>At a glance</h2><p>Where this person sits in the VC Dekho directory.</p></div>',
+    '<div class="inv-profile-section-head"><h2>At a glance</h2><p>Where this person sits — and firm signals when they\'re linked to a fund profile.</p></div>',
     '<div class="inv-profile-metric-strip">' + snapshotStrip + '</div>',
     '</section>',
 
+    focusSection,
+    thesisSection,
+    activitySection,
+    portfolioSection,
     colleagueSection,
+    exploreSection,
 
     '<section class="blog-cta-banner" style="margin: 3rem 0 1rem;">',
     '<img src="/assets/blog_vc_dekho_cta.webp" alt="VC Dekho" class="blog-cta-bg">',
     '<div class="blog-cta-content">',
     '<h2 class="blog-cta-title">Find the right person to pitch</h2>',
-    '<p class="blog-cta-desc">Search investors and the people behind every fund — sign in to unlock contact details.</p>',
+    '<p class="blog-cta-desc">Search investors and the people behind every fund on VC Dekho.</p>',
     '<a href="/people" class="blog-cta-btn">Browse people</a>',
     '</div></section>',
 
