@@ -3178,16 +3178,27 @@ body.inv-person-profile .inv-profile-hero-inner {
 /* People widget — internal layout (person pages only) */
 body.inv-person-profile .inv-person-dir-kicker {
   margin: 0;
+  color: #ffb89c;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 body.inv-person-profile .inv-person-dir-stat strong {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
   line-height: 1;
   color: #fff;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 body.inv-person-profile .inv-person-dir-stat span {
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 body.inv-person-profile .inv-person-dir-stats-row {
@@ -3222,6 +3233,7 @@ body.inv-person-profile .inv-person-dir-stat-divider {
 body.inv-person-profile .inv-person-dir-desc {
   margin: 0;
   color: rgba(255, 255, 255, 0.62);
+  font-size: 0.84rem;
   line-height: 1.45;
 }
 
@@ -3321,7 +3333,9 @@ body.inv-person-profile .inv-person-firm-attribution a:hover {
 
 body.inv-person-profile .inv-person-firm-thesis-lead {
   margin: 0 0 1rem;
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1rem;
+  line-height: 1.6;
   max-width: 44rem;
 }
 
@@ -3354,6 +3368,11 @@ body.inv-person-profile .inv-person-firm-sectors {
 
 body.inv-person-profile .inv-person-firm-sectors-label {
   margin: 0 0 0.55rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 body.inv-person-profile .inv-person-firm-pill-row {
@@ -3423,6 +3442,7 @@ body.inv-person-profile .inv-person-firm-active {
 }
 
 body.inv-person-profile .inv-person-firm-metrics .inv-profile-metric-value {
+  font-size: clamp(0.92rem, 1.35vw, 1.05rem);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -3476,148 +3496,6 @@ body.inv-person-profile .inv-person-colleague-copy {
 
 body.inv-person-profile .inv-profile-hero-actions .inv-profile-cta span {
   word-break: break-all;
-}
-
-/* Person profile — unified typography (serif on hero name only) */
-body.inv-person-profile .inv-detail-wrap {
-  font-family: var(--font-sans);
-}
-
-body.inv-person-profile .inv-profile-title {
-  font-family: var(--font-heading);
-  font-size: clamp(2.15rem, 4.8vw, 3rem);
-  line-height: 1.05;
-  margin-bottom: 0.65rem;
-}
-
-body.inv-person-profile .inv-profile-type {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-}
-
-body.inv-person-profile .inv-profile-hero-lead {
-  font-size: 0.98rem;
-  font-weight: 400;
-  margin-bottom: 1.15rem;
-}
-
-body.inv-person-profile .inv-profile-section-head h2,
-body.inv-person-profile .inv-explore-head h2 {
-  font-family: var(--font-sans);
-  font-size: clamp(1.3rem, 2.2vw, 1.55rem);
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  line-height: 1.3;
-}
-
-body.inv-person-profile .inv-profile-section-label,
-body.inv-person-profile .inv-explore-kicker {
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.09em;
-}
-
-body.inv-person-profile .inv-person-dir-kicker,
-body.inv-person-profile .inv-person-firm-sectors-label,
-body.inv-person-profile .inv-profile-metric-label,
-body.inv-person-profile .inv-explore-label,
-body.inv-person-profile .inv-profile-related-type {
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-body.inv-person-profile .inv-person-dir-kicker,
-body.inv-person-profile .inv-profile-related-type {
-  color: #ffb89c;
-}
-
-body.inv-person-profile .inv-person-firm-sectors-label,
-body.inv-person-profile .inv-profile-metric-label,
-body.inv-person-profile .inv-explore-label {
-  color: rgba(255, 255, 255, 0.45);
-}
-
-body.inv-person-profile .inv-profile-metric-value,
-body.inv-person-profile .inv-person-firm-metrics .inv-profile-metric-value {
-  font-family: var(--font-sans);
-  font-size: 0.92rem;
-  font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
-}
-
-body.inv-person-profile .inv-person-dir-stat strong {
-  font-family: var(--font-sans);
-  font-size: 1.3rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-body.inv-person-profile .inv-person-dir-stat span {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-}
-
-body.inv-person-profile .inv-profile-section-head p,
-body.inv-person-profile .inv-explore-sub,
-body.inv-person-profile .inv-person-firm-attribution,
-body.inv-person-profile .inv-person-firm-thesis-lead,
-body.inv-person-profile .inv-person-dir-desc,
-body.inv-person-profile .inv-person-dir-features li,
-body.inv-person-profile .inv-profile-related-card p {
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-body.inv-person-profile .inv-profile-related-card h3 {
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  margin-bottom: 0.25rem;
-}
-
-body.inv-person-profile .inv-profile-portfolio-name {
-  font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-body.inv-person-profile .inv-profile-activity-highlight {
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-body.inv-person-profile .inv-profile-activity-date {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-}
-
-body.inv-person-profile .inv-person-firm-pill,
-body.inv-person-profile .inv-profile-chip {
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-
-body.inv-person-profile .inv-profile-cta,
-body.inv-person-profile .inv-person-dir-cta,
-body.inv-person-profile .inv-person-firm-panel-cta,
-body.inv-person-profile .inv-profile-panel-link {
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-body.inv-person-profile .inv-profile-active-badge {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
 }
 
 .inv-profile-section {
