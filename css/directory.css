@@ -2834,18 +2834,18 @@ a.inv-chip:hover {
     padding-top: 0.15rem;
   }
 
-  /* Funds mweb: keep stages|ticket side-by-side + title/filter aligned */
+  /* Funds mweb cards: keep 2-col meta + card chrome from 768 block */
   body.inv-dir-page .inv-dir-header {
     align-items: center;
   }
 
   body.inv-dir-page .inv-dir-row {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    padding: 0.8rem 0;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    padding: 0.9rem 0.85rem;
   }
 
   body.inv-dir-page .inv-dir-col-ticket {
-    padding-top: 0;
+    padding-top: 0.55rem;
   }
 
   .inv-filter-grid {
