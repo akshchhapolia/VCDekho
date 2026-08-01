@@ -2754,6 +2754,18 @@ a.inv-chip:hover {
     text-align: left;
   }
 
+  /* People directory: email row stays single-line when possible */
+  body.inv-dir-page .inv-dir-col-sectors .inv-profile-empty {
+    color: rgba(255, 255, 255, 0.38);
+  }
+
+  body.inv-dir-page .inv-dir-col-stages .inv-dir-inline-link,
+  body.inv-dir-page .inv-dir-ticket .inv-dir-inline-link {
+    color: rgba(255, 255, 255, 0.88);
+    text-decoration: none;
+    border-bottom: none;
+  }
+
   body.inv-dir-page .inv-dir-inline-link {
     color: rgba(255, 255, 255, 0.62);
     text-decoration: none;
