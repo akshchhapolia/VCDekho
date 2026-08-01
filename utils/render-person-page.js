@@ -37,14 +37,20 @@ function peopleDirectoryWidget() {
 
   return (
     '<aside class="inv-profile-dir-widget inv-profile-dir-widget--people" aria-label="People directory">' +
-      '<div class="inv-profile-dir-stats">' +
-        '<div class="inv-profile-dir-stat"><strong>' + escapeHtml(countLabel) + '</strong><span>People</span></div>' +
-        '<div class="inv-profile-dir-stat"><strong>' + orgCount + '</strong><span>Firms</span></div>' +
+      '<p class="inv-person-dir-kicker">People directory</p>' +
+      '<div class="inv-person-dir-stats-row">' +
+        '<div class="inv-person-dir-stat">' +
+          '<strong>' + escapeHtml(countLabel) + '</strong>' +
+          '<span>People</span>' +
+        '</div>' +
+        '<div class="inv-person-dir-stat-divider" aria-hidden="true"></div>' +
+        '<div class="inv-person-dir-stat">' +
+          '<strong>' + orgCount + '</strong>' +
+          '<span>Firms</span>' +
+        '</div>' +
       '</div>' +
-      '<div class="inv-profile-dir-copy">' +
-        '<h2 class="inv-profile-dir-title">Explore the people directory</h2>' +
-        '<a class="inv-profile-cta is-ghost" href="/people">People Directory</a>' +
-      '</div>' +
+      '<p class="inv-person-dir-desc">Browse partners and principals mapped across India\'s VC ecosystem.</p>' +
+      '<a class="inv-profile-cta is-ghost inv-person-dir-cta" href="/people">Browse directory</a>' +
     '</aside>'
   );
 }
@@ -180,10 +186,10 @@ function renderPersonPage(person, colleagues, investor, res) {
     '<link rel="canonical" href="https://vcdekho.com/people/' + escapeHtml(person.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/css/base.css?v=88">',
-    '<link rel="stylesheet" href="/css/hero.css?v=88">',
-    '<link rel="stylesheet" href="/css/ambient.css?v=88">',
-    '<link rel="stylesheet" href="/css/directory.css?v=88">',
+    '<link rel="stylesheet" href="/css/base.css?v=89">',
+    '<link rel="stylesheet" href="/css/hero.css?v=89">',
+    '<link rel="stylesheet" href="/css/ambient.css?v=89">',
+    '<link rel="stylesheet" href="/css/directory.css?v=89">',
     '<meta property="og:title" content="' + escapeHtml(person.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/people/' + escapeHtml(person.slug) + '">',
