@@ -3345,6 +3345,8 @@ body.inv-person-profile .inv-person-firm-metrics {
   border-radius: 0;
   background: transparent;
   padding: 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem 1rem;
 }
 
 body.inv-person-profile .inv-person-firm-panel {
