@@ -11,6 +11,7 @@ const {
   firmPortfolioSection,
   firmExploreSection
 } = require('./render-person-firm-sections');
+const { setPublicHtmlCache } = require('./public-html-cache');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -319,8 +320,7 @@ function renderPersonPage(person, colleagues, investor, res) {
     '</body></html>'
   ].join('\n');
 
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
+  setPublicHtmlCache(res);
   return res.status(200).send(html);
 }
 
