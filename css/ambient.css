@@ -1000,12 +1000,7 @@ body.home-page .announcement-strip {
     border-bottom: none;
     position: relative;
     z-index: 4;
-    /* Full-bleed when strip lives inside padded app-container */
-    margin-left: calc(-1 * var(--page-padding));
-    margin-right: calc(-1 * var(--page-padding));
-    width: calc(100% + 2 * var(--page-padding));
-    padding-left: var(--page-padding);
-    padding-right: var(--page-padding);
+    width: 100%;
     box-sizing: border-box;
     flex-shrink: 0;
 }
