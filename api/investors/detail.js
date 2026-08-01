@@ -4,11 +4,12 @@ const { getStagePage } = require('../../utils/investment-stages');
 const { getSectorPage } = require('../../utils/sectors');
 const { renderStagePage } = require('../../utils/render-stage-page');
 const { renderSectorPage } = require('../../utils/render-sector-page');
-const { renderInvestorPage } = require('../../utils/render-investor-page');
+const { renderInvestorPage, renderInvestorExtrasHtml } = require('../../utils/render-investor-page');
 const { renderExploreRelated } = require('../../utils/render-explore-related');
 const { getThesisThemeIconSvg } = require('../../utils/thesis-theme-icons');
 const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('../../utils/site-labels');
 const { setPublicHtmlCache } = require('../../utils/public-html-cache');
+const { isMobileRequest } = require('../../utils/profile-page-assets');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -169,7 +170,7 @@ function renderThemePage(theme, res) {
 }
 
 module.exports = async function handler(req, res) {
-  const { slug, view } = req.query || {};
+  const { slug, view, extras } = req.query || {};
   if (!slug) {
     return res.status(400).send('<h1>400 - Bad Request</h1>');
   }
@@ -194,8 +195,26 @@ module.exports = async function handler(req, res) {
       return renderSectorPage(sector, res);
     }
 
-    // Per-slug DB extras only (not full-table activity/portfolio scans)
-    await ensureInvestorDetailExtras(slug);
+    // Public JSON for mweb client hydrate (activity + portfolio HTML)
+    if (extras === '1' || extras === 'true') {
+      await ensureInvestorDetailExtras(slug);
+      const investor = getInvestorBySlug(slug);
+      if (!investor) {
+        res.setHeader('Cache-Control', 'public, max-age=60');
+        return res.status(404).json({ error: 'Investor not found' });
+      }
+      const payload = renderInvestorExtrasHtml(investor);
+      res.setHeader('Content-Type', 'application/json; charset=utf-8');
+      res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=300, stale-while-revalidate=3600');
+      res.setHeader('CDN-Cache-Control', 'public, s-maxage=300, stale-while-revalidate=3600');
+      return res.status(200).json(payload);
+    }
+
+    const deferExtras = isMobileRequest(req);
+    // Desktop: await DB. Mweb: skip wait — HTML paints first; profile-extras.js hydrates.
+    if (!deferExtras) {
+      await ensureInvestorDetailExtras(slug);
+    }
 
     const investor = getInvestorBySlug(slug);
     if (!investor) {
@@ -210,7 +229,7 @@ module.exports = async function handler(req, res) {
       .slice(0, 3)
       .map(toCard);
 
-    return renderInvestorPage(investor, related, res);
+    return renderInvestorPage(investor, related, res, { deferExtras });
   } catch (error) {
     console.error('investor detail error:', error);
     res.status(500).send('<h1>500 - Internal Server Error</h1>');

@@ -12,6 +12,7 @@ const {
   firmExploreSection
 } = require('./render-person-firm-sections');
 const { setPublicHtmlCache } = require('./public-html-cache');
+const { renderProfileHeadAssets } = require('./profile-page-assets');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -76,7 +77,17 @@ function colleagueAvatarHtml(colleague) {
   return '<span class="inv-person-colleague-avatar is-fallback" aria-hidden="true">' + escapeHtml(initialsFor(colleague.name)) + '</span>';
 }
 
-function renderPersonPage(person, colleagues, investor, res) {
+function renderPersonExtrasHtml(person, investor) {
+  if (!investor) return { activityHtml: '', portfolioHtml: '' };
+  return {
+    activityHtml: firmActivitySection(person, investor) || '',
+    portfolioHtml: firmPortfolioSection(person, investor, 9) || ''
+  };
+}
+
+function renderPersonPage(person, colleagues, investor, res, opts) {
+  opts = opts || {};
+  const deferExtras = Boolean(opts.deferExtras);
   const metaDesc = (person.title ? person.title + ' at ' + person.company : 'Investor at ' + person.company) +
     '. Explore on VC Dekho.';
 
@@ -162,8 +173,20 @@ function renderPersonPage(person, colleagues, investor, res) {
 
   const focusSection = firmFocusSection(person, investor);
   const thesisSection = firmThesisSection(person, investor);
-  const activitySection = investor ? firmActivitySection(person, investor) : '';
-  const portfolioSection = investor ? firmPortfolioSection(person, investor, 9) : '';
+  const extras = renderPersonExtrasHtml(person, investor);
+  let activitySection = extras.activityHtml;
+  let portfolioSection = extras.portfolioHtml;
+  let extrasMount = '';
+  let loadExtrasScript = false;
+
+  if (deferExtras && investor && !activitySection && !portfolioSection) {
+    extrasMount =
+      '<div id="inv-profile-extras" data-kind="person" data-slug="' +
+      escapeHtml(person.slug) +
+      '" hidden></div>';
+    loadExtrasScript = true;
+  }
+
   const exploreSection = firmExploreSection(investor);
 
   const stickyNav = [
@@ -197,18 +220,12 @@ function renderPersonPage(person, colleagues, investor, res) {
     '<script src="/js/nav.js?v=101" defer></script>',
     '<meta charset="UTF-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">',
-    '<link rel="preconnect" href="https://fonts.googleapis.com">',
-    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
-    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">',
+    renderProfileHeadAssets(),
     '<title>' + escapeHtml(person.name) + ' | Investors | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<link rel="canonical" href="https://vcdekho.com/people/' + escapeHtml(person.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/css/base.css?v=101">',
-    '<link rel="stylesheet" href="/css/hero.css?v=97">',
-    '<link rel="stylesheet" href="/css/ambient.css?v=98">',
-    '<link rel="stylesheet" href="/css/directory.css?v=100">',
     '<meta property="og:title" content="' + escapeHtml(person.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/people/' + escapeHtml(person.slug) + '">',
@@ -265,6 +282,7 @@ function renderPersonPage(person, colleagues, investor, res) {
     thesisSection,
     activitySection,
     portfolioSection,
+    extrasMount,
     colleagueSection,
     exploreSection,
 
@@ -280,7 +298,8 @@ function renderPersonPage(person, colleagues, investor, res) {
     '<script src="/js/auth.js" defer></script>',
     '<script src="/app.js" defer></script>',
     '<script src="/investors/lazy-portfolio-logos.js?v=1" defer></script>',
-    '<script src="/investors/profile-sticky.js?v=2" defer></script>',
+    '<script src="/investors/profile-sticky.js?v=3" defer></script>',
+    loadExtrasScript ? '<script src="/investors/profile-extras.js?v=1" defer></script>' : '',
     '<script>',
     '(function(){',
     'var nav=document.getElementById("inv-profile-sticky");',
@@ -321,8 +340,8 @@ function renderPersonPage(person, colleagues, investor, res) {
     '</body></html>'
   ].join('\n');
 
-  setPublicHtmlCache(res);
+  setPublicHtmlCache(res, { varyMobile: Boolean(deferExtras) });
   return res.status(200).send(html);
 }
 
-module.exports = { renderPersonPage, escapeHtml };
+module.exports = { renderPersonPage, renderPersonExtrasHtml, escapeHtml };

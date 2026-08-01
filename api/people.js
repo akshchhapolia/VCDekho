@@ -4,12 +4,14 @@
  * mirroring how api/investors/detail.js multiplexes theme/stage/sector views).
  *
  *   GET /api/people?slug=<slug>              -> public HTML profile page
+ *   GET /api/people?slug=<slug>&extras=1     -> public JSON (activity/portfolio HTML)
  *   GET /api/people?q=&companyType=&...      -> gated JSON list (used by /people)
  */
 const { filterPeople, getFilters, toCard, getPersonBySlug, getPeopleByCompanySlug } = require('../utils/people');
 const { getInvestorBySlug, ensureInvestorDetailExtras } = require('../utils/investors');
 const { requireAuth } = require('../utils/require-auth');
-const { renderPersonPage } = require('../utils/render-person-page');
+const { renderPersonPage, renderPersonExtrasHtml } = require('../utils/render-person-page');
+const { isMobileRequest } = require('../utils/profile-page-assets');
 
 module.exports = async function handler(req, res) {
   const query = req.query || {};
@@ -17,16 +19,36 @@ module.exports = async function handler(req, res) {
   if (query.slug) {
     try {
       const person = getPersonBySlug(query.slug);
-      if (!person) return res.status(404).send('<h1>404 - Person Not Found</h1>');
+      if (!person) {
+        if (query.extras === '1' || query.extras === 'true') {
+          res.setHeader('Cache-Control', 'public, max-age=60');
+          return res.status(404).json({ error: 'Person not found' });
+        }
+        return res.status(404).send('<h1>404 - Person Not Found</h1>');
+      }
 
-      // Firm portfolio/activity for this person's company — per-slug, not full tables
-      if (person.companySlug) {
+      // Public JSON for mweb client hydrate
+      if (query.extras === '1' || query.extras === 'true') {
+        if (person.companySlug) {
+          await ensureInvestorDetailExtras(person.companySlug);
+        }
+        const investor = person.companySlug ? getInvestorBySlug(person.companySlug) : null;
+        const payload = renderPersonExtrasHtml(person, investor);
+        res.setHeader('Content-Type', 'application/json; charset=utf-8');
+        res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=300, stale-while-revalidate=3600');
+        res.setHeader('CDN-Cache-Control', 'public, s-maxage=300, stale-while-revalidate=3600');
+        return res.status(200).json(payload);
+      }
+
+      const deferExtras = isMobileRequest(req);
+      // Desktop: await firm DB extras. Mweb: skip — profile-extras.js hydrates.
+      if (!deferExtras && person.companySlug) {
         await ensureInvestorDetailExtras(person.companySlug);
       }
 
       const colleagues = getPeopleByCompanySlug(person.companySlug, person.slug).map(toCard);
       const investor = person.companySlug ? getInvestorBySlug(person.companySlug) : null;
-      return renderPersonPage(person, colleagues, investor, res);
+      return renderPersonPage(person, colleagues, investor, res, { deferExtras });
     } catch (error) {
       console.error('person detail error:', error);
       return res.status(500).send('<h1>500 - Internal Server Error</h1>');

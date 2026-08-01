@@ -491,11 +491,26 @@ function renderInvestorPage(investor, related, res, opts) {
     className: 'inv-profile-reveal'
   });
 
+  const extras = renderInvestorExtrasHtml(investor);
+  let activityHtml = extras.activityHtml;
+  let portfolioHtml = extras.portfolioHtml;
+  let extrasMount = '';
+  let loadExtrasScript = false;
+
+  // Mweb: if DB was skipped and memory is cold, mount client hydrate (desktop always SSRs)
+  if (deferExtras && !activityHtml && !portfolioHtml) {
+    extrasMount =
+      '<div id="inv-profile-extras" data-kind="firm" data-slug="' +
+      escapeHtml(investor.slug) +
+      '" hidden></div>';
+    loadExtrasScript = true;
+  }
+
   const stickyNav = [
     '<nav class="inv-profile-sticky" id="inv-profile-sticky" aria-label="On this page">',
     '<a href="#snapshot" data-section="snapshot">Snapshot</a>',
-    (investor.recentChecks || []).length ? '<a href="#activity" data-section="activity">Activity</a>' : '',
-    filteredPortfolioCompanies(investor).length ? '<a href="#portfolio" data-section="portfolio">Portfolio</a>' : '',
+    activityHtml ? '<a href="#activity" data-section="activity">Activity</a>' : '',
+    portfolioHtml ? '<a href="#portfolio" data-section="portfolio">Portfolio</a>' : '',
     '<a href="#focus" data-section="focus">Focus</a>',
     themes.length ? '<a href="#thesis" data-section="thesis">Thesis</a>' : '',
     '<a href="#about" data-section="about">About</a>',
@@ -524,18 +539,12 @@ function renderInvestorPage(investor, related, res, opts) {
     '<script src="/js/nav.js?v=101" defer></script>',
     '<meta charset="UTF-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">',
-    '<link rel="preconnect" href="https://fonts.googleapis.com">',
-    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
-    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">',
+    renderProfileHeadAssets(),
     '<title>' + escapeHtml(investor.name) + ' | Funds | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<link rel="canonical" href="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/css/base.css?v=101">',
-    '<link rel="stylesheet" href="/css/hero.css?v=86">',
-    '<link rel="stylesheet" href="/css/ambient.css?v=98">',
-    '<link rel="stylesheet" href="/css/directory.css?v=112">',
     '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
@@ -587,8 +596,9 @@ function renderInvestorPage(investor, related, res, opts) {
     '<div class="inv-profile-metric-strip">' + snapshotStrip + '</div>',
     '</section>',
 
-    recentActivitySection(investor),
-    portfolioSection(investor),
+    activityHtml,
+    portfolioHtml,
+    extrasMount,
 
     '<section class="inv-profile-section inv-profile-reveal" id="focus">',
     '<div class="inv-profile-section-label">02 — Focus</div>',
@@ -643,6 +653,7 @@ function renderInvestorPage(investor, related, res, opts) {
     '<script src="/investors/lazy-portfolio-logos.js?v=1" defer></script>',
     '<script src="/investors/portfolio-section.js?v=3" defer></script>',
     '<script src="/investors/profile-sticky.js?v=3" defer></script>',
+    loadExtrasScript ? '<script src="/investors/profile-extras.js?v=1" defer></script>' : '',
     '<script>',
     '(function(){',
     'var nav=document.getElementById("inv-profile-sticky");',
@@ -691,8 +702,8 @@ function renderInvestorPage(investor, related, res, opts) {
     '</body></html>'
   ].join('\n');
 
-  setPublicHtmlCache(res);
+  setPublicHtmlCache(res, { varyMobile: Boolean(deferExtras) });
   return res.status(200).send(html);
 }
 
-module.exports = { renderInvestorPage, escapeHtml };
+module.exports = { renderInvestorPage, renderInvestorExtrasHtml, escapeHtml };
