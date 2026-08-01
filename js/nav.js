@@ -78,6 +78,10 @@
         // Force navigation on mobile so overlays cannot swallow the gesture.
         e.preventDefault();
         setOpen(false);
+        // Free the 2.5MB hero download so login/next page can use the radio.
+        if (window.VCHero && typeof window.VCHero.release === 'function') {
+          window.VCHero.release();
+        }
         window.location.assign(href);
       });
     });
