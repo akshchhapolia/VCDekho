@@ -551,10 +551,12 @@ body.home-page .trend-card::before {
         display: none !important;
     }
 
-    /* Inset sand hero panel — same as reference */
+    /* Inset sand hero panel — fills leftover viewport so CTA can sit on the bottom edge */
     body.home-page .hero-showcase,
     body.home-page.has-announcement .hero-showcase {
         position: relative;
+        display: flex;
+        flex-direction: column;
         flex: 1 1 auto !important;
         width: 100%;
         max-width: 100%;
@@ -611,12 +613,13 @@ body.home-page .trend-card::before {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+        flex: 1 1 auto;
         width: 100%;
         max-width: 100%;
         min-width: 0;
-        height: 100%;
-        min-height: 550px;
-        padding: 2rem;
+        height: auto;
+        min-height: 0;
+        padding: 1.5rem 1.25rem 0.85rem;
         gap: 1.25rem;
         box-sizing: border-box;
         overflow: visible;
@@ -635,8 +638,8 @@ body.home-page .trend-card::before {
     body.home-page .hero-title {
         font-family: var(--font-heading);
         color: #fff;
-        font-size: clamp(2.1rem, 9vw, 2.75rem) !important;
-        line-height: 1.1;
+        font-size: clamp(2.65rem, 11.5vw, 3.4rem) !important;
+        line-height: 1.08;
         font-weight: 400;
         letter-spacing: -0.5px;
         max-width: 100%;
