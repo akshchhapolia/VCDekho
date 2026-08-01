@@ -324,8 +324,8 @@ module.exports = async function handler(req, res) {
             </button>
             <nav class="main-nav" id="navigation-bar">
                 <a href="/" class="nav-link">Home</a>
-                <a href="/investors" class="nav-link">Investors</a>
-                <a href="/people" class="nav-link">People</a>
+                <a href="/investors" class="nav-link">Funds</a>
+                <a href="/people" class="nav-link">Investors</a>
                 <a href="/blog" class="nav-link ${blogNavActive}">Blog</a>
                 <a href="/news" class="nav-link ${newsNavActive}">News</a>
                 <a href="/login" class="nav-link">Log in</a>
