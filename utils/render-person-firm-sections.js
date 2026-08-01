@@ -45,26 +45,19 @@ function firmFocusSection(person, investor) {
   const sectorIds = investor.sectorIds || [];
   const themes = investor.thesisThemes || [];
 
-  const stageChips = stages.map((label, i) => {
-    const id = stageIds[i];
-    if (hasStageGuide(id)) {
-      return '<a class="inv-profile-chip inv-profile-chip-stage" href="/investors/stages/' + escapeHtml(id) + '">' + escapeHtml(label) + '</a>';
-    }
-    return '<span class="inv-profile-chip inv-profile-chip-stage">' + escapeHtml(label) + '</span>';
-  }).join('') || '<span class="inv-profile-empty">No stages listed</span>';
-
-  const sectorChips = sectors.map((label, i) => {
+  const sectorPills = sectors.map((label, i) => {
     const id = sectorIds[i];
     const href = hasSectorGuide(id)
       ? '/investors/sectors/' + encodeURIComponent(id)
       : id
         ? '/investors?sector=' + encodeURIComponent(id)
         : '';
+    const inner = escapeHtml(label);
     if (href) {
-      return '<a class="inv-profile-chip inv-profile-chip-sector" href="' + escapeHtml(href) + '">' + escapeHtml(label) + '</a>';
+      return '<a class="inv-person-firm-pill" href="' + escapeHtml(href) + '">' + inner + '</a>';
     }
-    return '<span class="inv-profile-chip inv-profile-chip-sector">' + escapeHtml(label) + '</span>';
-  }).join('') || '<span class="inv-profile-empty">No sectors listed</span>';
+    return '<span class="inv-person-firm-pill">' + inner + '</span>';
+  }).join('');
 
   const metrics = [
     { label: 'Ticket size', value: investor.chequeSize || 'Not listed', lead: true },
@@ -83,37 +76,21 @@ function firmFocusSection(person, investor) {
     ? '<span class="inv-profile-active-badge inv-person-firm-active"><span class="inv-profile-active-dot" aria-hidden="true"></span>Actively deploying</span>'
     : '';
 
-  const sectorBlock = sectors.length
+  const sectorPanel = sectors.length
     ? (
-      '<div class="inv-person-firm-chip-block">' +
-        '<div class="inv-person-firm-chip-label">Sector focus</div>' +
-        '<div class="inv-profile-chip-row inv-person-firm-chip-row">' + sectorChips + '</div>' +
+      '<div class="inv-person-firm-sectors">' +
+        '<p class="inv-person-firm-sectors-label">Sector focus</p>' +
+        '<div class="inv-person-firm-pill-row">' + sectorPills + '</div>' +
       '</div>'
     )
     : '';
 
-  const stageBlock = stages.length
-    ? (
-      '<div class="inv-person-firm-chip-block">' +
-        '<div class="inv-person-firm-chip-label">Stages</div>' +
-        '<div class="inv-profile-chip-row inv-person-firm-chip-row">' + stageChips + '</div>' +
-      '</div>'
-    )
-    : '';
-
-  const chipsPanel = (stageBlock || sectorBlock)
-    ? (
-      '<div class="inv-person-firm-focus-card">' +
-        stageBlock +
-        sectorBlock +
-        '<div class="inv-person-firm-focus-foot">' +
-          '<a class="inv-profile-panel-link" href="/investors/' + escapeHtml(investor.slug) + '#focus">Full focus on firm profile →</a>' +
-        '</div>' +
-      '</div>'
-    )
-    : (
-      '<a class="inv-profile-panel-link" href="/investors/' + escapeHtml(investor.slug) + '#focus">Full focus on firm profile →</a>'
-    );
+  const focusPanel =
+    '<div class="inv-person-firm-panel">' +
+      '<div class="inv-profile-metric-strip inv-person-firm-metrics">' + metrics + '</div>' +
+      sectorPanel +
+      '<a class="inv-person-firm-panel-cta" href="/investors/' + escapeHtml(investor.slug) + '#focus">View full firm profile →</a>' +
+    '</div>';
 
   return (
     '<section class="inv-profile-section inv-person-firm-section inv-profile-reveal" id="firm-focus">' +
@@ -126,8 +103,7 @@ function firmFocusSection(person, investor) {
     '<p>Stage, sector, and cheque signals from the linked fund profile.</p>' +
     firmAttribution(person, investor) +
     '</div>' +
-    '<div class="inv-profile-metric-strip inv-person-firm-metrics">' + metrics + '</div>' +
-    chipsPanel +
+    focusPanel +
     '</section>'
   );
 }
