@@ -16,13 +16,45 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             heroBg.style.display = '';
             heroFallback.style.display = 'none';
+            heroBg.setAttribute('playsinline', '');
+            heroBg.setAttribute('webkit-playsinline', '');
+            heroBg.muted = true;
+
+            const showFallback = () => {
+                heroBg.style.display = 'none';
+                heroFallback.style.display = 'block';
+            };
+
+            const tryPlay = () => heroBg.play();
+
+            const armGestureRetry = () => {
+                let done = false;
+                const retry = () => {
+                    if (done) return;
+                    done = true;
+                    window.removeEventListener('touchstart', retry, true);
+                    window.removeEventListener('scroll', retry, true);
+                    tryPlay().catch(showFallback);
+                };
+                window.addEventListener('touchstart', retry, { capture: true, once: true, passive: true });
+                window.addEventListener('scroll', retry, { capture: true, once: true, passive: true });
+            };
+
             const startVideo = () => {
-                heroBg.play().catch(() => {
-                    heroBg.style.display = 'none';
-                    heroFallback.style.display = 'block';
+                tryPlay().catch(() => {
+                    // Keep video visible; retry on first gesture before gradient fallback
+                    if (isHomePage && isMobile) {
+                        armGestureRetry();
+                    } else {
+                        showFallback();
+                    }
                 });
             };
-            if ('requestIdleCallback' in window) {
+
+            // Home mweb: play immediately so the hero has a paint box sooner
+            if (isHomePage && isMobile) {
+                startVideo();
+            } else if ('requestIdleCallback' in window) {
                 requestIdleCallback(startVideo, { timeout: 2000 });
             } else {
                 setTimeout(startVideo, 150);
