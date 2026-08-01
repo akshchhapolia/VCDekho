@@ -19,12 +19,25 @@
       backdrop.setAttribute('aria-hidden', 'true');
     }
 
-    function ensureTogglePlaceholder() {
-      if (togglePlaceholder || !header) return;
-      togglePlaceholder = document.createElement('span');
-      togglePlaceholder.className = 'nav-toggle-spacer';
-      togglePlaceholder.setAttribute('aria-hidden', 'true');
-      header.appendChild(togglePlaceholder);
+    function makePlaceholder() {
+      var el = document.createElement('span');
+      el.className = 'nav-toggle-spacer';
+      el.setAttribute('aria-hidden', 'true');
+      return el;
+    }
+
+    function restoreToggleToHeader() {
+      if (!header) return;
+      if (togglePlaceholder && togglePlaceholder.parentNode) {
+        togglePlaceholder.parentNode.replaceChild(menuToggle, togglePlaceholder);
+        togglePlaceholder = null;
+      } else if (menuToggle.parentNode !== header) {
+        header.appendChild(menuToggle);
+      }
+      // Never leave a stray spacer beside the toggle (that shifts it left).
+      header.querySelectorAll('.nav-toggle-spacer').forEach(function (node) {
+        if (node.parentNode) node.parentNode.removeChild(node);
+      });
     }
 
     function setOpen(open) {
@@ -38,17 +51,20 @@
       if (!mobileMq.matches) return;
 
       if (open) {
-        // Escape page stacking contexts so dark drawer + X always paint on top.
-        ensureTogglePlaceholder();
+        // Swap toggle for a same-size spacer so the header layout doesn't jump,
+        // then portal drawer + toggle to <body> above stacking contexts.
+        if (menuToggle.parentNode === header) {
+          togglePlaceholder = makePlaceholder();
+          header.replaceChild(togglePlaceholder, menuToggle);
+        } else if (!togglePlaceholder) {
+          togglePlaceholder = makePlaceholder();
+          header.appendChild(togglePlaceholder);
+        }
         document.body.appendChild(backdrop);
         document.body.appendChild(mainNav);
         document.body.appendChild(menuToggle);
-      } else if (header) {
-        if (togglePlaceholder && togglePlaceholder.parentNode === header) {
-          header.insertBefore(menuToggle, togglePlaceholder);
-        } else {
-          header.appendChild(menuToggle);
-        }
+      } else {
+        restoreToggleToHeader();
       }
     }
 
@@ -56,22 +72,14 @@
       if (mobileMq.matches) {
         document.body.appendChild(backdrop);
         document.body.appendChild(mainNav);
-        if (header && menuToggle.parentNode !== header && !menuToggle.classList.contains('active')) {
-          if (togglePlaceholder && togglePlaceholder.parentNode === header) {
-            header.insertBefore(menuToggle, togglePlaceholder);
-          } else {
-            header.appendChild(menuToggle);
-          }
+        if (!menuToggle.classList.contains('active')) {
+          restoreToggleToHeader();
         }
       } else {
         setOpen(false);
         if (backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
         if (header && mainNav.parentNode !== header) header.appendChild(mainNav);
-        if (header && menuToggle.parentNode !== header) header.appendChild(menuToggle);
-        if (togglePlaceholder && togglePlaceholder.parentNode) {
-          togglePlaceholder.parentNode.removeChild(togglePlaceholder);
-          togglePlaceholder = null;
-        }
+        restoreToggleToHeader();
       }
     }
 
