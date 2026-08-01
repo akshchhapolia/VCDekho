@@ -267,14 +267,17 @@
     if (!els.filtersToggle) return;
     var titleEl = document.querySelector('.inv-dir-header h1');
     var isMobile = window.matchMedia('(max-width: 768px)').matches;
+    var active = activeFilterCount();
     if (!isMobile) {
       els.filtersToggle.textContent = 'Filters';
+      els.filtersToggle.classList.remove('has-active-filters');
       if (titleEl) titleEl.textContent = 'Investors';
       return;
     }
-    // Mweb: count in title; button stays clean "Filters" (matches Funds)
+    // Mweb: count in title; orange dot on button when any filter is applied
     var total = state.total ? state.total.toLocaleString('en-IN') : '…';
     els.filtersToggle.textContent = 'Filters';
+    els.filtersToggle.classList.toggle('has-active-filters', active > 0);
     if (titleEl) titleEl.textContent = 'Investors(' + total + ')';
   }
 

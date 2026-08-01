@@ -2684,6 +2684,17 @@ a.inv-chip:hover {
     padding: 0.5rem 0.85rem;
     min-height: 40px;
     align-self: center;
+    gap: 0.45rem;
+  }
+
+  /* Orange dot when any filter is applied (mweb Funds / Investors) */
+  body.inv-dir-page .inv-dir-filters-toggle.has-active-filters::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-accent-orange, #ed572f);
+    flex-shrink: 0;
   }
 
   /*
