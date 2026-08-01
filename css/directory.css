@@ -3030,8 +3030,10 @@ a.inv-chip:hover {
 
 .inv-profile-sticky.is-pinned {
   position: fixed;
+  top: env(safe-area-inset-top, 0px);
   z-index: 90;
   margin: 0;
+  padding-top: 0.75rem;
   background: rgba(11, 11, 13, 0.78);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -3134,7 +3136,7 @@ body.inv-person-profile .app-container {
 }
 
 body.inv-investor-profile .inv-profile-section {
-  scroll-margin-top: calc(5.5rem + env(safe-area-inset-top, 0px));
+  scroll-margin-top: calc(3.25rem + env(safe-area-inset-top, 0px));
 }
 
 @media (max-width: 768px) {
