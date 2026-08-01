@@ -5,6 +5,7 @@ const { getAllSectorGuides } = require('./sectors');
 const { deriveRelatedStages, hasStageGuide, getStageGuideLabel } = require('./investors');
 const { getAllThemes } = require('./thesis-themes');
 const { renderExploreRelated } = require('./render-explore-related');
+const { setPublicHtmlCache } = require('./public-html-cache');
 const { getSectorIconSvg } = require('./sector-icons');
 const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('./site-labels');
 
@@ -592,8 +593,7 @@ function renderSectorPage(sector, res) {
     '</body></html>'
   ].join('\n');
 
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
+  setPublicHtmlCache(res);
   return res.status(200).send(html);
 }
 
