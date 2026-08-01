@@ -314,16 +314,18 @@ body.scrollable-page .hero-showcase {
     }
 }
 
-/* Mobile nav backdrop */
+/* Mobile nav backdrop — must live inside .app-container (see nav.js) */
 .nav-backdrop {
     display: block;
     position: fixed;
     inset: 0;
-    z-index: 98;
+    z-index: 180;
     background: rgba(0, 0, 0, 0.45);
     border: 0;
     padding: 0;
     margin: 0;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .nav-backdrop[hidden] {
@@ -356,6 +358,7 @@ body.nav-open {
     }
 
     .main-nav {
+        display: flex;
         width: min(85vw, 320px);
         padding-top: calc(2rem + env(safe-area-inset-top, 0px));
         padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
@@ -370,16 +373,18 @@ body.nav-open {
         position: relative;
         z-index: 1;
         pointer-events: auto;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0.08);
     }
 
-    /* Header creates a stacking context; raise it above the backdrop when open
-       so drawer links receive taps instead of the dimmer closing the menu. */
+    /* Toggle stays above drawer + dimmer */
     body.nav-open .site-header {
-        z-index: 200;
+        z-index: 220;
+        position: relative;
     }
 
     .nav-backdrop {
-        z-index: 190;
+        z-index: 180;
     }
 
     .site-header {
