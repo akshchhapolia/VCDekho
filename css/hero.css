@@ -563,7 +563,7 @@ body.home-page .trend-card::before {
         min-width: 0;
         min-height: 550px !important;
         height: auto !important;
-        border-radius: 0;
+        border-radius: 16px; /* trial — match dweb softness; revert if it feels off */
         overflow: hidden !important;
         box-sizing: border-box;
         margin: 0;
