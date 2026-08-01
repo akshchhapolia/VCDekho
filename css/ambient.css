@@ -1078,6 +1078,19 @@ body.home-page .hero-content {
     body.home-page .home-ambient .glow-orb {
         opacity: 0.08;
     }
+
+    body.home-page .announcement-strip {
+        padding: 0.5rem 1rem;
+    }
+
+    body.home-page .announcement-text {
+        color: rgba(255, 255, 255, 0.68);
+        font-size: 0.78rem;
+    }
+
+    body.home-page .announcement-cta {
+        color: var(--color-accent-orange);
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {

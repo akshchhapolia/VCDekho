@@ -408,3 +408,128 @@ body.home-page .trend-card::before {
     }
 }
 
+/* ==========================================================================
+   HOME — MOBILE ONLY (body.home-page, max-width: 768px)
+   Desktop home layout/colors unchanged above this block.
+   ========================================================================== */
+@media (max-width: 768px) {
+    body.home-page.has-announcement {
+        height: auto;
+        min-height: 100dvh;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding-bottom: calc(3.25rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    body.home-page.has-announcement .app-container {
+        height: auto;
+        flex: none;
+        min-height: 0;
+        padding-bottom: 0.5rem;
+    }
+
+    body.home-page.has-announcement .hero-showcase {
+        padding-bottom: 0;
+    }
+
+    body.home-page .hero-showcase {
+        flex: none;
+        min-height: 0;
+        height: auto;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    body.home-page .hero-content {
+        height: auto;
+        min-height: 0;
+        padding: 1.15rem 1rem 1.25rem;
+        gap: 1.15rem;
+    }
+
+    body.home-page .hero-headline-container {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    body.home-page .hero-title {
+        color: #fff;
+        text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    body.home-page .hero-sub-tagline {
+        color: rgba(255, 255, 255, 0.78);
+    }
+
+    body.home-page .highlight-text {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.14);
+        color: #fff;
+    }
+
+    body.home-page .trend-card {
+        background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.04) 52%,
+            rgba(237, 87, 47, 0.08) 100%
+        );
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.06) inset,
+            0 16px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    body.home-page .trend-card-title {
+        color: #fff;
+    }
+
+    body.home-page .trend-card-note {
+        color: rgba(255, 255, 255, 0.52);
+        font-size: 0.78rem;
+    }
+
+    body.home-page .nav-toggle {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 10px;
+    }
+
+    body.home-page .nav-toggle span {
+        width: 22px;
+        height: 2px;
+        background-color: #fff;
+    }
+
+    body.home-page .mobile-sticky-cta {
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        box-sizing: border-box;
+        border-top: 1px solid rgba(237, 87, 47, 0.4);
+        background: rgba(8, 8, 10, 0.97);
+        color: #fff;
+        font-size: 0.88rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.55);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    body.home-page .mobile-sticky-cta span {
+        color: var(--color-accent-orange);
+    }
+
+    body.home-page .mobile-sticky-cta:active {
+        background: rgba(237, 87, 47, 0.18);
+        color: #fff;
+    }
+
+    body.home-page .mobile-sticky-cta:active span {
+        color: #fff;
+    }
+}
+
