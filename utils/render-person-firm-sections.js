@@ -2,7 +2,7 @@
  * Firm-context sections for person profile pages only.
  * Joins person → investor via companySlug; keep all markup scoped with inv-person-firm-*.
  */
-const { hasStageGuide, isActivelyDeploying, deriveRelatedStages } = require('./investors');
+const { isActivelyDeploying, deriveRelatedStages } = require('./investors');
 const { hasSectorGuide } = require('./sectors');
 const { getAllStages } = require('./investment-stages');
 const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
