@@ -211,9 +211,14 @@ module.exports = async function handler(req, res) {
     }
 
     const deferExtras = isMobileRequest(req);
-    // Desktop: await DB. Mweb: skip wait — HTML paints first; profile-extras.js hydrates.
+    // Desktop: full await. Mweb: brief race so warm DB can SSR; else client hydrates.
     if (!deferExtras) {
       await ensureInvestorDetailExtras(slug);
+    } else {
+      await Promise.race([
+        ensureInvestorDetailExtras(slug),
+        new Promise(function (resolve) { setTimeout(resolve, 400); })
+      ]);
     }
 
     const investor = getInvestorBySlug(slug);

@@ -41,9 +41,16 @@ module.exports = async function handler(req, res) {
       }
 
       const deferExtras = isMobileRequest(req);
-      // Desktop: await firm DB extras. Mweb: skip — profile-extras.js hydrates.
-      if (!deferExtras && person.companySlug) {
-        await ensureInvestorDetailExtras(person.companySlug);
+      // Desktop: full await. Mweb: brief race so warm DB can SSR; else client hydrates.
+      if (person.companySlug) {
+        if (!deferExtras) {
+          await ensureInvestorDetailExtras(person.companySlug);
+        } else {
+          await Promise.race([
+            ensureInvestorDetailExtras(person.companySlug),
+            new Promise(function (resolve) { setTimeout(resolve, 400); })
+          ]);
+        }
       }
 
       const colleagues = getPeopleByCompanySlug(person.companySlug, person.slug).map(toCard);

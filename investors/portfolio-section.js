@@ -1,103 +1,120 @@
 /**
  * Client search + progressive reveal for large investor portfolio sections.
+ * Safe to call after late hydrate (mweb extras).
  */
 (function () {
-  var section = document.getElementById('portfolio');
-  if (!section) return;
+  var bound = false;
 
-  var grid = document.getElementById('inv-portfolio-grid');
-  var search = document.getElementById('inv-portfolio-search');
-  var status = document.getElementById('inv-portfolio-status');
-  var moreBtn = document.getElementById('inv-portfolio-more');
-  if (!grid) return;
+  function initPortfolioSection() {
+    var section = document.getElementById('portfolio');
+    if (!section) return;
 
-  var cards = Array.prototype.slice.call(grid.querySelectorAll('.inv-profile-portfolio-card'));
-  if (!cards.length) return;
+    var grid = document.getElementById('inv-portfolio-grid');
+    var search = document.getElementById('inv-portfolio-search');
+    var status = document.getElementById('inv-portfolio-status');
+    var moreBtn = document.getElementById('inv-portfolio-more');
+    if (!grid) return;
 
-  var pageSize = moreBtn
-    ? parseInt(moreBtn.getAttribute('data-page-size') || '12', 10) || 12
-    : cards.length;
-  var visibleCount = Math.min(pageSize, cards.length);
-  var query = '';
-  var debounceTimer = null;
+    // Avoid double-binding if SSR already initialized
+    if (grid.getAttribute('data-portfolio-ready') === '1') return;
+    grid.setAttribute('data-portfolio-ready', '1');
 
-  function isFiltering() {
-    return query.length > 0;
-  }
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.inv-profile-portfolio-card'));
+    if (!cards.length) return;
 
-  function matches(card) {
-    if (!query) return true;
-    var name = card.getAttribute('data-name') || '';
-    return name.indexOf(query) !== -1;
-  }
+    var pageSize = moreBtn
+      ? parseInt(moreBtn.getAttribute('data-page-size') || '12', 10) || 12
+      : cards.length;
+    var visibleCount = Math.min(pageSize, cards.length);
+    var query = '';
+    var debounceTimer = null;
 
-  function updateStatus(showing, total) {
-    if (!status) return;
-    if (isFiltering()) {
-      status.textContent =
-        showing === 0
-          ? 'No matches'
-          : showing === 1
-            ? '1 match'
-            : showing + ' matches';
-      return;
+    function isFiltering() {
+      return query.length > 0;
     }
-    status.textContent = 'Showing ' + showing + ' of ' + total;
-  }
 
-  function syncMoreButton() {
-    if (!moreBtn) return;
-    var moreWrap = moreBtn.parentElement;
-    if (isFiltering()) {
-      moreBtn.hidden = true;
-      if (moreWrap) moreWrap.hidden = true;
-      return;
+    function matches(card) {
+      if (!query) return true;
+      var name = card.getAttribute('data-name') || '';
+      return name.indexOf(query) !== -1;
     }
-    var remaining = cards.length - visibleCount;
-    var hide = remaining <= 0;
-    moreBtn.hidden = hide;
-    if (moreWrap) moreWrap.hidden = hide;
-  }
 
-  function render() {
-    var showing = 0;
-    cards.forEach(function (card, index) {
-      var show;
+    function updateStatus(showing, total) {
+      if (!status) return;
       if (isFiltering()) {
-        show = matches(card);
-      } else {
-        show = index < visibleCount;
+        status.textContent =
+          showing === 0
+            ? 'No matches'
+            : showing === 1
+              ? '1 match'
+              : showing + ' matches';
+        return;
       }
-      card.hidden = !show;
-      if (show) showing += 1;
-    });
-    updateStatus(showing, cards.length);
-    syncMoreButton();
-    // Newly revealed cards may carry data-src logos — observe them
-    if (typeof window.VCHydratePortfolioLogos === 'function') {
-      window.VCHydratePortfolioLogos(grid);
+      status.textContent = 'Showing ' + showing + ' of ' + total;
     }
-  }
 
-  if (search) {
-    search.addEventListener('input', function () {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(function () {
-        query = String(search.value || '')
-          .trim()
-          .toLowerCase();
+    function syncMoreButton() {
+      if (!moreBtn) return;
+      var moreWrap = moreBtn.parentElement;
+      if (isFiltering()) {
+        moreBtn.hidden = true;
+        if (moreWrap) moreWrap.hidden = true;
+        return;
+      }
+      var remaining = cards.length - visibleCount;
+      var hide = remaining <= 0;
+      moreBtn.hidden = hide;
+      if (moreWrap) moreWrap.hidden = hide;
+    }
+
+    function render() {
+      var showing = 0;
+      cards.forEach(function (card, index) {
+        var show;
+        if (isFiltering()) {
+          show = matches(card);
+        } else {
+          show = index < visibleCount;
+        }
+        card.hidden = !show;
+        if (show) showing += 1;
+      });
+      updateStatus(showing, cards.length);
+      syncMoreButton();
+      if (typeof window.VCHydratePortfolioLogos === 'function') {
+        window.VCHydratePortfolioLogos(grid);
+      }
+    }
+
+    if (search) {
+      search.addEventListener('input', function () {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function () {
+          query = String(search.value || '')
+            .trim()
+            .toLowerCase();
+          render();
+        }, 150);
+      });
+    }
+
+    if (moreBtn) {
+      moreBtn.addEventListener('click', function () {
+        if (isFiltering()) return;
+        visibleCount = Math.min(visibleCount + pageSize, cards.length);
         render();
-      }, 150);
-    });
+      });
+    }
+
+    render();
+    bound = true;
   }
 
-  if (moreBtn) {
-    moreBtn.addEventListener('click', function () {
-      if (isFiltering()) return;
-      visibleCount = Math.min(visibleCount + pageSize, cards.length);
-      render();
-    });
-  }
+  window.VCInitPortfolioSection = initPortfolioSection;
 
-  render();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPortfolioSection);
+  } else {
+    initPortfolioSection();
+  }
 })();
