@@ -2,25 +2,26 @@
 <html lang="en" class="home-page">
 <head>
     <script src="/js/analytics.js" defer></script>
-    <script src="/js/nav.js?v=94" defer></script>
+    <script src="/js/nav.js?v=95" defer></script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
     <title>VC Dekho - Discover Investors from India behind India's Fastest Growing Startups.</title>
     
     <!-- SEO Meta Tags -->
     <meta name="theme-color" content="#0b0b0d">
     <meta name="description" content="Discover active venture capital investors, funding trends, and insights behind India's fastest-growing startups. Built for founders, operators, analysts, and builders.">
     <meta name="keywords" content="Venture Capital, India Startups, Investor Database, Funding Trends, AI Infrastructure, Indian Founders">
+    <link rel="preload" as="image" href="/assets/sand_bg.jpg" fetchpriority="high">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="/css/base.css?v=94">
-    <link rel="stylesheet" href="/css/ambient.css?v=94">
-    <link rel="stylesheet" href="/css/hero.css?v=94">
-    <link rel="stylesheet" href="/css/blog.css?v=94">
+    <link rel="stylesheet" href="/css/base.css?v=95">
+    <link rel="stylesheet" href="/css/ambient.css?v=95">
+    <link rel="stylesheet" href="/css/hero.css?v=95">
+    <link rel="stylesheet" href="/css/blog.css?v=95">
 <link rel="icon" type="image/png" href="/assets/logoforvc.png">
     <link rel="canonical" href="https://vcdekho.com/">
     <meta property="og:title" content="VC Dekho - Discover Investors from India behind India's Fastest Growing Startups.">
@@ -98,8 +99,9 @@
         <!-- Main Viewport Section -->
         <main class="hero-showcase" id="main-viewport">
             <!-- Background Video -->
-            <video autoplay loop muted playsinline webkit-playsinline class="hero-bg" id="hero-background-media" preload="auto" poster="assets/sand_bg.jpg" style="background-color: #0b0b0d;">
-                <source src="assets/mainvideo.mp4" type="video/mp4">
+            <!-- preload=none: avoid pulling 2.5MB on mweb before LCP; app.js starts playback when idle -->
+            <video loop muted playsinline webkit-playsinline class="hero-bg" id="hero-background-media" preload="none" poster="/assets/sand_bg.jpg" style="background-color: #0b0b0d;">
+                <source src="/assets/mainvideo.mp4" type="video/mp4">
             </video>
             
             <!-- Fallback Static Background (hidden by default) -->
