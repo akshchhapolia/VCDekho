@@ -8,6 +8,7 @@ const { renderInvestorPage } = require('../../utils/render-investor-page');
 const { renderExploreRelated } = require('../../utils/render-explore-related');
 const { getThesisThemeIconSvg } = require('../../utils/thesis-theme-icons');
 const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('../../utils/site-labels');
+const { setPublicHtmlCache } = require('../../utils/public-html-cache');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -163,11 +164,7 @@ function renderThemePage(theme, res) {
     '</body></html>'
   ].join('\n');
 
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  // Explicit CDN directives — vercel.json max-age alone was not enough for edge HITs
-  res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800');
-  res.setHeader('CDN-Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=604800');
-  res.setHeader('Vercel-CDN-Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=604800');
+  setPublicHtmlCache(res);
   return res.status(200).send(html);
 }
 
