@@ -271,7 +271,7 @@
 
   async function load() {
     renderSkeleton(8);
-    if (!state.total) els.count.textContent = 'Fetching people';
+    if (!state.total) els.count.textContent = 'Fetching investors';
     const params = new URLSearchParams({
       q: state.q,
       companyType: state.companyType,
@@ -284,7 +284,7 @@
       window.location.replace(window.VCAuth.loginUrl());
       return;
     }
-    if (!res.ok) throw new Error('Failed to load people');
+    if (!res.ok) throw new Error('Failed to load investors');
     const data = await res.json();
 
     if (!state.filters && data.filters) {
@@ -303,7 +303,7 @@
       console.error(err);
       els.results.innerHTML =
         '<div class="inv-dir-empty-state">' +
-          '<p class="inv-dir-empty-title">Couldn’t load people</p>' +
+          '<p class="inv-dir-empty-title">Couldn’t load investors</p>' +
           '<p class="inv-dir-empty-copy">Check your connection and try again.</p>' +
           '<button type="button" class="inv-dir-empty-action" id="ppl-empty-retry">Retry</button>' +
         '</div>';

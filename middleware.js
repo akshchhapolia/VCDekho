@@ -42,7 +42,7 @@ async function isValidToken(token) {
 }
 
 /**
- * Only the investor + people directories (and their search APIs) stay behind
+ * Only the funds + investors directories (and their search APIs) stay behind
  * login on production. Preview / preprod hosts skip auth so UI changes can be
  * reviewed without bouncing to prod.
  */
