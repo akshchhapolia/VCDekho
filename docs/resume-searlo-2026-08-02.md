@@ -64,6 +64,8 @@ Spot-check a profile, e.g. `/investors/100unicorns` — should show up to 3 acti
 
 **Goal:** Backfill portfolio company amount / stage / date / website from news search.
 
+**Status (1 Aug):** `enrich_portfolio_details.js --all --budget 25 --concurrency 1 --delay-ms 7000` ran for ~17h and enriched many rows across funds (e.g. Wavemaker, Bessemer, etc.) before hitting Searlo 429s and being stopped. **Resume this script tomorrow** — it should skip already-enriched rows or continue from remaining gaps.
+
 **Scripts (both use Searlo via `utils/web-search.js`):**
 - `scripts/investor_portfolio_websearch.js` — portfolio discovery backfill
 - `scripts/enrich_portfolio_details.js` — amount/date enrichment for existing rows
