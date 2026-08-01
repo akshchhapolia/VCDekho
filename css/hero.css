@@ -663,33 +663,25 @@ body.home-page .trend-card::before {
         color: #fff;
     }
 
+    /* Same subheader as dweb (support tagline under title) */
     body.home-page .hero-sub-tagline {
-        display: none !important;
-    }
-
-    /* Screenshot: tagline sits directly under the title */
-    body.home-page .hero-tagline-container {
         display: block !important;
-        width: 100%;
+        -webkit-line-clamp: unset;
+        margin-top: 0.85rem;
         max-width: 100%;
-        margin: 0;
-        padding: 0;
-        order: 2;
-        grid-column: auto;
-        grid-row: auto;
-        align-self: start;
-        flex-shrink: 0;
-    }
-
-    body.home-page .hero-tagline-container .hero-tagline {
-        max-width: 100%;
-        font-size: 0.95rem;
-        line-height: 1.6;
+        font-size: 0.95rem !important;
+        line-height: 1.55;
         letter-spacing: 0.2px;
         color: #fff;
         opacity: 0.9;
         font-weight: 400;
         text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        overflow: visible;
+    }
+
+    /* Bottom “Built for founders…” stays dweb-only on this layout */
+    body.home-page .hero-tagline-container {
+        display: none !important;
     }
 
     /* Pure white sharp card pinned to bottom of hero */
