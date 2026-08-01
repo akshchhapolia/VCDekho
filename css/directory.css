@@ -2778,12 +2778,21 @@ a.inv-chip:hover {
     text-overflow: ellipsis;
   }
 
+  /* Firm (people) / Stages (funds): single line + ellipsis in meta tiles */
   body.inv-dir-page .inv-dir-col-stages .inv-dir-cell {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    display: block;
+    white-space: nowrap;
     overflow: hidden;
-    max-height: calc(1.35em * 2);
+    text-overflow: ellipsis;
+    max-height: none;
+  }
+
+  body.inv-dir-page .inv-dir-col-stages .inv-dir-inline-link {
+    display: block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   body.inv-dir-page .inv-dir-col-sectors .inv-dir-mobile-label {
