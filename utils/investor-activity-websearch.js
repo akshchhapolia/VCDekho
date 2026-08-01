@@ -11,9 +11,10 @@
  */
 const { webSearch, SEARLO_COST_PER_QUERY } = require('./web-search');
 const { generateText } = require('./gemini');
+const { RECENT_ACTIVITY_LIMIT } = require('./investor-activity-store');
 
 const WINDOW_DAYS = 180;
-const MAX_DEALS = 3;
+const MAX_DEALS = RECENT_ACTIVITY_LIMIT;
 const SEARCH_RESULT_COUNT = 10;
 
 const EXTRACTION_SYSTEM_PROMPT = `You are a research assistant for an Indian VC/startup directory. You will be given a list of Google search results about a venture capital fund/investor. Based ONLY on those snippets, identify up to ${MAX_DEALS} DISTINCT investments (checks they wrote/participated in) into Indian startups.
@@ -64,6 +65,62 @@ function withSearchCost(usage) {
   };
 }
 
+function dealKey(d) {
+  return `${String(d.startup || '').toLowerCase()}|${new Date(d.date).toISOString().slice(0, 10)}`;
+}
+
+function normalizeDeal(d) {
+  return {
+    date: new Date(d.date).toISOString(),
+    highlight: d.highlight || d.round || null,
+    sector: d.sector || null,
+    sourceType: 'web_search',
+    source: d.source_url || null,
+    sourceTitle: d.source_title || d.startup || null
+  };
+}
+
+function parseDealsFromResponse(parsed, now, seen) {
+  const validDeals = [];
+  const rawDeals = Array.isArray(parsed.deals) ? parsed.deals : [];
+  for (const d of rawDeals) {
+    if (!d || !d.date || Number.isNaN(new Date(d.date).getTime())) continue;
+    const dateMs = new Date(d.date).getTime();
+    const ageDays = (now - dateMs) / (24 * 60 * 60 * 1000);
+    if (ageDays < -2 || ageDays > 365 * 5) continue;
+    const key = dealKey(d);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    validDeals.push(normalizeDeal(d));
+    if (validDeals.length >= MAX_DEALS) break;
+  }
+  return validDeals;
+}
+
+async function extractDealsFromQuery(investorName, query, seen, now) {
+  const { organic } = await webSearch(query, { limit: SEARCH_RESULT_COUNT, gl: 'in', hl: 'en' });
+  if (!organic.length) {
+    return { deals: [], usage: withSearchCost(null) };
+  }
+
+  const { text, usage } = await generateText({
+    system: EXTRACTION_SYSTEM_PROMPT,
+    user: `Investor name: ${investorName}\n\nSearch results:\n${formatResultsForPrompt(organic)}`,
+    maxOutputTokens: 900
+  });
+
+  const fullUsage = withSearchCost(usage);
+  const parsed = extractJson(text);
+  if (!parsed || !parsed.found) return { deals: [], usage: fullUsage };
+  return { deals: parseDealsFromResponse(parsed, now, seen), usage: fullUsage };
+}
+
+function mergeUsage(total, next) {
+  total.inputTokens += next.inputTokens || 0;
+  total.outputTokens += next.outputTokens || 0;
+  total.costUsd += next.costUsd || 0;
+}
+
 /**
  * Returns { activity, usage } where activity is in the same shape as
  * utils/investor-activity-matcher.js's aggregateMentions() output (or null
@@ -71,50 +128,30 @@ function withSearchCost(usage) {
  * cost for that one lookup (search + extraction combined).
  */
 async function lookupInvestorActivity(investorName) {
-  const query = `${investorName} latest investment India startup funding round`;
-  const { organic } = await webSearch(query, { limit: SEARCH_RESULT_COUNT, gl: 'in', hl: 'en' });
-
-  if (!organic.length) {
-    return { activity: null, usage: withSearchCost(null) };
-  }
-
-  const { text, usage } = await generateText({
-    system: EXTRACTION_SYSTEM_PROMPT,
-    user: `Investor name: ${investorName}\n\nSearch results:\n${formatResultsForPrompt(organic)}`,
-    maxOutputTokens: 700
-  });
-
-  const fullUsage = withSearchCost(usage);
-  const parsed = extractJson(text);
-  if (!parsed || !parsed.found) return { activity: null, usage: fullUsage };
-
-  const rawDeals = Array.isArray(parsed.deals) ? parsed.deals : [];
+  const queries = [
+    `${investorName} latest investment India startup funding round`,
+    `${investorName} invests funding round India startup portfolio`
+  ];
   const now = Date.now();
   const seen = new Set();
-  const validDeals = [];
-  for (const d of rawDeals) {
-    if (!d || !d.date || Number.isNaN(new Date(d.date).getTime())) continue;
-    const dateMs = new Date(d.date).getTime();
-    const ageDays = (now - dateMs) / (24 * 60 * 60 * 1000);
-    if (ageDays < -2 || ageDays > 365 * 5) continue;
-    const key = `${String(d.startup || '').toLowerCase()}|${new Date(d.date).toISOString().slice(0, 10)}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    validDeals.push({
-      date: new Date(d.date).toISOString(),
-      highlight: d.highlight || d.round || null,
-      sector: d.sector || null,
-      sourceType: 'web_search',
-      source: d.source_url || null,
-      sourceTitle: d.source_title || d.startup || null
-    });
-    if (validDeals.length >= MAX_DEALS) break;
-  }
-  if (!validDeals.length) return { activity: null, usage: fullUsage };
+  const merged = [];
+  const totalUsage = { inputTokens: 0, outputTokens: 0, costUsd: 0 };
 
-  validDeals.sort((a, b) => new Date(b.date) - new Date(a.date));
-  const top = validDeals[0];
-  const recentCheckCount = validDeals.filter(
+  for (const query of queries) {
+    if (merged.length >= MAX_DEALS) break;
+    const { deals, usage } = await extractDealsFromQuery(investorName, query, seen, now);
+    mergeUsage(totalUsage, usage);
+    for (const deal of deals) {
+      merged.push(deal);
+      if (merged.length >= MAX_DEALS) break;
+    }
+  }
+
+  if (!merged.length) return { activity: null, usage: totalUsage };
+
+  merged.sort((a, b) => new Date(b.date) - new Date(a.date));
+  const top = merged[0];
+  const recentCheckCount = merged.filter(
     (d) => (now - new Date(d.date).getTime()) / (24 * 60 * 60 * 1000) <= WINDOW_DAYS
   ).length;
 
@@ -125,10 +162,10 @@ async function lookupInvestorActivity(investorName) {
     lastCheckSource: top.source,
     lastCheckSourceTitle: top.sourceTitle,
     recentCheckCount,
-    totalMentions: validDeals.length,
-    recentChecks: validDeals
+    totalMentions: merged.length,
+    recentChecks: merged
   };
-  return { activity, usage: fullUsage };
+  return { activity, usage: totalUsage };
 }
 
 module.exports = { lookupInvestorActivity };

@@ -11,6 +11,7 @@ const { portfolioCardHref } = require('./portfolio-card-href');
 const { filterPortfolioJunk } = require('./portfolio-junk-filter');
 const { portfolioCardBodyHtml } = require('./render-portfolio-card');
 const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('./site-labels');
+const { RECENT_ACTIVITY_LIMIT } = require('./investor-activity-store');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -117,7 +118,7 @@ function activityBadge(investor) {
 }
 
 function recentActivitySection(investor) {
-  const checks = investor.recentChecks || [];
+  const checks = (investor.recentChecks || []).slice(0, RECENT_ACTIVITY_LIMIT);
   if (!checks.length) return '';
 
   const rows = checks
