@@ -269,7 +269,7 @@ function renderPersonPage(person, colleagues, investor, res) {
     exploreSection,
 
     '<section class="blog-cta-banner" style="margin: 3rem 0 1rem;">',
-    '<img src="/assets/blog_vc_dekho_cta.webp" alt="VC Dekho" class="blog-cta-bg">',
+    '<img src="/assets/blog_vc_dekho_cta.webp" alt="VC Dekho" class="blog-cta-bg" loading="lazy" decoding="async" fetchpriority="low">',
     '<div class="blog-cta-content">',
     '<h2 class="blog-cta-title">Find the right person to pitch</h2>',
     '<p class="blog-cta-desc">Search funds and the investors behind every fund on VC Dekho.</p>',
@@ -277,9 +277,10 @@ function renderPersonPage(person, colleagues, investor, res) {
     '</div></section>',
 
     '</div></main></div>',
-    '<script src="/js/auth.js"></script>',
+    '<script src="/js/auth.js" defer></script>',
     '<script src="/app.js" defer></script>',
-    '<script src="/investors/profile-sticky.js?v=2"></script>',
+    '<script src="/investors/lazy-portfolio-logos.js?v=1" defer></script>',
+    '<script src="/investors/profile-sticky.js?v=2" defer></script>',
     '<script>',
     '(function(){',
     'var nav=document.getElementById("inv-profile-sticky");',

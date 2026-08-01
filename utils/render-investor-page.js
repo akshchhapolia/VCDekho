@@ -555,7 +555,7 @@ function renderInvestorPage(investor, related, res) {
     '<div class="inv-profile-hero-inner">',
     '<div class="inv-profile-hero-copy">',
     investor.logo
-      ? ('<img class="inv-profile-logo" src="' + escapeHtml(investor.logo) + '" alt="" width="56" height="56" loading="eager">')
+      ? ('<img class="inv-profile-logo" src="' + escapeHtml(investor.logo) + '" alt="" width="56" height="56" loading="eager" fetchpriority="high" decoding="async">')
       : '',
     '<span class="inv-profile-type">' + escapeHtml(investor.type) + '</span>',
     activityBadge(investor),
@@ -620,7 +620,7 @@ function renderInvestorPage(investor, related, res) {
     exploreHtml,
 
     '<section class="blog-cta-banner" style="margin: 3rem 0 1rem;">',
-    '<img src="/assets/blog_vc_dekho_cta.webp" alt="VC Dekho" class="blog-cta-bg">',
+    '<img src="/assets/blog_vc_dekho_cta.webp" alt="VC Dekho" class="blog-cta-bg" loading="lazy" decoding="async" fetchpriority="low">',
     '<div class="blog-cta-content">',
     '<h2 class="blog-cta-title">Stop guessing. Start matching.</h2>',
     '<p class="blog-cta-desc">Search funds by stage, sector, cheque size, and thesis — then unlock deeper matching on VC Dekho.</p>',
@@ -628,10 +628,11 @@ function renderInvestorPage(investor, related, res) {
     '</div></section>',
 
     '</div></main></div>',
-    '<script src="/js/auth.js"></script>',
+    '<script src="/js/auth.js" defer></script>',
     '<script src="/app.js" defer></script>',
-    '<script src="/investors/portfolio-section.js?v=2"></script>',
-    '<script src="/investors/profile-sticky.js?v=2"></script>',
+    '<script src="/investors/lazy-portfolio-logos.js?v=1" defer></script>',
+    '<script src="/investors/portfolio-section.js?v=3" defer></script>',
+    '<script src="/investors/profile-sticky.js?v=2" defer></script>',
     '<script>',
     '(function(){',
     'var nav=document.getElementById("inv-profile-sticky");',

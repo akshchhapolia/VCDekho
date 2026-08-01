@@ -73,6 +73,10 @@
     });
     updateStatus(showing, cards.length);
     syncMoreButton();
+    // Newly revealed cards may carry data-src logos — observe them
+    if (typeof window.VCHydratePortfolioLogos === 'function') {
+      window.VCHydratePortfolioLogos(grid);
+    }
   }
 
   if (search) {
