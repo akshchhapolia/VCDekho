@@ -9,19 +9,60 @@ document.addEventListener('DOMContentLoaded', () => {
     const isHomePage = document.body.classList.contains('home-page');
     const enableParallax = !prefersReducedMotion && !isMobile;
 
+    function connectionIsConstrained() {
+        const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (!conn) return false;
+        if (conn.saveData) return true;
+        const type = String(conn.effectiveType || '');
+        return type === 'slow-2g' || type === '2g';
+    }
+
+    /** Abort hero media so the next navigation isn't starved of bandwidth (esp. mweb). */
+    function releaseHeroMedia() {
+        if (!heroBg) return;
+        try {
+            heroBg.pause();
+        } catch (_) { /* ignore */ }
+        try {
+            heroBg.removeAttribute('src');
+            heroBg.querySelectorAll('source').forEach(function (source) {
+                source.removeAttribute('src');
+                source.remove();
+            });
+            heroBg.load();
+        } catch (_) { /* ignore */ }
+        heroBg.style.display = 'none';
+        if (heroFallback) heroFallback.style.display = 'block';
+    }
+
+    window.VCHero = { release: releaseHeroMedia };
+
+    window.addEventListener('pagehide', releaseHeroMedia);
+    document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'hidden') {
+            try {
+                if (heroBg) heroBg.pause();
+            } catch (_) { /* ignore */ }
+        }
+    });
+
     if (heroBg && heroFallback) {
-        if (prefersReducedMotion || (isMobile && !isHomePage)) {
+        const isHomeMweb = isHomePage && isMobile;
+        const skipVideo = prefersReducedMotion || (isMobile && !isHomePage) || (isHomeMweb && connectionIsConstrained());
+
+        if (skipVideo) {
             heroBg.style.display = 'none';
             heroFallback.style.display = 'block';
+            // Prevent the browser from fetching the 2.5MB mp4 at all.
+            releaseHeroMedia();
         } else {
-            const isHomeMweb = isHomePage && isMobile;
-
             heroBg.setAttribute('playsinline', '');
             heroBg.setAttribute('webkit-playsinline', '');
             heroBg.muted = true;
             heroBg.playsInline = true;
+            heroBg.preload = isHomeMweb ? 'none' : 'metadata';
 
-            // Home mweb: keep gradient under video as base paint; never hide video on soft play() fail
+            // Home mweb: paint poster/fallback first; never hide video on soft play() fail
             if (isHomeMweb) {
                 heroFallback.style.display = 'block';
                 heroBg.style.display = 'block';
@@ -56,11 +97,16 @@ document.addEventListener('DOMContentLoaded', () => {
             heroBg.addEventListener('error', hideVideoHard, { once: true });
 
             const startVideo = () => {
-                if (isHomeMweb) {
-                    try {
+                if (document.visibilityState === 'hidden') return;
+                try {
+                    // Ensure source is present (may have been stripped on constrained paths)
+                    if (!heroBg.querySelector('source') && !heroBg.getAttribute('src')) {
+                        return;
+                    }
+                    if (isHomeMweb) {
                         heroBg.load();
-                    } catch (_) { /* ignore */ }
-                }
+                    }
+                } catch (_) { /* ignore */ }
 
                 tryPlay().catch(() => {
                     if (isHomeMweb) {
@@ -71,8 +117,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             };
 
+            // Mweb: wait for idle so LCP/fonts/CSS win the network. Dweb: short idle delay.
             if (isHomeMweb) {
-                startVideo();
+                const delayStart = () => {
+                    if ('requestIdleCallback' in window) {
+                        requestIdleCallback(startVideo, { timeout: 2500 });
+                    } else {
+                        setTimeout(startVideo, 1200);
+                    }
+                };
+                if (document.readyState === 'complete') {
+                    delayStart();
+                } else {
+                    window.addEventListener('load', delayStart, { once: true });
+                }
             } else if ('requestIdleCallback' in window) {
                 requestIdleCallback(startVideo, { timeout: 2000 });
             } else {
@@ -115,6 +173,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (exploreBtn) {
         exploreBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            if (window.VCHero && typeof window.VCHero.release === 'function') {
+                window.VCHero.release();
+            }
             exploreBtn.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 exploreBtn.style.transform = 'scale(1)';
