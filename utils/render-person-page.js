@@ -206,7 +206,7 @@ function renderPersonPage(person, colleagues, investor, res) {
     '<link rel="stylesheet" href="/css/base.css?v=97">',
     '<link rel="stylesheet" href="/css/hero.css?v=97">',
     '<link rel="stylesheet" href="/css/ambient.css?v=97">',
-    '<link rel="stylesheet" href="/css/directory.css?v=99">',
+    '<link rel="stylesheet" href="/css/directory.css?v=100">',
     '<meta property="og:title" content="' + escapeHtml(person.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/people/' + escapeHtml(person.slug) + '">',

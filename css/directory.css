@@ -3737,9 +3737,11 @@ a.inv-profile-activity-row:hover {
 
 .inv-profile-portfolio-card {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.65rem;
   padding: 0.55rem 0.7rem;
+  min-height: 3.75rem;
+  box-sizing: border-box;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(12, 14, 22, 0.55);
@@ -3766,7 +3768,6 @@ a.inv-profile-portfolio-card:hover {
   padding: 3px;
   box-sizing: border-box;
   flex-shrink: 0;
-  margin-top: 0.05rem;
 }
 
 .inv-profile-portfolio-logo.is-broken {
@@ -3794,69 +3795,69 @@ img.inv-profile-portfolio-logo.is-broken + .inv-profile-portfolio-logo.is-fallba
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.12rem;
+  justify-content: center;
+  gap: 0.08rem;
 }
 
 .inv-profile-portfolio-row {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.45rem;
+  align-items: center;
+  gap: 0.5rem;
   min-width: 0;
+  min-height: 1.05rem;
+}
+
+.inv-profile-portfolio-name,
+.inv-profile-portfolio-sector,
+.inv-profile-portfolio-meta,
+.inv-profile-portfolio-date,
+.inv-profile-portfolio-site {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .inv-profile-portfolio-name {
-  flex: 1;
+  flex: 1 1 52%;
   min-width: 0;
   font-family: var(--font-heading);
   font-size: 0.95rem;
   color: var(--color-text-light);
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
 .inv-profile-portfolio-meta {
-  flex: 1;
+  flex: 1 1 52%;
   min-width: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.3rem;
   font-size: 0.72rem;
   color: rgba(255, 255, 255, 0.72);
+  line-height: 1.2;
 }
 
 .inv-profile-portfolio-dot {
   opacity: 0.45;
 }
 
-.inv-profile-portfolio-sector {
-  flex-shrink: 0;
-  max-width: 46%;
-  text-align: right;
-  font-size: 0.68rem;
-  color: rgba(255, 255, 255, 0.45);
-  line-height: 1.25;
-}
-
-.inv-profile-portfolio-sector:empty,
-.inv-profile-portfolio-date:empty,
-.inv-profile-portfolio-meta:empty {
-  display: none;
-}
-
+.inv-profile-portfolio-sector,
 .inv-profile-portfolio-date {
-  flex-shrink: 0;
-  max-width: 46%;
+  flex: 0 1 42%;
+  min-width: 0;
   text-align: right;
   font-size: 0.68rem;
   color: rgba(255, 255, 255, 0.45);
-  line-height: 1.25;
+  line-height: 1.2;
+}
+
+.inv-profile-portfolio-row > :only-child {
+  flex: 1 1 100%;
+  max-width: 100%;
+  text-align: left;
 }
 
 .inv-profile-portfolio-site {
   font-size: 0.68rem;
   color: rgba(255, 255, 255, 0.45);
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
 .inv-profile-portfolio-foot {

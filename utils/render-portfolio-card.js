@@ -81,43 +81,61 @@ function portfolioCardBodyHtml(c, opts = {}) {
   const investmentType =
     includeInvestmentType && !isBlankPortfolioLabel(c.investmentType) ? c.investmentType : null;
 
-  const metaBits = [amount, stage, investmentType]
-    .filter(Boolean)
-    .map((bit) => '<span>' + escapeHtml(bit) + '</span>');
-  const meta = metaBits.length
+  const metaBits = [amount, stage, investmentType].filter(Boolean);
+  const metaHtml = metaBits.length
     ? '<div class="inv-profile-portfolio-meta">' +
-      metaBits.join('<span class="inv-profile-portfolio-dot" aria-hidden="true">·</span>') +
+      metaBits.map((bit) => '<span>' + escapeHtml(bit) + '</span>').join(
+        '<span class="inv-profile-portfolio-dot" aria-hidden="true">·</span>'
+      ) +
       '</div>'
-    : '<div class="inv-profile-portfolio-meta"></div>';
+    : '';
 
-  const sector = c.sector
-    ? '<div class="inv-profile-portfolio-sector">' + escapeHtml(c.sector) + '</div>'
-    : '<div class="inv-profile-portfolio-sector"></div>';
+  const sectorHtml = c.sector
+    ? '<div class="inv-profile-portfolio-sector" title="' +
+      escapeHtml(c.sector) +
+      '">' +
+      escapeHtml(c.sector) +
+      '</div>'
+    : '';
 
   const dateLabel = c.date ? formatPortfolioDate(c.date) : '';
-  const date = dateLabel
+  const dateHtml = dateLabel
     ? '<div class="inv-profile-portfolio-date">' + escapeHtml(dateLabel) + '</div>'
-    : '<div class="inv-profile-portfolio-date"></div>';
+    : '';
 
   const siteHost = websiteHostLabel(c.website);
-  const site = siteHost
-    ? '<div class="inv-profile-portfolio-site">' + escapeHtml(siteHost) + '</div>'
+  const siteHtml = siteHost
+    ? '<div class="inv-profile-portfolio-site" title="' +
+      escapeHtml(siteHost) +
+      '">' +
+      escapeHtml(siteHost) +
+      '</div>'
     : '';
+
+  const nameHtml =
+    '<div class="inv-profile-portfolio-name" title="' +
+    escapeHtml(c.name) +
+    '">' +
+    escapeHtml(c.name) +
+    '</div>';
+
+  const rows = [];
+  if (nameHtml || sectorHtml) {
+    rows.push(
+      '<div class="inv-profile-portfolio-row is-top">' + nameHtml + sectorHtml + '</div>'
+    );
+  }
+  if (metaHtml || dateHtml) {
+    rows.push(
+      '<div class="inv-profile-portfolio-row is-mid">' + metaHtml + dateHtml + '</div>'
+    );
+  }
 
   return (
     logo +
     '<div class="inv-profile-portfolio-copy">' +
-    '<div class="inv-profile-portfolio-row">' +
-    '<div class="inv-profile-portfolio-name">' +
-    escapeHtml(c.name) +
-    '</div>' +
-    sector +
-    '</div>' +
-    '<div class="inv-profile-portfolio-row">' +
-    meta +
-    date +
-    '</div>' +
-    site +
+    rows.join('') +
+    siteHtml +
     '</div>'
   );
 }
