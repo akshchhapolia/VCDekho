@@ -542,9 +542,9 @@ body.home-page .trend-card::before {
         transform-origin: center;
     }
 
-    /* Keep drawer + close button above the dimmer so links are tappable */
+    /* Keep close button above drawer + dimmer (all inside .app-container) */
     body.home-page.nav-open .site-header {
-        z-index: 200;
+        z-index: 220;
     }
 
     body.home-page .main-nav {
