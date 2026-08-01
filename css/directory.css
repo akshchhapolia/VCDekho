@@ -2576,30 +2576,117 @@ a.inv-chip:hover {
     background: transparent;
   }
 
-  .inv-dir-header {
+  body.inv-dir-page .inv-dir-header {
     position: sticky;
     top: calc(50px + env(safe-area-inset-top, 0px));
     z-index: 80;
     background: transparent;
-    margin-bottom: 0.5rem;
-    padding-top: 0.5rem;
+    margin-bottom: 0.55rem;
+    padding-top: 0.35rem;
+    padding-bottom: 0.55rem;
     box-shadow: none;
+    align-items: center;
+    gap: 0.75rem;
   }
 
-  .inv-dir-header .inv-dir-meta {
+  body.inv-dir-page .inv-dir-header .inv-dir-meta {
     display: none;
   }
 
-  .inv-dir-filters-toggle {
-    margin-left: auto;
-    max-width: 100%;
-    font-size: 0.78rem;
-    letter-spacing: 0.01em;
+  body.inv-dir-page .inv-dir-header-text {
+    min-width: 0;
+    flex: 1 1 auto;
   }
 
-  .inv-dir-row {
-    padding: 0.75rem 0;
-    gap: 0.45rem 0.85rem;
+  body.inv-dir-page .inv-dir-header h1 {
+    margin: 0;
+    font-size: clamp(1.45rem, 6.5vw, 1.85rem);
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  body.inv-dir-page .inv-dir-filters-toggle {
+    margin-left: 0;
+    flex: 0 0 auto;
+    max-width: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.01em;
+    padding: 0.5rem 0.85rem;
+    min-height: 40px;
+    align-self: center;
+  }
+
+  /* Cleaner card rows: fund → stages|ticket → sectors */
+  body.inv-dir-page .inv-dir-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 0.4rem 0.85rem;
+    padding: 0.85rem 0;
+    align-items: start;
+  }
+
+  body.inv-dir-page .inv-dir-col-fund {
+    grid-column: 1 / -1;
+    order: 1;
+    gap: 0.65rem;
+  }
+
+  body.inv-dir-page .inv-dir-col-stages {
+    grid-column: 1;
+    order: 2;
+    min-width: 0;
+  }
+
+  body.inv-dir-page .inv-dir-col-ticket {
+    grid-column: 2;
+    order: 3;
+    min-width: 0;
+    padding-top: 0;
+  }
+
+  body.inv-dir-page .inv-dir-col-sectors {
+    grid-column: 1 / -1;
+    order: 4;
+    padding-left: 0;
+    padding-right: 0;
+    min-width: 0;
+  }
+
+  body.inv-dir-page .inv-dir-col-sectors .inv-dir-cell {
+    -webkit-line-clamp: 2;
+    max-height: calc(1.45em * 2);
+  }
+
+  body.inv-dir-page .inv-dir-ticket {
+    display: block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  body.inv-dir-page .inv-dir-col-stages .inv-dir-cell {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    max-height: calc(1.4em * 2);
+  }
+
+  body.inv-dir-page .inv-dir-mobile-label {
+    margin-bottom: 0.1rem;
+  }
+
+  body.inv-dir-page .inv-dir-name {
+    font-size: 1.1rem;
+  }
+
+  body.inv-dir-page .inv-dir-cell,
+  body.inv-dir-page .inv-dir-ticket {
+    font-size: 0.84rem;
+    line-height: 1.4;
   }
 
   .inv-dir-wrap {
@@ -2674,6 +2761,20 @@ a.inv-chip:hover {
 
   .inv-dir-col-ticket {
     padding-top: 0.15rem;
+  }
+
+  /* Funds mweb: keep stages|ticket side-by-side + title/filter aligned */
+  body.inv-dir-page .inv-dir-header {
+    align-items: center;
+  }
+
+  body.inv-dir-page .inv-dir-row {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    padding: 0.8rem 0;
+  }
+
+  body.inv-dir-page .inv-dir-col-ticket {
+    padding-top: 0;
   }
 
   .inv-filter-grid {

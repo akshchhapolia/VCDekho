@@ -332,15 +332,17 @@
 
   function updateMobileFiltersLabel() {
     if (!els.filtersToggle) return;
-    if (!window.matchMedia('(max-width: 768px)').matches) {
+    var titleEl = document.querySelector('.inv-dir-header h1');
+    var isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (!isMobile) {
       els.filtersToggle.textContent = 'Filters';
+      if (titleEl) titleEl.textContent = 'Funds';
       return;
     }
+    // Mweb: count lives in the title; button stays a clean "Filters"
     var total = state.total ? state.total.toLocaleString('en-IN') : '…';
-    var active = activeFilterCount();
-    els.filtersToggle.textContent = active > 0
-      ? 'Filters (' + active + ') · ' + total
-      : 'Filters · ' + total;
+    els.filtersToggle.textContent = 'Filters';
+    if (titleEl) titleEl.textContent = 'Funds(' + total + ')';
   }
 
   function updatePager() {
