@@ -1,6 +1,6 @@
 /**
  * Mweb profile pages: hydrate activity/portfolio after first paint
- * when SSR skipped the DB wait (#inv-profile-extras mount).
+ * when SSR skipped / raced the DB wait (#inv-profile-extras mount).
  */
 (function () {
   var mount = document.getElementById('inv-profile-extras');
@@ -46,9 +46,15 @@
     }
   }
 
-  function reveal(root) {
-    var nodes = root.querySelectorAll('.inv-profile-reveal:not(.is-visible)');
-    for (var i = 0; i < nodes.length; i++) nodes[i].classList.add('is-visible');
+  function forceVisible(html) {
+    // Avoid opacity:0 reveal state — hydrated sections must stay painted on scroll
+    return String(html || '').replace(
+      /class="([^"]*\binv-profile-reveal\b[^"]*)"/g,
+      function (_, cls) {
+        if (/\bis-visible\b/.test(cls)) return 'class="' + cls + '"';
+        return 'class="' + cls + ' is-visible"';
+      }
+    );
   }
 
   fetch(url, { credentials: 'same-origin' })
@@ -57,20 +63,26 @@
       return res.json();
     })
     .then(function (data) {
-      var activityHtml = String((data && data.activityHtml) || '');
-      var portfolioHtml = String((data && data.portfolioHtml) || '');
+      var activityHtml = forceVisible((data && data.activityHtml) || '');
+      var portfolioHtml = forceVisible((data && data.portfolioHtml) || '');
       var html = activityHtml + portfolioHtml;
       if (!html) {
-        mount.remove();
+        if (mount.parentNode) mount.parentNode.removeChild(mount);
         return;
       }
+
+      var parent = mount.parentNode;
+      var marker = document.createElement('div');
+      marker.id = 'inv-profile-extras-done';
+      marker.hidden = true;
+      parent.insertBefore(marker, mount);
       mount.outerHTML = html;
+
       insertNavLinks(activityHtml, portfolioHtml);
-      var host = document.getElementById('inv-profile-sticky-host');
-      var injected = host
-        ? host.parentElement
-        : document.querySelector('.inv-profile-wrap');
-      if (injected) reveal(injected);
+
+      if (typeof window.VCInitPortfolioSection === 'function') {
+        window.VCInitPortfolioSection();
+      }
       if (typeof window.VCHydratePortfolioLogos === 'function') {
         window.VCHydratePortfolioLogos(document);
       }
@@ -80,6 +92,6 @@
     })
     .catch(function (err) {
       console.error(err);
-      mount.remove();
+      if (mount && mount.parentNode) mount.parentNode.removeChild(mount);
     });
 })();

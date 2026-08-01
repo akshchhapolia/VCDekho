@@ -2,8 +2,8 @@
  * Pin section tabs on investor profile pages.
  * CSS sticky breaks inside .hero-showcase { overflow-x: hidden }.
  *
- * Mweb firm profiles: pin full-bleed (edge-to-edge) so horizontal tab scroll works.
- * Desktop pinning stays tied to the content host width.
+ * Mweb: pin full-bleed + keep the active tab in view without centering
+ * (centering was pushing Snapshot to the right and hiding other tabs).
  */
 (function () {
   var host = document.getElementById('inv-profile-sticky-host');
@@ -12,10 +12,11 @@
 
   var mobileMq = window.matchMedia('(max-width: 768px)');
 
-  function isFirmMweb() {
+  function isProfileMweb() {
     return (
       mobileMq.matches &&
-      document.body.classList.contains('inv-investor-profile')
+      (document.body.classList.contains('inv-investor-profile') ||
+        document.body.classList.contains('inv-person-profile'))
     );
   }
 
@@ -24,14 +25,14 @@
     var hostRect = host.getBoundingClientRect();
     var hostDocTop = hostRect.top + scrollY;
     var navH = nav.offsetHeight;
-    var firmMweb = isFirmMweb();
+    var mweb = isProfileMweb();
 
     if (scrollY >= hostDocTop) {
       if (!nav.classList.contains('is-pinned')) {
         nav.classList.add('is-pinned');
         host.style.minHeight = navH + 'px';
       }
-      if (firmMweb) {
+      if (mweb) {
         nav.style.left = '0';
         nav.style.width = '100%';
       } else {
@@ -47,35 +48,29 @@
   }
 
   /**
-   * Keep the active tab visible inside the horizontal scroller (mweb firm only).
+   * Scroll active tab into view only if clipped — align to nearest edge, never center.
    */
   function scrollActiveTabIntoView() {
-    if (!isFirmMweb()) return;
+    if (!isProfileMweb()) return;
     var active = nav.querySelector('a.is-active');
     if (!active) return;
+
+    var pad = 12;
     var navRect = nav.getBoundingClientRect();
     var linkRect = active.getBoundingClientRect();
-    var delta =
-      (linkRect.left + linkRect.right) / 2 - (navRect.left + navRect.right) / 2;
-    if (Math.abs(delta) < 8) return;
-    nav.scrollBy({ left: delta, behavior: 'smooth' });
+
+    if (linkRect.left < navRect.left + pad) {
+      nav.scrollBy({ left: linkRect.left - navRect.left - pad, behavior: 'auto' });
+      return;
+    }
+    if (linkRect.right > navRect.right - pad) {
+      nav.scrollBy({ left: linkRect.right - navRect.right + pad, behavior: 'auto' });
+    }
   }
 
   window.VCProfileStickyScrollActive = scrollActiveTabIntoView;
 
-  var scrollTick = false;
-  function onScroll() {
-    pinSectionNav();
-    if (!isFirmMweb()) return;
-    if (scrollTick) return;
-    scrollTick = true;
-    requestAnimationFrame(function () {
-      scrollTick = false;
-      scrollActiveTabIntoView();
-    });
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('scroll', pinSectionNav, { passive: true });
   window.addEventListener('resize', pinSectionNav, { passive: true });
   window.addEventListener('load', function () {
     pinSectionNav();
