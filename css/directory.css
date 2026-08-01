@@ -187,6 +187,21 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
   color: rgba(255, 255, 255, 0.35);
 }
 
+/* Search clear (×) — brand orange on mweb + dweb */
+.inv-dir-field input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-left: 0.35rem;
+  cursor: pointer;
+  background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23ed572f'/%3E%3Cpath d='M5.2 5.2l5.6 5.6M10.8 5.2l-5.6 5.6' stroke='%23fff' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.inv-dir-field input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
 .inv-dir-field input:focus,
 .inv-dir-field select:focus {
   border-bottom-color: rgba(237, 87, 47, 0.7);
