@@ -16,10 +16,13 @@ module.exports = async function handler(req, res) {
 
   if (query.slug) {
     try {
-      // HTML from static JSON — do not block on full-table DB refresh.
-
       const person = getPersonBySlug(query.slug);
       if (!person) return res.status(404).send('<h1>404 - Person Not Found</h1>');
+
+      // Firm portfolio/activity for this person's company — per-slug, not full tables
+      if (person.companySlug) {
+        await ensureInvestorDetailExtras(person.companySlug);
+      }
 
       const colleagues = getPeopleByCompanySlug(person.companySlug, person.slug).map(toCard);
       const investor = person.companySlug ? getInvestorBySlug(person.companySlug) : null;
