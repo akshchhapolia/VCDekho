@@ -3,27 +3,53 @@
  * functions per deployment, so list + detail are consolidated here,
  * mirroring how api/investors/detail.js multiplexes theme/stage/sector views).
  *
- *   GET /api/people?slug=<slug>              -> public HTML profile page
- *   GET /api/people?q=&companyType=&...      -> gated JSON list (used by /people)
+ *   GET /api/people?slug=<slug>                         -> public HTML profile page
+ *   GET /api/people?view=firmExtras&slug=<companySlug>  -> public JSON (activity/portfolio HTML)
+ *   GET /api/people?q=&companyType=&...                 -> gated JSON list (used by /people)
  */
 const { filterPeople, getFilters, toCard, getPersonBySlug, getPeopleByCompanySlug } = require('../utils/people');
 const { getInvestorBySlug, ensureInvestorDetailExtras } = require('../utils/investors');
 const { requireAuth } = require('../utils/require-auth');
 const { renderPersonPage } = require('../utils/render-person-page');
+const {
+  firmActivitySection,
+  firmPortfolioSection
+} = require('../utils/render-person-firm-sections');
 
 module.exports = async function handler(req, res) {
   const query = req.query || {};
+
+  // Public firm extras for person pages — loaded after first paint
+  if (query.view === 'firmExtras' && query.slug) {
+    try {
+      await ensureInvestorDetailExtras(query.slug);
+      const investor = getInvestorBySlug(query.slug);
+      if (!investor) {
+        res.setHeader('Cache-Control', 'public, max-age=60');
+        return res.status(404).json({ error: 'Firm not found' });
+      }
+      const person = {
+        company: investor.name,
+        companySlug: investor.slug
+      };
+      const html =
+        firmActivitySection(person, investor) + firmPortfolioSection(person, investor, 9);
+      res.setHeader('Content-Type', 'application/json; charset=utf-8');
+      res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=300, stale-while-revalidate=3600');
+      res.setHeader('CDN-Cache-Control', 'public, s-maxage=300, stale-while-revalidate=3600');
+      return res.status(200).json({ html: html || '' });
+    } catch (error) {
+      console.error('firmExtras error:', error);
+      return res.status(500).json({ error: error.message });
+    }
+  }
 
   if (query.slug) {
     try {
       const person = getPersonBySlug(query.slug);
       if (!person) return res.status(404).send('<h1>404 - Person Not Found</h1>');
 
-      // Firm portfolio/activity for this person's company — per-slug, not full tables
-      if (person.companySlug) {
-        await ensureInvestorDetailExtras(person.companySlug);
-      }
-
+      // Do not await DB here — HTML paints first; firm-extras.js hydrates portfolio/activity
       const colleagues = getPeopleByCompanySlug(person.companySlug, person.slug).map(toCard);
       const investor = person.companySlug ? getInvestorBySlug(person.companySlug) : null;
       return renderPersonPage(person, colleagues, investor, res);
