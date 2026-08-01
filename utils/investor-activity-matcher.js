@@ -8,6 +8,7 @@
  *  - api/cron/investor-activity.js (automated, writes to the DB)
  */
 const db = require('./db');
+const { mergeChecks, RECENT_ACTIVITY_LIMIT } = require('./investor-activity-store');
 
 // Words that add no matching signal — stripped before comparing fund names.
 const FILLER_WORDS = new Set([
@@ -187,21 +188,24 @@ function aggregateMentions(mentions, windowDays) {
   const activity = {};
   for (const [slug, list] of bySlug) {
     list.sort((a, b) => new Date(b.date) - new Date(a.date));
-    const recentChecks = list.slice(0, 5).map((m) => ({
-      date: m.date,
-      highlight: m.highlight,
-      sector: m.sector,
-      sourceType: m.sourceType,
-      source: m.sourceUrl,
-      sourceTitle: m.sourceTitle
-    }));
+    const recentChecks = mergeChecks(
+      [],
+      list.map((m) => ({
+        date: m.date,
+        highlight: m.highlight,
+        sector: m.sector,
+        sourceType: m.sourceType,
+        source: m.sourceUrl,
+        sourceTitle: m.sourceTitle
+      }))
+    );
     const recentCheckCount = list.filter((m) => now - new Date(m.date).getTime() <= windowMs).length;
-    const top = list[0];
+    const top = recentChecks[0] || list[0];
     activity[slug] = {
       lastCheckDate: top.date,
       lastCheckSector: top.sector,
       lastCheckHighlight: top.highlight,
-      lastCheckSource: top.sourceUrl,
+      lastCheckSource: top.source,
       lastCheckSourceTitle: top.sourceTitle,
       recentCheckCount,
       totalMentions: list.length,

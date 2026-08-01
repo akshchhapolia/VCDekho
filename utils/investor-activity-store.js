@@ -14,7 +14,8 @@ const db = require('./db');
 // Must match utils/investors.js ACTIVE_WINDOW_DAYS — kept as a separate
 // constant here (like elsewhere in this feature) to avoid a circular import.
 const WINDOW_DAYS = 180;
-const MAX_STORED_CHECKS = 5;
+const RECENT_ACTIVITY_LIMIT = 3;
+const MAX_STORED_CHECKS = RECENT_ACTIVITY_LIMIT;
 
 function checkKey(c) {
   if (c && c.source) return 'src:' + String(c.source).toLowerCase();
@@ -133,4 +134,18 @@ async function getStaleSlugs(allSlugs, limit, staleAfterDays) {
   return candidates.slice(0, limit);
 }
 
-module.exports = { upsertActivity, getAllActivity, getStaleSlugs };
+/** Funds with fewer than RECENT_ACTIVITY_LIMIT stored checks — for targeted backfill. */
+async function getThinActivitySlugs(limit, maxChecks = RECENT_ACTIVITY_LIMIT - 1) {
+  const { rows } = await db.query(
+    `SELECT slug
+     FROM investor_activity
+     WHERE last_check_date IS NOT NULL
+       AND jsonb_array_length(COALESCE(recent_checks, '[]'::jsonb)) <= $2
+     ORDER BY checked_at ASC NULLS FIRST
+     LIMIT $1`,
+    [limit, maxChecks]
+  );
+  return rows.map((r) => r.slug);
+}
+
+module.exports = { upsertActivity, getAllActivity, getStaleSlugs, getThinActivitySlugs, mergeChecks, RECENT_ACTIVITY_LIMIT };
