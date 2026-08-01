@@ -15,7 +15,7 @@
   if (!cards.length) return;
 
   var pageSize = moreBtn
-    ? parseInt(moreBtn.getAttribute('data-page-size') || '36', 10) || 36
+    ? parseInt(moreBtn.getAttribute('data-page-size') || '12', 10) || 12
     : cards.length;
   var visibleCount = Math.min(pageSize, cards.length);
   var query = '';

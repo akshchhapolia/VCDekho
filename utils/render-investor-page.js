@@ -186,8 +186,9 @@ function websiteHostLabel(url) {
   }
 }
 
-const PORTFOLIO_PAGE_SIZE = 36;
-const PORTFOLIO_TOOLBAR_MIN = 24;
+const PORTFOLIO_INITIAL_SIZE = 12;
+const PORTFOLIO_LOAD_STEP = 12;
+const PORTFOLIO_SEARCH_MIN = 24;
 
 function portfolioLogoHtml(c) {
   const initial = escapeHtml((c.name || '?').charAt(0).toUpperCase());
@@ -213,7 +214,8 @@ function portfolioSection(investor) {
   if (!companies.length) return '';
 
   const total = companies.length;
-  const useToolbar = total >= PORTFOLIO_TOOLBAR_MIN;
+  const usePagination = total > PORTFOLIO_INITIAL_SIZE;
+  const useSearch = total >= PORTFOLIO_SEARCH_MIN;
 
   const cards = companies
     .map((c, index) => {
@@ -265,7 +267,7 @@ function portfolioSection(investor) {
 
       const dataName = escapeHtml(String(c.name || '').toLowerCase());
       const hiddenAttr =
-        useToolbar && index >= PORTFOLIO_PAGE_SIZE ? ' hidden' : '';
+        usePagination && index >= PORTFOLIO_INITIAL_SIZE ? ' hidden' : '';
       const cardAttrs =
         ' class="inv-profile-portfolio-card" data-name="' + dataName + '"' + hiddenAttr;
 
@@ -289,29 +291,33 @@ function portfolioSection(investor) {
   const subtitle =
     'Startups this investor has backed — round, amount, date, and source when we can verify them publicly.';
 
-  const initialShowing = useToolbar ? Math.min(PORTFOLIO_PAGE_SIZE, total) : total;
-  const toolbar = useToolbar
+  const initialShowing = usePagination ? Math.min(PORTFOLIO_INITIAL_SIZE, total) : total;
+
+  const statusHtml = usePagination
+    ? '<p class="inv-profile-portfolio-status" id="inv-portfolio-status" aria-live="polite">Showing ' +
+      initialShowing +
+      ' of ' +
+      total +
+      '</p>'
+    : '';
+
+  const toolbar = useSearch
     ? '<div class="inv-profile-portfolio-toolbar">' +
       '<label class="inv-profile-portfolio-search-wrap">' +
       '<input type="search" class="inv-profile-portfolio-search" id="inv-portfolio-search" placeholder="Search portfolio" autocomplete="off" aria-label="Search portfolio">' +
       '</label>' +
-      '<p class="inv-profile-portfolio-status" id="inv-portfolio-status" aria-live="polite">' +
-      'Showing ' +
-      initialShowing +
-      ' of ' +
-      total +
-      '</p>' +
+      statusHtml +
       '</div>'
-    : '';
+    : statusHtml;
 
   const loadMore =
-    useToolbar && total > PORTFOLIO_PAGE_SIZE
+    usePagination
       ? '<div class="inv-profile-portfolio-more-wrap">' +
         '<button type="button" class="inv-profile-portfolio-more" id="inv-portfolio-more" data-page-size="' +
-        PORTFOLIO_PAGE_SIZE +
+        PORTFOLIO_LOAD_STEP +
         '" data-total="' +
         total +
-        '">Load more</button>' +
+        '">View more</button>' +
         '</div>'
       : '';
 
@@ -709,7 +715,7 @@ function renderInvestorPage(investor, related, res) {
     '</div></main></div>',
     '<script src="/js/auth.js"></script>',
     '<script src="/app.js" defer></script>',
-    '<script src="/investors/portfolio-section.js?v=1"></script>',
+    '<script src="/investors/portfolio-section.js?v=2"></script>',
     '<script src="/investors/profile-sticky.js?v=2"></script>',
     '<script>',
     '(function(){',
