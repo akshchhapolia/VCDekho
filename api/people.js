@@ -7,7 +7,7 @@
  *   GET /api/people?q=&companyType=&...      -> gated JSON list (used by /people)
  */
 const { filterPeople, getFilters, toCard, getPersonBySlug, getPeopleByCompanySlug } = require('../utils/people');
-const { getInvestorBySlug, ensureActivityFresh, ensurePortfolioFresh } = require('../utils/investors');
+const { getInvestorBySlug } = require('../utils/investors');
 const { requireAuth } = require('../utils/require-auth');
 const { renderPersonPage } = require('../utils/render-person-page');
 
@@ -16,8 +16,7 @@ module.exports = async function handler(req, res) {
 
   if (query.slug) {
     try {
-      await ensureActivityFresh();
-      await ensurePortfolioFresh();
+      // HTML from static JSON — do not block on full-table DB refresh.
 
       const person = getPersonBySlug(query.slug);
       if (!person) return res.status(404).send('<h1>404 - Person Not Found</h1>');

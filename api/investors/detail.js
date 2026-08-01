@@ -1,4 +1,4 @@
-const { getInvestorBySlug, filterInvestors, toCard, hasStageGuide, deriveRelatedStages, ensureActivityFresh, ensurePortfolioFresh } = require('../../utils/investors');
+const { getInvestorBySlug, filterInvestors, toCard, hasStageGuide, deriveRelatedStages } = require('../../utils/investors');
 const { getThemePage, getAllThemes } = require('../../utils/thesis-themes');
 const { getStagePage } = require('../../utils/investment-stages');
 const { getSectorPage } = require('../../utils/sectors');
@@ -164,7 +164,10 @@ function renderThemePage(theme, res) {
   ].join('\n');
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
+  // Explicit CDN directives — vercel.json max-age alone was not enough for edge HITs
+  res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800');
+  res.setHeader('CDN-Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=604800');
+  res.setHeader('Vercel-CDN-Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=604800');
   return res.status(200).send(html);
 }
 
@@ -175,8 +178,8 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    await ensureActivityFresh();
-    await ensurePortfolioFresh();
+    // Serve HTML from static investors.json — do not block on full-table DB refresh.
+    // Activity/portfolio freshness stays on list API + cron.
 
     if (view === 'theme') {
       const theme = getThemePage(slug);
