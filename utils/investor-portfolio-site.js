@@ -450,7 +450,7 @@ function extractJsonishCompanies(html, pageUrl) {
     const start = m.index + m[0].length - 1;
     const chunk = extractBalancedArray(html, start);
     const arr = parseJsArrayLiteral(chunk);
-    if (arr) absorb(arr);
+    if (arr) absorb(arr, m[1]);
   }
 
   // Anonymous arrays that look like company objects with a name field.
@@ -463,7 +463,7 @@ function extractJsonishCompanies(html, pageUrl) {
       const start = m.index;
       const chunk = extractBalancedArray(html, start);
       const arr = parseJsArrayLiteral(chunk);
-      if (arr) absorb(arr);
+      if (arr) absorb(arr, m[1]);
       if (companies.length >= 40) break;
     }
   }
@@ -720,6 +720,7 @@ module.exports = {
   scrapeInvestorPortfolioSite,
   discoverPortfolioUrls,
   extractJsonishCompanies,
+  extractNextDataPortfolio,
   extractCompanyPathLinks,
   extractLogoGrid,
   MAX_SITE_COMPANIES
