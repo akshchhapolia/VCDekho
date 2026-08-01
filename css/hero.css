@@ -756,8 +756,9 @@ body.home-page .trend-card::before {
         align-self: flex-end;
         margin-top: 0.25rem;
         padding: 0.65rem 1.25rem;
-        background-color: #1a1a1a;
-        color: #fff;
+        /* Override dweb white gradient shorthand (background-color alone won't win) */
+        background: #1a1a1a !important;
+        color: #fff !important;
         border: none;
         border-radius: 0;
         font-family: var(--font-sans);
@@ -770,8 +771,8 @@ body.home-page .trend-card::before {
 
     body.home-page .trend-card-btn:hover,
     body.home-page .trend-card-btn:active {
-        background-color: #ed572f;
-        color: #fff;
+        background: #ed572f !important;
+        color: #fff !important;
         transform: none;
         box-shadow: 0 4px 12px rgba(237, 87, 47, 0.25);
     }
