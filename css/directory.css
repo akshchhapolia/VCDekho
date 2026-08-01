@@ -2678,6 +2678,59 @@ a.inv-chip:hover {
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.28);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.12s ease, border-color 0.12s ease, transform 0.1s ease;
+  }
+
+  /* Interactive Firm / Links tiles sit above the row hit + show press feedback */
+  body.inv-dir-page .inv-dir-col-stages:has(.inv-dir-inline-link),
+  body.inv-dir-page .inv-dir-col-ticket:has(.inv-dir-inline-link) {
+    position: relative;
+    z-index: 2;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body.inv-dir-page .inv-dir-col-stages:has(.inv-dir-inline-link) .inv-dir-mobile-label,
+  body.inv-dir-page .inv-dir-col-ticket:has(.inv-dir-inline-link) .inv-dir-mobile-label,
+  body.inv-dir-page .inv-dir-col-stages:has(.inv-dir-inline-link) .inv-dir-cell,
+  body.inv-dir-page .inv-dir-col-ticket:has(.inv-dir-inline-link) .inv-dir-ticket {
+    pointer-events: none;
+  }
+
+  body.inv-dir-page .inv-dir-col-stages .inv-dir-inline-link,
+  body.inv-dir-page .inv-dir-ticket .inv-dir-inline-link {
+    pointer-events: auto;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Stretch a single Firm/Links anchor across the whole tile */
+  body.inv-dir-page .inv-dir-col-stages .inv-dir-inline-link,
+  body.inv-dir-page .inv-dir-col-ticket:not(:has(.inv-dir-inline-link ~ .inv-dir-inline-link)) .inv-dir-inline-link {
+    position: static;
+  }
+
+  body.inv-dir-page .inv-dir-col-stages .inv-dir-inline-link::after,
+  body.inv-dir-page .inv-dir-col-ticket:not(:has(.inv-dir-inline-link ~ .inv-dir-inline-link)) .inv-dir-inline-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+  }
+
+  body.inv-dir-page .inv-dir-col-stages:has(.inv-dir-inline-link:active),
+  body.inv-dir-page .inv-dir-col-ticket:has(.inv-dir-inline-link:active),
+  body.inv-dir-page .inv-dir-col-stages.is-pressed,
+  body.inv-dir-page .inv-dir-col-ticket.is-pressed {
+    background: rgba(237, 87, 47, 0.22);
+    border-color: rgba(237, 87, 47, 0.55);
+    transform: scale(0.975);
+  }
+
+  body.inv-dir-page .inv-dir-col-stages .inv-dir-inline-link:active,
+  body.inv-dir-page .inv-dir-ticket .inv-dir-inline-link:active,
+  body.inv-dir-page .inv-dir-col-stages.is-pressed .inv-dir-inline-link,
+  body.inv-dir-page .inv-dir-col-ticket.is-pressed .inv-dir-inline-link {
+    color: #ffb89c;
   }
 
   body.inv-dir-page .inv-dir-col-stages {
