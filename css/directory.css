@@ -2778,7 +2778,7 @@ a.inv-chip:hover {
     text-overflow: ellipsis;
   }
 
-  /* Firm (people) / Stages (funds): single line + ellipsis in meta tiles */
+  /* Firm (people) / Stages (funds): keep all values on one line in meta tiles */
   body.inv-dir-page .inv-dir-col-stages .inv-dir-cell {
     display: block;
     white-space: nowrap;
@@ -2787,12 +2787,10 @@ a.inv-chip:hover {
     max-height: none;
   }
 
+  /* Inline — multiple stage links must stay on one line (not stacked blocks) */
   body.inv-dir-page .inv-dir-col-stages .inv-dir-inline-link {
-    display: block;
-    max-width: 100%;
+    display: inline;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   body.inv-dir-page .inv-dir-col-sectors .inv-dir-mobile-label {
