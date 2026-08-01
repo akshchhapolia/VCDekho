@@ -2921,8 +2921,7 @@ a.inv-chip:hover {
     height: 20px;
   }
 
-  .inv-dir-clear,
-  .inv-dir-sidebar-close {
+  .inv-dir-clear {
     min-height: 44px;
     display: inline-flex;
     align-items: center;
