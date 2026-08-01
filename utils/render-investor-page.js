@@ -525,7 +525,7 @@ function renderInvestorPage(investor, related, res) {
     '<link rel="stylesheet" href="/css/base.css?v=101">',
     '<link rel="stylesheet" href="/css/hero.css?v=86">',
     '<link rel="stylesheet" href="/css/ambient.css?v=98">',
-    '<link rel="stylesheet" href="/css/directory.css?v=100">',
+    '<link rel="stylesheet" href="/css/directory.css?v=111">',
     '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',

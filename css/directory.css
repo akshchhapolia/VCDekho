@@ -4584,6 +4584,11 @@ a.inv-profile-chip:hover .inv-profile-chip-icon {
     min-height: 0;
     max-width: 24rem;
   }
+
+  /* Firm profiles: drop "Browse funds" directory widget on mweb only */
+  body.inv-investor-profile .inv-profile-dir-widget:not(.inv-profile-dir-widget--people) {
+    display: none !important;
+  }
 }
 
 @media (max-width: 640px) {
