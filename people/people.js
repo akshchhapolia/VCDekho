@@ -187,7 +187,7 @@
     if (!people.length) {
       els.results.innerHTML =
         '<div class="inv-dir-empty-state">' +
-          '<p class="inv-dir-empty-title">No matching people</p>' +
+          '<p class="inv-dir-empty-title">No matching investors</p>' +
           '<p class="inv-dir-empty-copy">Try clearing filters or searching a different name, title, or firm.</p>' +
           '<button type="button" class="inv-dir-empty-action" id="ppl-empty-clear">Clear filters</button>' +
         '</div>';
@@ -265,7 +265,7 @@
       '<span class="inv-dir-pager-total">' + pages + '</span>';
     els.prev.disabled = state.offset <= 0;
     els.next.disabled = state.offset + PAGE_SIZE >= state.total;
-    els.count.textContent = `${state.total.toLocaleString('en-IN')} people`;
+    els.count.textContent = `${state.total.toLocaleString('en-IN')} investors`;
     updateMobileFiltersLabel();
   }
 

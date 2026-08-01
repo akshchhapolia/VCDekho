@@ -238,7 +238,7 @@
     if (!investors.length) {
       els.results.innerHTML =
         '<div class="inv-dir-empty-state">' +
-          '<p class="inv-dir-empty-title">No matching investors</p>' +
+          '<p class="inv-dir-empty-title">No matching funds</p>' +
           '<p class="inv-dir-empty-copy">Try clearing filters or searching a different fund, sector, or stage.</p>' +
           '<button type="button" class="inv-dir-empty-action" id="inv-empty-clear">Clear filters</button>' +
         '</div>';
