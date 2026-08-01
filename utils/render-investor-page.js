@@ -448,7 +448,7 @@ function renderInvestorPage(investor, related, res) {
     ? (
       '<section class="inv-profile-section inv-profile-reveal" id="similar">' +
         '<div class="inv-profile-section-label">06 — Nearby</div>' +
-        '<div class="inv-profile-section-head"><h2>Similar investors</h2><p>Other funds that overlap on stage, sector, or thesis.</p></div>' +
+        '<div class="inv-profile-section-head"><h2>Similar funds</h2><p>Other funds that overlap on stage, sector, or thesis.</p></div>' +
         '<div class="inv-profile-related-grid">' + relatedCards + '</div>' +
       '</section>'
     )

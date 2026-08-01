@@ -1,5 +1,6 @@
 const { getAllStages } = require('./investment-stages');
 const { renderExploreRelated } = require('./render-explore-related');
+const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('./site-labels');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -92,7 +93,7 @@ function renderStagePage(stage, res) {
       '<div class="stage-related-order">Stage ' + String(s.order).padStart(2, '0') + '</div>' +
       '<h3>' + escapeHtml(s.label) + '</h3>' +
       '<p>' + escapeHtml(s.summary) + '</p>' +
-      '<div class="stage-related-meta">' + s.investorCount + ' investors</div>' +
+      '<div class="stage-related-meta">' + s.investorCount + ' funds</div>' +
     '</a>'
   )).join('');
 
@@ -166,15 +167,15 @@ function renderStagePage(stage, res) {
     '<button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>',
     '<nav class="main-nav" id="navigation-bar">',
     '<a href="/" class="nav-link">Home</a>',
-    '<a href="/investors" class="nav-link active">Investors</a>',
-    '<a href="/people" class="nav-link">People</a>',
+    '<a href="' + FUNDS_PATH + '" class="nav-link active">' + FUNDS_LABEL + '</a>',
+    '<a href="' + INVESTORS_PATH + '" class="nav-link">' + INVESTORS_LABEL + '</a>',
     '<a href="/blog" class="nav-link">Blog</a>',
     '<a href="/news" class="nav-link">News</a>',
     '</nav></header>',
     '<main class="hero-showcase inv-detail-main">',
     '<div class="ambient-bg-wrapper"><div class="waitlist-bg"><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div><div class="glow-orb orb-3"></div></div></div>',
     '<div class="inv-detail-wrap stage-page-wrap">',
-    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="/investors">Investors</a><span>›</span><a href="/investors/stages">Stages</a><span>›</span><span class="current">' + escapeHtml(stage.label) + '</span></div>',
+    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="' + FUNDS_PATH + '">' + FUNDS_LABEL + '</a><span>›</span><a href="/investors/stages">Stages</a><span>›</span><span class="current">' + escapeHtml(stage.label) + '</span></div>',
 
     '<section class="stage-hero stage-hero-enter" id="overview">',
     '<div class="stage-hero-wash" aria-hidden="true"></div>',
@@ -184,7 +185,7 @@ function renderStagePage(stage, res) {
     '<h1 class="stage-hero-title">' + escapeHtml(stage.label) + '</h1>',
     '<p class="stage-hero-summary">' + escapeHtml(stage.summary) + '</p>',
     '<div class="stage-hero-actions">',
-    '<div class="stage-hero-stat"><strong>' + stage.investorCount + '</strong><span>matching investors</span></div>',
+    '<div class="stage-hero-stat"><strong>' + stage.investorCount + '</strong><span>matching funds</span></div>',
     '<a class="stage-hero-cta" href="/investors?stage=' + encodeURIComponent(stage.id) + '">Open in directory</a>',
     '</div>',
     '</div>',
@@ -199,7 +200,7 @@ function renderStagePage(stage, res) {
     '<a href="#prepare" data-section="prepare">Prepare</a>',
     '<a href="#round" data-section="round">Round</a>',
     '<a href="#mistakes" data-section="mistakes">Mistakes</a>',
-    '<a href="#investors" data-section="investors">Investors</a>',
+    '<a href="#investors" data-section="investors">' + FUNDS_LABEL + '</a>',
     '</nav>',
 
     '<section class="stage-section stage-meaning stage-reveal is-visible" id="meaning">',
@@ -257,10 +258,10 @@ function renderStagePage(stage, res) {
 
     '<section class="stage-section stage-reveal" id="investors">',
     '<div class="stage-section-label">08 — Capital map</div>',
-    '<div class="theme-section-head"><h2>Investors active at this stage</h2><a href="/investors?stage=' + encodeURIComponent(stage.id) + '">See all filters</a></div>',
-    '<div class="stage-inv-grid">' + (investorCards || '<p class="inv-empty">No investors tagged yet.</p>') + '</div>',
+    '<div class="theme-section-head"><h2>Funds active at this stage</h2><a href="/investors?stage=' + encodeURIComponent(stage.id) + '">See all filters</a></div>',
+    '<div class="stage-inv-grid">' + (investorCards || '<p class="inv-empty">No funds tagged yet.</p>') + '</div>',
     stage.investorCount > 24
-      ? ('<div class="theme-more"><a class="inv-btn inv-btn-primary" href="/investors?stage=' + encodeURIComponent(stage.id) + '">Browse all ' + stage.investorCount + ' investors</a></div>')
+      ? ('<div class="theme-more"><a class="inv-btn inv-btn-primary" href="/investors?stage=' + encodeURIComponent(stage.id) + '">Browse all ' + stage.investorCount + ' funds</a></div>')
       : '',
     '</section>',
 
@@ -284,8 +285,8 @@ function renderStagePage(stage, res) {
     '<img src="/assets/blog_vc_dekho_cta.webp" alt="VC Dekho" class="blog-cta-bg">',
     '<div class="blog-cta-content">',
     '<h2 class="blog-cta-title">Raise at the right stage</h2>',
-    '<p class="blog-cta-desc">VC Dekho helps founders shortlist investors by stage, sector, cheque size, and thesis.</p>',
-    '<a href="/investors" class="blog-cta-btn">Browse investors</a>',
+    '<p class="blog-cta-desc">VC Dekho helps founders shortlist funds by stage, sector, cheque size, and thesis.</p>',
+    '<a href="' + FUNDS_PATH + '" class="blog-cta-btn">Browse funds</a>',
     '</div></section>',
 
     '</div></main></div>',

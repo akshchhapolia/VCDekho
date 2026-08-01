@@ -3,6 +3,7 @@
  * Firm-context sections are joined via companySlug (see render-person-firm-sections.js).
  */
 const { loadPeopleData } = require('./people');
+const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('./site-labels');
 const {
   firmFocusSection,
   firmThesisSection,
@@ -36,12 +37,12 @@ function peopleDirectoryWidget() {
   const countLabel = peopleCount >= 100 ? String(Math.floor(peopleCount / 10) * 10) + '+' : String(peopleCount);
 
   return (
-    '<aside class="inv-profile-dir-widget inv-profile-dir-widget--people" aria-label="People directory">' +
-      '<p class="inv-person-dir-kicker">People directory</p>' +
+    '<aside class="inv-profile-dir-widget inv-profile-dir-widget--people" aria-label="Investor directory">' +
+      '<p class="inv-person-dir-kicker">Investor directory</p>' +
       '<div class="inv-person-dir-stats-row">' +
         '<div class="inv-person-dir-stat">' +
           '<strong>' + escapeHtml(countLabel) + '</strong>' +
-          '<span>People</span>' +
+          '<span>Investors</span>' +
         '</div>' +
         '<div class="inv-person-dir-stat-divider" aria-hidden="true"></div>' +
         '<div class="inv-person-dir-stat">' +
@@ -55,7 +56,7 @@ function peopleDirectoryWidget() {
         '<li>Linked to investor firm profiles</li>' +
         '<li>Filter by fund type &amp; company</li>' +
       '</ul>' +
-      '<a class="inv-profile-cta is-ghost inv-person-dir-cta" href="/people">Browse directory</a>' +
+      '<a class="inv-profile-cta is-ghost inv-person-dir-cta" href="' + INVESTORS_PATH + '">Browse directory</a>' +
     '</aside>'
   );
 }
@@ -151,8 +152,8 @@ function renderPersonPage(person, colleagues, investor, res) {
   const colleagueSection = colleagueCards
     ? (
       '<section class="inv-profile-section inv-person-team-section inv-profile-reveal" id="colleagues">' +
-        '<div class="inv-profile-section-label">06 — Team</div>' +
-        '<div class="inv-profile-section-head"><h2>Others at ' + escapeHtml(person.company) + '</h2><p>More people mapped to this firm in the directory.</p></div>' +
+        '<div class="inv-profile-section-label">06 — Colleagues</div>' +
+        '<div class="inv-profile-section-head"><h2>Others at ' + escapeHtml(person.company) + '</h2><p>More investors mapped to this firm in the directory.</p></div>' +
         '<div class="inv-profile-related-grid inv-person-colleague-grid">' + colleagueCards + '</div>' +
       '</section>'
     )
@@ -171,7 +172,7 @@ function renderPersonPage(person, colleagues, investor, res) {
     thesisSection ? '<a href="#firm-thesis" data-section="firm-thesis">Thesis</a>' : '',
     activitySection ? '<a href="#firm-activity" data-section="firm-activity">Activity</a>' : '',
     portfolioSection ? '<a href="#firm-portfolio" data-section="firm-portfolio">Portfolio</a>' : '',
-    colleagueSection ? '<a href="#colleagues" data-section="colleagues">Team</a>' : '',
+    colleagueSection ? '<a href="#colleagues" data-section="colleagues">Colleagues</a>' : '',
     exploreSection ? '<a href="#explore" data-section="explore">Explore</a>' : '',
     '</nav>'
   ].join('');
@@ -198,7 +199,7 @@ function renderPersonPage(person, colleagues, investor, res) {
     '<link rel="preconnect" href="https://fonts.googleapis.com">',
     '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">',
-    '<title>' + escapeHtml(person.name) + ' | People | VC Dekho</title>',
+    '<title>' + escapeHtml(person.name) + ' | Investors | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<link rel="canonical" href="https://vcdekho.com/people/' + escapeHtml(person.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
@@ -221,15 +222,15 @@ function renderPersonPage(person, colleagues, investor, res) {
     '<button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>',
     '<nav class="main-nav" id="navigation-bar">',
     '<a href="/" class="nav-link">Home</a>',
-    '<a href="/investors" class="nav-link">Investors</a>',
-    '<a href="/people" class="nav-link active">People</a>',
+    '<a href="' + FUNDS_PATH + '" class="nav-link">' + FUNDS_LABEL + '</a>',
+    '<a href="' + INVESTORS_PATH + '" class="nav-link active">' + INVESTORS_LABEL + '</a>',
     '<a href="/blog" class="nav-link">Blog</a>',
     '<a href="/news" class="nav-link">News</a>',
     '</nav></header>',
     '<main class="hero-showcase inv-detail-main">',
     '<div class="ambient-bg-wrapper"><div class="waitlist-bg"><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div><div class="glow-orb orb-3"></div></div></div>',
     '<div class="inv-detail-wrap inv-profile-wrap">',
-    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="/people">People</a><span>›</span><span class="current">' + escapeHtml(person.name) + '</span></div>',
+    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="' + INVESTORS_PATH + '">' + INVESTORS_LABEL + '</a><span>›</span><span class="current">' + escapeHtml(person.name) + '</span></div>',
 
     '<div class="inv-profile-hero-row inv-profile-hero-enter" id="overview">',
     '<section class="inv-profile-hero">',
@@ -270,8 +271,8 @@ function renderPersonPage(person, colleagues, investor, res) {
     '<img src="/assets/blog_vc_dekho_cta.webp" alt="VC Dekho" class="blog-cta-bg">',
     '<div class="blog-cta-content">',
     '<h2 class="blog-cta-title">Find the right person to pitch</h2>',
-    '<p class="blog-cta-desc">Search investors and the people behind every fund on VC Dekho.</p>',
-    '<a href="/people" class="blog-cta-btn">Browse people</a>',
+    '<p class="blog-cta-desc">Search funds and the investors behind every fund on VC Dekho.</p>',
+    '<a href="' + INVESTORS_PATH + '" class="blog-cta-btn">Browse investors</a>',
     '</div></section>',
 
     '</div></main></div>',
