@@ -3081,42 +3081,45 @@ body.inv-investor-profile .ambient-bg-wrapper {
 }
 
 body.inv-investor-profile .site-header {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
+  z-index: 100;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: none;
+  margin: 0;
   width: 100%;
   max-width: none;
-  margin: 0;
-  z-index: 100;
-  box-sizing: border-box;
-  padding-top: calc(0.15rem + env(safe-area-inset-top, 0px));
-  padding-bottom: 0.5rem;
-  padding-left: max(var(--page-padding), calc((100vw - 1600px) / 2 + var(--page-padding)));
-  padding-right: max(var(--page-padding), calc((100vw - 1600px) / 2 + var(--page-padding)));
-  background: rgba(11, 11, 13, 0.82);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: 0;
 }
 
 body.inv-investor-profile .app-container {
-  padding-top: calc(52px + env(safe-area-inset-top, 0px));
+  padding-top: 1rem;
+}
+
+body.inv-investor-profile .inv-profile-hero-row {
+  align-items: stretch;
+}
+
+body.inv-investor-profile .inv-profile-dir-widget {
+  height: 100%;
+  align-self: stretch;
 }
 
 body.inv-investor-profile .inv-profile-section {
-  scroll-margin-top: calc(7rem + env(safe-area-inset-top, 0px));
+  scroll-margin-top: calc(5.5rem + env(safe-area-inset-top, 0px));
 }
 
 @media (max-width: 768px) {
   body.inv-investor-profile .site-header {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body.inv-investor-profile .site-header,
   .inv-profile-sticky.is-pinned {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
