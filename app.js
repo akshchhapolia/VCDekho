@@ -14,18 +14,31 @@ document.addEventListener('DOMContentLoaded', () => {
             heroBg.style.display = 'none';
             heroFallback.style.display = 'block';
         } else {
-            heroBg.style.display = '';
-            heroFallback.style.display = 'none';
+            const isHomeMweb = isHomePage && isMobile;
+
             heroBg.setAttribute('playsinline', '');
             heroBg.setAttribute('webkit-playsinline', '');
             heroBg.muted = true;
+            heroBg.playsInline = true;
 
-            const showFallback = () => {
+            // Home mweb: keep gradient under video as base paint; never hide video on soft play() fail
+            if (isHomeMweb) {
+                heroFallback.style.display = 'block';
+                heroBg.style.display = 'block';
+            } else {
+                heroBg.style.display = '';
+                heroFallback.style.display = 'none';
+            }
+
+            const hideVideoHard = () => {
                 heroBg.style.display = 'none';
                 heroFallback.style.display = 'block';
             };
 
-            const tryPlay = () => heroBg.play();
+            const tryPlay = () => {
+                heroBg.muted = true;
+                return heroBg.play();
+            };
 
             const armGestureRetry = () => {
                 let done = false;
@@ -33,26 +46,32 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (done) return;
                     done = true;
                     window.removeEventListener('touchstart', retry, true);
-                    window.removeEventListener('scroll', retry, true);
-                    tryPlay().catch(showFallback);
+                    window.removeEventListener('click', retry, true);
+                    tryPlay().catch(() => {});
                 };
                 window.addEventListener('touchstart', retry, { capture: true, once: true, passive: true });
-                window.addEventListener('scroll', retry, { capture: true, once: true, passive: true });
+                window.addEventListener('click', retry, { capture: true, once: true });
             };
 
+            heroBg.addEventListener('error', hideVideoHard, { once: true });
+
             const startVideo = () => {
+                if (isHomeMweb) {
+                    try {
+                        heroBg.load();
+                    } catch (_) { /* ignore */ }
+                }
+
                 tryPlay().catch(() => {
-                    // Keep video visible; retry on first gesture before gradient fallback
-                    if (isHomePage && isMobile) {
+                    if (isHomeMweb) {
                         armGestureRetry();
                     } else {
-                        showFallback();
+                        hideVideoHard();
                     }
                 });
             };
 
-            // Home mweb: play immediately so the hero has a paint box sooner
-            if (isHomePage && isMobile) {
+            if (isHomeMweb) {
                 startVideo();
             } else if ('requestIdleCallback' in window) {
                 requestIdleCallback(startVideo, { timeout: 2000 });
