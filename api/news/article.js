@@ -342,9 +342,9 @@ module.exports = async function handler(req, res) {
                 </div>
             </div>
 
-            <div style="max-width: 800px; margin: 0 auto; text-align: left; position: relative; z-index: 10; padding: 0 20px;">
+            <div class="blog-content news-article-wrap">
                 <!-- Breadcrumbs -->
-                <div style="margin-bottom: 25px; font-size: 0.9rem; color: var(--color-text-muted);">
+                <div class="news-breadcrumbs">
                     <a href="/" style="color: var(--color-text-muted); text-decoration: none;">Home</a> 
                     <span style="margin: 0 8px;">›</span> 
                     <a href="/${pathPrefix}" style="color: var(--color-text-muted); text-decoration: none;">${isBlog ? 'Blog' : 'News'}</a> 
@@ -352,18 +352,18 @@ module.exports = async function handler(req, res) {
                     <span style="color: var(--color-accent-orange);">${sectionLabel}</span>
                 </div>
 
-                <h1 class="blog-title" style="font-size: 2.8rem; margin-bottom: 20px; color: var(--color-text-light); line-height: 1.25; letter-spacing: -0.02em;">${article.title}</h1>
-                <p style="color: var(--color-text-muted); margin-bottom: 30px; font-size: 1.05rem; display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                <h1 class="blog-title news-article-title">${article.title}</h1>
+                <p class="news-article-meta">
                     ${sourceLine}
                 </p>
                 
                 ${article.image_url ? `
-                <div style="margin-bottom: 40px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-                    <img src="${article.image_url}" alt="Featured Image" style="width: 100%; height: auto; display: block; max-height: 450px; object-fit: cover;">
+                <div class="news-article-featured-image">
+                    <img src="${article.image_url}" alt="Featured Image">
                 </div>
                 ` : ''}
                 
-                <div class="blog-content" style="line-height: 1.85; color: rgba(255,255,255,0.9); font-size: 1.15rem; letter-spacing: 0.01em;">
+                <div class="blog-article-body">
                     ${/<p[ >]/i.test(article.body) ? article.body : article.body.split('\n').map(p => p.trim() ? '<p style="margin-bottom: 20px;">' + p + '</p>' : '').join('')}
                 </div>
 
