@@ -3170,7 +3170,7 @@ body.inv-person-profile .inv-profile-hero-inner {
 
 .inv-profile-dir-widget--people {
   height: 100%;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 0;
   padding: 1.15rem 1.05rem 1.05rem;
 }
@@ -3231,14 +3231,49 @@ body.inv-person-profile .inv-person-dir-stat-divider {
 }
 
 body.inv-person-profile .inv-person-dir-desc {
-  margin: 0 0 1rem;
+  margin: 0;
   color: rgba(255, 255, 255, 0.62);
   font-size: 0.84rem;
   line-height: 1.45;
 }
 
+body.inv-person-profile .inv-person-dir-features {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0.65rem 0.8rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.025);
+  flex: 1 1 auto;
+}
+
+body.inv-person-profile .inv-person-dir-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.42rem 0;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+body.inv-person-profile .inv-person-dir-features li + li {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+body.inv-person-profile .inv-person-dir-features li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-accent-orange);
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
 body.inv-person-profile .inv-person-dir-cta {
-  margin-top: auto;
+  margin-top: 0.85rem;
+  flex-shrink: 0;
   width: 100%;
   justify-content: center;
   padding: 0.72rem 1rem;

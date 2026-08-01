@@ -50,6 +50,11 @@ function peopleDirectoryWidget() {
         '</div>' +
       '</div>' +
       '<p class="inv-person-dir-desc">Browse partners and principals mapped across India\'s VC ecosystem.</p>' +
+      '<ul class="inv-person-dir-features">' +
+        '<li>Partners, GPs &amp; principals</li>' +
+        '<li>Linked to investor firm profiles</li>' +
+        '<li>Filter by fund type &amp; company</li>' +
+      '</ul>' +
       '<a class="inv-profile-cta is-ghost inv-person-dir-cta" href="/people">Browse directory</a>' +
     '</aside>'
   );
@@ -186,10 +191,10 @@ function renderPersonPage(person, colleagues, investor, res) {
     '<link rel="canonical" href="https://vcdekho.com/people/' + escapeHtml(person.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/css/base.css?v=89">',
-    '<link rel="stylesheet" href="/css/hero.css?v=89">',
-    '<link rel="stylesheet" href="/css/ambient.css?v=89">',
-    '<link rel="stylesheet" href="/css/directory.css?v=89">',
+    '<link rel="stylesheet" href="/css/base.css?v=90">',
+    '<link rel="stylesheet" href="/css/hero.css?v=90">',
+    '<link rel="stylesheet" href="/css/ambient.css?v=90">',
+    '<link rel="stylesheet" href="/css/directory.css?v=90">',
     '<meta property="og:title" content="' + escapeHtml(person.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<meta property="og:url" content="https://vcdekho.com/people/' + escapeHtml(person.slug) + '">',
