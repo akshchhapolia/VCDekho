@@ -98,7 +98,9 @@ body {
 .logo-container {
     display: flex;
     align-items: center;
+    gap: 0.65rem;
     text-decoration: none;
+    color: inherit;
 }
 
 .logo-img {
@@ -107,6 +109,17 @@ body {
     object-fit: contain;
     transition: var(--transition-smooth);
     display: block;
+    flex-shrink: 0;
+}
+
+.logo-wordmark {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    white-space: nowrap;
+    color: inherit;
 }
 
 .logo-container:hover .logo-img {

@@ -1028,6 +1028,10 @@ body.home-page .site-header {
     border-bottom: none;
 }
 
+body.home-page .logo-wordmark {
+    color: #fff;
+}
+
 body.home-page .site-header .nav-link {
     color: rgba(255, 255, 255, 0.82);
 }
