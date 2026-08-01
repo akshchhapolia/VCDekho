@@ -1,5 +1,5 @@
 (function () {
-  const PAGE_SIZE = 24;
+  const PAGE_SIZE = 15;
   const state = {
     q: '',
     companyType: '',

@@ -1,5 +1,5 @@
 (function () {
-  const PAGE_SIZE = 24;
+  const PAGE_SIZE = 15;
   const STAGE_GUIDE_IDS = {
     'pre-seed': true,
     seed: true,
