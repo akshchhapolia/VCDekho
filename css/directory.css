@@ -3075,6 +3075,22 @@ a.inv-chip:hover {
 body.inv-investor-profile .hero-showcase.inv-detail-main {
   overflow: visible;
   position: relative;
+  padding-top: max(0.85rem, env(safe-area-inset-top, 0px));
+}
+
+body.inv-investor-profile .hero-showcase.inv-detail-main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: min(480px, 62vh);
+  pointer-events: none;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 130% 90% at 18% 0%, rgba(237, 87, 47, 0.2), transparent 68%),
+    radial-gradient(ellipse 90% 70% at 82% 8%, rgba(237, 87, 47, 0.09), transparent 62%);
 }
 
 body.inv-investor-profile .ambient-bg-wrapper {
@@ -3097,7 +3113,7 @@ body.inv-investor-profile .site-header {
   margin: 0 0 0.75rem;
   width: 100%;
   max-width: none;
-  padding-top: env(safe-area-inset-top, 0px);
+  padding-top: 0;
   padding-bottom: 0;
 }
 
@@ -3113,11 +3129,30 @@ body.inv-investor-profile .inv-profile-hero-row {
 body.inv-investor-profile .inv-profile-hero,
 body.inv-investor-profile .inv-profile-dir-widget {
   align-self: stretch;
-  height: 100%;
 }
 
-body.inv-investor-profile .inv-profile-dir-widget {
-  justify-content: space-between;
+body.inv-investor-profile .inv-profile-dir-widget--investor {
+  height: auto;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.1rem 1rem;
+}
+
+body.inv-investor-profile .inv-profile-dir-widget--investor .inv-profile-dir-stat {
+  padding: 0.45rem 0.5rem;
+}
+
+body.inv-investor-profile .inv-profile-dir-widget--investor .inv-profile-dir-stat strong {
+  font-size: 1.1rem;
+}
+
+body.inv-investor-profile .inv-profile-dir-widget--investor .inv-profile-dir-title {
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+body.inv-investor-profile .inv-profile-dir-widget--investor .inv-profile-cta {
+  margin-top: 0.15rem;
 }
 
 body.inv-person-profile .hero-showcase.inv-detail-main {
