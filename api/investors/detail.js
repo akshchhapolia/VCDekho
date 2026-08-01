@@ -1,4 +1,4 @@
-const { getInvestorBySlug, filterInvestors, toCard, hasStageGuide, deriveRelatedStages } = require('../../utils/investors');
+const { getInvestorBySlug, filterInvestors, toCard, hasStageGuide, deriveRelatedStages, ensureInvestorDetailExtras } = require('../../utils/investors');
 const { getThemePage, getAllThemes } = require('../../utils/thesis-themes');
 const { getStagePage } = require('../../utils/investment-stages');
 const { getSectorPage } = require('../../utils/sectors');
@@ -175,9 +175,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    // Serve HTML from static investors.json — do not block on full-table DB refresh.
-    // Activity/portfolio freshness stays on list API + cron.
-
+    // Guides don't need live portfolio/activity rows
     if (view === 'theme') {
       const theme = getThemePage(slug);
       if (!theme) return res.status(404).send('<h1>404 - Thesis theme not found</h1>');
@@ -195,6 +193,9 @@ module.exports = async function handler(req, res) {
       if (!sector) return res.status(404).send('<h1>404 - Sector guide not found</h1>');
       return renderSectorPage(sector, res);
     }
+
+    // Per-slug DB extras only (not full-table activity/portfolio scans)
+    await ensureInvestorDetailExtras(slug);
 
     const investor = getInvestorBySlug(slug);
     if (!investor) {

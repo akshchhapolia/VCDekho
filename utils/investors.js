@@ -91,6 +91,71 @@ async function ensurePortfolioFresh() {
   }
 }
 
+// Per-slug memo so firm/person HTML doesn't reload the same row every hit on a warm instance
+const detailExtrasFreshAt = new Map();
+const DETAIL_EXTRAS_TTL_MS = 5 * 60 * 1000;
+
+/**
+ * Fast path for profile HTML: two indexed lookups by slug instead of loading
+ * the entire activity + portfolio tables. Portfolio is not in investors.json,
+ * so profile pages still need this — just not a full-table scan.
+ */
+async function ensureInvestorDetailExtras(slug) {
+  if (!slug) return;
+  const inv = getInvestorBySlug(slug);
+  if (!inv) return;
+
+  const now = Date.now();
+  const prev = detailExtrasFreshAt.get(slug) || 0;
+  if (now - prev < DETAIL_EXTRAS_TTL_MS) return;
+
+  // If a recent full-table refresh already ran, skip the round trip
+  if (
+    now - activityCacheAt < ACTIVITY_CACHE_TTL_MS &&
+    now - portfolioCacheAt < PORTFOLIO_CACHE_TTL_MS
+  ) {
+    detailExtrasFreshAt.set(slug, now);
+    return;
+  }
+
+  try {
+    const db = require('./db');
+    const [actRes, portRes] = await Promise.all([
+      db.query(
+        `SELECT last_check_date, last_check_sector, last_check_highlight, last_check_source,
+                last_check_source_title, recent_check_count, recent_checks
+         FROM investor_activity WHERE slug = $1 LIMIT 1`,
+        [slug]
+      ),
+      db.query(
+        `SELECT companies, company_count FROM investor_portfolio WHERE slug = $1 LIMIT 1`,
+        [slug]
+      )
+    ]);
+
+    const act = actRes.rows && actRes.rows[0];
+    if (act) {
+      inv.lastCheckDate = act.last_check_date;
+      inv.lastCheckSector = act.last_check_sector;
+      inv.lastCheckHighlight = act.last_check_highlight;
+      inv.lastCheckSource = act.last_check_source;
+      inv.lastCheckSourceTitle = act.last_check_source_title;
+      inv.recentCheckCount = act.recent_check_count;
+      inv.recentChecks = act.recent_checks || [];
+    }
+
+    const port = portRes.rows && portRes.rows[0];
+    if (port) {
+      inv.portfolioCompanies = port.companies || [];
+      inv.portfolioCount = port.company_count || 0;
+    }
+
+    detailExtrasFreshAt.set(slug, now);
+  } catch (err) {
+    console.error('ensureInvestorDetailExtras: failed for', slug, err.message);
+  }
+}
+
 function getFilters() {
   return loadInvestorsData().filters;
 }
@@ -211,6 +276,7 @@ module.exports = {
   isActivelyDeploying,
   ensureActivityFresh,
   ensurePortfolioFresh,
+  ensureInvestorDetailExtras,
   ACTIVE_WINDOW_DAYS,
   STAGE_GUIDE_IDS
 };

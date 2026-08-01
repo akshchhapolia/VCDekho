@@ -7,7 +7,7 @@
  *   GET /api/people?q=&companyType=&...      -> gated JSON list (used by /people)
  */
 const { filterPeople, getFilters, toCard, getPersonBySlug, getPeopleByCompanySlug } = require('../utils/people');
-const { getInvestorBySlug } = require('../utils/investors');
+const { getInvestorBySlug, ensureInvestorDetailExtras } = require('../utils/investors');
 const { requireAuth } = require('../utils/require-auth');
 const { renderPersonPage } = require('../utils/render-person-page');
 
