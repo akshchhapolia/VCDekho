@@ -3165,7 +3165,21 @@ body.inv-person-profile .inv-profile-hero {
 
 body.inv-person-profile .inv-profile-hero-inner {
   justify-content: flex-start;
-  min-height: 0;
+  flex: 1 1 auto;
+  min-height: 100%;
+}
+
+body.inv-person-profile .inv-profile-hero-copy {
+  flex: 0 0 auto;
+}
+
+body.inv-person-profile .inv-profile-hero-lead {
+  margin-bottom: 0;
+}
+
+body.inv-person-profile .inv-profile-hero-actions {
+  margin-top: auto;
+  padding-top: 0.85rem;
 }
 
 .inv-profile-dir-widget--people {
