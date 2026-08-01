@@ -239,7 +239,7 @@ body {
     }
 
     .nav-toggle.active span:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px);
+        transform: translateY(7px) rotate(45deg);
     }
 
     .nav-toggle.active span:nth-child(2) {
@@ -247,7 +247,7 @@ body {
     }
 
     .nav-toggle.active span:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px);
+        transform: translateY(-7px) rotate(-45deg);
     }
 }
 
@@ -344,10 +344,15 @@ body.nav-open {
         min-width: 44px;
         min-height: 44px;
         padding: 0.5rem;
+        overflow: visible;
+        position: relative;
+        z-index: 220;
     }
 
     .nav-toggle span {
         margin: 0;
+        flex-shrink: 0;
+        transform-origin: center;
     }
 
     .main-nav {
@@ -357,6 +362,24 @@ body.nav-open {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
         overscroll-behavior: contain;
+        z-index: 210;
+        pointer-events: auto;
+    }
+
+    .main-nav .nav-link {
+        position: relative;
+        z-index: 1;
+        pointer-events: auto;
+    }
+
+    /* Header creates a stacking context; raise it above the backdrop when open
+       so drawer links receive taps instead of the dimmer closing the menu. */
+    body.nav-open .site-header {
+        z-index: 200;
+    }
+
+    .nav-backdrop {
+        z-index: 190;
     }
 
     .site-header {

@@ -529,6 +529,8 @@ body.home-page .trend-card::before {
         min-height: 44px;
         padding: 0.5rem;
         box-shadow: none;
+        overflow: visible;
+        z-index: 220;
     }
 
     body.home-page .nav-toggle span {
@@ -537,18 +539,27 @@ body.home-page .trend-card::before {
         height: 2px;
         margin: 0;
         background-color: #fff;
+        transform-origin: center;
+    }
+
+    /* Keep drawer + close button above the dimmer so links are tappable */
+    body.home-page.nav-open .site-header {
+        z-index: 200;
     }
 
     body.home-page .main-nav {
         background-color: rgba(14, 14, 16, 0.98);
         border-left: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: -10px 0 30px rgba(0, 0, 0, 0.45);
+        z-index: 210;
+        pointer-events: auto;
     }
 
     body.home-page .main-nav .nav-link {
         color: rgba(255, 255, 255, 0.88);
         font-size: 1.3rem;
         opacity: 0.9;
+        pointer-events: auto;
     }
 
     body.home-page .announcement-strip,

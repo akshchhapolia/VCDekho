@@ -36,7 +36,10 @@
 
     mainNav.querySelectorAll('.nav-link').forEach(function (link) {
       link.addEventListener('click', function () {
-        setOpen(false);
+        // Close after navigation begins; don't block the default link action.
+        setTimeout(function () {
+          setOpen(false);
+        }, 0);
       });
     });
 
