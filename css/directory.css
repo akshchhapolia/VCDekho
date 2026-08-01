@@ -2690,15 +2690,12 @@ a.inv-chip:hover {
   }
 
   body.inv-dir-page .inv-dir-col-stages:has(.inv-dir-inline-link) .inv-dir-mobile-label,
-  body.inv-dir-page .inv-dir-col-ticket:has(.inv-dir-inline-link) .inv-dir-mobile-label,
-  body.inv-dir-page .inv-dir-col-stages:has(.inv-dir-inline-link) .inv-dir-cell,
-  body.inv-dir-page .inv-dir-col-ticket:has(.inv-dir-inline-link) .inv-dir-ticket {
+  body.inv-dir-page .inv-dir-col-ticket:has(.inv-dir-inline-link) .inv-dir-mobile-label {
     pointer-events: none;
   }
 
   body.inv-dir-page .inv-dir-col-stages .inv-dir-inline-link,
   body.inv-dir-page .inv-dir-ticket .inv-dir-inline-link {
-    pointer-events: auto;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
   }
