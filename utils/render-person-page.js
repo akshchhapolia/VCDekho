@@ -161,7 +161,7 @@ function renderPersonPage(person, colleagues, investor, res) {
 
   const focusSection = firmFocusSection(person, investor);
   const thesisSection = firmThesisSection(person, investor);
-  const activitySection = investor ? firmActivitySection(person, investor, 5) : '';
+  const activitySection = investor ? firmActivitySection(person, investor) : '';
   const portfolioSection = investor ? firmPortfolioSection(person, investor, 9) : '';
   const exploreSection = firmExploreSection(investor);
 

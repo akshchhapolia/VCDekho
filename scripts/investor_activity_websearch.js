@@ -13,13 +13,13 @@
  *   node scripts/investor_activity_websearch.js --limit 40                // small daily sweep (used by the cron)
  *   node scripts/investor_activity_websearch.js --limit 1000 --concurrency 8   // one-time full backfill
  *   node scripts/investor_activity_websearch.js --stale-after 45          // re-check anything older than 45 days
- *   node scripts/investor_activity_websearch.js --budget 5                // stop once estimated spend hits $5
+ *   node scripts/investor_activity_websearch.js --thin-only --limit 80 --budget 5
  */
 require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const { lookupInvestorActivity } = require('../utils/investor-activity-websearch');
-const { upsertActivity, getStaleSlugs } = require('../utils/investor-activity-store');
+const { upsertActivity, getStaleSlugs, getThinActivitySlugs } = require('../utils/investor-activity-store');
 
 const INVESTORS_PATH = path.join(__dirname, '..', 'data', 'investors.json');
 
@@ -36,6 +36,7 @@ const LIMIT = argVal('--limit', 40);
 const CONCURRENCY = argVal('--concurrency', 2);
 const STALE_AFTER_DAYS = argVal('--stale-after', 30);
 const BUDGET_USD = argVal('--budget', Infinity);
+const THIN_ONLY = process.argv.includes('--thin-only');
 
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
@@ -89,8 +90,10 @@ async function main() {
   const allSlugs = payload.investors.map((i) => i.slug);
   const bySlug = new Map(payload.investors.map((i) => [i.slug, i]));
 
-  console.log(`Loaded ${allSlugs.length} investors. Selecting up to ${LIMIT} stale/never-checked (staleAfter=${STALE_AFTER_DAYS}d)...`);
-  const candidates = await getStaleSlugs(allSlugs, LIMIT, STALE_AFTER_DAYS);
+  console.log(`Loaded ${allSlugs.length} investors. Selecting up to ${LIMIT} ${THIN_ONLY ? 'thin-activity' : 'stale/never-checked'} (staleAfter=${STALE_AFTER_DAYS}d)...`);
+  const candidates = THIN_ONLY
+    ? await getThinActivitySlugs(LIMIT)
+    : await getStaleSlugs(allSlugs, LIMIT, STALE_AFTER_DAYS);
   const budgetLabel = Number.isFinite(BUDGET_USD) ? `$${BUDGET_USD.toFixed(2)}` : 'none';
   console.log(`Checking ${candidates.length} investors (concurrency=${CONCURRENCY}, budget=${budgetLabel})...\n`);
 
@@ -111,7 +114,8 @@ async function main() {
         spentUsd += usage?.costUsd || 0;
         if (activity) {
           found++;
-          console.log(`✓ ${inv.name} → ${activity.lastCheckHighlight || ''} (${activity.lastCheckDate.slice(0, 10)}) [$${(usage?.costUsd || 0).toFixed(4)}]`);
+          const n = (activity.recentChecks || []).length;
+          console.log(`✓ ${inv.name} → ${n} deal(s); latest ${activity.lastCheckHighlight || ''} (${activity.lastCheckDate.slice(0, 10)}) [$${(usage?.costUsd || 0).toFixed(4)}]`);
         } else {
           console.log(`- ${inv.name} → no recent deal found [$${(usage?.costUsd || 0).toFixed(4)}]`);
         }

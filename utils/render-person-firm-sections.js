@@ -8,6 +8,7 @@ const { getAllStages } = require('./investment-stages');
 const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
 const { renderExploreRelated } = require('./render-explore-related');
 const { portfolioCardHref } = require('./portfolio-card-href');
+const { RECENT_ACTIVITY_LIMIT } = require('./investor-activity-store');
 const { filterPortfolioJunk } = require('./portfolio-junk-filter');
 const { portfolioCardBodyHtml } = require('./render-portfolio-card');
 
@@ -147,7 +148,7 @@ function firmThesisSection(person, investor) {
 }
 
 function firmActivitySection(person, investor, limit) {
-  const checks = (investor.recentChecks || []).slice(0, limit || 5);
+  const checks = (investor.recentChecks || []).slice(0, limit || RECENT_ACTIVITY_LIMIT);
   if (!checks.length) return '';
 
   const rows = checks.map((c) => {

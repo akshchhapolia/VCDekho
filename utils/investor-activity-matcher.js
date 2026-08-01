@@ -8,7 +8,7 @@
  *  - api/cron/investor-activity.js (automated, writes to the DB)
  */
 const db = require('./db');
-const { mergeChecks, RECENT_ACTIVITY_LIMIT } = require('./investor-activity-store');
+const { mergeChecks } = require('./investor-activity-store');
 
 // Words that add no matching signal — stripped before comparing fund names.
 const FILLER_WORDS = new Set([
