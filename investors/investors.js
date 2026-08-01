@@ -502,7 +502,10 @@
     }
   });
 
-  window.addEventListener('resize', updateMobileFiltersLabel);
+  window.addEventListener('resize', function () {
+    updateMobileFiltersLabel();
+    if (!window.matchMedia('(max-width: 768px)').matches) setFiltersOpen(false);
+  });
 
   const params0 = new URLSearchParams(window.location.search);
   if (params0.get('stage')) state.stage = params0.get('stage');

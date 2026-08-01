@@ -379,7 +379,10 @@
     }
   });
 
-  window.addEventListener('resize', updateMobileFiltersLabel);
+  window.addEventListener('resize', function () {
+    updateMobileFiltersLabel();
+    if (!window.matchMedia('(max-width: 768px)').matches) setFiltersOpen(false);
+  });
 
   // Mweb: visible press state on Firm / Links tiles (iOS :active is unreliable)
   if (els.results) {
