@@ -645,10 +645,9 @@ body.home-page .trend-card::before {
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
     }
 
-    /* Force highlight onto its own line like the reference <br> */
+    /* Enable the title line-break only on home mweb */
     body.home-page .mweb-title-break {
-        display: block;
-        content: '';
+        display: inline;
     }
 
     body.home-page .highlight-text {

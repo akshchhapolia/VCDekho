@@ -1061,10 +1061,11 @@ body.home-page .hero-content {
 }
 
 @media (max-width: 768px) {
-    /* Cancel desktop bleed; hero.css owns full-viewport home mweb */
+    /* Cream page chrome — hero.css owns inset hero layout */
     html.home-page,
     body.home-page {
-        background-color: #faf9f6;
+        background-color: #faf9f6 !important;
+        color: #1a1a1a;
     }
 
     body.home-page::before {
@@ -1072,13 +1073,16 @@ body.home-page .hero-content {
         background-image: none;
     }
 
+    body.home-page .home-ambient {
+        display: none;
+    }
+
     body.home-page .site-header {
         margin-left: 0;
         margin-right: 0;
         width: 100%;
-        padding-left: 1.15rem;
-        padding-right: 1.15rem;
-        background: #faf9f6;
+        padding: 0;
+        background: transparent;
     }
 
     body.home-page .nav-toggle span {
@@ -1090,14 +1094,13 @@ body.home-page .hero-content {
     }
 
     body.home-page .app-container {
-        gap: 0;
-        padding-top: 0;
-        background: #faf9f6;
+        gap: 1.5rem;
+        background: transparent;
     }
 
     body.home-page .main-nav {
-        background: #faf9f6;
-        border-left: 1px solid rgba(0, 0, 0, 0.08);
+        background: #fff;
+        border-left: none;
     }
 
     body.home-page .main-nav .nav-link {
