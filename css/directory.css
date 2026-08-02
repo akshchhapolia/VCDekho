@@ -4645,6 +4645,13 @@ a.inv-profile-chip:hover .inv-profile-chip-icon {
   body.inv-person-profile .inv-profile-dir-widget--people {
     display: none !important;
   }
+
+  /* Firm mweb: show through 03 — Thesis on first paint (don't wait for scroll reveal) */
+  body.inv-investor-profile #focus.inv-profile-reveal,
+  body.inv-investor-profile #thesis.inv-profile-reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (max-width: 640px) {

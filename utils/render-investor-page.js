@@ -256,7 +256,8 @@ function portfolioSection(investor) {
   );
 }
 
-function thesisWidget(investor) {
+function thesisWidget(investor, opts) {
+  opts = opts || {};
   const labels = investor.thesisThemes || [];
   const ids = investor.thesisThemeIds || [];
   if (!labels.length) return '';
@@ -271,8 +272,12 @@ function thesisWidget(investor) {
     return '<span class="' + cls + '">' + inner + '</span>';
   }).join('');
 
+  const revealCls = opts.visible
+    ? 'inv-profile-section inv-profile-thesis inv-profile-reveal is-visible'
+    : 'inv-profile-section inv-profile-thesis inv-profile-reveal';
+
   return (
-    '<section class="inv-profile-section inv-profile-thesis inv-profile-reveal" id="thesis">' +
+    '<section class="' + revealCls + '" id="thesis">' +
       '<div class="inv-profile-section-label">03 — Thesis</div>' +
       '<div class="inv-profile-section-head inv-profile-section-head-row">' +
         '<div>' +
@@ -600,7 +605,8 @@ function renderInvestorPage(investor, related, res, opts) {
     portfolioHtml,
     extrasMount,
 
-    '<section class="inv-profile-section inv-profile-reveal" id="focus">',
+    // Mweb: paint through 03 — Thesis on first load (desktop keeps scroll-reveal)
+    '<section class="inv-profile-section inv-profile-reveal' + (deferExtras ? ' is-visible' : '') + '" id="focus">',
     '<div class="inv-profile-section-label">02 — Focus</div>',
     '<div class="inv-profile-section-head"><h2>Where they invest</h2><p>Stages and sectors this investor typically backs.</p></div>',
     '<div class="inv-profile-focus-panel">',
@@ -619,7 +625,7 @@ function renderInvestorPage(investor, related, res, opts) {
     '</div>',
     '</section>',
 
-    thesisWidget(investor),
+    thesisWidget(investor, { visible: deferExtras }),
 
     '<section class="inv-profile-section inv-profile-about inv-profile-reveal" id="about">',
     '<div class="inv-profile-section-label">04 — Story</div>',
