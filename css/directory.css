@@ -4346,7 +4346,7 @@ a.inv-profile-portfolio-card:hover .inv-profile-portfolio-site {
 }
 
 .inv-profile-focus-panel {
-  padding: 1.25rem 1.3rem 1.2rem;
+  padding: 1.25rem 1.3rem 1.15rem;
   border-radius: 18px;
   border: 1px solid rgba(255,255,255,0.1);
   background: rgba(12, 14, 22, 0.55);
@@ -4356,19 +4356,22 @@ a.inv-profile-portfolio-card:hover .inv-profile-portfolio-site {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem 1.5rem;
-  align-items: stretch;
+  align-items: start;
 }
 
 .inv-profile-focus-col {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  min-height: 100%;
+  min-height: 0;
 }
 
 .inv-profile-focus-col + .inv-profile-focus-col {
   padding-left: 1.5rem;
   border-left: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .inv-profile-focus-panel h3 {
@@ -4381,7 +4384,12 @@ a.inv-profile-portfolio-card:hover .inv-profile-portfolio-site {
 }
 
 .inv-profile-focus-col .inv-profile-chip-row {
-  margin: 0.85rem 0 0.95rem;
+  margin: 0.75rem 0 0.65rem;
+}
+
+.inv-profile-focus-col .inv-profile-panel-link {
+  margin-top: 0.15rem;
+  margin-bottom: 0;
 }
 
 .inv-profile-chip-row {
@@ -4639,7 +4647,8 @@ a.inv-profile-chip:hover .inv-profile-chip-icon {
 
   .inv-profile-focus-col + .inv-profile-focus-col {
     padding-left: 0;
-    padding-top: 1.1rem;
+    padding-top: 0.9rem;
+    margin-top: 0.9rem;
     border-left: none;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
@@ -4717,6 +4726,35 @@ a.inv-profile-chip:hover .inv-profile-chip-icon {
     font-size: 0.88rem;
     line-height: 1.25;
     white-space: normal;
+  }
+
+  /* Focus panel: equal, tighter space under both CTAs */
+  body.inv-investor-profile .inv-profile-focus-panel {
+    padding: 1rem 1.1rem 0.95rem;
+  }
+
+  body.inv-investor-profile .inv-profile-focus-grid {
+    align-items: start;
+    gap: 0;
+  }
+
+  body.inv-investor-profile .inv-profile-focus-col {
+    min-height: 0;
+  }
+
+  body.inv-investor-profile .inv-profile-focus-col + .inv-profile-focus-col {
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    padding-bottom: 0;
+  }
+
+  body.inv-investor-profile .inv-profile-focus-col .inv-profile-chip-row {
+    margin: 0.5rem 0 0.45rem;
+  }
+
+  body.inv-investor-profile .inv-profile-focus-col .inv-profile-panel-link {
+    margin-top: 0.2rem;
+    margin-bottom: 0;
   }
 }
 
