@@ -39,6 +39,11 @@ function firmAttribution(person, investor) {
   );
 }
 
+function sectionLabel(n, text, offset) {
+  const num = Math.max(1, Number(n) + (Number(offset) || 0));
+  return String(num).padStart(2, '0') + ' — ' + text;
+}
+
 function firmFocusSection(person, investor, opts) {
   opts = opts || {};
   if (!investor) return '';
@@ -102,7 +107,7 @@ function firmFocusSection(person, investor, opts) {
 
   return (
     '<section class="' + revealCls + '" id="firm-focus">' +
-    '<div class="inv-profile-section-label">02 — Firm focus</div>' +
+    '<div class="inv-profile-section-label">' + escapeHtml(sectionLabel(2, 'Firm focus', opts.sectionOffset)) + '</div>' +
     '<div class="inv-profile-section-head">' +
     '<div class="inv-person-firm-head-row">' +
     '<h2>Where ' + escapeHtml(person.company || investor.name) + ' invests</h2>' +
@@ -145,7 +150,7 @@ function firmThesisSection(person, investor, opts) {
 
   return (
     '<section class="' + revealCls + '" id="firm-thesis">' +
-    '<div class="inv-profile-section-label">03 — Firm thesis</div>' +
+    '<div class="inv-profile-section-label">' + escapeHtml(sectionLabel(3, 'Firm thesis', opts.sectionOffset)) + '</div>' +
     '<div class="inv-profile-section-head">' +
     '<h2>Investment thesis at ' + escapeHtml(person.company || investor.name) + '</h2>' +
     '<p>How this fund is described in the VC Dekho directory.</p>' +
@@ -157,8 +162,12 @@ function firmThesisSection(person, investor, opts) {
   );
 }
 
-function firmActivitySection(person, investor, limit) {
-  const checks = (investor.recentChecks || []).slice(0, limit || RECENT_ACTIVITY_LIMIT);
+function firmActivitySection(person, investor, limitOrOpts) {
+  const opts = typeof limitOrOpts === 'object' && limitOrOpts !== null
+    ? limitOrOpts
+    : { limit: limitOrOpts };
+  const limit = opts.limit || RECENT_ACTIVITY_LIMIT;
+  const checks = (investor.recentChecks || []).slice(0, limit);
   if (!checks.length) return '';
 
   const rows = checks.map((c) => {
@@ -191,7 +200,7 @@ function firmActivitySection(person, investor, limit) {
 
   return (
     '<section class="inv-profile-section inv-person-firm-section inv-profile-reveal" id="firm-activity">' +
-    '<div class="inv-profile-section-label">04 — Activity</div>' +
+    '<div class="inv-profile-section-label">' + escapeHtml(sectionLabel(4, 'Activity', opts.sectionOffset)) + '</div>' +
     '<div class="inv-profile-section-head">' +
     '<h2>Recent activity at ' + escapeHtml(person.company || investor.name) + '</h2>' +
     '<p>Latest checks and mentions from India startup news.</p>' +
@@ -202,9 +211,12 @@ function firmActivitySection(person, investor, limit) {
   );
 }
 
-function firmPortfolioSection(person, investor, limit) {
+function firmPortfolioSection(person, investor, limitOrOpts) {
+  const opts = typeof limitOrOpts === 'object' && limitOrOpts !== null
+    ? limitOrOpts
+    : { limit: limitOrOpts };
   const all = filterPortfolioJunk(investor.portfolioCompanies || []);
-  const companies = all.slice(0, limit || 9);
+  const companies = all.slice(0, opts.limit || 9);
   if (!companies.length) return '';
 
   const total = all.length;
@@ -222,7 +234,7 @@ function firmPortfolioSection(person, investor, limit) {
 
   return (
     '<section class="inv-profile-section inv-person-firm-section inv-profile-reveal" id="firm-portfolio">' +
-    '<div class="inv-profile-section-label">05 — Portfolio</div>' +
+    '<div class="inv-profile-section-label">' + escapeHtml(sectionLabel(5, 'Portfolio', opts.sectionOffset)) + '</div>' +
     '<div class="inv-profile-section-head">' +
     '<h2>Portfolio at ' + escapeHtml(person.company || investor.name) + '</h2>' +
     '<p class="inv-profile-portfolio-count">' + escapeHtml(countLabel) + ' mapped to this fund.</p>' +
@@ -235,7 +247,8 @@ function firmPortfolioSection(person, investor, limit) {
   );
 }
 
-function firmExploreSection(investor) {
+function firmExploreSection(investor, opts) {
+  opts = opts || {};
   if (!investor) return '';
 
   const themeIds = investor.thesisThemeIds || [];
@@ -250,7 +263,7 @@ function firmExploreSection(investor) {
   const stagesForExplore = orderedStages.length ? orderedStages : deriveRelatedStages([investor], 6);
 
   return renderExploreRelated({
-    sectionLabel: '07 — Explore',
+    sectionLabel: sectionLabel(7, 'Explore', opts.sectionOffset),
     title: 'Explore related',
     subtitle: 'Stage, sector, and thesis guides connected to this person\'s firm.',
     stages: stagesForExplore,
