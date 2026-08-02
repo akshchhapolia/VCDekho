@@ -4652,6 +4652,13 @@ a.inv-profile-chip:hover .inv-profile-chip-icon {
     opacity: 1;
     transform: none;
   }
+
+  /* Person mweb: show through 03 — Firm thesis on first paint */
+  body.inv-person-profile #firm-focus.inv-profile-reveal,
+  body.inv-person-profile #firm-thesis.inv-profile-reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (max-width: 640px) {

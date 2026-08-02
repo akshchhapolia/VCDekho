@@ -39,7 +39,8 @@ function firmAttribution(person, investor) {
   );
 }
 
-function firmFocusSection(person, investor) {
+function firmFocusSection(person, investor, opts) {
+  opts = opts || {};
   if (!investor) return '';
 
   const stages = investor.stages || [];
@@ -95,8 +96,12 @@ function firmFocusSection(person, investor) {
       '<a class="inv-person-firm-panel-cta" href="/investors/' + escapeHtml(investor.slug) + '#focus">View full firm profile →</a>' +
     '</div>';
 
+  const revealCls = opts.visible
+    ? 'inv-profile-section inv-person-firm-section inv-profile-reveal is-visible'
+    : 'inv-profile-section inv-person-firm-section inv-profile-reveal';
+
   return (
-    '<section class="inv-profile-section inv-person-firm-section inv-profile-reveal" id="firm-focus">' +
+    '<section class="' + revealCls + '" id="firm-focus">' +
     '<div class="inv-profile-section-label">02 — Firm focus</div>' +
     '<div class="inv-profile-section-head">' +
     '<div class="inv-person-firm-head-row">' +
@@ -111,7 +116,8 @@ function firmFocusSection(person, investor) {
   );
 }
 
-function firmThesisSection(person, investor) {
+function firmThesisSection(person, investor, opts) {
+  opts = opts || {};
   if (!investor) return '';
 
   const labels = investor.thesisThemes || [];
@@ -133,8 +139,12 @@ function firmThesisSection(person, investor) {
     ? '<p class="inv-person-firm-thesis-lead">' + escapeHtml(thesisText) + '</p>'
     : '';
 
+  const revealCls = opts.visible
+    ? 'inv-profile-section inv-person-firm-section inv-profile-reveal is-visible'
+    : 'inv-profile-section inv-person-firm-section inv-profile-reveal';
+
   return (
-    '<section class="inv-profile-section inv-person-firm-section inv-profile-reveal" id="firm-thesis">' +
+    '<section class="' + revealCls + '" id="firm-thesis">' +
     '<div class="inv-profile-section-label">03 — Firm thesis</div>' +
     '<div class="inv-profile-section-head">' +
     '<h2>Investment thesis at ' + escapeHtml(person.company || investor.name) + '</h2>' +

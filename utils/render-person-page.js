@@ -171,8 +171,9 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     )
     : '';
 
-  const focusSection = firmFocusSection(person, investor);
-  const thesisSection = firmThesisSection(person, investor);
+  // Mweb: paint through 03 — Firm thesis on first load (desktop keeps scroll-reveal)
+  const focusSection = firmFocusSection(person, investor, { visible: deferExtras });
+  const thesisSection = firmThesisSection(person, investor, { visible: deferExtras });
   const extras = renderPersonExtrasHtml(person, investor);
   let activitySection = extras.activityHtml;
   let portfolioSection = extras.portfolioHtml;
