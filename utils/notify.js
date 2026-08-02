@@ -7,8 +7,6 @@ const db = require('./db');
 const { ensureOpsTables } = require('./ops-tables');
 
 const RESEND_ENDPOINT = 'https://api.resend.com/emails';
-const DEDUPE_HOURS = 6;
-
 function hashDedupe(source, subject) {
   return crypto
     .createHash('sha256')
