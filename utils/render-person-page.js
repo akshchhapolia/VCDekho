@@ -85,11 +85,22 @@ function renderPersonExtrasHtml(person, investor) {
   };
 }
 
+function personHeroLead(person) {
+  const title = String(person.title || '').trim();
+  const company = String(person.company || '').trim();
+  if (!title && !company) return 'Investor';
+  if (!title) return 'Investor at ' + company;
+  if (!company) return title;
+  // e.g. title + company both "Angel Investor" → avoid "Angel Investor at Angel Investor"
+  if (title.toLowerCase() === company.toLowerCase()) return title;
+  return title + ' at ' + company;
+}
+
 function renderPersonPage(person, colleagues, investor, res, opts) {
   opts = opts || {};
   const mwebFirstPaint = Boolean(opts.mwebFirstPaint || opts.deferExtras);
-  const metaDesc = (person.title ? person.title + ' at ' + person.company : 'Investor at ' + person.company) +
-    '. Explore on VC Dekho.';
+  const heroLead = personHeroLead(person);
+  const metaDesc = heroLead + '. Explore on VC Dekho.';
 
   const iconExternal =
     '<svg class="inv-profile-cta-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
@@ -252,7 +263,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
         : ('<span class="inv-dir-logo-fallback is-visible" aria-hidden="true" style="display:inline-flex;margin-bottom:14px;">' + escapeHtml(initialsFor(person.name)) + '</span>'),
     '<span class="inv-profile-type">' + escapeHtml(person.title || 'Investor') + '</span>',
     '<h1 class="inv-profile-title">' + escapeHtml(person.name) + '</h1>',
-    '<p class="inv-profile-hero-lead">' + escapeHtml((person.title ? person.title + ' at ' : 'Investor at ') + (person.company || '')) + '</p>',
+    '<p class="inv-profile-hero-lead">' + escapeHtml(heroLead) + '</p>',
     '<div class="inv-profile-hero-actions">' + linkedinBtn + emailBtn + companyBtn + twitterBtn + '</div>',
     '</div>',
     '</div>',
