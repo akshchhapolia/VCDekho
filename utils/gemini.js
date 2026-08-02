@@ -11,6 +11,8 @@ const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
 // flash-lite avoids the "thinking" truncation we saw on gemini-flash-latest
 // (answers like "YES|$7M|" cut mid-line).
 const DEFAULT_MODEL = process.env.GEMINI_MODEL || 'gemini-flash-lite-latest';
+/** Long-form news/blog HTML (override with GEMINI_NEWS_MODEL). */
+const PROSE_MODEL = process.env.GEMINI_NEWS_MODEL || 'gemini-2.5-flash';
 const FALLBACK_MODEL = 'gemini-3.1-flash-lite';
 const ENDPOINT = (model) =>
   `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
@@ -29,6 +31,33 @@ function estimateCostUsd(model, usage) {
     ((usage.inputTokens || 0) / 1e6) * rates.input +
     ((usage.outputTokens || 0) / 1e6) * rates.output
   );
+}
+
+function stripCodeFences(text) {
+  return String(text || '')
+    .replace(/^```(?:html|json)?\s*/i, '')
+    .replace(/\s*```$/i, '')
+    .trim();
+}
+
+/** Pull the first JSON object/array from a Gemini response. */
+function parseJsonResponse(text) {
+  let t = stripCodeFences(text);
+  const startObj = t.indexOf('{');
+  const startArr = t.indexOf('[');
+  let start = -1;
+  if (startObj === -1) start = startArr;
+  else if (startArr === -1) start = startObj;
+  else start = Math.min(startObj, startArr);
+  const endObj = t.lastIndexOf('}');
+  const endArr = t.lastIndexOf(']');
+  const end = Math.max(endObj, endArr);
+  if (start === -1 || end === -1 || end < start) return null;
+  try {
+    return JSON.parse(t.slice(start, end + 1));
+  } catch (_) {
+    return null;
+  }
 }
 
 function isFatalGeminiError(err) {
@@ -131,6 +160,9 @@ module.exports = {
   generateText,
   estimateCostUsd,
   isFatalGeminiError,
+  stripCodeFences,
+  parseJsonResponse,
   DEFAULT_MODEL,
+  PROSE_MODEL,
   FALLBACK_MODEL
 };
