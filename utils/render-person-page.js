@@ -12,7 +12,7 @@ const {
   firmExploreSection
 } = require('./render-person-firm-sections');
 const { setPublicHtmlCache } = require('./public-html-cache');
-const { renderProfileHeadAssets } = require('./profile-page-assets');
+const { renderProfileHeadAssets, earlyStickyPinScript } = require('./profile-page-assets');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -87,7 +87,7 @@ function renderPersonExtrasHtml(person, investor) {
 
 function renderPersonPage(person, colleagues, investor, res, opts) {
   opts = opts || {};
-  const deferExtras = Boolean(opts.deferExtras);
+  const mwebFirstPaint = Boolean(opts.mwebFirstPaint || opts.deferExtras);
   const metaDesc = (person.title ? person.title + ' at ' + person.company : 'Investor at ' + person.company) +
     '. Explore on VC Dekho.';
 
@@ -172,22 +172,11 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     : '';
 
   // Mweb: paint through 03 — Firm thesis on first load (desktop keeps scroll-reveal)
-  const focusSection = firmFocusSection(person, investor, { visible: deferExtras });
-  const thesisSection = firmThesisSection(person, investor, { visible: deferExtras });
+  const focusSection = firmFocusSection(person, investor, { visible: mwebFirstPaint });
+  const thesisSection = firmThesisSection(person, investor, { visible: mwebFirstPaint });
   const extras = renderPersonExtrasHtml(person, investor);
-  let activitySection = extras.activityHtml;
-  let portfolioSection = extras.portfolioHtml;
-  let extrasMount = '';
-  let loadExtrasScript = false;
-
-  if (deferExtras && investor && !activitySection && !portfolioSection) {
-    extrasMount =
-      '<div id="inv-profile-extras" data-kind="person" data-slug="' +
-      escapeHtml(person.slug) +
-      '" hidden></div>';
-    loadExtrasScript = true;
-  }
-
+  const activitySection = extras.activityHtml;
+  const portfolioSection = extras.portfolioHtml;
   const exploreSection = firmExploreSection(investor);
 
   const stickyNav = [
@@ -272,6 +261,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     '</div>',
 
     '<div class="inv-profile-sticky-host" id="inv-profile-sticky-host">' + stickyNav + '</div>',
+    earlyStickyPinScript(),
 
     '<section class="inv-profile-section inv-profile-reveal is-visible" id="snapshot">',
     '<div class="inv-profile-section-label">01 — Snapshot</div>',
@@ -283,7 +273,6 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     thesisSection,
     activitySection,
     portfolioSection,
-    extrasMount,
     colleagueSection,
     exploreSection,
 
@@ -300,8 +289,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     '<script src="/app.js" defer></script>',
     '<script src="/investors/lazy-portfolio-logos.js?v=1" defer></script>',
     '<script src="/investors/portfolio-section.js?v=4" defer></script>',
-    '<script src="/investors/profile-sticky.js?v=5" defer></script>',
-    loadExtrasScript ? '<script src="/investors/profile-extras.js?v=3" defer></script>' : '',
+    '<script src="/investors/profile-sticky.js?v=6" defer></script>',
     '<script>',
     '(function(){',
     'var nav=document.getElementById("inv-profile-sticky");',
