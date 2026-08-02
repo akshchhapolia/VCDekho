@@ -484,7 +484,7 @@ function renderInvestorPage(investor, related, res, opts) {
   const stagesForExplore = orderedStages.length ? orderedStages : exploreStages;
 
   const exploreHtml = renderExploreRelated({
-    sectionLabel: '07 — Explore',
+    sectionLabel: '09 — Explore',
     title: 'Explore related',
     subtitle: 'Jump into stage, sector, and thesis guides connected to this fund.',
     stages: stagesForExplore,
