@@ -294,7 +294,7 @@
       const href = '/investors/' + esc(inv.slug);
       return `
       <article class="inv-dir-row">
-        <a class="inv-dir-row-hit" href="${href}" aria-label="${esc(inv.name)}"></a>
+        <a class="inv-dir-row-hit" href="${href}" aria-label="${esc(inv.name)}" data-analytics-event="dir_result_click" data-analytics-params='{"directory":"funds","slug":"${esc(inv.slug)}"}'></a>
         <div class="inv-dir-col inv-dir-col-fund">
           <span class="inv-dir-fund-mark">${logoHtml(inv)}</span>
           <span class="inv-dir-fund-text">
@@ -426,6 +426,12 @@
     updatePager();
   }
 
+  function trackFilter(name, value) {
+    if (window.VCAnalytics && value) {
+      window.VCAnalytics.track('dir_filter_change', { directory: 'funds', filter: name, value: value });
+    }
+  }
+
   function resetOffsetAndLoad() {
     state.offset = 0;
     load().catch(err => {
@@ -450,11 +456,11 @@
     }, 250);
   });
 
-  dropdowns.sector.setOnChange(v => { state.sector = v; resetOffsetAndLoad(); });
-  dropdowns.stage.setOnChange(v => { state.stage = v; resetOffsetAndLoad(); });
-  dropdowns.type.setOnChange(v => { state.type = v; resetOffsetAndLoad(); });
-  dropdowns.thesis.setOnChange(v => { state.thesis = v; resetOffsetAndLoad(); });
-  dropdowns.cheque.setOnChange(v => { state.cheque = v; resetOffsetAndLoad(); });
+  dropdowns.sector.setOnChange(v => { state.sector = v; trackFilter('sector', v); resetOffsetAndLoad(); });
+  dropdowns.stage.setOnChange(v => { state.stage = v; trackFilter('stage', v); resetOffsetAndLoad(); });
+  dropdowns.type.setOnChange(v => { state.type = v; trackFilter('type', v); resetOffsetAndLoad(); });
+  dropdowns.thesis.setOnChange(v => { state.thesis = v; trackFilter('thesis', v); resetOffsetAndLoad(); });
+  dropdowns.cheque.setOnChange(v => { state.cheque = v; trackFilter('cheque', v); resetOffsetAndLoad(); });
 
   if (els.active) {
     els.active.addEventListener('change', () => {

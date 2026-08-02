@@ -133,16 +133,16 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     '</svg>';
 
   const linkedinBtn = person.linkedin
-    ? '<a class="inv-profile-cta is-primary" href="' + escapeHtml(person.linkedin) + '" target="_blank" rel="noopener noreferrer">' + iconLinkedin + '<span>LinkedIn</span></a>'
+    ? '<a class="inv-profile-cta is-primary" href="' + escapeHtml(person.linkedin) + '" target="_blank" rel="noopener noreferrer" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"linkedin","kind":"person"}\'>' + iconLinkedin + '<span>LinkedIn</span></a>'
     : '';
   const emailBtn = person.email
-    ? '<a class="inv-profile-cta is-ghost" href="mailto:' + escapeHtml(person.email) + '">' + iconEmail + '<span>' + escapeHtml(person.email) + '</span></a>'
+    ? '<a class="inv-profile-cta is-ghost" href="mailto:' + escapeHtml(person.email) + '" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"email","kind":"person"}\'>' + iconEmail + '<span>' + escapeHtml(person.email) + '</span></a>'
     : '';
   const twitterBtn = person.twitter
-    ? '<a class="inv-profile-cta is-ghost" href="' + escapeHtml(person.twitter) + '" target="_blank" rel="noopener noreferrer">' + iconTwitter + '<span>Twitter / X</span></a>'
+    ? '<a class="inv-profile-cta is-ghost" href="' + escapeHtml(person.twitter) + '" target="_blank" rel="noopener noreferrer" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"twitter","kind":"person"}\'>' + iconTwitter + '<span>Twitter / X</span></a>'
     : '';
   const companyBtn = person.companySlug
-    ? '<a class="inv-profile-cta is-ghost" href="/investors/' + escapeHtml(person.companySlug) + '">' + iconExternal + '<span>View ' + escapeHtml(person.company) + '</span></a>'
+    ? '<a class="inv-profile-cta is-ghost" href="/investors/' + escapeHtml(person.companySlug) + '" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"firm","kind":"person"}\'>' + iconExternal + '<span>View ' + escapeHtml(person.company) + '</span></a>'
     : '';
 
   // Angel / Individual profiles: At a glance repeats role/type with little signal — omit it

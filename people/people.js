@@ -242,7 +242,7 @@
 
       return `
       <article class="inv-dir-row">
-        <a class="inv-dir-row-hit" href="${href}" aria-label="${esc(p.name)}"></a>
+        <a class="inv-dir-row-hit" href="${href}" aria-label="${esc(p.name)}" data-analytics-event="dir_result_click" data-analytics-params='{"directory":"people","slug":"${esc(p.slug)}"}'></a>
         <div class="inv-dir-col inv-dir-col-fund">
           <span class="inv-dir-fund-mark">${logoHtml(p)}</span>
           <span class="inv-dir-fund-text">
@@ -348,6 +348,12 @@
     updatePager();
   }
 
+  function trackFilter(name, value) {
+    if (window.VCAnalytics && value) {
+      window.VCAnalytics.track('dir_filter_change', { directory: 'people', filter: name, value: value });
+    }
+  }
+
   function resetOffsetAndLoad() {
     state.offset = 0;
     load().catch((err) => {
@@ -372,12 +378,12 @@
     }, 250);
   });
 
-  dropdowns.role.setOnChange((v) => { state.role = v; resetOffsetAndLoad(); });
-  dropdowns.companyType.setOnChange((v) => { state.companyType = v; resetOffsetAndLoad(); });
-  dropdowns.stage.setOnChange((v) => { state.stage = v; resetOffsetAndLoad(); });
-  dropdowns.sector.setOnChange((v) => { state.sector = v; resetOffsetAndLoad(); });
-  dropdowns.thesis.setOnChange((v) => { state.thesis = v; resetOffsetAndLoad(); });
-  dropdowns.cheque.setOnChange((v) => { state.cheque = v; resetOffsetAndLoad(); });
+  dropdowns.role.setOnChange((v) => { state.role = v; trackFilter('role', v); resetOffsetAndLoad(); });
+  dropdowns.companyType.setOnChange((v) => { state.companyType = v; trackFilter('companyType', v); resetOffsetAndLoad(); });
+  dropdowns.stage.setOnChange((v) => { state.stage = v; trackFilter('stage', v); resetOffsetAndLoad(); });
+  dropdowns.sector.setOnChange((v) => { state.sector = v; trackFilter('sector', v); resetOffsetAndLoad(); });
+  dropdowns.thesis.setOnChange((v) => { state.thesis = v; trackFilter('thesis', v); resetOffsetAndLoad(); });
+  dropdowns.cheque.setOnChange((v) => { state.cheque = v; trackFilter('cheque', v); resetOffsetAndLoad(); });
 
   els.clear.addEventListener('click', () => {
     state.q = state.role = state.companyType = state.stage = state.sector = state.thesis = state.cheque = '';

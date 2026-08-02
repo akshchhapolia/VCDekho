@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (isFormValid) {
+                if (window.VCAnalytics) window.VCAnalytics.track('contact_submit');
                 const isSupabaseConfigured = SUPABASE_URL && SUPABASE_URL !== "YOUR_SUPABASE_PROJECT_URL" && SUPABASE_ANON_KEY && SUPABASE_ANON_KEY !== "YOUR_SUPABASE_ANON_KEY";
 
                 if (isSupabaseConfigured) {

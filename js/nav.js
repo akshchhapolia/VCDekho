@@ -108,6 +108,12 @@
     mainNav.querySelectorAll('a.nav-link').forEach(function (link) {
       link.addEventListener('click', function (e) {
         var href = link.getAttribute('href');
+        if (window.VCAnalytics) {
+          window.VCAnalytics.track('nav_click', {
+            href: href || '',
+            label: (link.textContent || '').trim().slice(0, 40)
+          });
+        }
         if (!href || href === '#') {
           setOpen(false);
           return;

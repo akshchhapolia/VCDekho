@@ -316,10 +316,10 @@ function renderInvestorPage(investor, related, res, opts) {
     '</svg>';
 
   const websiteBtn = investor.website
-    ? '<a class="inv-profile-cta is-primary" href="' + escapeHtml(investor.website) + '" target="_blank" rel="noopener noreferrer">' + iconExternal + '<span>Visit website</span></a>'
+    ? '<a class="inv-profile-cta is-primary" href="' + escapeHtml(investor.website) + '" target="_blank" rel="noopener noreferrer" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"website","kind":"fund"}\'>' + iconExternal + '<span>Visit website</span></a>'
     : '';
   const linkedinBtn = investor.linkedin
-    ? '<a class="inv-profile-cta is-ghost" href="' + escapeHtml(investor.linkedin) + '" target="_blank" rel="noopener noreferrer">' + iconLinkedin + '<span>LinkedIn</span></a>'
+    ? '<a class="inv-profile-cta is-ghost" href="' + escapeHtml(investor.linkedin) + '" target="_blank" rel="noopener noreferrer" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"linkedin","kind":"fund"}\'>' + iconLinkedin + '<span>LinkedIn</span></a>'
     : '';
 
   const stages = investor.stages || [];

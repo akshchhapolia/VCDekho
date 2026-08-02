@@ -257,6 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
       pendingEmail = email;
       setStep('otp');
       startResendCooldown();
+      if (window.VCAnalytics) window.VCAnalytics.track('login_start', { method: 'email_otp' });
       setStatus('Check your inbox for a one-time code sent to ' + email + '.', 'success');
       return true;
     } catch (err) {
@@ -285,6 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (data && data.session) {
         window.VCAuth.syncCookie(data.session);
       }
+      if (window.VCAnalytics) window.VCAnalytics.track('login_success', { method: 'email_otp' });
       await redirectAfterAuth();
     } catch (err) {
       setStatus(friendlyAuthError(err, 'verify'), 'error');
