@@ -8,7 +8,7 @@ const CSS_FILES = [
   '/css/base.css?v=114',
   '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
-  '/css/directory.css?v=122'
+  '/css/directory.css?v=123'
 ];
 
 const FONTS_HREF =
@@ -56,6 +56,7 @@ const PROFILE_CRITICAL_CSS = [
   '.inv-profile-section-head h2{font-family:var(--font-heading);font-size:1.45rem;font-weight:400;color:#fff;margin:0 0 .35rem}',
   '.inv-profile-section-head p{color:rgba(255,255,255,.62);font-size:.9rem;line-height:1.45;margin:0 0 .85rem}',
   '.inv-profile-metric-strip{display:grid;gap:.75rem;margin-top:.5rem}',
+  '@media(max-width:768px){body.inv-investor-profile #snapshot .inv-profile-metric-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem .75rem}}',
   '.inv-profile-metric-label{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45)}',
   '.inv-profile-metric-value{font-family:var(--font-heading);font-size:1.35rem;color:#fff;margin-top:.15rem}',
   '.inv-profile-focus-panel{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:1rem 1.1rem;background:rgba(255,255,255,.02)}',
