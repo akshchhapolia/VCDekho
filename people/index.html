@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
   <title>Investors Directory | VC Dekho</title>
-  <meta name="description" content="Find partners, principals and angels at 700+ Indian VCs, family offices and accelerators. Search by name, title or firm.">
+  <meta name="description" content="Find partners, principals and angels at 700+ Indian VCs, family offices and accelerators. Filter by role, firm type, stage, sector, thesis and ticket size.">
   <link rel="canonical" href="https://vcdekho.com/people">
   <link rel="icon" type="image/png" href="/assets/logoforvc.png">
     <link rel="stylesheet" href="/css/base.css?v=101">
@@ -77,8 +77,33 @@
             </label>
 
             <div class="inv-dir-field">
+              <span>Role</span>
+              <div class="inv-dd" id="filter-role" data-placeholder="All roles"></div>
+            </div>
+
+            <div class="inv-dir-field">
               <span>Firm type</span>
               <div class="inv-dd" id="filter-company-type" data-placeholder="All firm types"></div>
+            </div>
+
+            <div class="inv-dir-field">
+              <span>Stage</span>
+              <div class="inv-dd" id="filter-stage" data-placeholder="All stages"></div>
+            </div>
+
+            <div class="inv-dir-field">
+              <span>Sector</span>
+              <div class="inv-dd" id="filter-sector" data-placeholder="All sectors"></div>
+            </div>
+
+            <div class="inv-dir-field">
+              <span>Thesis</span>
+              <div class="inv-dd" id="filter-thesis" data-placeholder="All theses"></div>
+            </div>
+
+            <div class="inv-dir-field">
+              <span>Ticket size</span>
+              <div class="inv-dd" id="filter-cheque" data-placeholder="Any ticket"></div>
             </div>
 
             <button type="button" id="ppl-clear" class="inv-dir-clear">Clear filters</button>
@@ -151,6 +176,6 @@
   <script src="/js/auth.js" defer></script>
   <script src="/js/auth-guard.js?v=25" defer></script>
   <script src="/app.js" defer></script>
-  <script src="/people/people.js?v=109" defer></script>
+  <script src="/people/people.js?v=110" defer></script>
 </body>
 </html>

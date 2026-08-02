@@ -270,6 +270,7 @@ module.exports = {
   getInvestorBySlug,
   filterInvestors,
   toCard,
+  chequeOverlaps,
   hasStageGuide,
   getStageGuideLabel,
   deriveRelatedStages,

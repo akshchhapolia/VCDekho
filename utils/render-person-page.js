@@ -56,7 +56,7 @@ function peopleDirectoryWidget() {
       '<ul class="inv-person-dir-features">' +
         '<li>Partners, GPs &amp; principals</li>' +
         '<li>Linked to investor firm profiles</li>' +
-        '<li>Filter by fund type &amp; company</li>' +
+        '<li>Filter by role, firm type, stage &amp; sector</li>' +
       '</ul>' +
       '<a class="inv-profile-cta is-ghost inv-person-dir-cta" href="' + INVESTORS_PATH + '">Browse directory</a>' +
     '</aside>'

@@ -2,7 +2,12 @@
   const PAGE_SIZE = 15;
   const state = {
     q: '',
+    role: '',
     companyType: '',
+    stage: '',
+    sector: '',
+    thesis: '',
+    cheque: '',
     offset: 0,
     total: 0,
     filters: null
@@ -128,7 +133,12 @@
     return api;
   }
 
+  dropdowns.role = createDropdown(document.getElementById('filter-role'), 'role');
   dropdowns.companyType = createDropdown(document.getElementById('filter-company-type'), 'companyType');
+  dropdowns.stage = createDropdown(document.getElementById('filter-stage'), 'stage');
+  dropdowns.sector = createDropdown(document.getElementById('filter-sector'), 'sector');
+  dropdowns.thesis = createDropdown(document.getElementById('filter-thesis'), 'thesis');
+  dropdowns.cheque = createDropdown(document.getElementById('filter-cheque'), 'cheque');
 
   // Mweb: portal drawer to <body> so it isn't trapped under .inv-dir-wrap / backdrop.
   const sidebarHome = els.sidebar ? els.sidebar.parentNode : null;
@@ -209,7 +219,7 @@
       els.results.innerHTML =
         '<div class="inv-dir-empty-state">' +
           '<p class="inv-dir-empty-title">No matching investors</p>' +
-          '<p class="inv-dir-empty-copy">Try clearing filters or searching a different name, title, or firm.</p>' +
+          '<p class="inv-dir-empty-copy">Try clearing filters or searching a different name, role, or firm.</p>' +
           '<button type="button" class="inv-dir-empty-action" id="ppl-empty-clear">Clear filters</button>' +
         '</div>';
       const btn = document.getElementById('ppl-empty-clear');
@@ -259,7 +269,12 @@
   function activeFilterCount() {
     var n = 0;
     if (state.q) n++;
+    if (state.role) n++;
     if (state.companyType) n++;
+    if (state.stage) n++;
+    if (state.sector) n++;
+    if (state.thesis) n++;
+    if (state.cheque) n++;
     return n;
   }
 
@@ -300,7 +315,12 @@
     if (!state.total) els.count.textContent = 'Fetching investors';
     const params = new URLSearchParams({
       q: state.q,
+      role: state.role,
       companyType: state.companyType,
+      stage: state.stage,
+      sector: state.sector,
+      thesis: state.thesis,
+      cheque: state.cheque,
       limit: String(PAGE_SIZE),
       offset: String(state.offset)
     });
@@ -315,7 +335,12 @@
 
     if (!state.filters && data.filters) {
       state.filters = data.filters;
+      dropdowns.role.setOptions(data.filters.roles || [], state.role);
       dropdowns.companyType.setOptions(data.filters.companyTypes || [], state.companyType);
+      dropdowns.stage.setOptions(data.filters.stages || [], state.stage);
+      dropdowns.sector.setOptions(data.filters.sectors || [], state.sector);
+      dropdowns.thesis.setOptions(data.filters.thesisThemes || [], state.thesis);
+      dropdowns.cheque.setOptions(data.filters.chequeRanges || [], state.cheque);
     }
 
     state.total = data.total || 0;
@@ -347,12 +372,22 @@
     }, 250);
   });
 
+  dropdowns.role.setOnChange((v) => { state.role = v; resetOffsetAndLoad(); });
   dropdowns.companyType.setOnChange((v) => { state.companyType = v; resetOffsetAndLoad(); });
+  dropdowns.stage.setOnChange((v) => { state.stage = v; resetOffsetAndLoad(); });
+  dropdowns.sector.setOnChange((v) => { state.sector = v; resetOffsetAndLoad(); });
+  dropdowns.thesis.setOnChange((v) => { state.thesis = v; resetOffsetAndLoad(); });
+  dropdowns.cheque.setOnChange((v) => { state.cheque = v; resetOffsetAndLoad(); });
 
   els.clear.addEventListener('click', () => {
-    state.q = state.companyType = '';
+    state.q = state.role = state.companyType = state.stage = state.sector = state.thesis = state.cheque = '';
     els.search.value = '';
+    dropdowns.role.value = '';
     dropdowns.companyType.value = '';
+    dropdowns.stage.value = '';
+    dropdowns.sector.value = '';
+    dropdowns.thesis.value = '';
+    dropdowns.cheque.value = '';
     resetOffsetAndLoad();
   });
 
@@ -408,7 +443,12 @@
   }
 
   const params0 = new URLSearchParams(window.location.search);
+  if (params0.get('role')) state.role = params0.get('role');
   if (params0.get('companyType')) state.companyType = params0.get('companyType');
+  if (params0.get('stage')) state.stage = params0.get('stage');
+  if (params0.get('sector')) state.sector = params0.get('sector');
+  if (params0.get('thesis')) state.thesis = params0.get('thesis');
+  if (params0.get('cheque')) state.cheque = params0.get('cheque');
   if (params0.get('q')) {
     state.q = params0.get('q');
     els.search.value = state.q;

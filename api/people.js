@@ -5,7 +5,7 @@
  *
  *   GET /api/people?slug=<slug>              -> public HTML profile page
  *   GET /api/people?slug=<slug>&extras=1     -> public JSON (activity/portfolio HTML)
- *   GET /api/people?q=&companyType=&...      -> gated JSON list (used by /people)
+ *   GET /api/people?q=&role=&companyType=&stage=&sector=&thesis=&cheque= -> gated JSON list
  */
 const { filterPeople, getFilters, toCard, getPersonBySlug, getPeopleByCompanySlug } = require('../utils/people');
 const { getInvestorBySlug, ensureInvestorDetailExtras } = require('../utils/investors');
@@ -60,8 +60,18 @@ module.exports = async function handler(req, res) {
     const user = await requireAuth(req, res);
     if (!user) return;
 
-    const { q = '', companyType = '', limit = '100', offset = '0' } = query;
-    const all = filterPeople({ q, companyType });
+    const {
+      q = '',
+      companyType = '',
+      role = '',
+      stage = '',
+      sector = '',
+      thesis = '',
+      cheque = '',
+      limit = '100',
+      offset = '0'
+    } = query;
+    const all = filterPeople({ q, companyType, role, stage, sector, thesis, cheque });
     const start = Math.max(0, parseInt(offset, 10) || 0);
     const take = Math.min(200, Math.max(1, parseInt(limit, 10) || 100));
     const page = all.slice(start, start + take).map(toCard);
