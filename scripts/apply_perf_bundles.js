@@ -31,10 +31,10 @@ const STYLE_SINGLE = /\s*<link rel="stylesheet" href="(\/)?style\.css\?v=\d+">\s
 
 function patchHtml(content, bundleKey) {
   let out = content;
-  out = out.replace(GA_HTML, '    <script src="/js/analytics.js" defer></script>\n');
-  out = out.replace(GA_INLINE, '    <script src="/js/analytics.js" defer></script>\n');
-  if (!out.includes('/js/analytics.js')) {
-    out = out.replace(/<head>\s*\n/, '<head>\n    <script src="/js/analytics.js" defer></script>\n');
+  out = out.replace(GA_HTML, '    <script src="/js/analytics.js?v=2" defer></script>\n');
+  out = out.replace(GA_INLINE, '    <script src="/js/analytics.js?v=2" defer></script>\n');
+  if (!out.includes('/js/analytics.js?v=2')) {
+    out = out.replace(/<head>\s*\n/, '<head>\n    <script src="/js/analytics.js?v=2" defer></script>\n');
   }
   out = out.replace(STYLE_SINGLE, '\n    ' + cssLinkTags(bundleKey) + '\n');
   out = out.replace(/\/assets\/(blog_[a-z0-9_]+)\.png/g, '/assets/$1.webp');
@@ -45,12 +45,12 @@ function patchSsr(content, bundleKey) {
   let out = content;
   out = out.replace(
     /'<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-BJ23KLLWFM"><\/script>',\s*'[\s\S]*?gtag\('config', 'G-BJ23KLLWFM'\);[\s\S]*?<\/script>',/,
-    "'<script src=\"/js/analytics.js\" defer></script>',"
+    "'<script src=\"/js/analytics.js?v=2\" defer></script>',"
   );
-  if (!out.includes('/js/analytics.js')) {
+  if (!out.includes('/js/analytics.js?v=2')) {
     out = out.replace(
       /'<meta charset="UTF-8">',/,
-      "'<script src=\"/js/analytics.js\" defer></script>',\n    '<meta charset=\"UTF-8\">',"
+      "'<script src=\"/js/analytics.js?v=2\" defer></script>',\n    '<meta charset=\"UTF-8\">',"
     );
   }
   out = out.replace(
