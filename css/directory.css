@@ -3486,6 +3486,46 @@ body.inv-investor-profile .inv-profile-section {
   }
 
   /*
+   * Firm + person hero card (mweb):
+   * - widen by tightening side gutters
+   * - fix top-left radius (Safari clips when parent uses transform)
+   */
+  body.inv-investor-profile .app-container,
+  body.inv-person-profile .app-container {
+    padding-left: 0.55rem;
+    padding-right: 0.55rem;
+  }
+
+  body.inv-investor-profile .inv-detail-wrap,
+  body.inv-person-profile .inv-detail-wrap {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  body.inv-investor-profile .inv-profile-hero-enter,
+  body.inv-person-profile .inv-profile-hero-enter {
+    transform: none;
+  }
+
+  body.inv-investor-profile .inv-profile-hero,
+  body.inv-person-profile .inv-profile-hero {
+    border-radius: 20px;
+    overflow: hidden;
+    isolation: isolate;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  body.inv-investor-profile .inv-profile-hero-wash,
+  body.inv-person-profile .inv-profile-hero-wash {
+    inset: 0;
+    border-radius: inherit;
+    filter: blur(28px);
+  }
+
+  /*
    * Firm profile sticky section nav — mweb only:
    * full-bleed edge-to-edge + horizontal scroll so later tabs stay reachable.
    */

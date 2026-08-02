@@ -8,7 +8,7 @@ const CSS_FILES = [
   '/css/base.css?v=114',
   '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
-  '/css/directory.css?v=119'
+  '/css/directory.css?v=120'
 ];
 
 const FONTS_HREF =
@@ -34,8 +34,9 @@ const PROFILE_CRITICAL_CSS = [
   '.inv-breadcrumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:.9rem;color:rgba(255,255,255,.55);margin-bottom:1rem}',
   '.inv-breadcrumbs a{color:rgba(255,255,255,.55);text-decoration:none}',
   '.inv-profile-hero-row{display:grid;grid-template-columns:1fr;gap:.9rem;margin:0 0 1.25rem}',
-  '.inv-profile-hero{position:relative;display:flex;flex-direction:column;padding:1.75rem 1.2rem 1.25rem;border-radius:24px;border:1px solid rgba(255,255,255,.1);overflow:hidden;background:rgba(255,255,255,.02)}',
-  '.inv-profile-hero-wash{position:absolute;inset:-30%;background:radial-gradient(ellipse 90% 75% at 18% 28%,rgba(237,87,47,.16),transparent 72%);pointer-events:none}',
+  '.inv-profile-hero{position:relative;display:flex;flex-direction:column;padding:1.75rem 1.2rem 1.25rem;border-radius:20px;border:1px solid rgba(255,255,255,.1);overflow:hidden;background:rgba(255,255,255,.02);isolation:isolate;-webkit-transform:translateZ(0);transform:translateZ(0)}',
+  '.inv-profile-hero-wash{position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse 90% 75% at 18% 28%,rgba(237,87,47,.16),transparent 72%);pointer-events:none}',
+  '@media(max-width:768px){body.inv-investor-profile .app-container,body.inv-person-profile .app-container{padding-left:.55rem;padding-right:.55rem}body.inv-investor-profile .inv-detail-wrap,body.inv-person-profile .inv-detail-wrap{padding-left:10px;padding-right:10px}}',
   '.inv-profile-hero-inner,.inv-profile-hero-copy{position:relative;z-index:1}',
   '.inv-profile-logo{width:56px;height:56px;border-radius:14px;object-fit:contain;margin-bottom:14px;background:rgba(255,255,255,.96);border:1.5px solid var(--color-accent-orange)}',
   '.inv-profile-type{display:inline-block;color:var(--color-accent-orange);font-size:.65rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.35rem}',
