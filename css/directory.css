@@ -4771,6 +4771,28 @@ a.inv-profile-chip:hover .inv-profile-chip-icon {
     margin-top: 0.2rem;
     margin-bottom: 0;
   }
+
+  /* Portfolio search → cards: tighten space below search (mweb only) */
+  body.inv-investor-profile #portfolio .inv-profile-section-head {
+    margin-bottom: 0.65rem;
+  }
+
+  body.inv-investor-profile #portfolio .inv-profile-portfolio-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.35rem;
+    margin: 0 0 0.5rem;
+  }
+
+  body.inv-investor-profile #portfolio .inv-profile-portfolio-search-wrap {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  body.inv-investor-profile #portfolio .inv-profile-portfolio-status {
+    margin: 0;
+    white-space: normal;
+  }
 }
 
 @media (max-width: 640px) {
