@@ -1,5 +1,6 @@
 const { Anthropic } = require('@anthropic-ai/sdk');
 const db = require('../../utils/db');
+const { runCronJob } = require('../../utils/cron-run');
 
 // Ensure ANTHROPIC_API_KEY is present
 const anthropic = new Anthropic({
@@ -132,11 +133,7 @@ Rules:
 }
 
 module.exports = async function handler(req, res) {
-    if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}` && process.env.NODE_ENV === 'production') {
-        return res.status(401).end('Unauthorized');
-    }
-
-    try {
+    return runCronJob(req, res, 'ai-process', async () => {
         const queueResult = await db.query(`SELECT * FROM raw_content WHERE status = 'queued' ORDER BY relevance_score DESC, scraped_at ASC LIMIT $1`, [MAX_ITEMS_PER_RUN]);
         const queuedItems = queueResult.rows;
 
@@ -144,9 +141,8 @@ module.exports = async function handler(req, res) {
         let errors = [];
 
         for (const item of queuedItems) {
-            // update status to 'processing' to prevent race conditions if cron triggered concurrently
             await db.query(`UPDATE raw_content SET status = 'processing' WHERE id = $1`, [item.id]);
-            
+
             const result = await processItem(item);
             if (result.success) {
                 processedCount++;
@@ -155,9 +151,13 @@ module.exports = async function handler(req, res) {
             }
         }
 
-        res.status(200).json({ success: true, processedCount, totalQueued: queuedItems.length, errors });
-    } catch (error) {
-        console.error('Fatal AI process error:', error);
-        res.status(500).json({ error: error.message });
-    }
+        const meta = { processedCount, totalQueued: queuedItems.length, errors };
+        if (queuedItems.length > 0 && processedCount === 0) {
+            meta.alert = true;
+            meta.alertSeverity = 'error';
+            meta.alertSubject = 'AI process: 0 items processed with non-empty queue';
+            meta.alertBody = errors.join('\n') || 'All items failed';
+        }
+        return meta;
+    });
 };

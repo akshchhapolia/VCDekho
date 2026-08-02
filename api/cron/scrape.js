@@ -1,5 +1,6 @@
 const Parser = require('rss-parser');
 const db = require('../../utils/db');
+const { runCronJob } = require('../../utils/cron-run');
 
 const parser = new Parser({
     timeout: 15000,
@@ -71,42 +72,35 @@ function getSimilarity(s1, s2) {
 }
 
 module.exports = async function handler(req, res) {
-    // If called via Vercel Cron, auth is handled by Vercel. 
-    // We can allow manual trigger with a secret key.
-    if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}` && process.env.NODE_ENV === 'production') {
-        return res.status(401).end('Unauthorized');
-    }
-
-    try {
+    return runCronJob(req, res, 'scrape', async () => {
         let itemsFetched = 0;
         let itemsQueued = 0;
         let itemsDuplicated = 0;
         let errors = [];
+        let sourcesOk = 0;
 
-        // Fetch recent items from DB for deduplication (last 14 days)
         const recentRows = await db.query(`SELECT title, source_url FROM raw_content WHERE scraped_at > NOW() - INTERVAL '14 days'`);
         const recentItems = recentRows.rows;
 
         for (const source of SOURCES) {
             try {
                 const feed = await parser.parseURL(source.url);
+                sourcesOk++;
                 for (const item of feed.items) {
                     itemsFetched++;
-                    
+
                     const url = item.link || item.guid;
                     const title = item.title;
                     const content = item.contentSnippet || item.content || item.description || '';
                     const pubDate = item.pubDate ? new Date(item.pubDate) : new Date();
 
-                    // Check if URL already exists
                     if (recentItems.find(r => r.source_url === url)) {
-                        continue; // Already processed
+                        continue;
                     }
 
-                    // Deduplicate against other titles
                     let isDuplicate = false;
                     for (const recent of recentItems) {
-                        if (getSimilarity(title, recent.title) > 0.6) { // fuzzy match
+                        if (getSimilarity(title, recent.title) > 0.6) {
                             isDuplicate = true;
                             break;
                         }
@@ -119,7 +113,7 @@ module.exports = async function handler(req, res) {
                              VALUES ($1, $2, $3, $4, $5, 'duplicate', 0) ON CONFLICT (source_url) DO NOTHING`,
                             [source.name, url, title, content, pubDate]
                         );
-                        recentItems.push({ title, source_url: url }); // prevent further duplicates in this run
+                        recentItems.push({ title, source_url: url });
                         continue;
                     }
 
@@ -145,10 +139,18 @@ module.exports = async function handler(req, res) {
             [itemsFetched, itemsQueued, itemsDuplicated, JSON.stringify(errors)]
         );
 
-        res.status(200).json({ success: true, itemsFetched, itemsQueued, itemsDuplicated });
-    } catch (error) {
-        console.error('Fatal scrape error:', error);
-        await db.query(`INSERT INTO job_log (errors, status) VALUES ($1, 'failed')`, [JSON.stringify([error.message])]);
-        res.status(500).json({ error: error.message });
-    }
+        const meta = { itemsFetched, itemsQueued, itemsDuplicated, errors, sourcesOk };
+        if (sourcesOk === 0) {
+            meta.alert = true;
+            meta.alertSeverity = 'error';
+            meta.alertSubject = 'RSS scrape: all sources failed';
+            meta.alertBody = errors.join('\n') || 'No sources succeeded';
+        } else if (errors.length >= SOURCES.length - 1) {
+            meta.alert = true;
+            meta.alertSeverity = 'warning';
+            meta.alertSubject = 'RSS scrape: most sources failed';
+            meta.alertBody = errors.join('\n');
+        }
+        return meta;
+    });
 };
