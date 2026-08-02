@@ -44,6 +44,18 @@ function sectionLabel(n, text, offset) {
   return String(num).padStart(2, '0') + ' — ' + text;
 }
 
+function isAngelIndividual(person) {
+  const type = String((person && person.companyType) || '').toLowerCase();
+  return type === 'angel / individual' || type.includes('angel / individual');
+}
+
+/** Firm-name suffix in section titles — omit for angels (reads as "at Angel Investor"). */
+function firmNameSuffix(person, investor) {
+  if (isAngelIndividual(person)) return '';
+  const name = (person && person.company) || (investor && investor.name) || '';
+  return name ? ' at ' + escapeHtml(name) : '';
+}
+
 function firmFocusSection(person, investor, opts) {
   opts = opts || {};
   if (!investor) return '';
@@ -152,7 +164,7 @@ function firmThesisSection(person, investor, opts) {
     '<section class="' + revealCls + '" id="firm-thesis">' +
     '<div class="inv-profile-section-label">' + escapeHtml(sectionLabel(3, 'Firm thesis', opts.sectionOffset)) + '</div>' +
     '<div class="inv-profile-section-head">' +
-    '<h2>Investment thesis at ' + escapeHtml(person.company || investor.name) + '</h2>' +
+    '<h2>Investment thesis' + firmNameSuffix(person, investor) + '</h2>' +
     '<p>How this fund is described in the VC Dekho directory.</p>' +
     '</div>' +
     prose +
@@ -202,7 +214,7 @@ function firmActivitySection(person, investor, limitOrOpts) {
     '<section class="inv-profile-section inv-person-firm-section inv-profile-reveal" id="firm-activity">' +
     '<div class="inv-profile-section-label">' + escapeHtml(sectionLabel(4, 'Activity', opts.sectionOffset)) + '</div>' +
     '<div class="inv-profile-section-head">' +
-    '<h2>Recent activity at ' + escapeHtml(person.company || investor.name) + '</h2>' +
+    '<h2>Recent activity' + firmNameSuffix(person, investor) + '</h2>' +
     '<p>Latest checks and mentions from India startup news.</p>' +
     '</div>' +
     '<div class="inv-profile-activity-list">' + rows + '</div>' +
@@ -236,7 +248,7 @@ function firmPortfolioSection(person, investor, limitOrOpts) {
     '<section class="inv-profile-section inv-person-firm-section inv-profile-reveal" id="firm-portfolio">' +
     '<div class="inv-profile-section-label">' + escapeHtml(sectionLabel(5, 'Portfolio', opts.sectionOffset)) + '</div>' +
     '<div class="inv-profile-section-head">' +
-    '<h2>Portfolio at ' + escapeHtml(person.company || investor.name) + '</h2>' +
+    '<h2>Portfolio' + firmNameSuffix(person, investor) + '</h2>' +
     '<p class="inv-profile-portfolio-count">' + escapeHtml(countLabel) + ' mapped to this fund.</p>' +
     '</div>' +
     '<div class="inv-profile-portfolio-grid inv-person-firm-portfolio-grid">' + cards + '</div>' +
