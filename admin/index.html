@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/js/analytics.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin · VC Dekho Ops</title>
+  <link rel="icon" type="image/png" href="/assets/logoforvc.png">
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.12);
+      --text: rgba(255,255,255,0.9);
+      --muted: rgba(255,255,255,0.55);
+      --ok: #3ecf8e;
+      --bad: #ff6b6b;
+      --warn: #f0b429;
+      --accent: #ED572F;
+      --font: "Plus Jakarta Sans", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      padding: 1.5rem;
+      line-height: 1.45;
+    }
+    h1 { font-size: 1.6rem; font-weight: 600; margin: 0 0 0.35rem; }
+    .sub { color: var(--muted); margin: 0 0 1.25rem; font-size: 0.92rem; }
+    .top { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+    .links a {
+      color: #ffb89c;
+      text-decoration: none;
+      margin-right: 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .links a:hover { text-decoration: underline; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem 1.05rem;
+    }
+    .card .label { color: var(--muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .card .value { font-size: 1.55rem; font-weight: 650; margin-top: 0.25rem; }
+    .panel { margin-bottom: 1.25rem; }
+    .panel h2 { font-size: 1.05rem; margin: 0 0 0.65rem; font-weight: 650; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+    th, td { text-align: left; padding: 0.55rem 0.4rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { color: var(--muted); font-weight: 650; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .pill {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .pill.ok { background: rgba(62,207,142,0.15); color: var(--ok); }
+    .pill.bad { background: rgba(255,107,107,0.15); color: var(--bad); }
+    .pill.warn { background: rgba(240,180,41,0.15); color: var(--warn); }
+    button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 0.65rem 1rem;
+      font-weight: 650;
+      cursor: pointer;
+      font-size: 0.88rem;
+    }
+    button.secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+    .status-line { font-size: 0.88rem; color: var(--muted); margin-bottom: 1rem; }
+    .status-line strong { color: var(--text); }
+    .env-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .env-list span {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .env-list .on { color: var(--ok); }
+    .env-list .off { color: var(--bad); }
+    #msg { margin: 0.5rem 0 1rem; font-size: 0.9rem; }
+    #msg.err { color: var(--bad); }
+    #msg.ok { color: var(--ok); }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <div>
+      <h1>VC Dekho Ops</h1>
+      <p class="sub">Health, cron runs, alerts, and quick counts.</p>
+    </div>
+    <div class="links">
+      <a href="/admin/review.html">News review →</a>
+      <a href="/">Site →</a>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button type="button" id="btn-refresh">Refresh</button>
+    <button type="button" class="secondary" id="btn-test-alert">Send test alert</button>
+  </div>
+  <p id="msg" hidden></p>
+  <p class="status-line" id="health-line">Checking health…</p>
+
+  <div class="grid" id="counts"></div>
+
+  <div class="panel card">
+    <h2>Environment</h2>
+    <div class="env-list" id="env-list"></div>
+  </div>
+
+  <div class="panel card">
+    <h2>Cron last runs</h2>
+    <table>
+      <thead><tr><th>Job</th><th>Status</th><th>Started</th><th>Error</th></tr></thead>
+      <tbody id="cron-body"><tr><td colspan="4">Loading…</td></tr></tbody>
+    </table>
+  </div>
+
+  <div class="panel card">
+    <h2>Recent alerts</h2>
+    <table>
+      <thead><tr><th>When</th><th>Severity</th><th>Source</th><th>Subject</th></tr></thead>
+      <tbody id="alert-body"><tr><td colspan="4">Loading…</td></tr></tbody>
+    </table>
+  </div>
+
+  <script>
+    const SECRET_KEY = 'vd_admin_secret';
+    let secret = sessionStorage.getItem(SECRET_KEY) || '';
+    if (!secret) {
+      secret = prompt('Enter ADMIN_SECRET:') || '';
+      if (secret) sessionStorage.setItem(SECRET_KEY, secret);
+    }
+
+    function fmt(ts) {
+      if (!ts) return '—';
+      try { return new Date(ts).toLocaleString(); } catch (_) { return String(ts); }
+    }
+
+    function setMsg(text, ok) {
+      const el = document.getElementById('msg');
+      if (!text) { el.hidden = true; return; }
+      el.hidden = false;
+      el.textContent = text;
+      el.className = ok ? 'ok' : 'err';
+    }
+
+    async function loadHealth() {
+      const res = await fetch('/api/ops?action=health');
+      const data = await res.json();
+      const line = document.getElementById('health-line');
+      if (data.ok) {
+        line.innerHTML = 'System health: <strong style="color:var(--ok)">OK</strong> · DB up · ' + (data.time || '');
+      } else {
+        line.innerHTML = 'System health: <strong style="color:var(--bad)">DEGRADED</strong> · ' +
+          (data.dbError || (!data.databaseUrlConfigured ? 'DATABASE_URL missing' : 'DB check failed'));
+      }
+      return data;
+    }
+
+    async function loadStatus() {
+      const res = await fetch('/api/ops?action=status', {
+        headers: { Authorization: 'Bearer ' + secret }
+      });
+      if (res.status === 401) {
+        sessionStorage.removeItem(SECRET_KEY);
+        setMsg('Unauthorized — reload and enter ADMIN_SECRET again.', false);
+        return;
+      }
+      if (!res.ok) {
+        setMsg('Status API error (' + res.status + ')', false);
+        return;
+      }
+      const data = await res.json();
+      const c = data.counts || {};
+      document.getElementById('counts').innerHTML = [
+        ['Investors', c.investors],
+        ['People', c.people],
+        ['Articles today', c.articlesToday],
+        ['Thin activity', c.thinActivity],
+        ['Contact (30d)', c.contactMessages30d]
+      ].map(function (row) {
+        return '<div class="card"><div class="label">' + row[0] + '</div><div class="value">' +
+          (row[1] == null ? '—' : Number(row[1]).toLocaleString('en-IN')) + '</div></div>';
+      }).join('');
+
+      const env = data.env || {};
+      document.getElementById('env-list').innerHTML = [
+        ['DATABASE_URL', env.databaseUrlConfigured],
+        ['CRON_SECRET', env.cronSecretConfigured],
+        ['RESEND', env.resendConfigured],
+        ['SEARLO', env.searloConfigured],
+        ['ANTHROPIC', env.anthropicConfigured],
+        ['GEMINI', env.geminiConfigured]
+      ].map(function (row) {
+        return '<span class="' + (row[1] ? 'on' : 'off') + '">' + row[0] + ': ' + (row[1] ? 'yes' : 'no') + '</span>';
+      }).join('');
+
+      const cronBody = document.getElementById('cron-body');
+      const runs = data.cronRuns || [];
+      if (!runs.length) {
+        cronBody.innerHTML = '<tr><td colspan="4">No cron runs logged yet</td></tr>';
+      } else {
+        cronBody.innerHTML = runs.map(function (r) {
+          const ok = r.ok === true;
+          const pill = r.ok == null
+            ? '<span class="pill warn">running?</span>'
+            : (ok ? '<span class="pill ok">ok</span>' : '<span class="pill bad">fail</span>');
+          return '<tr><td>' + (r.job || '') + '</td><td>' + pill + '</td><td>' +
+            fmt(r.started_at) + '</td><td>' + (r.error || '—') + '</td></tr>';
+        }).join('');
+      }
+
+      const alertBody = document.getElementById('alert-body');
+      const alerts = data.recentAlerts || [];
+      if (!alerts.length) {
+        alertBody.innerHTML = '<tr><td colspan="4">No alerts yet</td></tr>';
+      } else {
+        alertBody.innerHTML = alerts.map(function (a) {
+          return '<tr><td>' + fmt(a.sent_at) + '</td><td>' + (a.severity || '') +
+            '</td><td>' + (a.source || '') + '</td><td>' + (a.subject || '') + '</td></tr>';
+        }).join('');
+      }
+    }
+
+    async function refresh() {
+      setMsg('');
+      try {
+        await loadHealth();
+        await loadStatus();
+      } catch (err) {
+        setMsg(err.message || 'Refresh failed', false);
+      }
+    }
+
+    document.getElementById('btn-refresh').addEventListener('click', refresh);
+    document.getElementById('btn-test-alert').addEventListener('click', async function () {
+      setMsg('Sending…', true);
+      try {
+        const res = await fetch('/api/ops?action=test-alert', {
+          method: 'POST',
+          headers: { Authorization: 'Bearer ' + secret }
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          setMsg(data.error || 'Failed', false);
+          return;
+        }
+        if (data.sent) setMsg('Test alert sent to ALERT_TO (team@vcdekho.com).', true);
+        else setMsg('Not sent: ' + (data.skipped || data.error || 'unknown') + '. Check RESEND_API_KEY / domain.', false);
+        await loadStatus();
+      } catch (err) {
+        setMsg(err.message, false);
+      }
+    });
+
+    refresh();
+  </script>
+</body>
+</html>
