@@ -6,7 +6,7 @@ const { getAllStages } = require('./investment-stages');
 const { hasSectorGuide } = require('./sectors');
 const { renderExploreRelated } = require('./render-explore-related');
 const { setPublicHtmlCache } = require('./public-html-cache');
-const { renderProfileHeadAssets } = require('./profile-page-assets');
+const { renderProfileHeadAssets, earlyStickyPinScript } = require('./profile-page-assets');
 const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
 const { getPeopleByCompanySlug } = require('./people');
 const { portfolioCardHref } = require('./portfolio-card-href');
@@ -298,37 +298,6 @@ function renderInvestorExtrasHtml(investor) {
   };
 }
 
-function earlyStickyPinScript() {
-  // Runs as soon as the sticky host is parsed — pins on mweb before late CSS/widgets
-  return [
-    '<script>',
-    '(function(){',
-    'var host=document.getElementById("inv-profile-sticky-host");',
-    'var nav=document.getElementById("inv-profile-sticky");',
-    'if(!host||!nav)return;',
-    'function pin(){',
-    'var mweb=window.matchMedia("(max-width:768px)").matches;',
-    'if(!mweb)return;',
-    'var y=window.scrollY||window.pageYOffset;',
-    'var top=host.getBoundingClientRect().top+y;',
-    'if(y>=top-1){',
-    'nav.classList.add("is-pinned");',
-    'host.style.minHeight=(nav.offsetHeight||48)+"px";',
-    'nav.style.left="0";nav.style.width="100%";',
-    '}else{',
-    'nav.classList.remove("is-pinned");',
-    'host.style.minHeight="";nav.style.left="";nav.style.width="";',
-    '}',
-    '}',
-    'window.VCProfileStickyPin=pin;',
-    'window.addEventListener("scroll",pin,{passive:true});',
-    'window.addEventListener("resize",pin,{passive:true});',
-    'pin();',
-    '})();',
-    '</script>'
-  ].join('');
-}
-
 function renderInvestorPage(investor, related, res, opts) {
   opts = opts || {};
   const mwebFirstPaint = Boolean(opts.mwebFirstPaint || opts.deferExtras);
@@ -614,6 +583,7 @@ function renderInvestorPage(investor, related, res, opts) {
     '</div>',
 
     '<div class="inv-profile-sticky-host" id="inv-profile-sticky-host">' + stickyNav + '</div>',
+    earlyStickyPinScript(),
 
     '<section class="inv-profile-section inv-profile-reveal is-visible" id="snapshot">',
     '<div class="inv-profile-section-label">01 — Snapshot</div>',
@@ -621,12 +591,8 @@ function renderInvestorPage(investor, related, res, opts) {
     '<div class="inv-profile-metric-strip">' + snapshotStrip + '</div>',
     '</section>',
 
-    activityHtml,
-    portfolioHtml,
-    extrasMount,
-
     // Mweb: paint through 03 — Thesis on first load (desktop keeps scroll-reveal)
-    '<section class="inv-profile-section inv-profile-reveal' + (deferExtras ? ' is-visible' : '') + '" id="focus">',
+    '<section class="inv-profile-section inv-profile-reveal' + (mwebFirstPaint ? ' is-visible' : '') + '" id="focus">',
     '<div class="inv-profile-section-label">02 — Focus</div>',
     '<div class="inv-profile-section-head"><h2>Where they invest</h2><p>Stages and sectors this investor typically backs.</p></div>',
     '<div class="inv-profile-focus-panel">',
@@ -645,10 +611,14 @@ function renderInvestorPage(investor, related, res, opts) {
     '</div>',
     '</section>',
 
-    thesisWidget(investor, { visible: deferExtras }),
+    thesisWidget(investor, { visible: mwebFirstPaint }),
+
+    // Below thesis so late paint never interrupts Snapshot → Thesis
+    activityHtml,
+    portfolioHtml,
 
     '<section class="inv-profile-section inv-profile-about inv-profile-reveal" id="about">',
-    '<div class="inv-profile-section-label">04 — Story</div>',
+    '<div class="inv-profile-section-label">06 — Story</div>',
     '<div class="inv-profile-section-head"><h2>About ' + escapeHtml(investor.name) + '</h2><p>Background and context for founders evaluating this investor.</p></div>',
     '<div class="inv-profile-about-grid">',
     '<div class="inv-profile-about-prose">' + aboutProse(investor.writeup) + '</div>',
@@ -678,8 +648,7 @@ function renderInvestorPage(investor, related, res, opts) {
     '<script src="/app.js" defer></script>',
     '<script src="/investors/lazy-portfolio-logos.js?v=1" defer></script>',
     '<script src="/investors/portfolio-section.js?v=4" defer></script>',
-    '<script src="/investors/profile-sticky.js?v=5" defer></script>',
-    loadExtrasScript ? '<script src="/investors/profile-extras.js?v=3" defer></script>' : '',
+    '<script src="/investors/profile-sticky.js?v=6" defer></script>',
     '<script>',
     '(function(){',
     'var nav=document.getElementById("inv-profile-sticky");',

@@ -8,7 +8,7 @@ const CSS_FILES = [
   '/css/base.css?v=114',
   '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
-  '/css/directory.css?v=118'
+  '/css/directory.css?v=119'
 ];
 
 const FONTS_HREF =
@@ -117,8 +117,40 @@ function isMobileRequest(req) {
   );
 }
 
+/** Inline pin bootstrap — runs as soon as sticky host is parsed (mweb only). */
+function earlyStickyPinScript() {
+  return [
+    '<script>',
+    '(function(){',
+    'var host=document.getElementById("inv-profile-sticky-host");',
+    'var nav=document.getElementById("inv-profile-sticky");',
+    'if(!host||!nav)return;',
+    'function pin(){',
+    'var mweb=window.matchMedia("(max-width:768px)").matches;',
+    'if(!mweb)return;',
+    'var y=window.scrollY||window.pageYOffset;',
+    'var top=host.getBoundingClientRect().top+y;',
+    'if(y>=top-1){',
+    'nav.classList.add("is-pinned");',
+    'host.style.minHeight=(nav.offsetHeight||48)+"px";',
+    'nav.style.left="0";nav.style.width="100%";',
+    '}else{',
+    'nav.classList.remove("is-pinned");',
+    'host.style.minHeight="";nav.style.left="";nav.style.width="";',
+    '}',
+    '}',
+    'window.VCProfileStickyPin=pin;',
+    'window.addEventListener("scroll",pin,{passive:true});',
+    'window.addEventListener("resize",pin,{passive:true});',
+    'pin();',
+    '})();',
+    '</script>'
+  ].join('');
+}
+
 module.exports = {
   renderProfileHeadAssets,
+  earlyStickyPinScript,
   isMobileRequest,
   CSS_FILES,
   FONTS_HREF
