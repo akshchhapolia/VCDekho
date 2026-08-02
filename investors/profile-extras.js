@@ -86,6 +86,9 @@
       if (typeof window.VCHydratePortfolioLogos === 'function') {
         window.VCHydratePortfolioLogos(document);
       }
+      if (typeof window.VCProfileStickyPin === 'function') {
+        window.VCProfileStickyPin();
+      }
       if (typeof window.VCProfileStickyScrollActive === 'function') {
         window.VCProfileStickyScrollActive();
       }

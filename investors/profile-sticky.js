@@ -1,9 +1,9 @@
 /**
- * Pin section tabs on investor profile pages.
+ * Pin section tabs on investor / person profile pages.
  * CSS sticky breaks inside .hero-showcase { overflow-x: hidden }.
  *
- * Mweb: pin full-bleed + keep the active tab in view without centering
- * (centering was pushing Snapshot to the right and hiding other tabs).
+ * Mweb: pin styles also live in critical CSS so the bar sticks before
+ * async directory.css / late widgets finish loading.
  */
 (function () {
   var host = document.getElementById('inv-profile-sticky-host');
@@ -24,12 +24,14 @@
     var scrollY = window.scrollY || window.pageYOffset;
     var hostRect = host.getBoundingClientRect();
     var hostDocTop = hostRect.top + scrollY;
-    var navH = nav.offsetHeight;
+    var navH = nav.offsetHeight || 48;
     var mweb = isProfileMweb();
 
-    if (scrollY >= hostDocTop) {
+    if (scrollY >= hostDocTop - 1) {
       if (!nav.classList.contains('is-pinned')) {
         nav.classList.add('is-pinned');
+        host.style.minHeight = navH + 'px';
+      } else if (!host.style.minHeight) {
         host.style.minHeight = navH + 'px';
       }
       if (mweb) {
@@ -68,18 +70,65 @@
     }
   }
 
+  window.VCProfileStickyPin = pinSectionNav;
   window.VCProfileStickyScrollActive = scrollActiveTabIntoView;
 
   window.addEventListener('scroll', pinSectionNav, { passive: true });
   window.addEventListener('resize', pinSectionNav, { passive: true });
+  window.addEventListener('orientationchange', pinSectionNav, { passive: true });
   window.addEventListener('load', function () {
     pinSectionNav();
     scrollActiveTabIntoView();
   });
+
+  // Re-pin when async CSS arrives or late widgets change page height (mweb)
+  if (isProfileMweb()) {
+    if (typeof ResizeObserver === 'function') {
+      try {
+        var ro = new ResizeObserver(function () {
+          pinSectionNav();
+        });
+        ro.observe(document.documentElement);
+        if (document.body) ro.observe(document.body);
+      } catch (e) { /* ignore */ }
+    }
+
+    Array.prototype.forEach.call(
+      document.querySelectorAll('link[rel="stylesheet"]'),
+      function (link) {
+        link.addEventListener('load', pinSectionNav);
+      }
+    );
+
+    // Stylesheets appended after this script (async critical-CSS loader)
+    if (typeof MutationObserver === 'function') {
+      var mo = new MutationObserver(function (mutations) {
+        for (var i = 0; i < mutations.length; i++) {
+          var nodes = mutations[i].addedNodes;
+          for (var j = 0; j < nodes.length; j++) {
+            var n = nodes[j];
+            if (n && n.tagName === 'LINK' && n.rel === 'stylesheet') {
+              n.addEventListener('load', pinSectionNav);
+              pinSectionNav();
+            }
+            if (n && n.nodeType === 1 && (n.id === 'activity' || n.id === 'portfolio' || n.id === 'firm-activity' || n.id === 'firm-portfolio' || (n.querySelector && n.querySelector('#activity, #portfolio, #firm-activity, #firm-portfolio')))) {
+              pinSectionNav();
+            }
+          }
+        }
+      });
+      mo.observe(document.documentElement, { childList: true, subtree: true });
+      setTimeout(function () {
+        try { mo.disconnect(); } catch (e2) { /* ignore */ }
+      }, 15000);
+    }
+  }
+
   if (typeof mobileMq.addEventListener === 'function') {
     mobileMq.addEventListener('change', pinSectionNav);
   } else if (typeof mobileMq.addListener === 'function') {
     mobileMq.addListener(pinSectionNav);
   }
+
   pinSectionNav();
 })();
