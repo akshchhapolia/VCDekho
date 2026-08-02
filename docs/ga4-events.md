@@ -8,15 +8,19 @@ Helper: `window.VCAnalytics.track(eventName, params)`.
 
 | Event | Params | Where |
 |-------|--------|--------|
+| `page_view` | `page_title`, `page_location`, `page_path` | Every page load (explicit) |
+| `cta_click` | `label`, `href`, `cta_id`, `cta_class`, `page_path` | Profile CTAs, blog CTAs, hero CTAs, login buttons, etc. |
 | `login_start` | `method` | OTP send |
 | `login_success` | `method` | OTP verify |
 | `dir_filter_change` | `directory`, `filter`, `value` | Funds / Investors filters |
 | `dir_result_click` | `directory`, `slug` | Directory row → profile |
-| `profile_cta_click` | `cta`, `kind` | LinkedIn / website / email / firm |
+| `profile_cta_click` | `cta`, `kind` | LinkedIn / website / email / firm (also mirrored as `cta_click`) |
 | `nav_click` | `href`, `label` | Main nav |
 | `contact_submit` | — | Contact form |
 
 Also: any element with `data-analytics-event` (+ optional `data-analytics-params` JSON).
+
+Suggested funnel: `page_view` → `login_success` → `dir_result_click` → `cta_click` / `profile_cta_click`.
 
 ## GA4 Admin setup
 
