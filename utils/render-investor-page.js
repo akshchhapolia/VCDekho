@@ -331,9 +331,6 @@ function renderInvestorPage(investor, related, res, opts) {
   const stageSummary = stages.length
     ? (stages.slice(0, 2).join(' · ') + (stages.length > 2 ? ' +' + (stages.length - 2) : ''))
     : '—';
-  const confidenceShort = (investor.confidence || 'Unverified')
-    .replace(/\s*\([^)]*\)\s*/g, '')
-    .trim() || 'Unverified';
 
   const snapshotStrip = [
     {
@@ -356,11 +353,6 @@ function renderInvestorPage(investor, related, res, opts) {
       label: 'Themes',
       value: themes.length ? String(themes.length) + ' mapped' : '—',
       href: themes.length ? '#thesis' : null
-    },
-    {
-      label: 'Confidence',
-      value: confidenceShort,
-      href: null
     }
   ].map((item) => {
     const inner =
