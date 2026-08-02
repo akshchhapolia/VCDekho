@@ -210,16 +210,8 @@ module.exports = async function handler(req, res) {
       return res.status(200).json(payload);
     }
 
-    const deferExtras = isMobileRequest(req);
-    // Desktop: full await. Mweb: brief race so warm DB can SSR; else client hydrates.
-    if (!deferExtras) {
-      await ensureInvestorDetailExtras(slug);
-    } else {
-      await Promise.race([
-        ensureInvestorDetailExtras(slug),
-        new Promise(function (resolve) { setTimeout(resolve, 400); })
-      ]);
-    }
+    // Always SSR activity/portfolio in first HTML (mweb + desktop) — no late hydrate
+    await ensureInvestorDetailExtras(slug);
 
     const investor = getInvestorBySlug(slug);
     if (!investor) {
@@ -234,7 +226,10 @@ module.exports = async function handler(req, res) {
       .slice(0, 3)
       .map(toCard);
 
-    return renderInvestorPage(investor, related, res, { deferExtras });
+    // mwebFirstPaint: focus/thesis visible on first paint (not deferred extras)
+    return renderInvestorPage(investor, related, res, {
+      mwebFirstPaint: isMobileRequest(req)
+    });
   } catch (error) {
     console.error('investor detail error:', error);
     res.status(500).send('<h1>500 - Internal Server Error</h1>');

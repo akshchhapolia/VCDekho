@@ -150,7 +150,7 @@ function recentActivitySection(investor) {
 
   return (
     '<section class="inv-profile-section inv-profile-reveal" id="activity">' +
-    '<div class="inv-profile-section-label">01b — Activity</div>' +
+    '<div class="inv-profile-section-label">04 — Activity</div>' +
     '<div class="inv-profile-section-head"><h2>Recent activity</h2><p>Checks and mentions picked up from India startup news over the last ' +
     ACTIVE_WINDOW_DAYS +
     ' days.</p></div>' +
@@ -241,7 +241,7 @@ function portfolioSection(investor) {
     '<section class="inv-profile-section inv-profile-reveal" id="portfolio" data-portfolio-total="' +
     total +
     '">' +
-    '<div class="inv-profile-section-label">01c — Portfolio</div>' +
+    '<div class="inv-profile-section-label">05 — Portfolio</div>' +
     '<div class="inv-profile-section-head"><h2>Portfolio companies</h2><p class="inv-profile-portfolio-count">' +
     escapeHtml(countLabel) +
     '</p><p>' +
@@ -298,9 +298,40 @@ function renderInvestorExtrasHtml(investor) {
   };
 }
 
+function earlyStickyPinScript() {
+  // Runs as soon as the sticky host is parsed — pins on mweb before late CSS/widgets
+  return [
+    '<script>',
+    '(function(){',
+    'var host=document.getElementById("inv-profile-sticky-host");',
+    'var nav=document.getElementById("inv-profile-sticky");',
+    'if(!host||!nav)return;',
+    'function pin(){',
+    'var mweb=window.matchMedia("(max-width:768px)").matches;',
+    'if(!mweb)return;',
+    'var y=window.scrollY||window.pageYOffset;',
+    'var top=host.getBoundingClientRect().top+y;',
+    'if(y>=top-1){',
+    'nav.classList.add("is-pinned");',
+    'host.style.minHeight=(nav.offsetHeight||48)+"px";',
+    'nav.style.left="0";nav.style.width="100%";',
+    '}else{',
+    'nav.classList.remove("is-pinned");',
+    'host.style.minHeight="";nav.style.left="";nav.style.width="";',
+    '}',
+    '}',
+    'window.VCProfileStickyPin=pin;',
+    'window.addEventListener("scroll",pin,{passive:true});',
+    'window.addEventListener("resize",pin,{passive:true});',
+    'pin();',
+    '})();',
+    '</script>'
+  ].join('');
+}
+
 function renderInvestorPage(investor, related, res, opts) {
   opts = opts || {};
-  const deferExtras = Boolean(opts.deferExtras);
+  const mwebFirstPaint = Boolean(opts.mwebFirstPaint || opts.deferExtras);
   const metaDesc = investor.thesis ||
     (investor.name + ' — ' + investor.type + '. Stages: ' + (investor.stages || []).join(', ') + '. Explore on VC Dekho.');
 
@@ -446,7 +477,7 @@ function renderInvestorPage(investor, related, res, opts) {
   const peopleSection = peopleCards
     ? (
       '<section class="inv-profile-section inv-profile-reveal" id="people">' +
-        '<div class="inv-profile-section-label">05 — Investors</div>' +
+        '<div class="inv-profile-section-label">07 — Investors</div>' +
         '<div class="inv-profile-section-head"><h2>Investors at ' + escapeHtml(investor.name) + '</h2><p>Partners and principals mapped to this fund in the directory.</p></div>' +
         '<div class="inv-profile-related-grid">' + peopleCards + '</div>' +
       '</section>'
@@ -464,7 +495,7 @@ function renderInvestorPage(investor, related, res, opts) {
   const relatedSection = relatedCards
     ? (
       '<section class="inv-profile-section inv-profile-reveal" id="similar">' +
-        '<div class="inv-profile-section-label">06 — Nearby</div>' +
+        '<div class="inv-profile-section-label">08 — Nearby</div>' +
         '<div class="inv-profile-section-head"><h2>Similar funds</h2><p>Other funds that overlap on stage, sector, or thesis.</p></div>' +
         '<div class="inv-profile-related-grid">' + relatedCards + '</div>' +
       '</section>'
@@ -497,27 +528,16 @@ function renderInvestorPage(investor, related, res, opts) {
   });
 
   const extras = renderInvestorExtrasHtml(investor);
-  let activityHtml = extras.activityHtml;
-  let portfolioHtml = extras.portfolioHtml;
-  let extrasMount = '';
-  let loadExtrasScript = false;
-
-  // Mweb: if DB was skipped and memory is cold, mount client hydrate (desktop always SSRs)
-  if (deferExtras && !activityHtml && !portfolioHtml) {
-    extrasMount =
-      '<div id="inv-profile-extras" data-kind="firm" data-slug="' +
-      escapeHtml(investor.slug) +
-      '" hidden></div>';
-    loadExtrasScript = true;
-  }
+  const activityHtml = extras.activityHtml;
+  const portfolioHtml = extras.portfolioHtml;
 
   const stickyNav = [
     '<nav class="inv-profile-sticky" id="inv-profile-sticky" aria-label="On this page">',
     '<a href="#snapshot" data-section="snapshot">Snapshot</a>',
-    activityHtml ? '<a href="#activity" data-section="activity">Activity</a>' : '',
-    portfolioHtml ? '<a href="#portfolio" data-section="portfolio">Portfolio</a>' : '',
     '<a href="#focus" data-section="focus">Focus</a>',
     themes.length ? '<a href="#thesis" data-section="thesis">Thesis</a>' : '',
+    activityHtml ? '<a href="#activity" data-section="activity">Activity</a>' : '',
+    portfolioHtml ? '<a href="#portfolio" data-section="portfolio">Portfolio</a>' : '',
     '<a href="#about" data-section="about">About</a>',
     peopleCards ? '<a href="#people" data-section="people">' + INVESTORS_LABEL + '</a>' : '',
     relatedCards ? '<a href="#similar" data-section="similar">Similar</a>' : '',

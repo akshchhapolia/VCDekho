@@ -40,22 +40,16 @@ module.exports = async function handler(req, res) {
         return res.status(200).json(payload);
       }
 
-      const deferExtras = isMobileRequest(req);
-      // Desktop: full await. Mweb: brief race so warm DB can SSR; else client hydrates.
+      // Always SSR firm activity/portfolio in first HTML (mweb + desktop)
       if (person.companySlug) {
-        if (!deferExtras) {
-          await ensureInvestorDetailExtras(person.companySlug);
-        } else {
-          await Promise.race([
-            ensureInvestorDetailExtras(person.companySlug),
-            new Promise(function (resolve) { setTimeout(resolve, 400); })
-          ]);
-        }
+        await ensureInvestorDetailExtras(person.companySlug);
       }
 
       const colleagues = getPeopleByCompanySlug(person.companySlug, person.slug).map(toCard);
       const investor = person.companySlug ? getInvestorBySlug(person.companySlug) : null;
-      return renderPersonPage(person, colleagues, investor, res, { deferExtras });
+      return renderPersonPage(person, colleagues, investor, res, {
+        mwebFirstPaint: isMobileRequest(req)
+      });
     } catch (error) {
       console.error('person detail error:', error);
       return res.status(500).send('<h1>500 - Internal Server Error</h1>');
