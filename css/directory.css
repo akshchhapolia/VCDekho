@@ -3881,6 +3881,16 @@ body.inv-person-profile .inv-person-firm-panel-cta:hover {
   color: #ffe1d6;
 }
 
+/* Person pages mweb only: drop firm/sector CTAs under thesis, activity, portfolio, explore */
+@media (max-width: 768px) {
+  body.inv-person-profile #firm-thesis > .inv-profile-panel-link,
+  body.inv-person-profile #firm-activity > .inv-profile-panel-link,
+  body.inv-person-profile #firm-portfolio > .inv-profile-panel-link,
+  body.inv-person-profile .inv-person-firm-explore .inv-explore-cta.is-ghost {
+    display: none !important;
+  }
+}
+
 body.inv-person-profile .inv-person-firm-head-row {
   display: flex;
   flex-wrap: wrap;
