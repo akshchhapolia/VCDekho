@@ -5,6 +5,8 @@
 
 **Do not restart until credits are topped up** (https://searlo.tech dashboard).
 
+**Ops:** After the Resend alert system ships, Searlo `402` during cron backfill / vendor ping emails `team@vcdekho.com` automatically (see `docs/ops-alerts.md`).
+
 ---
 
 ## Progress this session (2 Aug)
