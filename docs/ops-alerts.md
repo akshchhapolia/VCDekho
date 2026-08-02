@@ -29,7 +29,7 @@ Alerts email **`team@vcdekho.com`** (override with `ALERT_TO`) via **Resend**.
 - RSS scrape: all (or nearly all) sources fail
 - AI process: queue non-empty but 0 processed
 - Activity backfill: Searlo `402` / fatal vendor errors
-- Vendor watch cron (`0 5 * * *` UTC): Searlo/Gemini failures, low credits, missing Anthropic key
+- Vendor watch cron (`0 5 * * *` UTC): Searlo/Gemini failures, low credits, missing Gemini key (news/blog)
 - Health: missing `DATABASE_URL` in production (deduped)
 
 Dedup window: **6 hours** per `source|subject` key (`ops_alerts` table).

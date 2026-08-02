@@ -1,11 +1,13 @@
-const { Anthropic } = require('@anthropic-ai/sdk');
 const db = require('../../utils/db');
 const { pickTopic } = require('../../utils/blog-topics');
 const { runCronJob } = require('../../utils/cron-run');
-
-const anthropic = new Anthropic({
-    apiKey: process.env.ANTHROPIC_API_KEY || ''
-});
+const {
+    generateText,
+    parseJsonResponse,
+    stripCodeFences,
+    DEFAULT_MODEL,
+    PROSE_MODEL
+} = require('../../utils/gemini');
 
 function slugify(text) {
     return String(text || '')
@@ -15,27 +17,46 @@ function slugify(text) {
         .slice(0, 80);
 }
 
-function stripCodeFences(text) {
-    return String(text || '')
-        .replace(/^```(?:html|json)?\s*/i, '')
-        .replace(/\s*```$/i, '')
-        .trim();
-}
-
 function wordCount(html) {
     return stripCodeFences(html).replace(/<[^>]+>/g, ' ').trim().split(/\s+/).filter(Boolean).length;
 }
 
+const BLOG_META_SYSTEM = `You are an SEO editor for VCDekho.com, a publication for Indian startup founders and operators.
+Return ONLY valid JSON (no markdown) with keys:
+- title (compelling, specific, India-relevant; max 70 chars preferred)
+- slug (lowercase kebab-case, unique-feeling, no dates)
+- meta_title (max ~60 chars)
+- meta_description (140-160 chars)
+- tags (array of 5-8 short SEO tags)
+- outline (array of 5-7 H2 section titles)
+Focus on practical, evergreen founder advice — not breaking news.`;
+
+const BLOG_BODY_SYSTEM = `You are a senior writer for VCDekho, writing actionable guides for Indian startup founders.
+Rules:
+- Length: 900 to 1400 words
+- Tone: clear, practical, confident — no hype, no fluff, no emojis
+- Audience: early-stage founders in India
+- Use India-relevant examples (INR, SEBI context only if accurate, Bengaluru/Mumbai/Delhi ecosystems, Indian funds) without inventing fake statistics. If citing numbers, keep them general or clearly framed as illustrative.
+- Structure with this EXACT HTML (no markdown, no code fences):
+  <p class="blog-intro">...opening hook...</p>
+  <p class="blog-body-paragraph">...</p>
+  <h2 class="blog-body-heading">Section title</h2>
+  <p class="blog-body-paragraph">...</p>
+  <ul class="blog-list"><li>...</li></ul>  (use lists where helpful)
+- Include at least one practical framework or checklist
+- End with a short actionable closing paragraph (not a soft CTA about VCDekho)
+- Do NOT include <html>, <head>, <body>, or an H1 (title is rendered separately)
+- Output ONLY the HTML body`;
+
 module.exports = async function handler(req, res) {
     return runCronJob(req, res, 'ai-blog', async () => {
-        if (!process.env.ANTHROPIC_API_KEY) {
-            throw new Error('ANTHROPIC_API_KEY is missing');
+        if (!process.env.GEMINI_API_KEY) {
+            throw new Error('GEMINI_API_KEY is missing');
         }
         if (!process.env.DATABASE_URL) {
             throw new Error('DATABASE_URL is missing');
         }
 
-        // One blog post per calendar day (UTC), unless force=1 for manual runs
         const force = req.query?.force === '1' || req.query?.force === 1;
         const existingToday = await db.query(
             `SELECT id, slug, title FROM articles
@@ -51,7 +72,6 @@ module.exports = async function handler(req, res) {
             });
         }
 
-        // Avoid repeating topics used in the last ~90 days
         const recent = await db.query(
             `SELECT tags FROM articles
              WHERE category = 'blog' AND published_at > NOW() - INTERVAL '90 days'
@@ -64,42 +84,28 @@ module.exports = async function handler(req, res) {
 
         const topic = pickTopic(recentTopicIds);
 
-        // --- 1) Outline + SEO package ---
-        const metaMsg = await anthropic.messages.create({
-            model: 'claude-sonnet-4-6',
-            max_tokens: 900,
-            system: `You are an SEO editor for VCDekho.com, a publication for Indian startup founders and operators.
-Return ONLY valid JSON (no markdown) with keys:
-- title (compelling, specific, India-relevant; max 70 chars preferred)
-- slug (lowercase kebab-case, unique-feeling, no dates)
-- meta_title (max ~60 chars)
-- meta_description (140-160 chars)
-- tags (array of 5-8 short SEO tags)
-- outline (array of 5-7 H2 section titles)
-Focus on practical, evergreen founder advice — not breaking news.`,
-            messages: [{
-                role: 'user',
-                content: `Topic ID: ${topic.id}
+        const metaPrompt = await generateText({
+            system: BLOG_META_SYSTEM,
+            user: `Topic ID: ${topic.id}
 Suggested title: ${topic.titleHint}
 Category label: ${topic.categoryLabel}
 Angle: ${topic.angle}
 
-Write an SEO package for a long-form blog post aimed at Indian founders.`
-            }]
+Write an SEO package for a long-form blog post aimed at Indian founders.`,
+            maxOutputTokens: 900,
+            model: DEFAULT_MODEL,
+            jsonMode: true
         });
 
-        let meta;
-        try {
-            meta = JSON.parse(stripCodeFences(metaMsg.content[0].text));
-        } catch (e) {
-            throw new Error('Failed to parse blog SEO JSON: ' + e.message);
+        const meta = parseJsonResponse(metaPrompt.text);
+        if (!meta) {
+            throw new Error('Failed to parse blog SEO JSON: ' + metaPrompt.text.slice(0, 300));
         }
 
         const title = meta.title || topic.titleHint;
         let slug = slugify(meta.slug || title);
         if (!slug) slug = `vc-blog-${topic.id}`;
 
-        // Ensure unique slug
         let uniqueSlug = slug;
         let counter = 1;
         while (true) {
@@ -109,29 +115,9 @@ Write an SEO package for a long-form blog post aimed at Indian founders.`
             counter += 1;
         }
 
-        // --- 2) Full article body ---
-        const bodyMsg = await anthropic.messages.create({
-            model: 'claude-sonnet-4-6',
-            max_tokens: 3500,
-            system: `You are a senior writer for VCDekho, writing actionable guides for Indian startup founders.
-Rules:
-- Length: 900 to 1400 words
-- Tone: clear, practical, confident — no hype, no fluff, no emojis
-- Audience: early-stage founders in India
-- Use India-relevant examples (INR, SEBI context only if accurate, Bengaluru/Mumbai/Delhi ecosystems, Indian funds) without inventing fake statistics. If citing numbers, keep them general or clearly framed as illustrative.
-- Structure with this EXACT HTML (no markdown, no code fences):
-  <p class="blog-intro">...opening hook...</p>
-  <p class="blog-body-paragraph">...</p>
-  <h2 class="blog-body-heading">Section title</h2>
-  <p class="blog-body-paragraph">...</p>
-  <ul class="blog-list"><li>...</li></ul>  (use lists where helpful)
-- Include at least one practical framework or checklist
-- End with a short actionable closing paragraph (not a soft CTA about VCDekho)
-- Do NOT include <html>, <head>, <body>, or an H1 (title is rendered separately)
-- Output ONLY the HTML body`,
-            messages: [{
-                role: 'user',
-                content: `Write the full blog post.
+        const bodyPrompt = await generateText({
+            system: BLOG_BODY_SYSTEM,
+            user: `Write the full blog post.
 
 Title: ${title}
 Category: ${topic.categoryLabel}
@@ -143,11 +129,13 @@ Internal links to weave naturally if relevant (as <a class="blog-inline-link" hr
 - /blog/what-is-vc-investment-thesis
 - /blog/micro-vcs-india-first-cheque
 - /guide/raising-vc-funding-india
-Only include 1-2 of these if they fit naturally.`
-            }]
+Only include 1-2 of these if they fit naturally.`,
+            maxOutputTokens: 8192,
+            model: PROSE_MODEL,
+            jsonMode: false
         });
 
-        const body = stripCodeFences(bodyMsg.content[0].text);
+        const body = stripCodeFences(bodyPrompt.text);
         const words = wordCount(body);
 
         if (words < 500) {
@@ -193,7 +181,8 @@ Only include 1-2 of these if they fit naturally.`
             title,
             articleSlug: uniqueSlug,
             imageUrl,
-            wordCount: words
+            wordCount: words,
+            provider: 'gemini'
         };
     });
 };

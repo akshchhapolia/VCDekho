@@ -203,15 +203,16 @@ async function handlePingVendors(req, res) {
     alerts.push({ subject: 'Gemini ping failed', body: err.message });
   }
 
-  // Anthropic key present (no paid call — just config check)
+  // News/blog pipeline uses Gemini; Anthropic is optional (legacy scripts only).
   results.anthropic = {
     ok: Boolean(process.env.ANTHROPIC_API_KEY),
     configured: Boolean(process.env.ANTHROPIC_API_KEY)
   };
-  if (!results.anthropic.ok) {
+
+  if (!process.env.GEMINI_API_KEY) {
     alerts.push({
-      subject: 'ANTHROPIC_API_KEY missing',
-      body: 'News AI crons will fail without Anthropic.'
+      subject: 'GEMINI_API_KEY missing',
+      body: 'News/blog AI crons (ai-process, daily-digest, ai-blog) will fail without Gemini.'
     });
   }
 
