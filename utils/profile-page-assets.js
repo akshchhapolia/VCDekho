@@ -8,7 +8,7 @@ const CSS_FILES = [
   '/css/base.css?v=114',
   '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
-  '/css/directory.css?v=125'
+  '/css/directory.css?v=126'
 ];
 
 const FONTS_HREF =
@@ -65,7 +65,7 @@ const PROFILE_CRITICAL_CSS = [
   '.inv-profile-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.4rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:rgba(255,255,255,.88);font-size:.8rem;text-decoration:none}',
   '.inv-profile-panel-link,.inv-profile-browse{display:inline-block;margin-top:.35rem;color:#ffb89c;font-size:.82rem;font-weight:600;text-decoration:none}',
   /* Mweb-only first paint: hide dir widgets + show through thesis; stacked focus divider only on mweb */
-  '@media(max-width:768px){.inv-profile-dir-widget{display:none!important}.main-nav{display:none}.nav-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}body.inv-investor-profile #focus.inv-profile-reveal,body.inv-investor-profile #thesis.inv-profile-reveal,body.inv-person-profile #firm-focus.inv-profile-reveal,body.inv-person-profile #firm-thesis.inv-profile-reveal{opacity:1;transform:none}.inv-profile-focus-col+.inv-profile-focus-col{margin-top:.85rem;padding-top:.85rem;border-top:1px solid rgba(255,255,255,.1);border-left:none;padding-left:0}}',
+  '@media(max-width:768px){.inv-profile-dir-widget{display:none!important}.main-nav{display:none}.nav-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}body.inv-investor-profile #focus.inv-profile-reveal,body.inv-investor-profile #thesis.inv-profile-reveal,body.inv-person-profile #firm-focus.inv-profile-reveal,body.inv-person-profile #firm-thesis.inv-profile-reveal,body.inv-person-profile #firm-activity.inv-profile-reveal{opacity:1;transform:none}.inv-profile-focus-col+.inv-profile-focus-col{margin-top:.85rem;padding-top:.85rem;border-top:1px solid rgba(255,255,255,.1);border-left:none;padding-left:0}}',
   '@media(min-width:769px){.main-nav{display:flex}.nav-toggle{display:none}.app-container{padding:var(--page-padding)}.inv-profile-sticky-host{width:auto;max-width:none;margin-left:0}.inv-profile-sticky{overflow:visible;flex-wrap:wrap}.inv-profile-focus-col+.inv-profile-focus-col{margin-top:0;padding-top:0;border-top:none}}'
 ].join('');
 

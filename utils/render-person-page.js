@@ -81,7 +81,10 @@ function renderPersonExtrasHtml(person, investor, opts) {
   opts = opts || {};
   if (!investor) return { activityHtml: '', portfolioHtml: '' };
   return {
-    activityHtml: firmActivitySection(person, investor, { sectionOffset: opts.sectionOffset }) || '',
+    activityHtml: firmActivitySection(person, investor, {
+      sectionOffset: opts.sectionOffset,
+      visible: opts.visible
+    }) || '',
     portfolioHtml: firmPortfolioSection(person, investor, { limit: 9, sectionOffset: opts.sectionOffset }) || ''
   };
 }
@@ -207,10 +210,10 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     )
     : '';
 
-  // Mweb: paint through Firm thesis on first load (desktop keeps scroll-reveal)
+  // Mweb: paint through 03 (Focus → Thesis → Activity) on first load; desktop keeps scroll-reveal
   const focusSection = firmFocusSection(person, investor, { visible: mwebFirstPaint, sectionOffset });
   const thesisSection = firmThesisSection(person, investor, { visible: mwebFirstPaint, sectionOffset });
-  const extras = renderPersonExtrasHtml(person, investor, { sectionOffset });
+  const extras = renderPersonExtrasHtml(person, investor, { sectionOffset, visible: mwebFirstPaint });
   const activitySection = extras.activityHtml;
   const portfolioSection = extras.portfolioHtml;
   const exploreSection = firmExploreSection(investor, { sectionOffset });

@@ -210,8 +210,12 @@ function firmActivitySection(person, investor, limitOrOpts) {
     ? '<a class="inv-profile-panel-link" href="/investors/' + escapeHtml(investor.slug) + '#activity">View all ' + total + ' activity items →</a>'
     : '<a class="inv-profile-panel-link" href="/investors/' + escapeHtml(investor.slug) + '#activity">View on firm profile →</a>';
 
+  const revealCls = opts.visible
+    ? 'inv-profile-section inv-person-firm-section inv-profile-reveal is-visible'
+    : 'inv-profile-section inv-person-firm-section inv-profile-reveal';
+
   return (
-    '<section class="inv-profile-section inv-person-firm-section inv-profile-reveal" id="firm-activity">' +
+    '<section class="' + revealCls + '" id="firm-activity">' +
     '<div class="inv-profile-section-label">' + escapeHtml(sectionLabel(4, 'Activity', opts.sectionOffset)) + '</div>' +
     '<div class="inv-profile-section-head">' +
     '<h2>Recent activity' + firmNameSuffix(person, investor) + '</h2>' +

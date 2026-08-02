@@ -4712,9 +4712,10 @@ a.inv-profile-chip:hover .inv-profile-chip-icon {
     transform: none;
   }
 
-  /* Person mweb: show through 03 — Firm thesis on first paint */
+  /* Person mweb: show through 03 — Focus / Thesis / Activity on first paint */
   body.inv-person-profile #firm-focus.inv-profile-reveal,
-  body.inv-person-profile #firm-thesis.inv-profile-reveal {
+  body.inv-person-profile #firm-thesis.inv-profile-reveal,
+  body.inv-person-profile #firm-activity.inv-profile-reveal {
     opacity: 1;
     transform: none;
   }
