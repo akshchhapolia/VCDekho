@@ -77,11 +77,12 @@ function colleagueAvatarHtml(colleague) {
   return '<span class="inv-person-colleague-avatar is-fallback" aria-hidden="true">' + escapeHtml(initialsFor(colleague.name)) + '</span>';
 }
 
-function renderPersonExtrasHtml(person, investor) {
+function renderPersonExtrasHtml(person, investor, opts) {
+  opts = opts || {};
   if (!investor) return { activityHtml: '', portfolioHtml: '' };
   return {
-    activityHtml: firmActivitySection(person, investor) || '',
-    portfolioHtml: firmPortfolioSection(person, investor, 9) || ''
+    activityHtml: firmActivitySection(person, investor, { sectionOffset: opts.sectionOffset }) || '',
+    portfolioHtml: firmPortfolioSection(person, investor, { limit: 9, sectionOffset: opts.sectionOffset }) || ''
   };
 }
 
@@ -178,6 +179,13 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
       '</section>';
   }
 
+  // Angel pages omit Snapshot — shift remaining labels so Firm focus starts at 01
+  const sectionOffset = angelIndividual ? -1 : 0;
+  const padSection = (n, text) => {
+    const num = Math.max(1, n + sectionOffset);
+    return String(num).padStart(2, '0') + ' — ' + text;
+  };
+
   const colleagueCards = (colleagues || []).slice(0, 6).map((c) => (
     '<a class="inv-profile-related-card inv-person-colleague-card inv-profile-reveal" href="/people/' + escapeHtml(c.slug) + '">' +
       colleagueAvatarHtml(c) +
@@ -192,20 +200,20 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
   const colleagueSection = colleagueCards
     ? (
       '<section class="inv-profile-section inv-person-team-section inv-profile-reveal" id="colleagues">' +
-        '<div class="inv-profile-section-label">06 — Colleagues</div>' +
+        '<div class="inv-profile-section-label">' + escapeHtml(padSection(6, 'Colleagues')) + '</div>' +
         '<div class="inv-profile-section-head"><h2>Others at ' + escapeHtml(person.company) + '</h2><p>More investors mapped to this firm in the directory.</p></div>' +
         '<div class="inv-profile-related-grid inv-person-colleague-grid">' + colleagueCards + '</div>' +
       '</section>'
     )
     : '';
 
-  // Mweb: paint through 03 — Firm thesis on first load (desktop keeps scroll-reveal)
-  const focusSection = firmFocusSection(person, investor, { visible: mwebFirstPaint });
-  const thesisSection = firmThesisSection(person, investor, { visible: mwebFirstPaint });
-  const extras = renderPersonExtrasHtml(person, investor);
+  // Mweb: paint through Firm thesis on first load (desktop keeps scroll-reveal)
+  const focusSection = firmFocusSection(person, investor, { visible: mwebFirstPaint, sectionOffset });
+  const thesisSection = firmThesisSection(person, investor, { visible: mwebFirstPaint, sectionOffset });
+  const extras = renderPersonExtrasHtml(person, investor, { sectionOffset });
   const activitySection = extras.activityHtml;
   const portfolioSection = extras.portfolioHtml;
-  const exploreSection = firmExploreSection(investor);
+  const exploreSection = firmExploreSection(investor, { sectionOffset });
 
   const stickyNav = [
     '<nav class="inv-profile-sticky" id="inv-profile-sticky" aria-label="On this page">',
