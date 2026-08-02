@@ -1,6 +1,7 @@
 const { Anthropic } = require('@anthropic-ai/sdk');
 const db = require('../../utils/db');
 const { pickTopic } = require('../../utils/blog-topics');
+const { runCronJob } = require('../../utils/cron-run');
 
 const anthropic = new Anthropic({
     apiKey: process.env.ANTHROPIC_API_KEY || ''
@@ -26,11 +27,7 @@ function wordCount(html) {
 }
 
 module.exports = async function handler(req, res) {
-    if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}` && process.env.NODE_ENV === 'production') {
-        return res.status(401).end('Unauthorized');
-    }
-
-    try {
+    return runCronJob(req, res, 'ai-blog', async () => {
         if (!process.env.ANTHROPIC_API_KEY) {
             throw new Error('ANTHROPIC_API_KEY is missing');
         }
@@ -190,17 +187,13 @@ Only include 1-2 of these if they fit naturally.`
             ]
         );
 
-        res.status(200).json({
-            success: true,
+        return {
             topicId: topic.id,
             categoryLabel: topic.categoryLabel,
             title,
             articleSlug: uniqueSlug,
             imageUrl,
             wordCount: words
-        });
-    } catch (error) {
-        console.error('Fatal AI Blog error:', error);
-        res.status(500).json({ error: error.message });
-    }
+        };
+    });
 };

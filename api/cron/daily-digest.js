@@ -1,26 +1,22 @@
 const { Anthropic } = require('@anthropic-ai/sdk');
 const db = require('../../utils/db');
+const { runCronJob } = require('../../utils/cron-run');
 
 const anthropic = new Anthropic({
     apiKey: process.env.ANTHROPIC_API_KEY || ''
 });
 
 module.exports = async function handler(req, res) {
-    if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}` && process.env.NODE_ENV === 'production') {
-        return res.status(401).end('Unauthorized');
-    }
-
-    try {
+    return runCronJob(req, res, 'daily-digest', async () => {
         if (!process.env.ANTHROPIC_API_KEY) {
             throw new Error("ANTHROPIC_API_KEY is missing");
         }
 
-        // Fetch pending items
         const pendingResult = await db.query(`SELECT * FROM raw_content WHERE status = 'digest_pending' ORDER BY scraped_at ASC`);
         const pendingItems = pendingResult.rows;
 
         if (pendingItems.length === 0) {
-            return res.status(200).json({ success: true, message: 'No items pending for digest.' });
+            return { message: 'No items pending for digest.', itemsProcessed: 0 };
         }
 
         // Prepare the payload for the AI
@@ -100,13 +96,9 @@ Rules:
             ]
         );
 
-        // Update raw_content statuses
         const pendingIds = pendingItems.map(i => i.id);
         await db.query(`UPDATE raw_content SET status = 'processing_done' WHERE id = ANY($1)`, [pendingIds]);
 
-        res.status(200).json({ success: true, itemsProcessed: pendingItems.length, articleSlug: slug });
-    } catch (error) {
-        console.error('Fatal Daily Digest error:', error);
-        res.status(500).json({ error: error.message });
-    }
+        return { itemsProcessed: pendingItems.length, articleSlug: slug };
+    });
 };

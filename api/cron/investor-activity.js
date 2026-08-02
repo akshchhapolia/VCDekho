@@ -23,6 +23,8 @@ const path = require('path');
 const { buildInvestorIndex, collectMentions, aggregateMentions } = require('../../utils/investor-activity-matcher');
 const { lookupInvestorActivity } = require('../../utils/investor-activity-websearch');
 const { upsertActivity, getStaleSlugs } = require('../../utils/investor-activity-store');
+const { runCronJob } = require('../../utils/cron-run');
+const { sendAlert } = require('../../utils/notify');
 
 const INVESTORS_PATH = path.join(__dirname, '..', '..', 'data', 'investors.json');
 const WINDOW_DAYS = 180;
@@ -87,6 +89,7 @@ async function runBackfillJob() {
   let checked = 0;
   let errors = 0;
   let spentUsd = 0;
+  let fatalError = null;
 
   await runPool(
     candidates,
@@ -101,29 +104,47 @@ async function runBackfillJob() {
         await upsertActivity(slug, activity, 'web_search_backfill');
       } catch (err) {
         errors++;
-        // Don't bump checked_at on a genuine error (e.g. API/billing issue) —
-        // leave it at the front of the stale queue so it's retried next run.
-        if (isFatalAccountError(err)) stopAll();
+        if (isFatalAccountError(err)) {
+          fatalError = err;
+          stopAll();
+        }
       }
     },
     BACKFILL_CONCURRENCY
   );
 
-  return { job: 'backfill', candidates: candidates.length, checked, found, errors, estimatedSpendUsd: Number(spentUsd.toFixed(4)) };
+  const meta = {
+    job: 'backfill',
+    candidates: candidates.length,
+    checked,
+    found,
+    errors,
+    estimatedSpendUsd: Number(spentUsd.toFixed(4))
+  };
+
+  if (fatalError) {
+    meta.alert = true;
+    meta.alertSeverity = 'error';
+    meta.alertSubject =
+      fatalError.status === 402
+        ? 'Searlo out of credits during activity backfill'
+        : 'Fatal vendor error during activity backfill';
+    meta.alertBody = String(fatalError.message || fatalError);
+    await sendAlert({
+      source: 'cron:investor-activity-backfill',
+      severity: 'error',
+      subject: meta.alertSubject,
+      body: meta.alertBody
+    });
+  }
+
+  return meta;
 }
 
 module.exports = async function handler(req, res) {
-  if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}` && process.env.NODE_ENV === 'production') {
-    return res.status(401).end('Unauthorized');
-  }
-
   const job = (req.query && req.query.job) || 'news';
-
-  try {
-    const result = job === 'backfill' ? await runBackfillJob() : await runNewsPipelineJob();
-    res.status(200).json({ success: true, ...result });
-  } catch (error) {
-    console.error(`investor-activity cron error (job=${job}):`, error);
-    res.status(500).json({ error: error.message });
-  }
+  const jobName = job === 'backfill' ? 'investor-activity-backfill' : 'investor-activity-news';
+  return runCronJob(req, res, jobName, async () => {
+    return job === 'backfill' ? runBackfillJob() : runNewsPipelineJob();
+  });
 };
