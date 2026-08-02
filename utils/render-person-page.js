@@ -209,7 +209,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
 
   const stickyNav = [
     '<nav class="inv-profile-sticky" id="inv-profile-sticky" aria-label="On this page">',
-    '<a href="#snapshot" data-section="snapshot">Snapshot</a>',
+    snapshotSection ? '<a href="#snapshot" data-section="snapshot">Snapshot</a>' : '',
     focusSection ? '<a href="#firm-focus" data-section="firm-focus">Focus</a>' : '',
     thesisSection ? '<a href="#firm-thesis" data-section="firm-thesis">Thesis</a>' : '',
     activitySection ? '<a href="#firm-activity" data-section="firm-activity">Activity</a>' : '',
@@ -291,11 +291,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     '<div class="inv-profile-sticky-host" id="inv-profile-sticky-host">' + stickyNav + '</div>',
     earlyStickyPinScript(),
 
-    '<section class="inv-profile-section inv-profile-reveal is-visible" id="snapshot">',
-    '<div class="inv-profile-section-label">01 — Snapshot</div>',
-    '<div class="inv-profile-section-head"><h2>At a glance</h2><p>Where this person sits — and firm signals when they\'re linked to a fund profile.</p></div>',
-    '<div class="inv-profile-metric-strip">' + snapshotStrip + '</div>',
-    '</section>',
+    snapshotSection,
 
     focusSection,
     thesisSection,
