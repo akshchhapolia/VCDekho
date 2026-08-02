@@ -96,9 +96,15 @@ function personHeroLead(person) {
   return title + ' at ' + company;
 }
 
+function isAngelIndividual(person) {
+  const type = String(person.companyType || '').toLowerCase();
+  return type === 'angel / individual' || type.includes('angel / individual');
+}
+
 function renderPersonPage(person, colleagues, investor, res, opts) {
   opts = opts || {};
   const mwebFirstPaint = Boolean(opts.mwebFirstPaint || opts.deferExtras);
+  const angelIndividual = isAngelIndividual(person);
   const heroLead = personHeroLead(person);
   const metaDesc = heroLead + '. Explore on VC Dekho.';
 
@@ -135,31 +141,42 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     ? '<a class="inv-profile-cta is-ghost" href="/investors/' + escapeHtml(person.companySlug) + '">' + iconExternal + '<span>View ' + escapeHtml(person.company) + '</span></a>'
     : '';
 
-  const snapshotItems = [
-    { label: 'Role', value: person.title || 'Investor', lead: true },
-    { label: 'Company', value: person.company || '—', href: person.companySlug ? '/investors/' + person.companySlug : null },
-    { label: 'Company type', value: person.companyType || '—' }
-  ];
+  // Angel / Individual profiles: At a glance repeats role/type with little signal — omit it
+  let snapshotSection = '';
+  if (!angelIndividual) {
+    const snapshotItems = [
+      { label: 'Role', value: person.title || 'Investor', lead: true },
+      { label: 'Company', value: person.company || '—', href: person.companySlug ? '/investors/' + person.companySlug : null },
+      { label: 'Company type', value: person.companyType || '—' }
+    ];
 
-  if (investor && investor.chequeSize) {
-    snapshotItems.push({ label: 'Firm ticket size', value: investor.chequeSize, href: '/investors/' + investor.slug + '#firm-focus' });
-  }
-  if (investor && (investor.stages || []).length) {
-    snapshotItems.push({
-      label: 'Firm stages',
-      value: investor.stages.slice(0, 2).join(' · ') + (investor.stages.length > 2 ? ' +' + (investor.stages.length - 2) : ''),
-      href: '/investors/' + investor.slug + '#firm-focus'
-    });
-  }
+    if (investor && investor.chequeSize) {
+      snapshotItems.push({ label: 'Firm ticket size', value: investor.chequeSize, href: '/investors/' + investor.slug + '#firm-focus' });
+    }
+    if (investor && (investor.stages || []).length) {
+      snapshotItems.push({
+        label: 'Firm stages',
+        value: investor.stages.slice(0, 2).join(' · ') + (investor.stages.length > 2 ? ' +' + (investor.stages.length - 2) : ''),
+        href: '/investors/' + investor.slug + '#firm-focus'
+      });
+    }
 
-  const snapshotStrip = snapshotItems.map((item) => {
-    const inner =
-      '<div class="inv-profile-metric-label">' + escapeHtml(item.label) + '</div>' +
-      '<div class="inv-profile-metric-value">' + escapeHtml(item.value) + '</div>';
-    const cls = 'inv-profile-metric' + (item.lead ? ' is-lead' : '');
-    if (item.href) return '<a class="' + cls + '" href="' + escapeHtml(item.href) + '">' + inner + '</a>';
-    return '<div class="' + cls + '">' + inner + '</div>';
-  }).join('');
+    const snapshotStrip = snapshotItems.map((item) => {
+      const inner =
+        '<div class="inv-profile-metric-label">' + escapeHtml(item.label) + '</div>' +
+        '<div class="inv-profile-metric-value">' + escapeHtml(item.value) + '</div>';
+      const cls = 'inv-profile-metric' + (item.lead ? ' is-lead' : '');
+      if (item.href) return '<a class="' + cls + '" href="' + escapeHtml(item.href) + '">' + inner + '</a>';
+      return '<div class="' + cls + '">' + inner + '</div>';
+    }).join('');
+
+    snapshotSection =
+      '<section class="inv-profile-section inv-profile-reveal is-visible" id="snapshot">' +
+      '<div class="inv-profile-section-label">01 — Snapshot</div>' +
+      '<div class="inv-profile-section-head"><h2>At a glance</h2><p>Where this person sits — and firm signals when they\'re linked to a fund profile.</p></div>' +
+      '<div class="inv-profile-metric-strip">' + snapshotStrip + '</div>' +
+      '</section>';
+  }
 
   const colleagueCards = (colleagues || []).slice(0, 6).map((c) => (
     '<a class="inv-profile-related-card inv-person-colleague-card inv-profile-reveal" href="/people/' + escapeHtml(c.slug) + '">' +
