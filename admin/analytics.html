@@ -163,7 +163,7 @@
         : 'Tracking live users from first login onward.';
 
       document.getElementById('reg-grid').innerHTML = [
-        ['Registered users', reg.total, ''],
+        ['Users tracked', reg.total, 'since 3 Aug 2026'],
         ['Mobile (mweb)', reg.mweb, 'signup platform'],
         ['Desktop (dweb)', reg.dweb, 'signup platform'],
         ['Platform unknown', reg.unknown, 'legacy / not captured yet']
@@ -189,7 +189,7 @@
 
       const f = data.funnel || {};
       document.getElementById('funnel').innerHTML =
-        '<div class="funnel-step"><span class="label">Registered</span><strong>' + fmt(f.registered) + '</strong></div>' +
+        '<div class="funnel-step"><span class="label">Users tracked</span><strong>' + fmt(f.registered) + '</strong></div>' +
         '<div class="funnel-arrow">→</div>' +
         '<div class="funnel-step"><span class="label">Unlocked ≥1 email</span><strong>' + fmt(f.unlockedAtLeastOne) + '</strong></div>' +
         '<div class="funnel-step"><span class="label">Conversion</span><strong>' + (f.conversionPct || 0) + '%</strong></div>';
