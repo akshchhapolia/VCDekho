@@ -179,8 +179,9 @@
       btn.addEventListener('click', () => {
         const body = btn.previousElementSibling;
         if (!body) return;
-        const expanded = body.classList.toggle('is-expanded');
-        body.classList.remove('is-clamped');
+        const expanded = !body.classList.contains('is-expanded');
+        body.classList.toggle('is-expanded', expanded);
+        body.classList.toggle('is-clamped', !expanded);
         btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
         btn.textContent = expanded ? 'Show less' : 'Read full post';
       });
