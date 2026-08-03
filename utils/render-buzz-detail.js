@@ -1,5 +1,11 @@
 const { fundHref } = require('./site-labels');
 const { renderSiteNavLinks } = require('./render-site-nav');
+const {
+  cleanBuzzTitle,
+  stripBuzzBody,
+  normalizeSentiment,
+  sentimentLabel
+} = require('./buzz-format');
 
 function esc(s) {
   return String(s || '')
@@ -18,66 +24,109 @@ function formatDate(iso) {
   });
 }
 
-function sentimentLabel(s) {
-  const map = {
-    positive: 'Positive',
-    mixed: 'Mixed',
-    negative: 'Negative',
-    neutral: 'Neutral'
-  };
-  return map[s] || 'Neutral';
+function renderBodyHtml(body) {
+  const text = stripBuzzBody(body);
+  if (!text) {
+    return '<p class="buzz-post-body buzz-post-body--empty">Original post text unavailable — open the Reddit thread for the full discussion.</p>';
+  }
+  const long = text.length > 320;
+  return `
+    <section class="buzz-section">
+      <h2 class="buzz-section-label">Post</h2>
+      <div class="buzz-post-body${long ? ' is-clamped' : ''}" data-buzz-body>${esc(text)}</div>
+      ${long ? '<button type="button" class="buzz-expand-btn" data-buzz-expand aria-expanded="false">Read full post</button>' : ''}
+    </section>`;
 }
 
-function renderQuotes(quotes) {
-  const list = Array.isArray(quotes) ? quotes : [];
-  if (!list.length) return '';
-  return (
-    '<div class="buzz-quotes">' +
-    list
-      .map(
-        (q) =>
-          `<blockquote class="buzz-quote">${esc(q.text)}${
-            q.paraphrased ? '<span class="buzz-quote-tag">Paraphrased</span>' : ''
-          }</blockquote>`
-      )
-      .join('') +
-    '</div>'
-  );
-}
-
-function renderInvestorLinks(slugs, names) {
+function renderFundSection(slugs, names) {
   if (!slugs || !slugs.length) return '';
-  return (
-    '<div class="buzz-linked-funds">' +
-    '<span class="buzz-linked-label">Linked funds</span>' +
-    slugs
-      .map((slug, i) => {
-        const label = (names && names[i]) || slug;
-        return `<a href="${fundHref(slug)}" class="buzz-fund-link">${esc(label)}</a>`;
-      })
-      .join('') +
-    '</div>'
-  );
+  return `
+    <section class="buzz-section">
+      <h2 class="buzz-section-label">Fund in conversation</h2>
+      <div class="buzz-fund-list">${slugs
+        .map((slug, i) => {
+          const label = (names && names[i]) || slug;
+          return `<a href="${fundHref(slug)}" class="buzz-fund-pill">${esc(label)}</a>`;
+        })
+        .join('')}</div>
+    </section>`;
 }
 
-function renderBuzzDetailHtml(item) {
-  const quotes =
-    typeof item.founder_quotes === 'string'
-      ? JSON.parse(item.founder_quotes)
-      : item.founder_quotes || [];
+function renderBuzzCardInnerHtml(item) {
   const topics = item.topics || [];
   const dateStr = formatDate(item.published_at || item.published_at_source);
   const sourceLabel =
     item.source === 'reddit'
-      ? `Reddit · r/${item.subreddit || 'unknown'}`
+      ? `r/${item.subreddit || 'unknown'}`
       : esc(item.source);
+  const title = cleanBuzzTitle(item.title);
+  const sentiment = normalizeSentiment(item.sentiment);
 
+  return `
+    <header class="buzz-post-header">
+      <div class="buzz-card-head">
+        <span class="buzz-source-badge buzz-source-reddit">Reddit</span>
+        <span class="buzz-meta">${esc(sourceLabel)} · ${esc(dateStr)}</span>
+      </div>
+      <h1 class="buzz-card-title">${esc(title)}</h1>
+    </header>
+
+    ${renderBodyHtml(item.body_excerpt)}
+
+    ${
+      item.ai_summary
+        ? `<section class="buzz-section buzz-summary-box">
+        <h2 class="buzz-section-label">AI Summary</h2>
+        <p class="buzz-summary-text">${esc(item.ai_summary)}</p>
+      </section>`
+        : ''
+    }
+
+    ${
+      topics.length
+        ? `<section class="buzz-section">
+        <h2 class="buzz-section-label">Topics</h2>
+        <div class="buzz-topic-chips">${topics
+          .map((t) => `<span class="buzz-topic-chip">${esc(t)}</span>`)
+          .join('')}</div>
+      </section>`
+        : ''
+    }
+
+    ${renderFundSection(item.investor_slugs, item.investor_names)}
+
+    <section class="buzz-section buzz-sentiment-row">
+      <h2 class="buzz-section-label">Sentiment</h2>
+      <span class="buzz-sentiment-badge buzz-sentiment--${sentiment}">${sentimentLabel(item.sentiment)}</span>
+    </section>
+
+    <footer class="buzz-card-footer">
+      <a href="${esc(item.source_url)}" class="buzz-read-original" target="_blank" rel="noopener noreferrer">Read original on Reddit →</a>
+      <div class="buzz-interest" data-interest-root>
+        <span class="buzz-interest-label">Interested in this?</span>
+        <div class="buzz-interest-actions">
+          <button type="button" class="buzz-vote-btn buzz-vote-up" data-vote="1" aria-label="Yes, interested">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10v12H3V10h4zm2-8 8 9h5l-4.5 8H9V2z"/></svg>
+            <span class="buzz-vote-count" data-count="up">${item.interest_up || 0}</span>
+          </button>
+          <button type="button" class="buzz-vote-btn buzz-vote-down" data-vote="-1" aria-label="Not interested">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 14V2h4v12h-4zm-2 8-8-9H2l4.5-8H13v17z"/></svg>
+            <span class="buzz-vote-count" data-count="down">${item.interest_down || 0}</span>
+          </button>
+        </div>
+      </div>
+    </footer>`;
+}
+
+function renderBuzzDetailHtml(item) {
   const navLinks = renderSiteNavLinks('', {
     trailing: [
       '<a href="/buzz" class="nav-link active">Buzz</a>',
       '<a href="/login" class="nav-link">Log in</a>'
     ]
   }).join('\n                ');
+
+  const title = cleanBuzzTitle(item.title);
 
   return `<!DOCTYPE html>
 <html lang="en" class="scrollable-page">
@@ -89,14 +138,14 @@ function renderBuzzDetailHtml(item) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
-    <title>${esc(item.title)} | Investor Buzz | VC Dekho</title>
-    <meta name="description" content="${esc(item.ai_summary || item.title)}">
+    <title>${esc(title)} | Investor Buzz | VC Dekho</title>
+    <meta name="description" content="${esc(item.ai_summary || title)}">
     <meta name="robots" content="noindex, follow">
     <link rel="icon" type="image/png" href="/assets/logoforvc.png">
     <link rel="stylesheet" href="/css/base.css?v=101">
     <link rel="stylesheet" href="/css/hero.css?v=73">
     <link rel="stylesheet" href="/css/ambient.css?v=98">
-    <link rel="stylesheet" href="/css/buzz.css?v=1">
+    <link rel="stylesheet" href="/css/buzz.css?v=3">
 </head>
 <body class="scrollable-page pub-page buzz-page">
     <div class="app-container">
@@ -121,7 +170,7 @@ function renderBuzzDetailHtml(item) {
                 </div>
             </div>
 
-            <div class="blog-content buzz-detail-wrap">
+            <div class="blog-content buzz-page-content">
                 <div class="news-breadcrumbs">
                     <a href="/">Home</a>
                     <span>›</span>
@@ -130,56 +179,20 @@ function renderBuzzDetailHtml(item) {
                     <span class="is-current">Discussion</span>
                 </div>
 
-                <article class="buzz-card buzz-card--detail">
-                    <div class="buzz-card-head">
-                        <span class="buzz-source-badge buzz-source-reddit">Reddit</span>
-                        <span class="buzz-meta">${esc(sourceLabel)} · ${esc(dateStr)}</span>
-                    </div>
-                    <h1 class="buzz-card-title">${esc(item.title)}</h1>
+                <div id="buzz-container" class="buzz-feed" data-mode="detail" aria-busy="true">
+                  <article class="buzz-card buzz-card--detail" data-slug="${esc(item.slug)}" id="buzz-${esc(item.slug)}">
+                    ${renderBuzzCardInnerHtml(item)}
+                  </article>
+                </div>
 
-                    ${renderQuotes(quotes)}
-
-                    ${
-                      item.ai_summary
-                        ? `<section class="buzz-summary-box">
-                        <h2 class="buzz-summary-label">AI Summary</h2>
-                        <p class="buzz-summary-text">${esc(item.ai_summary)}</p>
-                      </section>`
-                        : ''
-                    }
-
-                    ${
-                      topics.length
-                        ? `<section class="buzz-topics">
-                        <h2 class="buzz-topics-label">Topics</h2>
-                        <div class="buzz-topic-chips">${topics
-                          .map((t) => `<span class="buzz-topic-chip">${esc(t)}</span>`)
-                          .join('')}</div>
-                      </section>`
-                        : ''
-                    }
-
-                    <div class="buzz-card-foot">
-                        <span class="buzz-sentiment buzz-sentiment--${esc(item.sentiment || 'neutral')}">Sentiment: ${sentimentLabel(item.sentiment)}</span>
-                        ${
-                          item.comment_count
-                            ? `<span class="buzz-comments">${item.comment_count} comments</span>`
-                            : ''
-                        }
-                    </div>
-
-                    ${renderInvestorLinks(item.investor_slugs, item.investor_names)}
-
-                    <p class="buzz-disclaimer">Community discussion summarized by VC Dekho. Not verified editorial content.</p>
-
-                    <a href="${esc(item.source_url)}" class="buzz-read-original" target="_blank" rel="noopener noreferrer">Read Original →</a>
-                </article>
+                <p class="buzz-disclaimer">Community discussion summarized by VC Dekho. Not verified editorial content.</p>
             </div>
         </main>
     </div>
     <script src="/app.js" defer></script>
+    <script src="/js/buzz.js?v=3" defer></script>
 </body>
 </html>`;
 }
 
-module.exports = { renderBuzzDetailHtml };
+module.exports = { renderBuzzDetailHtml, renderBuzzCardInnerHtml };

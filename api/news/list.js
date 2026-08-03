@@ -10,9 +10,10 @@ module.exports = async function handler(req, res) {
             return res.status(200).json([]);
         }
         let query = `
-            SELECT id, slug, source, subreddit, title, ai_summary, topics, sentiment,
+            SELECT id, slug, source, subreddit, title, body_excerpt, ai_summary, topics, sentiment,
                    founder_quotes, investor_slugs, investor_names, comment_count,
-                   upvote_score, source_url, published_at, published_at_source
+                   upvote_score, source_url, published_at, published_at_source,
+                   interest_up, interest_down
             FROM investor_buzz
             WHERE status = 'published'
         `;

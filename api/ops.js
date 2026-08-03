@@ -16,6 +16,7 @@ const { requireCronAuth } = require('../utils/cron-run');
 const { getAllInvestors } = require('../utils/investors');
 const { getAllPeople } = require('../utils/people');
 const { getAnalyticsOverview, listUsers } = require('../utils/user-analytics');
+const { readJsonBody, recordBuzzVote } = require('../utils/buzz-vote');
 
 function requireAdmin(req, res) {
   const expected = 'Bearer ' + (process.env.ADMIN_SECRET || '');
@@ -256,6 +257,24 @@ async function handleAnalytics(req, res) {
   return res.status(200).json(overview);
 }
 
+async function handleBuzzVote(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'POST required' });
+  }
+  if (!process.env.DATABASE_URL) {
+    return res.status(503).json({ error: 'Database unavailable' });
+  }
+
+  const body = await readJsonBody(req);
+  try {
+    const result = await recordBuzzVote(body.slug, body.voterKey, body.vote);
+    res.setHeader('Cache-Control', 'no-store');
+    return res.status(200).json(result);
+  } catch (err) {
+    return res.status(400).json({ error: err.message });
+  }
+}
+
 module.exports = async function handler(req, res) {
   const action = String((req.query && req.query.action) || '').toLowerCase() || 'health';
 
@@ -287,6 +306,10 @@ module.exports = async function handler(req, res) {
     if (action === 'analytics') {
       if (!requireAdmin(req, res)) return;
       return handleAnalytics(req, res);
+    }
+
+    if (action === 'buzz-vote') {
+      return handleBuzzVote(req, res);
     }
 
     return res.status(400).json({ error: 'Unknown action', action });

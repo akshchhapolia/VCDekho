@@ -83,6 +83,21 @@ async function migrate() {
         await pool.query(`CREATE INDEX IF NOT EXISTS idx_investor_buzz_published ON investor_buzz (published_at DESC NULLS LAST);`);
         await pool.query(`CREATE INDEX IF NOT EXISTS idx_investor_buzz_investor_slugs ON investor_buzz USING GIN (investor_slugs);`);
 
+        await pool.query(`ALTER TABLE investor_buzz ADD COLUMN IF NOT EXISTS interest_up INTEGER DEFAULT 0;`);
+        await pool.query(`ALTER TABLE investor_buzz ADD COLUMN IF NOT EXISTS interest_down INTEGER DEFAULT 0;`);
+
+        console.log("Creating investor_buzz_votes table...");
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS investor_buzz_votes (
+                buzz_id UUID NOT NULL REFERENCES investor_buzz(id) ON DELETE CASCADE,
+                voter_key TEXT NOT NULL,
+                vote SMALLINT NOT NULL CHECK (vote IN (-1, 1)),
+                created_at TIMESTAMPTZ DEFAULT NOW(),
+                updated_at TIMESTAMPTZ DEFAULT NOW(),
+                PRIMARY KEY (buzz_id, voter_key)
+            );
+        `);
+
         console.log("Migration successful.");
     } catch (e) {
         console.error("Migration failed:", e);

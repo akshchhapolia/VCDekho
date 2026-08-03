@@ -105,5 +105,16 @@ CREATE TABLE IF NOT EXISTS investor_buzz (
     status TEXT NOT NULL DEFAULT 'queued',
     error_log TEXT,
     published_at TIMESTAMPTZ,
-    created_at TIMESTAMPTZ DEFAULT NOW()
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    interest_up INTEGER DEFAULT 0,
+    interest_down INTEGER DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS investor_buzz_votes (
+    buzz_id UUID NOT NULL REFERENCES investor_buzz(id) ON DELETE CASCADE,
+    voter_key TEXT NOT NULL,
+    vote SMALLINT NOT NULL CHECK (vote IN (-1, 1)),
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    PRIMARY KEY (buzz_id, voter_key)
 );
