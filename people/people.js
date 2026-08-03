@@ -322,6 +322,20 @@
     updateMobileFiltersLabel();
   }
 
+  async function directoryFetch(url) {
+    const needsAuth = state.offset > 0;
+    const res = needsAuth
+      ? await window.VCAuth.authFetch(url)
+      : await fetch(url);
+    if (res.status === 401) {
+      window.location.replace(
+        window.VCAuth.loginUrl(window.location.pathname + window.location.search)
+      );
+      return null;
+    }
+    return res;
+  }
+
   async function load() {
     renderSkeleton(8);
     if (!state.total) els.count.textContent = 'Fetching investors';
@@ -337,11 +351,9 @@
       offset: String(state.offset)
     });
 
-    const res = await window.VCAuth.authFetch(`/api/people?${params.toString()}`);
-    if (res.status === 401) {
-      window.location.replace(window.VCAuth.loginUrl());
-      return;
-    }
+    const res = await directoryFetch(`/api/people?${params.toString()}`);
+    if (!res) return;
+    if (res.status === 429) throw new Error('rate_limit');
     if (!res.ok) throw new Error('Failed to load investors');
     const data = await res.json();
 
@@ -372,8 +384,14 @@
       console.error(err);
       els.results.innerHTML =
         '<div class="inv-dir-empty-state">' +
-          '<p class="inv-dir-empty-title">Couldn’t load investors</p>' +
-          '<p class="inv-dir-empty-copy">Check your connection and try again.</p>' +
+          '<p class="inv-dir-empty-title">' +
+            (err && err.message === 'rate_limit' ? 'Too many requests' : 'Couldn’t load investors') +
+          '</p>' +
+          '<p class="inv-dir-empty-copy">' +
+            (err && err.message === 'rate_limit'
+              ? 'Please wait a moment and try again.'
+              : 'Check your connection and try again.') +
+          '</p>' +
           '<button type="button" class="inv-dir-empty-action" id="ppl-empty-retry">Retry</button>' +
         '</div>';
       const btn = document.getElementById('ppl-empty-retry');
