@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
   <title>Fund Sector Guides | Fintech, SaaS, AI & More | VC Dekho</title>
   <meta name="description" content="Sector guides for Indian founders — fintech, SaaS, consumer, AI, healthcare, deep tech, climate, and impact — with matching funds on VC Dekho.">
-  <link rel="canonical" href="https://vcdekho.com/investors/sectors">
+  <link rel="canonical" href="https://vcdekho.com/funds/sectors">
   <link rel="icon" type="image/png" href="/assets/logoforvc.png">
     <link rel="stylesheet" href="/css/base.css?v=101">
     <link rel="stylesheet" href="/css/hero.css?v=73">
@@ -29,8 +29,8 @@
       </button>
       <nav class="main-nav" id="navigation-bar">
         <a href="/" class="nav-link">Home</a>
-        <a href="/investors" class="nav-link active">Funds</a>
-        <a href="/people" class="nav-link">Investors</a>
+        <a href="/funds" class="nav-link active">Funds</a>
+        <a href="/investors" class="nav-link">Investors</a>
         <a href="/blog" class="nav-link">Blog</a>
         <a href="/news" class="nav-link">News</a>
       </nav>
@@ -48,7 +48,7 @@
       <div class="inv-list-wrap stage-page-wrap">
         <div class="inv-breadcrumbs">
           <a href="/">Home</a><span>›</span>
-          <a href="/investors">Funds</a><span>›</span>
+          <a href="/funds">Funds</a><span>›</span>
           <span class="current">Sectors</span>
         </div>
 
@@ -58,10 +58,10 @@
           <div class="stage-hero-copy">
             <span class="stage-hero-kicker">Founder guides</span>
             <h1 class="stage-hero-title">Sector guides</h1>
-            <p class="stage-hero-summary">Deep playbooks for India’s densest fundraising categories — landscape, metrics, diligence weights, and matching funds. Pair with <a class="inv-inline-link" href="/investors/stages">stage</a> and <a class="inv-inline-link" href="/investors/themes">thesis</a> guides.</p>
+            <p class="stage-hero-summary">Deep playbooks for India’s densest fundraising categories — landscape, metrics, diligence weights, and matching funds. Pair with <a class="inv-inline-link" href="/funds/stages">stage</a> and <a class="inv-inline-link" href="/funds/themes">thesis</a> guides.</p>
             <div class="stage-hero-actions">
               <div class="stage-hero-stat"><strong>8</strong><span>sector guides</span></div>
-              <a class="stage-hero-cta" href="/investors">Browse funds</a>
+              <a class="stage-hero-cta" href="/funds">Browse funds</a>
             </div>
           </div>
         </section>
@@ -88,7 +88,7 @@
           return;
         }
         grid.innerHTML = sectors.map((s, i) => `
-          <a class="stage-index-card stage-reveal is-visible" href="/investors/sectors/${encodeURIComponent(s.id)}">
+          <a class="stage-index-card stage-reveal is-visible" href="/funds/sectors/${encodeURIComponent(s.id)}">
             <div class="stage-index-top">
               <span class="stage-index-order">${s.iconSvg || ''} Guide ${String(i + 1).padStart(2, '0')}</span>
               <span class="stage-index-count">${s.investorCount} funds</span>
