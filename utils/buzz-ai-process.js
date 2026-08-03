@@ -3,17 +3,31 @@ const { generateText, parseJsonResponse, DEFAULT_MODEL } = require('./gemini');
 const { slugify } = require('../scripts/lib/slugify');
 const { normalizeTopics, BUZZ_TOPICS } = require('./buzz-topics');
 const { matchInvestorMentions } = require('./buzz-investor-match');
+const { isHardRejectBuzzPost } = require('./buzz-relevance');
 
-const BUZZ_SYSTEM = `You analyze founder/community discussions about venture capital and fundraising in India.
-Return ONLY valid JSON with these keys:
-- is_relevant (boolean): true if the post discusses Indian startup fundraising, VCs, angel investors, accelerators, term sheets, diligence, or investor experiences in India.
-- relevance_score (integer 0-5): how on-topic for Indian VC/founder fundraising discourse.
-- ai_summary (string): 2-3 neutral sentences summarizing the discussion. No hype.
-- topics (array): pick 1-4 from this exact list only: ${BUZZ_TOPICS.join(', ')}
-- sentiment (string): one of positive, mixed, negative, neutral — tone of the overall discussion toward investors/process, not a fund rating.
-- founder_quotes (array): up to 3 short excerpts or paraphrases (max 220 chars each) from the post body. Each item: { "text": string, "paraphrased": boolean }
-- investor_mentions (array): VC fund / angel network / accelerator names mentioned (strings, as written in the post).
-Reject personal attacks, doxxing, or posts with zero VC/investor angle.`;
+const BUZZ_SYSTEM = `You curate "Investor Buzz" — founder/community RETROSPECTIVES about venture capital in India.
+
+ONLY mark is_relevant=true when the author is SHARING a past experience, review, or honest retrospective about:
+- dealing with a specific VC fund, angel, or accelerator
+- fundraising process (diligence, term sheets, rejections, ghosting, partner access, follow-on)
+- the Indian VC ecosystem based on lived experience
+
+ALWAYS mark is_relevant=false for:
+- posts ASKING for investors, angels, funding, or co-founders
+- idea validation, hiring, jobs, service pitches, "looking for" posts
+- generic startup advice with no VC/investor experience shared
+- posts that only mention "investor" in passing without any review or story
+
+Return ONLY valid JSON:
+- is_relevant (boolean)
+- relevance_score (integer 0-5): 4-5 = clear founder VC review with specifics; 3 = solid process experience; 0-2 = off-topic or asking-not-reviewing
+- ai_summary (string): 2-3 neutral sentences summarizing the founder/community perspective
+- topics (array): 1-4 from: ${BUZZ_TOPICS.join(', ')}
+- sentiment (string): positive | mixed | negative | neutral — tone toward the fundraising/VC process discussed
+- founder_quotes (array): up to 3 short excerpts/paraphrases (max 220 chars). Each: { "text": string, "paraphrased": boolean }
+- investor_mentions (array): VC fund / angel network names mentioned (as written)
+
+Reject doxxing and personal attacks.`;
 
 const VALID_SENTIMENTS = new Set(['positive', 'mixed', 'negative', 'neutral']);
 
@@ -55,10 +69,18 @@ async function processBuzzItem(item) {
       throw new Error('Failed to parse buzz JSON: ' + resp.text.slice(0, 280));
     }
 
-    if (!parsed.is_relevant || (parsed.relevance_score || 0) < 2) {
+    if (isHardRejectBuzzPost(item.title, item.body_excerpt)) {
+      await db.query(
+        `UPDATE investor_buzz SET status = 'rejected', relevance_score = 0, error_log = $2 WHERE id = $1`,
+        [item.id, 'Hard reject: not a founder VC review']
+      );
+      return { success: true, finalStatus: 'rejected' };
+    }
+
+    if (!parsed.is_relevant || (parsed.relevance_score || 0) < 3) {
       await db.query(
         `UPDATE investor_buzz SET status = 'rejected', relevance_score = $2, error_log = $3 WHERE id = $1`,
-        [item.id, parsed.relevance_score || 0, 'Not relevant to Indian VC discourse']
+        [item.id, parsed.relevance_score || 0, 'Not a founder VC review/experience']
       );
       return { success: true, finalStatus: 'rejected' };
     }

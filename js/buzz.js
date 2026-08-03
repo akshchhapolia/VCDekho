@@ -82,8 +82,8 @@
       const res = await fetch('/api/news/list?feed=buzz');
       const items = await res.json();
       if (!Array.isArray(items) || !items.length) {
-        container.innerHTML =
-          '<p class="buzz-empty">No discussions published yet. Check back soon — we are indexing founder conversations about Indian VCs.</p>';
+          container.innerHTML =
+          '<p class="buzz-empty">No founder VC reviews published yet. We index Reddit threads where founders share fundraising experiences — check back soon.</p>';
         container.setAttribute('aria-busy', 'false');
         return;
       }
