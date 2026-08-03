@@ -1,4 +1,10 @@
 (function (global) {
+  var COPY_ICON =
+    '<svg class="inv-email-copy-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
+    '<rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2"/>' +
+    '<path d="M7 15H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2"/>' +
+    '</svg>';
+
   function getLabelEl(btn) {
     return btn.querySelector('.inv-email-unlock-label');
   }
@@ -14,9 +20,68 @@
     return label ? label.textContent : btn.textContent;
   }
 
+  function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        resolve();
+      } catch (err) {
+        reject(err);
+      } finally {
+        document.body.removeChild(ta);
+      }
+    });
+  }
+
+  function wireCopyBtn(btn, email, slug) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      copyToClipboard(email)
+        .then(function () {
+          btn.classList.add('is-copied');
+          btn.setAttribute('aria-label', 'Copied');
+          btn.setAttribute('title', 'Copied');
+          setTimeout(function () {
+            btn.classList.remove('is-copied');
+            btn.setAttribute('aria-label', 'Copy email');
+            btn.setAttribute('title', 'Copy email');
+          }, 1600);
+          if (global.VCAnalytics && global.VCAnalytics.track) {
+            global.VCAnalytics.track('contact_copy', { kind: 'person', slug: slug });
+          }
+        })
+        .catch(function () {});
+    });
+  }
+
+  function createCopyBtn(email, slug, isProfile) {
+    var copyBtn = document.createElement('button');
+    copyBtn.type = 'button';
+    copyBtn.className = 'inv-email-copy-btn' + (isProfile ? ' inv-email-copy-btn--profile' : '');
+    copyBtn.setAttribute('aria-label', 'Copy email');
+    copyBtn.setAttribute('title', 'Copy email');
+    copyBtn.innerHTML = COPY_ICON;
+    wireCopyBtn(copyBtn, email, slug);
+    return copyBtn;
+  }
+
   function replaceWithMailto(btn, email, slug) {
-    var link = document.createElement('a');
     var isProfile = btn.classList.contains('inv-profile-cta');
+    var wrap = document.createElement('span');
+    wrap.className = 'inv-email-revealed' + (isProfile ? ' inv-email-revealed--profile' : '');
+
+    var link = document.createElement('a');
     link.className = isProfile ? 'inv-profile-cta is-ghost' : 'inv-dir-inline-link';
     link.href = 'mailto:' + email;
     link.textContent = email;
@@ -27,7 +92,10 @@
         e.stopPropagation();
       });
     }
-    btn.replaceWith(link);
+
+    wrap.appendChild(link);
+    wrap.appendChild(createCopyBtn(email, slug, isProfile));
+    btn.replaceWith(wrap);
   }
 
   async function unlockEmail(btn) {

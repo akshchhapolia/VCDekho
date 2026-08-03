@@ -549,7 +549,8 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
 
 /* Email column: buttons/links must not be line-clamped or clipped on hover */
 .inv-dir-col-sectors .inv-dir-cell:has(.inv-email-unlock-btn),
-.inv-dir-col-sectors .inv-dir-cell:has(.inv-dir-inline-link) {
+.inv-dir-col-sectors .inv-dir-cell:has(.inv-dir-inline-link),
+.inv-dir-col-sectors .inv-dir-cell:has(.inv-email-revealed) {
   display: block;
   -webkit-line-clamp: unset;
   -webkit-box-orient: unset;
@@ -2789,7 +2790,8 @@ a.inv-chip:hover {
   body.inv-dir-page .inv-dir-col-stages:has(.inv-dir-inline-link),
   body.inv-dir-page .inv-dir-col-ticket:has(.inv-dir-inline-link),
   body.inv-dir-page .inv-dir-col-sectors:has(.inv-email-unlock-btn),
-  body.inv-dir-page .inv-dir-col-sectors:has(.inv-dir-inline-link) {
+  body.inv-dir-page .inv-dir-col-sectors:has(.inv-dir-inline-link),
+  body.inv-dir-page .inv-dir-col-sectors:has(.inv-email-revealed) {
     position: relative;
     z-index: 2;
     -webkit-tap-highlight-color: transparent;
@@ -2918,7 +2920,8 @@ a.inv-chip:hover {
   }
 
   body.inv-dir-page .inv-dir-col-sectors .inv-dir-cell:has(.inv-email-unlock-btn),
-  body.inv-dir-page .inv-dir-col-sectors .inv-dir-cell:has(.inv-dir-inline-link) {
+  body.inv-dir-page .inv-dir-col-sectors .inv-dir-cell:has(.inv-dir-inline-link),
+  body.inv-dir-page .inv-dir-col-sectors .inv-dir-cell:has(.inv-email-revealed) {
     display: block;
     -webkit-line-clamp: unset;
     -webkit-box-orient: unset;
@@ -5502,7 +5505,8 @@ a.inv-profile-metric:hover .inv-profile-metric-value {
 
 /* Keep email column interactive above the full-row hit target */
 .inv-dir-col-sectors:has(.inv-email-unlock-btn),
-.inv-dir-col-sectors:has(.inv-dir-inline-link) {
+.inv-dir-col-sectors:has(.inv-dir-inline-link),
+.inv-dir-col-sectors:has(.inv-email-revealed) {
   position: relative;
   z-index: 2;
 }
@@ -5582,5 +5586,74 @@ a.inv-profile-metric:hover .inv-profile-metric-value {
 .inv-profile-cta.inv-email-unlock-btn .inv-email-unlock-icon {
   width: 15px;
   height: 15px;
+}
+
+/* Revealed email + copy */
+.inv-email-revealed {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.inv-email-revealed--profile {
+  gap: 0.5rem;
+}
+
+.inv-email-revealed .inv-dir-inline-link {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inv-email-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.65rem;
+  height: 1.65rem;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(237, 87, 47, 0.38);
+  background: rgba(237, 87, 47, 0.06);
+  color: rgba(237, 87, 47, 0.72);
+  cursor: pointer;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.inv-email-copy-btn:hover,
+.inv-email-copy-btn:focus-visible {
+  background: rgba(237, 87, 47, 0.12);
+  border-color: rgba(237, 87, 47, 0.55);
+  color: rgba(237, 87, 47, 0.88);
+}
+
+.inv-email-copy-btn.is-copied {
+  background: rgba(72, 187, 120, 0.12);
+  border-color: rgba(72, 187, 120, 0.55);
+  color: rgba(130, 230, 170, 0.95);
+}
+
+.inv-email-copy-btn--profile {
+  width: 2rem;
+  height: 2rem;
+}
+
+.inv-email-copy-btn--profile .inv-email-copy-icon {
+  width: 14px;
+  height: 14px;
+}
+
+body.inv-dir-page .inv-dir-col-sectors .inv-dir-cell:has(.inv-email-revealed) {
+  display: flex;
+  align-items: center;
 }
 
