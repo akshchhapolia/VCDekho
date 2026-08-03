@@ -3,7 +3,7 @@
  * Firm-context sections are joined via companySlug (see render-person-firm-sections.js).
  */
 const { loadPeopleData } = require('./people');
-const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('./site-labels');
+const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL, fundHref, personHref } = require('./site-labels');
 const {
   firmFocusSection,
   firmThesisSection,
@@ -137,7 +137,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     ? '<a class="inv-profile-cta is-ghost" href="' + escapeHtml(person.twitter) + '" target="_blank" rel="noopener noreferrer" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"twitter","kind":"person"}\'>' + iconTwitter + '<span>Twitter / X</span></a>'
     : '';
   const companyBtn = person.companySlug
-    ? '<a class="inv-profile-cta is-ghost" href="/investors/' + escapeHtml(person.companySlug) + '" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"firm","kind":"person"}\'>' + iconExternal + '<span>View ' + escapeHtml(person.company) + '</span></a>'
+    ? '<a class="inv-profile-cta is-ghost" href="' + escapeHtml(fundHref(person.companySlug)) + '" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"firm","kind":"person"}\'>' + iconExternal + '<span>View ' + escapeHtml(person.company) + '</span></a>'
     : '';
 
   // Angel / Individual profiles: At a glance repeats role/type with little signal — omit it
@@ -145,18 +145,18 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
   if (!angelIndividual) {
     const snapshotItems = [
       { label: 'Role', value: person.title || 'Investor', lead: true },
-      { label: 'Company', value: person.company || '—', href: person.companySlug ? '/investors/' + person.companySlug : null },
+      { label: 'Company', value: person.company || '—', href: person.companySlug ? fundHref(person.companySlug) : null },
       { label: 'Company type', value: person.companyType || '—' }
     ];
 
     if (investor && investor.chequeSize) {
-      snapshotItems.push({ label: 'Firm ticket size', value: investor.chequeSize, href: '/investors/' + investor.slug + '#firm-focus' });
+      snapshotItems.push({ label: 'Firm ticket size', value: investor.chequeSize, href: fundHref(investor.slug) + '#firm-focus' });
     }
     if (investor && (investor.stages || []).length) {
       snapshotItems.push({
         label: 'Firm stages',
         value: investor.stages.slice(0, 2).join(' · ') + (investor.stages.length > 2 ? ' +' + (investor.stages.length - 2) : ''),
-        href: '/investors/' + investor.slug + '#firm-focus'
+        href: fundHref(investor.slug) + '#firm-focus'
       });
     }
 
@@ -185,7 +185,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
   };
 
   const colleagueCards = (colleagues || []).slice(0, 6).map((c) => (
-    '<a class="inv-profile-related-card inv-person-colleague-card inv-profile-reveal" href="/people/' + escapeHtml(c.slug) + '">' +
+    '<a class="inv-profile-related-card inv-person-colleague-card inv-profile-reveal" href="' + escapeHtml(personHref(c.slug)) + '">' +
       colleagueAvatarHtml(c) +
       '<div class="inv-person-colleague-copy">' +
         '<div class="inv-profile-related-type">' + escapeHtml(c.title || 'Investor') + '</div>' +
@@ -246,12 +246,12 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     renderProfileHeadAssets(),
     '<title>' + escapeHtml(person.name) + ' | Investors | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
-    '<link rel="canonical" href="https://vcdekho.com/people/' + escapeHtml(person.slug) + '">',
+    '<link rel="canonical" href="https://vcdekho.com' + escapeHtml(personHref(person.slug)) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
     '<meta property="og:title" content="' + escapeHtml(person.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
-    '<meta property="og:url" content="https://vcdekho.com/people/' + escapeHtml(person.slug) + '">',
+    '<meta property="og:url" content="https://vcdekho.com' + escapeHtml(personHref(person.slug)) + '">',
     '<meta property="og:type" content="profile">',
     person.photo ? ('<meta property="og:image" content="https://vcdekho.com' + escapeHtml(person.photo) + '">') : '',
     '<script type="application/ld+json">' + schema + '</script>',

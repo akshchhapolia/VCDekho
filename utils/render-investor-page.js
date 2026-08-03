@@ -12,7 +12,7 @@ const { getPeopleByCompanySlug } = require('./people');
 const { portfolioCardHref } = require('./portfolio-card-href');
 const { filterPortfolioJunk } = require('./portfolio-junk-filter');
 const { portfolioCardBodyHtml } = require('./render-portfolio-card');
-const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('./site-labels');
+const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL, fundHref, personHref, fundStageHref, fundThemeHref, fundSectorHref, FUNDS_STAGES_PATH, FUNDS_THEMES_PATH, FUNDS_SECTORS_PATH } = require('./site-labels');
 const { RECENT_ACTIVITY_LIMIT } = require('./investor-activity-store');
 
 function escapeHtml(value) {
@@ -264,7 +264,7 @@ function thesisWidget(investor, opts) {
 
   const chipsHtml = labels.map(function (label, i) {
     const id = ids[i];
-    const href = id && id !== 'general' ? '/investors/themes/' + id : '';
+    const href = id && id !== 'general' ? '/funds/themes/' + id : '';
     const cls = 'inv-profile-chip inv-profile-chip-thesis';
     const icon = getThesisThemeIconSvg(id || '', 'inv-profile-chip-icon');
     const inner = icon + '<span>' + escapeHtml(label) + '</span>';
@@ -284,7 +284,7 @@ function thesisWidget(investor, opts) {
           '<h2>Investment thesis</h2>' +
           '<p>Themes this investor is mapped to across the VC Dekho directory.</p>' +
         '</div>' +
-        '<a class="inv-profile-browse" href="/investors/themes">All themes →</a>' +
+        '<a class="inv-profile-browse" href="/funds/themes">All themes →</a>' +
       '</div>' +
       '<div class="inv-profile-thesis-chips">' + chipsHtml + '</div>' +
     '</section>'
@@ -368,7 +368,7 @@ function renderInvestorPage(investor, related, res, opts) {
   const stageChips = stages.map((label, i) => {
     const id = stageIds[i];
     if (hasStageGuide(id)) {
-      return '<a class="inv-profile-chip inv-profile-chip-stage" href="/investors/stages/' + escapeHtml(id) + '">' + escapeHtml(label) + '</a>';
+      return '<a class="inv-profile-chip inv-profile-chip-stage" href="/funds/stages/' + escapeHtml(id) + '">' + escapeHtml(label) + '</a>';
     }
     return '<span class="inv-profile-chip inv-profile-chip-stage">' + escapeHtml(label) + '</span>';
   }).join('') || '<span class="inv-profile-empty">No stages listed</span>';
@@ -376,9 +376,9 @@ function renderInvestorPage(investor, related, res, opts) {
   const sectorChips = sectors.map((label, i) => {
     const id = sectorIds[i];
     const href = hasSectorGuide(id)
-      ? '/investors/sectors/' + encodeURIComponent(id)
+      ? '/funds/sectors/' + encodeURIComponent(id)
       : id
-        ? '/investors?sector=' + encodeURIComponent(id)
+        ? '/funds?sector=' + encodeURIComponent(id)
         : '';
     if (href) {
       return '<a class="inv-profile-chip inv-profile-chip-sector" href="' + escapeHtml(href) + '">' + escapeHtml(label) + '</a>';
@@ -429,7 +429,7 @@ function renderInvestorPage(investor, related, res, opts) {
 
   const people = getPeopleByCompanySlug(investor.slug);
   const peopleCards = people.map((p) => (
-    '<a class="inv-profile-related-card inv-profile-reveal" href="/people/' + escapeHtml(p.slug) + '">' +
+    '<a class="inv-profile-related-card inv-profile-reveal" href="/investors/' + escapeHtml(p.slug) + '">' +
       '<div class="inv-profile-related-type">' + escapeHtml(p.title || 'Investor') + '</div>' +
       '<h3>' + escapeHtml(p.name) + '</h3>' +
       '<p>' + escapeHtml(investor.name) + '</p>' +
@@ -446,7 +446,7 @@ function renderInvestorPage(investor, related, res, opts) {
     : '';
 
   const relatedCards = (related || []).map(r => (
-    '<a class="inv-profile-related-card inv-profile-reveal" href="/investors/' + escapeHtml(r.slug) + '">' +
+    '<a class="inv-profile-related-card inv-profile-reveal" href="/funds/' + escapeHtml(r.slug) + '">' +
       '<div class="inv-profile-related-type">' + escapeHtml(r.type) + '</div>' +
       '<h3>' + escapeHtml(r.name) + '</h3>' +
       '<p>' + escapeHtml(r.chequeSize || r.thesis || '') + '</p>' +
@@ -481,9 +481,9 @@ function renderInvestorPage(investor, related, res, opts) {
     subtitle: 'Jump into stage, sector, and thesis guides connected to this fund.',
     stages: stagesForExplore,
     themes: exploreThemes,
-    fundsHref: '/investors',
+    fundsHref: '/funds',
     fundsLabel: 'Back to directory →',
-    siblingHref: '/investors/sectors',
+    siblingHref: '/funds/sectors',
     siblingLabel: 'Sector guides →',
     className: 'inv-profile-reveal'
   });
@@ -592,12 +592,12 @@ function renderInvestorPage(investor, related, res, opts) {
     '<div class="inv-profile-focus-col">',
     '<h3>Sector focus</h3>',
     '<div class="inv-profile-chip-row">' + sectorChips + '</div>',
-    '<a class="inv-profile-panel-link" href="/investors/sectors">Sector guides →</a>',
+    '<a class="inv-profile-panel-link" href="/funds/sectors">Sector guides →</a>',
     '</div>',
     '<div class="inv-profile-focus-col">',
     '<h3>Lead / invest stages</h3>',
     '<div class="inv-profile-chip-row">' + stageChips + '</div>',
-    '<a class="inv-profile-panel-link" href="/investors/stages">Stage guides →</a>',
+    '<a class="inv-profile-panel-link" href="/funds/stages">Stage guides →</a>',
     '</div>',
     '</div>',
     '</div>',

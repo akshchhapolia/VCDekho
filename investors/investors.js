@@ -274,16 +274,17 @@
     const isMobileList = window.matchMedia('(max-width: 768px)').matches;
 
     els.results.innerHTML = investors.map(inv => {
+      const P = window.VCSitePaths || {};
       const stagesHtml = joinLinked(
         inv.stages,
         inv.stageIds,
-        id => (STAGE_GUIDE_IDS[id] ? '/investors/stages/' + id : null),
+        id => (STAGE_GUIDE_IDS[id] ? (P.fundStage || function (s) { return '/funds/stages/' + s; })(id) : null),
         isMobileList ? 3 : 4
       );
       const thesisHtml = joinLinked(
         inv.thesisThemes,
         inv.thesisThemeIds,
-        id => (id && id !== 'general' ? '/investors/themes/' + id : null),
+        id => (id && id !== 'general' ? (P.fundTheme || function (s) { return '/funds/themes/' + s; })(id) : null),
         isMobileList ? 1 : 3
       );
       const sectorsText = joinList(inv.sectors, isMobileList ? 2 : 3);
@@ -291,7 +292,7 @@
         .filter(Boolean)
         .join(' · ') || '—';
 
-      const href = '/investors/' + esc(inv.slug);
+      const href = (P.fund || function (s) { return '/funds/' + s; })(inv.slug);
       return `
       <article class="inv-dir-row">
         <a class="inv-dir-row-hit" href="${href}" aria-label="${esc(inv.name)}" data-analytics-event="dir_result_click" data-analytics-params='{"directory":"funds","slug":"${esc(inv.slug)}"}'></a>
@@ -327,16 +328,22 @@
     if (!els.guideSlot) return;
     if (state.stage && STAGE_GUIDE_IDS[state.stage]) {
       const label = findFilterLabel(state.filters && state.filters.stages, state.stage) || state.stage;
+      const stageHref = (window.VCSitePaths && window.VCSitePaths.fundStage)
+        ? window.VCSitePaths.fundStage(state.stage)
+        : '/funds/stages/' + esc(state.stage);
       els.guideSlot.innerHTML =
         '<span class="inv-dir-dot" aria-hidden="true">·</span>' +
-        '<a class="inv-dir-guide-link" href="/investors/stages/' + esc(state.stage) + '">Open ' + esc(label) + ' guide →</a>';
+        '<a class="inv-dir-guide-link" href="' + stageHref + '">Open ' + esc(label) + ' guide →</a>';
       return;
     }
     if (state.thesis && state.thesis !== 'general') {
       const label = findFilterLabel(state.filters && state.filters.thesisThemes, state.thesis) || state.thesis;
+      const themeHref = (window.VCSitePaths && window.VCSitePaths.fundTheme)
+        ? window.VCSitePaths.fundTheme(state.thesis)
+        : '/funds/themes/' + esc(state.thesis);
       els.guideSlot.innerHTML =
         '<span class="inv-dir-dot" aria-hidden="true">·</span>' +
-        '<a class="inv-dir-guide-link" href="/investors/themes/' + esc(state.thesis) + '">Open ' + esc(label) + ' guide →</a>';
+        '<a class="inv-dir-guide-link" href="' + themeHref + '">Open ' + esc(label) + ' guide →</a>';
       return;
     }
     els.guideSlot.innerHTML = '';

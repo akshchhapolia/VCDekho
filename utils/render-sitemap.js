@@ -4,6 +4,18 @@ const { getAllPeople } = require('./people');
 const { THESIS_THEMES } = require('../data/thesis-themes');
 const { INVESTMENT_STAGES } = require('../data/investment-stages');
 const { SECTOR_GUIDES } = require('../data/sectors');
+const {
+  FUNDS_PATH,
+  INVESTORS_PATH,
+  FUNDS_STAGES_PATH,
+  FUNDS_THEMES_PATH,
+  FUNDS_SECTORS_PATH,
+  fundHref,
+  personHref,
+  fundStageHref,
+  fundThemeHref,
+  fundSectorHref
+} = require('./site-labels');
 
 async function renderSitemapXml() {
   let dynamicUrls = '';
@@ -34,7 +46,7 @@ async function renderSitemapXml() {
     getAllInvestors().forEach((inv) => {
       dynamicUrls += `
   <url>
-    <loc>https://vcdekho.com/investors/${inv.slug}</loc>
+    <loc>https://vcdekho.com${fundHref(inv.slug)}</loc>
     <priority>0.75</priority>
   </url>`;
     });
@@ -46,7 +58,7 @@ async function renderSitemapXml() {
     getAllPeople().forEach((p) => {
       dynamicUrls += `
   <url>
-    <loc>https://vcdekho.com/people/${p.slug}</loc>
+    <loc>https://vcdekho.com${personHref(p.slug)}</loc>
     <priority>0.6</priority>
   </url>`;
     });
@@ -73,32 +85,40 @@ async function renderSitemapXml() {
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://vcdekho.com/investors/themes</loc>
+    <loc>https://vcdekho.com${FUNDS_PATH}</loc>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://vcdekho.com${INVESTORS_PATH}</loc>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://vcdekho.com${FUNDS_THEMES_PATH}</loc>
     <priority>0.9</priority>
   </url>${THESIS_THEMES.map(
     (t) => `
   <url>
-    <loc>https://vcdekho.com/investors/themes/${t.id}</loc>
+    <loc>https://vcdekho.com${fundThemeHref(t.id)}</loc>
     <priority>0.85</priority>
   </url>`
   ).join('')}
   <url>
-    <loc>https://vcdekho.com/investors/stages</loc>
+    <loc>https://vcdekho.com${FUNDS_STAGES_PATH}</loc>
     <priority>0.9</priority>
   </url>${INVESTMENT_STAGES.map(
     (s) => `
   <url>
-    <loc>https://vcdekho.com/investors/stages/${s.id}</loc>
+    <loc>https://vcdekho.com${fundStageHref(s.id)}</loc>
     <priority>0.85</priority>
   </url>`
   ).join('')}
   <url>
-    <loc>https://vcdekho.com/investors/sectors</loc>
+    <loc>https://vcdekho.com${FUNDS_SECTORS_PATH}</loc>
     <priority>0.9</priority>
   </url>${SECTOR_GUIDES.map(
     (s) => `
   <url>
-    <loc>https://vcdekho.com/investors/sectors/${s.id}</loc>
+    <loc>https://vcdekho.com${fundSectorHref(s.id)}</loc>
     <priority>0.85</priority>
   </url>`
   ).join('')}

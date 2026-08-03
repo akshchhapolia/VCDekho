@@ -233,9 +233,10 @@
     }
 
     els.results.innerHTML = people.map((p) => {
-      const href = '/people/' + esc(p.slug);
+      const P = window.VCSitePaths || {};
+      const href = (P.person || function (s) { return '/investors/' + s; })(p.slug);
       const companyHtml = p.companySlug
-        ? '<a class="inv-dir-inline-link" href="/investors/' + esc(p.companySlug) + '" onclick="event.stopPropagation()">' + esc(p.company) + '</a>'
+        ? '<a class="inv-dir-inline-link" href="' + esc((P.fund || function (s) { return '/funds/' + s; })(p.companySlug)) + '" onclick="event.stopPropagation()">' + esc(p.company) + '</a>'
         : esc(p.company || '—');
       const emailHtml = p.email
         ? (window.VCPersonEmailUnlock
