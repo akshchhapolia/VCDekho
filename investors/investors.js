@@ -221,7 +221,7 @@
       const id = (ids || [])[i];
       const href = id && hrefForId(id);
       if (href) {
-        return '<a class="inv-dir-inline-link" href="' + esc(href) + '">' + esc(label) + '</a>';
+        return '<a class="inv-dir-inline-link" href="' + esc(href) + '" onclick="event.stopPropagation()">' + esc(label) + '</a>';
       }
       return esc(label);
     });
