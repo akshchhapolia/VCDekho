@@ -106,8 +106,23 @@ async function requireAuth(req, res) {
   }
 }
 
+function touchUserActivity(user, req) {
+  try {
+    const { recordUserActivitySafe } = require('./user-analytics');
+    recordUserActivitySafe(user, req);
+  } catch (_) {}
+}
+
+async function requireAuthWithActivity(req, res) {
+  const user = await requireAuth(req, res);
+  if (user) touchUserActivity(user, req);
+  return user;
+}
+
 module.exports = {
   requireAuth,
+  requireAuthWithActivity,
+  touchUserActivity,
   verifyAccessToken,
   isProductionHost,
   requestHost,

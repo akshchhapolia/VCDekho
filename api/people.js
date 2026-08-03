@@ -18,12 +18,32 @@ const {
   getUnlockQuota
 } = require('../utils/person-email-unlocks');
 const { getInvestorBySlug, ensureInvestorDetailExtras } = require('../utils/investors');
-const { requireAuth } = require('../utils/require-auth');
+const { requireAuth, requireAuthWithActivity } = require('../utils/require-auth');
+const { recordSessionMeta } = require('../utils/user-analytics');
 const { renderPersonPage, renderPersonExtrasHtml } = require('../utils/render-person-page');
 const { isMobileRequest } = require('../utils/profile-page-assets');
 
 module.exports = async function handler(req, res) {
   const query = req.query || {};
+
+  if (String(query.action || '').toLowerCase() === 'session-meta') {
+    if (req.method !== 'POST') {
+      return res.status(405).json({ error: 'Method not allowed' });
+    }
+    try {
+      const user = await requireAuth(req, res);
+      if (!user) return;
+      const body =
+        typeof req.body === 'string'
+          ? JSON.parse(req.body || '{}')
+          : req.body || {};
+      await recordSessionMeta(user, req, body);
+      return res.status(200).json({ ok: true });
+    } catch (error) {
+      console.error('session-meta error:', error);
+      return res.status(500).json({ error: error.message });
+    }
+  }
 
   if (query.slug) {
     try {
@@ -43,7 +63,7 @@ module.exports = async function handler(req, res) {
 
       // Authenticated email unlock (never cached publicly)
       if (query.contact === 'email') {
-        const user = await requireAuth(req, res);
+        const user = await requireAuthWithActivity(req, res);
         if (!user) return;
 
         if (!person.hasEmail) {
@@ -140,7 +160,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const user = await requireAuth(req, res);
+    const user = await requireAuthWithActivity(req, res);
     if (!user) return;
 
     const {

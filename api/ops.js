@@ -14,6 +14,7 @@ const { renderSitemapXml } = require('../utils/render-sitemap');
 const { requireCronAuth } = require('../utils/cron-run');
 const { getAllInvestors } = require('../utils/investors');
 const { getAllPeople } = require('../utils/people');
+const { getAnalyticsOverview, listUsers } = require('../utils/user-analytics');
 
 function requireAdmin(req, res) {
   const expected = 'Bearer ' + (process.env.ADMIN_SECRET || '');
@@ -238,6 +239,22 @@ async function handlePingVendors(req, res) {
   res.status(200).json({ success: true, results, alertsSent: alerts.length });
 }
 
+async function handleAnalytics(req, res) {
+  const view = String((req.query && req.query.view) || 'overview').toLowerCase();
+
+  if (view === 'users') {
+    const data = await listUsers({
+      q: req.query.q || '',
+      offset: req.query.offset || 0,
+      limit: req.query.limit || 50
+    });
+    return res.status(200).json(data);
+  }
+
+  const overview = await getAnalyticsOverview();
+  return res.status(200).json(overview);
+}
+
 module.exports = async function handler(req, res) {
   const action = String((req.query && req.query.action) || '').toLowerCase() || 'health';
 
@@ -264,6 +281,11 @@ module.exports = async function handler(req, res) {
 
     if (action === 'ping-vendors') {
       return handlePingVendors(req, res);
+    }
+
+    if (action === 'analytics') {
+      if (!requireAdmin(req, res)) return;
+      return handleAnalytics(req, res);
     }
 
     return res.status(400).json({ error: 'Unknown action', action });

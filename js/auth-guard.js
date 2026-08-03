@@ -39,6 +39,9 @@
       if (!session) return;
       reveal();
       window.VCAuth.wireLogout('#logout-link');
+      if (window.VCAuth.pingSessionMeta) {
+        window.VCAuth.pingSessionMeta();
+      }
     })
     .catch(function () {
       window.location.replace('/login?next=' + encodeURIComponent(location.pathname + location.search));

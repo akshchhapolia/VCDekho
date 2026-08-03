@@ -215,6 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function redirectAfterAuth() {
+    if (window.VCAuth && window.VCAuth.pingSessionMeta) {
+      await window.VCAuth.pingSessionMeta({ isSignup: true });
+    }
     window.location.href = safeNext(nextPath);
   }
 

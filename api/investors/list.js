@@ -2,7 +2,7 @@ const { filterInvestors, getFilters, toCard, ensureActivityFresh } = require('..
 const { getAllThemes } = require('../../utils/thesis-themes');
 const { getAllStages } = require('../../utils/investment-stages');
 const { getAllSectorGuides } = require('../../utils/sectors');
-const { requireAuth } = require('../../utils/require-auth');
+const { requireAuthWithActivity } = require('../../utils/require-auth');
 const { getThesisThemeIconSvg } = require('../../utils/thesis-theme-icons');
 const { getSectorIconSvg } = require('../../utils/sector-icons');
 
@@ -13,7 +13,7 @@ module.exports = async function handler(req, res) {
       query.view === 'themes' || query.view === 'stages' || query.view === 'sectors';
 
     if (!isPublicView) {
-      const user = await requireAuth(req, res);
+      const user = await requireAuthWithActivity(req, res);
       if (!user) return;
     }
 
