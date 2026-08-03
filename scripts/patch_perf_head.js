@@ -33,7 +33,7 @@ function patchHtml(file) {
   );
   html = html.replace(
     /<script src="\/people\/people.js(\?v=\d+)?"><\/script>/g,
-    '<script src="/people/people.js?v=31" defer></script>'
+    '<script src="/js/people.js?v=118" defer></script>'
   );
   html = html.replace(/<script src="\/login.js"><\/script>/g, '<script src="/login.js" defer></script>');
   fs.writeFileSync(file, html);
