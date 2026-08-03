@@ -47,6 +47,306 @@
       "email": null,
       "certainty": null,
       "at": "2026-07-29T16:13:20.717Z"
+    },
+    "vinutha rallapalli||innovex capital||https://www.linkedin.com/in/vinutha-naga-rallapalli-31808a67": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-08-03T00:10:09.307Z"
+    },
+    "ranopriyo choudhury||growth valley||https://www.linkedin.com/in/ranopriyo-choudhury-853a1b9": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-08-03T00:10:15.743Z"
+    },
+    "shailendra singh||sequoia (india) / peak xv||https://www.linkedin.com/in/shailendraj1": {
+      "status": "FOUND",
+      "email": "ssingh@peakxv.com",
+      "certainty": "probable",
+      "at": "2026-08-03T00:10:24.981Z"
+    },
+    "abhishek mohan||sequoia (india) / peak xv||https://www.linkedin.com/in/abhishek-mohan-b01b023": {
+      "status": "FOUND",
+      "email": "abhishek@peakxv.com",
+      "certainty": "probable",
+      "at": "2026-08-03T00:10:27.427Z"
+    },
+    "pearl agarwal||eximus ventures||https://www.linkedin.com/in/pearl-agarwal": {
+      "status": "FOUND",
+      "email": "pearl@eximiusvc.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:10:29.755Z"
+    },
+    "preeti nellore sampat||eximus ventures||https://www.linkedin.com/in/preetisampat": {
+      "status": "FOUND",
+      "email": "preeti@eximiusvc.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:10:31.723Z"
+    },
+    "rick gerson||alpha wave global||https://www.linkedin.com/in/rick-gerson": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-08-03T00:10:37.651Z"
+    },
+    "navroz d. udwadia||alpha wave global||https://www.linkedin.com/in/navroz-d-udwadia-bb9b3372": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-08-03T00:10:54.146Z"
+    },
+    "sandeep sinha||lumis partners||https://www.linkedin.com/in/sinhasandeep": {
+      "status": "FOUND",
+      "email": "sandeep.sinha@lumispartners.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:10:58.584Z"
+    },
+    "rohit bhayana||lumis partners||https://www.linkedin.com/in/rohitbhayana": {
+      "status": "FOUND",
+      "email": "rohit.bhayana@lumispartners.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:11:01.756Z"
+    },
+    "vinod murali||alteria capital||https://www.linkedin.com/in/vinod-murali-a2568752": {
+      "status": "FOUND",
+      "email": "vinod@alteriacapital.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:11:02.737Z"
+    },
+    "punit shah||alteria capital||https://www.linkedin.com/in/punit-shah0401": {
+      "status": "FOUND",
+      "email": "punit@alteriacapital.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:11:04.631Z"
+    },
+    "amitabh shrivastava||july ventures||https://www.linkedin.com/in/amitabhshrivastava": {
+      "status": "FOUND",
+      "email": "amitabh.s@julyventures.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:11:23.489Z"
+    },
+    "mv subramanian||july ventures||https://www.linkedin.com/in/mvsmani": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-08-03T00:11:27.780Z"
+    },
+    "arun tadanki||waveform ventures||https://www.linkedin.com/in/aruntadanki": {
+      "status": "FOUND",
+      "email": "arun@waveform.vc",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:11:28.778Z"
+    },
+    "sailesh tulshan||xeed ventures||https://www.linkedin.com/in/st5": {
+      "status": "FOUND",
+      "email": "sailesh@xeedvc.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:11:31.132Z"
+    },
+    "shruti jain||xeed ventures||https://www.linkedin.com/in/shruti-jain-60661657": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-08-03T00:11:47.785Z"
+    },
+    "jeff crowe||norwest venture partners||https://www.linkedin.com/in/jeff-crowe-7ba43": {
+      "status": "FOUND",
+      "email": "jcrowe@nvp.com",
+      "certainty": "probable",
+      "at": "2026-08-03T00:11:52.011Z"
+    },
+    "jon kossow||norwest venture partners||": {
+      "status": "FOUND",
+      "email": "jkossow@nvp.com",
+      "certainty": "probable",
+      "at": "2026-08-03T00:11:54.526Z"
+    },
+    "deepak i. shahdadpuri||dsg consumer partners||https://www.linkedin.com/in/deepakishahdadpuri": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-08-03T00:12:00.893Z"
+    },
+    "manu rikhye||merak ventures||https://www.linkedin.com/in/manu-rikhye-b9b9391": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-08-03T00:12:16.383Z"
+    },
+    "sheetal bahl||merak ventures||https://www.linkedin.com/in/sheetalbahl": {
+      "status": "FOUND",
+      "email": "sheetal@merakventures.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:12:22.190Z"
+    },
+    "priya shah||theia ventures||": {
+      "status": "FOUND",
+      "email": "priya@theia-ventures.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:12:25.741Z"
+    },
+    "piyush mathur||theia ventures||https://www.linkedin.com/in/piyush-mathur-373125": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-08-03T00:12:27.606Z"
+    },
+    "rajat kedia||manjushree ventures||https://www.linkedin.com/in/rajatkedia": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-08-03T00:12:31.215Z"
+    },
+    "ankit kedia||manjushree ventures||https://www.linkedin.com/in/ankitkedia": {
+      "status": "FOUND",
+      "email": "ankit.kedia@manjushreeventures.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:12:50.662Z"
+    },
+    "alex theuma||backfuture||https://www.linkedin.com/in/alextheuma": {
+      "status": "FOUND",
+      "email": "alex@backfuture.vc",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:12:52.791Z"
+    },
+    "kenneth k thomas||backfuture||https://www.linkedin.com/in/kennethkashifthomas": {
+      "status": "FOUND",
+      "email": "ken@backfuture.vc",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:12:54.673Z"
+    },
+    "amrit rao||village global||https://www.linkedin.com/in/amrit-rao": {
+      "status": "FOUND",
+      "email": "amrit@villageglobal.vc",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:12:56.657Z"
+    },
+    "anne dwane||village global||https://www.linkedin.com/in/dwane": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-08-03T00:13:03.092Z"
+    },
+    "arjun malhotra||investopad||https://www.linkedin.com/in/arjun-malhotra-investopad": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-08-03T00:13:09.704Z"
+    },
+    "rohan malhotra||investopad||https://www.linkedin.com/in/rohan-malhotra-377b512a": {
+      "status": "FOUND",
+      "email": "rohan@investopad.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:13:14.233Z"
+    },
+    "pål erik sjåtil||lightrock||https://www.linkedin.com/in/paleriksjatil": {
+      "status": "FOUND",
+      "email": "palerik@lightrock.com",
+      "certainty": "probable",
+      "at": "2026-08-03T00:13:19.609Z"
+    },
+    "ahmad el jurdi||lightrock||https://www.linkedin.com/in/ahmad-el-jurdi-41933114": {
+      "status": "FOUND",
+      "email": "ahmad@lightrock.com",
+      "certainty": "probable",
+      "at": "2026-08-03T00:13:23.345Z"
+    },
+    "arvind agarwal||c4d partners||https://www.linkedin.com/in/arvind-agarwal-00829110": {
+      "status": "FOUND",
+      "email": "arvind@c4dpartners.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:13:44.437Z"
+    },
+    "gaurav gupta||c4d partners||https://www.linkedin.com/in/gaurav-gupta-01767b13": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-08-03T00:13:46.171Z"
+    },
+    "ahmad radaideh||beyond capital ventures||https://www.linkedin.com/in/ahmad-radaideh-16bb46121": {
+      "status": "FOUND",
+      "email": "a.radaideh@beyondcapital.vc",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:13:47.189Z"
+    },
+    "sharaf saleh||beyond capital ventures||https://www.linkedin.com/in/sharaf-saleh-139b24108": {
+      "status": "FOUND",
+      "email": "s.saleh@beyondcapital.vc",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:13:48.135Z"
+    },
+    "chamath palihapitiya||social capital||https://www.linkedin.com/in/chamath": {
+      "status": "FOUND",
+      "email": "chamath@socialcapital.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:13:49.981Z"
+    },
+    "ashish dhawan||chryscapital||https://www.linkedin.com/in/ashish-dhawan-241112": {
+      "status": "FOUND",
+      "email": "ashish@chryscapital.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:13:58.930Z"
+    },
+    "kunal shroff||chryscapital||": {
+      "status": "FOUND",
+      "email": "kunal@chryscapital.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:14:08.763Z"
+    },
+    "teruhide sato||beenext||https://www.linkedin.com/in/teruhidesato": {
+      "status": "FOUND",
+      "email": "sato@beenext.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:14:09.821Z"
+    },
+    "dirk van quaquebeke||beenext||https://www.linkedin.com/in/dirkvanquaquebeke": {
+      "status": "FOUND",
+      "email": "dirk@beenext.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:14:10.887Z"
+    },
+    "kee lock chua||vertex ventures se asia & india||https://www.linkedin.com/in/kee-lock-chua-663119": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-08-03T00:14:17.197Z"
+    },
+    "joo hock chua||vertex ventures se asia & india||https://www.linkedin.com/in/joo-hock-chua-8b87181": {
+      "status": "NOT_FOUND",
+      "email": null,
+      "certainty": null,
+      "at": "2026-08-03T00:14:23.540Z"
+    },
+    "alex iskold||2048 ventures||https://www.linkedin.com/in/iskold": {
+      "status": "FOUND",
+      "email": "alex@2048.vc",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:14:36.210Z"
+    },
+    "zann ali||2048 ventures||https://www.linkedin.com/in/zannali": {
+      "status": "FOUND",
+      "email": "zann@2048.vc",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:14:38.069Z"
+    },
+    "eric brachfeld||m venture partners (mvp)||https://www.linkedin.com/in/ericbrachfeld": {
+      "status": "FOUND",
+      "email": "eric@mvp.vc",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:14:39.804Z"
+    },
+    "jared carmel||m venture partners (mvp)||https://www.linkedin.com/in/carmel": {
+      "status": "FOUND",
+      "email": "jared@mvp.vc",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:14:41.934Z"
+    },
+    "peng t. ong||monk's hill venture||https://www.linkedin.com/in/pengtong": {
+      "status": "FOUND",
+      "email": "peng.ong@monkshill.com",
+      "certainty": "ultra_sure",
+      "at": "2026-08-03T00:14:42.858Z"
     }
   }
 }

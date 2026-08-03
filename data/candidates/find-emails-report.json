@@ -1,16 +1,254 @@
 {
-  "generatedAt": "2026-07-29T16:12:53.699Z",
-  "attempted": 8,
-  "found": 1,
-  "notFound": 7,
+  "generatedAt": "2026-08-03T00:10:08.496Z",
+  "attempted": 50,
+  "found": 35,
+  "notFound": 15,
   "lowCertainty": 0,
   "errors": [],
   "results": [
     {
-      "index": 407,
-      "company": "Ecosystem Ventures",
-      "name": "Samyak Jain",
-      "email": "samyak.j@ecosystemventures.in",
+      "index": 435,
+      "company": "Sequoia (India) / Peak XV",
+      "name": "Shailendra Singh",
+      "email": "ssingh@peakxv.com",
+      "certainty": "probable"
+    },
+    {
+      "index": 436,
+      "company": "Sequoia (India) / Peak XV",
+      "name": "Abhishek Mohan",
+      "email": "abhishek@peakxv.com",
+      "certainty": "probable"
+    },
+    {
+      "index": 437,
+      "company": "Eximus Ventures",
+      "name": "Pearl Agarwal",
+      "email": "pearl@eximiusvc.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 438,
+      "company": "Eximus Ventures",
+      "name": "Preeti Nellore Sampat",
+      "email": "preeti@eximiusvc.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 441,
+      "company": "Lumis Partners",
+      "name": "Sandeep Sinha",
+      "email": "sandeep.sinha@lumispartners.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 442,
+      "company": "Lumis Partners",
+      "name": "Rohit Bhayana",
+      "email": "rohit.bhayana@lumispartners.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 443,
+      "company": "Alteria Capital",
+      "name": "Vinod Murali",
+      "email": "vinod@alteriacapital.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 444,
+      "company": "Alteria Capital",
+      "name": "Punit Shah",
+      "email": "punit@alteriacapital.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 445,
+      "company": "July Ventures",
+      "name": "Amitabh Shrivastava",
+      "email": "amitabh.s@julyventures.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 447,
+      "company": "Waveform Ventures",
+      "name": "Arun Tadanki",
+      "email": "arun@waveform.vc",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 448,
+      "company": "Xeed Ventures",
+      "name": "Sailesh Tulshan",
+      "email": "sailesh@xeedvc.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 450,
+      "company": "Norwest Venture Partners",
+      "name": "Jeff Crowe",
+      "email": "jcrowe@nvp.com",
+      "certainty": "probable"
+    },
+    {
+      "index": 451,
+      "company": "Norwest Venture Partners",
+      "name": "Jon Kossow",
+      "email": "jkossow@nvp.com",
+      "certainty": "probable"
+    },
+    {
+      "index": 454,
+      "company": "Merak Ventures",
+      "name": "Sheetal Bahl",
+      "email": "sheetal@merakventures.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 455,
+      "company": "Theia Ventures",
+      "name": "Priya Shah",
+      "email": "priya@theia-ventures.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 458,
+      "company": "Manjushree Ventures",
+      "name": "Ankit Kedia",
+      "email": "ankit.kedia@manjushreeventures.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 459,
+      "company": "BackFuture",
+      "name": "Alex Theuma",
+      "email": "alex@backfuture.vc",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 460,
+      "company": "BackFuture",
+      "name": "Kenneth K Thomas",
+      "email": "ken@backfuture.vc",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 461,
+      "company": "Village Global",
+      "name": "Amrit Rao",
+      "email": "amrit@villageglobal.vc",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 464,
+      "company": "Investopad",
+      "name": "Rohan Malhotra",
+      "email": "rohan@investopad.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 465,
+      "company": "Lightrock",
+      "name": "Pål Erik Sjåtil",
+      "email": "palerik@lightrock.com",
+      "certainty": "probable"
+    },
+    {
+      "index": 466,
+      "company": "Lightrock",
+      "name": "Ahmad El Jurdi",
+      "email": "ahmad@lightrock.com",
+      "certainty": "probable"
+    },
+    {
+      "index": 467,
+      "company": "C4D Partners",
+      "name": "Arvind Agarwal",
+      "email": "arvind@c4dpartners.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 469,
+      "company": "Beyond Capital Ventures",
+      "name": "Ahmad Radaideh",
+      "email": "a.radaideh@beyondcapital.vc",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 470,
+      "company": "Beyond Capital Ventures",
+      "name": "Sharaf Saleh",
+      "email": "s.saleh@beyondcapital.vc",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 471,
+      "company": "Social Capital",
+      "name": "Chamath Palihapitiya",
+      "email": "chamath@socialcapital.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 472,
+      "company": "ChrysCapital",
+      "name": "Ashish Dhawan",
+      "email": "ashish@chryscapital.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 473,
+      "company": "ChrysCapital",
+      "name": "Kunal Shroff",
+      "email": "kunal@chryscapital.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 474,
+      "company": "BEENEXT",
+      "name": "Teruhide Sato",
+      "email": "sato@beenext.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 475,
+      "company": "BEENEXT",
+      "name": "Dirk Van Quaquebeke",
+      "email": "dirk@beenext.com",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 478,
+      "company": "2048 Ventures",
+      "name": "Alex Iskold",
+      "email": "alex@2048.vc",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 479,
+      "company": "2048 Ventures",
+      "name": "Zann Ali",
+      "email": "zann@2048.vc",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 480,
+      "company": "M Venture Partners (MVP)",
+      "name": "Eric Brachfeld",
+      "email": "eric@mvp.vc",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 481,
+      "company": "M Venture Partners (MVP)",
+      "name": "Jared Carmel",
+      "email": "jared@mvp.vc",
+      "certainty": "ultra_sure"
+    },
+    {
+      "index": 482,
+      "company": "Monk's Hill Venture",
+      "name": "Peng T. Ong",
+      "email": "peng.ong@monkshill.com",
       "certainty": "ultra_sure"
     }
   ]
