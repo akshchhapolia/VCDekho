@@ -430,6 +430,19 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
   text-indent: -9999px;
   overflow: hidden;
   color: transparent;
+  pointer-events: auto;
+}
+
+/* Let clicks reach the full-row hit target; re-enable on CTAs only */
+.inv-dir-row > .inv-dir-col {
+  pointer-events: none;
+}
+
+.inv-dir-row .inv-dir-inline-link,
+.inv-dir-row .inv-email-unlock-btn,
+.inv-dir-row .inv-email-revealed,
+.inv-dir-row .inv-email-copy-btn {
+  pointer-events: auto;
 }
 
 /* Keep interactive columns above the full-row hit target (desktop) */
