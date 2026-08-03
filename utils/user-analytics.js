@@ -1,10 +1,12 @@
 /**
  * User registration + activity analytics for the admin dashboard.
- * Profiles sync from Supabase Auth when SUPABASE_SERVICE_ROLE_KEY is set.
+ * Tracks users from first login / directory visit onward (no historical backfill).
  */
 const db = require('./db');
-const { SUPABASE_URL } = require('./require-auth');
 const { DAILY_UNLOCK_LIMIT, isUnlimitedUnlockUser } = require('./person-email-unlocks');
+
+/** Analytics collection start (IST) — shown in admin UI. */
+const TRACKING_SINCE = '2026-08-03T00:00:00+05:30';
 
 const DDL = `
 CREATE TABLE IF NOT EXISTS user_profiles (
@@ -32,7 +34,6 @@ CREATE TABLE IF NOT EXISTS user_analytics_meta (
 );
 `;
 
-const SYNC_COOLDOWN_MS = 15 * 60 * 1000;
 const IST = 'Asia/Kolkata';
 
 let tablesReady = false;
@@ -166,76 +167,6 @@ async function recordSessionMeta(user, req, body) {
   await recordUserActivity(user, req, { platform, signupPlatform: isSignup ? platform : undefined });
 }
 
-async function shouldSyncSupabase() {
-  const ok = await ensureUserAnalyticsTables();
-  if (!ok || !process.env.SUPABASE_SERVICE_ROLE_KEY) return false;
-
-  try {
-    const { rows } = await db.query(
-      `SELECT updated_at FROM user_analytics_meta WHERE key = 'supabase_sync' LIMIT 1`
-    );
-    if (!rows.length) return true;
-    const age = Date.now() - new Date(rows[0].updated_at).getTime();
-    return age > SYNC_COOLDOWN_MS;
-  } catch (_) {
-    return true;
-  }
-}
-
-async function syncSupabaseUsers() {
-  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!serviceKey) {
-    return { synced: false, reason: 'SUPABASE_SERVICE_ROLE_KEY not configured' };
-  }
-  if (!(await shouldSyncSupabase())) {
-    return { synced: false, reason: 'cached' };
-  }
-
-  const ok = await ensureUserAnalyticsTables();
-  if (!ok) return { synced: false, reason: 'database unavailable' };
-
-  let page = 1;
-  let totalSynced = 0;
-  const perPage = 200;
-
-  while (true) {
-    const url = `${SUPABASE_URL}/auth/v1/admin/users?page=${page}&per_page=${perPage}`;
-    const res = await fetch(url, {
-      headers: {
-        Authorization: `Bearer ${serviceKey}`,
-        apikey: serviceKey
-      }
-    });
-    if (!res.ok) {
-      const text = await res.text();
-      throw new Error(`Supabase admin users failed (${res.status}): ${text.slice(0, 200)}`);
-    }
-    const payload = await res.json();
-    const users = payload.users || [];
-    if (!users.length) break;
-
-    for (const u of users) {
-      if (!u.id || !u.email) continue;
-      const registeredAt = u.created_at ? new Date(u.created_at) : new Date();
-      const lastActive = u.last_sign_in_at ? new Date(u.last_sign_in_at) : null;
-      await upsertProfile(u.id, u.email, registeredAt, lastActive, null);
-      totalSynced += 1;
-    }
-
-    if (users.length < perPage) break;
-    page += 1;
-  }
-
-  await db.query(
-    `INSERT INTO user_analytics_meta (key, value, updated_at)
-     VALUES ('supabase_sync', $1::jsonb, NOW())
-     ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = NOW()`,
-    [JSON.stringify({ totalSynced, at: new Date().toISOString() })]
-  );
-
-  return { synced: true, totalSynced };
-}
-
 function pctChange(current, previous) {
   if (!previous) return current ? 100 : 0;
   return Math.round(((current - previous) / previous) * 1000) / 10;
@@ -319,8 +250,6 @@ async function getUnlockStats() {
 }
 
 async function getAnalyticsOverview() {
-  await syncSupabaseUsers().catch((err) => console.warn('syncSupabaseUsers:', err.message));
-
   const registered = await countRegisteredByPlatform();
   const today = istDateString(new Date());
   const yesterday = istDateString(new Date(Date.now() - 86400000));
@@ -353,7 +282,7 @@ async function getAnalyticsOverview() {
 
   return {
     registered,
-    supabaseSyncConfigured: Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY),
+    trackingSince: TRACKING_SINCE,
     dau: {
       today: dauToday,
       yesterday: dauYesterday,
@@ -384,8 +313,6 @@ async function getAnalyticsOverview() {
 }
 
 async function listUsers({ q = '', offset = 0, limit = 50 }) {
-  await syncSupabaseUsers().catch((err) => console.warn('syncSupabaseUsers:', err.message));
-
   const take = Math.min(200, Math.max(1, parseInt(limit, 10) || 50));
   const start = Math.max(0, parseInt(offset, 10) || 0);
   const term = String(q || '').trim().toLowerCase();
@@ -441,16 +368,16 @@ async function listUsers({ q = '', offset = 0, limit = 50 }) {
     };
   });
 
-  return { total, offset: start, limit: take, users, dailyUnlockLimit: DAILY_UNLOCK_LIMIT };
+  return { total, offset: start, limit: take, users, dailyUnlockLimit: DAILY_UNLOCK_LIMIT, trackingSince: TRACKING_SINCE };
 }
 
 module.exports = {
+  TRACKING_SINCE,
   ensureUserAnalyticsTables,
   detectPlatform,
   recordUserActivity,
   recordUserActivitySafe,
   recordSessionMeta,
-  syncSupabaseUsers,
   getAnalyticsOverview,
   listUsers,
   istDateString

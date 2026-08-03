@@ -59,7 +59,7 @@
   <div class="top">
     <div>
       <h1>User analytics</h1>
-      <p class="sub">Registrations, active users, and email unlock funnel.</p>
+      <p class="sub">Registrations, active users, and email unlock funnel — tracked from 3 Aug 2026 onward.</p>
     </div>
     <div class="links">
       <a href="/admin/users.html">All users →</a>
@@ -158,9 +158,9 @@
       const data = await res.json();
       const reg = data.registered || {};
 
-      document.getElementById('sync-note').textContent = data.supabaseSyncConfigured
-        ? 'User list syncs from Supabase Auth every ~15 min when service role key is set.'
-        : 'Add SUPABASE_SERVICE_ROLE_KEY in Vercel to sync all registered users from Supabase Auth. Activity is tracked from directory usage.';
+      document.getElementById('sync-note').textContent = data.trackingSince
+        ? 'Tracking live users from ' + new Date(data.trackingSince).toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', year: 'numeric' }) + ' (IST). Counts appear after someone logs in and uses Funds or Investors.'
+        : 'Tracking live users from first login onward.';
 
       document.getElementById('reg-grid').innerHTML = [
         ['Registered users', reg.total, ''],
