@@ -16,6 +16,8 @@ const { parse } = require('csv-parse/sync');
 const { stringify } = require('csv-stringify/sync');
 const { personKey, normalizeLinkedIn, normalizeTwitter } = require('./lib/social_extract');
 
+const { COL_PERSONAL, COL_PROFESSIONAL } = require('./lib/person_email');
+
 const ROOT = path.join(__dirname, '..');
 const PEOPLE_CSV_PATH = path.join(ROOT, 'VC Dekho Sheet - Investor - Individuals.csv');
 const SOCIAL_CANDIDATES_PATH = path.join(ROOT, 'data', 'candidates', 'people-social-candidates.json');
@@ -146,7 +148,8 @@ function main() {
 
   const columns = Object.keys(rows[0] || {
     'First Name': '',
-    Email: '',
+    [COL_PERSONAL]: '',
+    [COL_PROFESSIONAL]: '',
     Company: '',
     Title: '',
     'LinkedIn URL': '',

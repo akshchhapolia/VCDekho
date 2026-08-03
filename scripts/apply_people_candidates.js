@@ -15,6 +15,8 @@ const path = require('path');
 const { parse } = require('csv-parse/sync');
 const { stringify } = require('csv-stringify/sync');
 
+const { COL_PERSONAL, COL_PROFESSIONAL } = require('./lib/person_email');
+
 const ROOT = path.join(__dirname, '..');
 const PEOPLE_CSV_PATH = path.join(ROOT, 'VC Dekho Sheet - Investor - Individuals.csv');
 const CANDIDATES_PATH = path.join(ROOT, 'data', 'candidates', 'people-candidates.json');
@@ -86,12 +88,21 @@ function main() {
     return;
   }
 
-  const columns = Object.keys(rows[0] || { 'First Name': '', Email: '', Company: '', Title: '', 'LinkedIn URL': '', 'Twitter URL': '' });
+  const columns = Object.keys(rows[0] || {
+    'First Name': '',
+    [COL_PERSONAL]: '',
+    [COL_PROFESSIONAL]: '',
+    Company: '',
+    Title: '',
+    'LinkedIn URL': '',
+    'Twitter URL': ''
+  });
   for (const c of toAdd) {
     const row = {};
     for (const col of columns) row[col] = '';
     row['First Name'] = c.name;
-    row.Email = '';
+    row[COL_PERSONAL] = '';
+    row[COL_PROFESSIONAL] = '';
     row.Company = c.company;
     row.Title = c.title || '';
     row['LinkedIn URL'] = c.linkedinUrl || '';

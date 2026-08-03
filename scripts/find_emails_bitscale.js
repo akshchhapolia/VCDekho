@@ -23,6 +23,7 @@ const {
 } = require('../utils/bitscale');
 const { deriveName } = require('./lib/person_name');
 const { resolveOrg } = require('./lib/org_lookup');
+const { COL_PROFESSIONAL, isValidEmail } = require('./lib/person_email');
 
 const ROOT = path.join(__dirname, '..');
 const CSV_PATH = path.join(ROOT, 'VC Dekho Sheet - Investor - Individuals.csv');
@@ -97,7 +98,7 @@ async function main() {
 
   for (let i = 0; i < rows.length; i++) {
     const row = rows[i];
-    if ((row.Email || '').trim()) continue;
+    if (isValidEmail(row[COL_PROFESSIONAL])) continue;
     if (!(row['First Name'] || '').trim()) continue;
     const linkedin = (row['LinkedIn URL'] || '').trim();
     if (!linkedin) continue;
@@ -129,7 +130,7 @@ async function main() {
         console.log(`FOUND ${email}`);
         report.found++;
         report.results.push({ index: c.index, name: `${name.firstname} ${name.lastname}`.trim(), email, company: c.row.Company });
-        if (args.apply) rows[c.index].Email = email;
+        if (args.apply) rows[c.index][COL_PROFESSIONAL] = email;
       } else {
         console.log('not found');
         report.notFound++;

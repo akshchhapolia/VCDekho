@@ -4,7 +4,7 @@
  *
  * Expected input CSV columns (flexible names):
  *   csv_index OR linkedin_url OR full_name+company
- *   email OR Email OR work_email OR personal_email
+ *   Email 1 OR Fetch Personal Email (personal) OR Email (professional/work)
  *
  * Usage:
  *   node scripts/apply_bitscale_emails.js --from path/to/bitscale-results.csv [--dry-run]
@@ -15,6 +15,12 @@ const path = require('path');
 const { parse } = require('csv-parse/sync');
 const { stringify } = require('csv-stringify/sync');
 const { execSync } = require('child_process');
+const {
+  COL_PERSONAL,
+  COL_PROFESSIONAL,
+  isValidEmail,
+  normLinkedin
+} = require('./lib/person_email');
 
 const ROOT = path.join(__dirname, '..');
 const CSV_PATH = path.join(ROOT, 'VC Dekho Sheet - Investor - Individuals.csv');
@@ -32,16 +38,18 @@ function parseArgs(argv) {
   return args;
 }
 
-function pick(row, keys) {
-  for (const k of keys) {
-    const v = row[k];
-    if (v != null && String(v).trim()) return String(v).trim();
+function pickEmail(item) {
+  const personalKeys = ['Email 1', 'Fetch Personal Email', 'personal_email', 'Personal Email'];
+  const workKeys = ['Email', 'email', 'work_email', 'Professional Email'];
+  for (const k of personalKeys) {
+    const v = item[k];
+    if (isValidEmail(v)) return { email: String(v).trim(), source: 'personal' };
   }
-  return '';
-}
-
-function normLinkedin(u) {
-  return String(u || '').toLowerCase().replace(/\/+$/, '');
+  for (const k of workKeys) {
+    const v = item[k];
+    if (isValidEmail(v)) return { email: String(v).trim(), source: 'work' };
+  }
+  return null;
 }
 
 function main() {
@@ -67,24 +75,30 @@ function main() {
     bom: true
   });
 
-  let applied = 0;
+  let appliedPersonal = 0;
+  let appliedWork = 0;
   let skipped = 0;
 
   for (const item of incoming) {
-    const email = pick(item, ['email', 'Email', 'work_email', 'personal_email', 'Personal Email']);
-    if (!email || !email.includes('@')) {
+    const picked = pickEmail(item);
+    if (!picked) {
       skipped++;
       continue;
     }
+    const { email, source } = picked;
+    const col = source === 'personal' ? COL_PERSONAL : COL_PROFESSIONAL;
 
     let idx = item.csv_index != null && item.csv_index !== ''
       ? Number(item.csv_index)
       : NaN;
 
     if (Number.isNaN(idx)) {
-    const li = normLinkedin(pick(item, ['linkedin_url', 'LinkedIn URL', 'Personal LinkedIn URL', 'LinkedIn']));
-    const company = pick(item, ['company', 'Company']).toLowerCase();
-    const fullName = pick(item, ['full_name', 'Full Name', 'name', 'Name']).toLowerCase();
+      const li = normLinkedin(
+        item.linkedin_url || item['LinkedIn URL'] || item['Personal LinkedIn URL'] ||
+        item.LinkedIn || item['Linkedin id']
+      );
+      const company = String(item.company || item.Company || item['Company name'] || '').trim().toLowerCase();
+      const fullName = String(item.full_name || item['Full Name'] || item.name || item.Name || '').trim().toLowerCase();
       idx = rows.findIndex((r) => {
         if (li && normLinkedin(r['LinkedIn URL']) === li) return true;
         if (fullName && company) {
@@ -101,24 +115,29 @@ function main() {
       continue;
     }
 
-    const existing = (rows[idx].Email || '').trim();
+    const existing = String(rows[idx][col] || '').trim();
+    if (existing && existing.toLowerCase() === email.toLowerCase()) {
+      skipped++;
+      continue;
+    }
     if (existing && existing.toLowerCase() !== email.toLowerCase()) {
-      console.warn(`Skip [${idx}] already has ${existing}`);
+      console.warn(`Skip [${idx}] ${col} already has ${existing}`);
       skipped++;
       continue;
     }
 
-    console.log(`✓ [${idx}] ${rows[idx]['First Name']} → ${email}`);
-    if (!args.dryRun) rows[idx].Email = email;
-    applied++;
+    console.log(`✓ [${idx}] ${rows[idx]['First Name']} → ${col}: ${email}`);
+    if (!args.dryRun) rows[idx][col] = email;
+    if (source === 'personal') appliedPersonal++;
+    else appliedWork++;
   }
 
-  if (!args.dryRun && applied > 0) {
+  if (!args.dryRun && (appliedPersonal > 0 || appliedWork > 0)) {
     fs.writeFileSync(CSV_PATH, stringify(rows, { header: true, columns: Object.keys(rows[0] || {}) }));
     execSync('node scripts/build_people_json.js', { cwd: ROOT, stdio: 'inherit' });
   }
 
-  console.log(`\nApplied ${applied}, skipped ${skipped}${args.dryRun ? ' (dry run)' : ''}.`);
+  console.log(`\nApplied personal: ${appliedPersonal}, professional: ${appliedWork}, skipped: ${skipped}${args.dryRun ? ' (dry run)' : ''}.`);
 }
 
 main();

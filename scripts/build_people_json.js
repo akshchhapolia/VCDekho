@@ -9,6 +9,7 @@ const path = require('path');
 const { parse } = require('csv-parse/sync');
 const { resolveOrg, normStrict } = require('./lib/org_lookup');
 const { slugify } = require('./lib/slugify');
+const { displayEmail, COL_PERSONAL, COL_PROFESSIONAL } = require('./lib/person_email');
 
 const ROOT = path.join(__dirname, '..');
 const CSV_PATH = path.join(ROOT, 'VC Dekho Sheet - Investor - Individuals.csv');
@@ -84,6 +85,9 @@ function build() {
         (twitter && !/^(n\/?a|-|none|na)$/i.test(twitter))
     );
 
+    const personalEmail = (row[COL_PERSONAL] || '').trim();
+    const professionalEmail = (row[COL_PROFESSIONAL] || '').trim();
+
     people.push({
       id: String(people.length + 1),
       slug,
@@ -93,7 +97,9 @@ function build() {
       companySlug,
       companyType,
       companyLogo,
-      email: (row.Email || '').trim(),
+      personalEmail,
+      professionalEmail,
+      email: displayEmail(row),
       linkedin,
       twitter,
       // Contact treated as validated only when we have at least one real social profile.

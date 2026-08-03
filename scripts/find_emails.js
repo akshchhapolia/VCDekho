@@ -10,7 +10,7 @@
  *        node scripts/find_emails.js --credits you@yourdomain.com
  *
  *   3) Batch mode over the Individuals sheet (default). Only ever targets rows
- *      with a BLANK Email cell — existing emails are never overwritten or re-queried.
+ *      with a BLANK Professional Email cell — existing emails are never overwritten or re-queried.
  *        node scripts/find_emails.js                  # dry run: shows what WOULD be queried, spends 0 credits
  *        node scripts/find_emails.js --run --limit 20  # actually calls Icypeas (costs credits, only for FOUND emails)
  *        node scripts/find_emails.js --run --apply     # also writes found emails back into the CSV
@@ -34,6 +34,7 @@ const { stringify } = require('csv-stringify/sync');
 const icypeas = require('./lib/icypeas');
 const { deriveName } = require('./lib/person_name');
 const { resolveOrg } = require('./lib/org_lookup');
+const { COL_PROFESSIONAL, isValidEmail } = require('./lib/person_email');
 
 const ROOT = path.join(__dirname, '..');
 const CSV_PATH = path.join(ROOT, 'VC Dekho Sheet - Investor - Individuals.csv');
@@ -134,7 +135,7 @@ async function main() {
   const candidates = [];
   for (let i = 0; i < rows.length; i++) {
     const row = rows[i];
-    if (!blank(row.Email)) continue;
+    if (isValidEmail(row[COL_PROFESSIONAL])) continue;
     if (!row['First Name'] || !row['First Name'].trim()) continue; // fully empty row
 
     const key = rowKey(row);
@@ -197,7 +198,7 @@ async function main() {
 
       const isHighCertainty = HIGH_CERTAINTY.has(String(best.certainty || '').toLowerCase()) || String(best.certainty || '').toLowerCase() === args.minCertainty;
       if (args.apply && isHighCertainty) {
-        rows[c.index].Email = best.email;
+        rows[c.index][COL_PROFESSIONAL] = best.email;
       } else if (args.apply) {
         report.lowCertainty++;
       }

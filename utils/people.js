@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { getInvestorBySlug, getFilters: getInvestorFilters, chequeOverlaps } = require('./investors');
+const { displayEmail } = require('../scripts/lib/person_email');
 
 let cache = null;
 
@@ -164,7 +165,9 @@ function toCard(person) {
     companyType: person.companyType,
     companyLogo: person.companyLogo || null,
     photo: person.photo || null,
-    email: person.email || '',
+    personalEmail: person.personalEmail || '',
+    professionalEmail: person.professionalEmail || '',
+    email: displayEmail(person),
     linkedin: person.linkedin || '',
     twitter: person.twitter || ''
   };
