@@ -1,4 +1,5 @@
 const db = require('../../utils/db');
+const { renderBuzzBodyHtml } = require('../../utils/buzz-body-render');
 
 module.exports = async function handler(req, res) {
     const { category, feed, investor, topic, limit: limitRaw } = req.query;
@@ -30,8 +31,12 @@ module.exports = async function handler(req, res) {
         query += ` ORDER BY published_at DESC NULLS LAST LIMIT $${params.length}`;
         try {
             const { rows } = await db.query(query, params);
+            const enriched = rows.map((row) => ({
+                ...row,
+                body_html: renderBuzzBodyHtml(row.body_excerpt)
+            }));
             res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=3600');
-            return res.status(200).json(rows);
+            return res.status(200).json(enriched);
         } catch (error) {
             return res.status(500).json({ error: error.message });
         }

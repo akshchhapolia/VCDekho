@@ -106,17 +106,132 @@
   color: rgba(255, 255, 255, 0.82);
   font-size: 0.95rem;
   line-height: 1.65;
-  white-space: pre-wrap;
   word-break: break-word;
   font-family: var(--font-sans);
 }
 
+.buzz-post-body--rich {
+  white-space: normal;
+}
+
+.buzz-body-p {
+  margin: 0 0 0.85rem;
+}
+
+.buzz-body-p:last-child {
+  margin-bottom: 0;
+}
+
+.buzz-body-list {
+  margin: 0 0 0.85rem 1.1rem;
+  padding: 0;
+}
+
+.buzz-body-list li {
+  margin-bottom: 0.35rem;
+}
+
+.buzz-table-wrap {
+  margin: 0.5rem 0 0.85rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.buzz-table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.buzz-table th,
+.buzz-table td {
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  vertical-align: top;
+  text-align: left;
+}
+
+.buzz-table th {
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.04);
+  white-space: nowrap;
+}
+
+.buzz-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.buzz-table tbody tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.buzz-table td:first-child,
+.buzz-table th:first-child {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  width: 1%;
+}
+
+.buzz-table td:last-child,
+.buzz-table th:last-child {
+  white-space: nowrap;
+  width: 1%;
+  font-weight: 600;
+  color: rgba(255, 200, 120, 0.95);
+}
+
+.buzz-table-align-center {
+  text-align: center;
+}
+
+.buzz-table-align-right {
+  text-align: right;
+}
+
+.buzz-post-body code {
+  font-size: 0.85em;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.buzz-post-body a {
+  color: #9ecbff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .buzz-post-body.is-clamped {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 8;
+  max-height: 320px;
   overflow: hidden;
-  max-height: 13.2em;
+  position: relative;
+}
+
+.buzz-post-body.is-clamped::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4rem;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(18, 18, 22, 0), rgba(18, 18, 22, 0.92));
+}
+
+.buzz-post-body.is-clamped.is-expanded {
+  max-height: none;
+  overflow: visible;
+}
+
+.buzz-post-body.is-clamped.is-expanded::after {
+  display: none;
 }
 
 .buzz-post-body.is-expanded {

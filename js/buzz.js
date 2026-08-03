@@ -33,7 +33,7 @@
   function isLongBody(text) {
     if (!text) return false;
     const lines = text.split('\n').length;
-    return text.length > BODY_CLAMP_CHARS || lines > BODY_CLAMP_LINES;
+    return text.length > BODY_CLAMP_CHARS || lines > BODY_CLAMP_LINES || /^\s*\|.+\|\s*$/m.test(text);
   }
 
   function formatDate(iso) {
@@ -89,16 +89,18 @@
     } catch (_) {}
   }
 
-  function renderBodySection(body) {
-    const text = stripBody(body);
-    if (!text) {
+  function renderBodySection(item) {
+    const html = item.body_html;
+    const raw = item.body_excerpt;
+    if (!html && !raw) {
       return '<p class="buzz-post-body buzz-post-body--empty">Original post text unavailable — open the Reddit thread for the full discussion.</p>';
     }
-    const long = isLongBody(text);
+    const long = isLongBody(raw);
+    const bodyHtml = html || esc(stripBody(raw));
     return `
       <section class="buzz-section">
         <h3 class="buzz-section-label">Post</h3>
-        <div class="buzz-post-body${long ? ' is-clamped' : ''}" data-buzz-body>${esc(text)}</div>
+        <div class="buzz-post-body buzz-post-body--rich${long ? ' is-clamped' : ''}" data-buzz-body>${bodyHtml}</div>
         ${long ? '<button type="button" class="buzz-expand-btn" data-buzz-expand aria-expanded="false">Read all</button>' : ''}
       </section>`;
   }
@@ -136,7 +138,7 @@
           <h2 class="buzz-card-title">${esc(title)}</h2>
         </header>
 
-        ${renderBodySection(item.body_excerpt)}
+        ${renderBodySection(item)}
 
         ${
           item.ai_summary
