@@ -155,10 +155,6 @@
       "destination": "/api/people?slug=:slug"
     },
     {
-      "source": "/investors",
-      "destination": "/people/index.html"
-    },
-    {
       "source": "/sitemap.xml",
       "destination": "/api/ops?action=sitemap"
     }
