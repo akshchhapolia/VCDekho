@@ -64,12 +64,11 @@ module.exports = async function handler(req, res) {
              LIMIT 1`
         );
         if (existingToday.rows.length > 0 && !force) {
-            return res.status(200).json({
-                success: true,
+            return {
                 skipped: true,
                 message: 'Blog already published today.',
                 articleSlug: existingToday.rows[0].slug
-            });
+            };
         }
 
         const recent = await db.query(
@@ -139,11 +138,7 @@ Only include 1-2 of these if they fit naturally.`,
         const words = wordCount(body);
 
         if (words < 500) {
-            return res.status(500).json({
-                success: false,
-                error: `Generated blog too short (${words} words)`,
-                topicId: topic.id
-            });
+            throw new Error(`Generated blog too short (${words} words); topicId=${topic.id}`);
         }
 
         const tags = Array.from(new Set([
