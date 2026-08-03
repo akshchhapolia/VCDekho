@@ -38,18 +38,26 @@ function parseArgs(argv) {
   return args;
 }
 
-function pickEmail(item) {
+function emailsFromRow(item) {
+  const out = [];
   const personalKeys = ['Email 1', 'Fetch Personal Email', 'personal_email', 'Personal Email'];
   const workKeys = ['Email', 'email', 'work_email', 'Professional Email'];
+
   for (const k of personalKeys) {
     const v = item[k];
-    if (isValidEmail(v)) return { email: String(v).trim(), source: 'personal' };
+    if (isValidEmail(v)) {
+      out.push({ email: String(v).trim(), source: 'personal' });
+      break;
+    }
   }
   for (const k of workKeys) {
     const v = item[k];
-    if (isValidEmail(v)) return { email: String(v).trim(), source: 'work' };
+    if (isValidEmail(v)) {
+      out.push({ email: String(v).trim(), source: 'work' });
+      break;
+    }
   }
-  return null;
+  return out;
 }
 
 function main() {
@@ -80,13 +88,11 @@ function main() {
   let skipped = 0;
 
   for (const item of incoming) {
-    const picked = pickEmail(item);
-    if (!picked) {
+    const emails = emailsFromRow(item);
+    if (!emails.length) {
       skipped++;
       continue;
     }
-    const { email, source } = picked;
-    const col = source === 'personal' ? COL_PERSONAL : COL_PROFESSIONAL;
 
     let idx = item.csv_index != null && item.csv_index !== ''
       ? Number(item.csv_index)
@@ -105,31 +111,38 @@ function main() {
           return String(r['First Name'] || '').toLowerCase().includes(fullName.split(' ')[0]) &&
             String(r.Company || '').toLowerCase() === company;
         }
+        if (fullName && !company) {
+          const rowName = String(r['First Name'] || '').trim().toLowerCase();
+          return rowName === fullName || rowName.startsWith(fullName.split(' ')[0] + ' ');
+        }
         return false;
       });
     }
 
     if (idx < 0 || !rows[idx]) {
-      console.warn('No match for', email);
+      console.warn('No match for', item.Name || item.name || emails.map((e) => e.email).join(', '));
       skipped++;
       continue;
     }
 
-    const existing = String(rows[idx][col] || '').trim();
-    if (existing && existing.toLowerCase() === email.toLowerCase()) {
-      skipped++;
-      continue;
-    }
-    if (existing && existing.toLowerCase() !== email.toLowerCase()) {
-      console.warn(`Skip [${idx}] ${col} already has ${existing}`);
-      skipped++;
-      continue;
-    }
+    for (const { email, source } of emails) {
+      const col = source === 'personal' ? COL_PERSONAL : COL_PROFESSIONAL;
+      const existing = String(rows[idx][col] || '').trim();
+      if (existing && existing.toLowerCase() === email.toLowerCase()) {
+        skipped++;
+        continue;
+      }
+      if (existing && existing.toLowerCase() !== email.toLowerCase()) {
+        console.warn(`Skip [${idx}] ${col} already has ${existing}`);
+        skipped++;
+        continue;
+      }
 
-    console.log(`✓ [${idx}] ${rows[idx]['First Name']} → ${col}: ${email}`);
-    if (!args.dryRun) rows[idx][col] = email;
-    if (source === 'personal') appliedPersonal++;
-    else appliedWork++;
+      console.log(`✓ [${idx}] ${rows[idx]['First Name']} → ${col}: ${email}`);
+      if (!args.dryRun) rows[idx][col] = email;
+      if (source === 'personal') appliedPersonal++;
+      else appliedWork++;
+    }
   }
 
   if (!args.dryRun && (appliedPersonal > 0 || appliedWork > 0)) {

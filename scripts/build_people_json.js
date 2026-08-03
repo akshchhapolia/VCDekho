@@ -66,8 +66,11 @@ function build() {
       }
     }
 
-    if (isSoloAngel) {
+    // Solo angels without a mapped operating company keep the generic label.
+    if (isSoloAngel && (!companyRaw || /^angel investor$/i.test(companyRaw))) {
       companyName = 'Angel Investor';
+    } else if (isSoloAngel && companyRaw && !/^angel investor$/i.test(companyRaw)) {
+      companyName = companyName && companyName !== companyRaw ? companyName : companyRaw;
     }
 
     let slug = slugify(name) || 'person';
