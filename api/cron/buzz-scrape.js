@@ -16,6 +16,10 @@ const SUBREDDITS = [
   'IndiaInvestments'
 ];
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function scoreBuzzRelevance(title, body) {
   let score = 0;
   const text = `${title || ''} ${body || ''}`.toLowerCase();
