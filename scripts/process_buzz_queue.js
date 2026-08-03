@@ -8,6 +8,7 @@ require('dotenv').config();
 const db = require('../utils/db');
 const { processBuzzItem } = require('../utils/buzz-ai-process');
 const { runBuzzScrape } = require('../utils/buzz-scrape');
+const { runBuzzDiscover } = require('../utils/buzz-discover');
 
 async function runProcess(limit) {
   const { rows } = await db.query(
@@ -36,9 +37,15 @@ async function main() {
   }
 
   if (!args.has('--process-only')) {
-    const scrape = await runBuzzScrape();
-    console.log('Scrape:', scrape);
+    if (args.has('--discover-only')) {
+      console.log('Discover:', await runBuzzDiscover());
+    } else if (!args.has('--scrape-only')) {
+      console.log('Scrape:', await runBuzzScrape());
+    } else {
+      console.log('Scrape:', await runBuzzScrape());
+    }
   }
+
   if (!args.has('--scrape-only')) await runProcess(limit);
 }
 

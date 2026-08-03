@@ -1,6 +1,7 @@
 const Parser = require('rss-parser');
 const db = require('./db');
 const { shouldQueueBuzzPost } = require('./buzz-relevance');
+const { runBuzzDiscover } = require('./buzz-discover');
 
 const parser = new Parser({
   timeout: 20000,
@@ -134,7 +135,7 @@ async function runBuzzScrape() {
 
     for (let i = 0; i < REDDIT_FEEDS.length; i++) {
       const feedMeta = REDDIT_FEEDS[i];
-      if (i > 0) await sleep(3000);
+      if (i > 0) await sleep(4000);
       try {
         const feed = await parser.parseURL(feedMeta.url);
         for (const item of feed.items || []) {
@@ -149,6 +150,21 @@ async function runBuzzScrape() {
       return { skipped: true, reason: 'investor_buzz table missing' };
     }
     throw err;
+  }
+
+  try {
+    stats.discover = await runBuzzDiscover();
+    if (stats.discover && !stats.discover.skipped) {
+      stats.itemsFetched += stats.discover.itemsFetched || 0;
+      stats.itemsQueued += stats.discover.itemsQueued || 0;
+      stats.itemsDuplicated += stats.discover.itemsDuplicated || 0;
+      stats.itemsRejected += stats.discover.itemsRejected || 0;
+      if (stats.discover.errors?.length) {
+        stats.errors.push(...stats.discover.errors);
+      }
+    }
+  } catch (discoverErr) {
+    stats.errors.push(`discover: ${discoverErr.message}`);
   }
 
   return stats;
