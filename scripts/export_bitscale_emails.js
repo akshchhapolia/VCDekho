@@ -6,7 +6,7 @@
  *   node scripts/export_bitscale_emails.js --missing personal
  *   node scripts/export_bitscale_emails.js --missing professional
  *   node scripts/export_bitscale_emails.js --missing both
- *   node scripts/export_bitscale_emails.js --missing professional --limit 500 [--linkedin-only]
+ *   node scripts/export_bitscale_emails.js --missing both [--linkedin-only]
  *
  * Output:
  *   data/candidates/missing-personal-email.csv
@@ -26,12 +26,11 @@ const CSV_PATH = path.join(ROOT, 'VC Dekho Sheet - Investor - Individuals.csv');
 const OUT_DIR = path.join(ROOT, 'data', 'candidates');
 
 function parseArgs(argv) {
-  const args = { missing: 'both', limit: Infinity, linkedinOnly: true };
+  const args = { missing: 'both', limit: Infinity, linkedinOnly: false };
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--missing') args.missing = String(argv[++i] || 'both').toLowerCase();
     else if (argv[i] === '--limit') args.limit = Number(argv[++i]);
     else if (argv[i] === '--linkedin-only') args.linkedinOnly = true;
-    else if (argv[i] === '--all') args.linkedinOnly = false;
   }
   return args;
 }
