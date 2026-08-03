@@ -1,6 +1,7 @@
 const Parser = require('rss-parser');
 const db = require('../../utils/db');
 const { runCronJob } = require('../../utils/cron-run');
+const { runBuzzScrape } = require('../../utils/buzz-scrape');
 
 const parser = new Parser({
     timeout: 15000,
@@ -151,6 +152,13 @@ module.exports = async function handler(req, res) {
             meta.alertSubject = 'RSS scrape: most sources failed';
             meta.alertBody = errors.join('\n');
         }
+
+        try {
+            meta.buzz = await runBuzzScrape();
+        } catch (buzzErr) {
+            meta.buzz = { error: buzzErr.message };
+        }
+
         return meta;
     });
 };

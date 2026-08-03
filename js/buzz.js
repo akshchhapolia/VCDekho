@@ -79,7 +79,7 @@
     const container = document.getElementById('buzz-container');
     if (!container) return;
     try {
-      const res = await fetch('/api/buzz/list');
+      const res = await fetch('/api/news/list?feed=buzz');
       const items = await res.json();
       if (!Array.isArray(items) || !items.length) {
         container.innerHTML =
