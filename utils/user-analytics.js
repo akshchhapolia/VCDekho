@@ -173,6 +173,9 @@ function pctChange(current, previous) {
 }
 
 async function countRegisteredByPlatform() {
+  const ok = await ensureUserAnalyticsTables();
+  if (!ok) return { total: 0, mweb: 0, dweb: 0, unknown: 0 };
+
   const { rows } = await db.query(
     `SELECT
        COUNT(*)::int AS total,
@@ -185,6 +188,9 @@ async function countRegisteredByPlatform() {
 }
 
 async function activeUsersBetween(startDate, endDate) {
+  const ok = await ensureUserAnalyticsTables();
+  if (!ok) return 0;
+
   const { rows } = await db.query(
     `SELECT COUNT(DISTINCT user_id)::int AS c
      FROM user_activity_days
@@ -195,6 +201,9 @@ async function activeUsersBetween(startDate, endDate) {
 }
 
 async function dailyActiveSeries(days) {
+  const ok = await ensureUserAnalyticsTables();
+  if (!ok) return [];
+
   const { rows } = await db.query(
     `SELECT activity_date::text AS date, COUNT(DISTINCT user_id)::int AS active
      FROM user_activity_days
@@ -207,6 +216,9 @@ async function dailyActiveSeries(days) {
 }
 
 async function weeklyActiveSeries(weeks) {
+  const ok = await ensureUserAnalyticsTables();
+  if (!ok) return [];
+
   const { rows } = await db.query(
     `SELECT
        date_trunc('week', activity_date)::date::text AS week_start,
@@ -221,6 +233,9 @@ async function weeklyActiveSeries(weeks) {
 }
 
 async function monthlyActiveSeries(months) {
+  const ok = await ensureUserAnalyticsTables();
+  if (!ok) return [];
+
   const { rows } = await db.query(
     `SELECT
        date_trunc('month', activity_date)::date::text AS month_start,
@@ -313,6 +328,18 @@ async function getAnalyticsOverview() {
 }
 
 async function listUsers({ q = '', offset = 0, limit = 50 }) {
+  const ok = await ensureUserAnalyticsTables();
+  if (!ok) {
+    return {
+      total: 0,
+      offset: 0,
+      limit: 50,
+      users: [],
+      dailyUnlockLimit: DAILY_UNLOCK_LIMIT,
+      trackingSince: TRACKING_SINCE
+    };
+  }
+
   const take = Math.min(200, Math.max(1, parseInt(limit, 10) || 50));
   const start = Math.max(0, parseInt(offset, 10) || 0);
   const term = String(q || '').trim().toLowerCase();
