@@ -119,9 +119,30 @@ async function requireAuthWithActivity(req, res) {
   return user;
 }
 
+/** Returns user when a valid token is present; otherwise null (no 401). */
+async function optionalAuth(req) {
+  if (!isProductionHost(requestHost(req))) {
+    return { id: 'preview', email: 'preview@local' };
+  }
+
+  const authHeader = String(req.headers.authorization || '');
+  let token = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : null;
+  if (!token) {
+    token = readCookie(req.headers.cookie, 'vd_access_token');
+  }
+  if (!token) return null;
+
+  try {
+    return await verifyAccessToken(token);
+  } catch (_) {
+    return null;
+  }
+}
+
 module.exports = {
   requireAuth,
   requireAuthWithActivity,
+  optionalAuth,
   touchUserActivity,
   verifyAccessToken,
   isProductionHost,

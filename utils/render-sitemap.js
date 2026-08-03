@@ -81,10 +81,6 @@ async function renderSitemapXml() {
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vcdekho.com/login</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://vcdekho.com${FUNDS_PATH}</loc>
     <priority>0.95</priority>
   </url>

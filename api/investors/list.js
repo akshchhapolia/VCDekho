@@ -2,7 +2,8 @@ const { filterInvestors, getFilters, toCard, ensureActivityFresh } = require('..
 const { getAllThemes } = require('../../utils/thesis-themes');
 const { getAllStages } = require('../../utils/investment-stages');
 const { getAllSectorGuides } = require('../../utils/sectors');
-const { requireAuthWithActivity } = require('../../utils/require-auth');
+const { resolveDirectoryListAccess } = require('../../utils/directory-list-access');
+const { enforceListRateLimit } = require('../../utils/rate-limit');
 const { getThesisThemeIconSvg } = require('../../utils/thesis-theme-icons');
 const { getSectorIconSvg } = require('../../utils/sector-icons');
 
@@ -13,13 +14,14 @@ module.exports = async function handler(req, res) {
       query.view === 'themes' || query.view === 'stages' || query.view === 'sectors';
 
     if (!isPublicView) {
-      const user = await requireAuthWithActivity(req, res);
-      if (!user) return;
+      const access = await resolveDirectoryListAccess(req, res, query);
+      if (!access) return;
     }
 
     await ensureActivityFresh();
 
     if (query.view === 'themes') {
+      if (!enforceListRateLimit(req, res, { authenticated: false })) return;
       const themes = getAllThemes().map(t => ({
         id: t.id,
         label: t.label,
@@ -32,6 +34,7 @@ module.exports = async function handler(req, res) {
     }
 
     if (query.view === 'stages') {
+      if (!enforceListRateLimit(req, res, { authenticated: false })) return;
       const stages = getAllStages().map(s => ({
         id: s.id,
         label: s.label,
@@ -45,6 +48,7 @@ module.exports = async function handler(req, res) {
     }
 
     if (query.view === 'sectors') {
+      if (!enforceListRateLimit(req, res, { authenticated: false })) return;
       const sectors = getAllSectorGuides().map(s => ({
         id: s.id,
         label: s.label,
@@ -75,7 +79,11 @@ module.exports = async function handler(req, res) {
     const take = Math.min(200, Math.max(1, parseInt(limit, 10) || 100));
     const page = all.slice(start, start + take).map(toCard);
 
-    res.setHeader('Cache-Control', 'private, no-store');
+    if (start === 0) {
+      res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=120, stale-while-revalidate=600');
+    } else {
+      res.setHeader('Cache-Control', 'private, no-store');
+    }
     res.status(200).json({
       total: all.length,
       offset: start,

@@ -6,7 +6,7 @@
  *   GET /api/people?slug=<slug>              -> public HTML profile page
  *   GET /api/people?slug=<slug>&extras=1     -> public JSON (activity/portfolio HTML)
  *   GET /api/people?slug=<slug>&contact=email -> gated JSON (email unlock)
- *   GET /api/people?q=&role=&companyType=&stage=&sector=&thesis=&cheque= -> gated JSON list
+ *   GET /api/people?q=&role=&companyType=&stage=&sector=&thesis=&cheque= -> public page 1; login for page 2+
  */
 const { filterPeople, getFilters, toCard, getPersonBySlug, getPeopleByCompanySlug } = require('../utils/people');
 const { getPersonContact } = require('../utils/people-contacts');
@@ -19,6 +19,7 @@ const {
 } = require('../utils/person-email-unlocks');
 const { getInvestorBySlug, ensureInvestorDetailExtras } = require('../utils/investors');
 const { requireAuth, requireAuthWithActivity } = require('../utils/require-auth');
+const { resolveDirectoryListAccess } = require('../utils/directory-list-access');
 const { recordSessionMeta } = require('../utils/user-analytics');
 const { renderPersonPage, renderPersonExtrasHtml } = require('../utils/render-person-page');
 const { isMobileRequest } = require('../utils/profile-page-assets');
@@ -160,8 +161,8 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const user = await requireAuthWithActivity(req, res);
-    if (!user) return;
+    const access = await resolveDirectoryListAccess(req, res, query);
+    if (!access) return;
 
     const {
       q = '',
@@ -175,9 +176,9 @@ module.exports = async function handler(req, res) {
       offset = '0'
     } = query;
     const all = filterPeople({ q, companyType, role, stage, sector, thesis, cheque });
-    const unlockMap = await getUserUnlockMap(user.id);
+    const unlockMap = access.user ? await getUserUnlockMap(access.user.id) : new Map();
     const sorted = sortPeopleByUnlocks(all, unlockMap);
-    const start = Math.max(0, parseInt(offset, 10) || 0);
+    const start = access.start;
     const take = Math.min(200, Math.max(1, parseInt(limit, 10) || 100));
     const page = sorted.slice(start, start + take).map((person) => {
       if (!unlockMap.has(person.slug)) return toCard(person);
@@ -185,7 +186,11 @@ module.exports = async function handler(req, res) {
       return toCard(person, contact ? { email: contact.email } : {});
     });
 
-    res.setHeader('Cache-Control', 'private, no-store');
+    if (start === 0) {
+      res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=120, stale-while-revalidate=600');
+    } else {
+      res.setHeader('Cache-Control', 'private, no-store');
+    }
     res.status(200).json({
       total: sorted.length,
       offset: start,
