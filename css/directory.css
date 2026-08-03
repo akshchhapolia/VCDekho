@@ -5518,6 +5518,60 @@ a.inv-profile-metric:hover .inv-profile-metric-value {
   transform: none;
 }
 
+/* People directory — column spacing + email alignment (desktop) */
+@media (min-width: 769px) {
+  body.inv-dir-page .inv-dir-table-head,
+  body.inv-dir-page .inv-dir-row {
+    grid-template-columns: minmax(0, 1.32fr) minmax(0, 0.9fr) minmax(0, 1.12fr) minmax(0, 0.74fr);
+    gap: 1.2rem;
+  }
+
+  body.inv-dir-page .inv-dir-row {
+    padding-top: 0.82rem;
+    padding-bottom: 0.82rem;
+  }
+
+  body.inv-dir-page .inv-dir-col-stages,
+  body.inv-dir-page .inv-dir-col-sectors,
+  body.inv-dir-page .inv-dir-col-ticket {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+  }
+
+  body.inv-dir-page .inv-dir-col-sectors {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  body.inv-dir-page .inv-dir-col-sectors .inv-dir-cell {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 1.75rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  body.inv-dir-page .inv-dir-col-sectors .inv-email-unlock-btn {
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  body.inv-dir-page .inv-dir-col-sectors .inv-dir-inline-link {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  body.inv-dir-page .inv-dir-col-sectors .inv-profile-empty {
+    line-height: 1.75rem;
+  }
+}
+
 .inv-profile-cta.inv-email-unlock-btn {
   padding: 0.8rem 1.15rem;
   font-size: 0.9rem;

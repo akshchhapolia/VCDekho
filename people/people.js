@@ -259,7 +259,7 @@
           <span class="inv-dir-mobile-label">Firm</span>
           <span class="inv-dir-cell">${companyHtml}</span>
         </div>
-        <div class="inv-dir-col inv-dir-col-sectors">
+        <div class="inv-dir-col inv-dir-col-sectors inv-dir-col-email">
           <span class="inv-dir-mobile-label">Email</span>
           <span class="inv-dir-cell">${emailHtml}</span>
         </div>
