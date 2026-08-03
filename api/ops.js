@@ -4,6 +4,7 @@
  *   GET  ?action=health        public
  *   GET  ?action=sitemap       public (also via /sitemap.xml rewrite)
  *   GET  ?action=status        ADMIN_SECRET
+ *   GET  ?action=analytics    ADMIN_SECRET (view=overview|users)
  *   POST ?action=test-alert    ADMIN_SECRET
  *   GET  ?action=ping-vendors  CRON_SECRET (production)
  */
