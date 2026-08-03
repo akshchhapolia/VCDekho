@@ -14,7 +14,8 @@ const {
   getUserUnlockMap,
   isPersonEmailUnlocked,
   recordPersonEmailUnlock,
-  sortPeopleByUnlocks
+  sortPeopleByUnlocks,
+  getUnlockQuota
 } = require('../utils/person-email-unlocks');
 const { getInvestorBySlug, ensureInvestorDetailExtras } = require('../utils/investors');
 const { requireAuth } = require('../utils/require-auth');
@@ -48,15 +49,39 @@ module.exports = async function handler(req, res) {
         const method = String(req.method || 'GET').toUpperCase();
 
         if (method === 'POST') {
-          await recordPersonEmailUnlock(user.id, query.slug);
+          const alreadyUnlocked = await isPersonEmailUnlocked(user.id, query.slug);
+          if (!alreadyUnlocked) {
+            const quota = await getUnlockQuota(user);
+            if (!quota.allowed) {
+              res.setHeader('Content-Type', 'application/json; charset=utf-8');
+              res.setHeader('Cache-Control', 'private, no-store');
+              return res.status(429).json({
+                error: 'Daily unlock limit reached',
+                code: 'daily_unlock_limit',
+                limit: quota.limit,
+                remaining: 0
+              });
+            }
+            await recordPersonEmailUnlock(user.id, query.slug);
+          }
+
           const contact = getPersonContact(query.slug);
           if (!contact) {
             res.setHeader('Cache-Control', 'private, no-store');
             return res.status(404).json({ error: 'No email on file' });
           }
+          const quota = await getUnlockQuota(user);
           res.setHeader('Content-Type', 'application/json; charset=utf-8');
           res.setHeader('Cache-Control', 'private, no-store');
-          return res.status(200).json({ unlocked: true, ...contact });
+          return res.status(200).json({
+            unlocked: true,
+            ...contact,
+            quota: {
+              limit: quota.limit,
+              remaining: quota.unlimited ? null : quota.remaining,
+              unlimited: quota.unlimited
+            }
+          });
         }
 
         if (method === 'GET') {

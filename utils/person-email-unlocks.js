@@ -3,6 +3,14 @@
  */
 const db = require('./db');
 
+const DAILY_UNLOCK_LIMIT = 10;
+const UNLIMITED_UNLOCK_EMAILS = new Set(
+  (process.env.EMAIL_UNLOCK_UNLIMITED_EMAILS || 'akshatcpla.product@gmail.com')
+    .split(',')
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean)
+);
+
 const DDL = `
 CREATE TABLE IF NOT EXISTS user_person_email_unlocks (
   user_id UUID NOT NULL,
@@ -19,6 +27,56 @@ let readyPromise = null;
 
 function isDbUser(user) {
   return user && user.id && user.id !== 'preview';
+}
+
+function isUnlimitedUnlockUser(user) {
+  const email = String(user?.email || '')
+    .trim()
+    .toLowerCase();
+  return Boolean(email && UNLIMITED_UNLOCK_EMAILS.has(email));
+}
+
+/** Start of current calendar day in IST, as timestamptz. */
+function startOfTodayIstSql() {
+  return `(date_trunc('day', now() AT TIME ZONE 'Asia/Kolkata') AT TIME ZONE 'Asia/Kolkata')`;
+}
+
+async function countUnlocksToday(userId) {
+  if (!isDbUser({ id: userId })) return 0;
+  const ok = await ensurePersonEmailUnlockTables();
+  if (!ok) return 0;
+
+  const { rows } = await db.query(
+    `SELECT COUNT(*)::int AS n
+     FROM user_person_email_unlocks
+     WHERE user_id = $1::uuid
+       AND unlocked_at >= ${startOfTodayIstSql()}`,
+    [userId]
+  );
+  return rows[0]?.n || 0;
+}
+
+/**
+ * @returns {Promise<{ allowed: boolean, remaining: number, limit: number, unlimited: boolean }>}
+ */
+async function getUnlockQuota(user) {
+  if (!isDbUser(user) || isUnlimitedUnlockUser(user)) {
+    return {
+      allowed: true,
+      remaining: Infinity,
+      limit: DAILY_UNLOCK_LIMIT,
+      unlimited: true
+    };
+  }
+
+  const used = await countUnlocksToday(user.id);
+  const remaining = Math.max(0, DAILY_UNLOCK_LIMIT - used);
+  return {
+    allowed: remaining > 0,
+    remaining,
+    limit: DAILY_UNLOCK_LIMIT,
+    unlimited: false
+  };
 }
 
 async function ensurePersonEmailUnlockTables() {
@@ -76,13 +134,13 @@ async function recordPersonEmailUnlock(userId, personSlug) {
   const ok = await ensurePersonEmailUnlockTables();
   if (!ok) return false;
 
-  await db.query(
+  const { rowCount } = await db.query(
     `INSERT INTO user_person_email_unlocks (user_id, person_slug, unlocked_at)
      VALUES ($1::uuid, $2, NOW())
      ON CONFLICT (user_id, person_slug) DO NOTHING`,
     [userId, personSlug]
   );
-  return true;
+  return rowCount > 0;
 }
 
 /** Unlocked contacts first (most recent unlock first), then alphabetical. */
@@ -111,5 +169,9 @@ module.exports = {
   isPersonEmailUnlocked,
   recordPersonEmailUnlock,
   sortPeopleByUnlocks,
-  isDbUser
+  getUnlockQuota,
+  countUnlocksToday,
+  isUnlimitedUnlockUser,
+  isDbUser,
+  DAILY_UNLOCK_LIMIT
 };

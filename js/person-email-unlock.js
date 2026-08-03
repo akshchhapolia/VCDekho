@@ -171,6 +171,30 @@
     });
   }
 
+  function showDailyLimitStrip() {
+    var existing = document.getElementById('inv-email-limit-strip');
+    if (existing) existing.remove();
+
+    var strip = document.createElement('div');
+    strip.id = 'inv-email-limit-strip';
+    strip.className = 'inv-email-limit-strip';
+    strip.setAttribute('role', 'status');
+    strip.setAttribute('aria-live', 'polite');
+    strip.textContent = 'Daily limit of 10 unlocks reached';
+
+    document.body.appendChild(strip);
+    requestAnimationFrame(function () {
+      strip.classList.add('is-visible');
+    });
+
+    setTimeout(function () {
+      strip.classList.remove('is-visible');
+      setTimeout(function () {
+        if (strip.parentNode) strip.parentNode.removeChild(strip);
+      }, 280);
+    }, 3000);
+  }
+
   async function unlockEmail(btn) {
     var slug = btn.getAttribute('data-person-slug');
     if (!slug || btn.disabled) return;
@@ -195,6 +219,12 @@
       var res = await global.VCAuth.authFetch(url, { method: 'POST' });
       if (res.status === 401) {
         global.location.href = global.VCAuth.loginUrl(global.location.pathname + global.location.search);
+        return;
+      }
+      if (res.status === 429) {
+        btn.disabled = false;
+        setBtnLabel(btn, 'Unlock email');
+        showDailyLimitStrip();
         return;
       }
       if (!res.ok) throw new Error('unlock failed');
