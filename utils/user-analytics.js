@@ -3,7 +3,7 @@
  * Tracks users from first login / directory visit onward (no historical backfill).
  */
 const db = require('./db');
-const { DAILY_UNLOCK_LIMIT, isUnlimitedUnlockUser } = require('./person-email-unlocks');
+const { DAILY_UNLOCK_LIMIT, isUnlimitedUnlockUser, ensurePersonEmailUnlockTables } = require('./person-email-unlocks');
 
 /** Analytics collection start (IST) — shown in admin UI. */
 const TRACKING_SINCE = '2026-08-03T00:00:00+05:30';
@@ -251,6 +251,7 @@ async function monthlyActiveSeries(months) {
 
 async function getUnlockStats() {
   try {
+    await ensurePersonEmailUnlockTables();
     const total = await db.query(`SELECT COUNT(*)::int AS c FROM user_person_email_unlocks`);
     const users = await db.query(
       `SELECT COUNT(DISTINCT user_id)::int AS c FROM user_person_email_unlocks`
@@ -339,6 +340,7 @@ async function listUsers({ q = '', offset = 0, limit = 50 }) {
       trackingSince: TRACKING_SINCE
     };
   }
+  await ensurePersonEmailUnlockTables().catch(() => false);
 
   const take = Math.min(200, Math.max(1, parseInt(limit, 10) || 50));
   const start = Math.max(0, parseInt(offset, 10) || 0);
