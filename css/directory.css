@@ -432,14 +432,14 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
   color: transparent;
 }
 
-.inv-dir-row:hover {
+.inv-dir-row:hover:not(:has(a:hover, button:hover)) {
   background: rgba(255, 255, 255, 0.03);
   border-bottom-color: rgba(237, 87, 47, 0.35);
 }
 
-.inv-dir-row:hover .inv-dir-name,
-.inv-dir-row:hover .inv-dir-ticket,
-.inv-dir-row:has(.inv-dir-row-hit:focus-visible) .inv-dir-name {
+.inv-dir-row:hover:not(:has(a:hover, button:hover)) .inv-dir-name,
+.inv-dir-row:hover:not(:has(a:hover, button:hover)) .inv-dir-ticket,
+.inv-dir-row:has(.inv-dir-row-hit:focus-visible):not(:has(a:hover, button:hover)) .inv-dir-name {
   color: #ffb89c;
 }
 
@@ -2743,7 +2743,7 @@ a.inv-chip:hover {
     background: rgba(255, 255, 255, 0.035);
   }
 
-  body.inv-dir-page .inv-dir-row:hover {
+  body.inv-dir-page .inv-dir-row:hover:not(:has(a:hover, button:hover)) {
     background: rgba(255, 255, 255, 0.055);
     border-color: rgba(237, 87, 47, 0.35);
   }
@@ -5656,8 +5656,13 @@ a.inv-profile-metric:hover .inv-profile-metric-value {
   background: rgba(237, 87, 47, 0.04);
 }
 
-.inv-dir-row.is-email-unlocked:hover {
+.inv-dir-row.is-email-unlocked:hover:not(:has(a:hover, button:hover)) {
   background: rgba(237, 87, 47, 0.07);
+}
+
+/* Keep unlocked row tint when hovering CTAs inside the row */
+.inv-dir-row.is-email-unlocked:has(a:hover, button:hover) {
+  background: rgba(237, 87, 47, 0.04);
 }
 
 body.inv-dir-page .inv-dir-col-sectors .inv-dir-cell:has(.inv-email-revealed) {
