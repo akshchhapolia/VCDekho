@@ -82,7 +82,8 @@ async function handleSitemap(res) {
 async function handleStatus(res) {
   await ensureOpsTables();
   const investors = getAllInvestors().length;
-  const people = getAllPeople().length;
+  const people = getAllPeople({ includeHidden: true }).length;
+  const peoplePublic = getAllPeople().length;
 
   let articlesToday = 0;
   let thinActivity = 0;
@@ -138,7 +139,7 @@ async function handleStatus(res) {
   } catch (_) {}
 
   res.status(200).json({
-    counts: { investors, people, articlesToday, thinActivity, contactMessages30d: contactPending },
+    counts: { investors, people, peoplePublic, articlesToday, thinActivity, contactMessages30d: contactPending },
     cronRuns,
     recentAlerts,
     env: {

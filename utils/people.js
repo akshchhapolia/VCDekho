@@ -1,9 +1,18 @@
 const fs = require('fs');
 const path = require('path');
 const { getInvestorBySlug, getFilters: getInvestorFilters, chequeOverlaps } = require('./investors');
-const { displayEmail } = require('../scripts/lib/person_email');
+const { displayEmail, isValidEmail } = require('../scripts/lib/person_email');
 
 let cache = null;
+
+/** Show on site only when we have LinkedIn or a professional work email. */
+function hasLinkedIn(person) {
+  return /linkedin\.com/i.test(String(person?.linkedin || '').trim());
+}
+
+function isPersonPublic(person) {
+  return hasLinkedIn(person) || isValidEmail(person?.professionalEmail);
+}
 
 const PERSON_ROLES = [
   { id: 'angel', label: 'Angel Investor' },
@@ -34,8 +43,10 @@ function getFilters() {
   };
 }
 
-function getAllPeople() {
-  return loadPeopleData().people;
+function getAllPeople(opts = {}) {
+  const people = loadPeopleData().people;
+  if (opts.includeHidden) return people;
+  return people.filter(isPersonPublic);
 }
 
 function getPersonBySlug(slug) {
@@ -105,7 +116,7 @@ function firmForPerson(person) {
 
 function filterPeople(query = {}) {
   const data = loadPeopleData();
-  let list = data.people;
+  let list = data.people.filter(isPersonPublic);
 
   const q = (query.q || '').trim().toLowerCase();
   const companyType = query.companyType || '';
@@ -182,5 +193,7 @@ module.exports = {
   filterPeople,
   toCard,
   normalizePersonRole,
+  isPersonPublic,
+  hasLinkedIn,
   PERSON_ROLES
 };
