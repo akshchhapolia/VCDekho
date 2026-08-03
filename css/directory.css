@@ -547,6 +547,16 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
   letter-spacing: 0.01em;
 }
 
+/* Email column: buttons/links must not be line-clamped or clipped on hover */
+.inv-dir-col-sectors .inv-dir-cell:has(.inv-email-unlock-btn),
+.inv-dir-col-sectors .inv-dir-cell:has(.inv-dir-inline-link) {
+  display: block;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: unset;
+  overflow: visible;
+  max-height: none;
+}
+
 .inv-dir-ticket {
   white-space: nowrap;
   overflow: hidden;
@@ -2905,6 +2915,15 @@ a.inv-chip:hover {
     font-size: 0.8rem;
     line-height: 1.4;
     text-align: left;
+  }
+
+  body.inv-dir-page .inv-dir-col-sectors .inv-dir-cell:has(.inv-email-unlock-btn),
+  body.inv-dir-page .inv-dir-col-sectors .inv-dir-cell:has(.inv-dir-inline-link) {
+    display: block;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: unset;
+    overflow: visible;
+    max-height: none;
   }
 
   /* People directory: email row stays single-line when possible */
@@ -5490,6 +5509,13 @@ a.inv-profile-metric:hover .inv-profile-metric-value {
 
 .inv-dir-col-sectors .inv-email-unlock-btn {
   vertical-align: middle;
+}
+
+/* Directory rows: avoid translateY — parent row clips overflow */
+.inv-dir-col-sectors .inv-email-unlock-btn:hover:not(:disabled),
+.inv-dir-col-sectors .inv-email-unlock-btn:focus-visible:not(:disabled),
+.inv-dir-col-sectors .inv-email-unlock-btn:active:not(:disabled) {
+  transform: none;
 }
 
 .inv-profile-cta.inv-email-unlock-btn {
