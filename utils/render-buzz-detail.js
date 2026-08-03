@@ -29,12 +29,12 @@ function renderBodyHtml(body) {
   if (!text) {
     return '<p class="buzz-post-body buzz-post-body--empty">Original post text unavailable — open the Reddit thread for the full discussion.</p>';
   }
-  const long = text.length > 320;
+  const long = text.length > 320 || text.split('\n').length > 8;
   return `
     <section class="buzz-section">
       <h2 class="buzz-section-label">Post</h2>
       <div class="buzz-post-body${long ? ' is-clamped' : ''}" data-buzz-body>${esc(text)}</div>
-      ${long ? '<button type="button" class="buzz-expand-btn" data-buzz-expand aria-expanded="false">Read full post</button>' : ''}
+      ${long ? '<button type="button" class="buzz-expand-btn" data-buzz-expand aria-expanded="false">Read all</button>' : ''}
     </section>`;
 }
 
@@ -145,7 +145,7 @@ function renderBuzzDetailHtml(item) {
     <link rel="stylesheet" href="/css/base.css?v=101">
     <link rel="stylesheet" href="/css/hero.css?v=73">
     <link rel="stylesheet" href="/css/ambient.css?v=98">
-    <link rel="stylesheet" href="/css/buzz.css?v=3">
+    <link rel="stylesheet" href="/css/buzz.css?v=4">
 </head>
 <body class="scrollable-page pub-page buzz-page">
     <div class="app-container">
@@ -190,7 +190,7 @@ function renderBuzzDetailHtml(item) {
         </main>
     </div>
     <script src="/app.js" defer></script>
-    <script src="/js/buzz.js?v=3" defer></script>
+    <script src="/js/buzz.js?v=4" defer></script>
 </body>
 </html>`;
 }

@@ -4,6 +4,7 @@ const { slugify } = require('../scripts/lib/slugify');
 const { normalizeTopics, BUZZ_TOPICS } = require('./buzz-topics');
 const { matchInvestorMentions } = require('./buzz-investor-match');
 const { isHardRejectBuzzPost } = require('./buzz-relevance');
+const { ensureBuzzFullBody } = require('./buzz-body-fetch');
 
 const BUZZ_SYSTEM = `You curate "Investor Buzz" — founder/community RETROSPECTIVES about venture capital in India.
 
@@ -49,6 +50,9 @@ async function processBuzzItem(item) {
     if (!process.env.GEMINI_API_KEY) {
       throw new Error('GEMINI_API_KEY is missing');
     }
+
+    const fullBody = await ensureBuzzFullBody(item);
+    if (fullBody) item.body_excerpt = fullBody;
 
     const userText = [
       `Source: ${item.source} / r/${item.subreddit || 'unknown'}`,

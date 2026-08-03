@@ -15,7 +15,9 @@ function stripBuzzBody(raw) {
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
-    .replace(/\s+/g, ' ')
+    .replace(/\r\n/g, '\n')
+    .replace(/[^\S\n]+/g, ' ')
+    .replace(/\n{3,}/g, '\n\n')
     .trim();
 }
 

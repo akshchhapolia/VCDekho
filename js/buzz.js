@@ -1,7 +1,8 @@
 (function () {
   const VOTER_KEY = 'vc_buzz_voter';
   const VOTES_KEY = 'vc_buzz_votes';
-  const BODY_CLAMP = 320;
+  const BODY_CLAMP_CHARS = 520;
+  const BODY_CLAMP_LINES = 8;
 
   function esc(s) {
     const d = document.createElement('div');
@@ -23,8 +24,16 @@
       .replace(/&lt;/g, '<')
       .replace(/&gt;/g, '>')
       .replace(/&quot;/g, '"')
-      .replace(/\s+/g, ' ')
+      .replace(/\r\n/g, '\n')
+      .replace(/[^\S\n]+/g, ' ')
+      .replace(/\n{3,}/g, '\n\n')
       .trim();
+  }
+
+  function isLongBody(text) {
+    if (!text) return false;
+    const lines = text.split('\n').length;
+    return text.length > BODY_CLAMP_CHARS || lines > BODY_CLAMP_LINES;
   }
 
   function formatDate(iso) {
@@ -85,12 +94,12 @@
     if (!text) {
       return '<p class="buzz-post-body buzz-post-body--empty">Original post text unavailable — open the Reddit thread for the full discussion.</p>';
     }
-    const long = text.length > BODY_CLAMP;
+    const long = isLongBody(text);
     return `
       <section class="buzz-section">
         <h3 class="buzz-section-label">Post</h3>
         <div class="buzz-post-body${long ? ' is-clamped' : ''}" data-buzz-body>${esc(text)}</div>
-        ${long ? '<button type="button" class="buzz-expand-btn" data-buzz-expand aria-expanded="false">Read full post</button>' : ''}
+        ${long ? '<button type="button" class="buzz-expand-btn" data-buzz-expand aria-expanded="false">Read all</button>' : ''}
       </section>`;
   }
 
@@ -183,7 +192,7 @@
         body.classList.toggle('is-expanded', expanded);
         body.classList.toggle('is-clamped', !expanded);
         btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-        btn.textContent = expanded ? 'Show less' : 'Read full post';
+        btn.textContent = expanded ? 'Show less' : 'Read all';
       });
     });
   }
