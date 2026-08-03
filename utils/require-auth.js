@@ -42,7 +42,7 @@ function isProductionHost(host) {
 function loginRedirect(req, res) {
   const host = req.headers['x-forwarded-host'] || req.headers.host || 'vcdekho.com';
   const proto = req.headers['x-forwarded-proto'] || 'https';
-  const path = req.url || '/investors';
+  const path = req.url || '/funds';
   const next = encodeURIComponent(path.startsWith('/') ? path : '/' + path);
   res.writeHead(302, { Location: `${proto}://${host}/login?next=${next}` });
   res.end();

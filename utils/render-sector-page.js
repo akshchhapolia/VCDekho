@@ -88,7 +88,7 @@ function stageLinksForCard(inv) {
     const id = ids[i];
     if (hasStageGuide(id)) {
       return (
-        '<a class="theme-inv-stage-link" href="/investors/stages/' +
+        '<a class="theme-inv-stage-link" href="/funds/stages/' +
         escapeHtml(id) +
         '">' +
         escapeHtml(label) +
@@ -125,7 +125,7 @@ function renderSectorPage(sector, res) {
         '<div class="stage-rail-item">' +
         '<a class="stage-rail-node' +
         stateClass +
-        '" href="/investors/sectors/' +
+        '" href="/funds/sectors/' +
         escapeHtml(s.id) +
         '">' +
         '<span class="stage-rail-dot"><span>' +
@@ -283,7 +283,7 @@ function renderSectorPage(sector, res) {
     .map(
       (inv) =>
         '<article class="theme-inv-card stage-reveal">' +
-        '<a class="theme-inv-card-main" href="/investors/' +
+        '<a class="theme-inv-card-main" href="/funds/' +
         escapeHtml(inv.slug) +
         '">' +
         '<div class="theme-inv-type">' +
@@ -309,7 +309,7 @@ function renderSectorPage(sector, res) {
     .slice(0, 4)
     .map(
       (s) =>
-        '<a class="stage-related-card stage-reveal" href="/investors/sectors/' +
+        '<a class="stage-related-card stage-reveal" href="/funds/sectors/' +
         escapeHtml(s.id) +
         '">' +
         '<div class="stage-related-order">Guide ' +
@@ -337,14 +337,14 @@ function renderSectorPage(sector, res) {
   const next = idx >= 0 && idx < allSectors.length - 1 ? allSectors[idx + 1] : null;
   const prevNext = [
     prev
-      ? '<a class="stage-pn-card stage-reveal" href="/investors/sectors/' +
+      ? '<a class="stage-pn-card stage-reveal" href="/funds/sectors/' +
         escapeHtml(prev.id) +
         '"><span>Previous sector</span><strong>' +
         escapeHtml(prev.label) +
         '</strong></a>'
       : '<div class="stage-pn-card is-empty"></div>',
     next
-      ? '<a class="stage-pn-card stage-reveal" href="/investors/sectors/' +
+      ? '<a class="stage-pn-card stage-reveal" href="/funds/sectors/' +
         escapeHtml(next.id) +
         '"><span>Next sector</span><strong>' +
         escapeHtml(next.label) +
@@ -365,7 +365,7 @@ function renderSectorPage(sector, res) {
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">',
     '<title>' + escapeHtml(sector.label) + ' Funds India | Sector Guide | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(sector.summary).slice(0, 160) + '">',
-    '<link rel="canonical" href="https://vcdekho.com/investors/sectors/' + escapeHtml(sector.id) + '">',
+    '<link rel="canonical" href="https://vcdekho.com/funds/sectors/' + escapeHtml(sector.id) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
     '<link rel="stylesheet" href="/css/base.css?v=101">',
@@ -388,7 +388,7 @@ function renderSectorPage(sector, res) {
     '<main class="hero-showcase inv-detail-main">',
     '<div class="ambient-bg-wrapper"><div class="waitlist-bg"><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div><div class="glow-orb orb-3"></div></div></div>',
     '<div class="inv-detail-wrap stage-page-wrap">',
-    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="' + FUNDS_PATH + '">' + FUNDS_LABEL + '</a><span>›</span><a href="/investors/sectors">Sectors</a><span>›</span><span class="current">' +
+    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="' + FUNDS_PATH + '">' + FUNDS_LABEL + '</a><span>›</span><a href="/funds/sectors">Sectors</a><span>›</span><span class="current">' +
       escapeHtml(sector.label) +
       '</span></div>',
 
@@ -412,7 +412,7 @@ function renderSectorPage(sector, res) {
     '<div class="stage-hero-stat"><strong>' +
       sector.investorCount +
       '</strong><span>matching funds</span></div>',
-    '<a class="stage-hero-cta" href="/investors?sector=' +
+    '<a class="stage-hero-cta" href="/funds?sector=' +
       encodeURIComponent(sector.id) +
       '">Open in directory</a>',
     '</div>',
@@ -519,14 +519,14 @@ function renderSectorPage(sector, res) {
 
     '<section class="stage-section stage-reveal" id="investors">',
     '<div class="stage-section-label">11 — Capital map</div>',
-    '<div class="theme-section-head"><h2>Funds in this sector</h2><a href="/investors?sector=' +
+    '<div class="theme-section-head"><h2>Funds in this sector</h2><a href="/funds?sector=' +
       encodeURIComponent(sector.id) +
       '">See all filters</a></div>',
     '<div class="theme-inv-grid">' +
       (investorCards || '<p class="inv-empty">No funds tagged yet.</p>') +
       '</div>',
     sector.investorCount > 24
-      ? '<div class="theme-more"><a class="inv-btn inv-btn-primary" href="/investors?sector=' +
+      ? '<div class="theme-more"><a class="inv-btn inv-btn-primary" href="/funds?sector=' +
         encodeURIComponent(sector.id) +
         '">Browse all ' +
         sector.investorCount +
@@ -545,9 +545,9 @@ function renderSectorPage(sector, res) {
       subtitle: 'Pair sector fit with stage and thesis, then open the directory.',
       stages: stageChips.length ? stageChips : relatedStages,
       themes: relatedThemes,
-      fundsHref: '/investors?sector=' + encodeURIComponent(sector.id),
+      fundsHref: '/funds?sector=' + encodeURIComponent(sector.id),
       fundsLabel: 'Browse ' + sector.investorCount + ' matching funds →',
-      siblingHref: '/investors/stages',
+      siblingHref: '/funds/stages',
       siblingLabel: 'Stage guides →'
     }),
 

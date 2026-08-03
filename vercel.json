@@ -123,6 +123,18 @@
       "destination": "/api/news/article?slug=:slug"
     },
     {
+      "source": "/funds/stages",
+      "destination": "/investors/stages/index.html"
+    },
+    {
+      "source": "/funds/themes",
+      "destination": "/investors/themes/index.html"
+    },
+    {
+      "source": "/funds/sectors",
+      "destination": "/investors/sectors/index.html"
+    },
+    {
       "source": "/funds/stages/:slug",
       "destination": "/api/investors/detail?slug=:slug&view=stage"
     },
