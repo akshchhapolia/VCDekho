@@ -250,7 +250,7 @@
       ].filter(Boolean).join(' · ') || '—';
 
       return `
-      <article class="inv-dir-row${p.email ? ' is-email-unlocked' : ''}">
+      <article class="inv-dir-row">
         <a class="inv-dir-row-hit" href="${href}" aria-label="${esc(p.name)}" data-analytics-event="dir_result_click" data-analytics-params='{"directory":"people","slug":"${esc(p.slug)}"}'></a>
         <div class="inv-dir-col inv-dir-col-fund">
           <span class="inv-dir-fund-mark">${logoHtml(p)}</span>
