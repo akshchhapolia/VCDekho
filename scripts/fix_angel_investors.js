@@ -117,20 +117,19 @@ async function main() {
   let searched = 0;
   let searchFound = 0;
   const pendingSearch = [];
+  const namesToFix = new Set([
+    ...Object.keys(companyByName),
+    ...Object.keys(verifiedByName)
+  ]);
 
   for (const row of rows) {
     const name = (row['First Name'] || '').trim();
-    if (!name) continue;
+    if (!name || !namesToFix.has(name)) continue;
 
     const li = (row['LinkedIn URL'] || '').trim();
     const bad = isBadLinkedIn(li);
-    const isAngel = /^angel investor$/i.test((row.Company || '').trim()) ||
-      /^angel investor$/i.test((row.Title || '').trim());
-
-    if (!bad && !companyByName[name]) continue;
-    if (!bad && !isAngel) continue;
-
     const company = companyByName[name];
+
     if (company && row.Company !== company) {
       console.log(`Company: ${name} → ${company}`);
       if (!args.dryRun) row.Company = company;
@@ -144,14 +143,15 @@ async function main() {
     }
 
     const verified = verifiedByName[name];
-    if (verified) {
+    if (verified && (!li || bad)) {
       console.log(`Verified LI: ${name} → ${verified}`);
       if (!args.dryRun) row['LinkedIn URL'] = verified;
       verifiedApplied++;
       continue;
     }
 
-    if (bad && args.search && company) {
+    const currentLi = (row['LinkedIn URL'] || '').trim();
+    if (args.search && company && !currentLi) {
       pendingSearch.push({ row, name, company });
     }
   }
