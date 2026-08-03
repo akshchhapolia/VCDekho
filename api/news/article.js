@@ -375,7 +375,7 @@ module.exports = async function handler(req, res) {
                         <p class="blog-cta-desc">
                             VC Dekho is building India's most complete investor research and matching platform. Search by stage, sector, cheque size, and geography. Read investment thesis. Unlock direct contacts. Close your round faster.
                         </p>
-                        <a href="/login?next=/funds" class="blog-cta-btn">Start exploring</a>
+                        <a href="/funds" class="blog-cta-btn">Start exploring</a>
                     </div>
                 </section>
                 
