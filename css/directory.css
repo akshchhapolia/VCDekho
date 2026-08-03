@@ -432,14 +432,15 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
   color: transparent;
 }
 
-.inv-dir-row:hover:not(:has(a:hover, button:hover)) {
+/* Row hover — suppress only when hovering real CTAs, not the full-row hit link */
+.inv-dir-row:hover:not(:has(a:hover:not(.inv-dir-row-hit), button:hover)) {
   background: rgba(255, 255, 255, 0.03);
   border-bottom-color: rgba(237, 87, 47, 0.35);
 }
 
-.inv-dir-row:hover:not(:has(a:hover, button:hover)) .inv-dir-name,
-.inv-dir-row:hover:not(:has(a:hover, button:hover)) .inv-dir-ticket,
-.inv-dir-row:has(.inv-dir-row-hit:focus-visible):not(:has(a:hover, button:hover)) .inv-dir-name {
+.inv-dir-row:hover:not(:has(a:hover:not(.inv-dir-row-hit), button:hover)) .inv-dir-name,
+.inv-dir-row:hover:not(:has(a:hover:not(.inv-dir-row-hit), button:hover)) .inv-dir-ticket,
+.inv-dir-row:has(.inv-dir-row-hit:focus-visible):not(:has(a:hover:not(.inv-dir-row-hit), button:hover)) .inv-dir-name {
   color: #ffb89c;
 }
 
@@ -2743,7 +2744,7 @@ a.inv-chip:hover {
     background: rgba(255, 255, 255, 0.035);
   }
 
-  body.inv-dir-page .inv-dir-row:hover:not(:has(a:hover, button:hover)) {
+  body.inv-dir-page .inv-dir-row:hover:not(:has(a:hover:not(.inv-dir-row-hit), button:hover)) {
     background: rgba(255, 255, 255, 0.055);
     border-color: rgba(237, 87, 47, 0.35);
   }
