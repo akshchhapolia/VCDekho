@@ -1,4 +1,5 @@
 const db = require('../../utils/db');
+const { renderBuzzDetailHtml } = require('../../utils/render-buzz-detail');
 
 // MOCK DATA for testing environment
 const MOCK_ARTICLES = {
@@ -187,10 +188,31 @@ function escapeHtml(value) {
 }
 
 module.exports = async function handler(req, res) {
-    const { slug } = req.query;
+    const { slug, feed } = req.query;
 
     if (!slug) {
         return res.status(400).send('<h1>400 - Bad Request</h1>');
+    }
+
+    if (feed === 'buzz') {
+        if (!process.env.DATABASE_URL) {
+            return res.status(404).send('<h1>404 - Not Found</h1>');
+        }
+        try {
+            const { rows } = await db.query(
+                `SELECT * FROM investor_buzz WHERE slug = $1 AND status = 'published' LIMIT 1`,
+                [slug]
+            );
+            if (!rows[0]) {
+                return res.status(404).send('<h1>404 - Discussion Not Found</h1>');
+            }
+            res.setHeader('Content-Type', 'text/html; charset=utf-8');
+            res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=3600');
+            return res.status(200).send(renderBuzzDetailHtml(rows[0]));
+        } catch (error) {
+            console.error('buzz detail error:', error);
+            return res.status(500).send('<h1>500 - Internal Server Error</h1>');
+        }
     }
 
     let article;
