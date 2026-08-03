@@ -124,15 +124,15 @@
     },
     {
       "source": "/funds/stages",
-      "destination": "/investors/stages/index.html"
+      "destination": "/funds/stages/index.html"
     },
     {
       "source": "/funds/themes",
-      "destination": "/investors/themes/index.html"
+      "destination": "/funds/themes/index.html"
     },
     {
       "source": "/funds/sectors",
-      "destination": "/investors/sectors/index.html"
+      "destination": "/funds/sectors/index.html"
     },
     {
       "source": "/funds/stages/:slug",
