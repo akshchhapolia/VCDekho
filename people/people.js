@@ -1,5 +1,10 @@
 (function () {
   const PAGE_SIZE = 15;
+  const LOCK_ICON =
+    '<svg class="inv-email-unlock-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
+    '<rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2"/>' +
+    '<path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
+    '</svg>';
   const state = {
     q: '',
     role: '',
@@ -233,7 +238,7 @@
         ? '<a class="inv-dir-inline-link" href="/investors/' + esc(p.companySlug) + '" onclick="event.stopPropagation()">' + esc(p.company) + '</a>'
         : esc(p.company || '—');
       const emailHtml = p.hasEmail
-        ? '<button type="button" class="inv-dir-inline-link inv-email-unlock-btn" data-unlock-email data-person-slug="' + esc(p.slug) + '">Unlock email</button>'
+        ? '<button type="button" class="inv-email-unlock-btn" data-unlock-email data-person-slug="' + esc(p.slug) + '">' + LOCK_ICON + '<span class="inv-email-unlock-label">Unlock email</span></button>'
         : '<span class="inv-profile-empty">Not available</span>';
       const linksHtml = [
         p.linkedin ? '<a class="inv-dir-inline-link" href="' + esc(p.linkedin) + '" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">LinkedIn</a>' : '',

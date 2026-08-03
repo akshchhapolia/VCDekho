@@ -13,6 +13,7 @@ const {
 } = require('./render-person-firm-sections');
 const { setPublicHtmlCache } = require('./public-html-cache');
 const { renderProfileHeadAssets, earlyStickyPinScript } = require('./profile-page-assets');
+const { unlockEmailButtonHtml } = require('./email-unlock-markup');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -126,17 +127,11 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     '<svg class="inv-profile-cta-icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
       '<path d="M23 4.6c-.8.4-1.7.6-2.6.8.9-.6 1.6-1.5 2-2.5-.9.5-1.8.9-2.8 1.1a4.4 4.4 0 0 0-7.5 4c-3.6-.2-6.9-1.9-9-4.6a4.4 4.4 0 0 0 1.4 5.9c-.7 0-1.4-.2-2-.6v.1c0 2.1 1.5 3.9 3.5 4.3-.6.2-1.3.2-2 .1.6 1.8 2.3 3.1 4.3 3.1A8.9 8.9 0 0 1 1 19.5a12.6 12.6 0 0 0 6.8 2c8.1 0 12.6-6.9 12.6-12.9v-.6c.9-.6 1.6-1.4 2.2-2.3z"/>' +
     '</svg>';
-  const iconEmail =
-    '<svg class="inv-profile-cta-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
-      '<rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/>' +
-      '<path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
-    '</svg>';
-
   const linkedinBtn = person.linkedin
     ? '<a class="inv-profile-cta is-primary" href="' + escapeHtml(person.linkedin) + '" target="_blank" rel="noopener noreferrer" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"linkedin","kind":"person"}\'>' + iconLinkedin + '<span>LinkedIn</span></a>'
     : '';
   const emailBtn = person.hasEmail
-    ? '<button type="button" class="inv-profile-cta is-ghost" data-unlock-email data-person-slug="' + escapeHtml(person.slug) + '">' + iconEmail + '<span>Unlock email</span></button>'
+    ? unlockEmailButtonHtml(escapeHtml(person.slug), 'inv-profile-cta')
     : '';
   const twitterBtn = person.twitter
     ? '<a class="inv-profile-cta is-ghost" href="' + escapeHtml(person.twitter) + '" target="_blank" rel="noopener noreferrer" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"twitter","kind":"person"}\'>' + iconTwitter + '<span>Twitter / X</span></a>'
@@ -320,7 +315,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
 
     '</div></main></div>',
     '<script src="/js/auth.js" defer></script>',
-    '<script src="/js/person-email-unlock.js?v=1" defer></script>',
+    '<script src="/js/person-email-unlock.js?v=2" defer></script>',
     '<script src="/app.js" defer></script>',
     '<script src="/investors/lazy-portfolio-logos.js?v=1" defer></script>',
     '<script src="/investors/portfolio-section.js?v=4" defer></script>',

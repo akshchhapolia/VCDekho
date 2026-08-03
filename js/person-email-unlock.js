@@ -1,4 +1,19 @@
 (function (global) {
+  function getLabelEl(btn) {
+    return btn.querySelector('.inv-email-unlock-label');
+  }
+
+  function setBtnLabel(btn, text) {
+    var label = getLabelEl(btn);
+    if (label) label.textContent = text;
+    else btn.textContent = text;
+  }
+
+  function getBtnLabel(btn) {
+    var label = getLabelEl(btn);
+    return label ? label.textContent : btn.textContent;
+  }
+
   function replaceWithMailto(btn, email, slug) {
     var link = document.createElement('a');
     var isProfile = btn.classList.contains('inv-profile-cta');
@@ -20,7 +35,7 @@
     if (!slug || btn.disabled) return;
 
     if (!global.VCAuth) {
-      btn.textContent = 'Sign in required';
+      setBtnLabel(btn, 'Sign in required');
       return;
     }
 
@@ -31,8 +46,8 @@
     }
 
     btn.disabled = true;
-    var prevText = btn.textContent;
-    btn.textContent = 'Unlocking…';
+    var prevText = getBtnLabel(btn);
+    setBtnLabel(btn, 'Unlocking…');
 
     try {
       var url = '/api/people?slug=' + encodeURIComponent(slug) + '&contact=email';
@@ -52,7 +67,7 @@
       }
     } catch (_) {
       btn.disabled = false;
-      btn.textContent = prevText === 'Unlocking…' ? 'Unlock email' : 'Try again';
+      setBtnLabel(btn, prevText === 'Unlocking…' ? 'Unlock email' : 'Try again');
     }
   }
 

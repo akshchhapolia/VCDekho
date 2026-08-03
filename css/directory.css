@@ -2777,7 +2777,9 @@ a.inv-chip:hover {
 
   /* Interactive Firm / Links tiles sit above the row hit + show press feedback */
   body.inv-dir-page .inv-dir-col-stages:has(.inv-dir-inline-link),
-  body.inv-dir-page .inv-dir-col-ticket:has(.inv-dir-inline-link) {
+  body.inv-dir-page .inv-dir-col-ticket:has(.inv-dir-inline-link),
+  body.inv-dir-page .inv-dir-col-sectors:has(.inv-email-unlock-btn),
+  body.inv-dir-page .inv-dir-col-sectors:has(.inv-dir-inline-link) {
     position: relative;
     z-index: 2;
     -webkit-tap-highlight-color: transparent;
@@ -5424,27 +5426,81 @@ a.inv-profile-metric:hover .inv-profile-metric-value {
 
 /* Email unlock — directory + profile (emails fetched via authenticated API) */
 .inv-email-unlock-btn {
-  background: none;
-  border: none;
-  padding: 0;
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.32rem 0.65rem;
+  background: rgba(237, 87, 47, 0.06);
+  border: 1px solid rgba(237, 87, 47, 0.38);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.88);
   font: inherit;
-  color: var(--inv-link, #c9a227);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.2;
   cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration: none;
+  white-space: nowrap;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
 }
 
-.inv-email-unlock-btn:hover:not(:disabled) {
-  opacity: 0.85;
+.inv-email-unlock-btn .inv-email-unlock-icon {
+  flex: 0 0 auto;
+  color: rgba(237, 87, 47, 0.72);
+  transition: color 0.18s ease;
+}
+
+.inv-email-unlock-btn:hover:not(:disabled),
+.inv-email-unlock-btn:focus-visible:not(:disabled) {
+  background: rgba(237, 87, 47, 0.12);
+  border-color: rgba(237, 87, 47, 0.55);
+  color: rgba(255, 255, 255, 0.96);
+  transform: translateY(-1px);
+}
+
+.inv-email-unlock-btn:hover:not(:disabled) .inv-email-unlock-icon,
+.inv-email-unlock-btn:focus-visible:not(:disabled) .inv-email-unlock-icon {
+  color: rgba(237, 87, 47, 0.88);
+}
+
+.inv-email-unlock-btn:active:not(:disabled) {
+  transform: translateY(0);
+  background: rgba(237, 87, 47, 0.16);
+  border-color: rgba(237, 87, 47, 0.62);
 }
 
 .inv-email-unlock-btn:disabled {
   opacity: 0.65;
   cursor: wait;
-  text-decoration: none;
+  transform: none;
 }
 
-button.inv-profile-cta[data-unlock-email] {
-  cursor: pointer;
+/* Keep email column interactive above the full-row hit target */
+.inv-dir-col-sectors:has(.inv-email-unlock-btn),
+.inv-dir-col-sectors:has(.inv-dir-inline-link) {
+  position: relative;
+  z-index: 2;
+}
+
+.inv-dir-col-sectors .inv-email-unlock-btn {
+  vertical-align: middle;
+}
+
+.inv-profile-cta.inv-email-unlock-btn {
+  padding: 0.8rem 1.15rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  gap: 0.45rem;
+}
+
+.inv-profile-cta.inv-email-unlock-btn .inv-email-unlock-icon {
+  width: 15px;
+  height: 15px;
 }
 
