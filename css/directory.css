@@ -459,7 +459,7 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
 }
 
 .inv-dir-row:hover:not(:has(a:hover:not(.inv-dir-row-hit), button:hover)) .inv-dir-name,
-.inv-dir-row:hover:not(:has(a:hover:not(.inv-dir-row-hit), button:hover)) .inv-dir-ticket,
+.inv-dir-row:hover:not(:has(a:hover:not(.inv-dir-row-hit), button:hover)) .inv-dir-ticket:not(:has(.inv-dir-inline-link)),
 .inv-dir-row:has(.inv-dir-row-hit:focus-visible):not(:has(a:hover:not(.inv-dir-row-hit), button:hover)) .inv-dir-name {
   color: #ffb89c;
 }
