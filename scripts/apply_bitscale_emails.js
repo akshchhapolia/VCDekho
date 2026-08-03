@@ -82,9 +82,9 @@ function main() {
       : NaN;
 
     if (Number.isNaN(idx)) {
-      const li = normLinkedin(pick(item, ['linkedin_url', 'LinkedIn URL', 'Personal LinkedIn URL']));
-      const company = pick(item, ['company', 'Company']).toLowerCase();
-      const fullName = pick(item, ['full_name', 'Full Name', 'name']).toLowerCase();
+    const li = normLinkedin(pick(item, ['linkedin_url', 'LinkedIn URL', 'Personal LinkedIn URL', 'LinkedIn']));
+    const company = pick(item, ['company', 'Company']).toLowerCase();
+    const fullName = pick(item, ['full_name', 'Full Name', 'name', 'Name']).toLowerCase();
       idx = rows.findIndex((r) => {
         if (li && normLinkedin(r['LinkedIn URL']) === li) return true;
         if (fullName && company) {

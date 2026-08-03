@@ -5,7 +5,7 @@
  * Usage:
  *   node scripts/export_bitscale_emails.js [--limit 500] [--linkedin-only]
  *
- * Output: data/candidates/bitscale-email-export-YYYY-MM-DD.csv
+ * Output: data/candidates/bitscale-upload-YYYY-MM-DD.csv
  */
 require('dotenv').config();
 const fs = require('fs');
@@ -49,26 +49,28 @@ function main() {
 
     const name = deriveName(row['First Name'], linkedin);
     const org = resolveOrg(row.Company);
+    let website = (org.match && org.match.website) ? org.match.website.trim() : '';
+    if (!website && org.match && org.match.domain) {
+      website = org.match.domain.includes('.') ? `https://${org.match.domain}` : '';
+    }
     const domain = (org.match && (org.match.domain || org.match.company)) || row.Company;
 
     out.push({
-      csv_index: i,
-      first_name: name.firstname,
-      last_name: name.lastname,
-      full_name: `${name.firstname} ${name.lastname}`.trim(),
-      company: row.Company,
-      company_domain: domain,
-      title: row.Title || '',
-      linkedin_url: linkedin,
-      twitter_url: row['Twitter URL'] || ''
+      Name: `${name.firstname} ${name.lastname}`.trim() || row['First Name'].trim(),
+      Company: row.Company,
+      'Company Website': website,
+      LinkedIn: linkedin,
+      csv_index: i
     });
     if (out.length >= args.limit) break;
   }
 
   if (!fs.existsSync(OUT_DIR)) fs.mkdirSync(OUT_DIR, { recursive: true });
   const date = new Date().toISOString().slice(0, 10);
-  const outPath = path.join(OUT_DIR, `bitscale-email-export-${date}.csv`);
-  fs.writeFileSync(outPath, stringify(out, { header: true }));
+  const outPath = path.join(OUT_DIR, `bitscale-upload-${date}.csv`);
+  const columns = ['Name', 'Company', 'Company Website', 'LinkedIn'];
+  const forFile = out.map(({ csv_index, ...rest }) => rest);
+  fs.writeFileSync(outPath, stringify(forFile, { header: true, columns }));
 
   console.log(`Exported ${out.length} rows → ${outPath}`);
   console.log('Import into Bitscale "Email Production" grid, map Personal LinkedIn URL column, run waterfall, then:');
