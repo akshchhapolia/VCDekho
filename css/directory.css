@@ -555,10 +555,10 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
   letter-spacing: 0.01em;
 }
 
-/* Email column: buttons/links must not be line-clamped or clipped on hover */
-.inv-dir-col-sectors .inv-dir-cell:has(.inv-email-unlock-btn),
-.inv-dir-col-sectors .inv-dir-cell:has(.inv-dir-inline-link),
-.inv-dir-col-sectors .inv-dir-cell:has(.inv-email-revealed) {
+/* People email column: buttons/links must not be line-clamped or clipped on hover */
+.inv-dir-col-email .inv-dir-cell:has(.inv-email-unlock-btn),
+.inv-dir-col-email .inv-dir-cell:has(.inv-email-revealed),
+.inv-dir-col-email .inv-dir-cell:has(.inv-dir-inline-link) {
   display: block;
   -webkit-line-clamp: unset;
   -webkit-box-orient: unset;
@@ -2797,9 +2797,9 @@ a.inv-chip:hover {
   /* Interactive Firm / Links tiles sit above the row hit + show press feedback */
   body.inv-dir-page .inv-dir-col-stages:has(.inv-dir-inline-link),
   body.inv-dir-page .inv-dir-col-ticket:has(.inv-dir-inline-link),
-  body.inv-dir-page .inv-dir-col-sectors:has(.inv-email-unlock-btn),
-  body.inv-dir-page .inv-dir-col-sectors:has(.inv-dir-inline-link),
-  body.inv-dir-page .inv-dir-col-sectors:has(.inv-email-revealed) {
+  body.inv-people-dir .inv-dir-col-email:has(.inv-email-unlock-btn),
+  body.inv-people-dir .inv-dir-col-email:has(.inv-dir-inline-link),
+  body.inv-people-dir .inv-dir-col-email:has(.inv-email-revealed) {
     position: relative;
     z-index: 2;
     -webkit-tap-highlight-color: transparent;
@@ -2927,9 +2927,9 @@ a.inv-chip:hover {
     text-align: left;
   }
 
-  body.inv-dir-page .inv-dir-col-sectors .inv-dir-cell:has(.inv-email-unlock-btn),
-  body.inv-dir-page .inv-dir-col-sectors .inv-dir-cell:has(.inv-dir-inline-link),
-  body.inv-dir-page .inv-dir-col-sectors .inv-dir-cell:has(.inv-email-revealed) {
+  body.inv-people-dir .inv-dir-col-email .inv-dir-cell:has(.inv-email-unlock-btn),
+  body.inv-people-dir .inv-dir-col-email .inv-dir-cell:has(.inv-dir-inline-link),
+  body.inv-people-dir .inv-dir-col-email .inv-dir-cell:has(.inv-email-revealed) {
     display: block;
     -webkit-line-clamp: unset;
     -webkit-box-orient: unset;
@@ -5512,51 +5512,50 @@ a.inv-profile-metric:hover .inv-profile-metric-value {
 }
 
 /* Keep email column interactive above the full-row hit target */
-.inv-dir-col-sectors:has(.inv-email-unlock-btn),
-.inv-dir-col-sectors:has(.inv-dir-inline-link),
-.inv-dir-col-sectors:has(.inv-email-revealed) {
+.inv-dir-col-email:has(.inv-email-unlock-btn),
+.inv-dir-col-email:has(.inv-email-revealed) {
   position: relative;
   z-index: 2;
 }
 
-.inv-dir-col-sectors .inv-email-unlock-btn {
+.inv-dir-col-email .inv-email-unlock-btn {
   vertical-align: middle;
 }
 
 /* Directory rows: avoid translateY — parent row clips overflow */
-.inv-dir-col-sectors .inv-email-unlock-btn:hover:not(:disabled),
-.inv-dir-col-sectors .inv-email-unlock-btn:focus-visible:not(:disabled),
-.inv-dir-col-sectors .inv-email-unlock-btn:active:not(:disabled) {
+.inv-dir-col-email .inv-email-unlock-btn:hover:not(:disabled),
+.inv-dir-col-email .inv-email-unlock-btn:focus-visible:not(:disabled),
+.inv-dir-col-email .inv-email-unlock-btn:active:not(:disabled) {
   transform: none;
 }
 
-/* People directory — column spacing + email alignment (desktop) */
+/* People directory — email column spacing + alignment (desktop) */
 @media (min-width: 769px) {
-  body.inv-dir-page .inv-dir-table-head,
-  body.inv-dir-page .inv-dir-row {
+  body.inv-people-dir .inv-dir-table-head,
+  body.inv-people-dir .inv-dir-row {
     grid-template-columns: minmax(0, 1.32fr) minmax(0, 0.9fr) minmax(0, 1.12fr) minmax(0, 0.74fr);
     gap: 1.2rem;
   }
 
-  body.inv-dir-page .inv-dir-row {
+  body.inv-people-dir .inv-dir-row {
     padding-top: 0.82rem;
     padding-bottom: 0.82rem;
   }
 
-  body.inv-dir-page .inv-dir-col-stages,
-  body.inv-dir-page .inv-dir-col-sectors,
-  body.inv-dir-page .inv-dir-col-ticket {
+  body.inv-people-dir .inv-dir-col-stages,
+  body.inv-people-dir .inv-dir-col-email,
+  body.inv-people-dir .inv-dir-col-ticket {
     display: flex;
     align-items: center;
     min-width: 0;
   }
 
-  body.inv-dir-page .inv-dir-col-sectors {
+  body.inv-people-dir .inv-dir-col-email {
     padding-left: 0;
     padding-right: 0;
   }
 
-  body.inv-dir-page .inv-dir-col-sectors .inv-dir-cell {
+  body.inv-people-dir .inv-dir-col-email .inv-dir-cell {
     display: flex;
     align-items: center;
     width: 100%;
@@ -5565,12 +5564,12 @@ a.inv-profile-metric:hover .inv-profile-metric-value {
     padding: 0;
   }
 
-  body.inv-dir-page .inv-dir-col-sectors .inv-email-unlock-btn {
+  body.inv-people-dir .inv-dir-col-email .inv-email-unlock-btn {
     margin: 0;
     flex-shrink: 0;
   }
 
-  body.inv-dir-page .inv-dir-col-sectors .inv-dir-inline-link {
+  body.inv-people-dir .inv-dir-col-email .inv-dir-inline-link {
     display: inline-block;
     max-width: 100%;
     overflow: hidden;
@@ -5579,7 +5578,7 @@ a.inv-profile-metric:hover .inv-profile-metric-value {
     vertical-align: middle;
   }
 
-  body.inv-dir-page .inv-dir-col-sectors .inv-profile-empty {
+  body.inv-people-dir .inv-dir-col-email .inv-profile-empty {
     line-height: 1.75rem;
   }
 }
@@ -5660,7 +5659,7 @@ a.inv-profile-metric:hover .inv-profile-metric-value {
   height: 14px;
 }
 
-body.inv-dir-page .inv-dir-col-sectors .inv-dir-cell:has(.inv-email-revealed) {
+body.inv-people-dir .inv-dir-col-email .inv-dir-cell:has(.inv-email-revealed) {
   display: flex;
   align-items: center;
 }
