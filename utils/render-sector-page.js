@@ -8,6 +8,7 @@ const { renderExploreRelated } = require('./render-explore-related');
 const { setPublicHtmlCache } = require('./public-html-cache');
 const { getSectorIconSvg } = require('./sector-icons');
 const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('./site-labels');
+const { renderSiteNavLinks } = require('./render-site-nav');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -379,11 +380,7 @@ function renderSectorPage(sector, res) {
     '<a href="/" class="logo-container"><img src="/assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img"></a>',
     '<button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>',
     '<nav class="main-nav" id="navigation-bar">',
-    '<a href="/" class="nav-link">Home</a>',
-    '<a href="' + FUNDS_PATH + '" class="nav-link active">' + FUNDS_LABEL + '</a>',
-    '<a href="' + INVESTORS_PATH + '" class="nav-link">' + INVESTORS_LABEL + '</a>',
-    '<a href="/blog" class="nav-link">Blog</a>',
-    '<a href="/news" class="nav-link">News</a>',
+    ...renderSiteNavLinks('funds'),
     '</nav></header>',
     '<main class="hero-showcase inv-detail-main">',
     '<div class="ambient-bg-wrapper"><div class="waitlist-bg"><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div><div class="glow-orb orb-3"></div></div></div>',
