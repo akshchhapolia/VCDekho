@@ -51,6 +51,16 @@ export default async function middleware(request) {
   const pathname = url.pathname.replace(/\/$/, '') || '/';
   const host = request.headers.get('x-forwarded-host') || request.headers.get('host') || '';
 
+  if (isProductionHost(host)) {
+    const isSensitiveData =
+      pathname.startsWith('/utils/_data/') ||
+      pathname === '/utils/_data' ||
+      pathname === '/VC Dekho Sheet - Investor - Individuals.csv';
+    if (isSensitiveData) {
+      return new Response('Not Found', { status: 404, headers: { 'content-type': 'text/plain; charset=utf-8' } });
+    }
+  }
+
   if (!isProductionHost(host)) {
     return;
   }
@@ -89,5 +99,12 @@ export default async function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/investors', '/people', '/api/investors/list', '/api/people']
+  matcher: [
+    '/investors',
+    '/people',
+    '/api/investors/list',
+    '/api/people',
+    '/utils/_data/:path*',
+    '/VC Dekho Sheet - Investor - Individuals.csv'
+  ]
 };
