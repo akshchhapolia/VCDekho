@@ -24,11 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const LABEL_VERIFY = 'Verify & continue';
 
   const params = new URLSearchParams(window.location.search);
-  const nextPath = params.get('next') || '/investors';
+  const nextPath = params.get('next') || '/funds';
 
   function safeNext(path) {
-    if (!path || typeof path !== 'string') return '/investors';
-    if (!path.startsWith('/') || path.startsWith('//')) return '/investors';
+    if (!path || typeof path !== 'string') return '/funds';
+    if (!path.startsWith('/') || path.startsWith('//')) return '/funds';
     return path;
   }
 

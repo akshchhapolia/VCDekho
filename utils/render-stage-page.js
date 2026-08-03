@@ -81,7 +81,7 @@ function renderStagePage(stage, res) {
   )).join('');
 
   const investorCards = (stage.investors || []).slice(0, 24).map(inv => (
-    '<a class="stage-inv-card stage-reveal" href="/investors/' + escapeHtml(inv.slug) + '">' +
+    '<a class="stage-inv-card stage-reveal" href="/funds/' + escapeHtml(inv.slug) + '">' +
       '<div class="stage-inv-type">' + escapeHtml(inv.type) + '</div>' +
       '<h3>' + escapeHtml(inv.name) + '</h3>' +
       '<p>' + escapeHtml(inv.thesis || inv.chequeSize || '') + '</p>' +
@@ -90,7 +90,7 @@ function renderStagePage(stage, res) {
   )).join('');
 
   const relatedStageCards = (stage.relatedStages || []).map(s => (
-    '<a class="stage-related-card stage-reveal" href="/investors/stages/' + escapeHtml(s.id) + '">' +
+    '<a class="stage-related-card stage-reveal" href="/funds/stages/' + escapeHtml(s.id) + '">' +
       '<div class="stage-related-order">Stage ' + String(s.order).padStart(2, '0') + '</div>' +
       '<h3>' + escapeHtml(s.label) + '</h3>' +
       '<p>' + escapeHtml(s.summary) + '</p>' +
@@ -107,7 +107,7 @@ function renderStagePage(stage, res) {
       : '';
     return (
       '<div class="stage-rail-item">' +
-        '<a class="stage-rail-node' + stateClass + '" href="/investors/stages/' + escapeHtml(s.id) + '">' +
+        '<a class="stage-rail-node' + stateClass + '" href="/funds/stages/' + escapeHtml(s.id) + '">' +
           '<span class="stage-rail-dot"><span>' + s.order + '</span></span>' +
           '<span class="stage-rail-label">' + escapeHtml(s.label) + '</span>' +
         '</a>' +
@@ -133,10 +133,10 @@ function renderStagePage(stage, res) {
 
   const prevNext = [
     stage.prev
-      ? '<a class="stage-pn-card stage-reveal" href="/investors/stages/' + escapeHtml(stage.prev.id) + '"><span>Previous stage</span><strong>' + escapeHtml(stage.prev.label) + '</strong></a>'
+      ? '<a class="stage-pn-card stage-reveal" href="/funds/stages/' + escapeHtml(stage.prev.id) + '"><span>Previous stage</span><strong>' + escapeHtml(stage.prev.label) + '</strong></a>'
       : '<div class="stage-pn-card is-empty"></div>',
     stage.next
-      ? '<a class="stage-pn-card stage-reveal" href="/investors/stages/' + escapeHtml(stage.next.id) + '"><span>Next stage</span><strong>' + escapeHtml(stage.next.label) + '</strong></a>'
+      ? '<a class="stage-pn-card stage-reveal" href="/funds/stages/' + escapeHtml(stage.next.id) + '"><span>Next stage</span><strong>' + escapeHtml(stage.next.label) + '</strong></a>'
       : '<div class="stage-pn-card is-empty"></div>'
   ].join('');
 
@@ -153,7 +153,7 @@ function renderStagePage(stage, res) {
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">',
     '<title>' + escapeHtml(stage.label) + ' Funding Stage | Startup Investment Stages | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(stage.summary).slice(0, 160) + '">',
-    '<link rel="canonical" href="https://vcdekho.com/investors/stages/' + escapeHtml(stage.id) + '">',
+    '<link rel="canonical" href="https://vcdekho.com/funds/stages/' + escapeHtml(stage.id) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
     '<link rel="stylesheet" href="/css/base.css?v=101">',
@@ -176,7 +176,7 @@ function renderStagePage(stage, res) {
     '<main class="hero-showcase inv-detail-main">',
     '<div class="ambient-bg-wrapper"><div class="waitlist-bg"><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div><div class="glow-orb orb-3"></div></div></div>',
     '<div class="inv-detail-wrap stage-page-wrap">',
-    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="' + FUNDS_PATH + '">' + FUNDS_LABEL + '</a><span>›</span><a href="/investors/stages">Stages</a><span>›</span><span class="current">' + escapeHtml(stage.label) + '</span></div>',
+    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="' + FUNDS_PATH + '">' + FUNDS_LABEL + '</a><span>›</span><a href="/funds/stages">Stages</a><span>›</span><span class="current">' + escapeHtml(stage.label) + '</span></div>',
 
     '<section class="stage-hero stage-hero-enter" id="overview">',
     '<div class="stage-hero-wash" aria-hidden="true"></div>',
@@ -187,7 +187,7 @@ function renderStagePage(stage, res) {
     '<p class="stage-hero-summary">' + escapeHtml(stage.summary) + '</p>',
     '<div class="stage-hero-actions">',
     '<div class="stage-hero-stat"><strong>' + stage.investorCount + '</strong><span>matching funds</span></div>',
-    '<a class="stage-hero-cta" href="/investors?stage=' + encodeURIComponent(stage.id) + '">Open in directory</a>',
+    '<a class="stage-hero-cta" href="/funds?stage=' + encodeURIComponent(stage.id) + '">Open in directory</a>',
     '</div>',
     '</div>',
     '<div class="stage-rail" aria-label="Funding stage ladder">' + ladderHtml + '</div>',
@@ -259,10 +259,10 @@ function renderStagePage(stage, res) {
 
     '<section class="stage-section stage-reveal" id="investors">',
     '<div class="stage-section-label">08 — Capital map</div>',
-    '<div class="theme-section-head"><h2>Funds active at this stage</h2><a href="/investors?stage=' + encodeURIComponent(stage.id) + '">See all filters</a></div>',
+    '<div class="theme-section-head"><h2>Funds active at this stage</h2><a href="/funds?stage=' + encodeURIComponent(stage.id) + '">See all filters</a></div>',
     '<div class="stage-inv-grid">' + (investorCards || '<p class="inv-empty">No funds tagged yet.</p>') + '</div>',
     stage.investorCount > 24
-      ? ('<div class="theme-more"><a class="inv-btn inv-btn-primary" href="/investors?stage=' + encodeURIComponent(stage.id) + '">Browse all ' + stage.investorCount + ' funds</a></div>')
+      ? ('<div class="theme-more"><a class="inv-btn inv-btn-primary" href="/funds?stage=' + encodeURIComponent(stage.id) + '">Browse all ' + stage.investorCount + ' funds</a></div>')
       : '',
     '</section>',
 
@@ -274,9 +274,9 @@ function renderStagePage(stage, res) {
       title: 'Explore related',
       subtitle: 'Match stage fit with thesis fit, then open the directory.',
       themes: (stage.relatedThemes || []).map(t => ({ id: t.id, label: t.label })),
-      fundsHref: '/investors?stage=' + encodeURIComponent(stage.id),
+      fundsHref: '/funds?stage=' + encodeURIComponent(stage.id),
       fundsLabel: 'Browse ' + stage.investorCount + ' funds at this stage →',
-      siblingHref: '/investors/themes',
+      siblingHref: '/funds/themes',
       siblingLabel: 'Thesis guides →'
     }),
 

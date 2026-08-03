@@ -510,7 +510,7 @@ function renderInvestorPage(investor, related, res, opts) {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: investor.name,
-    url: investor.website || ('https://vcdekho.com/investors/' + investor.slug),
+    url: investor.website || ('https://vcdekho.com/funds/' + investor.slug),
     description: investor.thesis || investor.writeup,
     sameAs: [investor.linkedin, investor.website].filter(Boolean)
   });
@@ -528,12 +528,12 @@ function renderInvestorPage(investor, related, res, opts) {
     renderProfileHeadAssets(),
     '<title>' + escapeHtml(investor.name) + ' | Funds | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
-    '<link rel="canonical" href="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
+    '<link rel="canonical" href="https://vcdekho.com/funds/' + escapeHtml(investor.slug) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
     '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
-    '<meta property="og:url" content="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
+    '<meta property="og:url" content="https://vcdekho.com/funds/' + escapeHtml(investor.slug) + '">',
     '<meta property="og:type" content="profile">',
     '<script type="application/ld+json">' + schema + '</script>',
     '</head>',

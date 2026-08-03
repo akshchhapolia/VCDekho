@@ -32,7 +32,7 @@ function formatActivityDate(dateStr) {
 function firmAttribution(person, investor) {
   return (
     '<p class="inv-person-firm-attribution">' +
-    'Data shown for <a href="/investors/' + escapeHtml(investor.slug) + '">' +
+    'Data shown for <a href="/funds/' + escapeHtml(investor.slug) + '">' +
     escapeHtml(person.company || investor.name) +
     '</a> — the fund this person is mapped to in VC Dekho.' +
     '</p>'
@@ -69,9 +69,9 @@ function firmFocusSection(person, investor, opts) {
   const sectorPills = sectors.map((label, i) => {
     const id = sectorIds[i];
     const href = hasSectorGuide(id)
-      ? '/investors/sectors/' + encodeURIComponent(id)
+      ? '/funds/sectors/' + encodeURIComponent(id)
       : id
-        ? '/investors?sector=' + encodeURIComponent(id)
+        ? '/funds?sector=' + encodeURIComponent(id)
         : '';
     const inner = escapeHtml(label);
     if (href) {
@@ -110,7 +110,7 @@ function firmFocusSection(person, investor, opts) {
     '<div class="inv-person-firm-panel">' +
       '<div class="inv-profile-metric-strip inv-person-firm-metrics">' + metrics + '</div>' +
       sectorPanel +
-      '<a class="inv-person-firm-panel-cta" href="/investors/' + escapeHtml(investor.slug) + '#focus">View full firm profile →</a>' +
+      '<a class="inv-person-firm-panel-cta" href="/funds/' + escapeHtml(investor.slug) + '#focus">View full firm profile →</a>' +
     '</div>';
 
   const revealCls = opts.visible
@@ -144,7 +144,7 @@ function firmThesisSection(person, investor, opts) {
 
   const chipsHtml = labels.map(function (label, i) {
     const id = ids[i];
-    const href = id && id !== 'general' ? '/investors/themes/' + id : '';
+    const href = id && id !== 'general' ? '/funds/themes/' + id : '';
     const cls = 'inv-profile-chip inv-profile-chip-thesis';
     const icon = getThesisThemeIconSvg(id || '', 'inv-profile-chip-icon');
     const inner = icon + '<span>' + escapeHtml(label) + '</span>';
@@ -169,7 +169,7 @@ function firmThesisSection(person, investor, opts) {
     '</div>' +
     prose +
     (chipsHtml ? '<div class="inv-profile-thesis-chips">' + chipsHtml + '</div>' : '') +
-    '<a class="inv-profile-panel-link" href="/investors/' + escapeHtml(investor.slug) + '#thesis">Full thesis on firm profile →</a>' +
+    '<a class="inv-profile-panel-link" href="/funds/' + escapeHtml(investor.slug) + '#thesis">Full thesis on firm profile →</a>' +
     '</section>'
   );
 }
@@ -207,8 +207,8 @@ function firmActivitySection(person, investor, limitOrOpts) {
 
   const total = (investor.recentChecks || []).length;
   const moreLink = total > checks.length
-    ? '<a class="inv-profile-panel-link" href="/investors/' + escapeHtml(investor.slug) + '#activity">View all ' + total + ' activity items →</a>'
-    : '<a class="inv-profile-panel-link" href="/investors/' + escapeHtml(investor.slug) + '#activity">View on firm profile →</a>';
+    ? '<a class="inv-profile-panel-link" href="/funds/' + escapeHtml(investor.slug) + '#activity">View all ' + total + ' activity items →</a>'
+    : '<a class="inv-profile-panel-link" href="/funds/' + escapeHtml(investor.slug) + '#activity">View on firm profile →</a>';
 
   const revealCls = opts.visible
     ? 'inv-profile-section inv-person-firm-section inv-profile-reveal is-visible'
@@ -257,8 +257,8 @@ function firmPortfolioSection(person, investor, limitOrOpts) {
     '</div>' +
     '<div class="inv-profile-portfolio-grid inv-person-firm-portfolio-grid">' + cards + '</div>' +
     (total > companies.length
-      ? '<a class="inv-profile-panel-link" href="/investors/' + escapeHtml(investor.slug) + '#portfolio">View full portfolio →</a>'
-      : '<a class="inv-profile-panel-link" href="/investors/' + escapeHtml(investor.slug) + '#portfolio">View on firm profile →</a>') +
+      ? '<a class="inv-profile-panel-link" href="/funds/' + escapeHtml(investor.slug) + '#portfolio">View full portfolio →</a>'
+      : '<a class="inv-profile-panel-link" href="/funds/' + escapeHtml(investor.slug) + '#portfolio">View on firm profile →</a>') +
     '</section>'
   );
 }
@@ -284,9 +284,9 @@ function firmExploreSection(investor, opts) {
     subtitle: 'Stage, sector, and thesis guides connected to this person\'s firm.',
     stages: stagesForExplore,
     themes: exploreThemes,
-    fundsHref: '/investors/' + investor.slug,
+    fundsHref: '/funds/' + investor.slug,
     fundsLabel: 'View firm profile →',
-    siblingHref: '/investors/sectors',
+    siblingHref: '/funds/sectors',
     siblingLabel: 'Sector guides →',
     className: 'inv-profile-reveal inv-person-firm-explore'
   });

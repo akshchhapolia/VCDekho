@@ -41,7 +41,7 @@ function stageLinksForCard(inv) {
     const id = ids[i];
     if (hasStageGuide(id)) {
       return (
-        '<a class="theme-inv-stage-link" href="/investors/stages/' + escapeHtml(id) + '">' +
+        '<a class="theme-inv-stage-link" href="/funds/stages/' + escapeHtml(id) + '">' +
           escapeHtml(label) +
         '</a>'
       );
@@ -61,7 +61,7 @@ function renderThemePage(theme, res) {
 
   const investorCards = theme.investors.slice(0, 24).map(inv => (
     '<article class="theme-inv-card">' +
-      '<a class="theme-inv-card-main" href="/investors/' + escapeHtml(inv.slug) + '">' +
+      '<a class="theme-inv-card-main" href="/funds/' + escapeHtml(inv.slug) + '">' +
         '<div class="theme-inv-type">' + escapeHtml(inv.type) + '</div>' +
         '<h3>' + escapeHtml(inv.name) + '</h3>' +
         '<p>' + escapeHtml(inv.thesis || inv.chequeSize || '') + '</p>' +
@@ -72,7 +72,7 @@ function renderThemePage(theme, res) {
   )).join('');
 
   const otherCards = otherThemes.map(t => (
-    '<a class="theme-other-card" href="/investors/themes/' + escapeHtml(t.id) + '">' +
+    '<a class="theme-other-card" href="/funds/themes/' + escapeHtml(t.id) + '">' +
       '<div class="theme-other-top">' +
         getThesisThemeIconSvg(t.id, 'theme-other-icon') +
         '<div class="theme-other-count">' + t.investorCount + ' funds</div>' +
@@ -87,9 +87,9 @@ function renderThemePage(theme, res) {
     subtitle: 'Pair this thesis with the right stage, then shortlist matching funds.',
     stages: relatedStages,
     themes: otherThemes.map(t => ({ id: t.id, label: t.label })),
-    fundsHref: '/investors?thesis=' + encodeURIComponent(theme.id),
+    fundsHref: '/funds?thesis=' + encodeURIComponent(theme.id),
     fundsLabel: 'Browse ' + theme.investorCount + ' matching funds →',
-    siblingHref: '/investors/sectors',
+    siblingHref: '/funds/sectors',
     siblingLabel: 'Sector guides →'
   });
 
@@ -106,7 +106,7 @@ function renderThemePage(theme, res) {
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">',
     '<title>' + escapeHtml(theme.label) + ' Funds | Thesis Themes | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(theme.summary).slice(0, 160) + '">',
-    '<link rel="canonical" href="https://vcdekho.com/investors/themes/' + escapeHtml(theme.id) + '">',
+    '<link rel="canonical" href="https://vcdekho.com/funds/themes/' + escapeHtml(theme.id) + '">',
     '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
     '<meta name="robots" content="index, follow">',
     '<link rel="stylesheet" href="/css/base.css?v=101">',
@@ -129,13 +129,13 @@ function renderThemePage(theme, res) {
     '<main class="hero-showcase inv-detail-main">',
     '<div class="ambient-bg-wrapper"><div class="waitlist-bg"><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div><div class="glow-orb orb-3"></div></div></div>',
     '<div class="inv-detail-wrap theme-page-wrap">',
-    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="' + FUNDS_PATH + '">' + FUNDS_LABEL + '</a><span>›</span><a href="/investors/themes">Thesis themes</a><span>›</span><span class="current">' + escapeHtml(theme.label) + '</span></div>',
+    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="' + FUNDS_PATH + '">' + FUNDS_LABEL + '</a><span>›</span><a href="/funds/themes">Thesis themes</a><span>›</span><span class="current">' + escapeHtml(theme.label) + '</span></div>',
     '<section class="theme-hero">',
     '<div class="theme-hero-icon-wrap" aria-hidden="true">' + getThesisThemeIconSvg(theme.id, 'theme-hero-icon') + '</div>',
     '<span class="inv-kicker">' + escapeHtml(theme.eyebrow) + '</span>',
     '<h1 class="inv-detail-title">' + escapeHtml(theme.label) + '</h1>',
     '<p class="inv-detail-thesis">' + escapeHtml(theme.summary) + '</p>',
-    '<div class="theme-hero-meta"><span>' + theme.investorCount + ' matching funds</span><a href="/investors?thesis=' + encodeURIComponent(theme.id) + '">View in directory →</a></div>',
+    '<div class="theme-hero-meta"><span>' + theme.investorCount + ' matching funds</span><a href="/funds?thesis=' + encodeURIComponent(theme.id) + '">View in directory →</a></div>',
     '</section>',
     '<section class="inv-body-panel theme-writeup-panel">',
     '<h2>What this thesis means</h2>',
@@ -146,9 +146,9 @@ function renderThemePage(theme, res) {
     '</div>',
     '</section>',
     '<section class="theme-investors-section">',
-    '<div class="theme-section-head"><h2>Funds with this thesis</h2><a href="/investors?thesis=' + encodeURIComponent(theme.id) + '">See all filters</a></div>',
+    '<div class="theme-section-head"><h2>Funds with this thesis</h2><a href="/funds?thesis=' + encodeURIComponent(theme.id) + '">See all filters</a></div>',
     '<div class="theme-inv-grid">' + (investorCards || '<p class="inv-empty">No funds tagged yet.</p>') + '</div>',
-    theme.investorCount > 24 ? ('<div class="theme-more"><a class="inv-btn inv-btn-primary" href="/investors?thesis=' + encodeURIComponent(theme.id) + '">Browse all ' + theme.investorCount + ' funds</a></div>') : '',
+    theme.investorCount > 24 ? ('<div class="theme-more"><a class="inv-btn inv-btn-primary" href="/funds?thesis=' + encodeURIComponent(theme.id) + '">Browse all ' + theme.investorCount + ' funds</a></div>') : '',
     '</section>',
     exploreHtml,
     otherCards ? ('<section class="theme-others"><h2>Other thesis themes</h2><div class="theme-others-grid">' + otherCards + '</div></section>') : '',
