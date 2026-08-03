@@ -87,31 +87,62 @@
   }
 
   function buildRevealedElement(email, slug, isProfile) {
+    if (isProfile) {
+      var wrap = document.createElement('span');
+      wrap.className = 'inv-email-revealed inv-email-revealed--profile';
+      wrap.setAttribute('data-person-slug', slug);
+
+      var capsule = document.createElement('span');
+      capsule.className = 'inv-profile-cta is-ghost inv-email-capsule';
+
+      var link = document.createElement('a');
+      link.className = 'inv-email-capsule-link';
+      link.href = 'mailto:' + email;
+      link.textContent = email;
+      link.setAttribute('data-analytics-event', 'profile_cta_click');
+      link.setAttribute('data-analytics-params', JSON.stringify({ cta: 'email', kind: 'person', slug: slug }));
+
+      capsule.appendChild(link);
+      capsule.appendChild(createCopyBtn(email, slug, true));
+      wrap.appendChild(capsule);
+      return wrap;
+    }
+
     var wrap = document.createElement('span');
-    wrap.className = 'inv-email-revealed' + (isProfile ? ' inv-email-revealed--profile' : '');
+    wrap.className = 'inv-email-revealed';
     wrap.setAttribute('data-person-slug', slug);
 
     var link = document.createElement('a');
-    link.className = isProfile ? 'inv-profile-cta is-ghost' : 'inv-dir-inline-link';
+    link.className = 'inv-dir-inline-link';
     link.href = 'mailto:' + email;
     link.textContent = email;
     link.setAttribute('data-analytics-event', 'profile_cta_click');
     link.setAttribute('data-analytics-params', JSON.stringify({ cta: 'email', kind: 'person', slug: slug }));
-    if (!isProfile) {
-      link.addEventListener('click', function (e) {
-        e.stopPropagation();
-      });
-    }
+    link.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
 
     wrap.appendChild(link);
-    wrap.appendChild(createCopyBtn(email, slug, isProfile));
+    wrap.appendChild(createCopyBtn(email, slug, false));
     return wrap;
   }
 
   function revealedEmailHtml(email, slug, isProfile) {
-    var wrapClass = 'inv-email-revealed' + (isProfile ? ' inv-email-revealed--profile' : '');
-    var linkClass = isProfile ? 'inv-profile-cta is-ghost' : 'inv-dir-inline-link';
-    var copyClass = 'inv-email-copy-btn' + (isProfile ? ' inv-email-copy-btn--profile' : '');
+    if (isProfile) {
+      var copyClass = 'inv-email-copy-btn inv-email-copy-btn--profile';
+      return (
+        '<span class="inv-email-revealed inv-email-revealed--profile" data-person-slug="' + escHtml(slug) + '">' +
+        '<span class="inv-profile-cta is-ghost inv-email-capsule">' +
+        '<a class="inv-email-capsule-link" href="mailto:' + escHtml(email) + '" data-analytics-event="profile_cta_click" data-analytics-params=\'' +
+        escHtml(JSON.stringify({ cta: 'email', kind: 'person', slug: slug })) + '\'>' + escHtml(email) + '</a>' +
+        '<button type="button" class="' + copyClass + '" aria-label="Copy email" title="Copy email">' + COPY_ICON + '</button>' +
+        '</span></span>'
+      );
+    }
+
+    var wrapClass = 'inv-email-revealed';
+    var linkClass = 'inv-dir-inline-link';
+    var copyClass = 'inv-email-copy-btn';
     return (
       '<span class="' + wrapClass + '" data-person-slug="' + escHtml(slug) + '">' +
       '<a class="' + linkClass + '" href="mailto:' + escHtml(email) + '" data-analytics-event="profile_cta_click" data-analytics-params=\'' +
