@@ -19,6 +19,10 @@ const parser = new Parser({
 
 const SUBREDDITS = ['StartUpIndia', 'indianstartups', 'IndiaInvestments'];
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function scoreBuzzRelevance(title, body) {
   let score = 0;
   const text = `${title || ''} ${body || ''}`.toLowerCase();
@@ -37,7 +41,9 @@ async function runScrape() {
   const known = new Set(recent.rows.map((r) => r.source_url));
   let queued = 0;
 
-  for (const sub of SUBREDDITS) {
+  for (let i = 0; i < SUBREDDITS.length; i++) {
+    const sub = SUBREDDITS[i];
+    if (i > 0) await sleep(2500);
     const feed = await parser.parseURL(`https://www.reddit.com/r/${sub}/new/.rss`);
     for (const item of feed.items || []) {
       const url = String(item.link || item.guid || '')

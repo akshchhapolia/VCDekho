@@ -60,7 +60,9 @@ module.exports = async function handler(req, res) {
     );
     const knownUrls = new Set(recent.rows.map((r) => r.source_url));
 
-    for (const sub of SUBREDDITS) {
+    for (let i = 0; i < SUBREDDITS.length; i++) {
+      const sub = SUBREDDITS[i];
+      if (i > 0) await sleep(2500);
       const feedUrl = `https://www.reddit.com/r/${sub}/new/.rss`;
       try {
         const feed = await parser.parseURL(feedUrl);
