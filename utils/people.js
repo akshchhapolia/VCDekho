@@ -165,8 +165,8 @@ function filterPeople(query = {}) {
   return list;
 }
 
-function toCard(person) {
-  return {
+function toCard(person, opts = {}) {
+  const card = {
     slug: person.slug,
     name: person.name,
     title: person.title,
@@ -179,6 +179,8 @@ function toCard(person) {
     linkedin: person.linkedin || '',
     twitter: person.twitter || ''
   };
+  if (opts.email) card.email = opts.email;
+  return card;
 }
 
 module.exports = {

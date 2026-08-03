@@ -237,16 +237,20 @@
       const companyHtml = p.companySlug
         ? '<a class="inv-dir-inline-link" href="/investors/' + esc(p.companySlug) + '" onclick="event.stopPropagation()">' + esc(p.company) + '</a>'
         : esc(p.company || '—');
-      const emailHtml = p.hasEmail
-        ? '<button type="button" class="inv-email-unlock-btn" data-unlock-email data-person-slug="' + esc(p.slug) + '">' + LOCK_ICON + '<span class="inv-email-unlock-label">Unlock email</span></button>'
-        : '<span class="inv-profile-empty">Not available</span>';
+      const emailHtml = p.email
+        ? (window.VCPersonEmailUnlock
+          ? window.VCPersonEmailUnlock.revealedEmailHtml(p.email, p.slug, false)
+          : esc(p.email))
+        : p.hasEmail
+          ? '<button type="button" class="inv-email-unlock-btn" data-unlock-email data-person-slug="' + esc(p.slug) + '">' + LOCK_ICON + '<span class="inv-email-unlock-label">Unlock email</span></button>'
+          : '<span class="inv-profile-empty">Not available</span>';
       const linksHtml = [
         p.linkedin ? '<a class="inv-dir-inline-link" href="' + esc(p.linkedin) + '" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">LinkedIn</a>' : '',
         p.twitter ? '<a class="inv-dir-inline-link" href="' + esc(p.twitter) + '" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Twitter</a>' : ''
       ].filter(Boolean).join(' · ') || '—';
 
       return `
-      <article class="inv-dir-row">
+      <article class="inv-dir-row${p.email ? ' is-email-unlocked' : ''}">
         <a class="inv-dir-row-hit" href="${href}" aria-label="${esc(p.name)}" data-analytics-event="dir_result_click" data-analytics-params='{"directory":"people","slug":"${esc(p.slug)}"}'></a>
         <div class="inv-dir-col inv-dir-col-fund">
           <span class="inv-dir-fund-mark">${logoHtml(p)}</span>
@@ -270,7 +274,7 @@
       </article>`;
     }).join('');
 
-    if (window.VCPersonEmailUnlock) window.VCPersonEmailUnlock.wireUnlockButtons(els.results);
+    if (window.VCPersonEmailUnlock) window.VCPersonEmailUnlock.initEmailUnlock(els.results);
   }
 
   function activeFilterCount() {
@@ -468,4 +472,9 @@
   }
 
   resetOffsetAndLoad();
+
+  document.addEventListener('vc:person-email-unlocked', function () {
+    state.offset = 0;
+    load();
+  });
 })();

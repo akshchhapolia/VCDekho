@@ -5,6 +5,14 @@
     '<path d="M7 15H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2"/>' +
     '</svg>';
 
+  function escHtml(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
   function getLabelEl(btn) {
     return btn.querySelector('.inv-email-unlock-label');
   }
@@ -44,6 +52,8 @@
   }
 
   function wireCopyBtn(btn, email, slug) {
+    if (btn.dataset.copyWired) return;
+    btn.dataset.copyWired = '1';
     btn.addEventListener('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
@@ -76,10 +86,10 @@
     return copyBtn;
   }
 
-  function replaceWithMailto(btn, email, slug) {
-    var isProfile = btn.classList.contains('inv-profile-cta');
+  function buildRevealedElement(email, slug, isProfile) {
     var wrap = document.createElement('span');
     wrap.className = 'inv-email-revealed' + (isProfile ? ' inv-email-revealed--profile' : '');
+    wrap.setAttribute('data-person-slug', slug);
 
     var link = document.createElement('a');
     link.className = isProfile ? 'inv-profile-cta is-ghost' : 'inv-dir-inline-link';
@@ -95,7 +105,70 @@
 
     wrap.appendChild(link);
     wrap.appendChild(createCopyBtn(email, slug, isProfile));
-    btn.replaceWith(wrap);
+    return wrap;
+  }
+
+  function revealedEmailHtml(email, slug, isProfile) {
+    var wrapClass = 'inv-email-revealed' + (isProfile ? ' inv-email-revealed--profile' : '');
+    var linkClass = isProfile ? 'inv-profile-cta is-ghost' : 'inv-dir-inline-link';
+    var copyClass = 'inv-email-copy-btn' + (isProfile ? ' inv-email-copy-btn--profile' : '');
+    return (
+      '<span class="' + wrapClass + '" data-person-slug="' + escHtml(slug) + '">' +
+      '<a class="' + linkClass + '" href="mailto:' + escHtml(email) + '" data-analytics-event="profile_cta_click" data-analytics-params=\'' +
+      escHtml(JSON.stringify({ cta: 'email', kind: 'person', slug: slug })) + '\'>' + escHtml(email) + '</a>' +
+      '<button type="button" class="' + copyClass + '" aria-label="Copy email" title="Copy email">' + COPY_ICON + '</button>' +
+      '</span>'
+    );
+  }
+
+  function replaceWithMailto(btn, email, slug) {
+    var isProfile = btn.classList.contains('inv-profile-cta');
+    btn.replaceWith(buildRevealedElement(email, slug, isProfile));
+  }
+
+  function wireRevealedEmails(root) {
+    var scope = root || document;
+    scope.querySelectorAll('.inv-email-revealed').forEach(function (wrap) {
+      if (wrap.dataset.revealedWired) return;
+      wrap.dataset.revealedWired = '1';
+      var copyBtn = wrap.querySelector('.inv-email-copy-btn');
+      var link = wrap.querySelector('a[href^="mailto:"]');
+      if (!copyBtn || !link) return;
+      var email = decodeURIComponent((link.getAttribute('href') || '').replace(/^mailto:/i, ''));
+      var slug = wrap.getAttribute('data-person-slug') || '';
+      wireCopyBtn(copyBtn, email, slug);
+      if (!wrap.classList.contains('inv-email-revealed--profile')) {
+        link.addEventListener('click', function (e) {
+          e.stopPropagation();
+        });
+      }
+    });
+  }
+
+  async function hydratePersistedEmail(btn) {
+    var slug = btn.getAttribute('data-person-slug');
+    if (!slug || !global.VCAuth) return;
+
+    var session = await global.VCAuth.getSession();
+    if (!session) return;
+
+    try {
+      var url = '/api/people?slug=' + encodeURIComponent(slug) + '&contact=email';
+      var res = await global.VCAuth.authFetch(url);
+      if (!res.ok) return;
+      var data = await res.json();
+      if (data && data.unlocked && data.email) {
+        replaceWithMailto(btn, data.email, slug);
+      }
+    } catch (_) {}
+  }
+
+  function hydratePersistedEmails(root) {
+    var scope = root || document;
+    var buttons = scope.querySelectorAll('[data-unlock-email]');
+    buttons.forEach(function (btn) {
+      hydratePersistedEmail(btn);
+    });
   }
 
   async function unlockEmail(btn) {
@@ -119,7 +192,7 @@
 
     try {
       var url = '/api/people?slug=' + encodeURIComponent(slug) + '&contact=email';
-      var res = await global.VCAuth.authFetch(url);
+      var res = await global.VCAuth.authFetch(url, { method: 'POST' });
       if (res.status === 401) {
         global.location.href = global.VCAuth.loginUrl(global.location.pathname + global.location.search);
         return;
@@ -133,6 +206,8 @@
       if (global.VCAnalytics && global.VCAnalytics.track) {
         global.VCAnalytics.track('contact_unlock', { kind: 'person', slug: slug });
       }
+
+      global.dispatchEvent(new CustomEvent('vc:person-email-unlocked', { detail: { slug: slug } }));
     } catch (_) {
       btn.disabled = false;
       setBtnLabel(btn, prevText === 'Unlocking…' ? 'Unlock email' : 'Try again');
@@ -152,16 +227,28 @@
     });
   }
 
+  function initEmailUnlock(root) {
+    wireUnlockButtons(root);
+    wireRevealedEmails(root);
+    hydratePersistedEmails(root);
+  }
+
   global.VCPersonEmailUnlock = {
     unlockEmail: unlockEmail,
-    wireUnlockButtons: wireUnlockButtons
+    wireUnlockButtons: wireUnlockButtons,
+    wireRevealedEmails: wireRevealedEmails,
+    hydratePersistedEmails: hydratePersistedEmails,
+    revealedEmailHtml: revealedEmailHtml,
+    initEmailUnlock: initEmailUnlock
   };
 
+  function onReady() {
+    initEmailUnlock();
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () {
-      wireUnlockButtons();
-    });
+    document.addEventListener('DOMContentLoaded', onReady);
   } else {
-    wireUnlockButtons();
+    onReady();
   }
 })(window);

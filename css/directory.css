@@ -5652,6 +5652,14 @@ a.inv-profile-metric:hover .inv-profile-metric-value {
   height: 14px;
 }
 
+.inv-dir-row.is-email-unlocked {
+  background: rgba(237, 87, 47, 0.04);
+}
+
+.inv-dir-row.is-email-unlocked:hover {
+  background: rgba(237, 87, 47, 0.07);
+}
+
 body.inv-dir-page .inv-dir-col-sectors .inv-dir-cell:has(.inv-email-revealed) {
   display: flex;
   align-items: center;

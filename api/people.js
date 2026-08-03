@@ -10,6 +10,12 @@
  */
 const { filterPeople, getFilters, toCard, getPersonBySlug, getPeopleByCompanySlug } = require('../utils/people');
 const { getPersonContact } = require('../utils/people-contacts');
+const {
+  getUserUnlockMap,
+  isPersonEmailUnlocked,
+  recordPersonEmailUnlock,
+  sortPeopleByUnlocks
+} = require('../utils/person-email-unlocks');
 const { getInvestorBySlug, ensureInvestorDetailExtras } = require('../utils/investors');
 const { requireAuth } = require('../utils/require-auth');
 const { renderPersonPage, renderPersonExtrasHtml } = require('../utils/render-person-page');
@@ -33,18 +39,45 @@ module.exports = async function handler(req, res) {
       if (query.contact === 'email') {
         const user = await requireAuth(req, res);
         if (!user) return;
+
         if (!person.hasEmail) {
           res.setHeader('Cache-Control', 'private, no-store');
           return res.status(404).json({ error: 'No email on file' });
         }
-        const contact = getPersonContact(query.slug);
-        if (!contact) {
+
+        const method = String(req.method || 'GET').toUpperCase();
+
+        if (method === 'POST') {
+          await recordPersonEmailUnlock(user.id, query.slug);
+          const contact = getPersonContact(query.slug);
+          if (!contact) {
+            res.setHeader('Cache-Control', 'private, no-store');
+            return res.status(404).json({ error: 'No email on file' });
+          }
+          res.setHeader('Content-Type', 'application/json; charset=utf-8');
           res.setHeader('Cache-Control', 'private, no-store');
-          return res.status(404).json({ error: 'No email on file' });
+          return res.status(200).json({ unlocked: true, ...contact });
         }
-        res.setHeader('Content-Type', 'application/json; charset=utf-8');
+
+        if (method === 'GET') {
+          const unlocked = await isPersonEmailUnlocked(user.id, query.slug);
+          if (!unlocked) {
+            res.setHeader('Content-Type', 'application/json; charset=utf-8');
+            res.setHeader('Cache-Control', 'private, no-store');
+            return res.status(200).json({ unlocked: false });
+          }
+          const contact = getPersonContact(query.slug);
+          if (!contact) {
+            res.setHeader('Cache-Control', 'private, no-store');
+            return res.status(404).json({ error: 'No email on file' });
+          }
+          res.setHeader('Content-Type', 'application/json; charset=utf-8');
+          res.setHeader('Cache-Control', 'private, no-store');
+          return res.status(200).json({ unlocked: true, ...contact });
+        }
+
         res.setHeader('Cache-Control', 'private, no-store');
-        return res.status(200).json(contact);
+        return res.status(405).json({ error: 'Method not allowed' });
       }
 
       // Public JSON for mweb client hydrate
@@ -92,15 +125,22 @@ module.exports = async function handler(req, res) {
       offset = '0'
     } = query;
     const all = filterPeople({ q, companyType, role, stage, sector, thesis, cheque });
+    const unlockMap = await getUserUnlockMap(user.id);
+    const sorted = sortPeopleByUnlocks(all, unlockMap);
     const start = Math.max(0, parseInt(offset, 10) || 0);
     const take = Math.min(200, Math.max(1, parseInt(limit, 10) || 100));
-    const page = all.slice(start, start + take).map(toCard);
+    const page = sorted.slice(start, start + take).map((person) => {
+      if (!unlockMap.has(person.slug)) return toCard(person);
+      const contact = getPersonContact(person.slug);
+      return toCard(person, contact ? { email: contact.email } : {});
+    });
 
     res.setHeader('Cache-Control', 'private, no-store');
     res.status(200).json({
-      total: all.length,
+      total: sorted.length,
       offset: start,
       limit: take,
+      unlockedCount: unlockMap.size,
       filters: getFilters(),
       people: page
     });
