@@ -24,6 +24,23 @@ const { COL_PERSONAL, COL_PROFESSIONAL, isValidEmail } = require('./lib/person_e
 const ROOT = path.join(__dirname, '..');
 const CSV_PATH = path.join(ROOT, 'VC Dekho Sheet - Investor - Individuals.csv');
 const OUT_DIR = path.join(ROOT, 'data', 'candidates');
+const ANGEL_CORRECTIONS_PATH = path.join(ROOT, 'data', 'candidates', 'angel-investor-corrections.json');
+
+function loadAngelCompanies() {
+  try {
+    const data = JSON.parse(fs.readFileSync(ANGEL_CORRECTIONS_PATH, 'utf8'));
+    return data.companyByName || {};
+  } catch {
+    return {};
+  }
+}
+
+function resolveCompanyName(row, angelCompanies) {
+  const raw = (row.Company || '').trim();
+  const name = (row['First Name'] || '').trim();
+  if (/^angel investor$/i.test(raw) && angelCompanies[name]) return angelCompanies[name];
+  return raw || angelCompanies[name] || '';
+}
 
 function parseArgs(argv) {
   const args = { missing: 'both', limit: Infinity, linkedinOnly: false };
@@ -35,7 +52,7 @@ function parseArgs(argv) {
   return args;
 }
 
-function buildExportRows(rows, args, missingKind) {
+function buildExportRows(rows, args, missingKind, angelCompanies) {
   const col = missingKind === 'personal' ? COL_PERSONAL : COL_PROFESSIONAL;
   const out = [];
 
@@ -48,7 +65,8 @@ function buildExportRows(rows, args, missingKind) {
     if (args.linkedinOnly && !linkedin) continue;
 
     const name = deriveName(row['First Name'], linkedin);
-    const org = resolveOrg(row.Company);
+    const company = resolveCompanyName(row, angelCompanies);
+    const org = resolveOrg(company);
     let website = (org.match && org.match.website) ? org.match.website.trim() : '';
     if (!website && org.match && org.match.domain) {
       website = org.match.domain.includes('.') ? `https://${org.match.domain}` : '';
@@ -56,9 +74,9 @@ function buildExportRows(rows, args, missingKind) {
 
     out.push({
       Name: `${name.firstname} ${name.lastname}`.trim() || row['First Name'].trim(),
-      'Company name': row.Company,
+      Company: company,
       'Company website': website,
-      'Linkedin id': linkedin
+      LinkedIn: linkedin
     });
     if (out.length >= args.limit) break;
   }
@@ -68,7 +86,7 @@ function buildExportRows(rows, args, missingKind) {
 
 function writeCsv(fileName, rows) {
   const outPath = path.join(OUT_DIR, fileName);
-  const columns = ['Name', 'Company name', 'Company website', 'Linkedin id'];
+  const columns = ['Name', 'Company', 'Company website', 'LinkedIn'];
   fs.writeFileSync(outPath, stringify(rows, { header: true, columns }));
   return outPath;
 }
@@ -94,8 +112,10 @@ function main() {
     process.exit(1);
   }
 
+  const angelCompanies = loadAngelCompanies();
+
   for (const kind of kinds) {
-    const exported = buildExportRows(rows, args, kind);
+    const exported = buildExportRows(rows, args, kind, angelCompanies);
     const fileName = kind === 'personal'
       ? 'missing-personal-email.csv'
       : 'missing-professional-email.csv';
