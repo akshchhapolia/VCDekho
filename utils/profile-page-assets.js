@@ -8,7 +8,7 @@ const CSS_FILES = [
   '/css/base.css?v=114',
   '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
-  '/css/directory.css?v=126'
+  '/css/directory.css?v=127'
 ];
 
 const FONTS_HREF =

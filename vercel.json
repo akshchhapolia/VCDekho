@@ -53,6 +53,16 @@
       "source": "/waitlist",
       "destination": "/login",
       "permanent": true
+    },
+    {
+      "source": "/utils/_data/:path*",
+      "destination": "/404.html",
+      "statusCode": 404
+    },
+    {
+      "source": "/VC Dekho Sheet - Investor - Individuals.csv",
+      "destination": "/404.html",
+      "statusCode": 404
     }
   ],
   "rewrites": [

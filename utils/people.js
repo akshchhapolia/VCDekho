@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const { getInvestorBySlug, getFilters: getInvestorFilters, chequeOverlaps } = require('./investors');
-const { displayEmail, isValidEmail } = require('../scripts/lib/person_email');
 
 let cache = null;
 
@@ -11,7 +10,7 @@ function hasLinkedIn(person) {
 }
 
 function isPersonPublic(person) {
-  return hasLinkedIn(person) || isValidEmail(person?.professionalEmail);
+  return hasLinkedIn(person) || Boolean(person?.hasProfessionalEmail);
 }
 
 const PERSON_ROLES = [
@@ -176,9 +175,7 @@ function toCard(person) {
     companyType: person.companyType,
     companyLogo: person.companyLogo || null,
     photo: person.photo || null,
-    personalEmail: person.personalEmail || '',
-    professionalEmail: person.professionalEmail || '',
-    email: displayEmail(person),
+    hasEmail: Boolean(person.hasEmail),
     linkedin: person.linkedin || '',
     twitter: person.twitter || ''
   };

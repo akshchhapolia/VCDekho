@@ -135,8 +135,8 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
   const linkedinBtn = person.linkedin
     ? '<a class="inv-profile-cta is-primary" href="' + escapeHtml(person.linkedin) + '" target="_blank" rel="noopener noreferrer" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"linkedin","kind":"person"}\'>' + iconLinkedin + '<span>LinkedIn</span></a>'
     : '';
-  const emailBtn = person.email
-    ? '<a class="inv-profile-cta is-ghost" href="mailto:' + escapeHtml(person.email) + '" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"email","kind":"person"}\'>' + iconEmail + '<span>' + escapeHtml(person.email) + '</span></a>'
+  const emailBtn = person.hasEmail
+    ? '<button type="button" class="inv-profile-cta is-ghost" data-unlock-email data-person-slug="' + escapeHtml(person.slug) + '">' + iconEmail + '<span>Unlock email</span></button>'
     : '';
   const twitterBtn = person.twitter
     ? '<a class="inv-profile-cta is-ghost" href="' + escapeHtml(person.twitter) + '" target="_blank" rel="noopener noreferrer" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"twitter","kind":"person"}\'>' + iconTwitter + '<span>Twitter / X</span></a>'
@@ -235,7 +235,6 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     '@type': 'Person',
     name: person.name,
     jobTitle: person.title || undefined,
-    email: person.email || undefined,
     image: person.photo ? 'https://vcdekho.com' + person.photo : undefined,
     worksFor: person.company ? { '@type': 'Organization', name: person.company } : undefined,
     sameAs: [person.linkedin, person.twitter].filter(Boolean)
@@ -321,6 +320,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
 
     '</div></main></div>',
     '<script src="/js/auth.js" defer></script>',
+    '<script src="/js/person-email-unlock.js?v=1" defer></script>',
     '<script src="/app.js" defer></script>',
     '<script src="/investors/lazy-portfolio-logos.js?v=1" defer></script>',
     '<script src="/investors/portfolio-section.js?v=4" defer></script>',

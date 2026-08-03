@@ -232,8 +232,8 @@
       const companyHtml = p.companySlug
         ? '<a class="inv-dir-inline-link" href="/investors/' + esc(p.companySlug) + '" onclick="event.stopPropagation()">' + esc(p.company) + '</a>'
         : esc(p.company || '—');
-      const emailHtml = p.email
-        ? '<a class="inv-dir-inline-link" href="mailto:' + esc(p.email) + '" onclick="event.stopPropagation()">' + esc(p.email) + '</a>'
+      const emailHtml = p.hasEmail
+        ? '<button type="button" class="inv-dir-inline-link inv-email-unlock-btn" data-unlock-email data-person-slug="' + esc(p.slug) + '">Unlock email</button>'
         : '<span class="inv-profile-empty">Not available</span>';
       const linksHtml = [
         p.linkedin ? '<a class="inv-dir-inline-link" href="' + esc(p.linkedin) + '" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">LinkedIn</a>' : '',
@@ -264,6 +264,8 @@
         </div>
       </article>`;
     }).join('');
+
+    if (window.VCPersonEmailUnlock) window.VCPersonEmailUnlock.wireUnlockButtons(els.results);
   }
 
   function activeFilterCount() {

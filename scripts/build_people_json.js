@@ -9,13 +9,19 @@ const path = require('path');
 const { parse } = require('csv-parse/sync');
 const { resolveOrg, normStrict } = require('./lib/org_lookup');
 const { slugify } = require('./lib/slugify');
-const { displayEmail, COL_PERSONAL, COL_PROFESSIONAL } = require('./lib/person_email');
+const {
+  hasDisplayEmail,
+  isValidEmail,
+  COL_PERSONAL,
+  COL_PROFESSIONAL
+} = require('./lib/person_email');
 
 const ROOT = path.join(__dirname, '..');
 const CSV_PATH = path.join(ROOT, 'VC Dekho Sheet - Investor - Individuals.csv');
 const INVESTORS_JSON_PATH = path.join(ROOT, 'data', 'investors.json');
 const PHOTOS_META_PATH = path.join(ROOT, 'data', 'people-photos.json');
 const OUT_PATH = path.join(ROOT, 'data', 'people.json');
+const CONTACTS_PATH = path.join(ROOT, 'utils', '_data', 'people-contacts.bySlug.json');
 
 function build() {
   const rows = parse(fs.readFileSync(CSV_PATH, 'utf8'), {
@@ -34,6 +40,7 @@ function build() {
 
   const usedSlugs = new Set();
   const people = [];
+  const contactsBySlug = {};
 
   for (const row of rows) {
     const name = (row['First Name'] || '').trim();
@@ -91,6 +98,9 @@ function build() {
     const personalEmail = (row[COL_PERSONAL] || '').trim();
     const professionalEmail = (row[COL_PROFESSIONAL] || '').trim();
 
+    const emailRow = { personalEmail, professionalEmail };
+    contactsBySlug[slug] = emailRow;
+
     people.push({
       id: String(people.length + 1),
       slug,
@@ -100,9 +110,8 @@ function build() {
       companySlug,
       companyType,
       companyLogo,
-      personalEmail,
-      professionalEmail,
-      email: displayEmail(row),
+      hasProfessionalEmail: isValidEmail(professionalEmail),
+      hasEmail: hasDisplayEmail(emailRow),
       linkedin,
       twitter,
       // Contact treated as validated only when we have at least one real social profile.
@@ -144,6 +153,8 @@ function build() {
 
   fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
   fs.writeFileSync(OUT_PATH, JSON.stringify(payload), 'utf8');
+  fs.mkdirSync(path.dirname(CONTACTS_PATH), { recursive: true });
+  fs.writeFileSync(CONTACTS_PATH, JSON.stringify(contactsBySlug), 'utf8');
   console.log(
     `Wrote ${people.length} people (${linkedCount} linked to an org; ${validatedCount} with socials / ${people.length - validatedCount} unvalidated) → ${OUT_PATH}`
   );

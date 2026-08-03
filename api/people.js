@@ -5,9 +5,11 @@
  *
  *   GET /api/people?slug=<slug>              -> public HTML profile page
  *   GET /api/people?slug=<slug>&extras=1     -> public JSON (activity/portfolio HTML)
+ *   GET /api/people?slug=<slug>&contact=email -> gated JSON (email unlock)
  *   GET /api/people?q=&role=&companyType=&stage=&sector=&thesis=&cheque= -> gated JSON list
  */
 const { filterPeople, getFilters, toCard, getPersonBySlug, getPeopleByCompanySlug } = require('../utils/people');
+const { getPersonContact } = require('../utils/people-contacts');
 const { getInvestorBySlug, ensureInvestorDetailExtras } = require('../utils/investors');
 const { requireAuth } = require('../utils/require-auth');
 const { renderPersonPage, renderPersonExtrasHtml } = require('../utils/render-person-page');
@@ -25,6 +27,24 @@ module.exports = async function handler(req, res) {
           return res.status(404).json({ error: 'Person not found' });
         }
         return res.status(404).send('<h1>404 - Person Not Found</h1>');
+      }
+
+      // Authenticated email unlock (never cached publicly)
+      if (query.contact === 'email') {
+        const user = await requireAuth(req, res);
+        if (!user) return;
+        if (!person.hasEmail) {
+          res.setHeader('Cache-Control', 'private, no-store');
+          return res.status(404).json({ error: 'No email on file' });
+        }
+        const contact = getPersonContact(query.slug);
+        if (!contact) {
+          res.setHeader('Cache-Control', 'private, no-store');
+          return res.status(404).json({ error: 'No email on file' });
+        }
+        res.setHeader('Content-Type', 'application/json; charset=utf-8');
+        res.setHeader('Cache-Control', 'private, no-store');
+        return res.status(200).json(contact);
       }
 
       // Public JSON for mweb client hydrate
