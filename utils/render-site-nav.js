@@ -33,6 +33,7 @@ function renderSiteNavLinks(active, opts = {}) {
       '">' +
       FUNDS_LABEL +
       '</a>',
+    '<a href="/buzz" class="nav-link' + (active === 'buzz' ? ' active' : '') + '">Buzz</a>',
     '<a href="/blog" class="nav-link">Blog</a>',
     '<a href="/news" class="nav-link">News</a>',
     ...trailing

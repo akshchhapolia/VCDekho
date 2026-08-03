@@ -123,6 +123,10 @@
       "destination": "/api/news/article?slug=:slug"
     },
     {
+      "source": "/buzz/:slug",
+      "destination": "/api/buzz/detail?slug=:slug"
+    },
+    {
       "source": "/funds/stages",
       "destination": "/funds/stages/index.html"
     },
@@ -199,6 +203,14 @@
     {
       "path": "/api/ops?action=ping-vendors",
       "schedule": "0 5 * * *"
+    },
+    {
+      "path": "/api/cron/buzz-scrape",
+      "schedule": "0 7 * * *"
+    },
+    {
+      "path": "/api/cron/buzz-process",
+      "schedule": "30 7 * * *"
     }
   ]
 }

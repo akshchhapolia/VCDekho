@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" class="scrollable-page">
+<head>
+    <script src="/js/analytics.js?v=2" defer></script>
+    <script src="/js/nav.js?v=101" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+    <title>Investor Buzz | VC Dekho</title>
+    <meta name="description" content="Founder discussions about Indian VCs — collated from Reddit and community sources with AI summaries, topics, and sentiment.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://vcdekho.com/buzz">
+    <link rel="icon" type="image/png" href="/assets/logoforvc.png">
+    <link rel="stylesheet" href="/css/base.css?v=101">
+    <link rel="stylesheet" href="/css/hero.css?v=73">
+    <link rel="stylesheet" href="/css/ambient.css?v=98">
+    <link rel="stylesheet" href="/css/buzz.css?v=1">
+</head>
+<body class="scrollable-page pub-page buzz-page">
+    <div class="app-container">
+        <header class="site-header">
+            <a href="/" class="logo-container">
+                <img src="/assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img">
+            </a>
+            <button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="main-nav" id="navigation-bar">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/investors" class="nav-link">Investors</a>
+                <a href="/funds" class="nav-link">Funds</a>
+                <a href="/buzz" class="nav-link active">Buzz</a>
+                <a href="/blog" class="nav-link">Blog</a>
+                <a href="/news" class="nav-link">News</a>
+                <a href="/login" class="nav-link">Log in</a>
+            </nav>
+        </header>
+
+        <main class="hero-showcase">
+            <div class="ambient-bg-wrapper">
+                <div class="waitlist-bg" id="waitlist-ambient-bg">
+                    <div class="glow-orb orb-1"></div>
+                    <div class="glow-orb orb-2"></div>
+                    <div class="glow-orb orb-3"></div>
+                </div>
+            </div>
+
+            <div class="blog-content buzz-page-content">
+                <div class="news-breadcrumbs">
+                    <a href="/">Home</a>
+                    <span>›</span>
+                    <span class="is-current">Investor Buzz</span>
+                </div>
+
+                <h1 class="blog-title">Investor Buzz</h1>
+                <p class="buzz-page-lead">Founder and community discussions about Indian VCs — summarized from Reddit with topics, sentiment, and links to the original threads.</p>
+                <p class="buzz-disclaimer" style="margin-top:-1rem;margin-bottom:1.5rem;">Pre-production preview. Summaries are AI-generated; always read the original discussion for full context.</p>
+
+                <div id="buzz-container" class="buzz-feed" aria-busy="true">
+                    <div class="buzz-card buzz-skel-card" aria-hidden="true">
+                        <div class="buzz-card-head">
+                            <span class="blog-skel-line blog-skel-cat" style="width:5rem;height:1.4rem;border-radius:999px;"></span>
+                            <span class="blog-skel-line blog-skel-meta"></span>
+                        </div>
+                        <span class="blog-skel-line blog-skel-title" style="height:1.5rem;width:92%;margin:0.75rem 0;"></span>
+                        <span class="blog-skel-line blog-skel-excerpt"></span>
+                        <span class="blog-skel-line blog-skel-excerpt short" style="margin-top:0.45rem;"></span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/app.js" defer></script>
+    <script src="/js/buzz.js?v=1" defer></script>
+</body>
+</html>

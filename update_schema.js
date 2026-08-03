@@ -51,6 +51,38 @@ async function migrate() {
         `);
         await pool.query(`CREATE INDEX IF NOT EXISTS idx_investor_portfolio_checked_at ON investor_portfolio (checked_at);`);
 
+        console.log("Creating investor_buzz table...");
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS investor_buzz (
+                id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                source TEXT NOT NULL DEFAULT 'reddit',
+                source_url TEXT UNIQUE NOT NULL,
+                source_id TEXT,
+                subreddit TEXT,
+                title TEXT NOT NULL,
+                body_excerpt TEXT,
+                comment_count INTEGER DEFAULT 0,
+                upvote_score INTEGER DEFAULT 0,
+                published_at_source TIMESTAMPTZ,
+                scraped_at TIMESTAMPTZ DEFAULT NOW(),
+                slug TEXT UNIQUE,
+                ai_summary TEXT,
+                topics TEXT[],
+                sentiment TEXT,
+                founder_quotes JSONB DEFAULT '[]'::jsonb,
+                investor_slugs TEXT[],
+                investor_names TEXT[],
+                relevance_score INTEGER DEFAULT 0,
+                status TEXT NOT NULL DEFAULT 'queued',
+                error_log TEXT,
+                published_at TIMESTAMPTZ,
+                created_at TIMESTAMPTZ DEFAULT NOW()
+            );
+        `);
+        await pool.query(`CREATE INDEX IF NOT EXISTS idx_investor_buzz_status ON investor_buzz (status);`);
+        await pool.query(`CREATE INDEX IF NOT EXISTS idx_investor_buzz_published ON investor_buzz (published_at DESC NULLS LAST);`);
+        await pool.query(`CREATE INDEX IF NOT EXISTS idx_investor_buzz_investor_slugs ON investor_buzz USING GIN (investor_slugs);`);
+
         console.log("Migration successful.");
     } catch (e) {
         console.error("Migration failed:", e);
