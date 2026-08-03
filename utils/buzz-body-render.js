@@ -28,7 +28,7 @@ function parseTableRow(line) {
 }
 
 function isSeparatorRow(cells) {
-  return cells.length > 0 && cells.every((c) => /^:?-{3,}:?$/.test(c));
+  return cells.length > 0 && cells.every((c) => /^:?-+:?$/.test(c));
 }
 
 function parseAlignments(separatorCells) {
