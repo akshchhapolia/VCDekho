@@ -29,6 +29,11 @@ module.exports = async function handler(req, res) {
     try {
       const person = getPersonBySlug(query.slug);
       if (!person) {
+        const fund = getInvestorBySlug(query.slug);
+        if (fund && query.contact !== 'email' && query.extras !== '1' && query.extras !== 'true') {
+          res.writeHead(301, { Location: `/funds/${encodeURIComponent(query.slug)}` });
+          return res.end();
+        }
         if (query.extras === '1' || query.extras === 'true') {
           res.setHeader('Cache-Control', 'public, max-age=60');
           return res.status(404).json({ error: 'Person not found' });

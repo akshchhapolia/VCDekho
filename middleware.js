@@ -65,7 +65,7 @@ export default async function middleware(request) {
     return;
   }
 
-  const isDirectoryPage = pathname === '/investors' || pathname === '/people';
+  const isDirectoryPage = pathname === '/funds' || pathname === '/investors';
   const isPeopleListApi = pathname === '/api/people' && !url.searchParams.get('slug');
   const isDirectoryApi =
     (pathname === '/api/investors/list' || isPeopleListApi) &&
@@ -100,8 +100,8 @@ export default async function middleware(request) {
 
 export const config = {
   matcher: [
+    '/funds',
     '/investors',
-    '/people',
     '/api/investors/list',
     '/api/people',
     '/utils/_data/:path*',

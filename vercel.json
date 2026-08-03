@@ -26,6 +26,14 @@
       ]
     },
     {
+      "source": "/funds/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800" },
+        { "key": "CDN-Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=604800" },
+        { "key": "Vercel-CDN-Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=604800" }
+      ]
+    },
+    {
       "source": "/investors/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800" },
@@ -55,6 +63,46 @@
       "permanent": true
     },
     {
+      "source": "/people",
+      "destination": "/investors",
+      "permanent": true
+    },
+    {
+      "source": "/people/:slug",
+      "destination": "/investors/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/investors/stages/:slug*",
+      "destination": "/funds/stages/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/investors/stages",
+      "destination": "/funds/stages",
+      "permanent": true
+    },
+    {
+      "source": "/investors/themes/:slug*",
+      "destination": "/funds/themes/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/investors/themes",
+      "destination": "/funds/themes",
+      "permanent": true
+    },
+    {
+      "source": "/investors/sectors/:slug*",
+      "destination": "/funds/sectors/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/investors/sectors",
+      "destination": "/funds/sectors",
+      "permanent": true
+    },
+    {
       "source": "/utils/_data/:path*",
       "destination": "/404.html",
       "statusCode": 404
@@ -75,24 +123,28 @@
       "destination": "/api/news/article?slug=:slug"
     },
     {
-      "source": "/investors/stages/:slug",
+      "source": "/funds/stages/:slug",
       "destination": "/api/investors/detail?slug=:slug&view=stage"
     },
     {
-      "source": "/investors/themes/:slug",
+      "source": "/funds/themes/:slug",
       "destination": "/api/investors/detail?slug=:slug&view=theme"
     },
     {
-      "source": "/investors/sectors/:slug",
+      "source": "/funds/sectors/:slug",
       "destination": "/api/investors/detail?slug=:slug&view=sector"
     },
     {
-      "source": "/investors/:slug",
+      "source": "/funds/:slug",
       "destination": "/api/investors/detail?slug=:slug"
     },
     {
-      "source": "/people/:slug",
+      "source": "/investors/:slug",
       "destination": "/api/people?slug=:slug"
+    },
+    {
+      "source": "/investors",
+      "destination": "/people/index.html"
     },
     {
       "source": "/sitemap.xml",
