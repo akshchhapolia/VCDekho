@@ -135,6 +135,11 @@ function renderBuzzDetailHtml(item) {
     <title>${esc(title)} | Founder Buzz | VC Dekho</title>
     <meta name="description" content="${esc(title)} — founder discussion on VC Dekho Founder Buzz">
     <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://vcdekho.com/buzz/${esc(item.slug)}">
+    <meta property="og:title" content="${esc(title)} | Founder Buzz">
+    <meta property="og:description" content="${esc(title)} — founder discussion on VC Dekho Founder Buzz">
+    <meta property="og:url" content="https://vcdekho.com/buzz/${esc(item.slug)}">
+    <meta property="og:type" content="article">
     <link rel="icon" type="image/png" href="/assets/logoforvc.png">
     <link rel="stylesheet" href="/css/base.css?v=101">
     <link rel="stylesheet" href="/css/hero.css?v=73">
