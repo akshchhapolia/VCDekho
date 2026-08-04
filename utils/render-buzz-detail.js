@@ -178,7 +178,7 @@ function renderBuzzDetailHtml(item) {
     <script src="/js/auth.js" defer></script>
     <script src="/js/directory-session.js?v=2" defer></script>
     <script src="/app.js" defer></script>
-    <script src="/js/buzz.js?v=11" defer></script>
+    <script src="/js/buzz.js?v=12" defer></script>
 </body>
 </html>`;
 }
