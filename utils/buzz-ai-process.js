@@ -2,7 +2,7 @@ const db = require('./db');
 const { generateText, parseJsonResponse, DEFAULT_MODEL } = require('./gemini');
 const { slugify } = require('../scripts/lib/slugify');
 const { normalizeTopics, BUZZ_TOPICS } = require('./buzz-topics');
-const { matchInvestorMentions } = require('./buzz-investor-match');
+const { matchInvestorsInBuzz } = require('./buzz-investor-match');
 const { isHardRejectBuzzPost } = require('./buzz-relevance');
 const { ensureBuzzFullBody } = require('./buzz-body-fetch');
 
@@ -26,7 +26,7 @@ Return ONLY valid JSON:
 - topics (array): 1-4 from: ${BUZZ_TOPICS.join(', ')}
 - sentiment (string): positive | mixed | negative | neutral — tone toward the fundraising/VC process discussed
 - founder_quotes (array): up to 3 short excerpts/paraphrases (max 220 chars). Each: { "text": string, "paraphrased": boolean }
-- investor_mentions (array): VC fund / angel network names mentioned (as written)
+- investor_mentions (array): EVERY VC fund / angel / accelerator name mentioned in title or body (as written). Include all names from lists and tables — do not omit any.
 
 Reject doxxing and personal attacks.`;
 
@@ -105,7 +105,11 @@ async function processBuzzItem(item) {
       return { success: true, finalStatus: 'rejected' };
     }
 
-    const { slugs, names } = matchInvestorMentions(parsed.investor_mentions || []);
+    const { slugs, names } = matchInvestorsInBuzz({
+      title: item.title,
+      body: item.body_excerpt,
+      aiMentions: parsed.investor_mentions || []
+    });
     const sentiment = VALID_SENTIMENTS.has(parsed.sentiment) ? parsed.sentiment : 'neutral';
     const topics = normalizeTopics(parsed.topics);
     const quotes = Array.isArray(parsed.founder_quotes)
