@@ -544,6 +544,127 @@
 
 .buzz-skel-card {
   pointer-events: none;
+  cursor: default;
+}
+
+.buzz-skel-card:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.buzz-skel {
+  display: block;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.1) 45%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  background-size: 220% 100%;
+  animation: buzzSkelShimmer 1.25s ease-in-out infinite;
+}
+
+.buzz-skel-badge {
+  width: 4.4rem;
+  height: 1.35rem;
+  border-radius: 999px;
+}
+
+.buzz-skel-meta {
+  width: 5.5rem;
+  height: 0.7rem;
+}
+
+.buzz-skel-date {
+  width: 4.75rem;
+  height: 0.7rem;
+}
+
+.buzz-skel-title {
+  width: 88%;
+  height: 1.35rem;
+  margin: 0.35rem 0 1rem;
+  border-radius: 8px;
+}
+
+.buzz-skel-title--short {
+  width: 62%;
+}
+
+.buzz-skel-label {
+  width: 2.6rem;
+  height: 0.55rem;
+  margin-bottom: 0.55rem;
+}
+
+.buzz-skel-line {
+  width: 100%;
+  height: 0.72rem;
+  margin-bottom: 0.45rem;
+}
+
+.buzz-skel-line--mid {
+  width: 92%;
+}
+
+.buzz-skel-line--short {
+  width: 68%;
+  margin-bottom: 0.9rem;
+}
+
+.buzz-skel-block {
+  width: 100%;
+  height: 4.5rem;
+  margin: 0.35rem 0 1rem;
+  border-radius: 10px;
+}
+
+.buzz-skel-block--short {
+  height: 3.2rem;
+}
+
+.buzz-skel-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.buzz-skel-chip {
+  width: 5.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+}
+
+.buzz-skel-chip:nth-child(2) {
+  width: 7rem;
+}
+
+.buzz-skel-chip:nth-child(3) {
+  width: 6.2rem;
+}
+
+.buzz-loading-label {
+  margin: 0.15rem 0 0;
+  text-align: center;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.42);
+  letter-spacing: 0.02em;
+}
+
+@keyframes buzzSkelShimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .buzz-skel {
+    animation: none;
+    background: rgba(255, 255, 255, 0.06);
+  }
 }
 
 @media (max-width: 640px) {
