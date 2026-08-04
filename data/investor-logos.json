@@ -5422,5 +5422,13 @@
     "bytes": 15406,
     "fetchedAt": "2026-08-04T01:35:25.993Z",
     "from": "https://startup.mp.gov.in/assets/img/favicon.ico"
+  },
+  "wtfund": {
+    "path": "/assets/investors/wtfund.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 19786,
+    "fetchedAt": "2026-08-04T02:05:48.353Z",
+    "from": "https://cdn.prod.website-files.com/678faa149a1c9f12adfd9c07/69ba9abdabff4f2385012ec8_fav%20new%203.png"
   }
 }
