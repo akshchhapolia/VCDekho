@@ -1,3 +1,28 @@
+/* Founder Buzz — match investor/firm top spacing (blog.css / directory.css) */
+body.scrollable-page.buzz-page .app-container {
+  padding-top: 1rem;
+  padding-bottom: 0;
+  gap: 0.75rem;
+}
+
+body.scrollable-page.buzz-page .hero-showcase {
+  padding-top: 1.25rem !important;
+  padding-bottom: 2.5rem !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+
+@media (max-width: 768px) {
+  body.scrollable-page.buzz-page .app-container {
+    padding-top: 0.85rem;
+  }
+
+  body.scrollable-page.buzz-page .hero-showcase {
+    padding-top: 1rem !important;
+    padding-bottom: 2rem !important;
+  }
+}
+
 /* Founder Buzz feed cards */
 
 .buzz-page-content {
