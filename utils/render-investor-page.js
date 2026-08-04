@@ -11,6 +11,7 @@ const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
 const { getPeopleByCompanySlug } = require('./people');
 const { portfolioCardHref } = require('./portfolio-card-href');
 const { filterPortfolioJunk } = require('./portfolio-junk-filter');
+const { filterPortfolioForDisplay } = require('./portfolio-india-filter');
 const { portfolioCardBodyHtml } = require('./render-portfolio-card');
 const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL, fundHref, personHref, fundStageHref, fundThemeHref, fundSectorHref, FUNDS_STAGES_PATH, FUNDS_THEMES_PATH, FUNDS_SECTORS_PATH } = require('./site-labels');
 const { renderSiteNavLinks } = require('./render-site-nav');
@@ -163,7 +164,7 @@ function recentActivitySection(investor) {
 }
 
 function filteredPortfolioCompanies(investor) {
-  return filterPortfolioJunk(investor.portfolioCompanies || []);
+  return filterPortfolioForDisplay(investor, filterPortfolioJunk);
 }
 
 const PORTFOLIO_INITIAL_SIZE = 12;
@@ -171,7 +172,7 @@ const PORTFOLIO_LOAD_STEP = 12;
 const PORTFOLIO_SEARCH_MIN = 24;
 
 function portfolioSection(investor) {
-  const companies = filterPortfolioJunk(investor.portfolioCompanies || []);
+  const companies = filterPortfolioForDisplay(investor, filterPortfolioJunk);
   if (!companies.length) return '';
 
   const total = companies.length;

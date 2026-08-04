@@ -10,6 +10,7 @@ const { renderExploreRelated } = require('./render-explore-related');
 const { portfolioCardHref } = require('./portfolio-card-href');
 const { RECENT_ACTIVITY_LIMIT } = require('./investor-activity-store');
 const { filterPortfolioJunk } = require('./portfolio-junk-filter');
+const { filterPortfolioForDisplay } = require('./portfolio-india-filter');
 const { portfolioCardBodyHtml } = require('./render-portfolio-card');
 
 function escapeHtml(value) {
@@ -231,7 +232,7 @@ function firmPortfolioSection(person, investor, limitOrOpts) {
   const opts = typeof limitOrOpts === 'object' && limitOrOpts !== null
     ? limitOrOpts
     : { limit: limitOrOpts };
-  const all = filterPortfolioJunk(investor.portfolioCompanies || []);
+  const all = filterPortfolioForDisplay(investor, filterPortfolioJunk);
   const companies = all.slice(0, opts.limit || 9);
   if (!companies.length) return '';
 
