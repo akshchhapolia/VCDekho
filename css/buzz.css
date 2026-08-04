@@ -122,6 +122,21 @@
   margin-bottom: 0;
 }
 
+.buzz-body-quote {
+  margin: 0 0 0.95rem;
+  padding: 0.15rem 0 0.15rem 0.9rem;
+  border-left: 3px solid rgba(255, 140, 80, 0.55);
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.buzz-body-quote .buzz-body-p {
+  margin-bottom: 0.55rem;
+}
+
+.buzz-body-quote .buzz-body-p:last-child {
+  margin-bottom: 0;
+}
+
 .buzz-body-list {
   margin: 0 0 0.85rem 1.1rem;
   padding: 0;

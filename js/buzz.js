@@ -1,8 +1,8 @@
 (function () {
   const VOTER_KEY = 'vc_buzz_voter';
   const VOTES_KEY = 'vc_buzz_votes';
-  const BODY_CLAMP_CHARS = 520;
-  const BODY_CLAMP_LINES = 8;
+  const BODY_CLAMP_CHARS = 420;
+  const BODY_CLAMP_LINES = 5;
 
   function esc(s) {
     const d = document.createElement('div');
@@ -33,7 +33,13 @@
   function isLongBody(text) {
     if (!text) return false;
     const lines = text.split('\n').length;
-    return text.length > BODY_CLAMP_CHARS || lines > BODY_CLAMP_LINES || /^\s*\|.+\|\s*$/m.test(text);
+    const paras = text.split(/\n\s*\n/).filter(Boolean).length;
+    return (
+      text.length > BODY_CLAMP_CHARS ||
+      lines > BODY_CLAMP_LINES ||
+      paras > 2 ||
+      /^\s*\|.+\|\s*$/m.test(text)
+    );
   }
 
   function formatDate(iso) {

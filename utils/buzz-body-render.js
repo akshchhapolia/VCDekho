@@ -1,6 +1,6 @@
 /**
  * Convert Reddit post markdown into safe HTML for Investor Buzz cards.
- * Handles paragraphs, markdown tables, basic inline formatting, and lists.
+ * Handles paragraphs, blockquotes, markdown tables, lists, and inline formatting.
  */
 
 function escHtml(s) {
@@ -13,8 +13,15 @@ function escHtml(s) {
 
 function normalizeBody(raw) {
   return String(raw || '')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, ' ')
     .replace(/\r\n/g, '\n')
     .replace(/\r/g, '\n')
+    .replace(/\\n/g, '\n')
     .trim();
 }
 
@@ -60,6 +67,28 @@ function renderParagraph(text) {
   if (!trimmed) return '';
   const lines = trimmed.split('\n').map((l) => l.trim()).filter(Boolean);
   return `<p class="buzz-body-p">${lines.map(inlineMarkdown).join('<br>')}</p>`;
+}
+
+function stripQuotePrefix(line) {
+  return String(line || '').replace(/^\s*>\s?/, '');
+}
+
+function renderQuote(lines) {
+  const cleaned = lines.map(stripQuotePrefix);
+  const inner = [];
+  let buf = [];
+  const flush = () => {
+    if (!buf.length) return;
+    inner.push(renderParagraph(buf.join('\n')));
+    buf = [];
+  };
+  for (const line of cleaned) {
+    if (!line.trim()) flush();
+    else buf.push(line);
+  }
+  flush();
+  if (!inner.length) return '';
+  return `<blockquote class="buzz-body-quote">${inner.join('')}</blockquote>`;
 }
 
 function renderTable(tableLines) {
@@ -133,6 +162,24 @@ function segmentBody(text) {
         i += 1;
       }
       segments.push({ type: 'table', lines: tableLines });
+    } else if (/^\s*>/.test(line)) {
+      flushPara();
+      const quoteLines = [];
+      while (i < lines.length && (/^\s*>/.test(lines[i]) || (quoteLines.length && !lines[i].trim()))) {
+        // Keep blank lines inside a quote block; stop once we leave quote lines after a blank.
+        if (!lines[i].trim()) {
+          quoteLines.push('');
+          i += 1;
+          // Peek: if next non-empty isn't a quote, end the quote block.
+          let j = i;
+          while (j < lines.length && !lines[j].trim()) j += 1;
+          if (j >= lines.length || !/^\s*>/.test(lines[j])) break;
+          continue;
+        }
+        quoteLines.push(lines[i]);
+        i += 1;
+      }
+      segments.push({ type: 'quote', lines: quoteLines });
     } else if (!line.trim()) {
       flushPara();
       i += 1;
@@ -173,6 +220,7 @@ function renderBuzzBodyHtml(raw) {
     .map((seg) => {
       if (seg.type === 'table') return renderTable(seg.lines);
       if (seg.type === 'ul') return renderList(seg.items);
+      if (seg.type === 'quote') return renderQuote(seg.lines);
       return renderParagraph(seg.text);
     })
     .join('');
@@ -185,7 +233,13 @@ function buzzBodyPlainLength(raw) {
 function buzzBodyIsLong(raw) {
   const text = normalizeBody(raw);
   if (!text) return false;
-  return text.length > 520 || text.split('\n').length > 8 || /^\s*\|.+\|\s*$/m.test(text);
+  const paraCount = text.split(/\n\s*\n/).filter(Boolean).length;
+  return (
+    text.length > 420 ||
+    text.split('\n').length > 5 ||
+    paraCount > 2 ||
+    /^\s*\|.+\|\s*$/m.test(text)
+  );
 }
 
 module.exports = {

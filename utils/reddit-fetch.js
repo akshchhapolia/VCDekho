@@ -1,7 +1,6 @@
 /**
  * Fetch full Reddit post text for Investor Buzz.
- * Primary: PullPush archive API (works when reddit.com JSON is blocked).
- * Fallback: reddit.com/{path}.json
+ * Order: Arctic Shift → PullPush → reddit.com JSON
  */
 
 const UA =
@@ -20,6 +19,41 @@ function normalizeRedditJsonUrl(sourceUrl) {
   return `${clean}.json?raw_json=1`;
 }
 
+function decodeRedditText(raw) {
+  return String(raw || '')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .trim();
+}
+
+function toPostResult(post) {
+  if (!post) return null;
+  const selftext = decodeRedditText(post.selftext || '');
+  if (!selftext) return null;
+  return {
+    selftext,
+    title: decodeRedditText(post.title || ''),
+    comment_count: post.num_comments || 0,
+    subreddit: post.subreddit || null
+  };
+}
+
+async function fetchFromArcticShift(postId) {
+  const url = `https://arctic-shift.photon-reddit.com/api/posts/ids?ids=${encodeURIComponent(postId)}`;
+  const res = await fetch(url, {
+    headers: { Accept: 'application/json', 'User-Agent': UA },
+    signal: AbortSignal.timeout(20000)
+  });
+  if (!res.ok) throw new Error(`ArcticShift ${res.status}`);
+  const data = await res.json();
+  const post = Array.isArray(data.data) ? data.data[0] : null;
+  return toPostResult(post);
+}
+
 async function fetchFromPullPush(postId) {
   const url = `https://api.pullpush.io/reddit/search/submission/?ids=${encodeURIComponent(postId)}`;
   const res = await fetch(url, {
@@ -29,15 +63,7 @@ async function fetchFromPullPush(postId) {
   if (!res.ok) throw new Error(`PullPush ${res.status}`);
   const data = await res.json();
   const post = Array.isArray(data.data) ? data.data[0] : null;
-  if (!post) return null;
-  const selftext = String(post.selftext || '').trim();
-  if (!selftext) return null;
-  return {
-    selftext,
-    title: post.title || '',
-    comment_count: post.num_comments || 0,
-    subreddit: post.subreddit || null
-  };
+  return toPostResult(post);
 }
 
 async function fetchFromRedditJson(sourceUrl) {
@@ -52,15 +78,7 @@ async function fetchFromRedditJson(sourceUrl) {
   if (!text.trim().startsWith('[')) throw new Error('Reddit JSON blocked');
   const data = JSON.parse(text);
   const post = data[0]?.data?.children?.[0]?.data;
-  if (!post) return null;
-  const selftext = String(post.selftext || '').trim();
-  if (!selftext) return null;
-  return {
-    selftext,
-    title: post.title || '',
-    comment_count: post.num_comments || 0,
-    subreddit: post.subreddit || null
-  };
+  return toPostResult(post);
 }
 
 /**
@@ -70,6 +88,13 @@ async function fetchFromRedditJson(sourceUrl) {
 async function fetchRedditPost(sourceUrl) {
   const postId = extractRedditPostId(sourceUrl);
   if (!postId) return null;
+
+  try {
+    const hit = await fetchFromArcticShift(postId);
+    if (hit) return hit;
+  } catch (err) {
+    console.warn('ArcticShift fetch failed:', err.message);
+  }
 
   try {
     const hit = await fetchFromPullPush(postId);
@@ -86,4 +111,4 @@ async function fetchRedditPost(sourceUrl) {
   }
 }
 
-module.exports = { fetchRedditPost, extractRedditPostId };
+module.exports = { fetchRedditPost, extractRedditPostId, decodeRedditText };

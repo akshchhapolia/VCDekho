@@ -145,7 +145,7 @@ function renderBuzzDetailHtml(item) {
     <link rel="stylesheet" href="/css/base.css?v=101">
     <link rel="stylesheet" href="/css/hero.css?v=73">
     <link rel="stylesheet" href="/css/ambient.css?v=98">
-    <link rel="stylesheet" href="/css/buzz.css?v=5">
+    <link rel="stylesheet" href="/css/buzz.css?v=6">
 </head>
 <body class="scrollable-page pub-page buzz-page">
     <div class="app-container">
@@ -190,7 +190,7 @@ function renderBuzzDetailHtml(item) {
         </main>
     </div>
     <script src="/app.js" defer></script>
-    <script src="/js/buzz.js?v=5" defer></script>
+    <script src="/js/buzz.js?v=6" defer></script>
 </body>
 </html>`;
 }
