@@ -73,7 +73,15 @@ function getSimilarity(s1, s2) {
 }
 
 module.exports = async function handler(req, res) {
-    return runCronJob(req, res, 'scrape', async () => {
+    const buzzOnly = req.query?.job === 'buzz';
+
+    return runCronJob(req, res, buzzOnly ? 'buzz-scrape' : 'scrape', async () => {
+        const batchIndex = Math.floor(Date.now() / (6 * 60 * 60 * 1000));
+
+        if (buzzOnly) {
+            return runBuzzScrape({ batchIndex });
+        }
+
         let itemsFetched = 0;
         let itemsQueued = 0;
         let itemsDuplicated = 0;
@@ -154,10 +162,8 @@ module.exports = async function handler(req, res) {
         }
 
         // Founder Buzz: Reddit founder VC reviews (RSS + Searlo discover).
-        // Runs with this scrape cron (scheduled 2x/day in vercel.json).
-        // Additional dedicated runs via /api/cron/buzz-scrape (4x/day total).
+        // Also runs via /api/cron/scrape?job=buzz (3 extra times/day in vercel.json).
         try {
-            const batchIndex = Math.floor(Date.now() / (6 * 60 * 60 * 1000));
             meta.buzz = await runBuzzScrape({ batchIndex });
         } catch (buzzErr) {
             meta.buzz = { error: buzzErr.message };
