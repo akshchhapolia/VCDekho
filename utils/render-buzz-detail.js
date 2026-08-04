@@ -77,15 +77,6 @@ function renderBuzzCardInnerHtml(item) {
     ${renderBodyHtml(item.body_excerpt)}
 
     ${
-      item.ai_summary
-        ? `<section class="buzz-section buzz-summary-box">
-        <h2 class="buzz-section-label">AI Summary</h2>
-        <p class="buzz-summary-text">${esc(item.ai_summary)}</p>
-      </section>`
-        : ''
-    }
-
-    ${
       topics.length
         ? `<section class="buzz-section">
         <h2 class="buzz-section-label">Topics</h2>
@@ -124,7 +115,7 @@ function renderBuzzCardInnerHtml(item) {
 function renderBuzzDetailHtml(item) {
   const navLinks = renderSiteNavLinks('', {
     trailing: [
-      '<a href="/buzz" class="nav-link active">Buzz</a>',
+      '<a href="/buzz" class="nav-link active">Founder Buzz</a>',
       '<a href="/login" class="nav-link">Log in</a>'
     ]
   }).join('\n                ');
@@ -141,14 +132,14 @@ function renderBuzzDetailHtml(item) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
-    <title>${esc(title)} | Investor Buzz | VC Dekho</title>
-    <meta name="description" content="${esc(item.ai_summary || title)}">
+    <title>${esc(title)} | Founder Buzz | VC Dekho</title>
+    <meta name="description" content="${esc(title)} — founder discussion on VC Dekho Founder Buzz">
     <meta name="robots" content="noindex, follow">
     <link rel="icon" type="image/png" href="/assets/logoforvc.png">
     <link rel="stylesheet" href="/css/base.css?v=101">
     <link rel="stylesheet" href="/css/hero.css?v=73">
     <link rel="stylesheet" href="/css/ambient.css?v=98">
-    <link rel="stylesheet" href="/css/buzz.css?v=13">
+    <link rel="stylesheet" href="/css/buzz.css?v=14">
 </head>
 <body class="scrollable-page pub-page buzz-page">
     <div class="app-container">
@@ -177,7 +168,7 @@ function renderBuzzDetailHtml(item) {
                 <div class="news-breadcrumbs">
                     <a href="/">Home</a>
                     <span>›</span>
-                    <a href="/buzz">Investor Buzz</a>
+                    <a href="/buzz">Founder Buzz</a>
                     <span>›</span>
                     <span class="is-current">Discussion</span>
                 </div>
@@ -193,7 +184,7 @@ function renderBuzzDetailHtml(item) {
         </main>
     </div>
     <script src="/app.js" defer></script>
-    <script src="/js/buzz.js?v=9" defer></script>
+    <script src="/js/buzz.js?v=10" defer></script>
 </body>
 </html>`;
 }

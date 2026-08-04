@@ -150,15 +150,6 @@
         ${renderBodySection(item)}
 
         ${
-          item.ai_summary
-            ? `<section class="buzz-section buzz-summary-box">
-            <h3 class="buzz-section-label">AI Summary</h3>
-            <p class="buzz-summary-text">${esc(item.ai_summary)}</p>
-          </section>`
-            : ''
-        }
-
-        ${
           topics.length
             ? `<section class="buzz-section">
             <h3 class="buzz-section-label">Topics</h3>
@@ -299,7 +290,7 @@
       initExpandables(container);
     } catch (err) {
       console.error(err);
-      container.innerHTML = '<p class="buzz-error">Failed to load Investor Buzz.</p>';
+      container.innerHTML = '<p class="buzz-error">Failed to load Founder Buzz.</p>';
       container.setAttribute('aria-busy', 'false');
     }
   }

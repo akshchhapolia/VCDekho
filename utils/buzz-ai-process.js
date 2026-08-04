@@ -6,7 +6,7 @@ const { matchInvestorsInBuzz } = require('./buzz-investor-match');
 const { isHardRejectBuzzPost } = require('./buzz-relevance');
 const { ensureBuzzFullBody } = require('./buzz-body-fetch');
 
-const BUZZ_SYSTEM = `You curate "Investor Buzz" — founder/community RETROSPECTIVES about venture capital in India.
+const BUZZ_SYSTEM = `You curate "Founder Buzz" — founder/community RETROSPECTIVES about venture capital in India.
 
 ONLY mark is_relevant=true when the author is SHARING a past experience, review, or honest retrospective about:
 - dealing with a specific VC fund, angel, or accelerator
