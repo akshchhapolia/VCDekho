@@ -6,7 +6,12 @@ const DISCOVERY_QUERIES = [
   'site:reddit.com/r/StartUpIndia VC experience OR fundraising journey OR investor interview OR due diligence',
   'site:reddit.com/r/indianstartups venture capital experience OR raised seed OR term sheet',
   'site:reddit.com indian startup VC ghosted OR rejected OR "fundraising experience"',
-  'site:reddit.com/r/startups india VC OR indian investor interview OR peak xv experience'
+  'site:reddit.com/r/startups india VC OR indian investor interview OR peak xv experience',
+  'site:reddit.com/r/StartUpIndia "term sheet" OR "partner meeting" OR "IC meeting" OR ghosted VC',
+  'site:reddit.com/r/StartUpIndia blume OR "peak xv" OR sequoia OR accel OR elevation OR kalaari experience',
+  'site:reddit.com/r/indianstartups rejected by VC OR "waste of time" investor OR "due diligence"',
+  'site:reddit.com "indian VC" (review OR experience OR "red flag" OR "avoid" OR "raised from")',
+  'site:reddit.com/r/startups "india" ("my experience" OR "fundraising process" OR "VC meeting")'
 ];
 
 function sleep(ms) {

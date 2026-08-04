@@ -51,6 +51,18 @@ const REDDIT_FEEDS = [
     subreddit: null,
     url:
       'https://www.reddit.com/search.rss?q=indian+startup+VC+experience+OR+investor+interview+india&sort=new'
+  },
+  {
+    label: 'StartUpIndia-red-flags',
+    subreddit: 'StartUpIndia',
+    url:
+      'https://www.reddit.com/r/StartUpIndia/search.rss?q=red+flag+VC+OR+avoid+investor+OR+%22shit+list%22+OR+toxic+VC&restrict_sr=1&sort=new'
+  },
+  {
+    label: 'StartUpIndia-term-sheet',
+    subreddit: 'StartUpIndia',
+    url:
+      'https://www.reddit.com/r/StartUpIndia/search.rss?q=%22term+sheet%22+OR+%22partner+call%22+OR+%22investment+committee%22&restrict_sr=1&sort=new'
   }
 ];
 

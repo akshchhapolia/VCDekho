@@ -153,6 +153,8 @@ module.exports = async function handler(req, res) {
             meta.alertBody = errors.join('\n');
         }
 
+        // Investor Buzz: Reddit founder VC reviews (RSS + Searlo discover).
+        // Runs with this scrape cron (scheduled 2x/day in vercel.json).
         try {
             meta.buzz = await runBuzzScrape();
         } catch (buzzErr) {
