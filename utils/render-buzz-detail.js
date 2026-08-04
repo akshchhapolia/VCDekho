@@ -139,7 +139,7 @@ function renderBuzzDetailHtml(item) {
     <link rel="stylesheet" href="/css/base.css?v=101">
     <link rel="stylesheet" href="/css/hero.css?v=73">
     <link rel="stylesheet" href="/css/ambient.css?v=98">
-    <link rel="stylesheet" href="/css/buzz.css?v=15">
+    <link rel="stylesheet" href="/css/buzz.css?v=16">
 </head>
 <body class="scrollable-page pub-page buzz-page">
     <div class="app-container">
@@ -165,14 +165,6 @@ function renderBuzzDetailHtml(item) {
             </div>
 
             <div class="blog-content buzz-page-content">
-                <div class="news-breadcrumbs">
-                    <a href="/">Home</a>
-                    <span>›</span>
-                    <a href="/buzz">Founder Buzz</a>
-                    <span>›</span>
-                    <span class="is-current">Discussion</span>
-                </div>
-
                 <div id="buzz-container" class="buzz-feed" data-mode="detail" aria-busy="true">
                   <article class="buzz-card buzz-card--detail" data-slug="${esc(item.slug)}" id="buzz-${esc(item.slug)}">
                     ${renderBuzzCardInnerHtml(item)}

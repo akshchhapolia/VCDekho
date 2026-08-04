@@ -31,43 +31,6 @@ body.scrollable-page.buzz-page .hero-showcase {
   padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
 }
 
-.buzz-page .news-breadcrumbs,
-.buzz-page-content .news-breadcrumbs {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.45rem 0.55rem;
-  margin-bottom: 0.85rem;
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.buzz-page .news-breadcrumbs a,
-.buzz-page-content .news-breadcrumbs a {
-  color: rgba(255, 255, 255, 0.55);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.buzz-page .news-breadcrumbs a:hover,
-.buzz-page-content .news-breadcrumbs a:hover {
-  color: var(--color-accent-orange, #ed572f);
-  text-decoration: none;
-}
-
-.buzz-page .news-breadcrumbs .is-current,
-.buzz-page-content .news-breadcrumbs .is-current {
-  color: rgba(255, 255, 255, 0.92);
-}
-
-.buzz-page .news-breadcrumbs span,
-.buzz-page-content .news-breadcrumbs span:not(.is-current) {
-  color: rgba(255, 255, 255, 0.35);
-  user-select: none;
-}
-
 .buzz-page-lead {
   color: rgba(255, 255, 255, 0.62);
   font-size: 1.05rem;
