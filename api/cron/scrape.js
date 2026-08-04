@@ -2,6 +2,7 @@ const Parser = require('rss-parser');
 const db = require('../../utils/db');
 const { runCronJob } = require('../../utils/cron-run');
 const { runBuzzScrape } = require('../../utils/buzz-scrape');
+const { runAiProcess } = require('../../utils/run-ai-process');
 
 const parser = new Parser({
     timeout: 15000,
@@ -79,7 +80,17 @@ module.exports = async function handler(req, res) {
         const batchIndex = Math.floor(Date.now() / (6 * 60 * 60 * 1000));
 
         if (buzzOnly) {
-            return runBuzzScrape({ batchIndex });
+            const buzzMeta = await runBuzzScrape({ batchIndex });
+            try {
+                buzzMeta.aiProcess = await runAiProcess({
+                    triggeredBy: 'buzz-scrape',
+                    maxNews: 0,
+                    includeBuzz: true
+                });
+            } catch (aiErr) {
+                buzzMeta.aiProcess = { error: aiErr.message };
+            }
+            return buzzMeta;
         }
 
         let itemsFetched = 0;
@@ -162,12 +173,18 @@ module.exports = async function handler(req, res) {
         }
 
         // Founder Buzz: Reddit founder VC reviews (RSS + Searlo discover).
-        // Morning scrape 11:00 IST → ai-process 12:00 IST; evening scrape 17:30 IST → ai-process 18:00 IST.
         // Also runs via /api/cron/scrape?job=buzz (3 extra times/day in vercel.json).
         try {
             meta.buzz = await runBuzzScrape({ batchIndex });
         } catch (buzzErr) {
             meta.buzz = { error: buzzErr.message };
+        }
+
+        // Chain AI immediately after ingest so publishing never depends on a separate cron firing on time.
+        try {
+            meta.aiProcess = await runAiProcess({ triggeredBy: 'scrape' });
+        } catch (aiErr) {
+            meta.aiProcess = { error: aiErr.message };
         }
 
         return meta;

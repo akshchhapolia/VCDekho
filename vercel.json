@@ -1,4 +1,12 @@
 {
+  "functions": {
+    "api/cron/scrape.js": {
+      "maxDuration": 300
+    },
+    "api/cron/ai-process.js": {
+      "maxDuration": 300
+    }
+  },
   "cleanUrls": true,
   "headers": [
     {
@@ -170,7 +178,7 @@
     },
     {
       "path": "/api/cron/ai-process",
-      "schedule": "30 6 * * *"
+      "schedule": "0 7 * * *"
     },
     {
       "path": "/api/cron/scrape",
@@ -190,7 +198,7 @@
     },
     {
       "path": "/api/cron/ai-process",
-      "schedule": "30 12 * * *"
+      "schedule": "0 13 * * *"
     },
     {
       "path": "/api/cron/daily-digest",
