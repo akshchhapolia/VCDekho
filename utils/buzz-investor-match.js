@@ -47,10 +47,13 @@ const MENTION_ALIASES = {
   'matrix partners india': 'Matrix Partners',
   kalaari: 'Kalaari Capital',
   'inflection point': 'Inflection Point Ventures',
-  'wtf fund': 'Nikhil Kamath',
-  'nikhil kamath wtf': 'Nikhil Kamath',
-  'nikhil kamath’s wtf fund': 'Nikhil Kamath',
-  "nikhil kamath's wtf fund": 'Nikhil Kamath'
+  'wtf fund': 'WTFund',
+  wtfund: 'WTFund',
+  'wtfund': 'WTFund',
+  'nikhil kamath wtf': 'WTFund',
+  'nikhil kamath’s wtf fund': 'WTFund',
+  "nikhil kamath's wtf fund": 'WTFund',
+  "nikhil kamath's wtfund": 'WTFund'
 };
 
 /** Hard slug overrides when fuzzy matching is too strict. */
@@ -58,7 +61,11 @@ const ALIAS_SLUGS = {
   'venture catalysts': 'venture-catalysts-india-s-first-integrated-incubator',
   vcats: 'venture-catalysts-india-s-first-integrated-incubator',
   '9unicorns/vcats': '9unicorns',
-  'wtf fund': 'nikhil-kamath',
+  'wtf fund': 'wtfund',
+  wtfund: 'wtfund',
+  'nikhil kamath wtf': 'wtfund',
+  'nikhil kamath’s wtf fund': 'wtfund',
+  "nikhil kamath's wtf fund": 'wtfund',
   a16z: 'andreessen-horowitz',
   'a 16z': 'andreessen-horowitz',
   hustlefund: 'hustle-fund',
