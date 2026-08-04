@@ -351,7 +351,7 @@ module.exports = async function handler(req, res) {
                 <a href="/buzz" class="nav-link">Founder Buzz</a>
                 <a href="/blog" class="nav-link ${blogNavActive}">Blog</a>
                 <a href="/news" class="nav-link ${newsNavActive}">News</a>
-                <a href="/login" class="nav-link">Log in</a>
+                <a href="/login" class="nav-link" id="nav-auth-link">Log in</a>
             </nav>
         </header>
 
@@ -422,6 +422,8 @@ module.exports = async function handler(req, res) {
             </div>
         </main>
     </div>
+    <script src="/js/auth.js" defer></script>
+    <script src="/js/directory-session.js?v=2" defer></script>
     <script src="/app.js" defer></script>
 </body>
 </html>
