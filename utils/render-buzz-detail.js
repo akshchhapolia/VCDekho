@@ -190,7 +190,7 @@ function renderBuzzDetailHtml(item) {
         </main>
     </div>
     <script src="/app.js" defer></script>
-    <script src="/js/buzz.js?v=6" defer></script>
+    <script src="/js/buzz.js?v=7" defer></script>
 </body>
 </html>`;
 }

@@ -205,12 +205,46 @@
     });
   }
 
+  function applyVoteUi(card, userVote, upCount, downCount) {
+    const upEl = card.querySelector('[data-count="up"]');
+    const downEl = card.querySelector('[data-count="down"]');
+    if (upEl) upEl.textContent = upCount;
+    if (downEl) downEl.textContent = downCount;
+    card.querySelector('.buzz-vote-up')?.classList.toggle('is-active', userVote === 1);
+    card.querySelector('.buzz-vote-down')?.classList.toggle('is-active', userVote === -1);
+  }
+
+  function readCounts(card) {
+    return {
+      up: parseInt(card.querySelector('[data-count="up"]')?.textContent, 10) || 0,
+      down: parseInt(card.querySelector('[data-count="down"]')?.textContent, 10) || 0
+    };
+  }
+
+  /** Adjust counts locally when toggling 1 / -1 / 0 */
+  function optimisticCounts(prevVote, nextVote, up, down) {
+    let nextUp = up;
+    let nextDown = down;
+    if (prevVote === 1) nextUp = Math.max(0, nextUp - 1);
+    if (prevVote === -1) nextDown = Math.max(0, nextDown - 1);
+    if (nextVote === 1) nextUp += 1;
+    if (nextVote === -1) nextDown += 1;
+    return { up: nextUp, down: nextDown };
+  }
+
   async function submitVote(card, vote) {
     const slug = card.dataset.slug;
-    if (!slug) return;
+    if (!slug || card.dataset.votePending === '1') return;
 
     const stored = getStoredVotes()[slug] || 0;
     const nextVote = stored === vote ? 0 : vote;
+    const before = readCounts(card);
+    const optimistic = optimisticCounts(stored, nextVote, before.up, before.down);
+
+    // Paint active state immediately; sync with server after.
+    card.dataset.votePending = '1';
+    setStoredVote(slug, nextVote);
+    applyVoteUi(card, nextVote, optimistic.up, optimistic.down);
 
     try {
       const res = await fetch('/api/ops?action=buzz-vote', {
@@ -221,13 +255,15 @@
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Vote failed');
 
-      setStoredVote(slug, data.user_vote || 0);
-      card.querySelector('[data-count="up"]').textContent = data.interest_up || 0;
-      card.querySelector('[data-count="down"]').textContent = data.interest_down || 0;
-      card.querySelector('.buzz-vote-up').classList.toggle('is-active', data.user_vote === 1);
-      card.querySelector('.buzz-vote-down').classList.toggle('is-active', data.user_vote === -1);
+      const serverVote = data.user_vote || 0;
+      setStoredVote(slug, serverVote);
+      applyVoteUi(card, serverVote, data.interest_up || 0, data.interest_down || 0);
     } catch (err) {
       console.error(err);
+      setStoredVote(slug, stored);
+      applyVoteUi(card, stored, before.up, before.down);
+    } finally {
+      delete card.dataset.votePending;
     }
   }
 
