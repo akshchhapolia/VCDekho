@@ -396,10 +396,11 @@
 .buzz-sentiment-badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.32rem 0.72rem;
+  padding: 0.15rem 0.5rem;
   border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 700;
+  font-size: 0.7rem;
+  font-weight: 650;
+  line-height: 1.2;
   letter-spacing: 0.02em;
   border: 1px solid transparent;
 }
