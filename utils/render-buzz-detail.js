@@ -145,7 +145,7 @@ function renderBuzzDetailHtml(item) {
     <link rel="stylesheet" href="/css/base.css?v=101">
     <link rel="stylesheet" href="/css/hero.css?v=73">
     <link rel="stylesheet" href="/css/ambient.css?v=98">
-    <link rel="stylesheet" href="/css/buzz.css?v=7">
+    <link rel="stylesheet" href="/css/buzz.css?v=8">
 </head>
 <body class="scrollable-page pub-page buzz-page">
     <div class="app-container">
