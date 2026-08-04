@@ -1,0 +1,36 @@
+name,website,linkedin,india_evidence_url,indiaRelevance,decision,notes,existing_slug
+Lightspeed Venture Partners,https://lsvp.com/,https://www.linkedin.com/company/lightspeed-india/,https://lsip.com/,India practice (global),alias_existing,Maps to existing Lightspeed India practice (OYO Udaan ShareChat Meesho),lightspeed
+Lightspeed,https://lsvp.com/,https://www.linkedin.com/company/lightspeed-india/,https://lsip.com/,India practice (global),alias_existing,Same as above — enrich indiaRelevance,lightspeed
+A16Z,https://a16z.com/,https://www.linkedin.com/company/andreessen-horowitz/,https://inc42.com/buzz/a16z-marks-first-investment-in-india-with-coinswitch-kuber-more-to-follow/,Active India cheque,alias_existing,Maps to Andreessen Horowitz — CoinSwitch Plutus,andreessen-horowitz
+Andreessen Horowitz,https://a16z.com/,https://www.linkedin.com/company/andreessen-horowitz/,https://inc42.com/buzz/a16z-marks-first-investment-in-india-with-coinswitch-kuber-more-to-follow/,Active India cheque,alias_existing,Enrich Source + confidence,andreessen-horowitz
+HustleFund,https://www.hustlefund.vc/,https://www.linkedin.com/company/hustlefund/,https://www.hustlefund.vc/,Active India cheque,alias_existing,Maps to Hustle Fund — global pre-seed including India,hustle-fund
+Hustle Fund,https://www.hustlefund.vc/,https://www.linkedin.com/company/hustlefund/,https://www.hustlefund.vc/,Active India cheque,alias_existing,Enrich indiaRelevance,hustle-fund
+Battery Ventures,https://www.battery.com/,https://www.linkedin.com/company/battery-ventures/,https://www.wownews24x7.com/indian-startups-raised-142-mn-this-week-led-by-freehand-sids-farm,Active India cheque,add,Indian-founder Freehand Series B co-led by Battery,
+Felicis,https://www.felicis.com/,https://www.linkedin.com/company/felicis-ventures/,https://inc42.com/buzz/data-analytics-startup-synaptic-raises-20-mn-funding-to-help-investors-make-better-decisions/,Active India cheque,add,Gurugram Synaptic investor; seed/early global,
+Foundation Capital,https://foundationcapital.com/,https://www.linkedin.com/company/foundation-capital/,https://www.vccircle.com/wealth-india-financial-services-raises-36m-series-b-funding-led,Active India cheque,add,Led FundsIndia Series B; India engineering thesis,
+GGV (Notable),https://graniteasia.com/,https://www.linkedin.com/company/granite-asia/,https://graniteasia.com/,India practice (global),add,GGV Asia → Granite Asia (India/SEA); Notable Capital is US post-split — alias GGV to Granite Asia,
+Granite Asia,https://graniteasia.com/,https://www.linkedin.com/company/granite-asia/,https://graniteasia.com/,India practice (global),add,Asia multi-asset / growth; India companies e.g. Kuku FM,
+Canaan,https://www.canaan.com/,https://www.linkedin.com/company/canaan-partners/,https://tracxn.com/d/venture-capital/canaan/,Active India cheque,add,~15 India investments historically; Bzaar seed 2021,
+Altos Ventures,https://altos.vc/,https://www.linkedin.com/company/altos-ventures/,,n/a,stage,US/Korea focused; no clear India cheque found,
+Wing Venture Capital,https://www.wing.vc/,https://www.linkedin.com/company/wing-venture-capital/,,n/a,stage,US enterprise seed; no clear India cheque in quick check,
+Array VC,https://www.array.vc/,https://www.linkedin.com/company/array-ventures/,,n/a,stage,US deeptech; stage for later wave,
+Costanoa,https://www.costanoa.vc/,https://www.linkedin.com/company/costanoa-venture-capital/,,n/a,stage,US early-stage; stage for later wave,
+Boldstart Ventures,https://boldstart.vc/,https://www.linkedin.com/company/boldstart-ventures/,,n/a,stage,US enterprise/crypto; no India practice found,
+Unusual Ventures,https://www.unusual.vc/,https://www.linkedin.com/company/unusual-ventures/,,n/a,stage,US early-stage; stage for later wave,
+Afore Capital,https://www.afore.vc/,https://www.linkedin.com/company/afore-capital/,,n/a,stage,US seed; stage for later wave,
+Wave Capital,https://www.wavecap.com/,,,n/a,stage,Ambiguous name; no verified India practice,
+ENIAC VC,https://www.eniac.vc/,https://www.linkedin.com/company/eniac-ventures/,,n/a,stage,US seed; stage for later wave,
+Swift Ventures,https://www.swift.vc/,,,n/a,stage,US early; stage for later wave,
+Lerer Hippeau,https://lererhippeau.com/,https://www.linkedin.com/company/lerer-hippeau/,,n/a,stage,NYC seed US-first; stage for later wave,
+SignalFire,https://www.signalfire.com/,https://www.linkedin.com/company/signalfire/,,n/a,stage,SF data-driven VC; no clear India practice found,
+Emergent VC,,,https://www.reddit.com/r/startups/comments/1hc00zr/vcs_some_great_some_not_so_much/,n/a,stage,Insufficient public identity / India evidence,
+Ovo Ventures,,,https://www.reddit.com/r/startups/comments/1hc00zr/vcs_some_great_some_not_so_much/,n/a,stage,Insufficient public identity / India evidence,
+Kearney Jackson,,,https://www.reddit.com/r/startups/comments/1hc00zr/vcs_some_great_some_not_so_much/,n/a,stage,Likely person or micro-fund; stage,
+Montavista,,,https://www.reddit.com/r/startups/comments/1hc00zr/vcs_some_great_some_not_so_much/,n/a,stage,Insufficient India evidence,
+Zero Prime,,,https://www.reddit.com/r/startups/comments/1hc00zr/vcs_some_great_some_not_so_much/,n/a,stage,Insufficient India evidence,
+Weekend Fund,https://www.weekend.fund/,https://www.linkedin.com/company/weekend-fund/,,n/a,stage,US micro-fund; stage for later wave,
+Ridge Ventures,https://ridge.vc/,https://www.linkedin.com/company/ridge-ventures/,,n/a,stage,US enterprise seed; no clear India cheque,
+NextView Ventures,https://nextview.vc/,https://www.linkedin.com/company/nextview-ventures/,,n/a,stage,North America Everyday Economy seed; no India practice,
+Firebolt,,,https://www.reddit.com/r/startups/comments/1hc00zr/vcs_some_great_some_not_so_much/,n/a,stage,From Reddit review table; no verified India fund page,
+fika,,,https://www.reddit.com/r/startups/comments/1hc00zr/vcs_some_great_some_not_so_much/,n/a,stage,From Reddit review table; no verified India fund page,
+Notable Capital,https://notablecap.com/,https://www.linkedin.com/company/notable-capital/,,n/a,stage,GGV US post-split; India mandate moved to Granite Asia — do not add as India practice unless new cheques appear,
