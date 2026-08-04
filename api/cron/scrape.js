@@ -3,6 +3,8 @@ const db = require('../../utils/db');
 const { runCronJob } = require('../../utils/cron-run');
 const { runBuzzScrape } = require('../../utils/buzz-scrape');
 const { runAiProcess } = require('../../utils/run-ai-process');
+const { runDailyDigest } = require('../../utils/run-daily-digest');
+const { runAiBlog } = require('../../utils/run-ai-blog');
 
 const parser = new Parser({
     timeout: 15000,
@@ -185,6 +187,18 @@ module.exports = async function handler(req, res) {
             meta.aiProcess = await runAiProcess({ triggeredBy: 'scrape' });
         } catch (aiErr) {
             meta.aiProcess = { error: aiErr.message };
+        }
+
+        try {
+            meta.dailyDigest = await runDailyDigest({ triggeredBy: 'scrape' });
+        } catch (digestErr) {
+            meta.dailyDigest = { error: digestErr.message };
+        }
+
+        try {
+            meta.aiBlog = await runAiBlog({ triggeredBy: 'scrape' });
+        } catch (blogErr) {
+            meta.aiBlog = { error: blogErr.message };
         }
 
         return meta;

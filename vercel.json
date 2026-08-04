@@ -5,6 +5,12 @@
     },
     "api/cron/ai-process.js": {
       "maxDuration": 300
+    },
+    "api/cron/daily-digest.js": {
+      "maxDuration": 300
+    },
+    "api/cron/ai-blog.js": {
+      "maxDuration": 300
     }
   },
   "cleanUrls": true,
@@ -202,11 +208,11 @@
     },
     {
       "path": "/api/cron/daily-digest",
-      "schedule": "40 13 * * *"
+      "schedule": "30 14 * * *"
     },
     {
       "path": "/api/cron/ai-blog",
-      "schedule": "0 14 * * *"
+      "schedule": "0 15 * * *"
     },
     {
       "path": "/api/cron/investor-activity?job=news",

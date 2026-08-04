@@ -7,7 +7,7 @@ require('dotenv').config();
 const db = require('../utils/db');
 const { processItem } = require('../utils/news-ai-process');
 const { groupItemsByNewsDay } = require('../utils/article-dates');
-const { publishDigestForDay } = require('../api/cron/daily-digest');
+const { publishDigestForDay } = require('../utils/run-daily-digest');
 
 const DIGEST_BATCH = parseInt(
     (process.argv.find((a) => a.startsWith('--digest-batch=')) || '').split('=')[1] || '25',
