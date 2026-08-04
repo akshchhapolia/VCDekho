@@ -157,7 +157,8 @@ function renderThemePage(theme, res) {
     '<a href="' + FUNDS_PATH + '" class="blog-cta-btn">Browse funds</a>',
     '</div></section>',
     '</div></main></div>',
-    '<script src="/js/auth.js"></script>',
+    '<script src="/js/auth.js" defer></script>',
+    '<script src="/js/directory-session.js?v=2" defer></script>',
     '<script src="/app.js" defer></script>',
     '</body></html>'
   ].join('\n');

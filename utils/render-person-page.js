@@ -312,6 +312,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
 
     '</div></main></div>',
     '<script src="/js/auth.js" defer></script>',
+    '<script src="/js/directory-session.js?v=2" defer></script>',
     '<script src="/js/person-email-unlock.js?v=7" defer></script>',
     '<script src="/app.js" defer></script>',
     '<script src="/investors/lazy-portfolio-logos.js?v=1" defer></script>',

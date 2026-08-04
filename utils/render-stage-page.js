@@ -288,7 +288,8 @@ function renderStagePage(stage, res) {
     '</div></section>',
 
     '</div></main></div>',
-    '<script src="/js/auth.js"></script>',
+    '<script src="/js/auth.js" defer></script>',
+    '<script src="/js/directory-session.js?v=2" defer></script>',
     '<script src="/app.js" defer></script>',
     '<script>',
     '(function(){',
