@@ -113,11 +113,8 @@ function renderBuzzCardInnerHtml(item) {
 }
 
 function renderBuzzDetailHtml(item) {
-  const navLinks = renderSiteNavLinks('', {
-    trailing: [
-      '<a href="/buzz" class="nav-link active">Founder Buzz</a>',
-      '<a href="/login" class="nav-link">Log in</a>'
-    ]
+  const navLinks = renderSiteNavLinks('buzz', {
+    trailing: ['<a href="/login" class="nav-link">Log in</a>']
   }).join('\n                ');
 
   const title = cleanBuzzTitle(item.title);
