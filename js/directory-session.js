@@ -7,8 +7,16 @@
     link.id = 'nav-auth-link';
   }
 
+  function findAuthLink() {
+    return (
+      document.getElementById('nav-auth-link') ||
+      document.getElementById('logout-link') ||
+      document.querySelector('#navigation-bar a.nav-link[href^="/login"]')
+    );
+  }
+
   function wireNavAuth() {
-    var link = document.getElementById('nav-auth-link') || document.getElementById('logout-link');
+    var link = findAuthLink();
     if (!link) return;
 
     if (!window.VCAuth) {

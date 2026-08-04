@@ -17,6 +17,8 @@ function renderSiteNavLinks(active, opts = {}) {
       : [opts.trailing]
     : [];
 
+  const includeAuth = opts.includeAuth !== false;
+
   return [
     '<a href="/" class="nav-link">Home</a>',
     '<a href="' +
@@ -36,6 +38,9 @@ function renderSiteNavLinks(active, opts = {}) {
     '<a href="/buzz" class="nav-link' + (active === 'buzz' ? ' active' : '') + '">Founder Buzz</a>',
     '<a href="/blog" class="nav-link">Blog</a>',
     '<a href="/news" class="nav-link">News</a>',
+    ...(includeAuth
+      ? ['<a href="/login" class="nav-link" id="nav-auth-link">Log in</a>']
+      : []),
     ...trailing
   ];
 }

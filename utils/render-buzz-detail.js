@@ -113,9 +113,7 @@ function renderBuzzCardInnerHtml(item) {
 }
 
 function renderBuzzDetailHtml(item) {
-  const navLinks = renderSiteNavLinks('buzz', {
-    trailing: ['<a href="/login" class="nav-link">Log in</a>']
-  }).join('\n                ');
+  const navLinks = renderSiteNavLinks('buzz').join('\n                ');
 
   const title = cleanBuzzTitle(item.title);
 
@@ -185,6 +183,8 @@ function renderBuzzDetailHtml(item) {
             </div>
         </main>
     </div>
+    <script src="/js/auth.js" defer></script>
+    <script src="/js/directory-session.js?v=2" defer></script>
     <script src="/app.js" defer></script>
     <script src="/js/buzz.js?v=11" defer></script>
 </body>
