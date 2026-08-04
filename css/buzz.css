@@ -75,10 +75,29 @@
 
 .buzz-card-head {
   display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  margin-bottom: 0.65rem;
+}
+
+.buzz-card-head-left {
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.55rem 0.85rem;
-  margin-bottom: 0.65rem;
+  min-width: 0;
+}
+
+.buzz-card-date {
+  flex-shrink: 0;
+  margin-left: auto;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.78rem;
+  font-family: var(--font-sans);
+  white-space: nowrap;
+  text-align: right;
 }
 
 .buzz-source-badge {

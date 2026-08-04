@@ -65,8 +65,11 @@ function renderBuzzCardInnerHtml(item) {
   return `
     <header class="buzz-post-header">
       <div class="buzz-card-head">
-        <span class="buzz-source-badge buzz-source-reddit">Reddit</span>
-        <span class="buzz-meta">${esc(sourceLabel)} · ${esc(dateStr)}</span>
+        <div class="buzz-card-head-left">
+          <span class="buzz-source-badge buzz-source-reddit">Reddit</span>
+          <span class="buzz-meta">${esc(sourceLabel)}</span>
+        </div>
+        ${dateStr ? `<time class="buzz-card-date">${esc(dateStr)}</time>` : ''}
       </div>
       <h1 class="buzz-card-title">${esc(title)}</h1>
     </header>
@@ -145,7 +148,7 @@ function renderBuzzDetailHtml(item) {
     <link rel="stylesheet" href="/css/base.css?v=101">
     <link rel="stylesheet" href="/css/hero.css?v=73">
     <link rel="stylesheet" href="/css/ambient.css?v=98">
-    <link rel="stylesheet" href="/css/buzz.css?v=10">
+    <link rel="stylesheet" href="/css/buzz.css?v=11">
 </head>
 <body class="scrollable-page pub-page buzz-page">
     <div class="app-container">
@@ -190,7 +193,7 @@ function renderBuzzDetailHtml(item) {
         </main>
     </div>
     <script src="/app.js" defer></script>
-    <script src="/js/buzz.js?v=7" defer></script>
+    <script src="/js/buzz.js?v=8" defer></script>
 </body>
 </html>`;
 }

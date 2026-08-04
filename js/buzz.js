@@ -138,8 +138,11 @@
       <article class="buzz-card" data-slug="${esc(item.slug)}" id="buzz-${esc(item.slug)}">
         <header class="buzz-post-header">
           <div class="buzz-card-head">
-            <span class="buzz-source-badge buzz-source-reddit">Reddit</span>
-            <span class="buzz-meta">${esc(sub)} · ${esc(dateStr)}</span>
+            <div class="buzz-card-head-left">
+              <span class="buzz-source-badge buzz-source-reddit">Reddit</span>
+              <span class="buzz-meta">${esc(sub)}</span>
+            </div>
+            ${dateStr ? `<time class="buzz-card-date">${esc(dateStr)}</time>` : ''}
           </div>
           <h2 class="buzz-card-title">${esc(title)}</h2>
         </header>
