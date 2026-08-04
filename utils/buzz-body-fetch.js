@@ -46,5 +46,6 @@ async function ensureBuzzFullBody(item) {
     ]
   );
   return body;
+}
 
 module.exports = { ensureBuzzFullBody, MAX_BODY_LEN };
