@@ -22,25 +22,29 @@ async function ensureBuzzFullBody(item) {
   if (current.length >= 800 && !looksLikeSearchSnippet(current)) return current;
 
   const fetched = await fetchRedditPost(item.source_url);
-  if (!fetched?.selftext) return current || null;
+  if (!fetched) return current || null;
 
-  const body = fetched.selftext.slice(0, MAX_BODY_LEN);
+  const body = fetched.selftext
+    ? fetched.selftext.slice(0, MAX_BODY_LEN)
+    : current || null;
+
   await db.query(
     `UPDATE investor_buzz SET
-      body_excerpt = $2,
+      body_excerpt = COALESCE(NULLIF($2, ''), body_excerpt),
       comment_count = CASE WHEN $3 > 0 THEN $3 ELSE comment_count END,
       subreddit = COALESCE($4, subreddit),
-      title = CASE WHEN length($5) > 0 THEN left($5, 500) ELSE title END
+      title = CASE WHEN length($5) > 0 THEN left($5, 500) ELSE title END,
+      published_at_source = COALESCE($6::timestamptz, published_at_source)
      WHERE id = $1`,
     [
       item.id,
-      body,
+      body || '',
       fetched.comment_count || 0,
       fetched.subreddit,
-      fetched.title || ''
+      fetched.title || '',
+      fetched.created_at || null
     ]
   );
   return body;
-}
 
 module.exports = { ensureBuzzFullBody, MAX_BODY_LEN };

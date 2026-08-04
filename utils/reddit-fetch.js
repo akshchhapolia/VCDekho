@@ -30,15 +30,24 @@ function decodeRedditText(raw) {
     .trim();
 }
 
+function createdAtFromPost(post) {
+  const utc = Number(post?.created_utc);
+  if (!Number.isFinite(utc) || utc <= 0) return null;
+  return new Date(utc * 1000).toISOString();
+}
+
 function toPostResult(post) {
   if (!post) return null;
   const selftext = decodeRedditText(post.selftext || '');
-  if (!selftext) return null;
+  const created_at = createdAtFromPost(post);
+  // Allow metadata-only results (e.g. date backfill when body is empty).
+  if (!selftext && !created_at) return null;
   return {
     selftext,
     title: decodeRedditText(post.title || ''),
     comment_count: post.num_comments || 0,
-    subreddit: post.subreddit || null
+    subreddit: post.subreddit || null,
+    created_at
   };
 }
 

@@ -113,7 +113,7 @@
 
   function renderCard(item) {
     const topics = item.topics || [];
-    const dateStr = formatDate(item.published_at || item.published_at_source);
+    const dateStr = formatDate(item.published_at_source || item.published_at);
     const sub = item.subreddit ? `r/${item.subreddit}` : 'Reddit';
     const title = cleanTitle(item.title);
     const sentiment = normalizeSentiment(item.sentiment);

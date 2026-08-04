@@ -28,7 +28,7 @@ module.exports = async function handler(req, res) {
             query += ` AND $${params.length} = ANY(topics)`;
         }
         params.push(limit);
-        query += ` ORDER BY published_at DESC NULLS LAST LIMIT $${params.length}`;
+        query += ` ORDER BY COALESCE(published_at_source, published_at) DESC NULLS LAST LIMIT $${params.length}`;
         try {
             const { rows } = await db.query(query, params);
             const enriched = rows.map((row) => ({

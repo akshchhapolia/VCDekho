@@ -54,7 +54,7 @@ function renderFundSection(slugs, names) {
 
 function renderBuzzCardInnerHtml(item) {
   const topics = item.topics || [];
-  const dateStr = formatDate(item.published_at || item.published_at_source);
+  const dateStr = formatDate(item.published_at_source || item.published_at);
   const sourceLabel =
     item.source === 'reddit'
       ? `r/${item.subreddit || 'unknown'}`
