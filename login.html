@@ -23,7 +23,7 @@
 html,body{width:100%;background-color:#0b0b0d;color:rgba(255,255,255,.88);font-family:var(--font-sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
 html.scrollable-page,body.scrollable-page{overflow-y:auto!important;overflow-x:hidden!important;height:auto!important}
 body.scrollable-page::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-color:#0b0b0d;background-image:radial-gradient(ellipse 160% 120% at 15% -10%,rgba(237,87,47,.1),transparent 58%),radial-gradient(ellipse 120% 90% at 85% 15%,rgba(237,87,47,.05),transparent 55%),radial-gradient(ellipse 100% 80% at 50% 110%,rgba(237,87,47,.04),transparent 52%)}
-.app-container{display:flex;flex-direction:column;width:100%;min-height:100dvh;padding:var(--page-padding);gap:1.5rem;max-width:1600px;margin:0 auto;position:relative;z-index:1;background:transparent}
+.app-container{display:flex;flex-direction:column;width:100%;min-height:100dvh;padding:1rem var(--page-padding) 0;gap:.75rem;max-width:1600px;margin:0 auto;position:relative;z-index:1;background:transparent}
 .site-header{display:flex;justify-content:space-between;align-items:center;width:100%;height:50px;position:relative;z-index:2;background:transparent}
 .logo-container{display:flex;align-items:center;text-decoration:none}
 .logo-img{height:44px;width:auto;display:block}
@@ -67,7 +67,7 @@ body.scrollable-page::before{content:'';position:fixed;inset:0;z-index:0;pointer
 .auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.12)}
 .auth-google-btn{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:.65rem;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:#fff;font:inherit;font-weight:600;padding:.85rem 1rem;border-radius:12px;cursor:pointer}
 @media (max-width:992px){
-.app-container{padding:1rem;gap:.75rem}
+.app-container{padding:.85rem 1rem 0;gap:.75rem}
 .waitlist-layout-grid{display:flex;flex-direction:column;gap:2rem;height:auto;padding-bottom:2rem}
 .hero-content{display:flex;flex-direction:column;padding:1.25rem;gap:1.5rem}
 .hero-title{font-size:clamp(1.4rem,6.5vw,2.2rem)!important}
@@ -97,6 +97,19 @@ input,select,textarea{font-size:16px!important}
       <link rel="stylesheet" href="/css/hero.css?v=110">
       <link rel="stylesheet" href="/css/ambient.css?v=110">
     </noscript>
+    <!-- Keep login header spacing aligned with Funds/Investors after async CSS loads -->
+    <style>
+      body.scrollable-page.login-page .app-container {
+        padding-top: 1rem;
+        padding-bottom: 0;
+        gap: 0.75rem;
+      }
+      @media (max-width: 768px) {
+        body.scrollable-page.login-page .app-container {
+          padding-top: 0.85rem;
+        }
+      }
+    </style>
 <link rel="icon" type="image/png" href="/assets/logoforvc.png">
     <link rel="canonical" href="https://vcdekho.com/login">
     <meta property="og:title" content="Log in - VC Dekho">
@@ -105,7 +118,7 @@ input,select,textarea{font-size:16px!important}
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://vcdekho.com/assets/logoforvc.png">
 </head>
-<body class="scrollable-page">
+<body class="scrollable-page login-page">
     <div class="app-container">
         <header class="site-header">
             <a href="/" class="logo-container" id="logo-link">
@@ -120,10 +133,12 @@ input,select,textarea{font-size:16px!important}
 
             <nav class="main-nav" id="navigation-bar">
                 <a href="/" class="nav-link">Home</a>
+                <a href="/investors" class="nav-link">Investors</a>
+                <a href="/funds" class="nav-link">Funds</a>
                 <a href="/buzz" class="nav-link">Founder Buzz</a>
                 <a href="/blog" class="nav-link">Blog</a>
                 <a href="/news" class="nav-link">News</a>
-                <a href="/login" class="nav-link active">Log in</a>
+                <a href="/login" class="nav-link active" id="nav-auth-link">Log in</a>
             </nav>
         </header>
 
