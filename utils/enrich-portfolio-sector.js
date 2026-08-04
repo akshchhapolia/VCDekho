@@ -19,7 +19,9 @@ const SECTOR_LABELS = [
   'Agritech / Food',
   'Gaming / Media',
   'PropTech / Real Estate',
-  'Social Impact'
+  'Social Impact',
+  'Cyber Security',
+  'Blockchain'
 ];
 
 function sleep(ms) {
