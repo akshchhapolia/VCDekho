@@ -33,7 +33,7 @@ const INDIA_SIGNAL_RE =
   /\b(india|indian|bangalore|bengaluru|mumbai|delhi|hyderabad|chennai|gurgaon|noida|iit|iim)\b/i;
 
 const NAMED_INVESTOR_RE =
-  /\b(peak xv|sequoia|blume|matrix|elevation|accel|tiger global|nexus|lightspeed|bessemer|100x\.vc|3one4|stellaris|kalaari|nexus venture|iron pillar|prime venture|chiratae|saama|waterbridge|venture highway|unitus|ankur capital|exfinity|growx|java capital|ah! ventures|ah ventures|antler|wtf fund|nikhil kamath|y combinator|surge|techstars)\b/i;
+  /\b(peak xv|sequoia|blume|matrix|elevation|accel|tiger global|nexus venture|lightspeed|bessemer|100x\.vc|3one4|stellaris|kalaari|iron pillar capital|prime venture|chiratae|saama|waterbridge|venture highway|unitus|ankur capital|exfinity|growx|java capital|ah! ventures|ah ventures|antler|wtf fund|nikhil kamath|y combinator|surge|techstars)\b/i;
 
 const ASKING_NOT_REVIEW_RE =
   /\b(should i|any advice|how do i|how to|tips for|what should i|is it worth|am i ready to)\s+(raise|pitch|approach|contact|email)\b/i;
