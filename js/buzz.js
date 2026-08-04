@@ -25,6 +25,9 @@
       .replace(/&gt;/g, '>')
       .replace(/&quot;/g, '"')
       .replace(/\r\n/g, '\n')
+      .replace(/\n?[ \t]*submitted by[ \t]+\/?u\/[\w-]+[\s\S]*$/i, '')
+      .replace(/\n?[ \t]*submitted by[\s\S]*?\[link\][\s\S]*?\[comments\][ \t]*$/i, '')
+      .replace(/\s*\[link\]\s*\[comments\]\s*$/i, '')
       .replace(/[^\S\n]+/g, ' ')
       .replace(/\n{3,}/g, '\n\n')
       .trim();

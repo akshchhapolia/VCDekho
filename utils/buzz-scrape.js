@@ -2,6 +2,7 @@ const Parser = require('rss-parser');
 const db = require('./db');
 const { shouldQueueBuzzPost } = require('./buzz-relevance');
 const { runBuzzDiscover } = require('./buzz-discover');
+const { stripRedditRssChrome } = require('./buzz-body-render');
 
 const parser = new Parser({
   timeout: 20000,
@@ -91,7 +92,9 @@ async function ingestFeedItem(item, feedMeta, knownUrls, stats) {
   }
 
   const title = item.title || 'Untitled discussion';
-  const body = item.contentSnippet || item.content || item.summary || item.description || '';
+  const body = stripRedditRssChrome(
+    item.contentSnippet || item.content || item.summary || item.description || ''
+  );
   const gate = shouldQueueBuzzPost(title, body);
   const { subreddit, sourceId } = extractRedditMeta(sourceUrl);
   const pubDate = item.pubDate ? new Date(item.pubDate) : new Date();

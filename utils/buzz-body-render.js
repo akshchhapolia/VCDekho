@@ -11,18 +11,43 @@ function escHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
+/**
+ * Strip Reddit RSS chrome that often trails contentSnippet / description:
+ *   submitted by /u/name
+ *   [link] [comments]
+ */
+function stripRedditRssChrome(raw) {
+  let text = String(raw || '');
+  // HTML RSS variants
+  text = text.replace(
+    /<br\s*\/?>\s*submitted by[\s\S]*?(?:\[comments\]|comments<\/a>)[\s\S]*$/i,
+    ''
+  );
+  text = text.replace(
+    /\n?[ \t]*submitted by[ \t]+\/?u\/[\w-]+[\s\S]*$/i,
+    ''
+  );
+  text = text.replace(
+    /\n?[ \t]*submitted by[\s\S]*?\[link\][\s\S]*?\[comments\][ \t]*$/i,
+    ''
+  );
+  text = text.replace(/\s*\[link\]\s*\[comments\]\s*$/i, '');
+  return text.trim();
+}
+
 function normalizeBody(raw) {
-  return String(raw || '')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&nbsp;/g, ' ')
-    .replace(/\r\n/g, '\n')
-    .replace(/\r/g, '\n')
-    .replace(/\\n/g, '\n')
-    .trim();
+  return stripRedditRssChrome(
+    String(raw || '')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&nbsp;/g, ' ')
+      .replace(/\r\n/g, '\n')
+      .replace(/\r/g, '\n')
+      .replace(/\\n/g, '\n')
+  );
 }
 
 function parseTableRow(line) {
@@ -246,6 +271,7 @@ module.exports = {
   renderBuzzBodyHtml,
   buzzBodyPlainLength,
   buzzBodyIsLong,
+  stripRedditRssChrome,
   escHtml,
   inlineMarkdown
 };
