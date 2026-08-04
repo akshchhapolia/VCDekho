@@ -35,7 +35,7 @@ const SECTOR_CANON = [
   { id: 'gaming', label: 'Gaming / Media', match: [/gaming/i, /media/i, /entertainment/i, /content/i] },
   { id: 'proptech', label: 'PropTech / Real Estate', match: [/prop\s*tech/i, /real\s*estate/i] },
   { id: 'impact', label: 'Social Impact', match: [/impact/i, /social/i, /inclusion/i] },
-  { id: 'cyber-security', label: 'Cyber Security', match: [/cyber\s*security/i, /cybersecurity/i, /infosec/i, /information security/i, /cloud\s*security/i, /endpoint security/i, /threat detection/i, /zero trust/i, /application security/i, /devsecops/i] },
+  { id: 'cyber-security', label: 'Cyber Security', match: [/cyber\s*security/i, /cybersecurity/i, /infosec/i, /information security/i, /cloud\s*security/i, /endpoint security/i, /threat detection/i, /zero trust/i, /application security/i, /devsecops/i, /cloudsek/i, /astra security/i, /safe security/i, /bluesapphire/i] },
   { id: 'blockchain', label: 'Blockchain', match: [/blockchain/i, /\bweb3\b/i, /\bcrypto\b/i, /crypto\//i, /crypto-/i, /\bdefi\b/i, /\bnft\b/i, /gamefi/i, /tokenomics/i, /on[-\s]?chain/i] },
   { id: 'sector-agnostic', label: 'Sector Agnostic', match: [/sector\s*agnostic/i, /multi[-\s]?sector/i, /generalist/i] }
 ];
