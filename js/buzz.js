@@ -128,7 +128,7 @@
             <div class="buzz-fund-list">${slugs
               .map((slug, i) => {
                 const label = names[i] || slug;
-                return `<a href="/funds/${encodeURIComponent(slug)}" class="buzz-fund-pill">${esc(label)}</a>`;
+                return `<a href="/funds/${encodeURIComponent(slug)}" class="buzz-fund-pill" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`;
               })
               .join('')}</div>
           </section>`

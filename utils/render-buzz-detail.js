@@ -46,7 +46,7 @@ function renderFundSection(slugs, names) {
       <div class="buzz-fund-list">${slugs
         .map((slug, i) => {
           const label = (names && names[i]) || slug;
-          return `<a href="${fundHref(slug)}" class="buzz-fund-pill">${esc(label)}</a>`;
+          return `<a href="${fundHref(slug)}" class="buzz-fund-pill" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`;
         })
         .join('')}</div>
     </section>`;
@@ -193,7 +193,7 @@ function renderBuzzDetailHtml(item) {
         </main>
     </div>
     <script src="/app.js" defer></script>
-    <script src="/js/buzz.js?v=8" defer></script>
+    <script src="/js/buzz.js?v=9" defer></script>
 </body>
 </html>`;
 }

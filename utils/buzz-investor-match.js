@@ -82,8 +82,25 @@ function loadInvestorIndex() {
   if (indexCache) return indexCache;
   const filePath = path.join(__dirname, '..', 'data', 'investors.json');
   const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-  indexCache = buildInvestorIndex(data.investors || []);
+  const base = buildInvestorIndex(data.investors || []);
+  const bySlug = new Map((data.investors || []).map((inv) => [inv.slug, inv]));
+  // Attach type so Fund-in-conversation can skip angel individuals.
+  indexCache = base.map((row) => {
+    const full = bySlug.get(row.slug);
+    return {
+      ...row,
+      typeId: full?.typeId || '',
+      type: full?.type || ''
+    };
+  });
   return indexCache;
+}
+
+function isFundOrg(inv) {
+  const typeId = String(inv?.typeId || '').toLowerCase();
+  const type = String(inv?.type || '').toLowerCase();
+  if (typeId === 'angel' || type.includes('angel / individual')) return false;
+  return true;
 }
 
 function normalizeMention(raw) {
@@ -275,8 +292,17 @@ function matchInvestorsInBuzz({ title = '', body = '', aiMentions = [] } = {}) {
     ...scanBodyForInvestors(`${title}\n${body}`, index)
   ];
 
-  // Prefer longer / earlier unique matches via matchInvestorMentions dedupe
-  return matchInvestorMentions(candidates);
+  const matched = matchInvestorMentions(candidates);
+  // Fund in conversation = orgs/funds, not angel individuals (e.g. WTFund not Nikhil Kamath).
+  const slugs = [];
+  const names = [];
+  for (let i = 0; i < matched.slugs.length; i++) {
+    const inv = index.find((row) => row.slug === matched.slugs[i]);
+    if (inv && !isFundOrg(inv)) continue;
+    slugs.push(matched.slugs[i]);
+    names.push(matched.names[i]);
+  }
+  return { slugs, names };
 }
 
 module.exports = {
