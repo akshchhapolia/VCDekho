@@ -141,8 +141,17 @@ function buildScanTerms(index) {
   }
 
   for (const [alias, canonical] of Object.entries(MENTION_ALIASES)) {
+    if (ALIAS_SLUGS[alias]) {
+      const inv = index.find((i) => i.slug === ALIAS_SLUGS[alias]);
+      if (inv) add(alias, inv.slug, inv.name);
+    }
     const hit = findBestMatch(canonical, index);
     if (hit) add(alias, hit.inv.slug, hit.inv.name);
+  }
+
+  for (const [alias, slug] of Object.entries(ALIAS_SLUGS)) {
+    const inv = index.find((i) => i.slug === slug);
+    if (inv) add(alias, inv.slug, inv.name);
   }
 
   terms.sort((a, b) => b.term.length - a.term.length);
@@ -176,6 +185,32 @@ function scanBodyForInvestors(text, index) {
  * @param {string[]} mentionNames
  * @returns {{ slugs: string[], names: string[] }}
  */
+function resolveMention(raw, index) {
+  const rawKey = String(raw || '')
+    .replace(/[*_`~]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase()
+    .replace(/[’']/g, "'");
+
+  if (ALIAS_SLUGS[rawKey]) {
+    const inv = index.find((i) => i.slug === ALIAS_SLUGS[rawKey]);
+    if (inv) return inv;
+  }
+
+  const mention = normalizeMention(raw);
+  if (!mention || mention.length < 3) return null;
+
+  const mentionKey = mention.toLowerCase();
+  if (ALIAS_SLUGS[mentionKey]) {
+    const inv = index.find((i) => i.slug === ALIAS_SLUGS[mentionKey]);
+    if (inv) return inv;
+  }
+
+  const hit = findBestMatch(mention, index);
+  return hit ? hit.inv : null;
+}
+
 function matchInvestorMentions(mentionNames) {
   const index = loadInvestorIndex();
   const slugs = [];
@@ -183,13 +218,11 @@ function matchInvestorMentions(mentionNames) {
   const seen = new Set();
 
   for (const raw of mentionNames || []) {
-    const mention = normalizeMention(raw);
-    if (!mention || mention.length < 3) continue;
-    const hit = findBestMatch(mention, index);
-    if (!hit || seen.has(hit.inv.slug)) continue;
-    seen.add(hit.inv.slug);
-    slugs.push(hit.inv.slug);
-    names.push(hit.inv.name);
+    const inv = resolveMention(raw, index);
+    if (!inv || seen.has(inv.slug)) continue;
+    seen.add(inv.slug);
+    slugs.push(inv.slug);
+    names.push(inv.name);
   }
 
   return { slugs, names };
