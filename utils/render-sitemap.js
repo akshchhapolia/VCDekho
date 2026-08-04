@@ -40,6 +40,29 @@ async function renderSitemapXml() {
     } catch (e) {
       console.warn('Article sitemap skipped:', e.message);
     }
+
+    try {
+      const buzzQuery = `
+        SELECT slug, COALESCE(published_at_source, published_at) AS sort_date
+        FROM investor_buzz
+        WHERE status = 'published' AND slug IS NOT NULL
+        ORDER BY COALESCE(published_at_source, published_at) DESC NULLS LAST
+        LIMIT 500`;
+      const { rows: buzzRows } = await db.query(buzzQuery);
+      buzzRows.forEach((item) => {
+        const date = item.sort_date
+          ? new Date(item.sort_date).toISOString().split('T')[0]
+          : new Date().toISOString().split('T')[0];
+        dynamicUrls += `
+  <url>
+    <loc>https://vcdekho.com/buzz/${item.slug}</loc>
+    <lastmod>${date}</lastmod>
+    <priority>0.7</priority>
+  </url>`;
+      });
+    } catch (e) {
+      console.warn('Buzz sitemap skipped:', e.message);
+    }
   }
 
   try {
@@ -124,6 +147,10 @@ async function renderSitemapXml() {
   </url>
   <url>
     <loc>https://vcdekho.com/news</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vcdekho.com/buzz</loc>
     <priority>0.9</priority>
   </url>
   <url>

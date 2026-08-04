@@ -134,7 +134,7 @@ function renderBuzzDetailHtml(item) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
     <title>${esc(title)} | Founder Buzz | VC Dekho</title>
     <meta name="description" content="${esc(title)} — founder discussion on VC Dekho Founder Buzz">
-    <meta name="robots" content="noindex, follow">
+    <meta name="robots" content="index, follow">
     <link rel="icon" type="image/png" href="/assets/logoforvc.png">
     <link rel="stylesheet" href="/css/base.css?v=101">
     <link rel="stylesheet" href="/css/hero.css?v=73">
