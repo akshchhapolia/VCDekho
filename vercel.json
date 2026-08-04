@@ -166,7 +166,7 @@
   "crons": [
     {
       "path": "/api/cron/scrape",
-      "schedule": "0 6 * * *"
+      "schedule": "30 5 * * *"
     },
     {
       "path": "/api/cron/ai-process",
@@ -174,7 +174,7 @@
     },
     {
       "path": "/api/cron/scrape",
-      "schedule": "0 18 * * *"
+      "schedule": "0 12 * * *"
     },
     {
       "path": "/api/cron/scrape?job=buzz",
@@ -190,7 +190,7 @@
     },
     {
       "path": "/api/cron/ai-process",
-      "schedule": "30 18 * * *"
+      "schedule": "30 12 * * *"
     },
     {
       "path": "/api/cron/daily-digest",

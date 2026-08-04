@@ -162,6 +162,7 @@ module.exports = async function handler(req, res) {
         }
 
         // Founder Buzz: Reddit founder VC reviews (RSS + Searlo discover).
+        // Morning scrape 11:00 IST → ai-process 12:00 IST; evening scrape 17:30 IST → ai-process 18:00 IST.
         // Also runs via /api/cron/scrape?job=buzz (3 extra times/day in vercel.json).
         try {
             meta.buzz = await runBuzzScrape({ batchIndex });
