@@ -1,5 +1,5 @@
 /**
- * Fetch full Reddit post text for Investor Buzz.
+ * Fetch full Reddit post text for Founder Buzz.
  * Order: Arctic Shift → PullPush → reddit.com JSON
  */
 

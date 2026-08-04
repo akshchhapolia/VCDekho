@@ -1,5 +1,5 @@
 /**
- * Convert Reddit post markdown into safe HTML for Investor Buzz cards.
+ * Convert Reddit post markdown into safe HTML for Founder Buzz cards.
  * Handles paragraphs, blockquotes, markdown tables, lists, and inline formatting.
  */
 

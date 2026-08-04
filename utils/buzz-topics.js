@@ -1,4 +1,4 @@
-/** Controlled topic taxonomy for Investor Buzz chips and filters. */
+/** Controlled topic taxonomy for Founder Buzz chips and filters. */
 const BUZZ_TOPICS = [
   'Due Diligence',
   'Decision Speed',

@@ -1,5 +1,5 @@
 /**
- * Relevance rules for Investor Buzz — founder VC reviews/experiences only.
+ * Relevance rules for Founder Buzz — founder VC reviews/experiences only.
  * Rejects fundraising asks, hiring, co-founder requests, etc.
  */
 
