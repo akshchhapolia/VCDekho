@@ -3,6 +3,7 @@ const db = require('./db');
 const { shouldQueueBuzzPost } = require('./buzz-relevance');
 const { runBuzzDiscover } = require('./buzz-discover');
 const { stripRedditRssChrome } = require('./buzz-body-render');
+const { REDDIT_FEEDS, feedBatchForRun } = require('./buzz-sources');
 
 const parser = new Parser({
   timeout: 20000,
@@ -12,60 +13,7 @@ const parser = new Parser({
   }
 });
 
-/**
- * Targeted Reddit search feeds — founder VC reviews/experiences, not generic startup posts.
- * Uses subreddit search RSS (not /new) to surface fundraising retrospectives and investor feedback.
- */
-const REDDIT_FEEDS = [
-  {
-    label: 'StartUpIndia-vc-review',
-    subreddit: 'StartUpIndia',
-    url:
-      'https://www.reddit.com/r/StartUpIndia/search.rss?q=VC+experience+OR+investor+interview+OR+due+diligence+OR+term+sheet+OR+ghosted+OR+fundraising+journey&restrict_sr=1&sort=new'
-  },
-  {
-    label: 'StartUpIndia-vc-scene',
-    subreddit: 'StartUpIndia',
-    url:
-      'https://www.reddit.com/r/StartUpIndia/search.rss?q=indian+VC+OR+venture+capital+experience+OR+pitch+feedback&restrict_sr=1&sort=new'
-  },
-  {
-    label: 'indianstartups-vc',
-    subreddit: 'indianstartups',
-    url:
-      'https://www.reddit.com/r/indianstartups/search.rss?q=VC+OR+investor+experience+OR+fundraising+experience+OR+raised+seed&restrict_sr=1&sort=new'
-  },
-  {
-    label: 'startups-india-vc',
-    subreddit: 'startups',
-    url:
-      'https://www.reddit.com/r/startups/search.rss?q=india+VC+OR+indian+investor+OR+peak+xv+OR+blume+experience&restrict_sr=1&sort=new'
-  },
-  {
-    label: 'venturecapital-india',
-    subreddit: 'venturecapital',
-    url:
-      'https://www.reddit.com/r/venturecapital/search.rss?q=india+OR+indian+founder+OR+emerging+market&restrict_sr=1&sort=new'
-  },
-  {
-    label: 'global-indian-vc-search',
-    subreddit: null,
-    url:
-      'https://www.reddit.com/search.rss?q=indian+startup+VC+experience+OR+investor+interview+india&sort=new'
-  },
-  {
-    label: 'StartUpIndia-red-flags',
-    subreddit: 'StartUpIndia',
-    url:
-      'https://www.reddit.com/r/StartUpIndia/search.rss?q=red+flag+VC+OR+avoid+investor+OR+%22shit+list%22+OR+toxic+VC&restrict_sr=1&sort=new'
-  },
-  {
-    label: 'StartUpIndia-term-sheet',
-    subreddit: 'StartUpIndia',
-    url:
-      'https://www.reddit.com/r/StartUpIndia/search.rss?q=%22term+sheet%22+OR+%22partner+call%22+OR+%22investment+committee%22&restrict_sr=1&sort=new'
-  }
-];
+const FEED_DELAY_MS = 6500;
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -132,25 +80,37 @@ async function ingestFeedItem(item, feedMeta, knownUrls, stats) {
   }
 }
 
-async function runBuzzScrape() {
+/**
+ * @param {{ batchIndex?: number }} [opts]
+ * Rotates through Reddit RSS feeds each run to reduce 429 rate limits.
+ */
+async function runBuzzScrape(opts = {}) {
+  const batchIndex =
+    typeof opts.batchIndex === 'number'
+      ? opts.batchIndex
+      : Math.floor(Date.now() / (6 * 60 * 60 * 1000));
+  const feeds = feedBatchForRun(batchIndex);
+
   const stats = {
     itemsFetched: 0,
     itemsQueued: 0,
     itemsDuplicated: 0,
     itemsRejected: 0,
     errors: [],
-    feeds: REDDIT_FEEDS.length
+    feedsTotal: REDDIT_FEEDS.length,
+    feedsThisRun: feeds.length,
+    feedBatch: batchIndex
   };
 
   try {
     const recent = await db.query(
-      `SELECT source_url FROM investor_buzz WHERE scraped_at > NOW() - INTERVAL '60 days'`
+      `SELECT source_url FROM investor_buzz WHERE scraped_at > NOW() - INTERVAL '90 days'`
     );
     const knownUrls = new Set(recent.rows.map((r) => r.source_url));
 
-    for (let i = 0; i < REDDIT_FEEDS.length; i++) {
-      const feedMeta = REDDIT_FEEDS[i];
-      if (i > 0) await sleep(4000);
+    for (let i = 0; i < feeds.length; i++) {
+      const feedMeta = feeds[i];
+      if (i > 0) await sleep(FEED_DELAY_MS);
       try {
         const feed = await parser.parseURL(feedMeta.url);
         for (const item of feed.items || []) {
@@ -168,7 +128,7 @@ async function runBuzzScrape() {
   }
 
   try {
-    stats.discover = await runBuzzDiscover();
+    stats.discover = await runBuzzDiscover({ batchIndex });
     if (stats.discover && !stats.discover.skipped) {
       stats.itemsFetched += stats.discover.itemsFetched || 0;
       stats.itemsQueued += stats.discover.itemsQueued || 0;

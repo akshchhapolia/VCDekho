@@ -1,18 +1,8 @@
 const db = require('./db');
 const { webSearch } = require('./web-search');
 const { shouldQueueBuzzPost, isHardRejectBuzzPost } = require('./buzz-relevance');
-
-const DISCOVERY_QUERIES = [
-  'site:reddit.com/r/StartUpIndia VC experience OR fundraising journey OR investor interview OR due diligence',
-  'site:reddit.com/r/indianstartups venture capital experience OR raised seed OR term sheet',
-  'site:reddit.com indian startup VC ghosted OR rejected OR "fundraising experience"',
-  'site:reddit.com/r/startups india VC OR indian investor interview OR peak xv experience',
-  'site:reddit.com/r/StartUpIndia "term sheet" OR "partner meeting" OR "IC meeting" OR ghosted VC',
-  'site:reddit.com/r/StartUpIndia blume OR "peak xv" OR sequoia OR accel OR elevation OR kalaari experience',
-  'site:reddit.com/r/indianstartups rejected by VC OR "waste of time" investor OR "due diligence"',
-  'site:reddit.com "indian VC" (review OR experience OR "red flag" OR "avoid" OR "raised from")',
-  'site:reddit.com/r/startups "india" ("my experience" OR "fundraising process" OR "VC meeting")'
-];
+const { stripRedditRssChrome } = require('./buzz-body-render');
+const { DISCOVERY_QUERIES, queryBatchForRun } = require('./buzz-sources');
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -43,7 +33,7 @@ async function ingestDiscoveryHit(hit, knownUrls, stats) {
 
   stats.itemsFetched++;
   const title = hit.title || 'Reddit discussion';
-  const body = hit.snippet || '';
+  const body = stripRedditRssChrome(hit.snippet || '');
   const gate = shouldQueueBuzzPost(title, body);
   const { subreddit, sourceId } = extractRedditMeta(sourceUrl);
   const status = gate.queue ? 'queued' : 'rejected';
@@ -81,12 +71,18 @@ async function ingestDiscoveryHit(hit, knownUrls, stats) {
 
 /**
  * Find Reddit founder VC review threads via targeted web search (Searlo).
- * Supplements RSS when Reddit rate-limits or search feeds are noisy.
+ * @param {{ batchIndex?: number }} [opts]
  */
-async function runBuzzDiscover() {
+async function runBuzzDiscover(opts = {}) {
   if (!process.env.SEARLO_API_KEY) {
     return { skipped: true, reason: 'SEARLO_API_KEY not set' };
   }
+
+  const batchIndex =
+    typeof opts.batchIndex === 'number'
+      ? opts.batchIndex
+      : Math.floor(Date.now() / (6 * 60 * 60 * 1000));
+  const queries = queryBatchForRun(batchIndex);
 
   const stats = {
     itemsFetched: 0,
@@ -94,19 +90,21 @@ async function runBuzzDiscover() {
     itemsDuplicated: 0,
     itemsRejected: 0,
     errors: [],
-    queries: DISCOVERY_QUERIES.length
+    queriesTotal: DISCOVERY_QUERIES.length,
+    queriesThisRun: queries.length,
+    queryBatch: batchIndex
   };
 
   const recent = await db.query(
-    `SELECT source_url FROM investor_buzz WHERE scraped_at > NOW() - INTERVAL '90 days'`
+    `SELECT source_url FROM investor_buzz WHERE scraped_at > NOW() - INTERVAL '120 days'`
   );
   const knownUrls = new Set(recent.rows.map((r) => r.source_url));
 
-  for (let i = 0; i < DISCOVERY_QUERIES.length; i++) {
-    const q = DISCOVERY_QUERIES[i];
-    if (i > 0) await sleep(2000);
+  for (let i = 0; i < queries.length; i++) {
+    const q = queries[i];
+    if (i > 0) await sleep(2500);
     try {
-      const { organic } = await webSearch(q, { limit: 8, gl: 'in', hl: 'en' });
+      const { organic } = await webSearch(q, { limit: 10, gl: 'in', hl: 'en' });
       for (const hit of organic) {
         if (!isRedditThreadUrl(hit.link)) continue;
         if (isHardRejectBuzzPost(hit.title, hit.snippet)) {
@@ -116,7 +114,7 @@ async function runBuzzDiscover() {
         await ingestDiscoveryHit(hit, knownUrls, stats);
       }
     } catch (err) {
-      stats.errors.push(`${q.slice(0, 40)}: ${err.message}`);
+      stats.errors.push(`${q.slice(0, 48)}: ${err.message}`);
     }
   }
 

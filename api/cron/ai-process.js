@@ -4,7 +4,7 @@ const { processItem } = require('../../utils/news-ai-process');
 const { processBuzzItem } = require('../../utils/buzz-ai-process');
 
 const MAX_ITEMS_PER_RUN = 10;
-const MAX_BUZZ_PER_RUN = 6;
+const MAX_BUZZ_PER_RUN = 8;
 
 module.exports = async function handler(req, res) {
     return runCronJob(req, res, 'ai-process', async () => {

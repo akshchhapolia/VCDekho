@@ -155,8 +155,10 @@ module.exports = async function handler(req, res) {
 
         // Founder Buzz: Reddit founder VC reviews (RSS + Searlo discover).
         // Runs with this scrape cron (scheduled 2x/day in vercel.json).
+        // Additional dedicated runs via /api/cron/buzz-scrape (4x/day total).
         try {
-            meta.buzz = await runBuzzScrape();
+            const batchIndex = Math.floor(Date.now() / (6 * 60 * 60 * 1000));
+            meta.buzz = await runBuzzScrape({ batchIndex });
         } catch (buzzErr) {
             meta.buzz = { error: buzzErr.message };
         }
