@@ -22,7 +22,7 @@ ALWAYS mark is_relevant=false for:
 Return ONLY valid JSON:
 - is_relevant (boolean)
 - relevance_score (integer 0-5): 4-5 = clear founder VC review with specifics; 3 = solid process experience; 0-2 = off-topic or asking-not-reviewing
-- ai_summary (string): 2-3 neutral sentences summarizing the founder/community perspective
+- ai_summary (string): max 2 short lines / ~160 characters. One or two neutral sentences only — no third sentence
 - topics (array): 1-4 from: ${BUZZ_TOPICS.join(', ')}
 - sentiment (string): positive | mixed | negative | neutral — tone toward the fundraising/VC process discussed
 - founder_quotes (array): up to 3 short excerpts/paraphrases (max 220 chars). Each: { "text": string, "paraphrased": boolean }
@@ -31,6 +31,22 @@ Return ONLY valid JSON:
 Reject doxxing and personal attacks.`;
 
 const VALID_SENTIMENTS = new Set(['positive', 'mixed', 'negative', 'neutral']);
+const AI_SUMMARY_MAX_CHARS = 180;
+
+/** Keep AI summary to roughly two display lines. */
+function clampAiSummary(raw) {
+  const text = String(raw || '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!text) return '';
+  if (text.length <= AI_SUMMARY_MAX_CHARS) return text;
+
+  const cut = text.slice(0, AI_SUMMARY_MAX_CHARS);
+  const sentenceEnd = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('! '), cut.lastIndexOf('? '));
+  if (sentenceEnd >= 80) return cut.slice(0, sentenceEnd + 1).trim();
+  const wordEnd = cut.lastIndexOf(' ');
+  return (wordEnd > 60 ? cut.slice(0, wordEnd) : cut).trim().replace(/[.,;:]+$/, '') + '…';
+}
 
 async function ensureUniqueSlug(base) {
   let slug = slugify(base) || 'discussion';
@@ -122,7 +138,7 @@ async function processBuzzItem(item) {
       [
         item.id,
         slug,
-        String(parsed.ai_summary || '').slice(0, 1200),
+        clampAiSummary(parsed.ai_summary),
         topics,
         sentiment,
         JSON.stringify(quotes),
