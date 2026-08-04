@@ -35,6 +35,8 @@ const SECTOR_CANON = [
   { id: 'gaming', label: 'Gaming / Media', match: [/gaming/i, /media/i, /entertainment/i, /content/i] },
   { id: 'proptech', label: 'PropTech / Real Estate', match: [/prop\s*tech/i, /real\s*estate/i] },
   { id: 'impact', label: 'Social Impact', match: [/impact/i, /social/i, /inclusion/i] },
+  { id: 'cyber-security', label: 'Cyber Security', match: [/cyber\s*security/i, /cybersecurity/i, /infosec/i, /information security/i, /cloud\s*security/i, /endpoint security/i, /threat detection/i, /zero trust/i, /application security/i, /devsecops/i] },
+  { id: 'blockchain', label: 'Blockchain', match: [/blockchain/i, /\bweb3\b/i, /\bcrypto\b/i, /crypto\//i, /crypto-/i, /\bdefi\b/i, /\bnft\b/i, /gamefi/i, /tokenomics/i, /on[-\s]?chain/i] },
   { id: 'sector-agnostic', label: 'Sector Agnostic', match: [/sector\s*agnostic/i, /multi[-\s]?sector/i, /generalist/i] }
 ];
 
@@ -322,15 +324,18 @@ function build() {
     const stages = uniqueById(matchCanon(stageText, STAGE_CANON));
     // Prefer explicit Sector cell + short thesis; include name/notes for keyword hits
     // (e.g. "W Health", "Beams") without scanning long template writeups.
+    const writeupSnippet = String(row['Detailed Writeup (~200 words)'] || '').slice(0, 2500);
     let sectors = uniqueById(
-      matchCanon(`${sectorText} ${thesisText} ${name} ${row.Notes || ''}`, SECTOR_CANON)
+      matchCanon(`${sectorText} ${thesisText} ${name} ${row.Notes || ''} ${writeupSnippet}`, SECTOR_CANON)
     );
     if (!sectors.length && sectorText.trim()) {
       const first = splitList(sectorText)[0] || 'Other';
       if (/^all sectors$/i.test(first) || /^sector-?agnostic$/i.test(first)) {
         sectors = [{ id: 'sector-agnostic', label: 'Sector Agnostic' }];
-      } else if (/^(crypto|web3)$/i.test(first)) {
-        sectors = [{ id: 'fintech', label: 'Fintech' }];
+      } else if (/^(crypto|web3|blockchain)$/i.test(first) || /crypto\/blockchain/i.test(first)) {
+        sectors = [{ id: 'blockchain', label: 'Blockchain' }];
+      } else if (/^cyber\s*security$/i.test(first) || /^cybersecurity$/i.test(first)) {
+        sectors = [{ id: 'cyber-security', label: 'Cyber Security' }];
       } else {
         sectors = [{ id: 'other', label: first }];
       }
