@@ -7,7 +7,7 @@ const { hasSectorGuide } = require('./sectors');
 const { renderExploreRelated } = require('./render-explore-related');
 const { setPublicHtmlCache } = require('./public-html-cache');
 const { renderProfileHeadAssets, earlyStickyPinScript } = require('./profile-page-assets');
-const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
+const { renderFaviconLinks } = require('./site-icons');
 const { getPeopleByCompanySlug } = require('./people');
 const { portfolioCardHref } = require('./portfolio-card-href');
 const { filterPortfolioJunk } = require('./portfolio-junk-filter');
@@ -531,7 +531,7 @@ function renderInvestorPage(investor, related, res, opts) {
     '<title>' + escapeHtml(investor.name) + ' | Funds | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<link rel="canonical" href="https://vcdekho.com/funds/' + escapeHtml(investor.slug) + '">',
-    '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
+    ...renderFaviconLinks(),
     '<meta name="robots" content="index, follow">',
     '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
