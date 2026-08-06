@@ -1,5 +1,6 @@
 const { fundHref } = require('./site-labels');
 const { renderSiteNavLinks } = require('./render-site-nav');
+const { renderFaviconLinks } = require('./site-icons');
 const {
   cleanBuzzTitle,
   normalizeSentiment,
@@ -135,7 +136,7 @@ function renderBuzzDetailHtml(item) {
     <meta property="og:description" content="${esc(title)} — founder discussion on VC Dekho Founder Buzz">
     <meta property="og:url" content="https://vcdekho.com/buzz/${esc(item.slug)}">
     <meta property="og:type" content="article">
-    <link rel="icon" type="image/png" href="/assets/logoforvc.png">
+    ${renderFaviconLinks().join('\n    ')}
     <link rel="stylesheet" href="/css/base.css?v=101">
     <link rel="stylesheet" href="/css/hero.css?v=73">
     <link rel="stylesheet" href="/css/ambient.css?v=98">

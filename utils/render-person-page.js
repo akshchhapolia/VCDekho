@@ -5,6 +5,7 @@
 const { loadPeopleData } = require('./people');
 const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL, fundHref, personHref } = require('./site-labels');
 const { renderSiteNavLinks } = require('./render-site-nav');
+const { renderFaviconLinks } = require('./site-icons');
 const {
   firmFocusSection,
   firmThesisSection,
@@ -248,7 +249,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     '<title>' + escapeHtml(person.name) + ' | Investors | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
     '<link rel="canonical" href="https://vcdekho.com' + escapeHtml(personHref(person.slug)) + '">',
-    '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
+    ...renderFaviconLinks(),
     '<meta name="robots" content="index, follow">',
     '<meta property="og:title" content="' + escapeHtml(person.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',

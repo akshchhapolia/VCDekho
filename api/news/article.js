@@ -1,5 +1,6 @@
 const db = require('../../utils/db');
 const { renderBuzzDetailHtml } = require('../../utils/render-buzz-detail');
+const { renderFaviconLinks } = require('../../utils/site-icons');
 
 // MOCK DATA for testing environment
 const MOCK_ARTICLES = {
@@ -311,7 +312,7 @@ module.exports = async function handler(req, res) {
     <title>${article.meta_title} | ${titleSuffix}</title>
     <meta name="description" content="${article.meta_description}">
     
-    <link rel="icon" type="image/png" href="/assets/logoforvc.png">
+    ${renderFaviconLinks().join('\n    ')}
     <link rel="stylesheet" href="/css/base.css?v=101">
     <link rel="stylesheet" href="/css/hero.css?v=73">
     <link rel="stylesheet" href="/css/ambient.css?v=98">

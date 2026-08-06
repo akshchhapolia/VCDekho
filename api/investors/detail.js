@@ -9,6 +9,7 @@ const { renderExploreRelated } = require('../../utils/render-explore-related');
 const { getThesisThemeIconSvg } = require('../../utils/thesis-theme-icons');
 const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('../../utils/site-labels');
 const { renderSiteNavLinks } = require('../../utils/render-site-nav');
+const { renderFaviconLinks } = require('../../utils/site-icons');
 const { setPublicHtmlCache } = require('../../utils/public-html-cache');
 const { isMobileRequest } = require('../../utils/profile-page-assets');
 
@@ -108,7 +109,7 @@ function renderThemePage(theme, res) {
     '<title>' + escapeHtml(theme.label) + ' Funds | Thesis Themes | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(theme.summary).slice(0, 160) + '">',
     '<link rel="canonical" href="https://vcdekho.com/funds/themes/' + escapeHtml(theme.id) + '">',
-    '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
+    ...renderFaviconLinks(),
     '<meta name="robots" content="index, follow">',
     '<link rel="stylesheet" href="/css/base.css?v=101">',
     '<link rel="stylesheet" href="/css/hero.css?v=73">',

@@ -3,6 +3,7 @@ const { renderExploreRelated } = require('./render-explore-related');
 const { setPublicHtmlCache } = require('./public-html-cache');
 const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('./site-labels');
 const { renderSiteNavLinks } = require('./render-site-nav');
+const { renderFaviconLinks } = require('./site-icons');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -155,7 +156,7 @@ function renderStagePage(stage, res) {
     '<title>' + escapeHtml(stage.label) + ' Funding Stage | Startup Investment Stages | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(stage.summary).slice(0, 160) + '">',
     '<link rel="canonical" href="https://vcdekho.com/funds/stages/' + escapeHtml(stage.id) + '">',
-    '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
+    ...renderFaviconLinks(),
     '<meta name="robots" content="index, follow">',
     '<link rel="stylesheet" href="/css/base.css?v=101">',
     '<link rel="stylesheet" href="/css/hero.css?v=73">',
