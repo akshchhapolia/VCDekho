@@ -7,6 +7,7 @@ const { hasSectorGuide } = require('./sectors');
 const { renderExploreRelated } = require('./render-explore-related');
 const { setPublicHtmlCache } = require('./public-html-cache');
 const { renderProfileHeadAssets, earlyStickyPinScript } = require('./profile-page-assets');
+const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
 const { renderFaviconLinks } = require('./site-icons');
 const { getPeopleByCompanySlug } = require('./people');
 const { portfolioCardHref } = require('./portfolio-card-href');
