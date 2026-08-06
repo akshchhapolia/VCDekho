@@ -4,7 +4,9 @@
   "description": "",
   "main": "about.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node scripts/smoke_test.js",
+    "smoke": "node scripts/smoke_test.js",
+    "deploy:prod": "node scripts/smoke_test.js && vercel deploy --prod",
     "build:investors": "node scripts/build_investors_json.js",
     "build:investor-activity": "node scripts/build_investor_activity.js",
     "build:investor-activity:apply": "node scripts/build_investor_activity.js --apply",
