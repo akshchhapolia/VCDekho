@@ -11,6 +11,8 @@
 const fs = require('fs');
 const path = require('path');
 
+require('dotenv').config();
+
 const ROOT = path.join(__dirname, '..');
 
 const failures = [];
@@ -179,6 +181,30 @@ function testSiteIcons() {
   }
 }
 
+async function getNewsSmokeCase() {
+  const mockSlug = 'startup-tech-digest-2026-06-18';
+  const mockNeedle = 'Daily Digest';
+
+  if (process.env.DATABASE_URL) {
+    try {
+      const db = require(path.join(ROOT, 'utils/db'));
+      const { rows } = await db.query(
+        `SELECT slug, title FROM articles WHERE status = 'published' ORDER BY published_at DESC LIMIT 1`
+      );
+      if (rows[0]) {
+        return {
+          slug: rows[0].slug,
+          bodyIncludes: rows[0].title.split('|')[0].trim().slice(0, 20)
+        };
+      }
+    } catch (_) {
+      /* fall through to mock */
+    }
+  }
+
+  return { slug: mockSlug, bodyIncludes: mockNeedle };
+}
+
 async function testSsrHandlers() {
   console.log('\nSSR handlers');
 
@@ -187,6 +213,8 @@ async function testSsrHandlers() {
   const article = require(path.join(ROOT, 'api/news/article.js'));
   const list = require(path.join(ROOT, 'api/investors/list.js'));
   const ops = require(path.join(ROOT, 'api/ops.js'));
+
+  const newsCase = await getNewsSmokeCase();
 
   const cases = [
     {
@@ -225,11 +253,11 @@ async function testSsrHandlers() {
       bodyIncludes: 'Shreya'
     },
     {
-      label: 'news article (mock slug)',
+      label: `news article (${newsCase.slug})`,
       handler: article,
-      req: { query: { slug: 'startup-tech-digest-2026-06-18' }, headers: {}, method: 'GET' },
+      req: { query: { slug: newsCase.slug }, headers: {}, method: 'GET' },
       expectStatus: 200,
-      bodyIncludes: 'Daily Digest'
+      bodyIncludes: newsCase.bodyIncludes
     },
     {
       label: 'sectors API list',

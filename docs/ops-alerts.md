@@ -56,3 +56,17 @@ psql "$DATABASE_URL" -f scripts/migrations/2026-08-02-ops-tables.sql
 2. Enter `ADMIN_SECRET`
 3. Click **Send test alert**
 4. Confirm inbox at `team@vcdekho.com`
+
+## Pre-deploy smoke tests
+
+Run before every production deploy (blocks the exact class of SSR import bugs that caused fund-page 500s):
+
+```bash
+npm run smoke
+# or
+npm run deploy:prod   # smoke + vercel deploy --prod
+```
+
+GitHub Actions workflow `.github/workflows/smoke.yml` runs the same checks on every push/PR to `main`.
+
+Optional: add `DATABASE_URL` as a GitHub Actions secret for fuller news/article checks in CI.
