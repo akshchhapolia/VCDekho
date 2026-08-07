@@ -33,6 +33,34 @@ const SECTOR_CANON = [
   { id: 'logistics', label: 'Supply Chain / Logistics', match: [/logistics/i, /supply\s*chain/i, /mobility/i] },
   { id: 'agritech', label: 'Agritech / Food', match: [/agri/i, /food/i, /farming/i] },
   { id: 'gaming', label: 'Gaming / Media', match: [/gaming/i, /media/i, /entertainment/i, /content/i] },
+  {
+    id: 'sports',
+    label: 'Sports',
+    match: [
+      /\bsports?\b/i,
+      /esports?/i,
+      /e-sports?/i,
+      /fantasy sports?/i,
+      /sportstech/i,
+      /sports tech/i,
+      /sports media/i,
+      /fan engagement/i,
+      /dream\s*sports/i,
+      /dream11/i,
+      /\brooter\b/i,
+      /\bmpl\b/i,
+      /mobile premier league/i,
+      /stepsetgo/i,
+      /step set go/i,
+      /\bfancode\b/i,
+      /sportskeeda/i,
+      /\bplayo\b/i,
+      /sportz interactive/i,
+      /\bnazara\b/i,
+      /\bloco\b/i,
+      /\brusk media\b/i
+    ]
+  },
   { id: 'proptech', label: 'PropTech / Real Estate', match: [/prop\s*tech/i, /real\s*estate/i] },
   { id: 'impact', label: 'Social Impact', match: [/impact/i, /social/i, /inclusion/i] },
   { id: 'cyber-security', label: 'Cyber Security', match: [/cyber\s*security/i, /cybersecurity/i, /infosec/i, /information security/i, /cloud\s*security/i, /endpoint security/i, /threat detection/i, /zero trust/i, /application security/i, /devsecops/i, /cloudsek/i, /astra security/i, /safe security/i, /bluesapphire/i] },
@@ -337,6 +365,8 @@ function build() {
         sectors = [{ id: 'blockchain', label: 'Blockchain' }];
       } else if (/^cyber\s*security$/i.test(first) || /^cybersecurity$/i.test(first)) {
         sectors = [{ id: 'cyber-security', label: 'Cyber Security' }];
+      } else if (/^sports?$/i.test(first) || /^sportstech$/i.test(first)) {
+        sectors = [{ id: 'sports', label: 'Sports' }];
       } else {
         sectors = [{ id: 'other', label: first }];
       }
