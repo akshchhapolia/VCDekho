@@ -1,28 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="home-page">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ23KLLWFM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-BJ23KLLWFM');
-</script>
+    <script src="/js/analytics.js?v=2" defer></script>
+    <script src="/js/nav.js?v=101" defer></script>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
     <title>VC Dekho - Discover Investors from India behind India's Fastest Growing Startups.</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="theme-color" content="#0d0d0d">
+    <meta name="theme-color" content="#0b0b0d">
     <meta name="description" content="Discover active venture capital investors, funding trends, and insights behind India's fastest-growing startups. Built for founders, operators, analysts, and builders.">
     <meta name="keywords" content="Venture Capital, India Startups, Investor Database, Funding Trends, AI Infrastructure, Indian Founders">
+    <link rel="preload" as="image" href="/assets/sand_bg.jpg" fetchpriority="high">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css?v=52">
-    <link rel="icon" type="image/png" href="/assets/logoforvc.png">
+    <link rel="stylesheet" href="/css/base.css?v=101">
+    <link rel="stylesheet" href="/css/ambient.css?v=98">
+    <link rel="stylesheet" href="/css/hero.css?v=95">
+    <link rel="stylesheet" href="/css/blog.css?v=95">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://vcdekho.com/">
     <meta property="og:title" content="VC Dekho - Discover Investors from India behind India's Fastest Growing Startups.">
     <meta property="og:description" content="Discover active venture capital investors, funding trends, and insights behind India">
@@ -52,8 +56,16 @@
     }
     </script>
 </head>
-<body class="has-announcement">
-    <!-- Top Announcement Strip -->
+<body class="has-announcement home-page">
+    <div class="ambient-bg-wrapper home-ambient" aria-hidden="true">
+        <div class="waitlist-bg">
+            <div class="glow-orb orb-1"></div>
+            <div class="glow-orb orb-2"></div>
+            <div class="glow-orb orb-3"></div>
+        </div>
+    </div>
+
+    <!-- Top announcement strip — above menu (dweb). Hidden on home mweb via CSS. -->
     <div class="announcement-strip">
         <div class="announcement-wrapper">
             <span class="announcement-tag">NEW</span>
@@ -68,8 +80,9 @@
     <div class="app-container">
         <!-- Site Header & Navigation -->
         <header class="site-header">
-            <a href="#" class="logo-container" id="logo-link">
-                <img src="assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img" id="logo-image" fetchpriority="high" width="160" height="40">
+            <a href="/" class="logo-container" id="logo-link" aria-label="VC Dekho home">
+                <img src="assets/logoforvc.png" alt="" class="logo-img" id="logo-image" fetchpriority="high" width="160" height="40">
+                <span class="logo-wordmark" aria-hidden="true">VC Dekho</span>
             </a>
             
             <button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
@@ -79,17 +92,21 @@
             </button>
             
             <nav class="main-nav" id="navigation-bar">
-<a href="/blog" class="nav-link">Blog</a>
+                <a href="/investors" class="nav-link">Investors</a>
+                <a href="/funds" class="nav-link">Funds</a>
+                <a href="/buzz" class="nav-link">Founder Buzz</a>
+                <a href="/blog" class="nav-link">Blog</a>
                 <a href="/news" class="nav-link">News</a>
-                <a href="/login" class="nav-link">Log in</a>
+                <a href="/login" class="nav-link" id="nav-auth-link">Log in</a>
             </nav>
         </header>
 
         <!-- Main Viewport Section -->
         <main class="hero-showcase" id="main-viewport">
             <!-- Background Video -->
-            <video autoplay loop muted playsinline class="hero-bg" id="hero-background-media" style="background-color: #050505;">
-                <source src="assets/mainvideo.mp4" type="video/mp4">
+            <!-- preload=none: avoid pulling 2.5MB on mweb before LCP; app.js starts playback when idle -->
+            <video loop muted playsinline webkit-playsinline class="hero-bg" id="hero-background-media" preload="none" poster="/assets/sand_bg.jpg" style="background-color: #0b0b0d;">
+                <source src="/assets/mainvideo.mp4" type="video/mp4">
             </video>
             
             <!-- Fallback Static Background (hidden by default) -->
@@ -103,7 +120,8 @@
                 <!-- Top Left Headline & Subheader -->
                 <div class="hero-headline-container">
                     <h1 class="hero-title" id="primary-heading">
-                        Find Your <span class="highlight-text">Next Investor</span>
+                        Find Your<br class="mweb-title-break">
+                        <span class="highlight-text">Next Investor</span>
                     </h1>
                     <p class="hero-tagline hero-sub-tagline" id="support-tagline">
                         Discover venture capital firms, angel investors, and startup funds across India. Research portfolios, sectors, and funding activity.
@@ -119,17 +137,25 @@
 
                 <!-- Bottom Right Context Card -->
                 <article class="trend-card" id="ai-trend-card">
-                    <h2 class="trend-card-title">1000+ Investors. One Search.</h2>
+                    <h2 class="trend-card-title">1600+ Investors. One Search.</h2>
                     <p class="trend-card-desc">
                         Discover venture capital firms, angel investors, and startup funds investing across India.
                     </p>
-                    <a class="trend-card-btn" id="explore-btn" href="/login">Start Exploring</a>
+                    <p class="trend-card-note">Free account - browse 1600+ investors</p>
+                    <a class="trend-card-btn" id="explore-btn" href="/investors">Start Exploring</a>
                 </article>
             </div>
         </main>
     </div>
 
+    <!-- Mobile sticky CTA (thumb reach) -->
+    <a href="/investors" class="mobile-sticky-cta" id="mobile-sticky-cta">
+        Browse 1600+ investors <span aria-hidden="true">→</span>
+    </a>
+
     <!-- JavaScript Interactions -->
-    <script src="app.js"></script>
+        <script src="/js/auth.js" defer></script>
+    <script src="/js/directory-session.js?v=2" defer></script>
+<script src="/app.js?v=95" defer></script>
 </body>
 </html>

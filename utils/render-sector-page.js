@@ -5,7 +5,11 @@ const { getAllSectorGuides } = require('./sectors');
 const { deriveRelatedStages, hasStageGuide, getStageGuideLabel } = require('./investors');
 const { getAllThemes } = require('./thesis-themes');
 const { renderExploreRelated } = require('./render-explore-related');
+const { setPublicHtmlCache } = require('./public-html-cache');
 const { getSectorIconSvg } = require('./sector-icons');
+const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('./site-labels');
+const { renderSiteNavLinks } = require('./render-site-nav');
+const { renderFaviconLinks } = require('./site-icons');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -86,7 +90,7 @@ function stageLinksForCard(inv) {
     const id = ids[i];
     if (hasStageGuide(id)) {
       return (
-        '<a class="theme-inv-stage-link" href="/investors/stages/' +
+        '<a class="theme-inv-stage-link" href="/funds/stages/' +
         escapeHtml(id) +
         '">' +
         escapeHtml(label) +
@@ -123,7 +127,7 @@ function renderSectorPage(sector, res) {
         '<div class="stage-rail-item">' +
         '<a class="stage-rail-node' +
         stateClass +
-        '" href="/investors/sectors/' +
+        '" href="/funds/sectors/' +
         escapeHtml(s.id) +
         '">' +
         '<span class="stage-rail-dot"><span>' +
@@ -281,7 +285,7 @@ function renderSectorPage(sector, res) {
     .map(
       (inv) =>
         '<article class="theme-inv-card stage-reveal">' +
-        '<a class="theme-inv-card-main" href="/investors/' +
+        '<a class="theme-inv-card-main" href="/funds/' +
         escapeHtml(inv.slug) +
         '">' +
         '<div class="theme-inv-type">' +
@@ -307,7 +311,7 @@ function renderSectorPage(sector, res) {
     .slice(0, 4)
     .map(
       (s) =>
-        '<a class="stage-related-card stage-reveal" href="/investors/sectors/' +
+        '<a class="stage-related-card stage-reveal" href="/funds/sectors/' +
         escapeHtml(s.id) +
         '">' +
         '<div class="stage-related-order">Guide ' +
@@ -321,7 +325,7 @@ function renderSectorPage(sector, res) {
         '</p>' +
         '<div class="stage-related-meta">' +
         s.investorCount +
-        ' investors</div>' +
+        ' funds</div>' +
         '</a>'
     )
     .join('');
@@ -335,14 +339,14 @@ function renderSectorPage(sector, res) {
   const next = idx >= 0 && idx < allSectors.length - 1 ? allSectors[idx + 1] : null;
   const prevNext = [
     prev
-      ? '<a class="stage-pn-card stage-reveal" href="/investors/sectors/' +
+      ? '<a class="stage-pn-card stage-reveal" href="/funds/sectors/' +
         escapeHtml(prev.id) +
         '"><span>Previous sector</span><strong>' +
         escapeHtml(prev.label) +
         '</strong></a>'
       : '<div class="stage-pn-card is-empty"></div>',
     next
-      ? '<a class="stage-pn-card stage-reveal" href="/investors/sectors/' +
+      ? '<a class="stage-pn-card stage-reveal" href="/funds/sectors/' +
         escapeHtml(next.id) +
         '"><span>Next sector</span><strong>' +
         escapeHtml(next.label) +
@@ -354,16 +358,22 @@ function renderSectorPage(sector, res) {
     '<!DOCTYPE html>',
     '<html lang="en" class="scrollable-page">',
     '<head>',
-    '<script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ23KLLWFM"></script>',
-    '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js", new Date());gtag("config","G-BJ23KLLWFM");</script>',
+    '<script src="/js/analytics.js?v=2" defer></script>',
+    '<script src="/js/nav.js?v=101" defer></script>',
     '<meta charset="UTF-8">',
-    '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
-    '<title>' + escapeHtml(sector.label) + ' Investors India | Sector Guide | VC Dekho</title>',
+    '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">',
+    '<link rel="preconnect" href="https://fonts.googleapis.com">',
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">',
+    '<title>' + escapeHtml(sector.label) + ' Funds India | Sector Guide | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(sector.summary).slice(0, 160) + '">',
-    '<link rel="canonical" href="https://vcdekho.com/investors/sectors/' + escapeHtml(sector.id) + '">',
-    '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
+    '<link rel="canonical" href="https://vcdekho.com/funds/sectors/' + escapeHtml(sector.id) + '">',
+    ...renderFaviconLinks(),
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/style.css?v=49">',
+    '<link rel="stylesheet" href="/css/base.css?v=101">',
+    '<link rel="stylesheet" href="/css/hero.css?v=73">',
+    '<link rel="stylesheet" href="/css/ambient.css?v=98">',
+    '<link rel="stylesheet" href="/css/directory.css?v=73">',
     '</head>',
     '<body class="scrollable-page inv-page stage-guide-page sector-guide-page">',
     '<div class="app-container">',
@@ -371,15 +381,12 @@ function renderSectorPage(sector, res) {
     '<a href="/" class="logo-container"><img src="/assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img"></a>',
     '<button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>',
     '<nav class="main-nav" id="navigation-bar">',
-    '<a href="/" class="nav-link">Home</a>',
-    '<a href="/investors" class="nav-link active">Investors</a>',
-    '<a href="/blog" class="nav-link">Blog</a>',
-    '<a href="/news" class="nav-link">News</a>',
+    ...renderSiteNavLinks('funds'),
     '</nav></header>',
     '<main class="hero-showcase inv-detail-main">',
     '<div class="ambient-bg-wrapper"><div class="waitlist-bg"><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div><div class="glow-orb orb-3"></div></div></div>',
     '<div class="inv-detail-wrap stage-page-wrap">',
-    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="/investors">Investors</a><span>›</span><a href="/investors/sectors">Sectors</a><span>›</span><span class="current">' +
+    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="' + FUNDS_PATH + '">' + FUNDS_LABEL + '</a><span>›</span><a href="/funds/sectors">Sectors</a><span>›</span><span class="current">' +
       escapeHtml(sector.label) +
       '</span></div>',
 
@@ -402,8 +409,8 @@ function renderSectorPage(sector, res) {
     '<div class="stage-hero-actions">',
     '<div class="stage-hero-stat"><strong>' +
       sector.investorCount +
-      '</strong><span>matching investors</span></div>',
-    '<a class="stage-hero-cta" href="/investors?sector=' +
+      '</strong><span>matching funds</span></div>',
+    '<a class="stage-hero-cta" href="/funds?sector=' +
       encodeURIComponent(sector.id) +
       '">Open in directory</a>',
     '</div>',
@@ -422,7 +429,7 @@ function renderSectorPage(sector, res) {
     '<a href="#prepare" data-section="prepare">Prepare</a>',
     '<a href="#playbook" data-section="playbook">Playbook</a>',
     '<a href="#mistakes" data-section="mistakes">Mistakes</a>',
-    '<a href="#investors" data-section="investors">Investors</a>',
+    '<a href="#investors" data-section="investors">' + FUNDS_LABEL + '</a>',
     '</nav>',
 
     '<section class="stage-section stage-meaning stage-reveal is-visible" id="meaning">',
@@ -510,18 +517,18 @@ function renderSectorPage(sector, res) {
 
     '<section class="stage-section stage-reveal" id="investors">',
     '<div class="stage-section-label">11 — Capital map</div>',
-    '<div class="theme-section-head"><h2>Investors in this sector</h2><a href="/investors?sector=' +
+    '<div class="theme-section-head"><h2>Funds in this sector</h2><a href="/funds?sector=' +
       encodeURIComponent(sector.id) +
       '">See all filters</a></div>',
     '<div class="theme-inv-grid">' +
-      (investorCards || '<p class="inv-empty">No investors tagged yet.</p>') +
+      (investorCards || '<p class="inv-empty">No funds tagged yet.</p>') +
       '</div>',
     sector.investorCount > 24
-      ? '<div class="theme-more"><a class="inv-btn inv-btn-primary" href="/investors?sector=' +
+      ? '<div class="theme-more"><a class="inv-btn inv-btn-primary" href="/funds?sector=' +
         encodeURIComponent(sector.id) +
         '">Browse all ' +
         sector.investorCount +
-        ' investors</a></div>'
+        ' funds</a></div>'
       : '',
     '</section>',
 
@@ -536,25 +543,26 @@ function renderSectorPage(sector, res) {
       subtitle: 'Pair sector fit with stage and thesis, then open the directory.',
       stages: stageChips.length ? stageChips : relatedStages,
       themes: relatedThemes,
-      fundsHref: '/investors?sector=' + encodeURIComponent(sector.id),
+      fundsHref: '/funds?sector=' + encodeURIComponent(sector.id),
       fundsLabel: 'Browse ' + sector.investorCount + ' matching funds →',
-      siblingHref: '/investors/stages',
+      siblingHref: '/funds/stages',
       siblingLabel: 'Stage guides →'
     }),
 
     '<section class="stage-section"><div class="stage-pn-grid">' + prevNext + '</div></section>',
 
     '<section class="blog-cta-banner" style="margin: 2rem 0 1rem;">',
-    '<img src="/assets/blog_vc_dekho_cta.png" alt="VC Dekho" class="blog-cta-bg">',
+    '<img src="/assets/blog_vc_dekho_cta.webp" alt="VC Dekho" class="blog-cta-bg">',
     '<div class="blog-cta-content">',
     '<h2 class="blog-cta-title">Match your category to the right funds</h2>',
-    '<p class="blog-cta-desc">VC Dekho helps founders shortlist investors by stage, sector, cheque size, and thesis.</p>',
-    '<a href="/investors" class="blog-cta-btn">Browse investors</a>',
+    '<p class="blog-cta-desc">VC Dekho helps founders shortlist funds by stage, sector, cheque size, and thesis.</p>',
+    '<a href="' + FUNDS_PATH + '" class="blog-cta-btn">Browse funds</a>',
     '</div></section>',
 
     '</div></main></div>',
-    '<script src="/js/auth.js"></script>',
-    '<script src="/app.js"></script>',
+    '<script src="/js/auth.js" defer></script>',
+    '<script src="/js/directory-session.js?v=2" defer></script>',
+    '<script src="/app.js" defer></script>',
     '<script>',
     '(function(){',
     'var nav=document.getElementById("stage-sticky-nav");',
@@ -584,8 +592,7 @@ function renderSectorPage(sector, res) {
     '</body></html>'
   ].join('\n');
 
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
+  setPublicHtmlCache(res);
   return res.status(200).send(html);
 }
 

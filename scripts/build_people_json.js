@@ -1,0 +1,164 @@
+#!/usr/bin/env node
+/**
+ * Build normalized people JSON from the Individuals CSV, cross-linked to
+ * the already-built Org directory (data/investors.json) via company name.
+ * Usage: node scripts/build_people_json.js
+ */
+const fs = require('fs');
+const path = require('path');
+const { parse } = require('csv-parse/sync');
+const { resolveOrg, normStrict } = require('./lib/org_lookup');
+const { slugify } = require('./lib/slugify');
+const {
+  hasDisplayEmail,
+  isValidEmail,
+  COL_PERSONAL,
+  COL_PROFESSIONAL
+} = require('./lib/person_email');
+
+const ROOT = path.join(__dirname, '..');
+const CSV_PATH = path.join(ROOT, 'VC Dekho Sheet - Investor - Individuals.csv');
+const INVESTORS_JSON_PATH = path.join(ROOT, 'data', 'investors.json');
+const PHOTOS_META_PATH = path.join(ROOT, 'data', 'people-photos.json');
+const OUT_PATH = path.join(ROOT, 'data', 'people.json');
+const CONTACTS_PATH = path.join(ROOT, 'utils', '_data', 'people-contacts.bySlug.json');
+
+function build() {
+  const rows = parse(fs.readFileSync(CSV_PATH, 'utf8'), {
+    columns: true,
+    skip_empty_lines: true,
+    relax_quotes: true,
+    relax_column_count: true,
+    bom: true
+  });
+
+  const investorsData = JSON.parse(fs.readFileSync(INVESTORS_JSON_PATH, 'utf8'));
+  const orgByNormName = new Map();
+  for (const inv of investorsData.investors) {
+    orgByNormName.set(normStrict(inv.name), inv);
+  }
+
+  const usedSlugs = new Set();
+  const people = [];
+  const contactsBySlug = {};
+
+  for (const row of rows) {
+    const name = (row['First Name'] || '').trim();
+    const companyRaw = (row.Company || '').trim();
+    const title = (row.Title || '').trim();
+    if (!name) continue; // skip blank rows
+
+    const isSoloAngel = /^angel investor$/i.test(title);
+
+    let companySlug = '';
+    let companyType = '';
+    let companyLogo = null;
+    let companyName = companyRaw;
+
+    // Solo angels: Firm column shows "Angel Investor". Resolve their org page
+    // via person name when Company is already the display label (or self-named).
+    const lookupName = isSoloAngel
+      ? (companyRaw && !/^angel investor$/i.test(companyRaw) ? companyRaw : name)
+      : companyRaw;
+
+    if (lookupName) {
+      const resolved = resolveOrg(lookupName);
+      const key = resolved.match ? normStrict(resolved.match.company) : normStrict(lookupName);
+      const org = orgByNormName.get(key);
+      if (org) {
+        companySlug = org.slug;
+        companyType = org.type;
+        companyLogo = org.logo || null;
+        companyName = org.name;
+      }
+    }
+
+    // Solo angels without a mapped operating company keep the generic label.
+    if (isSoloAngel && (!companyRaw || /^angel investor$/i.test(companyRaw))) {
+      companyName = 'Angel Investor';
+    } else if (isSoloAngel && companyRaw && !/^angel investor$/i.test(companyRaw)) {
+      companyName = companyName && companyName !== companyRaw ? companyName : companyRaw;
+    }
+
+    let slug = slugify(name) || 'person';
+    let base = slug;
+    let n = 2;
+    while (usedSlugs.has(slug)) {
+      slug = `${base}-${n++}`;
+    }
+    usedSlugs.add(slug);
+
+    const linkedin = (row['LinkedIn URL'] || '').trim();
+    const twitter = (row['Twitter URL'] || '').trim();
+    const hasSocial = Boolean(
+      (linkedin && !/^(n\/?a|-|none|na)$/i.test(linkedin)) ||
+        (twitter && !/^(n\/?a|-|none|na)$/i.test(twitter))
+    );
+
+    const personalEmail = (row[COL_PERSONAL] || '').trim();
+    const professionalEmail = (row[COL_PROFESSIONAL] || '').trim();
+
+    const emailRow = { personalEmail, professionalEmail };
+    contactsBySlug[slug] = emailRow;
+
+    people.push({
+      id: String(people.length + 1),
+      slug,
+      name,
+      title,
+      company: companyName,
+      companySlug,
+      companyType,
+      companyLogo,
+      hasProfessionalEmail: isValidEmail(professionalEmail),
+      hasEmail: hasDisplayEmail(emailRow),
+      linkedin,
+      twitter,
+      // Contact treated as validated only when we have at least one real social profile.
+      validated: hasSocial
+    });
+  }
+
+  const typeCounts = new Map();
+  people.forEach((p) => {
+    if (!p.companyType) return;
+    typeCounts.set(p.companyType, (typeCounts.get(p.companyType) || 0) + 1);
+  });
+  const companyTypes = [...typeCounts.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .map(([label]) => ({ id: slugify(label) || 'other', label }));
+
+  // Preserve previously fetched Twitter/X photos across rebuilds
+  if (fs.existsSync(PHOTOS_META_PATH)) {
+    try {
+      const photosMeta = JSON.parse(fs.readFileSync(PHOTOS_META_PATH, 'utf8'));
+      people.forEach((p) => {
+        if (photosMeta[p.slug] && photosMeta[p.slug].path) p.photo = photosMeta[p.slug].path;
+      });
+    } catch (_) {}
+  }
+
+  const linkedCount = people.filter((p) => p.companySlug).length;
+  const validatedCount = people.filter((p) => p.validated).length;
+
+  const payload = {
+    generatedAt: new Date().toISOString(),
+    count: people.length,
+    linkedToOrgCount: linkedCount,
+    validatedCount,
+    unvalidatedCount: people.length - validatedCount,
+    filters: { companyTypes },
+    people
+  };
+
+  fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
+  fs.writeFileSync(OUT_PATH, JSON.stringify(payload), 'utf8');
+  fs.mkdirSync(path.dirname(CONTACTS_PATH), { recursive: true });
+  fs.writeFileSync(CONTACTS_PATH, JSON.stringify(contactsBySlug), 'utf8');
+  console.log(
+    `Wrote ${people.length} people (${linkedCount} linked to an org; ${validatedCount} with socials / ${people.length - validatedCount} unvalidated) → ${OUT_PATH}`
+  );
+  console.log('Sample:', people[0] && people[0].name, people[0] && people[0].slug, people[0] && people[0].companySlug);
+}
+
+build();

@@ -1,4 +1,6 @@
 const db = require('../../utils/db');
+const { renderBuzzDetailHtml } = require('../../utils/render-buzz-detail');
+const { renderFaviconLinks } = require('../../utils/site-icons');
 
 // MOCK DATA for testing environment
 const MOCK_ARTICLES = {
@@ -187,10 +189,31 @@ function escapeHtml(value) {
 }
 
 module.exports = async function handler(req, res) {
-    const { slug } = req.query;
+    const { slug, feed } = req.query;
 
     if (!slug) {
         return res.status(400).send('<h1>400 - Bad Request</h1>');
+    }
+
+    if (feed === 'buzz') {
+        if (!process.env.DATABASE_URL) {
+            return res.status(404).send('<h1>404 - Not Found</h1>');
+        }
+        try {
+            const { rows } = await db.query(
+                `SELECT * FROM investor_buzz WHERE slug = $1 AND status = 'published' LIMIT 1`,
+                [slug]
+            );
+            if (!rows[0]) {
+                return res.status(404).send('<h1>404 - Discussion Not Found</h1>');
+            }
+            res.setHeader('Content-Type', 'text/html; charset=utf-8');
+            res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=3600');
+            return res.status(200).send(renderBuzzDetailHtml(rows[0]));
+        } catch (error) {
+            console.error('buzz detail error:', error);
+            return res.status(500).send('<h1>500 - Internal Server Error</h1>');
+        }
     }
 
     let article;
@@ -279,21 +302,21 @@ module.exports = async function handler(req, res) {
 <!DOCTYPE html>
 <html lang="en" class="scrollable-page">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ23KLLWFM"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BJ23KLLWFM');
-    </script>
-
+    <script src="/js/analytics.js?v=2" defer></script>
+    <script src="/js/nav.js?v=101" defer></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
     <title>${article.meta_title} | ${titleSuffix}</title>
     <meta name="description" content="${article.meta_description}">
     
-    <link rel="icon" type="image/png" href="/assets/logoforvc.png">
-    <link rel="stylesheet" href="/style.css?v=52">
+    ${renderFaviconLinks().join('\n    ')}
+    <link rel="stylesheet" href="/css/base.css?v=101">
+    <link rel="stylesheet" href="/css/hero.css?v=73">
+    <link rel="stylesheet" href="/css/ambient.css?v=98">
+    <link rel="stylesheet" href="/css/blog.css?v=74">
     <link rel="canonical" href="https://vcdekho.com/${pathPrefix}/${article.slug}">
     
     <meta property="og:title" content="${article.meta_title}">
@@ -313,7 +336,7 @@ module.exports = async function handler(req, res) {
     }
     </script>
 </head>
-<body class="scrollable-page">
+<body class="scrollable-page pub-page">
     <div class="app-container">
         <header class="site-header">
             <a href="/" class="logo-container">
@@ -324,13 +347,16 @@ module.exports = async function handler(req, res) {
             </button>
             <nav class="main-nav" id="navigation-bar">
                 <a href="/" class="nav-link">Home</a>
-<a href="/blog" class="nav-link ${blogNavActive}">Blog</a>
+                <a href="/investors" class="nav-link">Investors</a>
+                <a href="/funds" class="nav-link">Funds</a>
+                <a href="/buzz" class="nav-link">Founder Buzz</a>
+                <a href="/blog" class="nav-link ${blogNavActive}">Blog</a>
                 <a href="/news" class="nav-link ${newsNavActive}">News</a>
-                <a href="/login" class="nav-link">Log in</a>
+                <a href="/login" class="nav-link" id="nav-auth-link">Log in</a>
             </nav>
         </header>
 
-        <main class="hero-showcase" style="padding-top: 120px; padding-bottom: 80px;">
+        <main class="hero-showcase">
             <!-- Ambient Glow Background -->
             <div class="ambient-bg-wrapper">
                 <div class="waitlist-bg" id="waitlist-ambient-bg">
@@ -340,9 +366,9 @@ module.exports = async function handler(req, res) {
                 </div>
             </div>
 
-            <div style="max-width: 800px; margin: 0 auto; text-align: left; position: relative; z-index: 10; padding: 0 20px;">
+            <div class="blog-content news-article-wrap">
                 <!-- Breadcrumbs -->
-                <div style="margin-bottom: 25px; font-size: 0.9rem; color: var(--color-text-muted);">
+                <div class="news-breadcrumbs">
                     <a href="/" style="color: var(--color-text-muted); text-decoration: none;">Home</a> 
                     <span style="margin: 0 8px;">›</span> 
                     <a href="/${pathPrefix}" style="color: var(--color-text-muted); text-decoration: none;">${isBlog ? 'Blog' : 'News'}</a> 
@@ -350,30 +376,30 @@ module.exports = async function handler(req, res) {
                     <span style="color: var(--color-accent-orange);">${sectionLabel}</span>
                 </div>
 
-                <h1 class="blog-title" style="font-size: 2.8rem; margin-bottom: 20px; color: var(--color-text-light); line-height: 1.25; letter-spacing: -0.02em;">${article.title}</h1>
-                <p style="color: var(--color-text-muted); margin-bottom: 30px; font-size: 1.05rem; display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                <h1 class="blog-title news-article-title">${article.title}</h1>
+                <p class="news-article-meta">
                     ${sourceLine}
                 </p>
                 
                 ${article.image_url ? `
-                <div style="margin-bottom: 40px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-                    <img src="${article.image_url}" alt="Featured Image" style="width: 100%; height: auto; display: block; max-height: 450px; object-fit: cover;">
+                <div class="news-article-featured-image">
+                    <img src="${article.image_url}" alt="Featured Image">
                 </div>
                 ` : ''}
                 
-                <div class="blog-content" style="line-height: 1.85; color: rgba(255,255,255,0.9); font-size: 1.15rem; letter-spacing: 0.01em;">
+                <div class="blog-article-body">
                     ${/<p[ >]/i.test(article.body) ? article.body : article.body.split('\n').map(p => p.trim() ? '<p style="margin-bottom: 20px;">' + p + '</p>' : '').join('')}
                 </div>
 
                 <!-- Waitlist CTA Card -->
                 <section class="blog-cta-banner" style="margin: 3.5rem 0;">
-                    <img src="/assets/blog_vc_dekho_cta.png" alt="VC Dekho Brand Graphic Banner" class="blog-cta-bg">
+                    <img src="/assets/blog_vc_dekho_cta.webp" alt="VC Dekho Brand Graphic Banner" class="blog-cta-bg">
                     <div class="blog-cta-content">
                         <h2 class="blog-cta-title">Stop guessing. Start matching.</h2>
                         <p class="blog-cta-desc">
                             VC Dekho is building India's most complete investor research and matching platform. Search by stage, sector, cheque size, and geography. Read investment thesis. Unlock direct contacts. Close your round faster.
                         </p>
-                        <a href="/login" class="blog-cta-btn">Start exploring</a>
+                        <a href="/funds" class="blog-cta-btn">Start exploring</a>
                     </div>
                 </section>
                 
@@ -397,7 +423,9 @@ module.exports = async function handler(req, res) {
             </div>
         </main>
     </div>
-    <script src="/app.js"></script>
+    <script src="/js/auth.js" defer></script>
+    <script src="/js/directory-session.js?v=2" defer></script>
+    <script src="/app.js" defer></script>
 </body>
 </html>
         `;

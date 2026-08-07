@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
-
 /* ==========================================================================
    CSS CUSTOM PROPERTIES & DESIGN TOKENS
    ========================================================================== */
@@ -269,6 +267,16 @@ body {
     transition: transform 10s ease-out;
 }
 
+@media (max-width: 992px), (prefers-reduced-motion: reduce) {
+    .hero-bg {
+        display: none;
+    }
+
+    .hero-bg-fallback {
+        display: block;
+    }
+}
+
 .hero-showcase:hover .hero-bg,
 .hero-showcase:hover .hero-bg-fallback {
     transform: scale(1.03); /* Subtle continuous movement look */
@@ -455,6 +463,14 @@ body {
     font-size: 0.85rem;
     line-height: 1.5;
     color: var(--color-text-muted);
+}
+
+.trend-card-note {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--color-text-muted);
+    margin: 0;
 }
 
 .trend-card-btn {
@@ -2564,6 +2580,38 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
   min-width: 0;
 }
 
+.inv-dir-checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+  padding: 0.2rem 0;
+}
+
+.inv-dir-checkbox-field input {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--color-accent-orange);
+  cursor: pointer;
+}
+
+.inv-dir-checkbox-field span {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.inv-dir-active-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 0.4rem;
+  border-radius: 50%;
+  background: #6be895;
+  box-shadow: 0 0 0 3px rgba(107, 232, 149, 0.18);
+  vertical-align: middle;
+}
+
 .inv-dir-clear {
   align-self: flex-start;
   margin-top: 0.35rem;
@@ -2700,7 +2748,8 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
 }
 
 .inv-dir-type {
-  display: block;
+  display: flex;
+  align-items: center;
   color: var(--color-accent-orange);
   font-size: 0.65rem;
   font-weight: 600;
@@ -5042,6 +5091,30 @@ a.inv-chip:hover {
   text-transform: uppercase;
 }
 
+.inv-profile-active-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 0.85rem 0.5rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(80, 200, 120, 0.4);
+  background: rgba(80, 200, 120, 0.12);
+  color: #a8f0c0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.inv-profile-active-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6be895;
+  box-shadow: 0 0 0 3px rgba(107, 232, 149, 0.18);
+  display: inline-block;
+}
+
 .inv-profile-title {
   margin: 0 0 0.85rem;
   font-family: var(--font-heading);
@@ -5253,6 +5326,265 @@ a.inv-chip:hover {
   font-weight: 500;
   line-height: 1.4;
   font-family: var(--font-heading);
+}
+
+.inv-profile-activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inv-profile-activity-row {
+  display: grid;
+  grid-template-columns: 7rem 1fr auto;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+a.inv-profile-activity-row:hover {
+  border-color: rgba(237, 87, 47, 0.4);
+  background: rgba(237, 87, 47, 0.1);
+}
+
+.inv-profile-activity-date {
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.inv-profile-activity-highlight {
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.inv-profile-activity-sector {
+  justify-self: end;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .inv-profile-activity-row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+  .inv-profile-activity-sector {
+    justify-self: start;
+  }
+}
+
+.inv-profile-section-head .inv-profile-portfolio-count {
+  margin: 0.15rem 0 0.35rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.02em;
+  max-width: none;
+}
+
+.inv-profile-portfolio-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin: 0 0 0.85rem;
+}
+
+.inv-profile-portfolio-search-wrap {
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+
+.inv-profile-portfolio-search {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.55rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(12, 14, 22, 0.7);
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+.inv-profile-portfolio-search::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.inv-profile-portfolio-search:focus {
+  outline: none;
+  border-color: rgba(255, 122, 47, 0.55);
+}
+
+.inv-profile-portfolio-status {
+  margin: 0;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+}
+
+.inv-profile-portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.inv-profile-portfolio-card {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(12, 14, 22, 0.55);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+a.inv-profile-portfolio-card:hover {
+  border-color: rgba(255, 122, 47, 0.45);
+  background: rgba(20, 22, 32, 0.75);
+}
+
+.inv-profile-portfolio-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 3px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.inv-profile-portfolio-logo.is-broken {
+  display: none;
+}
+
+.inv-profile-portfolio-logo.is-fallback {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.inv-profile-portfolio-logo.is-fallback.is-visible,
+img.inv-profile-portfolio-logo.is-broken + .inv-profile-portfolio-logo.is-fallback {
+  display: inline-flex;
+}
+
+.inv-profile-portfolio-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+}
+
+.inv-profile-portfolio-name {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  line-height: 1.25;
+}
+
+.inv-profile-portfolio-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.inv-profile-portfolio-dot {
+  opacity: 0.45;
+}
+
+.inv-profile-portfolio-sector {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.inv-profile-portfolio-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.1rem;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.inv-profile-portfolio-date,
+.inv-profile-portfolio-source,
+.inv-profile-portfolio-site {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+a.inv-profile-portfolio-card:hover .inv-profile-portfolio-source,
+a.inv-profile-portfolio-card:hover .inv-profile-portfolio-site {
+  color: rgba(255, 180, 120, 0.9);
+}
+
+.inv-profile-portfolio-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.inv-profile-portfolio-more {
+  appearance: none;
+  cursor: pointer;
+  padding: 0.55rem 1.25rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 122, 47, 0.45);
+  background: transparent;
+  color: rgba(255, 180, 120, 0.95);
+  font-size: 0.85rem;
+  font-family: inherit;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.inv-profile-portfolio-more:hover {
+  background: rgba(255, 122, 47, 0.12);
+  border-color: rgba(255, 122, 47, 0.7);
+}
+
+@media (max-width: 960px) {
+  .inv-profile-portfolio-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .inv-profile-portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .inv-profile-portfolio-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .inv-profile-portfolio-status {
+    white-space: normal;
+  }
 }
 
 .inv-profile-focus-panel {
@@ -5594,9 +5926,10 @@ a.inv-profile-chip:hover .inv-profile-chip-icon {
   }
 }
 
-/* Auth / login */
-html.auth-pending body {
-  visibility: hidden;
+/* Auth / login — keep shell visible while session is verified */
+html.auth-pending .inv-dir-wrap {
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 .auth-card .auth-tabs {

@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" class="scrollable-page">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ23KLLWFM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-BJ23KLLWFM');
-  </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Indian Investors Directory | VC Dekho</title>
-  <meta name="description" content="Explore 1000+ VCs, family offices, angels and syndicates in India. Filter by sector, stage, cheque size, company type and investment thesis.">
+      <script src="/js/analytics.js?v=2" defer></script>
+    <script src="/js/nav.js?v=101" defer></script>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+  <title>Investors Directory | VC Dekho</title>
+  <meta name="description" content="Find partners, principals and angels at 700+ Indian VCs, family offices and accelerators. Filter by role, firm type, stage, sector, thesis and ticket size.">
   <link rel="canonical" href="https://vcdekho.com/investors">
-  <link rel="icon" type="image/png" href="/assets/logoforvc.png">
-  <link rel="stylesheet" href="/style.css?v=35">
-  <meta name="robots" content="noindex, nofollow">
-  <meta property="og:title" content="Indian Investors Directory | VC Dekho">
-  <meta property="og:description" content="Explore 1000+ VCs, family offices, angels and syndicates in India.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/css/base.css?v=101">
+    <link rel="stylesheet" href="/css/hero.css?v=73">
+    <link rel="stylesheet" href="/css/ambient.css?v=98">
+    <link rel="stylesheet" href="/css/directory.css?v=141">
+<meta name="robots" content="index, follow">
+  <meta property="og:title" content="Investors Directory | VC Dekho">
+  <meta property="og:description" content="Partners, principals and angels mapped to Indian funds.">
   <meta property="og:url" content="https://vcdekho.com/investors">
 </head>
-<body class="scrollable-page inv-page inv-dir-page">
+<body class="scrollable-page inv-page inv-dir-page inv-people-dir">
   <div class="app-container">
     <header class="site-header">
       <a href="/" class="logo-container">
@@ -32,9 +37,11 @@
       <nav class="main-nav" id="navigation-bar">
         <a href="/" class="nav-link">Home</a>
         <a href="/investors" class="nav-link active">Investors</a>
+        <a href="/funds" class="nav-link">Funds</a>
+        <a href="/buzz" class="nav-link">Founder Buzz</a>
         <a href="/blog" class="nav-link">Blog</a>
         <a href="/news" class="nav-link">News</a>
-        <a href="/login" class="nav-link" id="logout-link">Log out</a>
+        <a href="/login" class="nav-link" id="nav-auth-link">Log in</a>
       </nav>
     </header>
 
@@ -51,59 +58,70 @@
           <div class="inv-dir-header-text">
             <h1>Investors</h1>
             <p class="inv-dir-meta">
-              <span id="inv-count">Fetching funds</span>
-              <span id="inv-guide-slot"></span>
+              <span id="ppl-count">Fetching investors</span>
             </p>
           </div>
-          <button type="button" class="inv-dir-filters-toggle" id="inv-filters-toggle" aria-expanded="false" aria-controls="inv-dir-sidebar">
+          <button type="button" class="inv-dir-filters-toggle" id="ppl-filters-toggle" aria-expanded="false" aria-controls="ppl-dir-sidebar">
             Filters
           </button>
         </header>
 
         <div class="inv-dir-layout">
-          <aside class="inv-dir-sidebar" id="inv-dir-sidebar">
+          <aside class="inv-dir-sidebar" id="ppl-dir-sidebar">
             <div class="inv-dir-sidebar-head">
               <span>Filters</span>
-              <button type="button" class="inv-dir-sidebar-close" id="inv-filters-close" aria-label="Close filters">Close</button>
+              <button type="button" class="inv-dir-sidebar-close" id="ppl-filters-close" aria-label="Close filters">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </button>
             </div>
 
             <label class="inv-dir-field">
               <span>Search</span>
-              <input id="inv-search" type="search" placeholder="Fund, thesis, sector…" autocomplete="off">
+              <input id="ppl-search" type="search" placeholder="Name, title, firm…" autocomplete="off">
             </label>
+
+            <div class="inv-dir-field">
+              <span>Role</span>
+              <div class="inv-dd" id="filter-role" data-placeholder="All roles"></div>
+            </div>
+
+            <div class="inv-dir-field">
+              <span>Firm type</span>
+              <div class="inv-dd" id="filter-company-type" data-placeholder="All firm types"></div>
+            </div>
+
+            <div class="inv-dir-field">
+              <span>Stage</span>
+              <div class="inv-dd" id="filter-stage" data-placeholder="All stages"></div>
+            </div>
 
             <div class="inv-dir-field">
               <span>Sector</span>
               <div class="inv-dd" id="filter-sector" data-placeholder="All sectors"></div>
             </div>
+
             <div class="inv-dir-field">
-              <span>Stage</span>
-              <div class="inv-dd" id="filter-stage" data-placeholder="All stages"></div>
+              <span>Thesis</span>
+              <div class="inv-dd" id="filter-thesis" data-placeholder="All theses"></div>
             </div>
+
             <div class="inv-dir-field">
               <span>Ticket size</span>
               <div class="inv-dd" id="filter-cheque" data-placeholder="Any ticket"></div>
             </div>
-            <div class="inv-dir-field">
-              <span>Company type</span>
-              <div class="inv-dd" id="filter-type" data-placeholder="All types"></div>
-            </div>
-            <div class="inv-dir-field">
-              <span>Investment thesis</span>
-              <div class="inv-dd" id="filter-thesis" data-placeholder="All theses"></div>
-            </div>
 
-            <button type="button" id="inv-clear" class="inv-dir-clear">Clear filters</button>
+            <button type="button" id="ppl-clear" class="inv-dir-clear">Clear filters</button>
           </aside>
 
           <div class="inv-dir-main">
             <div class="inv-dir-table-head" aria-hidden="true">
-              <span>Fund</span>
-              <span>Stages</span>
-              <span>Sectors / Thesis</span>
-              <span>Ticket</span>
+              <span>Person</span>
+              <span>Firm</span>
+              <span>Email</span>
+              <span>Links</span>
             </div>
-            <div id="inv-results" class="inv-dir-results" aria-busy="true">
+            <div id="ppl-results" class="inv-dir-results" aria-busy="true">
               <div class="inv-dir-row inv-dir-skel" aria-hidden="true">
                 <div class="inv-dir-col inv-dir-col-fund"><span class="inv-skel inv-skel-type"></span><span class="inv-skel inv-skel-name"></span></div>
                 <div class="inv-dir-col inv-dir-col-stages"><span class="inv-skel inv-skel-line"></span></div>
@@ -142,12 +160,12 @@
               </div>
             </div>
             <div class="inv-dir-pager" role="navigation" aria-label="Directory pages">
-              <button type="button" class="inv-dir-pager-btn" id="inv-prev" disabled>
+              <button type="button" class="inv-dir-pager-btn" id="ppl-prev" disabled>
                 <span class="inv-dir-pager-arrow" aria-hidden="true">←</span>
                 <span>Previous</span>
               </button>
-              <p class="inv-dir-pager-status" id="inv-page-label" aria-live="polite"></p>
-              <button type="button" class="inv-dir-pager-btn" id="inv-next" disabled>
+              <p class="inv-dir-pager-status" id="ppl-page-label" aria-live="polite"></p>
+              <button type="button" class="inv-dir-pager-btn" id="ppl-next" disabled>
                 <span>Next</span>
                 <span class="inv-dir-pager-arrow" aria-hidden="true">→</span>
               </button>
@@ -158,11 +176,13 @@
     </main>
   </div>
 
-  <div class="inv-dir-backdrop" id="inv-filters-backdrop" hidden></div>
+  <div class="inv-dir-backdrop" id="ppl-filters-backdrop" hidden></div>
 
-  <script src="/js/auth.js"></script>
-  <script src="/js/auth-guard.js?v=24"></script>
-  <script src="/app.js"></script>
-  <script src="/investors/investors.js?v=31"></script>
+  <script src="/js/auth.js" defer></script>
+  <script src="/js/person-email-unlock.js?v=7" defer></script>
+  <script src="/js/site-paths.js?v=1" defer></script>
+  <script src="/js/directory-session.js?v=2" defer></script>
+  <script src="/app.js" defer></script>
+  <script src="/js/people.js?v=119" defer></script>
 </body>
 </html>

@@ -44,3 +44,77 @@ CREATE TABLE IF NOT EXISTS job_log (
     errors TEXT,
     status TEXT NOT NULL DEFAULT 'running' -- running, completed, failed
 );
+
+-- 4. investor_activity table
+-- Live "actively deploying" signal for each investor, kept fresh by two
+-- crons: api/cron/investor-activity.js (mines the existing news pipeline)
+-- and api/cron/investor-activity-backfill.js (targeted web search for
+-- investors the news pipeline hasn't covered yet). utils/investors.js reads
+-- this table at request time and merges it onto the static investor
+-- profiles, so the badge updates without a redeploy.
+CREATE TABLE IF NOT EXISTS investor_activity (
+    slug TEXT PRIMARY KEY,
+    last_check_date TIMESTAMPTZ,
+    last_check_sector TEXT,
+    last_check_highlight TEXT,
+    last_check_source TEXT,
+    last_check_source_title TEXT,
+    recent_check_count INTEGER DEFAULT 0,
+    total_mentions INTEGER DEFAULT 0,
+    recent_checks JSONB DEFAULT '[]'::jsonb,
+    source_method TEXT, -- 'news_pipeline' | 'web_search_backfill'
+    checked_at TIMESTAMPTZ DEFAULT NOW(), -- last time we *attempted* a check, even if nothing was found
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 5. investor_portfolio table
+-- Portfolio companies per investor (name, logo, amount, stage/series, source).
+-- Populated primarily via Searlo web search + Haiku extraction; news DB and
+-- fund-site scrapes can merge in later as enrichments.
+CREATE TABLE IF NOT EXISTS investor_portfolio (
+    slug TEXT PRIMARY KEY,
+    companies JSONB DEFAULT '[]'::jsonb,
+    company_count INTEGER DEFAULT 0,
+    source_method TEXT, -- 'web_search' | 'site_scrape' | 'news_pipeline'
+    checked_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 6. investor_buzz table
+-- Community discussions about Indian VCs (Reddit etc.), AI-summarized for /buzz.
+CREATE TABLE IF NOT EXISTS investor_buzz (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    source TEXT NOT NULL DEFAULT 'reddit',
+    source_url TEXT UNIQUE NOT NULL,
+    source_id TEXT,
+    subreddit TEXT,
+    title TEXT NOT NULL,
+    body_excerpt TEXT,
+    comment_count INTEGER DEFAULT 0,
+    upvote_score INTEGER DEFAULT 0,
+    published_at_source TIMESTAMPTZ,
+    scraped_at TIMESTAMPTZ DEFAULT NOW(),
+    slug TEXT UNIQUE,
+    ai_summary TEXT,
+    topics TEXT[],
+    sentiment TEXT,
+    founder_quotes JSONB DEFAULT '[]'::jsonb,
+    investor_slugs TEXT[],
+    investor_names TEXT[],
+    relevance_score INTEGER DEFAULT 0,
+    status TEXT NOT NULL DEFAULT 'queued',
+    error_log TEXT,
+    published_at TIMESTAMPTZ,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    interest_up INTEGER DEFAULT 0,
+    interest_down INTEGER DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS investor_buzz_votes (
+    buzz_id UUID NOT NULL REFERENCES investor_buzz(id) ON DELETE CASCADE,
+    voter_key TEXT NOT NULL,
+    vote SMALLINT NOT NULL CHECK (vote IN (-1, 1)),
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    PRIMARY KEY (buzz_id, voter_key)
+);

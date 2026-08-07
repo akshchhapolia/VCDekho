@@ -1,6 +1,47 @@
 const db = require('../../utils/db');
+const { renderBuzzBodyHtml } = require('../../utils/buzz-body-render');
 
 module.exports = async function handler(req, res) {
+    const { category, feed, investor, topic, limit: limitRaw } = req.query;
+
+    if (feed === 'buzz') {
+        const limit = Math.min(parseInt(limitRaw, 10) || 40, 60);
+        if (!process.env.DATABASE_URL) {
+            res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=3600');
+            return res.status(200).json([]);
+        }
+        let query = `
+            SELECT id, slug, source, subreddit, title, body_excerpt, ai_summary, topics, sentiment,
+                   founder_quotes, investor_slugs, investor_names, comment_count,
+                   upvote_score, source_url, published_at, published_at_source,
+                   interest_up, interest_down
+            FROM investor_buzz
+            WHERE status = 'published'
+        `;
+        const params = [];
+        if (investor) {
+            params.push(investor);
+            query += ` AND $${params.length} = ANY(investor_slugs)`;
+        }
+        if (topic) {
+            params.push(topic);
+            query += ` AND $${params.length} = ANY(topics)`;
+        }
+        params.push(limit);
+        query += ` ORDER BY COALESCE(published_at_source, published_at) DESC NULLS LAST LIMIT $${params.length}`;
+        try {
+            const { rows } = await db.query(query, params);
+            const enriched = rows.map((row) => ({
+                ...row,
+                body_html: renderBuzzBodyHtml(row.body_excerpt)
+            }));
+            res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=3600');
+            return res.status(200).json(enriched);
+        } catch (error) {
+            return res.status(500).json({ error: error.message });
+        }
+    }
+
     if (!process.env.DATABASE_URL) {
         // Mock data when database isn't connected
         return res.status(200).json([
@@ -40,7 +81,6 @@ module.exports = async function handler(req, res) {
         ]);
     }
 
-    const { category } = req.query;
     let query = `SELECT id, title, slug, category, published_at, source_name, meta_description, tags, image_url FROM articles WHERE status = 'published'`;
     const params = [];
 

@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const menuToggle = document.getElementById('menu-toggle');
-  const mainNav = document.getElementById('navigation-bar');
   const form = document.getElementById('auth-form');
   const emailStep = document.getElementById('email-step');
   const otpStep = document.getElementById('otp-step');
@@ -26,11 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const LABEL_VERIFY = 'Verify & continue';
 
   const params = new URLSearchParams(window.location.search);
-  const nextPath = params.get('next') || '/investors';
+  const nextPath = params.get('next') || '/funds';
 
   function safeNext(path) {
-    if (!path || typeof path !== 'string') return '/investors';
-    if (!path.startsWith('/') || path.startsWith('//')) return '/investors';
+    if (!path || typeof path !== 'string') return '/funds';
+    if (!path.startsWith('/') || path.startsWith('//')) return '/funds';
     return path;
   }
 
@@ -121,13 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
       otpInput.value = '';
     }
     clearFieldErrors();
-  }
-
-  if (menuToggle && mainNav) {
-    menuToggle.addEventListener('click', () => {
-      menuToggle.classList.toggle('active');
-      mainNav.classList.toggle('active');
-    });
   }
 
   function sanitizeOtpValue(raw) {
@@ -224,6 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function redirectAfterAuth() {
+    if (window.VCAuth && window.VCAuth.pingSessionMeta) {
+      await window.VCAuth.pingSessionMeta({ isSignup: true });
+    }
     window.location.href = safeNext(nextPath);
   }
 
@@ -266,6 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
       pendingEmail = email;
       setStep('otp');
       startResendCooldown();
+      if (window.VCAnalytics) window.VCAnalytics.track('login_start', { method: 'email_otp' });
       setStatus('Check your inbox for a one-time code sent to ' + email + '.', 'success');
       return true;
     } catch (err) {
@@ -294,6 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (data && data.session) {
         window.VCAuth.syncCookie(data.session);
       }
+      if (window.VCAnalytics) window.VCAnalytics.track('login_success', { method: 'email_otp' });
       await redirectAfterAuth();
     } catch (err) {
       setStatus(friendlyAuthError(err, 'verify'), 'error');
@@ -302,7 +298,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  (async function bootstrap() {
+  // Defer Supabase (~113KB) so first paint isn't blocked.
+  // Logged-in users (cookie present): check ASAP. Everyone else: idle / after load.
+  function hasAccessCookie() {
+    return /(?:^|;\s*)vd_access_token=/.test(document.cookie || '');
+  }
+
+  function warmSupabaseCache() {
+    try {
+      if (document.querySelector('link[data-vc-supabase-preload]')) return;
+      var link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'script';
+      link.href = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js';
+      link.setAttribute('data-vc-supabase-preload', '1');
+      document.head.appendChild(link);
+    } catch (_) {
+      /* ignore */
+    }
+  }
+
+  async function checkExistingSession() {
     try {
       await ensureClient();
       const client = await window.VCAuth.getClient();
@@ -313,7 +329,27 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) {
       console.error(err);
     }
-  })();
+  }
+
+  function scheduleSessionCheck() {
+    if (hasAccessCookie()) {
+      checkExistingSession();
+      return;
+    }
+    warmSupabaseCache();
+    var run = function () {
+      checkExistingSession();
+    };
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(run, { timeout: 4000 });
+    } else {
+      window.addEventListener('load', function () {
+        setTimeout(run, 100);
+      });
+    }
+  }
+
+  scheduleSessionCheck();
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();

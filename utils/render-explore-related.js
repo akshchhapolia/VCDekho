@@ -38,7 +38,7 @@ function renderExploreRelated(opts = {}) {
         '<div class="inv-explore-label">Stages</div>' +
         '<div class="inv-explore-chips">' +
           stages.map(s => (
-            '<a class="inv-explore-chip" href="/investors/stages/' + escapeHtml(s.id) + '">' +
+            '<a class="inv-explore-chip" href="/funds/stages/' + escapeHtml(s.id) + '">' +
               escapeHtml(s.label) +
             '</a>'
           )).join('') +
@@ -53,7 +53,7 @@ function renderExploreRelated(opts = {}) {
         '<div class="inv-explore-label">Thesis themes</div>' +
         '<div class="inv-explore-chips">' +
           themes.map(t => (
-            '<a class="inv-explore-chip" href="/investors/themes/' + escapeHtml(t.id) + '">' +
+            '<a class="inv-explore-chip" href="/funds/themes/' + escapeHtml(t.id) + '">' +
               escapeHtml(t.label) +
             '</a>'
           )).join('') +

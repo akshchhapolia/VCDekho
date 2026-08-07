@@ -1,10 +1,142 @@
 {
+  "functions": {
+    "api/cron/scrape.js": {
+      "maxDuration": 300
+    },
+    "api/cron/ai-process.js": {
+      "maxDuration": 300
+    },
+    "api/cron/daily-digest.js": {
+      "maxDuration": 300
+    },
+    "api/cron/ai-blog.js": {
+      "maxDuration": 300
+    }
+  },
   "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/favicon.ico",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+      ]
+    },
+    {
+      "source": "/(favicon-.*\\.png|apple-touch-icon\\.png|site\\.webmanifest)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/css/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+      ]
+    },
+    {
+      "source": "/app.js",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+      ]
+    },
+    {
+      "source": "/js/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+      ]
+    },
+    {
+      "source": "/funds/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800" },
+        { "key": "CDN-Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=604800" },
+        { "key": "Vercel-CDN-Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=604800" }
+      ]
+    },
+    {
+      "source": "/investors/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800" },
+        { "key": "CDN-Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=604800" },
+        { "key": "Vercel-CDN-Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=604800" }
+      ]
+    },
+    {
+      "source": "/people/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800" },
+        { "key": "CDN-Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=604800" },
+        { "key": "Vercel-CDN-Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=604800" }
+      ]
+    },
+    {
+      "source": "/blog/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+      ]
+    }
+  ],
   "redirects": [
     {
       "source": "/waitlist",
       "destination": "/login",
       "permanent": true
+    },
+    {
+      "source": "/people",
+      "destination": "/investors",
+      "permanent": true
+    },
+    {
+      "source": "/people/:slug",
+      "destination": "/investors/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/investors/stages/:slug*",
+      "destination": "/funds/stages/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/investors/stages",
+      "destination": "/funds/stages",
+      "permanent": true
+    },
+    {
+      "source": "/investors/themes/:slug*",
+      "destination": "/funds/themes/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/investors/themes",
+      "destination": "/funds/themes",
+      "permanent": true
+    },
+    {
+      "source": "/investors/sectors/:slug*",
+      "destination": "/funds/sectors/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/investors/sectors",
+      "destination": "/funds/sectors",
+      "permanent": true
+    },
+    {
+      "source": "/utils/_data/:path*",
+      "destination": "/404.html",
+      "statusCode": 404
+    },
+    {
+      "source": "/VC Dekho Sheet - Investor - Individuals.csv",
+      "destination": "/404.html",
+      "statusCode": 404
     }
   ],
   "rewrites": [
@@ -17,50 +149,98 @@
       "destination": "/api/news/article?slug=:slug"
     },
     {
-      "source": "/investors/stages/:slug",
+      "source": "/buzz/:slug",
+      "destination": "/api/news/article?slug=:slug&feed=buzz"
+    },
+    {
+      "source": "/funds/stages",
+      "destination": "/funds/stages/index.html"
+    },
+    {
+      "source": "/funds/themes",
+      "destination": "/funds/themes/index.html"
+    },
+    {
+      "source": "/funds/sectors",
+      "destination": "/funds/sectors/index.html"
+    },
+    {
+      "source": "/funds/stages/:slug",
       "destination": "/api/investors/detail?slug=:slug&view=stage"
     },
     {
-      "source": "/investors/themes/:slug",
+      "source": "/funds/themes/:slug",
       "destination": "/api/investors/detail?slug=:slug&view=theme"
     },
     {
-      "source": "/investors/sectors/:slug",
+      "source": "/funds/sectors/:slug",
       "destination": "/api/investors/detail?slug=:slug&view=sector"
     },
     {
-      "source": "/investors/:slug",
+      "source": "/funds/:slug",
       "destination": "/api/investors/detail?slug=:slug"
     },
     {
+      "source": "/investors/:slug",
+      "destination": "/api/people?slug=:slug"
+    },
+    {
       "source": "/sitemap.xml",
-      "destination": "/api/sitemap"
+      "destination": "/api/ops?action=sitemap"
     }
   ],
   "crons": [
     {
       "path": "/api/cron/scrape",
-      "schedule": "0 6 * * *"
+      "schedule": "30 5 * * *"
     },
     {
       "path": "/api/cron/ai-process",
-      "schedule": "30 6 * * *"
+      "schedule": "0 7 * * *"
     },
     {
       "path": "/api/cron/scrape",
-      "schedule": "30 12 * * *"
+      "schedule": "0 12 * * *"
+    },
+    {
+      "path": "/api/cron/scrape?job=buzz",
+      "schedule": "0 1 * * *"
+    },
+    {
+      "path": "/api/cron/scrape?job=buzz",
+      "schedule": "0 7 * * *"
+    },
+    {
+      "path": "/api/cron/scrape?job=buzz",
+      "schedule": "0 13 * * *"
     },
     {
       "path": "/api/cron/ai-process",
-      "schedule": "10 13 * * *"
+      "schedule": "0 13 * * *"
     },
     {
       "path": "/api/cron/daily-digest",
-      "schedule": "40 13 * * *"
+      "schedule": "30 14 * * *"
     },
     {
       "path": "/api/cron/ai-blog",
-      "schedule": "0 14 * * *"
+      "schedule": "0 15 * * *"
+    },
+    {
+      "path": "/api/cron/investor-activity?job=news",
+      "schedule": "45 6 * * *"
+    },
+    {
+      "path": "/api/cron/investor-activity?job=news",
+      "schedule": "25 13 * * *"
+    },
+    {
+      "path": "/api/cron/investor-activity?job=backfill",
+      "schedule": "15 14 * * *"
+    },
+    {
+      "path": "/api/ops?action=ping-vendors",
+      "schedule": "0 5 * * *"
     }
   ]
 }

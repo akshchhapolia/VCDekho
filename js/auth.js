@@ -111,6 +111,26 @@
     return fetch(url, Object.assign({}, options, { headers: headers }));
   }
 
+  function clientPlatform() {
+    return global.matchMedia && global.matchMedia('(max-width: 768px)').matches ? 'mweb' : 'dweb';
+  }
+
+  async function pingSessionMeta(opts) {
+    opts = opts || {};
+    try {
+      var session = await getSession();
+      if (!session) return;
+      await authFetch('/api/people?action=session-meta', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          platform: clientPlatform(),
+          isSignup: Boolean(opts.isSignup)
+        })
+      });
+    } catch (_) {}
+  }
+
   async function signOut() {
     var client = await getClient();
     await client.auth.signOut();
@@ -166,6 +186,7 @@
     getSession: getSession,
     requireSession: requireSession,
     authFetch: authFetch,
+    pingSessionMeta: pingSessionMeta,
     signOut: signOut,
     sendEmailOtp: sendEmailOtp,
     verifyEmailOtp: verifyEmailOtp,

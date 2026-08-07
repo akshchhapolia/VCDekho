@@ -1,5 +1,9 @@
 const { getAllStages } = require('./investment-stages');
 const { renderExploreRelated } = require('./render-explore-related');
+const { setPublicHtmlCache } = require('./public-html-cache');
+const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('./site-labels');
+const { renderSiteNavLinks } = require('./render-site-nav');
+const { renderFaviconLinks } = require('./site-icons');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -79,7 +83,7 @@ function renderStagePage(stage, res) {
   )).join('');
 
   const investorCards = (stage.investors || []).slice(0, 24).map(inv => (
-    '<a class="stage-inv-card stage-reveal" href="/investors/' + escapeHtml(inv.slug) + '">' +
+    '<a class="stage-inv-card stage-reveal" href="/funds/' + escapeHtml(inv.slug) + '">' +
       '<div class="stage-inv-type">' + escapeHtml(inv.type) + '</div>' +
       '<h3>' + escapeHtml(inv.name) + '</h3>' +
       '<p>' + escapeHtml(inv.thesis || inv.chequeSize || '') + '</p>' +
@@ -88,11 +92,11 @@ function renderStagePage(stage, res) {
   )).join('');
 
   const relatedStageCards = (stage.relatedStages || []).map(s => (
-    '<a class="stage-related-card stage-reveal" href="/investors/stages/' + escapeHtml(s.id) + '">' +
+    '<a class="stage-related-card stage-reveal" href="/funds/stages/' + escapeHtml(s.id) + '">' +
       '<div class="stage-related-order">Stage ' + String(s.order).padStart(2, '0') + '</div>' +
       '<h3>' + escapeHtml(s.label) + '</h3>' +
       '<p>' + escapeHtml(s.summary) + '</p>' +
-      '<div class="stage-related-meta">' + s.investorCount + ' investors</div>' +
+      '<div class="stage-related-meta">' + s.investorCount + ' funds</div>' +
     '</a>'
   )).join('');
 
@@ -105,7 +109,7 @@ function renderStagePage(stage, res) {
       : '';
     return (
       '<div class="stage-rail-item">' +
-        '<a class="stage-rail-node' + stateClass + '" href="/investors/stages/' + escapeHtml(s.id) + '">' +
+        '<a class="stage-rail-node' + stateClass + '" href="/funds/stages/' + escapeHtml(s.id) + '">' +
           '<span class="stage-rail-dot"><span>' + s.order + '</span></span>' +
           '<span class="stage-rail-label">' + escapeHtml(s.label) + '</span>' +
         '</a>' +
@@ -131,10 +135,10 @@ function renderStagePage(stage, res) {
 
   const prevNext = [
     stage.prev
-      ? '<a class="stage-pn-card stage-reveal" href="/investors/stages/' + escapeHtml(stage.prev.id) + '"><span>Previous stage</span><strong>' + escapeHtml(stage.prev.label) + '</strong></a>'
+      ? '<a class="stage-pn-card stage-reveal" href="/funds/stages/' + escapeHtml(stage.prev.id) + '"><span>Previous stage</span><strong>' + escapeHtml(stage.prev.label) + '</strong></a>'
       : '<div class="stage-pn-card is-empty"></div>',
     stage.next
-      ? '<a class="stage-pn-card stage-reveal" href="/investors/stages/' + escapeHtml(stage.next.id) + '"><span>Next stage</span><strong>' + escapeHtml(stage.next.label) + '</strong></a>'
+      ? '<a class="stage-pn-card stage-reveal" href="/funds/stages/' + escapeHtml(stage.next.id) + '"><span>Next stage</span><strong>' + escapeHtml(stage.next.label) + '</strong></a>'
       : '<div class="stage-pn-card is-empty"></div>'
   ].join('');
 
@@ -142,16 +146,22 @@ function renderStagePage(stage, res) {
     '<!DOCTYPE html>',
     '<html lang="en" class="scrollable-page">',
     '<head>',
-    '<script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ23KLLWFM"></script>',
-    '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js", new Date());gtag("config","G-BJ23KLLWFM");</script>',
+    '<script src="/js/analytics.js?v=2" defer></script>',
+    '<script src="/js/nav.js?v=101" defer></script>',
     '<meta charset="UTF-8">',
-    '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+    '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">',
+    '<link rel="preconnect" href="https://fonts.googleapis.com">',
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">',
     '<title>' + escapeHtml(stage.label) + ' Funding Stage | Startup Investment Stages | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(stage.summary).slice(0, 160) + '">',
-    '<link rel="canonical" href="https://vcdekho.com/investors/stages/' + escapeHtml(stage.id) + '">',
-    '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
+    '<link rel="canonical" href="https://vcdekho.com/funds/stages/' + escapeHtml(stage.id) + '">',
+    ...renderFaviconLinks(),
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/style.css?v=49">',
+    '<link rel="stylesheet" href="/css/base.css?v=101">',
+    '<link rel="stylesheet" href="/css/hero.css?v=73">',
+    '<link rel="stylesheet" href="/css/ambient.css?v=98">',
+    '<link rel="stylesheet" href="/css/directory.css?v=73">',
     '</head>',
     '<body class="scrollable-page inv-page stage-guide-page">',
     '<div class="app-container">',
@@ -159,15 +169,12 @@ function renderStagePage(stage, res) {
     '<a href="/" class="logo-container"><img src="/assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img"></a>',
     '<button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>',
     '<nav class="main-nav" id="navigation-bar">',
-    '<a href="/" class="nav-link">Home</a>',
-    '<a href="/investors" class="nav-link active">Investors</a>',
-    '<a href="/blog" class="nav-link">Blog</a>',
-    '<a href="/news" class="nav-link">News</a>',
+    ...renderSiteNavLinks('funds'),
     '</nav></header>',
     '<main class="hero-showcase inv-detail-main">',
     '<div class="ambient-bg-wrapper"><div class="waitlist-bg"><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div><div class="glow-orb orb-3"></div></div></div>',
     '<div class="inv-detail-wrap stage-page-wrap">',
-    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="/investors">Investors</a><span>›</span><a href="/investors/stages">Stages</a><span>›</span><span class="current">' + escapeHtml(stage.label) + '</span></div>',
+    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="' + FUNDS_PATH + '">' + FUNDS_LABEL + '</a><span>›</span><a href="/funds/stages">Stages</a><span>›</span><span class="current">' + escapeHtml(stage.label) + '</span></div>',
 
     '<section class="stage-hero stage-hero-enter" id="overview">',
     '<div class="stage-hero-wash" aria-hidden="true"></div>',
@@ -177,8 +184,8 @@ function renderStagePage(stage, res) {
     '<h1 class="stage-hero-title">' + escapeHtml(stage.label) + '</h1>',
     '<p class="stage-hero-summary">' + escapeHtml(stage.summary) + '</p>',
     '<div class="stage-hero-actions">',
-    '<div class="stage-hero-stat"><strong>' + stage.investorCount + '</strong><span>matching investors</span></div>',
-    '<a class="stage-hero-cta" href="/investors?stage=' + encodeURIComponent(stage.id) + '">Open in directory</a>',
+    '<div class="stage-hero-stat"><strong>' + stage.investorCount + '</strong><span>matching funds</span></div>',
+    '<a class="stage-hero-cta" href="/funds?stage=' + encodeURIComponent(stage.id) + '">Open in directory</a>',
     '</div>',
     '</div>',
     '<div class="stage-rail" aria-label="Funding stage ladder">' + ladderHtml + '</div>',
@@ -192,7 +199,7 @@ function renderStagePage(stage, res) {
     '<a href="#prepare" data-section="prepare">Prepare</a>',
     '<a href="#round" data-section="round">Round</a>',
     '<a href="#mistakes" data-section="mistakes">Mistakes</a>',
-    '<a href="#investors" data-section="investors">Investors</a>',
+    '<a href="#investors" data-section="investors">' + FUNDS_LABEL + '</a>',
     '</nav>',
 
     '<section class="stage-section stage-meaning stage-reveal is-visible" id="meaning">',
@@ -250,10 +257,10 @@ function renderStagePage(stage, res) {
 
     '<section class="stage-section stage-reveal" id="investors">',
     '<div class="stage-section-label">08 — Capital map</div>',
-    '<div class="theme-section-head"><h2>Investors active at this stage</h2><a href="/investors?stage=' + encodeURIComponent(stage.id) + '">See all filters</a></div>',
-    '<div class="stage-inv-grid">' + (investorCards || '<p class="inv-empty">No investors tagged yet.</p>') + '</div>',
+    '<div class="theme-section-head"><h2>Funds active at this stage</h2><a href="/funds?stage=' + encodeURIComponent(stage.id) + '">See all filters</a></div>',
+    '<div class="stage-inv-grid">' + (investorCards || '<p class="inv-empty">No funds tagged yet.</p>') + '</div>',
     stage.investorCount > 24
-      ? ('<div class="theme-more"><a class="inv-btn inv-btn-primary" href="/investors?stage=' + encodeURIComponent(stage.id) + '">Browse all ' + stage.investorCount + ' investors</a></div>')
+      ? ('<div class="theme-more"><a class="inv-btn inv-btn-primary" href="/funds?stage=' + encodeURIComponent(stage.id) + '">Browse all ' + stage.investorCount + ' funds</a></div>')
       : '',
     '</section>',
 
@@ -265,25 +272,26 @@ function renderStagePage(stage, res) {
       title: 'Explore related',
       subtitle: 'Match stage fit with thesis fit, then open the directory.',
       themes: (stage.relatedThemes || []).map(t => ({ id: t.id, label: t.label })),
-      fundsHref: '/investors?stage=' + encodeURIComponent(stage.id),
+      fundsHref: '/funds?stage=' + encodeURIComponent(stage.id),
       fundsLabel: 'Browse ' + stage.investorCount + ' funds at this stage →',
-      siblingHref: '/investors/themes',
+      siblingHref: '/funds/themes',
       siblingLabel: 'Thesis guides →'
     }),
 
     '<section class="stage-section"><div class="stage-pn-grid">' + prevNext + '</div></section>',
 
     '<section class="blog-cta-banner" style="margin: 2rem 0 1rem;">',
-    '<img src="/assets/blog_vc_dekho_cta.png" alt="VC Dekho" class="blog-cta-bg">',
+    '<img src="/assets/blog_vc_dekho_cta.webp" alt="VC Dekho" class="blog-cta-bg">',
     '<div class="blog-cta-content">',
     '<h2 class="blog-cta-title">Raise at the right stage</h2>',
-    '<p class="blog-cta-desc">VC Dekho helps founders shortlist investors by stage, sector, cheque size, and thesis.</p>',
-    '<a href="/investors" class="blog-cta-btn">Browse investors</a>',
+    '<p class="blog-cta-desc">VC Dekho helps founders shortlist funds by stage, sector, cheque size, and thesis.</p>',
+    '<a href="' + FUNDS_PATH + '" class="blog-cta-btn">Browse funds</a>',
     '</div></section>',
 
     '</div></main></div>',
-    '<script src="/js/auth.js"></script>',
-    '<script src="/app.js"></script>',
+    '<script src="/js/auth.js" defer></script>',
+    '<script src="/js/directory-session.js?v=2" defer></script>',
+    '<script src="/app.js" defer></script>',
     '<script>',
     '(function(){',
     'var nav=document.getElementById("stage-sticky-nav");',
@@ -313,8 +321,7 @@ function renderStagePage(stage, res) {
     '</body></html>'
   ].join('\n');
 
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
+  setPublicHtmlCache(res);
   return res.status(200).send(html);
 }
 

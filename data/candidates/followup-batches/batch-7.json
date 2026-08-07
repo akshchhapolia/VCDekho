@@ -1,0 +1,302 @@
+[
+  {
+    "company": "BITS Pilani TBI",
+    "website": "https://www.bits-pilani.ac.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.bits-pilani.ac.in/about/bits-foundation/"
+  },
+  {
+    "company": "Amrita TBI",
+    "website": "https://www.amrita.edu/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.amrita.edu/program/b-a-hons-with-research-in-mass-communication-with-minor-in-business-management-and-media/"
+  },
+  {
+    "company": "VIT-TBI",
+    "website": "https://vit.ac.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://vit.ac.in/"
+  },
+  {
+    "company": "SRM Innovation Incubation Centre",
+    "website": "https://www.srmist.edu.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.srmist.edu.in/"
+  },
+  {
+    "company": "IIM Lucknow Enterprise Incubator",
+    "website": "https://www.iiml.ac.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.iiml.ac.in/"
+  },
+  {
+    "company": "IIM Kozhikode LIVE",
+    "website": "https://iimk.ac.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://iimk.ac.in/academic-programmes/Fellow-Programme-in-Management"
+  },
+  {
+    "company": "iCreate",
+    "website": "https://icreate.org.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://icreate.org.in/about-us/"
+  },
+  {
+    "company": "Startup Punjab",
+    "website": "https://www.startuppunjab.gov.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Startup Haryana",
+    "website": "https://startupharyana.gov.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://startupharyana.gov.in/pages/about-startup-haryana"
+  },
+  {
+    "company": "RTBI IIT Madras",
+    "website": "https://rtbi.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://rtbi.in/"
+  },
+  {
+    "company": "Dasra",
+    "website": "https://dasra.org/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://dasra.org/about"
+  },
+  {
+    "company": "Acumen Academy India",
+    "website": "https://acumenacademy.org/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://acumenacademy.org/partner-list/"
+  },
+  {
+    "company": "NASSCOM CoE Fintech",
+    "website": "https://www.nasscom.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.nasscom.in/about-us"
+  },
+  {
+    "company": "NASSCOM CoE IoT & AI",
+    "website": "https://www.nasscom.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.nasscom.in/about-us"
+  },
+  {
+    "company": "Razorpay Rize",
+    "website": "https://rize.razorpay.com",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://razorpay.com/partners/"
+  },
+  {
+    "company": "Plaksha University Launchpad",
+    "website": "https://plaksha.edu.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://plaksha.edu.in/"
+  },
+  {
+    "company": "Ashoka University Entrepreneurship",
+    "website": "https://www.ashoka.edu.in/",
+    "reason": "homepage-fetch-failed",
+    "detail": 403
+  },
+  {
+    "company": "AIC NITTE",
+    "website": "https://aicnitte.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://aicnitte.com/about-aic-nitte/"
+  },
+  {
+    "company": "Manipal Universal TBI",
+    "website": "https://www.manipal.edu/mu.html",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.manipal.edu/mu/about-us/history.html"
+  },
+  {
+    "company": "Genome Valley Bio Incubators",
+    "website": "http://sbtic.org/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "http://sbtic.org/"
+  },
+  {
+    "company": "RKVY-RAFTAAR Incubators",
+    "website": "https://rkvy.nic.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "The operation was aborted due to timeout"
+  },
+  {
+    "company": "Goa Startup Mission",
+    "website": "https://www.goa.gov.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.goa.gov.in/wp-content/uploads/2026/07/Notification-23-07-2026.pdf"
+  },
+  {
+    "company": "Startup Madhya Pradesh",
+    "website": "https://startup.mp.gov.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://startup.mp.gov.in/about-us"
+  },
+  {
+    "company": "Startup Jharkhand",
+    "website": "https://startupjharkhand.org/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://startupjharkhand.org/"
+  },
+  {
+    "company": "Bihar Startup Fund programs",
+    "website": "https://startupbihar.in/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Startup J&K",
+    "website": "https://startupjk.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://startupjk.com/"
+  },
+  {
+    "company": "Chhattisgarh Startup",
+    "website": "https://invest.cg.gov.in/startup/startup",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://invest.cg.gov.in/startup/startup"
+  },
+  {
+    "company": "Village Capital India",
+    "website": "https://vilcap.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://vilcap.com/about-us/story"
+  },
+  {
+    "company": "Bosch Startup Harbor India",
+    "website": "https://www.bosch.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.bosch.com/company/leadership/"
+  },
+  {
+    "company": "Intel India Ignite",
+    "website": "https://www.intel.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.intel.com/content/www/us/en/partner-alliance/membership/overview.html"
+  },
+  {
+    "company": "Qualcomm Design in India Startup",
+    "website": "https://www.qualcomm.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Cashfree for Startups",
+    "website": "https://www.cashfree.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.cashfree.com/how-to-choose-the-right-payment-stack-for-optimal-subscription-management/"
+  },
+  {
+    "company": "108 Capital",
+    "website": "https://108.vc/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://108.vc/team"
+  },
+  {
+    "company": "77 East Ventures",
+    "website": "https://77eastvp.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "888 VC",
+    "website": "https://www.888vc.co/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Advantedge",
+    "website": "https://www.advantedge.vc/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.advantedge.vc/"
+  },
+  {
+    "company": "Alyxis Ventures",
+    "website": "https://alyxisventures.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Asha Ventures",
+    "website": "https://ashaventures.in/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Audacity Ventures",
+    "website": "https://audacityvc.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "AudTen Capital",
+    "website": "https://audten.vc/",
+    "reason": "homepage-fetch-failed",
+    "detail": 403
+  },
+  {
+    "company": "Beams VC",
+    "website": "https://beams.vc/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://beams.vc/about-us-iteration-2"
+  },
+  {
+    "company": "ConsumerX Ventures",
+    "website": "https://consumerx.vc/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://consumerx.vc/"
+  },
+  {
+    "company": "Dezerv",
+    "website": "https://www.dezerv.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.dezerv.in/portfolio-management-services/"
+  },
+  {
+    "company": "Disruption Fund",
+    "website": "https://disruption.fund/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://disruption.fund/"
+  },
+  {
+    "company": "Ekamya",
+    "website": "https://www.ekamya.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.ekamya.com/about-us"
+  },
+  {
+    "company": "Equanimity Ventures",
+    "website": "https://equanimity.vc",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "FBC Fund",
+    "website": "https://fbcfund.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "First and Fast Capital",
+    "website": "https://firstandfast.vc/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://firstandfast.vc/case-studies/team-extension-for-building-ewallet/"
+  },
+  {
+    "company": "First Assetz",
+    "website": "https://firstassetz.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://firstassetz.com/"
+  },
+  {
+    "company": "FirstPort Capital",
+    "website": "https://firstport.vc",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  }
+]

@@ -4662,5 +4662,773 @@
     "bytes": 5620,
     "fetchedAt": "2026-07-28T21:06:39.740Z",
     "from": "https://www.vincerepartners.in/wp-content/uploads/2026/01/favicon.svg"
+  },
+  "silverneedle-ventures": {
+    "path": "/assets/investors/silverneedle-ventures.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 439,
+    "fetchedAt": "2026-08-04T01:33:34.644Z",
+    "from": "https://silverneedle.vc/favicon.svg"
+  },
+  "mapleblock-capital": {
+    "path": "/assets/investors/mapleblock-capital.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 5633,
+    "fetchedAt": "2026-08-04T01:33:35.354Z",
+    "from": "https://mapleblock.capital/images/favicon.svg"
+  },
+  "veritasx": {
+    "path": "/assets/investors/veritasx.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 2530,
+    "fetchedAt": "2026-08-04T01:33:35.700Z",
+    "from": "https://img1.wsimg.com/isteam/ip/4abf6b7c-10c4-487e-b855-5ddcfd4bed37/Screenshot%202024-12-25%20at%204.41.56%E2%80%AFPM.png/:/rs=w:57,h:57,m"
+  },
+  "next-star-venture-capital-llp": {
+    "path": "/assets/investors/next-star-venture-capital-llp.svg",
+    "source": "website",
+    "contentType": "image/svg+xml",
+    "bytes": 2243,
+    "fetchedAt": "2026-08-04T01:33:39.444Z",
+    "from": "https://www.nextstarvc.com/wp-content/uploads/2024/11/favicon.svg"
+  },
+  "enlighten-angel-fund": {
+    "path": "/assets/investors/enlighten-angel-fund.jpg",
+    "source": "google",
+    "contentType": "image/jpeg",
+    "bytes": 5582,
+    "fetchedAt": "2026-08-04T01:33:46.071Z",
+    "from": "https://www.google.com/s2/favicons?domain=enlightencapital.in&sz=128"
+  },
+  "iti-growth-opportunities": {
+    "path": "/assets/investors/iti-growth-opportunities.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 4394,
+    "fetchedAt": "2026-08-04T01:33:49.784Z",
+    "from": "https://itigo.in/wp-content/uploads/2024/04/cropped-output-onlinepngtools-2-180x180.webp"
+  },
+  "greyhound-capital": {
+    "path": "/assets/investors/greyhound-capital.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 15406,
+    "fetchedAt": "2026-08-04T01:34:06.914Z",
+    "from": "https://greyhoundcapital.com/images/favicon.ico"
+  },
+  "aic-smu-technology-business-incubation-foundation": {
+    "path": "/assets/investors/aic-smu-technology-business-incubation-foundation.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 16958,
+    "fetchedAt": "2026-08-04T01:34:16.659Z",
+    "from": "https://www.smu.edu.in/favicon.ico"
+  },
+  "piramal-family-office": {
+    "path": "/assets/investors/piramal-family-office.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2672,
+    "fetchedAt": "2026-08-04T01:34:18.297Z",
+    "from": "https://www.piramal.com/assets/images/favicons/apple-icon-57x57.png"
+  },
+  "amansa-holdings": {
+    "path": "/assets/investors/amansa-holdings.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 4286,
+    "fetchedAt": "2026-08-04T01:34:19.244Z",
+    "from": "https://www.amansacapital.com/favicon.ico"
+  },
+  "falguni-nayar": {
+    "path": "/assets/investors/falguni-nayar.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 3220,
+    "fetchedAt": "2026-08-04T01:34:21.341Z",
+    "from": "https://www.google.com/s2/favicons?domain=nykaa.com&sz=128"
+  },
+  "peyush-bansal": {
+    "path": "/assets/investors/peyush-bansal.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 2726,
+    "fetchedAt": "2026-08-04T01:34:21.471Z",
+    "from": "https://static1.lenskart.com/media/desktop/img/Sep23/13-Sep/lenskart-logo-new-144x144.png"
+  },
+  "harshil-mathur": {
+    "path": "/assets/investors/harshil-mathur.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 665,
+    "fetchedAt": "2026-08-04T01:34:22.314Z",
+    "from": "https://framerusercontent.com/images/CU1m0xFonUl76ZeaW0IdkQ0M.png"
+  },
+  "aman-gupta": {
+    "path": "/assets/investors/aman-gupta.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 1184,
+    "fetchedAt": "2026-08-04T01:34:22.719Z",
+    "from": "https://www.boat-lifestyle.com/cdn/shop/files/32x32_256x256.png_32x32_2d0995d9-ec86-4c14-b928-71101777194c_96x96.png?v=1647426716"
+  },
+  "bhavish-aggarwal": {
+    "path": "/assets/investors/bhavish-aggarwal.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 480,
+    "fetchedAt": "2026-08-04T01:34:22.753Z",
+    "from": "https://cdn.olaelectric.com/ev-discovery-platform/favicon/stores/1/favicon.png"
+  },
+  "shashank-kumar": {
+    "path": "/assets/investors/shashank-kumar.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 3025,
+    "fetchedAt": "2026-08-04T01:34:22.926Z",
+    "from": "https://decentro.tech/favicon.ico"
+  },
+  "girish-mathrubootham": {
+    "path": "/assets/investors/girish-mathrubootham.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 2603,
+    "fetchedAt": "2026-08-04T01:34:23.227Z",
+    "from": "https://www.google.com/s2/favicons?domain=freshworks.com&sz=128"
+  },
+  "vidit-aatrey": {
+    "path": "/assets/investors/vidit-aatrey.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 350,
+    "fetchedAt": "2026-08-04T01:34:23.287Z",
+    "from": "https://www.google.com/s2/favicons?domain=meesho.com&sz=128"
+  },
+  "alok-mittal": {
+    "path": "/assets/investors/alok-mittal.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1519,
+    "fetchedAt": "2026-08-04T01:34:23.644Z",
+    "from": "https://www.indifi.com/favicon.png"
+  },
+  "varun-alagh": {
+    "path": "/assets/investors/varun-alagh.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 2226,
+    "fetchedAt": "2026-08-04T01:34:24.021Z",
+    "from": "https://mamaearth.in/cdn/shop/files/cropped-Favicon-2-150x150.png?crop=center&height=48&v=1772930334&width=48"
+  },
+  "ghazal-alagh": {
+    "path": "/assets/investors/ghazal-alagh.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 2226,
+    "fetchedAt": "2026-08-04T01:34:24.048Z",
+    "from": "https://mamaearth.in/cdn/shop/files/cropped-Favicon-2-150x150.png?crop=center&height=48&v=1772930334&width=48"
+  },
+  "radhika-gupta": {
+    "path": "/assets/investors/radhika-gupta.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 3988,
+    "fetchedAt": "2026-08-04T01:34:24.783Z",
+    "from": "https://www.google.com/s2/favicons?domain=edelweissmf.com&sz=128"
+  },
+  "nithin-kamath": {
+    "path": "/assets/investors/nithin-kamath.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 338,
+    "fetchedAt": "2026-08-04T01:34:25.115Z",
+    "from": "https://zerodha.com/static/images/favicon.png"
+  },
+  "namita-thapar": {
+    "path": "/assets/investors/namita-thapar.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 359,
+    "fetchedAt": "2026-08-04T01:34:25.959Z",
+    "from": "https://www.google.com/s2/favicons?domain=emcure.com&sz=128"
+  },
+  "ankur-warikoo": {
+    "path": "/assets/investors/ankur-warikoo.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 4414,
+    "fetchedAt": "2026-08-04T01:34:26.402Z",
+    "from": "https://i0.wp.com/ankurwarikoo.com/wp-content/uploads/2020/06/cropped-Copy-of-aw-1.png?fit=180%2C180&#038;ssl=1"
+  },
+  "vineeta-singh": {
+    "path": "/assets/investors/vineeta-singh.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 555,
+    "fetchedAt": "2026-08-04T01:34:27.295Z",
+    "from": "https://www.sugarcosmetics.com/cdn/shop/files/Favicon-SUGAR_1_15359a4f-dd7b-494b-97c2-f669e202d299.png?v=1734606387&width=180"
+  },
+  "hornbill-capital-advisers": {
+    "path": "/assets/investors/hornbill-capital-advisers.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-08-04T01:34:27.305Z",
+    "from": "https://hornbillcap.com/favicon.ico"
+  },
+  "lightbox-ventures": {
+    "path": "/assets/investors/lightbox-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 516,
+    "fetchedAt": "2026-08-04T01:34:28.153Z",
+    "from": "https://www.lightbox.vc/assets/img/favicon/apple-touch-icon.png"
+  },
+  "kitven": {
+    "path": "/assets/investors/kitven.gif",
+    "source": "website",
+    "contentType": "image/gif",
+    "bytes": 3662,
+    "fetchedAt": "2026-08-04T01:34:28.877Z",
+    "from": "https://www.hugedomains.com/apple-touch-icon.png"
+  },
+  "kerala-angels": {
+    "path": "/assets/investors/kerala-angels.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 10397,
+    "fetchedAt": "2026-08-04T01:34:29.700Z",
+    "from": "https://www.keralaangelnetwork.com/apple-touch-icon.png"
+  },
+  "andhra-pradesh-innovation-society": {
+    "path": "/assets/investors/andhra-pradesh-innovation-society.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-08-04T01:34:30.980Z",
+    "from": "https://apis.ap.gov.in//assets/images/favicon.ico"
+  },
+  "stanford-angels-and-entrepreneurs-india": {
+    "path": "/assets/investors/stanford-angels-and-entrepreneurs-india.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 5232,
+    "fetchedAt": "2026-08-04T01:34:31.475Z",
+    "from": "https://stanfordangels.co.in/wp-content/uploads/2021/05/cropped-WhatsApp-Image-2021-05-06-at-11.16.56-PM-180x180.jpeg"
+  },
+  "pune-angels-network": {
+    "path": "/assets/investors/pune-angels-network.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 6038,
+    "fetchedAt": "2026-08-04T01:34:32.551Z",
+    "from": "https://puneangels.network/wp-content/uploads/2025/08/favicon.png"
+  },
+  "sairee-chahal": {
+    "path": "/assets/investors/sairee-chahal.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 17781,
+    "fetchedAt": "2026-08-04T01:34:33.108Z",
+    "from": "https://sheroes.com/icons/192.png"
+  },
+  "vani-kola": {
+    "path": "/assets/investors/vani-kola.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 10727,
+    "fetchedAt": "2026-08-04T01:34:33.440Z",
+    "from": "https://cdn.prod.website-files.com/69932395f46b656c443e9c46/6a576f7050b2bb382ee2b041_Frame%202085665636.png"
+  },
+  "sasha-mirchandani": {
+    "path": "/assets/investors/sasha-mirchandani.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 324,
+    "fetchedAt": "2026-08-04T01:34:33.910Z",
+    "from": "https://img1.wsimg.com/isteam/ip/static/pwa-app/logo-default.png/:/rs=w:57,h:57,m"
+  },
+  "sridhar-vembu": {
+    "path": "/assets/investors/sridhar-vembu.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 15086,
+    "fetchedAt": "2026-08-04T01:34:34.404Z",
+    "from": "https://www.zohowebstatic.com/sites/zweb/images/favicon.ico"
+  },
+  "rohini-nilekani": {
+    "path": "/assets/investors/rohini-nilekani.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2652,
+    "fetchedAt": "2026-08-04T01:34:34.928Z",
+    "from": "https://rohininilekaniphilanthropies.org/wp-content/themes/rnp/assets/images/favicons/apple-touch-icon-57x57.png"
+  },
+  "t-v-mohandas-pai": {
+    "path": "/assets/investors/t-v-mohandas-pai.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 1682,
+    "fetchedAt": "2026-08-04T01:34:35.507Z",
+    "from": "https://www.google.com/s2/favicons?domain=aarincapital.com&sz=128"
+  },
+  "zia-mody": {
+    "path": "/assets/investors/zia-mody.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 3037,
+    "fetchedAt": "2026-08-04T01:34:35.582Z",
+    "from": "https://www.azbpartners.com/wp-content/themes/azb/favicon.png"
+  },
+  "kris-gopalakrishnan": {
+    "path": "/assets/investors/kris-gopalakrishnan.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 29126,
+    "fetchedAt": "2026-08-04T01:34:37.301Z",
+    "from": "https://www.axilor.com/wp-content/uploads/2020/08/cropped-Favicon-180x180.png"
+  },
+  "vaibhav-domkundwar": {
+    "path": "/assets/investors/vaibhav-domkundwar.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 145581,
+    "fetchedAt": "2026-08-04T01:34:37.453Z",
+    "from": "https://bettercapital.us/logo-only.png"
+  },
+  "utsav-somani": {
+    "path": "/assets/investors/utsav-somani.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 80785,
+    "fetchedAt": "2026-08-04T01:34:37.497Z",
+    "from": "https://utsavsomani.com/og.jpg"
+  },
+  "anjali-bansal": {
+    "path": "/assets/investors/anjali-bansal.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 16058,
+    "fetchedAt": "2026-08-04T01:34:37.905Z",
+    "from": "https://avaana.in/wp-content/uploads/2025/10/cropped-Avaana-Logo-1-180x180.png"
+  },
+  "narayana-murthy": {
+    "path": "/assets/investors/narayana-murthy.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 6274,
+    "fetchedAt": "2026-08-04T01:34:37.911Z",
+    "from": "https://catamaran.in/wp-content/uploads/2026/02/cropped-Catamaran_favicon-180x180.png"
+  },
+  "anil-joshi": {
+    "path": "/assets/investors/anil-joshi.jpg",
+    "source": "google",
+    "contentType": "image/jpeg",
+    "bytes": 6180,
+    "fetchedAt": "2026-08-04T01:34:38.241Z",
+    "from": "https://www.google.com/s2/favicons?domain=unicornindia.in&sz=128"
+  },
+  "rehan-yar-khan": {
+    "path": "/assets/investors/rehan-yar-khan.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-08-04T01:34:39.530Z",
+    "from": "https://static.parastorage.com/client/pfavico.ico"
+  },
+  "rishabh-mariwala": {
+    "path": "/assets/investors/rishabh-mariwala.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 15406,
+    "fetchedAt": "2026-08-04T01:34:39.633Z",
+    "from": "https://www.sharrpventures.com/favicon.ico"
+  },
+  "chetna-sinha": {
+    "path": "/assets/investors/chetna-sinha.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 324,
+    "fetchedAt": "2026-08-04T01:34:40.109Z",
+    "from": "https://img1.wsimg.com/isteam/ip/static/pwa-app/logo-default.png/:/rs=w:57,h:57,m"
+  },
+  "kanika-tekriwal": {
+    "path": "/assets/investors/kanika-tekriwal.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 64587,
+    "fetchedAt": "2026-08-04T01:34:40.773Z",
+    "from": "https://www.jetsynthesys.com/wp-content/uploads/2024/05/android-chrome-512x512-1.png"
+  },
+  "suresh-sambandam": {
+    "path": "/assets/investors/suresh-sambandam.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2960,
+    "fetchedAt": "2026-08-04T01:34:41.165Z",
+    "from": "https://kissflow.com/hubfs/kissflow-fav-new.png"
+  },
+  "shradha-sharma": {
+    "path": "/assets/investors/shradha-sharma.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-08-04T01:34:41.820Z",
+    "from": "https://yourstory.com/favicon.ico"
+  },
+  "mahesh-murthy": {
+    "path": "/assets/investors/mahesh-murthy.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2066,
+    "fetchedAt": "2026-08-04T01:34:41.930Z",
+    "from": "https://pinstorm.com/apple-touch-icon.png"
+  },
+  "b-v-r-mohan-reddy": {
+    "path": "/assets/investors/b-v-r-mohan-reddy.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 5804,
+    "fetchedAt": "2026-08-04T01:34:42.502Z",
+    "from": "https://www.cyient.com/hubfs/enhancer.png"
+  },
+  "anand-deshpande": {
+    "path": "/assets/investors/anand-deshpande.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-08-04T01:34:42.682Z",
+    "from": "https://www.persistent.com/wp-content/themes/persistent/dist/images/persistent-logo-favicon-icon_83d9bf54.ico"
+  },
+  "vineet-rai": {
+    "path": "/assets/investors/vineet-rai.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 34341,
+    "fetchedAt": "2026-08-04T01:34:43.240Z",
+    "from": "https://aavishkaarcapital.in/wp-content/uploads/2024/05/fevicon.png"
+  },
+  "sanjay-nayar": {
+    "path": "/assets/investors/sanjay-nayar.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-08-04T01:34:43.340Z",
+    "from": "https://kedaara.com/wp-content/uploads/2021/05/kedaara-favicon.ico"
+  },
+  "swati-piramal": {
+    "path": "/assets/investors/swati-piramal.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2672,
+    "fetchedAt": "2026-08-04T01:34:43.397Z",
+    "from": "https://www.piramal.com/assets/images/favicons/apple-icon-57x57.png"
+  },
+  "ajay-piramal": {
+    "path": "/assets/investors/ajay-piramal.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2672,
+    "fetchedAt": "2026-08-04T01:34:43.519Z",
+    "from": "https://www.piramal.com/assets/images/favicons/apple-icon-57x57.png"
+  },
+  "mekin-maheshwari": {
+    "path": "/assets/investors/mekin-maheshwari.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 4377,
+    "fetchedAt": "2026-08-04T01:34:43.819Z",
+    "from": "https://udhyam.org/wp-content/uploads/2025/09/Logo-8.png"
+  },
+  "sumir-chadha": {
+    "path": "/assets/investors/sumir-chadha.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 862,
+    "fetchedAt": "2026-08-04T01:34:44.133Z",
+    "from": "https://www.san-agrow.com/favicon/agrow/apple-touch-icon.png?v=1632927200"
+  },
+  "soonicorn-club-ventures": {
+    "path": "/assets/investors/soonicorn-club-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 97088,
+    "fetchedAt": "2026-08-04T01:34:44.307Z",
+    "from": "https://soonicornventures.com/assets/icon.png"
+  },
+  "srini-raju": {
+    "path": "/assets/investors/srini-raju.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 1150,
+    "fetchedAt": "2026-08-04T01:34:45.785Z",
+    "from": "https://www.peepulcapital.com/wp-content/themes/peepul/img/peepul-favicon.ico"
+  },
+  "encubay-ventures": {
+    "path": "/assets/investors/encubay-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 32028,
+    "fetchedAt": "2026-08-04T01:34:45.908Z",
+    "from": "https://static.wixstatic.com/media/5d9207_d3ce67ea06f74c4981a565e66fca0287%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/5d9207_d3ce67ea06f74c4981a565e66fca0287%7Emv2.png"
+  },
+  "beej-capital": {
+    "path": "/assets/investors/beej-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 35741,
+    "fetchedAt": "2026-08-04T01:34:45.985Z",
+    "from": "https://static.hugedomains.com/images/hdv3-img/og_hugedomains.png"
+  },
+  "india-alternatives": {
+    "path": "/assets/investors/india-alternatives.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 10151,
+    "fetchedAt": "2026-08-04T01:34:46.285Z",
+    "from": "https://static.wixstatic.com/media/d7ccdc_9547c6dbe1c54ec48e28ec08c2a10311%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/d7ccdc_9547c6dbe1c54ec48e28ec08c2a10311%7Emv2.png"
+  },
+  "astir-ventures": {
+    "path": "/assets/investors/astir-ventures.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 4529,
+    "fetchedAt": "2026-08-04T01:34:46.907Z",
+    "from": "https://astir.vc/images/favicon_android.png"
+  },
+  "aic-banasthali": {
+    "path": "/assets/investors/aic-banasthali.jpg",
+    "source": "website",
+    "contentType": "image/jpeg",
+    "bytes": 107908,
+    "fetchedAt": "2026-08-04T01:34:55.120Z",
+    "from": "https://aicbanasthali.org/aic/assets/images/favicon/favicon.jpg"
+  },
+  "genome-valley-bio-incubators": {
+    "path": "/assets/investors/genome-valley-bio-incubators.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2313,
+    "fetchedAt": "2026-08-04T01:34:55.346Z",
+    "from": "http://sbtic.org/images/favicon.png"
+  },
+  "aic-nitte": {
+    "path": "/assets/investors/aic-nitte.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 19793,
+    "fetchedAt": "2026-08-04T01:34:56.181Z",
+    "from": "https://aicnitte.com/wp-content/uploads/2023/08/AIC-NITTE-Logo-2048x314-removebg-preview.png"
+  },
+  "startup-jharkhand": {
+    "path": "/assets/investors/startup-jharkhand.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 30716,
+    "fetchedAt": "2026-08-04T01:34:57.461Z",
+    "from": "https://startupjharkhand.org/assets/img/apple-touch-icon.png"
+  },
+  "bihar-startup-fund-programs": {
+    "path": "/assets/investors/bihar-startup-fund-programs.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 9168,
+    "fetchedAt": "2026-08-04T01:34:58.291Z",
+    "from": "https://startupbihar.in/favicon_full.png"
+  },
+  "startup-madhya-pradesh": {
+    "path": "/assets/investors/startup-madhya-pradesh.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 15406,
+    "fetchedAt": "2026-08-04T01:35:01.657Z",
+    "from": "https://startup.mp.gov.in/assets/img/favicon.ico"
+  },
+  "chhattisgarh-startup": {
+    "path": "/assets/investors/chhattisgarh-startup.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1831,
+    "fetchedAt": "2026-08-04T01:35:02.436Z",
+    "from": "https://invest.cg.gov.in/assets/img/favicon.png"
+  },
+  "startup-india-seed-fund-scheme-sisfs": {
+    "path": "/assets/investors/startup-india-seed-fund-scheme-sisfs.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 15406,
+    "fetchedAt": "2026-08-04T01:35:11.189Z",
+    "from": "https://seedfund.startupindia.gov.in/favicon.ico"
+  },
+  "meity-samridh": {
+    "path": "/assets/investors/meity-samridh.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 15349,
+    "fetchedAt": "2026-08-04T01:35:12.934Z",
+    "from": "https://msh.meity.gov.in/assets/img/MeitY%20Startup%20Hub-Logo-FINAL_5%201.png"
+  },
+  "tanseed-startuptn": {
+    "path": "/assets/investors/tanseed-startuptn.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 1104,
+    "fetchedAt": "2026-08-04T01:35:14.645Z",
+    "from": "https://startuptn.in/startup-white2.png"
+  },
+  "karnataka-elevate": {
+    "path": "/assets/investors/karnataka-elevate.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 15406,
+    "fetchedAt": "2026-08-04T01:35:14.775Z",
+    "from": "https://elevate.startupkarnataka.in/public/images/favicon.ico"
+  },
+  "msins-seed-fund-maharashtra": {
+    "path": "/assets/investors/msins-seed-fund-maharashtra.ico",
+    "source": "website",
+    "contentType": "image/x-icon",
+    "bytes": 4286,
+    "fetchedAt": "2026-08-04T01:35:15.133Z",
+    "from": "https://msins.in/favicon.ico"
+  },
+  "birac-seed-fund": {
+    "path": "/assets/investors/birac-seed-fund.ico",
+    "source": "duckduckgo",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 3518,
+    "fetchedAt": "2026-08-04T01:35:15.781Z",
+    "from": "https://icons.duckduckgo.com/ip3/birac.nic.in.ico"
+  },
+  "gujarat-ssip-2-0": {
+    "path": "/assets/investors/gujarat-ssip-2-0.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 6268,
+    "fetchedAt": "2026-08-04T01:35:16.254Z",
+    "from": "https://www.ssipgujarat.in/img/apple-touch-icon.png"
+  },
+  "haryana-seed-grant-startup-haryana": {
+    "path": "/assets/investors/haryana-seed-grant-startup-haryana.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 21285,
+    "fetchedAt": "2026-08-04T01:35:16.930Z",
+    "from": "https://startupharyana.gov.in/admin/dist/img/favicon/apple-touch-icon.png"
+  },
+  "punjab-seed-grant": {
+    "path": "/assets/investors/punjab-seed-grant.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 18098,
+    "fetchedAt": "2026-08-04T01:35:19.958Z",
+    "from": "https://www.startupindia.gov.in/etc/designs/invest-india/investindialibs/images/favicon.ico"
+  },
+  "bihar-seed-grant": {
+    "path": "/assets/investors/bihar-seed-grant.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 18098,
+    "fetchedAt": "2026-08-04T01:35:20.059Z",
+    "from": "https://www.startupindia.gov.in/etc/designs/invest-india/investindialibs/images/favicon.ico"
+  },
+  "him-startup-yojana-himachal-pradesh": {
+    "path": "/assets/investors/him-startup-yojana-himachal-pradesh.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 2611,
+    "fetchedAt": "2026-08-04T01:35:21.950Z",
+    "from": "https://www.iitmandicatalyst.in/images/favicon.png"
+  },
+  "jharkhand-startup-prototype-grant": {
+    "path": "/assets/investors/jharkhand-startup-prototype-grant.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 383,
+    "fetchedAt": "2026-08-04T01:35:22.423Z",
+    "from": "https://www.google.com/s2/favicons?domain=startupindia.gov.in&sz=128"
+  },
+  "in-space-seed-fund-scheme": {
+    "path": "/assets/investors/in-space-seed-fund-scheme.png",
+    "source": "website",
+    "contentType": "image/png;charset=UTF-8",
+    "bytes": 58204,
+    "fetchedAt": "2026-08-04T01:35:22.684Z",
+    "from": "https://www.inspace.gov.in/c21e421f87f4155054e2eb9abbbb35e6.iix?&amp;v=89f12b2447664750d4bc5b31516d43fe"
+  },
+  "istart-rajasthan-seed-fund": {
+    "path": "/assets/investors/istart-rajasthan-seed-fund.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 11451,
+    "fetchedAt": "2026-08-04T01:35:22.709Z",
+    "from": "https://istart.rajasthan.gov.in/public/images/main_logo.png"
+  },
+  "up-startup-policy-seed-support": {
+    "path": "/assets/investors/up-startup-policy-seed-support.png",
+    "source": "google",
+    "contentType": "image/png",
+    "bytes": 711,
+    "fetchedAt": "2026-08-04T01:35:22.801Z",
+    "from": "https://www.google.com/s2/favicons?domain=startinup.up.gov.in&sz=128"
+  },
+  "foundation-capital": {
+    "path": "/assets/investors/foundation-capital.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 790,
+    "fetchedAt": "2026-08-04T01:35:23.171Z",
+    "from": "https://framerusercontent.com/images/AmbPsGUP0F39hSvP6AGPZMQSk.png"
+  },
+  "felicis": {
+    "path": "/assets/investors/felicis.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 17368,
+    "fetchedAt": "2026-08-04T01:35:23.513Z",
+    "from": "https://www.felicis.com/favicon.png"
+  },
+  "battery-ventures": {
+    "path": "/assets/investors/battery-ventures.webp",
+    "source": "website",
+    "contentType": "image/webp",
+    "bytes": 7366,
+    "fetchedAt": "2026-08-04T01:35:23.527Z",
+    "from": "https://www.battery.com/wp-content/uploads/2025/03/cropped-battery-favicon-circle-180x180.png"
+  },
+  "granite-asia": {
+    "path": "/assets/investors/granite-asia.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 15406,
+    "fetchedAt": "2026-08-04T01:35:23.530Z",
+    "from": "https://www.graniteasia.com/favicon.ico"
+  },
+  "canaan-partners": {
+    "path": "/assets/investors/canaan-partners.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 7621,
+    "fetchedAt": "2026-08-04T01:35:25.794Z",
+    "from": "https://www.canaan.com/wp-content/uploads/2017/07/cropped-favicon-180x180.png"
+  },
+  "mp-investment-assistance-grant": {
+    "path": "/assets/investors/mp-investment-assistance-grant.ico",
+    "source": "website",
+    "contentType": "image/vnd.microsoft.icon",
+    "bytes": 15406,
+    "fetchedAt": "2026-08-04T01:35:25.993Z",
+    "from": "https://startup.mp.gov.in/assets/img/favicon.ico"
+  },
+  "wtfund": {
+    "path": "/assets/investors/wtfund.png",
+    "source": "website",
+    "contentType": "image/png",
+    "bytes": 19786,
+    "fetchedAt": "2026-08-04T02:05:48.353Z",
+    "from": "https://cdn.prod.website-files.com/678faa149a1c9f12adfd9c07/69ba9abdabff4f2385012ec8_fav%20new%203.png"
   }
 }

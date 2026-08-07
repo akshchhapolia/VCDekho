@@ -1,5 +1,5 @@
 (function () {
-  const PAGE_SIZE = 24;
+  const PAGE_SIZE = 15;
   const STAGE_GUIDE_IDS = {
     'pre-seed': true,
     seed: true,
@@ -15,6 +15,7 @@
     type: '',
     thesis: '',
     cheque: '',
+    active: '',
     offset: 0,
     total: 0,
     filters: null
@@ -22,6 +23,7 @@
 
   const els = {
     search: document.getElementById('inv-search'),
+    active: document.getElementById('filter-active'),
     clear: document.getElementById('inv-clear'),
     count: document.getElementById('inv-count'),
     guideSlot: document.getElementById('inv-guide-slot'),
@@ -155,8 +157,23 @@
     return text;
   }
 
+  // Mweb: drawer lives inside .inv-dir-wrap (z-index: 10), so portal it to <body>
+  // when open — otherwise the header logo + backdrop sit above and block taps.
+  const sidebarHome = els.sidebar ? els.sidebar.parentNode : null;
+  const sidebarBefore = els.sidebar ? els.sidebar.nextSibling : null;
+
+  function restoreFiltersSidebar() {
+    if (!els.sidebar || !sidebarHome || els.sidebar.parentNode === sidebarHome) return;
+    if (sidebarBefore && sidebarBefore.parentNode === sidebarHome) {
+      sidebarHome.insertBefore(els.sidebar, sidebarBefore);
+    } else {
+      sidebarHome.insertBefore(els.sidebar, sidebarHome.firstChild);
+    }
+  }
+
   function setFiltersOpen(open) {
     if (!els.sidebar) return;
+    var isMobile = window.matchMedia('(max-width: 768px)').matches;
     els.sidebar.classList.toggle('is-open', open);
     if (els.backdrop) {
       els.backdrop.hidden = !open;
@@ -166,6 +183,13 @@
     }
     document.body.classList.toggle('inv-dir-filters-open', open);
     if (!open) closeAllDropdowns();
+
+    if (isMobile && open) {
+      if (els.backdrop) document.body.appendChild(els.backdrop);
+      document.body.appendChild(els.sidebar);
+    } else {
+      restoreFiltersSidebar();
+    }
   }
 
   function renderSkeleton(count) {
@@ -197,7 +221,7 @@
       const id = (ids || [])[i];
       const href = id && hrefForId(id);
       if (href) {
-        return '<a class="inv-dir-inline-link" href="' + esc(href) + '">' + esc(label) + '</a>';
+        return '<a class="inv-dir-inline-link" href="' + esc(href) + '" onclick="event.stopPropagation()">' + esc(label) + '</a>';
       }
       return esc(label);
     });
@@ -236,7 +260,7 @@
     if (!investors.length) {
       els.results.innerHTML =
         '<div class="inv-dir-empty-state">' +
-          '<p class="inv-dir-empty-title">No matching investors</p>' +
+          '<p class="inv-dir-empty-title">No matching funds</p>' +
           '<p class="inv-dir-empty-copy">Try clearing filters or searching a different fund, sector, or stage.</p>' +
           '<button type="button" class="inv-dir-empty-action" id="inv-empty-clear">Clear filters</button>' +
         '</div>';
@@ -247,32 +271,35 @@
       return;
     }
 
+    const isMobileList = window.matchMedia('(max-width: 768px)').matches;
+
     els.results.innerHTML = investors.map(inv => {
+      const P = window.VCSitePaths || {};
       const stagesHtml = joinLinked(
         inv.stages,
         inv.stageIds,
-        id => (STAGE_GUIDE_IDS[id] ? '/investors/stages/' + id : null),
-        4
+        id => (STAGE_GUIDE_IDS[id] ? (P.fundStage || function (s) { return '/funds/stages/' + s; })(id) : null),
+        isMobileList ? 3 : 4
       );
       const thesisHtml = joinLinked(
         inv.thesisThemes,
         inv.thesisThemeIds,
-        id => (id && id !== 'general' ? '/investors/themes/' + id : null),
-        3
+        id => (id && id !== 'general' ? (P.fundTheme || function (s) { return '/funds/themes/' + s; })(id) : null),
+        isMobileList ? 1 : 3
       );
-      const sectorsText = joinList(inv.sectors, 3);
+      const sectorsText = joinList(inv.sectors, isMobileList ? 2 : 3);
       const sectorsThesis = [sectorsText !== '—' ? esc(sectorsText) : '', thesisHtml !== '—' ? thesisHtml : '']
         .filter(Boolean)
         .join(' · ') || '—';
 
-      const href = '/investors/' + esc(inv.slug);
+      const href = (P.fund || function (s) { return '/funds/' + s; })(inv.slug);
       return `
       <article class="inv-dir-row">
-        <a class="inv-dir-row-hit" href="${href}" aria-label="${esc(inv.name)}"></a>
+        <a class="inv-dir-row-hit" href="${href}" aria-label="${esc(inv.name)}" data-analytics-event="dir_result_click" data-analytics-params='{"directory":"funds","slug":"${esc(inv.slug)}"}'></a>
         <div class="inv-dir-col inv-dir-col-fund">
           <span class="inv-dir-fund-mark">${logoHtml(inv)}</span>
           <span class="inv-dir-fund-text">
-            <span class="inv-dir-type">${esc(inv.type || 'Investor')}</span>
+            <span class="inv-dir-type">${esc(inv.type || 'Investor')}${inv.activelyDeploying ? ' <span class="inv-dir-active-dot" title="Actively deploying — linked to a funding round in the last 6 months" aria-label="Actively deploying"></span>' : ''}</span>
             <span class="inv-dir-name">${esc(inv.name)}</span>
           </span>
         </div>
@@ -301,19 +328,55 @@
     if (!els.guideSlot) return;
     if (state.stage && STAGE_GUIDE_IDS[state.stage]) {
       const label = findFilterLabel(state.filters && state.filters.stages, state.stage) || state.stage;
+      const stageHref = (window.VCSitePaths && window.VCSitePaths.fundStage)
+        ? window.VCSitePaths.fundStage(state.stage)
+        : '/funds/stages/' + esc(state.stage);
       els.guideSlot.innerHTML =
         '<span class="inv-dir-dot" aria-hidden="true">·</span>' +
-        '<a class="inv-dir-guide-link" href="/investors/stages/' + esc(state.stage) + '">Open ' + esc(label) + ' guide →</a>';
+        '<a class="inv-dir-guide-link" href="' + stageHref + '">Open ' + esc(label) + ' guide →</a>';
       return;
     }
     if (state.thesis && state.thesis !== 'general') {
       const label = findFilterLabel(state.filters && state.filters.thesisThemes, state.thesis) || state.thesis;
+      const themeHref = (window.VCSitePaths && window.VCSitePaths.fundTheme)
+        ? window.VCSitePaths.fundTheme(state.thesis)
+        : '/funds/themes/' + esc(state.thesis);
       els.guideSlot.innerHTML =
         '<span class="inv-dir-dot" aria-hidden="true">·</span>' +
-        '<a class="inv-dir-guide-link" href="/investors/themes/' + esc(state.thesis) + '">Open ' + esc(label) + ' guide →</a>';
+        '<a class="inv-dir-guide-link" href="' + themeHref + '">Open ' + esc(label) + ' guide →</a>';
       return;
     }
     els.guideSlot.innerHTML = '';
+  }
+
+  function activeFilterCount() {
+    var n = 0;
+    if (state.q) n++;
+    if (state.sector) n++;
+    if (state.stage) n++;
+    if (state.type) n++;
+    if (state.thesis) n++;
+    if (state.cheque) n++;
+    if (state.active) n++;
+    return n;
+  }
+
+  function updateMobileFiltersLabel() {
+    if (!els.filtersToggle) return;
+    var titleEl = document.querySelector('.inv-dir-header h1');
+    var isMobile = window.matchMedia('(max-width: 768px)').matches;
+    var active = activeFilterCount();
+    if (!isMobile) {
+      els.filtersToggle.textContent = 'Filters';
+      els.filtersToggle.classList.remove('has-active-filters');
+      if (titleEl) titleEl.textContent = 'Funds';
+      return;
+    }
+    // Mweb: count in title; orange dot on button when any filter is applied
+    var total = state.total ? state.total.toLocaleString('en-IN') : '…';
+    els.filtersToggle.textContent = 'Filters';
+    els.filtersToggle.classList.toggle('has-active-filters', active > 0);
+    if (titleEl) titleEl.textContent = 'Funds(' + total + ')';
   }
 
   function updatePager() {
@@ -328,6 +391,21 @@
     els.next.disabled = state.offset + PAGE_SIZE >= state.total;
     els.count.textContent = `${state.total.toLocaleString('en-IN')} funds`;
     updateGuideSlot();
+    updateMobileFiltersLabel();
+  }
+
+  async function directoryFetch(url) {
+    const needsAuth = state.offset > 0;
+    const res = needsAuth
+      ? await window.VCAuth.authFetch(url)
+      : await fetch(url);
+    if (res.status === 401) {
+      window.location.replace(
+        window.VCAuth.loginUrl(window.location.pathname + window.location.search)
+      );
+      return null;
+    }
+    return res;
   }
 
   async function load() {
@@ -342,16 +420,15 @@
       type: state.type,
       thesis: state.thesis,
       cheque: state.cheque,
+      active: state.active,
       limit: String(PAGE_SIZE),
       offset: String(state.offset)
     });
 
-    const res = await window.VCAuth.authFetch(`/api/investors/list?${params.toString()}`);
-    if (res.status === 401) {
-      window.location.replace(window.VCAuth.loginUrl());
-      return;
-    }
-    if (!res.ok) throw new Error('Failed to load investors');
+    const res = await directoryFetch(`/api/investors/list?${params.toString()}`);
+    if (!res) return;
+    if (res.status === 429) throw new Error('rate_limit');
+    if (!res.ok) throw new Error('Failed to load funds');
     const data = await res.json();
 
     if (!state.filters && data.filters) {
@@ -368,14 +445,26 @@
     updatePager();
   }
 
+  function trackFilter(name, value) {
+    if (window.VCAnalytics && value) {
+      window.VCAnalytics.track('dir_filter_change', { directory: 'funds', filter: name, value: value });
+    }
+  }
+
   function resetOffsetAndLoad() {
     state.offset = 0;
     load().catch(err => {
       console.error(err);
       els.results.innerHTML =
         '<div class="inv-dir-empty-state">' +
-          '<p class="inv-dir-empty-title">Couldn’t load investors</p>' +
-          '<p class="inv-dir-empty-copy">Check your connection and try again.</p>' +
+          '<p class="inv-dir-empty-title">' +
+            (err && err.message === 'rate_limit' ? 'Too many requests' : 'Couldn’t load funds') +
+          '</p>' +
+          '<p class="inv-dir-empty-copy">' +
+            (err && err.message === 'rate_limit'
+              ? 'Please wait a moment and try again.'
+              : 'Check your connection and try again.') +
+          '</p>' +
           '<button type="button" class="inv-dir-empty-action" id="inv-empty-retry">Retry</button>' +
         '</div>';
       const btn = document.getElementById('inv-empty-retry');
@@ -392,20 +481,28 @@
     }, 250);
   });
 
-  dropdowns.sector.setOnChange(v => { state.sector = v; resetOffsetAndLoad(); });
-  dropdowns.stage.setOnChange(v => { state.stage = v; resetOffsetAndLoad(); });
-  dropdowns.type.setOnChange(v => { state.type = v; resetOffsetAndLoad(); });
-  dropdowns.thesis.setOnChange(v => { state.thesis = v; resetOffsetAndLoad(); });
-  dropdowns.cheque.setOnChange(v => { state.cheque = v; resetOffsetAndLoad(); });
+  dropdowns.sector.setOnChange(v => { state.sector = v; trackFilter('sector', v); resetOffsetAndLoad(); });
+  dropdowns.stage.setOnChange(v => { state.stage = v; trackFilter('stage', v); resetOffsetAndLoad(); });
+  dropdowns.type.setOnChange(v => { state.type = v; trackFilter('type', v); resetOffsetAndLoad(); });
+  dropdowns.thesis.setOnChange(v => { state.thesis = v; trackFilter('thesis', v); resetOffsetAndLoad(); });
+  dropdowns.cheque.setOnChange(v => { state.cheque = v; trackFilter('cheque', v); resetOffsetAndLoad(); });
+
+  if (els.active) {
+    els.active.addEventListener('change', () => {
+      state.active = els.active.checked ? '1' : '';
+      resetOffsetAndLoad();
+    });
+  }
 
   els.clear.addEventListener('click', () => {
-    state.q = state.sector = state.stage = state.type = state.thesis = state.cheque = '';
+    state.q = state.sector = state.stage = state.type = state.thesis = state.cheque = state.active = '';
     els.search.value = '';
     dropdowns.sector.value = '';
     dropdowns.stage.value = '';
     dropdowns.type.value = '';
     dropdowns.thesis.value = '';
     dropdowns.cheque.value = '';
+    if (els.active) els.active.checked = false;
     resetOffsetAndLoad();
   });
 
@@ -419,7 +516,10 @@
   });
 
   if (els.filtersToggle) {
-    els.filtersToggle.addEventListener('click', () => setFiltersOpen(true));
+    els.filtersToggle.addEventListener('click', () => {
+      if (window.VCNav) window.VCNav.close();
+      setFiltersOpen(true);
+    });
   }
   if (els.filtersClose) {
     els.filtersClose.addEventListener('click', () => setFiltersOpen(false));
@@ -430,7 +530,15 @@
 
   document.addEventListener('click', () => closeAllDropdowns());
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeAllDropdowns();
+    if (e.key === 'Escape') {
+      closeAllDropdowns();
+      setFiltersOpen(false);
+    }
+  });
+
+  window.addEventListener('resize', function () {
+    updateMobileFiltersLabel();
+    if (!window.matchMedia('(max-width: 768px)').matches) setFiltersOpen(false);
   });
 
   const params0 = new URLSearchParams(window.location.search);
@@ -439,6 +547,10 @@
   if (params0.get('sector')) state.sector = params0.get('sector');
   if (params0.get('type')) state.type = params0.get('type');
   if (params0.get('cheque')) state.cheque = params0.get('cheque');
+  if (params0.get('active') === '1') {
+    state.active = '1';
+    if (els.active) els.active.checked = true;
+  }
   if (params0.get('q')) {
     state.q = params0.get('q');
     els.search.value = state.q;

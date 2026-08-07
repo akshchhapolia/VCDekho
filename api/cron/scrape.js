@@ -1,5 +1,10 @@
 const Parser = require('rss-parser');
 const db = require('../../utils/db');
+const { runCronJob } = require('../../utils/cron-run');
+const { runBuzzScrape } = require('../../utils/buzz-scrape');
+const { runAiProcess } = require('../../utils/run-ai-process');
+const { runDailyDigest } = require('../../utils/run-daily-digest');
+const { runAiBlog } = require('../../utils/run-ai-blog');
 
 const parser = new Parser({
     timeout: 15000,
@@ -11,11 +16,17 @@ const parser = new Parser({
 
 // VCCircle no longer exposes a public RSS feed (endpoints return HTML/500).
 // LiveMint Companies is used as the PE/VC-adjacent Indian business source.
+// yourstory-funding / startuptalky / cnbctv18-startups were added to widen
+// coverage for the investor-activity signal (see utils/investor-activity-matcher.js) —
+// more funding-news sources means faster, broader "actively deploying" coverage.
 const SOURCES = [
     { name: 'inc42', url: 'https://inc42.com/buzz/feed/' },
     { name: 'entrackr', url: 'https://entrackr.com/rss' },
     { name: 'yourstory', url: 'https://yourstory.com/feed' },
-    { name: 'livemint', url: 'https://www.livemint.com/rss/companies' }
+    { name: 'yourstory-funding', url: 'https://yourstory.com/category/funding/feed' },
+    { name: 'livemint', url: 'https://www.livemint.com/rss/companies' },
+    { name: 'startuptalky', url: 'https://startuptalky.com/feed/' },
+    { name: 'cnbctv18-startups', url: 'https://www.cnbctv18.com/commonfeeds/v1/cne/rss/startup.xml' }
 ];
 
 function scoreRelevance(item, sourceName) {
@@ -37,9 +48,16 @@ function scoreRelevance(item, sourceName) {
         }
     }
 
-    // LiveMint is broad business news — require funding/deal signals
-    if (sourceName === 'livemint') {
-        if (!(/raise|round|seed|series [abcd]|fund|backs|invests|vc|venture|ipo|acquires|merger|crore|lakh|million|billion|\$|₹/i.test(title))) {
+    // Dedicated funding-tag feed — everything here is already on-topic.
+    if (sourceName === 'yourstory-funding') {
+        score += 2;
+    }
+
+    // LiveMint, StartupTalky, and CNBC-TV18's startup feed are broad business/
+    // startup news — require funding/deal signals so non-funding stories
+    // (product launches, layoffs, IPO chatter, etc.) don't get queued.
+    if (sourceName === 'livemint' || sourceName === 'startuptalky' || sourceName === 'cnbctv18-startups') {
+        if (!(/raise[sd]?|round|seed|pre-seed|series [abcde]|fund(s|ing)?|backs?|invests?|investment|vc|venture|acquires|merger|crore|lakh|million|billion|\$|₹/i.test(title))) {
             return 0;
         }
         score += 1;
@@ -58,42 +76,53 @@ function getSimilarity(s1, s2) {
 }
 
 module.exports = async function handler(req, res) {
-    // If called via Vercel Cron, auth is handled by Vercel. 
-    // We can allow manual trigger with a secret key.
-    if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}` && process.env.NODE_ENV === 'production') {
-        return res.status(401).end('Unauthorized');
-    }
+    const buzzOnly = req.query?.job === 'buzz';
 
-    try {
+    return runCronJob(req, res, buzzOnly ? 'buzz-scrape' : 'scrape', async () => {
+        const batchIndex = Math.floor(Date.now() / (6 * 60 * 60 * 1000));
+
+        if (buzzOnly) {
+            const buzzMeta = await runBuzzScrape({ batchIndex });
+            try {
+                buzzMeta.aiProcess = await runAiProcess({
+                    triggeredBy: 'buzz-scrape',
+                    maxNews: 0,
+                    includeBuzz: true
+                });
+            } catch (aiErr) {
+                buzzMeta.aiProcess = { error: aiErr.message };
+            }
+            return buzzMeta;
+        }
+
         let itemsFetched = 0;
         let itemsQueued = 0;
         let itemsDuplicated = 0;
         let errors = [];
+        let sourcesOk = 0;
 
-        // Fetch recent items from DB for deduplication (last 14 days)
         const recentRows = await db.query(`SELECT title, source_url FROM raw_content WHERE scraped_at > NOW() - INTERVAL '14 days'`);
         const recentItems = recentRows.rows;
 
         for (const source of SOURCES) {
             try {
                 const feed = await parser.parseURL(source.url);
+                sourcesOk++;
                 for (const item of feed.items) {
                     itemsFetched++;
-                    
+
                     const url = item.link || item.guid;
                     const title = item.title;
                     const content = item.contentSnippet || item.content || item.description || '';
                     const pubDate = item.pubDate ? new Date(item.pubDate) : new Date();
 
-                    // Check if URL already exists
                     if (recentItems.find(r => r.source_url === url)) {
-                        continue; // Already processed
+                        continue;
                     }
 
-                    // Deduplicate against other titles
                     let isDuplicate = false;
                     for (const recent of recentItems) {
-                        if (getSimilarity(title, recent.title) > 0.6) { // fuzzy match
+                        if (getSimilarity(title, recent.title) > 0.6) {
                             isDuplicate = true;
                             break;
                         }
@@ -106,7 +135,7 @@ module.exports = async function handler(req, res) {
                              VALUES ($1, $2, $3, $4, $5, 'duplicate', 0) ON CONFLICT (source_url) DO NOTHING`,
                             [source.name, url, title, content, pubDate]
                         );
-                        recentItems.push({ title, source_url: url }); // prevent further duplicates in this run
+                        recentItems.push({ title, source_url: url });
                         continue;
                     }
 
@@ -132,10 +161,46 @@ module.exports = async function handler(req, res) {
             [itemsFetched, itemsQueued, itemsDuplicated, JSON.stringify(errors)]
         );
 
-        res.status(200).json({ success: true, itemsFetched, itemsQueued, itemsDuplicated });
-    } catch (error) {
-        console.error('Fatal scrape error:', error);
-        await db.query(`INSERT INTO job_log (errors, status) VALUES ($1, 'failed')`, [JSON.stringify([error.message])]);
-        res.status(500).json({ error: error.message });
-    }
+        const meta = { itemsFetched, itemsQueued, itemsDuplicated, errors, sourcesOk };
+        if (sourcesOk === 0) {
+            meta.alert = true;
+            meta.alertSeverity = 'error';
+            meta.alertSubject = 'RSS scrape: all sources failed';
+            meta.alertBody = errors.join('\n') || 'No sources succeeded';
+        } else if (errors.length >= SOURCES.length - 1) {
+            meta.alert = true;
+            meta.alertSeverity = 'warning';
+            meta.alertSubject = 'RSS scrape: most sources failed';
+            meta.alertBody = errors.join('\n');
+        }
+
+        // Founder Buzz: Reddit founder VC reviews (RSS + Searlo discover).
+        // Also runs via /api/cron/scrape?job=buzz (3 extra times/day in vercel.json).
+        try {
+            meta.buzz = await runBuzzScrape({ batchIndex });
+        } catch (buzzErr) {
+            meta.buzz = { error: buzzErr.message };
+        }
+
+        // Chain AI immediately after ingest so publishing never depends on a separate cron firing on time.
+        try {
+            meta.aiProcess = await runAiProcess({ triggeredBy: 'scrape' });
+        } catch (aiErr) {
+            meta.aiProcess = { error: aiErr.message };
+        }
+
+        try {
+            meta.dailyDigest = await runDailyDigest({ triggeredBy: 'scrape' });
+        } catch (digestErr) {
+            meta.dailyDigest = { error: digestErr.message };
+        }
+
+        try {
+            meta.aiBlog = await runAiBlog({ triggeredBy: 'scrape' });
+        } catch (blogErr) {
+            meta.aiBlog = { error: blogErr.message };
+        }
+
+        return meta;
+    });
 };

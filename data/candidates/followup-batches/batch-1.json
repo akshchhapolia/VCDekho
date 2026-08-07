@@ -1,0 +1,302 @@
+[
+  {
+    "company": "Stride Ventures",
+    "website": "https://strideventures.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Better Capital",
+    "website": "https://bettercapital.vc/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://bettercapital.vc/team"
+  },
+  {
+    "company": "Arkam Ventures",
+    "website": "https://arkam.vc",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Shastra VC",
+    "website": "https://shastravc.com",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "FreeFlow Ventures",
+    "website": "https://freeflowvc.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "DeVC",
+    "website": "https://devc.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Venture Highway",
+    "website": "https://venturehighway.vc",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Sauce.vc",
+    "website": "https://sauce.vc/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://sauce.vc/service-partners/"
+  },
+  {
+    "company": "Saama",
+    "website": "https://www.saama.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.saama.com/revenue-cycle-management/"
+  },
+  {
+    "company": "Tomorrow Capital",
+    "website": "https://tomorrowcapital.vc",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Iron Pillar",
+    "website": "https://ironpillar.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "GrowthCap Ventures",
+    "website": "https://growthcapvc.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Inflexor Ventures",
+    "website": "https://inflexor.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.atom.com/name/Inflexor"
+  },
+  {
+    "company": "Sorin Investments",
+    "website": "https://www.sorininvestments.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Enzia Ventures",
+    "website": "https://enziaventures.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Spiral Ventures Pte. Ltd.",
+    "website": "https://spiral.vc",
+    "reason": "homepage-fetch-failed",
+    "detail": "The operation was aborted due to timeout"
+  },
+  {
+    "company": "AdvantEdge Founders",
+    "website": "https://advantedgefounders.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Nueva Capital",
+    "website": "https://nuevacapital.vc",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Green Frontier Capital",
+    "website": "https://www.greenfrontiercapital.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.greenfrontiercapital.com/about"
+  },
+  {
+    "company": "Lodha Ventures",
+    "website": "https://lodhaventures.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Wami Capital - Single Family Office",
+    "website": "https://wamicapital.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://wamicapital.com/"
+  },
+  {
+    "company": "Kae Capital",
+    "website": "https://kaecapital.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://kaecapital.com/"
+  },
+  {
+    "company": "Orios Venture Partners",
+    "website": "https://oriosventurepartners.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Guild Capital",
+    "website": "https://guild.capital/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://guild.capital/"
+  },
+  {
+    "company": "Stellaris Venture Partners",
+    "website": "https://www.stellarisvp.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.stellarisvp.com/team"
+  },
+  {
+    "company": "Z3Partners",
+    "website": "https://z3partners.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://z3partnersglobal.com/about-us"
+  },
+  {
+    "company": "3 Peaks Ventures",
+    "website": "https://3peaksventures.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Superb Capital",
+    "website": "https://superbcapital.vc",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Lok Capital",
+    "website": "https://www.lokcapital.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.lokcapital.com/about"
+  },
+  {
+    "company": "Appreciate Capital",
+    "website": "https://appreciatecapital.vc/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Agility Ventures",
+    "website": "https://agilityventures.vc",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Eternal Capital (India)",
+    "website": "https://eternalcapital.in/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "888vc",
+    "website": "https://888.vc",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Blue Ashva Capital",
+    "website": "https://blueashva.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "1818 Venture Capital",
+    "website": "https://1818vc.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Teja Ventures",
+    "website": "https://www.tejaventures.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.tejaventures.com/about-us"
+  },
+  {
+    "company": "UpsideDown VC",
+    "website": "https://upsidedownvc.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "LightPace VC",
+    "website": "https://www.lightpacevc.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.lightpacevc.com/"
+  },
+  {
+    "company": "OperatorVC",
+    "website": "https://operatorvc.com/OperatorVC-8a33376dede541f08d7d4bfc1a963d68",
+    "reason": "homepage-fetch-failed",
+    "detail": 500
+  },
+  {
+    "company": "Supermorpheus",
+    "website": "https://supermorpheus.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://supermorpheus.com/"
+  },
+  {
+    "company": "Unpopular Ventures",
+    "website": "https://unpopularventures.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.unpopular.vc/team"
+  },
+  {
+    "company": "Orbit Startups",
+    "website": "https://orbitstartups.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://orbitventures.com/partnerships/"
+  },
+  {
+    "company": "Wavelaunch VC",
+    "website": "https://wavelaunchvc.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Venture Cooperative",
+    "website": "https://venturecoop.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://venturecoop.com/"
+  },
+  {
+    "company": "Bertelsmann India Investments",
+    "website": "https://bertelsmann-india.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Tiger Global Management",
+    "website": "https://www.tigerglobal.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.tigerglobal.com/"
+  },
+  {
+    "company": "Unitus Capital",
+    "website": "https://unituscapital.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://unituscapital.com/about-us/"
+  },
+  {
+    "company": "Menterra Ventures",
+    "website": "https://www.menterra.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.menterra.com/about-us/"
+  },
+  {
+    "company": "Omidyar Network India",
+    "website": "https://omidyarnetwork.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Gaja Capital",
+    "website": "https://gajacapital.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://gajacapital.com/about"
+  }
+]

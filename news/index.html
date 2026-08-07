@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" class="scrollable-page">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ23KLLWFM"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BJ23KLLWFM');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="/js/analytics.js?v=2" defer></script>
+    <script src="/js/nav.js?v=101" defer></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
     <title>VC & Startup Funding News | VC Dekho</title>
     <meta name="description" content="Latest VC funding news, startup rounds, and investor insights from India's startup ecosystem.">
-    <link rel="icon" type="image/png" href="/assets/logoforvc.png">
-    <link rel="stylesheet" href="/style.css?v=54">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/css/base.css?v=101">
+    <link rel="stylesheet" href="/css/hero.css?v=73">
+    <link rel="stylesheet" href="/css/ambient.css?v=98">
+    <link rel="stylesheet" href="/css/blog.css?v=74">
 </head>
-<body class="scrollable-page">
+<body class="scrollable-page pub-page">
     <div class="app-container">
         <header class="site-header">
             <a href="/" class="logo-container">
@@ -26,9 +31,12 @@
             </button>
             <nav class="main-nav" id="navigation-bar">
                 <a href="/" class="nav-link">Home</a>
+                <a href="/investors" class="nav-link">Investors</a>
+                <a href="/funds" class="nav-link">Funds</a>
+                <a href="/buzz" class="nav-link">Founder Buzz</a>
                 <a href="/blog" class="nav-link">Blog</a>
                 <a href="/news" class="nav-link active">News</a>
-                <a href="/login" class="nav-link">Log in</a>
+                <a href="/login" class="nav-link" id="nav-auth-link">Log in</a>
             </nav>
         </header>
 
@@ -42,16 +50,16 @@
                 </div>
             </div>
             
-            <div style="max-width: 1000px; margin: 0 auto; text-align: left; position: relative; z-index: 10; padding: 0 20px;">
+            <div class="blog-content news-page-content">
                 <!-- Breadcrumbs -->
-                <div style="margin-bottom: 25px; font-size: 0.9rem; color: var(--color-text-muted);">
+                <div class="news-breadcrumbs">
                     <a href="/" style="color: var(--color-text-muted); text-decoration: none;">Home</a> 
                     <span style="margin: 0 8px;">›</span> 
                     <span style="color: var(--color-accent-orange);">News</span>
                 </div>
 
-                <h1 class="blog-title" style="font-size: 3.5rem; margin-bottom: 10px;">Latest VC News</h1>
-                <p style="color: var(--color-text-muted); margin-bottom: 50px; font-size: 1.15rem; max-width: 600px;">Daily funding rounds, VC firm updates, and startup news from across India's vibrant ecosystem.</p>
+                <h1 class="blog-title">Latest VC News</h1>
+                <p class="news-page-lead">Daily funding rounds, VC firm updates, and startup news from across India's vibrant ecosystem.</p>
 
                 <div id="news-container" aria-busy="true">
                     <div class="news-feed-card featured-news-card news-skel-card" aria-hidden="true">
@@ -98,7 +106,9 @@
         </main>
     </div>
 
-    <script src="/app.js"></script>
+        <script src="/js/auth.js" defer></script>
+    <script src="/js/directory-session.js?v=2" defer></script>
+<script src="/app.js" defer></script>
     <script>
         async function fetchNews() {
             const container = document.getElementById('news-container');

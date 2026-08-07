@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" class="scrollable-page">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ23KLLWFM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-BJ23KLLWFM');
-</script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/analytics.js?v=2" defer></script>
+    <script src="/js/nav.js?v=101" defer></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
     <title>What Is a VC Investment Thesis? A Founder's Guide to Reading One - VC Dekho</title>
     
     <!-- SEO Meta Tags -->
@@ -20,8 +15,15 @@
     <meta name="keywords" content="Venture Capital Thesis, VC Investment Thesis, Startup Fundraising India, Pitching VCs, VC Dekho">
     
     <!-- Stylesheets & Favicon -->
-    <link rel="stylesheet" href="/style.css?v=52">
-    <link rel="icon" type="image/png" href="/assets/logoforvc.png">
+    <link rel="stylesheet" href="/css/base.css?v=101">
+    <link rel="stylesheet" href="/css/hero.css?v=73">
+    <link rel="stylesheet" href="/css/ambient.css?v=98">
+    <link rel="stylesheet" href="/css/blog.css?v=74">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 
     <!-- Schema Markup for Breadcrumbs -->
     <script type="application/ld+json">
@@ -61,7 +63,7 @@
     <meta name="twitter:description" content="Learn what a venture capital investment thesis is, its five key components, how to decode it for any Indian VC fund, and what red flags startup founders must watch for.">
     <meta name="twitter:image" content="https://vcdekho.com/assets/logoforvc.png">
 </head>
-<body class="scrollable-page">
+<body class="scrollable-page pub-page">
     <div class="app-container">
         <!-- Site Header & Navigation -->
         <header class="site-header">
@@ -77,9 +79,12 @@
             
             <nav class="main-nav" id="navigation-bar">
                 <a href="/" class="nav-link">Home</a>
-<a href="/blog" class="nav-link active">Blog</a>
+                <a href="/investors" class="nav-link">Investors</a>
+                <a href="/funds" class="nav-link">Funds</a>
+                <a href="/buzz" class="nav-link">Founder Buzz</a>
+                <a href="/blog" class="nav-link active">Blog</a>
                 <a href="/news" class="nav-link">News</a>
-                <a href="/login" class="nav-link">Log in</a>
+                <a href="/login" class="nav-link" id="nav-auth-link">Log in</a>
             </nav>
         </header>
 
@@ -124,7 +129,7 @@
                 <article class="blog-article">
                     
                     <div class="blog-image-block">
-                        <img src="/assets/blog_2_hero.png" alt="A founder reading and decoding a VC investment thesis document" class="blog-image">
+                        <img src="/assets/blog_2_hero.webp" alt="A founder reading and decoding a VC investment thesis document" class="blog-image" loading="lazy">
                         <div class="blog-image-caption">Decoding a Venture Capital firm's core investment parameters.</div>
                     </div>
 
@@ -163,7 +168,7 @@
                     </p>
 
                     <div class="blog-image-block">
-                        <img src="/assets/blog_2_components.png" alt="The five components of a VC investment thesis - stage, sector, geography, cheque size, and core belief" class="blog-image">
+                        <img src="/assets/blog_2_components.webp" alt="The five components of a VC investment thesis - stage, sector, geography, cheque size, and core belief" class="blog-image" loading="lazy">
                         <div class="blog-image-caption">Infographic: The five connected layers of an investment thesis.</div>
                     </div>
 
@@ -350,7 +355,7 @@
                     </div>
 
                     <div class="blog-image-block">
-                        <img src="/assets/blog_2_framework.png" alt="VC thesis match framework - how to decide if a VC fits your startup" class="blog-image">
+                        <img src="/assets/blog_2_framework.webp" alt="VC thesis match framework - how to decide if a VC fits your startup" class="blog-image" loading="lazy">
                         <div class="blog-image-caption">Framework: Decision tree matrix to evaluate investor thesis fit.</div>
                     </div>
 
@@ -377,13 +382,13 @@
 
                     <!-- Waitlist CTA Card -->
                     <section class="blog-cta-banner">
-                        <img src="/assets/blog_vc_dekho_cta.png" alt="VC Dekho Brand Graphic Banner" class="blog-cta-bg">
+                        <img src="/assets/blog_vc_dekho_cta.webp" alt="VC Dekho Brand Graphic Banner" class="blog-cta-bg" loading="lazy">
                         <div class="blog-cta-content">
                             <h2 class="blog-cta-title">Every Indian VC's investment thesis - in one place</h2>
                             <p class="blog-cta-desc">
                                 VC Dekho is building India's most complete investor research platform - investment thesis, cheque sizes, sector focus, portfolio patterns, and unlockable direct contacts for every active Indian VC fund.
                             </p>
-                            <a href="/login" class="blog-cta-btn">Start exploring</a>
+                            <a href="/funds" class="blog-cta-btn">Start exploring</a>
                         </div>
                     </section>
 
@@ -407,7 +412,7 @@
                                 <span class="faq-toggle-icon">+</span>
                             </div>
                             <p class="faq-answer">
-                                Start with the fund's website 'About' or 'Thesis' page, then cross-reference with their portfolio page to see what they actually backed. Partner LinkedIn posts and podcasts often reveal the real thesis more clearly than any official document. Join the waitlist at vcdekho.com to unlock direct contacts.
+                                Start with the fund's website 'About' or 'Thesis' page, then cross-reference with their portfolio page to see what they actually backed. Partner LinkedIn posts and podcasts often reveal the real thesis more clearly than any official document. <a href="/funds">Create a free account</a> at vcdekho.com to browse 1,000+ funds and unlock direct contacts.
                             </p>
                         </div>
 
@@ -460,7 +465,7 @@
                             <!-- Card 1 -->
                             <a href="/blog/top-vc-firms-india" class="blog-post-card">
                                 <div class="blog-card-img-wrapper">
-                                    <img src="/assets/blog_hero_map.png" alt="Top 20 VC Firms in India" class="blog-card-img">
+                                    <img src="/assets/blog_hero_map.webp" alt="Top 20 VC Firms in India" class="blog-card-img">
                                 </div>
                                 <div class="blog-card-body">
                                     <span class="blog-card-category">VC Research</span>
@@ -475,7 +480,7 @@
                             <!-- Card 2 -->
                             <a href="/blog/micro-vcs-india-first-cheque" class="blog-post-card">
                                 <div class="blog-card-img-wrapper">
-                                    <img src="/assets/blog_3_hero.png" alt="Micro VCs in India" class="blog-card-img">
+                                    <img src="/assets/blog_3_hero.webp" alt="Micro VCs in India" class="blog-card-img">
                                 </div>
                                 <div class="blog-card-body">
                                     <span class="blog-card-category">VC Research</span>
@@ -490,7 +495,7 @@
                             <!-- Card 3 -->
                             <a href="/blog/how-to-find-right-vc-india" class="blog-post-card">
                                 <div class="blog-card-img-wrapper">
-                                    <img src="/assets/blog_4_hero.png" alt="Find the Right VC" class="blog-card-img">
+                                    <img src="/assets/blog_4_hero.webp" alt="Find the Right VC" class="blog-card-img">
                                 </div>
                                 <div class="blog-card-body">
                                     <span class="blog-card-category">Fundraising Fundamentals</span>
@@ -511,6 +516,8 @@
     </div>
 
     <!-- JavaScript Interactions -->
-    <script src="/blog/blog.js"></script>
+        <script src="/js/auth.js" defer></script>
+    <script src="/js/directory-session.js?v=2" defer></script>
+<script src="/blog/blog.js" defer></script>
 </body>
 </html>

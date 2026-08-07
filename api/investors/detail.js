@@ -1,12 +1,17 @@
-const { getInvestorBySlug, filterInvestors, toCard, hasStageGuide, deriveRelatedStages } = require('../../utils/investors');
+const { getInvestorBySlug, filterInvestors, toCard, hasStageGuide, deriveRelatedStages, ensureInvestorDetailExtras } = require('../../utils/investors');
 const { getThemePage, getAllThemes } = require('../../utils/thesis-themes');
 const { getStagePage } = require('../../utils/investment-stages');
 const { getSectorPage } = require('../../utils/sectors');
 const { renderStagePage } = require('../../utils/render-stage-page');
 const { renderSectorPage } = require('../../utils/render-sector-page');
-const { renderInvestorPage } = require('../../utils/render-investor-page');
+const { renderInvestorPage, renderInvestorExtrasHtml } = require('../../utils/render-investor-page');
 const { renderExploreRelated } = require('../../utils/render-explore-related');
 const { getThesisThemeIconSvg } = require('../../utils/thesis-theme-icons');
+const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('../../utils/site-labels');
+const { renderSiteNavLinks } = require('../../utils/render-site-nav');
+const { renderFaviconLinks } = require('../../utils/site-icons');
+const { setPublicHtmlCache } = require('../../utils/public-html-cache');
+const { isMobileRequest } = require('../../utils/profile-page-assets');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -38,7 +43,7 @@ function stageLinksForCard(inv) {
     const id = ids[i];
     if (hasStageGuide(id)) {
       return (
-        '<a class="theme-inv-stage-link" href="/investors/stages/' + escapeHtml(id) + '">' +
+        '<a class="theme-inv-stage-link" href="/funds/stages/' + escapeHtml(id) + '">' +
           escapeHtml(label) +
         '</a>'
       );
@@ -58,7 +63,7 @@ function renderThemePage(theme, res) {
 
   const investorCards = theme.investors.slice(0, 24).map(inv => (
     '<article class="theme-inv-card">' +
-      '<a class="theme-inv-card-main" href="/investors/' + escapeHtml(inv.slug) + '">' +
+      '<a class="theme-inv-card-main" href="/funds/' + escapeHtml(inv.slug) + '">' +
         '<div class="theme-inv-type">' + escapeHtml(inv.type) + '</div>' +
         '<h3>' + escapeHtml(inv.name) + '</h3>' +
         '<p>' + escapeHtml(inv.thesis || inv.chequeSize || '') + '</p>' +
@@ -69,10 +74,10 @@ function renderThemePage(theme, res) {
   )).join('');
 
   const otherCards = otherThemes.map(t => (
-    '<a class="theme-other-card" href="/investors/themes/' + escapeHtml(t.id) + '">' +
+    '<a class="theme-other-card" href="/funds/themes/' + escapeHtml(t.id) + '">' +
       '<div class="theme-other-top">' +
         getThesisThemeIconSvg(t.id, 'theme-other-icon') +
-        '<div class="theme-other-count">' + t.investorCount + ' investors</div>' +
+        '<div class="theme-other-count">' + t.investorCount + ' funds</div>' +
       '</div>' +
       '<h3>' + escapeHtml(t.label) + '</h3>' +
       '<p>' + escapeHtml(t.summary) + '</p>' +
@@ -84,9 +89,9 @@ function renderThemePage(theme, res) {
     subtitle: 'Pair this thesis with the right stage, then shortlist matching funds.',
     stages: relatedStages,
     themes: otherThemes.map(t => ({ id: t.id, label: t.label })),
-    fundsHref: '/investors?thesis=' + encodeURIComponent(theme.id),
+    fundsHref: '/funds?thesis=' + encodeURIComponent(theme.id),
     fundsLabel: 'Browse ' + theme.investorCount + ' matching funds →',
-    siblingHref: '/investors/sectors',
+    siblingHref: '/funds/sectors',
     siblingLabel: 'Sector guides →'
   });
 
@@ -94,16 +99,22 @@ function renderThemePage(theme, res) {
     '<!DOCTYPE html>',
     '<html lang="en" class="scrollable-page">',
     '<head>',
-    '<script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ23KLLWFM"></script>',
-    '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js", new Date());gtag("config","G-BJ23KLLWFM");</script>',
+    '<script src="/js/analytics.js?v=2" defer></script>',
+    '<script src="/js/nav.js?v=101" defer></script>',
     '<meta charset="UTF-8">',
-    '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
-    '<title>' + escapeHtml(theme.label) + ' Investors | Thesis Themes | VC Dekho</title>',
+    '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">',
+    '<link rel="preconnect" href="https://fonts.googleapis.com">',
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">',
+    '<title>' + escapeHtml(theme.label) + ' Funds | Thesis Themes | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(theme.summary).slice(0, 160) + '">',
-    '<link rel="canonical" href="https://vcdekho.com/investors/themes/' + escapeHtml(theme.id) + '">',
-    '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
+    '<link rel="canonical" href="https://vcdekho.com/funds/themes/' + escapeHtml(theme.id) + '">',
+    ...renderFaviconLinks(),
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/style.css?v=46">',
+    '<link rel="stylesheet" href="/css/base.css?v=101">',
+    '<link rel="stylesheet" href="/css/hero.css?v=73">',
+    '<link rel="stylesheet" href="/css/ambient.css?v=98">',
+    '<link rel="stylesheet" href="/css/directory.css?v=73">',
     '</head>',
     '<body class="scrollable-page inv-page">',
     '<div class="app-container">',
@@ -111,21 +122,18 @@ function renderThemePage(theme, res) {
     '<a href="/" class="logo-container"><img src="/assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img"></a>',
     '<button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>',
     '<nav class="main-nav" id="navigation-bar">',
-    '<a href="/" class="nav-link">Home</a>',
-    '<a href="/investors" class="nav-link active">Investors</a>',
-    '<a href="/blog" class="nav-link">Blog</a>',
-    '<a href="/news" class="nav-link">News</a>',
+    ...renderSiteNavLinks('funds'),
     '</nav></header>',
     '<main class="hero-showcase inv-detail-main">',
     '<div class="ambient-bg-wrapper"><div class="waitlist-bg"><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div><div class="glow-orb orb-3"></div></div></div>',
     '<div class="inv-detail-wrap theme-page-wrap">',
-    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="/investors">Investors</a><span>›</span><a href="/investors/themes">Thesis themes</a><span>›</span><span class="current">' + escapeHtml(theme.label) + '</span></div>',
+    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="' + FUNDS_PATH + '">' + FUNDS_LABEL + '</a><span>›</span><a href="/funds/themes">Thesis themes</a><span>›</span><span class="current">' + escapeHtml(theme.label) + '</span></div>',
     '<section class="theme-hero">',
     '<div class="theme-hero-icon-wrap" aria-hidden="true">' + getThesisThemeIconSvg(theme.id, 'theme-hero-icon') + '</div>',
     '<span class="inv-kicker">' + escapeHtml(theme.eyebrow) + '</span>',
     '<h1 class="inv-detail-title">' + escapeHtml(theme.label) + '</h1>',
     '<p class="inv-detail-thesis">' + escapeHtml(theme.summary) + '</p>',
-    '<div class="theme-hero-meta"><span>' + theme.investorCount + ' matching investors</span><a href="/investors?thesis=' + encodeURIComponent(theme.id) + '">View in directory →</a></div>',
+    '<div class="theme-hero-meta"><span>' + theme.investorCount + ' matching funds</span><a href="/funds?thesis=' + encodeURIComponent(theme.id) + '">View in directory →</a></div>',
     '</section>',
     '<section class="inv-body-panel theme-writeup-panel">',
     '<h2>What this thesis means</h2>',
@@ -136,37 +144,38 @@ function renderThemePage(theme, res) {
     '</div>',
     '</section>',
     '<section class="theme-investors-section">',
-    '<div class="theme-section-head"><h2>Investors with this thesis</h2><a href="/investors?thesis=' + encodeURIComponent(theme.id) + '">See all filters</a></div>',
-    '<div class="theme-inv-grid">' + (investorCards || '<p class="inv-empty">No investors tagged yet.</p>') + '</div>',
-    theme.investorCount > 24 ? ('<div class="theme-more"><a class="inv-btn inv-btn-primary" href="/investors?thesis=' + encodeURIComponent(theme.id) + '">Browse all ' + theme.investorCount + ' investors</a></div>') : '',
+    '<div class="theme-section-head"><h2>Funds with this thesis</h2><a href="/funds?thesis=' + encodeURIComponent(theme.id) + '">See all filters</a></div>',
+    '<div class="theme-inv-grid">' + (investorCards || '<p class="inv-empty">No funds tagged yet.</p>') + '</div>',
+    theme.investorCount > 24 ? ('<div class="theme-more"><a class="inv-btn inv-btn-primary" href="/funds?thesis=' + encodeURIComponent(theme.id) + '">Browse all ' + theme.investorCount + ' funds</a></div>') : '',
     '</section>',
     exploreHtml,
     otherCards ? ('<section class="theme-others"><h2>Other thesis themes</h2><div class="theme-others-grid">' + otherCards + '</div></section>') : '',
     '<section class="blog-cta-banner" style="margin: 3rem 0 1rem;">',
-    '<img src="/assets/blog_vc_dekho_cta.png" alt="VC Dekho" class="blog-cta-bg">',
+    '<img src="/assets/blog_vc_dekho_cta.webp" alt="VC Dekho" class="blog-cta-bg">',
     '<div class="blog-cta-content">',
     '<h2 class="blog-cta-title">Match your round to the right thesis</h2>',
-    '<p class="blog-cta-desc">VC Dekho helps founders shortlist investors by stage, sector, cheque size, and investment thesis.</p>',
-    '<a href="/investors" class="blog-cta-btn">Browse investors</a>',
+    '<p class="blog-cta-desc">VC Dekho helps founders shortlist funds by stage, sector, cheque size, and investment thesis.</p>',
+    '<a href="' + FUNDS_PATH + '" class="blog-cta-btn">Browse funds</a>',
     '</div></section>',
     '</div></main></div>',
-    '<script src="/js/auth.js"></script>',
-    '<script src="/app.js"></script>',
+    '<script src="/js/auth.js" defer></script>',
+    '<script src="/js/directory-session.js?v=2" defer></script>',
+    '<script src="/app.js" defer></script>',
     '</body></html>'
   ].join('\n');
 
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
+  setPublicHtmlCache(res);
   return res.status(200).send(html);
 }
 
 module.exports = async function handler(req, res) {
-  const { slug, view } = req.query || {};
+  const { slug, view, extras } = req.query || {};
   if (!slug) {
     return res.status(400).send('<h1>400 - Bad Request</h1>');
   }
 
   try {
+    // Guides don't need live portfolio/activity rows
     if (view === 'theme') {
       const theme = getThemePage(slug);
       if (!theme) return res.status(404).send('<h1>404 - Thesis theme not found</h1>');
@@ -185,6 +194,24 @@ module.exports = async function handler(req, res) {
       return renderSectorPage(sector, res);
     }
 
+    // Public JSON for mweb client hydrate (activity + portfolio HTML)
+    if (extras === '1' || extras === 'true') {
+      await ensureInvestorDetailExtras(slug);
+      const investor = getInvestorBySlug(slug);
+      if (!investor) {
+        res.setHeader('Cache-Control', 'public, max-age=60');
+        return res.status(404).json({ error: 'Investor not found' });
+      }
+      const payload = renderInvestorExtrasHtml(investor);
+      res.setHeader('Content-Type', 'application/json; charset=utf-8');
+      res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=300, stale-while-revalidate=3600');
+      res.setHeader('CDN-Cache-Control', 'public, s-maxage=300, stale-while-revalidate=3600');
+      return res.status(200).json(payload);
+    }
+
+    // Always SSR activity/portfolio in first HTML (mweb + desktop) — no late hydrate
+    await ensureInvestorDetailExtras(slug);
+
     const investor = getInvestorBySlug(slug);
     if (!investor) {
       return res.status(404).send('<h1>404 - Investor Not Found</h1>');
@@ -198,7 +225,10 @@ module.exports = async function handler(req, res) {
       .slice(0, 3)
       .map(toCard);
 
-    return renderInvestorPage(investor, related, res);
+    // mwebFirstPaint: focus/thesis visible on first paint (not deferred extras)
+    return renderInvestorPage(investor, related, res, {
+      mwebFirstPaint: isMobileRequest(req)
+    });
   } catch (error) {
     console.error('investor detail error:', error);
     res.status(500).send('<h1>500 - Internal Server Error</h1>');

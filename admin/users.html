@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Users · VC Dekho Admin</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.12);
+      --text: rgba(255,255,255,0.9);
+      --muted: rgba(255,255,255,0.55);
+      --accent: #ED572F;
+      --font: "Plus Jakarta Sans", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: var(--font); background: var(--bg); color: var(--text); padding: 1.5rem; line-height: 1.45; }
+    h1 { font-size: 1.6rem; margin: 0 0 0.35rem; font-weight: 650; }
+    .sub { color: var(--muted); margin: 0 0 1.25rem; font-size: 0.92rem; }
+    .top { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .links a { color: #ffb89c; text-decoration: none; margin-right: 1rem; font-size: 0.9rem; font-weight: 600; }
+    .links a:hover { text-decoration: underline; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; align-items: center; }
+    input[type="search"] {
+      flex: 1; min-width: 200px; padding: 0.6rem 0.85rem; border-radius: 10px;
+      border: 1px solid var(--border); background: rgba(255,255,255,0.04); color: var(--text); font: inherit;
+    }
+    button {
+      background: var(--accent); color: #fff; border: none; border-radius: 10px;
+      padding: 0.6rem 1rem; font-weight: 650; cursor: pointer; font-size: 0.88rem;
+    }
+    button.secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1rem; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 720px; }
+    th, td { text-align: left; padding: 0.55rem 0.4rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { color: var(--muted); font-weight: 650; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .pill { display: inline-block; padding: 0.12rem 0.45rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700; border: 1px solid var(--border); color: var(--muted); }
+    .pager { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: space-between; margin-top: 1rem; }
+    #msg { margin: 0.5rem 0; font-size: 0.9rem; color: #ff6b6b; }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <div>
+      <h1>All users</h1>
+      <p class="sub">Users seen since 3 Aug 2026 — login + directory activity.</p>
+    </div>
+    <div class="links">
+      <a href="/admin/analytics.html">← Analytics</a>
+      <a href="/admin/">Ops →</a>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <input type="search" id="search" placeholder="Search by email…" autocomplete="off">
+    <button type="button" id="btn-search">Search</button>
+    <button type="button" class="secondary" id="btn-clear">Clear</button>
+  </div>
+  <p id="msg" hidden></p>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Registered</th>
+          <th>Last active</th>
+          <th>Unlocks</th>
+          <th>Daily limit</th>
+          <th>Platform</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"><tr><td colspan="6">Loading…</td></tr></tbody>
+    </table>
+    <div class="pager">
+      <button type="button" class="secondary" id="btn-prev" disabled>← Previous</button>
+      <span id="page-label" style="color:var(--muted);font-size:0.88rem"></span>
+      <button type="button" class="secondary" id="btn-next" disabled>Next →</button>
+    </div>
+  </div>
+
+  <script>
+    const SECRET_KEY = 'vd_admin_secret';
+    const PAGE_SIZE = 50;
+    let secret = sessionStorage.getItem(SECRET_KEY) || '';
+    if (!secret) {
+      secret = prompt('Enter ADMIN_SECRET:') || '';
+      if (secret) sessionStorage.setItem(SECRET_KEY, secret);
+    }
+
+    let offset = 0;
+    let total = 0;
+    let q = '';
+
+    function fmt(ts) {
+      if (!ts) return '—';
+      try { return new Date(ts).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }); } catch (_) { return String(ts); }
+    }
+
+    function setMsg(text) {
+      const el = document.getElementById('msg');
+      if (!text) { el.hidden = true; return; }
+      el.hidden = false;
+      el.textContent = text;
+    }
+
+    async function load() {
+      setMsg('');
+      const params = new URLSearchParams({
+        action: 'analytics',
+        view: 'users',
+        offset: String(offset),
+        limit: String(PAGE_SIZE)
+      });
+      if (q) params.set('q', q);
+
+      const res = await fetch('/api/ops?' + params.toString(), {
+        headers: { Authorization: 'Bearer ' + secret }
+      });
+      if (res.status === 401) {
+        sessionStorage.removeItem(SECRET_KEY);
+        setMsg('Unauthorized — reload and enter ADMIN_SECRET again.');
+        return;
+      }
+      if (!res.ok) {
+        setMsg('Failed to load users (' + res.status + ')');
+        return;
+      }
+      const data = await res.json();
+      total = data.total || 0;
+      const users = data.users || [];
+      const tbody = document.getElementById('tbody');
+
+      if (!users.length) {
+        tbody.innerHTML = '<tr><td colspan="6">No users found</td></tr>';
+      } else {
+        tbody.innerHTML = users.map(function (u) {
+          const limit = u.unlimitedUnlocks ? 'Unlimited' : String(u.dailyUnlockLimit || 10);
+          const platform = u.signupPlatform || '—';
+          return '<tr>' +
+            '<td>' + u.email + '</td>' +
+            '<td>' + fmt(u.registeredAt) + '</td>' +
+            '<td>' + fmt(u.lastActiveAt) + '</td>' +
+            '<td>' + Number(u.unlocksCount || 0).toLocaleString('en-IN') + '</td>' +
+            '<td>' + limit + '</td>' +
+            '<td><span class="pill">' + platform + '</span></td>' +
+            '</tr>';
+        }).join('');
+      }
+
+      const page = Math.floor(offset / PAGE_SIZE) + 1;
+      const pages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+      document.getElementById('page-label').textContent =
+        'Page ' + page + ' of ' + pages + ' · ' + total.toLocaleString('en-IN') + ' users';
+      document.getElementById('btn-prev').disabled = offset <= 0;
+      document.getElementById('btn-next').disabled = offset + PAGE_SIZE >= total;
+    }
+
+    document.getElementById('btn-search').addEventListener('click', function () {
+      q = document.getElementById('search').value.trim();
+      offset = 0;
+      load().catch(function (e) { setMsg(e.message); });
+    });
+    document.getElementById('btn-clear').addEventListener('click', function () {
+      document.getElementById('search').value = '';
+      q = '';
+      offset = 0;
+      load().catch(function (e) { setMsg(e.message); });
+    });
+    document.getElementById('search').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') document.getElementById('btn-search').click();
+    });
+    document.getElementById('btn-prev').addEventListener('click', function () {
+      offset = Math.max(0, offset - PAGE_SIZE);
+      load().catch(function (e) { setMsg(e.message); });
+    });
+    document.getElementById('btn-next').addEventListener('click', function () {
+      offset += PAGE_SIZE;
+      load().catch(function (e) { setMsg(e.message); });
+    });
+
+    load().catch(function (e) { setMsg(e.message); });
+  </script>
+</body>
+</html>

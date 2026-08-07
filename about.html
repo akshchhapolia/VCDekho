@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ23KLLWFM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-BJ23KLLWFM');
-</script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/analytics.js?v=2" defer></script>
+    <script src="/js/nav.js?v=101" defer></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
     <title>About Us - VC Dekho</title>
     
     <!-- SEO Meta Tags -->
@@ -20,8 +15,14 @@
     <meta name="keywords" content="About VC Dekho, Venture Capital India, Startup Funding, Find Investors">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css?v=52">
-    <link rel="icon" type="image/png" href="/assets/logoforvc.png">
+    <link rel="stylesheet" href="/css/base.css?v=101">
+    <link rel="stylesheet" href="/css/hero.css?v=73">
+    <link rel="stylesheet" href="/css/ambient.css?v=98">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://vcdekho.com/about">
     <meta property="og:title" content="About Us - VC Dekho">
     <meta property="og:description" content="Learn more about VC Dekho and our mission to simplify venture capital discovery and fundraising for Indian startup founders.">
@@ -44,7 +45,7 @@
     }
     </script>
 </head>
-<body>
+<body class="scrollable-page">
     <div class="app-container">
         <!-- Site Header & Navigation -->
         <header class="site-header">
@@ -60,9 +61,10 @@
             
             <nav class="main-nav" id="navigation-bar">
                 <a href="/" class="nav-link">Home</a>
-<a href="/blog" class="nav-link">Blog</a>
+                <a href="/buzz" class="nav-link">Founder Buzz</a>
+                <a href="/blog" class="nav-link">Blog</a>
                 <a href="/news" class="nav-link">News</a>
-                <a href="/login" class="nav-link">Log in</a>
+                <a href="/login" class="nav-link" id="nav-auth-link">Log in</a>
             </nav>
         </header>
 
@@ -126,5 +128,7 @@
 
     <!-- JavaScript Interactions -->
     <script src="about.js"></script>
+    <script src="/js/auth.js" defer></script>
+    <script src="/js/directory-session.js?v=2" defer></script>
 </body>
 </html>

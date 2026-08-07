@@ -33,8 +33,38 @@ const SECTOR_CANON = [
   { id: 'logistics', label: 'Supply Chain / Logistics', match: [/logistics/i, /supply\s*chain/i, /mobility/i] },
   { id: 'agritech', label: 'Agritech / Food', match: [/agri/i, /food/i, /farming/i] },
   { id: 'gaming', label: 'Gaming / Media', match: [/gaming/i, /media/i, /entertainment/i, /content/i] },
+  {
+    id: 'sports',
+    label: 'Sports',
+    match: [
+      /\bsports?\b/i,
+      /esports?/i,
+      /e-sports?/i,
+      /fantasy sports?/i,
+      /sportstech/i,
+      /sports tech/i,
+      /sports media/i,
+      /fan engagement/i,
+      /dream\s*sports/i,
+      /dream11/i,
+      /\brooter\b/i,
+      /\bmpl\b/i,
+      /mobile premier league/i,
+      /stepsetgo/i,
+      /step set go/i,
+      /\bfancode\b/i,
+      /sportskeeda/i,
+      /\bplayo\b/i,
+      /sportz interactive/i,
+      /\bnazara\b/i,
+      /\bloco\b/i,
+      /\brusk media\b/i
+    ]
+  },
   { id: 'proptech', label: 'PropTech / Real Estate', match: [/prop\s*tech/i, /real\s*estate/i] },
   { id: 'impact', label: 'Social Impact', match: [/impact/i, /social/i, /inclusion/i] },
+  { id: 'cyber-security', label: 'Cyber Security', match: [/cyber\s*security/i, /cybersecurity/i, /infosec/i, /information security/i, /cloud\s*security/i, /endpoint security/i, /threat detection/i, /zero trust/i, /application security/i, /devsecops/i, /cloudsek/i, /astra security/i, /safe security/i, /bluesapphire/i] },
+  { id: 'blockchain', label: 'Blockchain', match: [/blockchain/i, /\bweb3\b/i, /\bcrypto\b/i, /crypto\//i, /crypto-/i, /\bdefi\b/i, /\bnft\b/i, /gamefi/i, /tokenomics/i, /on[-\s]?chain/i] },
   { id: 'sector-agnostic', label: 'Sector Agnostic', match: [/sector\s*agnostic/i, /multi[-\s]?sector/i, /generalist/i] }
 ];
 
@@ -54,7 +84,8 @@ const THESIS_THEMES = [
   { id: 'healthtech', label: 'Healthtech / wellness', match: [/healthtech/i, /health[-\s]?tech/i, /healthcare/i, /wellness/i, /medtech/i, /digital health/i], sectorIds: ['health'] },
   { id: 'climate', label: 'Climate / sustainability', match: [/climate/i, /sustainab/i, /clean[-\s]?tech/i, /cleantech/i, /renewable/i, /net[-\s]?zero/i], sectorIds: ['climate'] },
   { id: 'pre-seed-day-zero', label: 'Pre-seed / day-zero', match: [/pre[-\s]?seed/i, /day[-\s]?zero/i, /first cheque/i, /first significant backer/i], stageIds: ['pre-seed'] },
-  { id: 'crypto-web3', label: 'Crypto / Web3', match: [/crypto/i, /web3/i, /blockchain/i, /bitcoin/i, /\bdefi\b/i] },
+  { id: 'crypto-web3', label: 'Crypto / Web3', match: [/crypto/i, /web3/i, /blockchain/i, /bitcoin/i, /\bdefi\b/i], sectorIds: ['blockchain'] },
+  { id: 'cyber-security', label: 'Cybersecurity / infosec', match: [/cyber\s*security/i, /cybersecurity/i, /infosec/i, /cloud\s*security/i, /threat detection/i], sectorIds: ['cyber-security'] },
   { id: 'family-offices', label: 'Family offices', match: [/family\s*office/i, /patient capital/i], typeIds: ['family-office'] },
   { id: 'angel-syndicates', label: 'Angel syndicates / networks', match: [/syndicate/i, /angel network/i, /angel community/i, /rolling fund/i], typeIds: ['syndicate', 'angel'] },
   { id: 'agri-food', label: 'Agri / food systems', match: [/agri/i, /agtech/i, /foodtech/i, /agriculture/i, /farming/i, /food system/i], sectorIds: ['agritech'] },
@@ -322,15 +353,20 @@ function build() {
     const stages = uniqueById(matchCanon(stageText, STAGE_CANON));
     // Prefer explicit Sector cell + short thesis; include name/notes for keyword hits
     // (e.g. "W Health", "Beams") without scanning long template writeups.
+    const writeupSnippet = String(row['Detailed Writeup (~200 words)'] || '').slice(0, 2500);
     let sectors = uniqueById(
-      matchCanon(`${sectorText} ${thesisText} ${name} ${row.Notes || ''}`, SECTOR_CANON)
+      matchCanon(`${sectorText} ${thesisText} ${name} ${row.Notes || ''} ${writeupSnippet}`, SECTOR_CANON)
     );
     if (!sectors.length && sectorText.trim()) {
       const first = splitList(sectorText)[0] || 'Other';
       if (/^all sectors$/i.test(first) || /^sector-?agnostic$/i.test(first)) {
         sectors = [{ id: 'sector-agnostic', label: 'Sector Agnostic' }];
-      } else if (/^(crypto|web3)$/i.test(first)) {
-        sectors = [{ id: 'fintech', label: 'Fintech' }];
+      } else if (/^(crypto|web3|blockchain)$/i.test(first) || /crypto\/blockchain/i.test(first)) {
+        sectors = [{ id: 'blockchain', label: 'Blockchain' }];
+      } else if (/^cyber\s*security$/i.test(first) || /^cybersecurity$/i.test(first)) {
+        sectors = [{ id: 'cyber-security', label: 'Cyber Security' }];
+      } else if (/^sports?$/i.test(first) || /^sportstech$/i.test(first)) {
+        sectors = [{ id: 'sports', label: 'Sports' }];
       } else {
         sectors = [{ id: 'other', label: first }];
       }
@@ -406,6 +442,34 @@ function build() {
       const logos = JSON.parse(fs.readFileSync(logosPath, 'utf8'));
       investors.forEach((inv) => {
         if (logos[inv.slug] && logos[inv.slug].path) inv.logo = logos[inv.slug].path;
+      });
+    } catch (_) {}
+  }
+
+  // Static fallback for the "actively deploying" signal — a one-time snapshot
+  // from the early manual runs of scripts/build_investor_activity.js. The live
+  // source of truth is now the investor_activity DB table, refreshed
+  // automatically by api/cron/investor-activity.js (news pipeline) and
+  // api/cron/investor-activity-backfill.js (targeted web search), and merged
+  // in at request time by utils/investors.js#ensureActivityFresh(). This file
+  // is no longer regenerated — it only matters if the DB is briefly
+  // unreachable. activelyDeploying itself is NOT stored here — it's derived
+  // at request time from lastCheckDate, so the badge correctly ages out.
+  const activityPath = path.join(ROOT, 'data', 'investor-activity.json');
+  if (fs.existsSync(activityPath)) {
+    try {
+      const payload = JSON.parse(fs.readFileSync(activityPath, 'utf8'));
+      const activity = payload.activity || {};
+      investors.forEach((inv) => {
+        const a = activity[inv.slug];
+        if (!a) return;
+        inv.lastCheckDate = a.lastCheckDate || null;
+        inv.lastCheckSector = a.lastCheckSector || null;
+        inv.lastCheckHighlight = a.lastCheckHighlight || null;
+        inv.lastCheckSource = a.lastCheckSource || null;
+        inv.lastCheckSourceTitle = a.lastCheckSourceTitle || null;
+        inv.recentCheckCount = a.recentCheckCount || 0;
+        inv.recentChecks = a.recentChecks || [];
       });
     } catch (_) {}
   }

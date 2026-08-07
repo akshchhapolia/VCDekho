@@ -1,11 +1,22 @@
 /**
  * Editorial investor profile page renderer.
  */
-const { hasStageGuide, deriveRelatedStages, loadInvestorsData } = require('./investors');
+const { hasStageGuide, deriveRelatedStages, loadInvestorsData, isActivelyDeploying, ACTIVE_WINDOW_DAYS } = require('./investors');
 const { getAllStages } = require('./investment-stages');
 const { hasSectorGuide } = require('./sectors');
 const { renderExploreRelated } = require('./render-explore-related');
+const { setPublicHtmlCache } = require('./public-html-cache');
+const { renderProfileHeadAssets, earlyStickyPinScript } = require('./profile-page-assets');
 const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
+const { renderFaviconLinks } = require('./site-icons');
+const { getPeopleByCompanySlug } = require('./people');
+const { portfolioCardHref } = require('./portfolio-card-href');
+const { filterPortfolioJunk } = require('./portfolio-junk-filter');
+const { filterPortfolioForDisplay } = require('./portfolio-india-filter');
+const { portfolioCardBodyHtml } = require('./render-portfolio-card');
+const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL, fundHref, personHref, fundStageHref, fundThemeHref, fundSectorHref, FUNDS_STAGES_PATH, FUNDS_THEMES_PATH, FUNDS_SECTORS_PATH } = require('./site-labels');
+const { renderSiteNavLinks } = require('./render-site-nav');
+const { RECENT_ACTIVITY_LIMIT } = require('./investor-activity-store');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -25,7 +36,7 @@ function directoryWidget() {
   const countLabel = investorCount >= 100 ? String(Math.floor(investorCount / 10) * 10) + '+' : String(investorCount);
 
   return (
-    '<aside class="inv-profile-dir-widget" aria-label="Investor directory">' +
+    '<aside class="inv-profile-dir-widget" aria-label="Fund directory">' +
       '<div class="inv-profile-dir-visual" aria-hidden="true">' +
         '<svg class="inv-profile-dir-svg" viewBox="0 0 220 132" fill="none" xmlns="http://www.w3.org/2000/svg">' +
           '<rect x="8" y="8" width="204" height="36" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.16)"/>' +
@@ -51,15 +62,15 @@ function directoryWidget() {
         '</svg>' +
       '</div>' +
       '<div class="inv-profile-dir-stats">' +
-        '<div class="inv-profile-dir-stat"><strong>' + escapeHtml(countLabel) + '</strong><span>Investors</span></div>' +
+        '<div class="inv-profile-dir-stat"><strong>' + escapeHtml(countLabel) + '</strong><span>Funds</span></div>' +
         '<div class="inv-profile-dir-stat"><strong>' + stageCount + '</strong><span>Stages</span></div>' +
         '<div class="inv-profile-dir-stat"><strong>' + sectorCount + '</strong><span>Sectors</span></div>' +
         '<div class="inv-profile-dir-stat"><strong>' + themeCount + '</strong><span>Themes</span></div>' +
       '</div>' +
       '<div class="inv-profile-dir-copy">' +
-        '<h2 class="inv-profile-dir-title">Find more investors like this</h2>' +
+        '<h2 class="inv-profile-dir-title">Find more funds like this</h2>' +
         '<p class="inv-profile-dir-desc">Filter by stage, sector, cheque size, and thesis.</p>' +
-        '<a class="inv-profile-cta is-ghost" href="/investors">Investor Directory</a>' +
+        '<a class="inv-profile-cta is-ghost" href="' + FUNDS_PATH + '">Browse funds</a>' +
       '</div>' +
     '</aside>'
   );
@@ -91,14 +102,172 @@ function aboutProse(text) {
   return parts.map(p => '<p class="inv-profile-prose">' + escapeHtml(p) + '</p>').join('');
 }
 
-function thesisWidget(investor) {
+function formatActivityDate(dateStr) {
+  if (!dateStr) return '';
+  try {
+    return new Date(dateStr).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+  } catch (_) {
+    return '';
+  }
+}
+
+function activityBadge(investor) {
+  if (!isActivelyDeploying(investor)) return '';
+  return (
+    '<span class="inv-profile-active-badge" title="Linked to a funding round within the last ' +
+    ACTIVE_WINDOW_DAYS +
+    ' days">' +
+    '<span class="inv-profile-active-dot" aria-hidden="true"></span>Actively deploying' +
+    '</span>'
+  );
+}
+
+function recentActivitySection(investor) {
+  const checks = (investor.recentChecks || []).slice(0, RECENT_ACTIVITY_LIMIT);
+  if (!checks.length) return '';
+
+  const rows = checks
+    .map((c) => {
+      const dateLabel = formatActivityDate(c.date);
+      const highlight = escapeHtml(c.highlight || '');
+      const sector = c.sector ? '<span class="inv-profile-activity-sector">' + escapeHtml(c.sector) + '</span>' : '';
+      const inner =
+        '<span class="inv-profile-activity-date">' + escapeHtml(dateLabel) + '</span>' +
+        '<span class="inv-profile-activity-highlight">' + highlight + '</span>' +
+        sector;
+      if (c.source && String(c.source).startsWith('/news/')) {
+        return '<a class="inv-profile-activity-row" href="' + escapeHtml(c.source) + '">' + inner + '</a>';
+      }
+      if (c.source) {
+        return (
+          '<a class="inv-profile-activity-row" href="' +
+          escapeHtml(c.source) +
+          '" target="_blank" rel="noopener noreferrer">' +
+          inner +
+          '</a>'
+        );
+      }
+      return '<div class="inv-profile-activity-row">' + inner + '</div>';
+    })
+    .join('');
+
+  return (
+    '<section class="inv-profile-section inv-profile-reveal" id="activity">' +
+    '<div class="inv-profile-section-label">04 — Activity</div>' +
+    '<div class="inv-profile-section-head"><h2>Recent activity</h2><p>Checks and mentions picked up from India startup news over the last ' +
+    ACTIVE_WINDOW_DAYS +
+    ' days.</p></div>' +
+    '<div class="inv-profile-activity-list">' +
+    rows +
+    '</div>' +
+    '</section>'
+  );
+}
+
+function filteredPortfolioCompanies(investor) {
+  return filterPortfolioForDisplay(investor, filterPortfolioJunk);
+}
+
+const PORTFOLIO_INITIAL_SIZE = 12;
+const PORTFOLIO_LOAD_STEP = 12;
+const PORTFOLIO_SEARCH_MIN = 24;
+
+function portfolioSection(investor) {
+  const companies = filterPortfolioForDisplay(investor, filterPortfolioJunk);
+  if (!companies.length) return '';
+
+  const total = companies.length;
+  const usePagination = total > PORTFOLIO_INITIAL_SIZE;
+  const useSearch = total >= PORTFOLIO_SEARCH_MIN;
+
+  const cards = companies
+    .map((c, index) => {
+      const body = portfolioCardBodyHtml(c);
+
+      const dataName = escapeHtml(String(c.name || '').toLowerCase());
+      const hiddenAttr =
+        usePagination && index >= PORTFOLIO_INITIAL_SIZE ? ' hidden' : '';
+      const cardAttrs =
+        ' class="inv-profile-portfolio-card" data-name="' + dataName + '"' + hiddenAttr;
+
+      const href = portfolioCardHref(c, investor.website);
+      if (href) {
+        return (
+          '<a' +
+          cardAttrs +
+          ' href="' +
+          escapeHtml(href) +
+          '" target="_blank" rel="noopener noreferrer">' +
+          body +
+          '</a>'
+        );
+      }
+      return '<div' + cardAttrs + '>' + body + '</div>';
+    })
+    .join('');
+
+  const countLabel = total === 1 ? '1 company' : total + ' companies';
+  const subtitle =
+    'Startups this investor has backed — round, amount, date, and source when we can verify them publicly.';
+
+  const initialShowing = usePagination ? Math.min(PORTFOLIO_INITIAL_SIZE, total) : total;
+
+  const statusHtml = usePagination
+    ? '<p class="inv-profile-portfolio-status" id="inv-portfolio-status" aria-live="polite">Showing ' +
+      initialShowing +
+      ' of ' +
+      total +
+      '</p>'
+    : '';
+
+  const toolbar = useSearch
+    ? '<div class="inv-profile-portfolio-toolbar">' +
+      '<label class="inv-profile-portfolio-search-wrap">' +
+      '<input type="search" class="inv-profile-portfolio-search" id="inv-portfolio-search" placeholder="Search portfolio" autocomplete="off" aria-label="Search portfolio">' +
+      '</label>' +
+      statusHtml +
+      '</div>'
+    : statusHtml;
+
+  const loadMore =
+    usePagination
+      ? '<div class="inv-profile-portfolio-more-wrap">' +
+        '<button type="button" class="inv-profile-portfolio-more" id="inv-portfolio-more" data-page-size="' +
+        PORTFOLIO_LOAD_STEP +
+        '" data-total="' +
+        total +
+        '">View more</button>' +
+        '</div>'
+      : '';
+
+  return (
+    '<section class="inv-profile-section inv-profile-reveal" id="portfolio" data-portfolio-total="' +
+    total +
+    '">' +
+    '<div class="inv-profile-section-label">05 — Portfolio</div>' +
+    '<div class="inv-profile-section-head"><h2>Portfolio companies</h2><p class="inv-profile-portfolio-count">' +
+    escapeHtml(countLabel) +
+    '</p><p>' +
+    subtitle +
+    '</p></div>' +
+    toolbar +
+    '<div class="inv-profile-portfolio-grid" id="inv-portfolio-grid">' +
+    cards +
+    '</div>' +
+    loadMore +
+    '</section>'
+  );
+}
+
+function thesisWidget(investor, opts) {
+  opts = opts || {};
   const labels = investor.thesisThemes || [];
   const ids = investor.thesisThemeIds || [];
   if (!labels.length) return '';
 
   const chipsHtml = labels.map(function (label, i) {
     const id = ids[i];
-    const href = id && id !== 'general' ? '/investors/themes/' + id : '';
+    const href = id && id !== 'general' ? '/funds/themes/' + id : '';
     const cls = 'inv-profile-chip inv-profile-chip-thesis';
     const icon = getThesisThemeIconSvg(id || '', 'inv-profile-chip-icon');
     const inner = icon + '<span>' + escapeHtml(label) + '</span>';
@@ -106,22 +275,35 @@ function thesisWidget(investor) {
     return '<span class="' + cls + '">' + inner + '</span>';
   }).join('');
 
+  const revealCls = opts.visible
+    ? 'inv-profile-section inv-profile-thesis inv-profile-reveal is-visible'
+    : 'inv-profile-section inv-profile-thesis inv-profile-reveal';
+
   return (
-    '<section class="inv-profile-section inv-profile-thesis inv-profile-reveal" id="thesis">' +
+    '<section class="' + revealCls + '" id="thesis">' +
       '<div class="inv-profile-section-label">03 — Thesis</div>' +
       '<div class="inv-profile-section-head inv-profile-section-head-row">' +
         '<div>' +
           '<h2>Investment thesis</h2>' +
           '<p>Themes this investor is mapped to across the VC Dekho directory.</p>' +
         '</div>' +
-        '<a class="inv-profile-browse" href="/investors/themes">All themes →</a>' +
+        '<a class="inv-profile-browse" href="/funds/themes">All themes →</a>' +
       '</div>' +
       '<div class="inv-profile-thesis-chips">' + chipsHtml + '</div>' +
     '</section>'
   );
 }
 
-function renderInvestorPage(investor, related, res) {
+function renderInvestorExtrasHtml(investor) {
+  return {
+    activityHtml: recentActivitySection(investor) || '',
+    portfolioHtml: portfolioSection(investor) || ''
+  };
+}
+
+function renderInvestorPage(investor, related, res, opts) {
+  opts = opts || {};
+  const mwebFirstPaint = Boolean(opts.mwebFirstPaint || opts.deferExtras);
   const metaDesc = investor.thesis ||
     (investor.name + ' — ' + investor.type + '. Stages: ' + (investor.stages || []).join(', ') + '. Explore on VC Dekho.');
 
@@ -137,10 +319,10 @@ function renderInvestorPage(investor, related, res) {
     '</svg>';
 
   const websiteBtn = investor.website
-    ? '<a class="inv-profile-cta is-primary" href="' + escapeHtml(investor.website) + '" target="_blank" rel="noopener noreferrer">' + iconExternal + '<span>Visit website</span></a>'
+    ? '<a class="inv-profile-cta is-primary" href="' + escapeHtml(investor.website) + '" target="_blank" rel="noopener noreferrer" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"website","kind":"fund"}\'>' + iconExternal + '<span>Visit website</span></a>'
     : '';
   const linkedinBtn = investor.linkedin
-    ? '<a class="inv-profile-cta is-ghost" href="' + escapeHtml(investor.linkedin) + '" target="_blank" rel="noopener noreferrer">' + iconLinkedin + '<span>LinkedIn</span></a>'
+    ? '<a class="inv-profile-cta is-ghost" href="' + escapeHtml(investor.linkedin) + '" target="_blank" rel="noopener noreferrer" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"linkedin","kind":"fund"}\'>' + iconLinkedin + '<span>LinkedIn</span></a>'
     : '';
 
   const stages = investor.stages || [];
@@ -152,9 +334,6 @@ function renderInvestorPage(investor, related, res) {
   const stageSummary = stages.length
     ? (stages.slice(0, 2).join(' · ') + (stages.length > 2 ? ' +' + (stages.length - 2) : ''))
     : '—';
-  const confidenceShort = (investor.confidence || 'Unverified')
-    .replace(/\s*\([^)]*\)\s*/g, '')
-    .trim() || 'Unverified';
 
   const snapshotStrip = [
     {
@@ -177,11 +356,6 @@ function renderInvestorPage(investor, related, res) {
       label: 'Themes',
       value: themes.length ? String(themes.length) + ' mapped' : '—',
       href: themes.length ? '#thesis' : null
-    },
-    {
-      label: 'Confidence',
-      value: confidenceShort,
-      href: null
     }
   ].map((item) => {
     const inner =
@@ -197,7 +371,7 @@ function renderInvestorPage(investor, related, res) {
   const stageChips = stages.map((label, i) => {
     const id = stageIds[i];
     if (hasStageGuide(id)) {
-      return '<a class="inv-profile-chip inv-profile-chip-stage" href="/investors/stages/' + escapeHtml(id) + '">' + escapeHtml(label) + '</a>';
+      return '<a class="inv-profile-chip inv-profile-chip-stage" href="/funds/stages/' + escapeHtml(id) + '">' + escapeHtml(label) + '</a>';
     }
     return '<span class="inv-profile-chip inv-profile-chip-stage">' + escapeHtml(label) + '</span>';
   }).join('') || '<span class="inv-profile-empty">No stages listed</span>';
@@ -205,9 +379,9 @@ function renderInvestorPage(investor, related, res) {
   const sectorChips = sectors.map((label, i) => {
     const id = sectorIds[i];
     const href = hasSectorGuide(id)
-      ? '/investors/sectors/' + encodeURIComponent(id)
+      ? '/funds/sectors/' + encodeURIComponent(id)
       : id
-        ? '/investors?sector=' + encodeURIComponent(id)
+        ? '/funds?sector=' + encodeURIComponent(id)
         : '';
     if (href) {
       return '<a class="inv-profile-chip inv-profile-chip-sector" href="' + escapeHtml(href) + '">' + escapeHtml(label) + '</a>';
@@ -256,8 +430,26 @@ function renderInvestorPage(investor, related, res) {
     )
     : '';
 
+  const people = getPeopleByCompanySlug(investor.slug);
+  const peopleCards = people.map((p) => (
+    '<a class="inv-profile-related-card inv-profile-reveal" href="/investors/' + escapeHtml(p.slug) + '">' +
+      '<div class="inv-profile-related-type">' + escapeHtml(p.title || 'Investor') + '</div>' +
+      '<h3>' + escapeHtml(p.name) + '</h3>' +
+      '<p>' + escapeHtml(investor.name) + '</p>' +
+    '</a>'
+  )).join('');
+  const peopleSection = peopleCards
+    ? (
+      '<section class="inv-profile-section inv-profile-reveal" id="people">' +
+        '<div class="inv-profile-section-label">07 — Investors</div>' +
+        '<div class="inv-profile-section-head"><h2>Investors at ' + escapeHtml(investor.name) + '</h2><p>Partners and principals mapped to this fund in the directory.</p></div>' +
+        '<div class="inv-profile-related-grid">' + peopleCards + '</div>' +
+      '</section>'
+    )
+    : '';
+
   const relatedCards = (related || []).map(r => (
-    '<a class="inv-profile-related-card inv-profile-reveal" href="/investors/' + escapeHtml(r.slug) + '">' +
+    '<a class="inv-profile-related-card inv-profile-reveal" href="/funds/' + escapeHtml(r.slug) + '">' +
       '<div class="inv-profile-related-type">' + escapeHtml(r.type) + '</div>' +
       '<h3>' + escapeHtml(r.name) + '</h3>' +
       '<p>' + escapeHtml(r.chequeSize || r.thesis || '') + '</p>' +
@@ -267,8 +459,8 @@ function renderInvestorPage(investor, related, res) {
   const relatedSection = relatedCards
     ? (
       '<section class="inv-profile-section inv-profile-reveal" id="similar">' +
-        '<div class="inv-profile-section-label">05 — Nearby</div>' +
-        '<div class="inv-profile-section-head"><h2>Similar investors</h2><p>Other funds that overlap on stage, sector, or thesis.</p></div>' +
+        '<div class="inv-profile-section-label">08 — Nearby</div>' +
+        '<div class="inv-profile-section-head"><h2>Similar funds</h2><p>Other funds that overlap on stage, sector, or thesis.</p></div>' +
         '<div class="inv-profile-related-grid">' + relatedCards + '</div>' +
       '</section>'
     )
@@ -287,24 +479,31 @@ function renderInvestorPage(investor, related, res) {
   const stagesForExplore = orderedStages.length ? orderedStages : exploreStages;
 
   const exploreHtml = renderExploreRelated({
-    sectionLabel: '06 — Explore',
+    sectionLabel: '09 — Explore',
     title: 'Explore related',
     subtitle: 'Jump into stage, sector, and thesis guides connected to this fund.',
     stages: stagesForExplore,
     themes: exploreThemes,
-    fundsHref: '/investors',
+    fundsHref: '/funds',
     fundsLabel: 'Back to directory →',
-    siblingHref: '/investors/sectors',
+    siblingHref: '/funds/sectors',
     siblingLabel: 'Sector guides →',
     className: 'inv-profile-reveal'
   });
+
+  const extras = renderInvestorExtrasHtml(investor);
+  const activityHtml = extras.activityHtml;
+  const portfolioHtml = extras.portfolioHtml;
 
   const stickyNav = [
     '<nav class="inv-profile-sticky" id="inv-profile-sticky" aria-label="On this page">',
     '<a href="#snapshot" data-section="snapshot">Snapshot</a>',
     '<a href="#focus" data-section="focus">Focus</a>',
     themes.length ? '<a href="#thesis" data-section="thesis">Thesis</a>' : '',
+    activityHtml ? '<a href="#activity" data-section="activity">Activity</a>' : '',
+    portfolioHtml ? '<a href="#portfolio" data-section="portfolio">Portfolio</a>' : '',
     '<a href="#about" data-section="about">About</a>',
+    peopleCards ? '<a href="#people" data-section="people">' + INVESTORS_LABEL + '</a>' : '',
     relatedCards ? '<a href="#similar" data-section="similar">Similar</a>' : '',
     '<a href="#explore" data-section="explore">Explore</a>',
     '</nav>'
@@ -314,7 +513,7 @@ function renderInvestorPage(investor, related, res) {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: investor.name,
-    url: investor.website || ('https://vcdekho.com/investors/' + investor.slug),
+    url: investor.website || ('https://vcdekho.com/funds/' + investor.slug),
     description: investor.thesis || investor.writeup,
     sameAs: [investor.linkedin, investor.website].filter(Boolean)
   });
@@ -325,37 +524,34 @@ function renderInvestorPage(investor, related, res) {
     '<!DOCTYPE html>',
     '<html lang="en" class="scrollable-page">',
     '<head>',
-    '<script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ23KLLWFM"></script>',
-    '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js", new Date());gtag("config","G-BJ23KLLWFM");</script>',
+    '<script src="/js/analytics.js?v=2" defer></script>',
+    '<script src="/js/nav.js?v=101" defer></script>',
     '<meta charset="UTF-8">',
-    '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
-    '<title>' + escapeHtml(investor.name) + ' | Investors | VC Dekho</title>',
+    '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">',
+    renderProfileHeadAssets(),
+    '<title>' + escapeHtml(investor.name) + ' | Funds | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
-    '<link rel="canonical" href="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
-    '<link rel="icon" type="image/png" href="/assets/logoforvc.png">',
+    '<link rel="canonical" href="https://vcdekho.com/funds/' + escapeHtml(investor.slug) + '">',
+    ...renderFaviconLinks(),
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/style.css?v=49">',
     '<meta property="og:title" content="' + escapeHtml(investor.name) + ' | VC Dekho">',
     '<meta property="og:description" content="' + escapeHtml(metaDesc).slice(0, 160) + '">',
-    '<meta property="og:url" content="https://vcdekho.com/investors/' + escapeHtml(investor.slug) + '">',
+    '<meta property="og:url" content="https://vcdekho.com/funds/' + escapeHtml(investor.slug) + '">',
     '<meta property="og:type" content="profile">',
     '<script type="application/ld+json">' + schema + '</script>',
     '</head>',
-    '<body class="scrollable-page inv-page inv-profile-page">',
+    '<body class="scrollable-page inv-page inv-investor-profile">',
     '<div class="app-container">',
     '<header class="site-header">',
     '<a href="/" class="logo-container"><img src="/assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img"></a>',
     '<button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>',
     '<nav class="main-nav" id="navigation-bar">',
-    '<a href="/" class="nav-link">Home</a>',
-    '<a href="/investors" class="nav-link active">Investors</a>',
-    '<a href="/blog" class="nav-link">Blog</a>',
-    '<a href="/news" class="nav-link">News</a>',
+    ...renderSiteNavLinks('funds'),
     '</nav></header>',
     '<main class="hero-showcase inv-detail-main">',
     '<div class="ambient-bg-wrapper"><div class="waitlist-bg"><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div><div class="glow-orb orb-3"></div></div></div>',
     '<div class="inv-detail-wrap inv-profile-wrap">',
-    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="/investors">Investors</a><span>›</span><span class="current">' + escapeHtml(investor.name) + '</span></div>',
+    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="' + FUNDS_PATH + '">' + FUNDS_LABEL + '</a><span>›</span><span class="current">' + escapeHtml(investor.name) + '</span></div>',
 
     '<div class="inv-profile-hero-row inv-profile-hero-enter" id="overview">',
     '<section class="inv-profile-hero">',
@@ -363,9 +559,10 @@ function renderInvestorPage(investor, related, res) {
     '<div class="inv-profile-hero-inner">',
     '<div class="inv-profile-hero-copy">',
     investor.logo
-      ? ('<img class="inv-profile-logo" src="' + escapeHtml(investor.logo) + '" alt="" width="56" height="56" loading="eager">')
+      ? ('<img class="inv-profile-logo" src="' + escapeHtml(investor.logo) + '" alt="" width="56" height="56" loading="eager" fetchpriority="high" decoding="async">')
       : '',
     '<span class="inv-profile-type">' + escapeHtml(investor.type) + '</span>',
+    activityBadge(investor),
     '<h1 class="inv-profile-title">' + escapeHtml(investor.name) + '</h1>',
     thesisLead,
     '<div class="inv-profile-hero-actions">' + websiteBtn + linkedinBtn + '</div>',
@@ -376,7 +573,8 @@ function renderInvestorPage(investor, related, res) {
     directoryWidget(),
     '</div>',
 
-    stickyNav,
+    '<div class="inv-profile-sticky-host" id="inv-profile-sticky-host">' + stickyNav + '</div>',
+    earlyStickyPinScript(),
 
     '<section class="inv-profile-section inv-profile-reveal is-visible" id="snapshot">',
     '<div class="inv-profile-section-label">01 — Snapshot</div>',
@@ -384,7 +582,8 @@ function renderInvestorPage(investor, related, res) {
     '<div class="inv-profile-metric-strip">' + snapshotStrip + '</div>',
     '</section>',
 
-    '<section class="inv-profile-section inv-profile-reveal" id="focus">',
+    // Mweb: paint through 03 — Thesis on first load (desktop keeps scroll-reveal)
+    '<section class="inv-profile-section inv-profile-reveal' + (mwebFirstPaint ? ' is-visible' : '') + '" id="focus">',
     '<div class="inv-profile-section-label">02 — Focus</div>',
     '<div class="inv-profile-section-head"><h2>Where they invest</h2><p>Stages and sectors this investor typically backs.</p></div>',
     '<div class="inv-profile-focus-panel">',
@@ -392,21 +591,25 @@ function renderInvestorPage(investor, related, res) {
     '<div class="inv-profile-focus-col">',
     '<h3>Sector focus</h3>',
     '<div class="inv-profile-chip-row">' + sectorChips + '</div>',
-    '<a class="inv-profile-panel-link" href="/investors/sectors">Sector guides →</a>',
+    '<a class="inv-profile-panel-link" href="/funds/sectors">Sector guides →</a>',
     '</div>',
     '<div class="inv-profile-focus-col">',
     '<h3>Lead / invest stages</h3>',
     '<div class="inv-profile-chip-row">' + stageChips + '</div>',
-    '<a class="inv-profile-panel-link" href="/investors/stages">Stage guides →</a>',
+    '<a class="inv-profile-panel-link" href="/funds/stages">Stage guides →</a>',
     '</div>',
     '</div>',
     '</div>',
     '</section>',
 
-    thesisWidget(investor),
+    thesisWidget(investor, { visible: mwebFirstPaint }),
+
+    // Below thesis so late paint never interrupts Snapshot → Thesis
+    activityHtml,
+    portfolioHtml,
 
     '<section class="inv-profile-section inv-profile-about inv-profile-reveal" id="about">',
-    '<div class="inv-profile-section-label">04 — Story</div>',
+    '<div class="inv-profile-section-label">06 — Story</div>',
     '<div class="inv-profile-section-head"><h2>About ' + escapeHtml(investor.name) + '</h2><p>Background and context for founders evaluating this investor.</p></div>',
     '<div class="inv-profile-about-grid">',
     '<div class="inv-profile-about-prose">' + aboutProse(investor.writeup) + '</div>',
@@ -417,27 +620,41 @@ function renderInvestorPage(investor, related, res) {
     '<p class="inv-profile-confidence">Data confidence: ' + escapeHtml(investor.confidence || 'Unverified – inferred') + '</p>',
     '</section>',
 
+    peopleSection,
+
     relatedSection,
 
     exploreHtml,
 
     '<section class="blog-cta-banner" style="margin: 3rem 0 1rem;">',
-    '<img src="/assets/blog_vc_dekho_cta.png" alt="VC Dekho" class="blog-cta-bg">',
+    '<img src="/assets/blog_vc_dekho_cta.webp" alt="VC Dekho" class="blog-cta-bg" loading="lazy" decoding="async" fetchpriority="low">',
     '<div class="blog-cta-content">',
     '<h2 class="blog-cta-title">Stop guessing. Start matching.</h2>',
-    '<p class="blog-cta-desc">Search investors by stage, sector, cheque size, and thesis — then unlock deeper matching on VC Dekho.</p>',
-    '<a href="/investors" class="blog-cta-btn">Browse investors</a>',
+    '<p class="blog-cta-desc">Search funds by stage, sector, cheque size, and thesis — then unlock deeper matching on VC Dekho.</p>',
+    '<a href="' + FUNDS_PATH + '" class="blog-cta-btn">Browse funds</a>',
     '</div></section>',
 
     '</div></main></div>',
-    '<script src="/js/auth.js"></script>',
-    '<script src="/app.js"></script>',
+    '<script src="/js/auth.js" defer></script>',
+    '<script src="/js/directory-session.js?v=2" defer></script>',
+    '<script src="/app.js" defer></script>',
+    '<script src="/investors/lazy-portfolio-logos.js?v=1" defer></script>',
+    '<script src="/investors/portfolio-section.js?v=4" defer></script>',
+    '<script src="/investors/profile-sticky.js?v=6" defer></script>',
     '<script>',
     '(function(){',
     'var nav=document.getElementById("inv-profile-sticky");',
     'var links=nav?Array.prototype.slice.call(nav.querySelectorAll("a[data-section]")):[];',
     'var sections=links.map(function(a){return document.getElementById(a.getAttribute("data-section"));}).filter(Boolean);',
-    'function setActive(id){if(!id)return;links.forEach(function(a){a.classList.toggle("is-active",a.getAttribute("data-section")===id);});}',
+    'var lastActive="";',
+    'function setActive(id){',
+    'if(!id)return;',
+    'links.forEach(function(a){a.classList.toggle("is-active",a.getAttribute("data-section")===id);});',
+    'if(id!==lastActive){',
+    'lastActive=id;',
+    'if(typeof window.VCProfileStickyScrollActive==="function")window.VCProfileStickyScrollActive();',
+    '}',
+    '}',
     'function syncActiveFromScroll(){',
     'if(!sections.length)return;',
     'var offset=(nav?nav.getBoundingClientRect().bottom:0)+12;',
@@ -472,9 +689,9 @@ function renderInvestorPage(investor, related, res) {
     '</body></html>'
   ].join('\n');
 
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=3600');
+  // Always vary — mweb may omit SSR extras while desktop includes them
+  setPublicHtmlCache(res, { varyMobile: true });
   return res.status(200).send(html);
 }
 
-module.exports = { renderInvestorPage, escapeHtml };
+module.exports = { renderInvestorPage, renderInvestorExtrasHtml, escapeHtml };

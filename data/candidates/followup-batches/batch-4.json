@@ -1,0 +1,302 @@
+[
+  {
+    "company": "Brand Capital",
+    "website": "https://brandcapital.co.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://brandcapital.co.in/aboutus.html"
+  },
+  {
+    "company": "Nazara Ventures",
+    "website": "https://www.nazara.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Sony Innovation Fund",
+    "website": "https://www.sonyinnovationfund.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.sonyinnovationfund.com/about/"
+  },
+  {
+    "company": "Shell Ventures",
+    "website": "https://www.shell.com/what-we-do/technology-and-innovation/innovate-with-shell/shell-ventures.html",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "BP Ventures",
+    "website": "https://www.bp.com/en-IN",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.bp.com/en-IN/about-us/what-we-do/bp-worldwide"
+  },
+  {
+    "company": "Energy Impact Partners",
+    "website": "https://www.energyimpactpartners.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.energyimpactpartners.com/cdn-cgi/content?id=k4mERg.InpqhGjKftcWqYBzFRWOheFN2nk6UhMjGBYE-1785343691.2414086-1.2.1.1-qcRAchqarovGDaswt0y5IVZFtS8HRDCXTiG_JmiYrj8"
+  },
+  {
+    "company": "Valar Ventures",
+    "website": "https://www.valar.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.valar.com/"
+  },
+  {
+    "company": "Thrive Capital",
+    "website": "https://www.thrivecap.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "New Enterprise Associates",
+    "website": "https://www.nea.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.nea.com/about"
+  },
+  {
+    "company": "Andreessen Horowitz",
+    "website": "https://a16z.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://a16z.com/team/"
+  },
+  {
+    "company": "Founders Fund",
+    "website": "https://foundersfund.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://foundersfund.com/portfolio/"
+  },
+  {
+    "company": "IAN Fund",
+    "website": "https://www.ianfund.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "The operation was aborted due to timeout"
+  },
+  {
+    "company": "CIIE.CO",
+    "website": "https://ciie.co",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "T-Hub",
+    "website": "https://www.t-hub.co/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.t-hub.co/"
+  },
+  {
+    "company": "CIE IIIT Hyderabad",
+    "website": "https://cie.iiit.ac.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://cie.iiit.ac.in/"
+  },
+  {
+    "company": "Zone Startups India",
+    "website": "https://www.zonestartups.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.zonestartups.com/"
+  },
+  {
+    "company": "Piramal Alternatives",
+    "website": "https://www.piramal.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.piramal.com/"
+  },
+  {
+    "company": "Edelweiss Alternative Asset Advisors",
+    "website": "https://www.edelweissfin.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.edelweissfin.com/about-us/"
+  },
+  {
+    "company": "Motilal Oswal Private Equity",
+    "website": "https://www.motilaloswal.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.motilaloswal.com/portfolio-management-services"
+  },
+  {
+    "company": "JM Financial Private Equity",
+    "website": "https://www.jmfl.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.jmfl.com/who-we-are/about-us"
+  },
+  {
+    "company": "Atomico",
+    "website": "https://www.atomico.com",
+    "reason": "homepage-fetch-failed",
+    "detail": 429
+  },
+  {
+    "company": "Balderton Capital",
+    "website": "https://www.balderton.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.balderton.com/about-balderton/"
+  },
+  {
+    "company": "Coinbase Ventures",
+    "website": "https://www.coinbase.com/en-in/ventures",
+    "reason": "homepage-fetch-failed",
+    "detail": 403
+  },
+  {
+    "company": "YZi Labs",
+    "website": "https://www.binance.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Polygon Ventures",
+    "website": "https://polygon.technology/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://polygon.technology/solutions/cross-border-treasury"
+  },
+  {
+    "company": "Woodstock Fund",
+    "website": "https://woodstock.fund",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "SBI Investment",
+    "website": "https://www.sbinvestment.co.jp/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.sbinvestment.co.jp/"
+  },
+  {
+    "company": "Honda Ventures",
+    "website": "https://www.honda.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.honda.com/teamusa"
+  },
+  {
+    "company": "Toyota Ventures",
+    "website": "https://www.toyota.ventures/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.toyota.ventures/"
+  },
+  {
+    "company": "Hyundai CRADLE",
+    "website": "https://cradle.hyundai.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Bosch Ventures",
+    "website": "https://bosch.ventures/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://bosch.ventures/"
+  },
+  {
+    "company": "Invert by Groww",
+    "website": "https://groww.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://groww.in/mutual-funds/amc"
+  },
+  {
+    "company": "Dream Sports Ventures",
+    "website": "https://www.dreamsports.gg",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Cipla New Ventures",
+    "website": "https://www.cipla.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Apollo Connect / Apollo Hospitals Ventures",
+    "website": "https://www.apollohospitals.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.apollohospitals.com/company-overview/the-apollo-story"
+  },
+  {
+    "company": "Varanium Capital Advisors",
+    "website": "https://varanium.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Mechanism Capital",
+    "website": "https://www.mechanism.capital/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.mechanism.capital/writings/million-markets-from-the-bazaar-to-the-dex"
+  },
+  {
+    "company": "CoinDCX Ventures",
+    "website": "https://coindcx.com/",
+    "reason": "homepage-fetch-failed",
+    "detail": 403
+  },
+  {
+    "company": "SBI Caps Ventures / SBICAP Ventures",
+    "website": "https://www.sbicapventures.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://sbiventures.co.in/about-us/"
+  },
+  {
+    "company": "Kerala Startup Mission",
+    "website": "https://startupmission.kerala.gov.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://startupmission.kerala.gov.in/about"
+  },
+  {
+    "company": "NSRCEL",
+    "website": "https://nsrcel.org/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://nsrcel.org/"
+  },
+  {
+    "company": "IIFL Seed Venture Fund / IIFL PE",
+    "website": "https://www.iifl.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.iifl.com/gold-loans/partners"
+  },
+  {
+    "company": "Lighthouse Canton",
+    "website": "https://www.lighthouse-canton.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.lighthouse-canton.com/about"
+  },
+  {
+    "company": "TotalEnergies Ventures",
+    "website": "https://totalenergies.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www2.totalenergies.com/company/strength/totalenergies-and-sport"
+  },
+  {
+    "company": "Nestlé Ventures",
+    "website": "https://www.nestle.com/",
+    "reason": "homepage-fetch-failed",
+    "detail": 403
+  },
+  {
+    "company": "Marico Growth Ventures",
+    "website": "https://marico.com/global",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://marico.com/global/about-us"
+  },
+  {
+    "company": "Sun Pharma Ventures",
+    "website": "https://sunpharma.com/",
+    "reason": "homepage-fetch-failed",
+    "detail": 403
+  },
+  {
+    "company": "Biocon Innovation / Biocon Ventures",
+    "website": "https://www.biocon.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.biocon.com/about-us/"
+  },
+  {
+    "company": "upGrad Ventures",
+    "website": "https://www.upgrad.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.upgrad.com/ctaio-iimu-iiit/"
+  },
+  {
+    "company": "PayU Ventures",
+    "website": "https://payu.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://payu.in/about-us"
+  }
+]

@@ -16,7 +16,17 @@ module.exports = async function handler(req, res) {
     } else if (req.method === 'POST') {
         try {
             const { id, action, title, body, slug, meta_title, meta_description, tags } = req.body;
-            
+
+            // Folded in from the old standalone /api/admin/reset endpoint (kept as
+            // one file — the Vercel Hobby plan caps a deployment at 12 functions).
+            if (action === 'reset-today') {
+                // Delete today's generated digests so they don't clutter the feed
+                await db.query(`DELETE FROM articles WHERE category = 'daily-digest' AND created_at >= CURRENT_DATE`);
+                // Delete today's raw_content so the scraper doesn't deduplicate them and actually processes them with the new rules
+                await db.query(`DELETE FROM raw_content WHERE scraped_at >= CURRENT_DATE`);
+                return res.status(200).json({ success: true, message: 'Database reset for today! You can now run the cron jobs.' });
+            }
+
             if (action === 'discard') {
                 await db.query(`UPDATE articles SET status = 'discarded', reviewed_at = NOW() WHERE id = $1`, [id]);
                 return res.status(200).json({ success: true, status: 'discarded' });

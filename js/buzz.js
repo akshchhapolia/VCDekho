@@ -1,0 +1,319 @@
+(function () {
+  const VOTER_KEY = 'vc_buzz_voter';
+  const VOTES_KEY = 'vc_buzz_votes';
+  const BODY_CLAMP_CHARS = 420;
+  const BODY_CLAMP_LINES = 5;
+
+  function esc(s) {
+    const d = document.createElement('div');
+    d.textContent = s || '';
+    return d.innerHTML;
+  }
+
+  function cleanTitle(title) {
+    return String(title || '')
+      .replace(/\s*:\s*r\/\w+\s*-\s*Reddit\s*$/i, '')
+      .replace(/\s*-\s*Reddit\s*$/i, '')
+      .trim();
+  }
+
+  function stripBody(raw) {
+    return String(raw || '')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/\r\n/g, '\n')
+      .replace(/\n?[ \t]*submitted by[ \t]+\/?u\/[\w-]+[\s\S]*$/i, '')
+      .replace(/\n?[ \t]*submitted by[\s\S]*?\[link\][\s\S]*?\[comments\][ \t]*$/i, '')
+      .replace(/\s*\[link\]\s*\[comments\]\s*$/i, '')
+      .replace(/[^\S\n]+/g, ' ')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
+  }
+
+  function isLongBody(text) {
+    if (!text) return false;
+    const lines = text.split('\n').length;
+    const paras = text.split(/\n\s*\n/).filter(Boolean).length;
+    return (
+      text.length > BODY_CLAMP_CHARS ||
+      lines > BODY_CLAMP_LINES ||
+      paras > 2 ||
+      /^\s*\|.+\|\s*$/m.test(text)
+    );
+  }
+
+  function formatDate(iso) {
+    if (!iso) return '';
+    return new Date(iso).toLocaleDateString('en-IN', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  }
+
+  function normalizeSentiment(s) {
+    const v = String(s || 'neutral').toLowerCase();
+    if (v === 'positive') return 'positive';
+    if (v === 'negative') return 'negative';
+    return 'neutral';
+  }
+
+  function sentimentLabel(s) {
+    const n = normalizeSentiment(s);
+    return { positive: 'Positive', neutral: 'Neutral', negative: 'Negative' }[n];
+  }
+
+  function getVoterKey() {
+    try {
+      let k = localStorage.getItem(VOTER_KEY);
+      if (!k) {
+        k =
+          (crypto.randomUUID && crypto.randomUUID()) ||
+          'v-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+        localStorage.setItem(VOTER_KEY, k);
+      }
+      return k;
+    } catch (_) {
+      return 'anon-' + Math.random().toString(36).slice(2);
+    }
+  }
+
+  function getStoredVotes() {
+    try {
+      return JSON.parse(localStorage.getItem(VOTES_KEY) || '{}');
+    } catch (_) {
+      return {};
+    }
+  }
+
+  function setStoredVote(slug, vote) {
+    const map = getStoredVotes();
+    if (vote === 0) delete map[slug];
+    else map[slug] = vote;
+    try {
+      localStorage.setItem(VOTES_KEY, JSON.stringify(map));
+    } catch (_) {}
+  }
+
+  function renderBodySection(item) {
+    const html = item.body_html;
+    const raw = item.body_excerpt;
+    if (!html && !raw) {
+      return '<p class="buzz-post-body buzz-post-body--empty">Original post text unavailable — open the Reddit thread for the full discussion.</p>';
+    }
+    const long = isLongBody(raw);
+    const bodyHtml = html || esc(stripBody(raw));
+    return `
+      <section class="buzz-section">
+        <h3 class="buzz-section-label">Post</h3>
+        <div class="buzz-post-body buzz-post-body--rich${long ? ' is-clamped' : ''}" data-buzz-body>${bodyHtml}</div>
+        ${long ? '<button type="button" class="buzz-expand-btn" data-buzz-expand aria-expanded="false">Read all</button>' : ''}
+      </section>`;
+  }
+
+  function renderCard(item) {
+    const topics = item.topics || [];
+    const dateStr = formatDate(item.published_at_source || item.published_at);
+    const sub = item.subreddit ? `r/${item.subreddit}` : 'Reddit';
+    const title = cleanTitle(item.title);
+    const sentiment = normalizeSentiment(item.sentiment);
+    const storedVote = getStoredVotes()[item.slug] || 0;
+    const slugs = item.investor_slugs || [];
+    const names = item.investor_names || [];
+
+    const fundBlock =
+      slugs.length > 0
+        ? `<section class="buzz-section">
+            <h3 class="buzz-section-label">Fund in conversation</h3>
+            <div class="buzz-fund-list">${slugs
+              .map((slug, i) => {
+                const label = names[i] || slug;
+                return `<a href="/funds/${encodeURIComponent(slug)}" class="buzz-fund-pill" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`;
+              })
+              .join('')}</div>
+          </section>`
+        : '';
+
+    return `
+      <article class="buzz-card" data-slug="${esc(item.slug)}" id="buzz-${esc(item.slug)}">
+        <header class="buzz-post-header">
+          <div class="buzz-card-head">
+            <div class="buzz-card-head-left">
+              <span class="buzz-source-badge buzz-source-reddit">Reddit</span>
+              <span class="buzz-meta">${esc(sub)}</span>
+            </div>
+            ${dateStr ? `<time class="buzz-card-date">${esc(dateStr)}</time>` : ''}
+          </div>
+          <h2 class="buzz-card-title">${esc(title)}</h2>
+        </header>
+
+        ${renderBodySection(item)}
+
+        ${
+          topics.length
+            ? `<section class="buzz-section">
+            <h3 class="buzz-section-label">Topics</h3>
+            <div class="buzz-topic-chips">${topics.map((t) => `<span class="buzz-topic-chip">${esc(t)}</span>`).join('')}</div>
+          </section>`
+            : ''
+        }
+
+        ${fundBlock}
+
+        <section class="buzz-section buzz-sentiment-row">
+          <h3 class="buzz-section-label">Sentiment</h3>
+          <span class="buzz-sentiment-badge buzz-sentiment--${sentiment}">${sentimentLabel(item.sentiment)}</span>
+        </section>
+
+        <footer class="buzz-card-footer">
+          <a href="${esc(item.source_url)}" class="buzz-read-original" target="_blank" rel="noopener noreferrer">Read original on Reddit →</a>
+
+          <div class="buzz-interest" data-interest-root>
+            <span class="buzz-interest-label">Interested in this?</span>
+            <div class="buzz-interest-actions">
+              <button type="button" class="buzz-vote-btn buzz-vote-up${storedVote === 1 ? ' is-active' : ''}" data-vote="1" aria-label="Yes, interested">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10v12H3V10h4zm2-8 8 9h5l-4.5 8H9V2z"/></svg>
+                <span class="buzz-vote-count" data-count="up">${item.interest_up || 0}</span>
+              </button>
+              <button type="button" class="buzz-vote-btn buzz-vote-down${storedVote === -1 ? ' is-active' : ''}" data-vote="-1" aria-label="Not interested">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 14V2h4v12h-4zm-2 8-8-9H2l4.5-8H13v17z"/></svg>
+                <span class="buzz-vote-count" data-count="down">${item.interest_down || 0}</span>
+              </button>
+            </div>
+          </div>
+        </footer>
+      </article>`;
+  }
+
+  function initExpandables(root) {
+    root.querySelectorAll('[data-buzz-expand]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const body = btn.previousElementSibling;
+        if (!body) return;
+        const expanded = !body.classList.contains('is-expanded');
+        body.classList.toggle('is-expanded', expanded);
+        body.classList.toggle('is-clamped', !expanded);
+        btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        btn.textContent = expanded ? 'Show less' : 'Read all';
+      });
+    });
+  }
+
+  function applyVoteUi(card, userVote, upCount, downCount) {
+    const upEl = card.querySelector('[data-count="up"]');
+    const downEl = card.querySelector('[data-count="down"]');
+    if (upEl) upEl.textContent = upCount;
+    if (downEl) downEl.textContent = downCount;
+    card.querySelector('.buzz-vote-up')?.classList.toggle('is-active', userVote === 1);
+    card.querySelector('.buzz-vote-down')?.classList.toggle('is-active', userVote === -1);
+  }
+
+  function readCounts(card) {
+    return {
+      up: parseInt(card.querySelector('[data-count="up"]')?.textContent, 10) || 0,
+      down: parseInt(card.querySelector('[data-count="down"]')?.textContent, 10) || 0
+    };
+  }
+
+  /** Adjust counts locally when toggling 1 / -1 / 0 */
+  function optimisticCounts(prevVote, nextVote, up, down) {
+    let nextUp = up;
+    let nextDown = down;
+    if (prevVote === 1) nextUp = Math.max(0, nextUp - 1);
+    if (prevVote === -1) nextDown = Math.max(0, nextDown - 1);
+    if (nextVote === 1) nextUp += 1;
+    if (nextVote === -1) nextDown += 1;
+    return { up: nextUp, down: nextDown };
+  }
+
+  async function submitVote(card, vote) {
+    const slug = card.dataset.slug;
+    if (!slug || card.dataset.votePending === '1') return;
+
+    const stored = getStoredVotes()[slug] || 0;
+    const nextVote = stored === vote ? 0 : vote;
+    const before = readCounts(card);
+    const optimistic = optimisticCounts(stored, nextVote, before.up, before.down);
+
+    // Paint active state immediately; sync with server after.
+    card.dataset.votePending = '1';
+    setStoredVote(slug, nextVote);
+    applyVoteUi(card, nextVote, optimistic.up, optimistic.down);
+
+    try {
+      const res = await fetch('/api/ops?action=buzz-vote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug, voterKey: getVoterKey(), vote: nextVote })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Vote failed');
+
+      const serverVote = data.user_vote || 0;
+      setStoredVote(slug, serverVote);
+      applyVoteUi(card, serverVote, data.interest_up || 0, data.interest_down || 0);
+    } catch (err) {
+      console.error(err);
+      setStoredVote(slug, stored);
+      applyVoteUi(card, stored, before.up, before.down);
+    } finally {
+      delete card.dataset.votePending;
+    }
+  }
+
+  function initVotes(root) {
+    root.addEventListener('click', (e) => {
+      const btn = e.target.closest('.buzz-vote-btn');
+      if (!btn) return;
+      e.preventDefault();
+      const card = btn.closest('.buzz-card');
+      if (!card) return;
+      submitVote(card, Number(btn.dataset.vote));
+    });
+  }
+
+  async function loadBuzz() {
+    const container = document.getElementById('buzz-container');
+    if (!container || container.dataset.mode === 'detail') return;
+
+    try {
+      const res = await fetch('/api/news/list?feed=buzz');
+      const items = await res.json();
+      if (!Array.isArray(items) || !items.length) {
+        container.innerHTML =
+          '<p class="buzz-empty">No founder VC reviews published yet. We index Reddit threads where founders share fundraising experiences — check back soon.</p>';
+        container.setAttribute('aria-busy', 'false');
+        return;
+      }
+      container.innerHTML = items.map(renderCard).join('');
+      container.setAttribute('aria-busy', 'false');
+      initExpandables(container);
+    } catch (err) {
+      console.error(err);
+      container.innerHTML = '<p class="buzz-error">Failed to load Founder Buzz.</p>';
+      container.setAttribute('aria-busy', 'false');
+    }
+  }
+
+  function initBuzzPage() {
+    const container = document.getElementById('buzz-container');
+    if (container) initVotes(container);
+    if (container && container.dataset.mode === 'detail') {
+      initExpandables(container);
+      container.setAttribute('aria-busy', 'false');
+      return;
+    }
+    loadBuzz();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBuzzPage);
+  } else {
+    initBuzzPage();
+  }
+
+  window.VCBuzz = { renderCard, initExpandables, initVotes };
+})();
