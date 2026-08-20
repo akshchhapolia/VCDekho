@@ -1,6 +1,6 @@
 const db = require('../../utils/db');
 const { renderBuzzDetailHtml } = require('../../utils/render-buzz-detail');
-const { renderFaviconLinks } = require('../../utils/site-icons');
+const { renderFaviconLinks, renderLogoImg } = require('../../utils/site-icons');
 const { renderFontLinks } = require('../../utils/font-assets');
 
 // MOCK DATA for testing environment
@@ -339,7 +339,7 @@ module.exports = async function handler(req, res) {
     <div class="app-container">
         <header class="site-header">
             <a href="/" class="logo-container">
-                <img src="/assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img">
+                ${renderLogoImg()}
             </a>
             <button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
                 <span></span><span></span><span></span>

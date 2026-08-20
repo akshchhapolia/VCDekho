@@ -56,7 +56,6 @@ body.home-page .hero-showcase {
     }
 }
 
-/* Home ≤992px: video as stage; fallback always under video as base paint */
 @media (max-width: 992px) {
     body.home-page .hero-bg-fallback {
         display: block;
@@ -64,18 +63,7 @@ body.home-page .hero-showcase {
     }
 
     body.home-page .hero-bg {
-        display: block;
-        z-index: 1;
-    }
-}
-
-@media (max-width: 992px) and (prefers-reduced-motion: reduce) {
-    body.home-page .hero-bg {
         display: none;
-    }
-
-    body.home-page .hero-bg-fallback {
-        display: block;
     }
 }
 
@@ -613,15 +601,7 @@ body.home-page .trend-card::before {
     }
 
     body.home-page .hero-bg {
-        display: block !important;
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        z-index: 1;
-        background: transparent !important;
+        display: none !important;
     }
 
     body.home-page .hero-overlay {

@@ -26,7 +26,7 @@ body.scrollable-page::before{content:'';position:fixed;inset:0;z-index:0;pointer
 .app-container{display:flex;flex-direction:column;width:100%;min-height:100dvh;padding:1rem var(--page-padding) 0;gap:.75rem;max-width:1600px;margin:0 auto;position:relative;z-index:1;background:transparent}
 .site-header{display:flex;justify-content:space-between;align-items:center;width:100%;height:50px;position:relative;z-index:2;background:transparent}
 .logo-container{display:flex;align-items:center;text-decoration:none}
-.logo-img{height:44px;width:auto;display:block}
+.logo-img{height:44px;width:auto;aspect-ratio:220/204;display:block}
 .main-nav{display:flex;flex:1;justify-content:flex-end;gap:2.5rem;align-items:center}
 .nav-link{color:rgba(255,255,255,.82);text-decoration:none;font-size:.95rem;font-weight:500;opacity:.85}
 .nav-link.active{opacity:1;color:var(--color-accent-orange);font-weight:600}
@@ -132,7 +132,7 @@ input,select,textarea{font-size:16px!important}
     <div class="app-container">
         <header class="site-header">
             <a href="/" class="logo-container" id="logo-link">
-                <img src="assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img" id="logo-image">
+                <img src="assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img" width="220" height="204" id="logo-image">
             </a>
 
             <button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu">

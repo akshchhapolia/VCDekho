@@ -6,14 +6,14 @@
 const { FONTS_HREF, renderFontPreloads, renderFontLinks } = require('./font-assets');
 
 const HOME_CSS = [
-  '/css/base.css?v=145',
+  '/css/base.css?v=146',
   '/css/ambient.css?v=98',
-  '/css/hero.css?v=96'
+  '/css/hero.css?v=97'
 ];
 
 const DIRECTORY_CSS = [
-  '/css/base.css?v=145',
-  '/css/hero.css?v=96',
+  '/css/base.css?v=146',
+  '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
   '/css/announcement.css?v=145',
   '/css/directory-list.css?v=145'
@@ -26,7 +26,7 @@ const SHARED_CRITICAL = [
   'html.scrollable-page,body.scrollable-page{overflow-y:auto!important;overflow-x:hidden!important;height:auto!important}',
   '.app-container{display:flex;flex-direction:column;width:100%;min-height:100dvh;padding:1rem;gap:.75rem;max-width:1600px;margin:0 auto;position:relative;z-index:1}',
   '.site-header{display:flex;justify-content:space-between;align-items:center;width:100%;height:50px;position:relative;z-index:2;padding-top:env(safe-area-inset-top,0)}',
-  '.logo-img{height:44px;width:auto;display:block}',
+  '.logo-img{height:44px;width:auto;aspect-ratio:220/204;display:block}',
   '.main-nav{display:none}',
   '.nav-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:44px;min-height:44px;margin-left:auto;background:none;border:none;padding:.5rem;gap:5px}',
   '.nav-toggle span{display:block;width:22px;height:2px;background:#fff}',
@@ -68,8 +68,8 @@ const DIRECTORY_CRITICAL_EXTRA = [
 
 function renderBlockingDirectoryHead() {
   return renderFontLinks().concat([
-    '<link rel="stylesheet" href="/css/base.css?v=145">',
-    '<link rel="stylesheet" href="/css/hero.css?v=96">',
+    '<link rel="stylesheet" href="/css/base.css?v=146">',
+    '<link rel="stylesheet" href="/css/hero.css?v=97">',
     '<link rel="stylesheet" href="/css/ambient.css?v=98">',
     '<link rel="stylesheet" href="/css/announcement.css?v=145">',
     '<link rel="stylesheet" href="/css/directory-list.css?v=145">'
@@ -78,9 +78,9 @@ function renderBlockingDirectoryHead() {
 
 function renderBlockingHomeHead() {
   return renderFontLinks().concat([
-    '<link rel="stylesheet" href="/css/base.css?v=145">',
+    '<link rel="stylesheet" href="/css/base.css?v=146">',
     '<link rel="stylesheet" href="/css/ambient.css?v=98">',
-    '<link rel="stylesheet" href="/css/hero.css?v=96">',
+    '<link rel="stylesheet" href="/css/hero.css?v=97">',
     '<link rel="stylesheet" href="/css/announcement.css?v=145">'
   ]).join('\n    ');
 }

@@ -1,6 +1,6 @@
 const { fundHref } = require('./site-labels');
 const { renderSiteNavLinks } = require('./render-site-nav');
-const { renderFaviconLinks } = require('./site-icons');
+const { renderFaviconLinks, renderLogoImg } = require('./site-icons');
 const { renderFontLinks } = require('./font-assets');
 const {
   cleanBuzzTitle,
@@ -145,7 +145,7 @@ function renderBuzzDetailHtml(item) {
     <div class="app-container">
         <header class="site-header">
             <a href="/" class="logo-container">
-                <img src="/assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img">
+                ${renderLogoImg()}
             </a>
             <button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
                 <span></span><span></span><span></span>

@@ -104,6 +104,7 @@ body {
 .logo-img {
     height: 44px;
     width: auto;
+    aspect-ratio: 220 / 204;
     object-fit: contain;
     transition: var(--transition-smooth);
     display: block;

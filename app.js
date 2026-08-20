@@ -6,16 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobile = window.matchMedia('(max-width: 992px)').matches;
-    const isHomePage = document.body.classList.contains('home-page');
     const enableParallax = !prefersReducedMotion && !isMobile;
-
-    function connectionIsConstrained() {
-        const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-        if (!conn) return false;
-        if (conn.saveData) return true;
-        const type = String(conn.effectiveType || '');
-        return type === 'slow-2g' || type === '2g';
-    }
 
     /** Abort hero media so the next navigation isn't starved of bandwidth (esp. mweb). */
     function releaseHeroMedia() {
@@ -47,29 +38,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (heroBg && heroFallback) {
-        const isHomeMweb = isHomePage && isMobile;
-        const skipVideo = prefersReducedMotion || (isMobile && !isHomePage) || (isHomeMweb && connectionIsConstrained());
+        // Mweb already shows the poster/fallback image — never fetch the mp4 there.
+        const skipVideo = prefersReducedMotion || isMobile;
 
         if (skipVideo) {
             heroBg.style.display = 'none';
             heroFallback.style.display = 'block';
-            // Prevent the browser from fetching the 2.5MB mp4 at all.
             releaseHeroMedia();
         } else {
             heroBg.setAttribute('playsinline', '');
             heroBg.setAttribute('webkit-playsinline', '');
             heroBg.muted = true;
             heroBg.playsInline = true;
-            heroBg.preload = isHomeMweb ? 'none' : 'metadata';
-
-            // Home mweb: paint poster/fallback first; never hide video on soft play() fail
-            if (isHomeMweb) {
-                heroFallback.style.display = 'block';
-                heroBg.style.display = 'block';
-            } else {
-                heroBg.style.display = '';
-                heroFallback.style.display = 'none';
-            }
+            heroBg.preload = 'metadata';
+            heroBg.style.display = '';
+            heroFallback.style.display = 'none';
 
             const hideVideoHard = () => {
                 heroBg.style.display = 'none';
@@ -81,57 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 return heroBg.play();
             };
 
-            const armGestureRetry = () => {
-                let done = false;
-                const retry = () => {
-                    if (done) return;
-                    done = true;
-                    window.removeEventListener('touchstart', retry, true);
-                    window.removeEventListener('click', retry, true);
-                    tryPlay().catch(() => {});
-                };
-                window.addEventListener('touchstart', retry, { capture: true, once: true, passive: true });
-                window.addEventListener('click', retry, { capture: true, once: true });
-            };
-
             heroBg.addEventListener('error', hideVideoHard, { once: true });
 
             const startVideo = () => {
                 if (document.visibilityState === 'hidden') return;
-                try {
-                    // Ensure source is present (may have been stripped on constrained paths)
-                    if (!heroBg.querySelector('source') && !heroBg.getAttribute('src')) {
-                        return;
-                    }
-                    if (isHomeMweb) {
-                        heroBg.load();
-                    }
-                } catch (_) { /* ignore */ }
-
-                tryPlay().catch(() => {
-                    if (isHomeMweb) {
-                        armGestureRetry();
-                    } else {
-                        hideVideoHard();
-                    }
-                });
+                if (!heroBg.querySelector('source') && !heroBg.getAttribute('src')) return;
+                tryPlay().catch(hideVideoHard);
             };
 
-            // Mweb: wait for idle so LCP/fonts/CSS win the network. Dweb: short idle delay.
-            if (isHomeMweb) {
-                const delayStart = () => {
-                    if ('requestIdleCallback' in window) {
-                        requestIdleCallback(startVideo, { timeout: 2500 });
-                    } else {
-                        setTimeout(startVideo, 1200);
-                    }
-                };
-                if (document.readyState === 'complete') {
-                    delayStart();
-                } else {
-                    window.addEventListener('load', delayStart, { once: true });
-                }
-            } else if ('requestIdleCallback' in window) {
+            if ('requestIdleCallback' in window) {
                 requestIdleCallback(startVideo, { timeout: 2000 });
             } else {
                 setTimeout(startVideo, 150);

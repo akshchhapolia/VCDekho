@@ -5,7 +5,7 @@
 const { loadPeopleData } = require('./people');
 const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL, fundHref, personHref } = require('./site-labels');
 const { renderSiteNavLinks } = require('./render-site-nav');
-const { renderFaviconLinks } = require('./site-icons');
+const { renderFaviconLinks, renderLogoImg } = require('./site-icons');
 const {
   firmFocusSection,
   firmThesisSection,
@@ -261,7 +261,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     '<body class="scrollable-page inv-page inv-person-profile">',
     '<div class="app-container">',
     '<header class="site-header">',
-    '<a href="/" class="logo-container"><img src="/assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img"></a>',
+    '<a href="/" class="logo-container">' + renderLogoImg() + '</a>',
     '<button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>',
     '<nav class="main-nav" id="navigation-bar">',
     ...renderSiteNavLinks('investors'),

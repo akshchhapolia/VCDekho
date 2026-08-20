@@ -143,6 +143,21 @@ function testStaticAssets() {
   }
 
   try {
+    const video = path.join(ROOT, 'assets/mainvideo.v2.mp4');
+    const bytes = fs.statSync(video).size;
+    const kb = Math.round(bytes / 1024);
+    if (bytes > 2.2 * 1024 * 1024) {
+      fail('hero video size', `${kb}KB — re-encode with scripts/encode_hero_video.sh (CRF 32)`);
+    } else if (bytes < 100 * 1024) {
+      fail('hero video size', `${kb}KB — file looks empty or truncated`);
+    } else {
+      pass(`hero video ${kb}KB`);
+    }
+  } catch (err) {
+    fail('hero video', err);
+  }
+
+  try {
     const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
     if (!html.includes('/favicon.ico')) {
       fail('index.html favicon', 'missing /favicon.ico link');
@@ -151,6 +166,26 @@ function testStaticAssets() {
     }
   } catch (err) {
     fail('index.html favicon', err);
+  }
+
+  try {
+    const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+    const js = fs.readFileSync(path.join(ROOT, 'app.js'), 'utf8');
+    const heroCss = fs.readFileSync(path.join(ROOT, 'css/hero.css'), 'utf8');
+    const stripsSrc =
+      html.includes("matchMedia('(max-width:992px)')") && html.includes('hero-background-media');
+    const skipsMweb = /const skipVideo = prefersReducedMotion \|\| isMobile/.test(js);
+    const hidesVideo = /body\.home-page \.hero-bg \{\s*display: none !important;/.test(heroCss);
+    if (!stripsSrc || !skipsMweb || !hidesVideo) {
+      fail(
+        'mweb skips hero video',
+        `strip=${stripsSrc} skipVideo=${skipsMweb} cssHide=${hidesVideo}`
+      );
+    } else {
+      pass('mweb does not load the homepage hero video');
+    }
+  } catch (err) {
+    fail('mweb skips hero video', err);
   }
 
   try {
@@ -189,6 +224,7 @@ function testStaticAssets() {
   testDirectoryPrerender('investors/index.html', 'ppl-results', 'ppl-prerender', 'people');
   testListIndexShape();
   testSelfHostedFonts();
+  testProfileClsGuards();
 }
 
 /**
@@ -352,10 +388,61 @@ function testDirectoryPrerender(relPath, resultsId, bootstrapId, collection) {
   }
 }
 
+function testProfileClsGuards() {
+  try {
+    const { renderProfileHeadAssets } = require(path.join(ROOT, 'utils/profile-page-assets.js'));
+    const html = renderProfileHeadAssets();
+    const critical = (html.match(/<style id="profile-critical-css">([\s\S]*?)<\/style>/) || [])[1] || '';
+    const need = [
+      ['title size', 'clamp(2.6rem,6.5vw,4.1rem)'],
+      ['hero meta', '.inv-profile-hero-meta{'],
+      ['active badge', '.inv-profile-active-badge{'],
+      ['cta pills', 'border-radius:999px'],
+      ['latin faces', 'plus-jakarta-sans-latin.woff2']
+    ];
+    const missing = need.filter(([, needle]) => !critical.includes(needle)).map(([n]) => n);
+    if (missing.length) {
+      fail('profile critical CSS matches final hero', `missing ${missing.join(', ')} — compact first-paint CSS causes CLS`);
+    } else {
+      pass('profile critical CSS matches final hero');
+    }
+  } catch (err) {
+    fail('profile critical CSS matches final hero', err);
+  }
+
+  try {
+    const stale = [];
+    function walk(dir) {
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        if (entry.name === 'node_modules' || entry.name === '.git') continue;
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) walk(full);
+        else if (entry.isFile() && entry.name.endsWith('.html')) {
+          const html = fs.readFileSync(full, 'utf8');
+          const imgs = html.match(/<img\b[^>]*class="logo-img"[^>]*>/g) || [];
+          imgs.forEach((tag) => {
+            if (!/width="220"/.test(tag) || !/height="204"/.test(tag)) {
+              stale.push(path.relative(ROOT, full));
+            }
+          });
+        }
+      }
+    }
+    walk(ROOT);
+    if (stale.length) {
+      fail('logo width/height', `${stale.length} page(s) missing intrinsic size: ${stale.slice(0, 3).join(', ')}`);
+    } else {
+      pass('nav logo has width/height on every page');
+    }
+  } catch (err) {
+    fail('logo width/height', err);
+  }
+}
+
 function testSiteIcons() {
   console.log('\nShared utilities');
   try {
-    const { renderFaviconLinks } = require(path.join(ROOT, 'utils/site-icons.js'));
+    const { renderFaviconLinks, renderLogoImg } = require(path.join(ROOT, 'utils/site-icons.js'));
     const links = renderFaviconLinks();
     if (!Array.isArray(links) || links.length < 4) {
       fail('renderFaviconLinks()', 'expected >= 4 link tags');
@@ -363,6 +450,12 @@ function testSiteIcons() {
       fail('renderFaviconLinks()', 'missing favicon.ico');
     } else {
       pass('renderFaviconLinks()');
+    }
+    const logo = renderLogoImg();
+    if (!logo.includes('width="220"') || !logo.includes('height="204"')) {
+      fail('renderLogoImg()', 'missing intrinsic width/height');
+    } else {
+      pass('renderLogoImg()');
     }
   } catch (err) {
     fail('renderFaviconLinks()', err);

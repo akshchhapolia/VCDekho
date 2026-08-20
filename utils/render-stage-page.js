@@ -3,7 +3,7 @@ const { renderExploreRelated } = require('./render-explore-related');
 const { setPublicHtmlCache } = require('./public-html-cache');
 const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('./site-labels');
 const { renderSiteNavLinks } = require('./render-site-nav');
-const { renderFaviconLinks } = require('./site-icons');
+const { renderFaviconLinks, renderLogoImg } = require('./site-icons');
 const { renderFontLinks } = require('./font-assets');
 
 function escapeHtml(value) {
@@ -165,7 +165,7 @@ function renderStagePage(stage, res) {
     '<body class="scrollable-page inv-page stage-guide-page">',
     '<div class="app-container">',
     '<header class="site-header">',
-    '<a href="/" class="logo-container"><img src="/assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img"></a>',
+    '<a href="/" class="logo-container">' + renderLogoImg() + '</a>',
     '<button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>',
     '<nav class="main-nav" id="navigation-bar">',
     ...renderSiteNavLinks('funds'),

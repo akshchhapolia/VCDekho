@@ -8,7 +8,7 @@ const { renderExploreRelated } = require('./render-explore-related');
 const { setPublicHtmlCache } = require('./public-html-cache');
 const { renderProfileHeadAssets, earlyStickyPinScript } = require('./profile-page-assets');
 const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
-const { renderFaviconLinks } = require('./site-icons');
+const { renderFaviconLinks, renderLogoImg } = require('./site-icons');
 const { getPeopleByCompanySlug } = require('./people');
 const { portfolioCardHref } = require('./portfolio-card-href');
 const { filterPortfolioJunk } = require('./portfolio-junk-filter');
@@ -543,7 +543,7 @@ function renderInvestorPage(investor, related, res, opts) {
     '<body class="scrollable-page inv-page inv-investor-profile">',
     '<div class="app-container">',
     '<header class="site-header">',
-    '<a href="/" class="logo-container"><img src="/assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img"></a>',
+    '<a href="/" class="logo-container">' + renderLogoImg() + '</a>',
     '<button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>',
     '<nav class="main-nav" id="navigation-bar">',
     ...renderSiteNavLinks('funds'),

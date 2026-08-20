@@ -10,7 +10,7 @@ const { getThesisThemeIconSvg } = require('../../utils/thesis-theme-icons');
 const { renderFontLinks } = require('../../utils/font-assets');
 const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('../../utils/site-labels');
 const { renderSiteNavLinks } = require('../../utils/render-site-nav');
-const { renderFaviconLinks } = require('../../utils/site-icons');
+const { renderFaviconLinks, renderLogoImg } = require('../../utils/site-icons');
 const { setPublicHtmlCache } = require('../../utils/public-html-cache');
 const { isMobileRequest } = require('../../utils/profile-page-assets');
 
@@ -118,7 +118,7 @@ function renderThemePage(theme, res) {
     '<body class="scrollable-page inv-page">',
     '<div class="app-container">',
     '<header class="site-header">',
-    '<a href="/" class="logo-container"><img src="/assets/logoforvc.png" alt="VC Dekho Logo" class="logo-img"></a>',
+    '<a href="/" class="logo-container">' + renderLogoImg() + '</a>',
     '<button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>',
     '<nav class="main-nav" id="navigation-bar">',
     ...renderSiteNavLinks('funds'),

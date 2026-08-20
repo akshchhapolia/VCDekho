@@ -12,4 +12,21 @@ function renderFaviconLinks() {
   ];
 }
 
-module.exports = { renderFaviconLinks };
+/** Intrinsic size of /assets/logoforvc.png — used so the header doesn't shift on decode. */
+const LOGO_INTRINSIC = { width: 220, height: 204 };
+
+function renderLogoImg(opts) {
+  const o = opts || {};
+  const attrs = [
+    'src="' + (o.src || '/assets/logoforvc.png') + '"',
+    'alt="' + (o.alt === undefined ? 'VC Dekho Logo' : o.alt) + '"',
+    'class="logo-img"',
+    'width="' + LOGO_INTRINSIC.width + '"',
+    'height="' + LOGO_INTRINSIC.height + '"'
+  ];
+  if (o.id) attrs.push('id="' + o.id + '"');
+  if (o.fetchpriority) attrs.push('fetchpriority="' + o.fetchpriority + '"');
+  return '<img ' + attrs.join(' ') + '>';
+}
+
+module.exports = { renderFaviconLinks, renderLogoImg, LOGO_INTRINSIC };

@@ -9,9 +9,9 @@
 <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/css/fonts.css?v=1">
-    <link rel="stylesheet" href="/css/base.css?v=145">
+    <link rel="stylesheet" href="/css/base.css?v=146">
     <link rel="stylesheet" href="/css/ambient.css?v=98">
-    <link rel="stylesheet" href="/css/hero.css?v=96">
+    <link rel="stylesheet" href="/css/hero.css?v=97">
     <link rel="stylesheet" href="/css/announcement.css?v=145">
     <title>VC Dekho - Discover Investors from India behind India's Fastest Growing Startups.</title>
     
@@ -80,7 +80,7 @@
         <!-- Site Header & Navigation -->
         <header class="site-header">
             <a href="/" class="logo-container" id="logo-link" aria-label="VC Dekho home">
-                <img src="assets/logoforvc.png" alt="" class="logo-img" id="logo-image" fetchpriority="high" width="160" height="40">
+                <img src="assets/logoforvc.png" alt="" class="logo-img" width="220" height="204" id="logo-image" fetchpriority="high">
                 <span class="logo-wordmark" aria-hidden="true">VC Dekho</span>
             </a>
             
@@ -103,10 +103,25 @@
         <!-- Main Viewport Section -->
         <main class="hero-showcase" id="main-viewport">
             <!-- Background Video -->
-            <!-- preload=none: avoid pulling 2.5MB on mweb before LCP; app.js starts playback when idle -->
+            <!-- Desktop-only background video. Mweb uses the poster/fallback image and
+                 must not fetch the mp4 — a parser script strips the source immediately. -->
             <video loop muted playsinline webkit-playsinline class="hero-bg" id="hero-background-media" preload="none" poster="/assets/sand_bg.webp" style="background-color: #0b0b0d;">
-                <source src="/assets/mainvideo.mp4" type="video/mp4">
+                <source src="/assets/mainvideo.v2.mp4" type="video/mp4">
             </video>
+            <script>
+            (function(){
+              var skip = window.matchMedia('(max-width:992px)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+              if (!skip) return;
+              var v = document.getElementById('hero-background-media');
+              if (!v) return;
+              Array.prototype.forEach.call(v.querySelectorAll('source'), function (s) {
+                s.removeAttribute('src');
+                s.remove();
+              });
+              v.removeAttribute('src');
+              try { v.load(); } catch (e) {}
+            })();
+            </script>
             
             <!-- Fallback Static Background (hidden by default) -->
             <div class="hero-bg-fallback" id="hero-bg-fallback"></div>
@@ -155,6 +170,6 @@
     <!-- JavaScript Interactions -->
         <script src="/js/auth.js" defer></script>
     <script src="/js/directory-session.js?v=2" defer></script>
-<script src="/app.js?v=95" defer></script>
+<script src="/app.js?v=96" defer></script>
 </body>
 </html>

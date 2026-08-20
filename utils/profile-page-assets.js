@@ -5,18 +5,19 @@
  */
 
 const CSS_FILES = [
-  '/css/base.css?v=145',
-  '/css/hero.css?v=96',
+  '/css/base.css?v=146',
+  '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
   '/css/announcement.css?v=145',
   '/css/directory-list.css?v=145',
   '/css/directory-profile.css?v=145'
 ];
 
-const { FONTS_HREF, renderFontPreloads } = require('./font-assets');
+const { FONTS_HREF, renderFontPreloads, renderLatinFontFaces } = require('./font-assets');
 
 /** Compact first-paint styles for mweb profile hero (matches final CSS). */
 const PROFILE_CRITICAL_CSS = [
+  renderLatinFontFaces(),
   ':root{--color-text-main:#1A1A1A;--color-text-light:#fff;--color-accent-orange:#ED572F;--font-heading:"Instrument Serif",Georgia,serif;--font-sans:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;--page-padding:2.5rem}',
   '*{box-sizing:border-box;margin:0;padding:0}',
   'html,body{width:100%;background:#0b0b0d;color:rgba(255,255,255,.88);font-family:var(--font-sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}',
@@ -24,7 +25,7 @@ const PROFILE_CRITICAL_CSS = [
   'body.scrollable-page::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:#0b0b0d;background-image:radial-gradient(ellipse 160% 120% at 15% -10%,rgba(237,87,47,.1),transparent 58%),radial-gradient(ellipse 120% 90% at 85% 15%,rgba(237,87,47,.05),transparent 55%)}',
   '.app-container{display:flex;flex-direction:column;width:100%;min-height:100dvh;padding:1rem;gap:.75rem;max-width:1600px;margin:0 auto;position:relative;z-index:1}',
   '.site-header{display:flex;justify-content:space-between;align-items:center;width:100%;height:50px;position:relative;z-index:2;padding-top:env(safe-area-inset-top,0)}',
-  '.logo-img{height:44px;width:auto;display:block}',
+  '.logo-img{height:44px;width:auto;aspect-ratio:220/204;display:block}',
   '.main-nav{display:none}',
   '.nav-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:44px;min-height:44px;margin-left:auto;background:none;border:none;padding:.5rem}',
   '.nav-toggle span{display:block;width:22px;height:2px;background:#fff;margin:0;flex-shrink:0}',
@@ -38,15 +39,27 @@ const PROFILE_CRITICAL_CSS = [
   '.inv-profile-hero{position:relative;display:flex;flex-direction:column;padding:1.75rem 1.2rem 1.25rem;border-radius:20px;border:1px solid rgba(255,255,255,.1);overflow:hidden;background:rgba(255,255,255,.02);isolation:isolate;-webkit-transform:translateZ(0);transform:translateZ(0)}',
   '.inv-profile-hero-wash{position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse 90% 75% at 18% 28%,rgba(237,87,47,.16),transparent 72%);pointer-events:none}',
   '@media(max-width:768px){body.inv-investor-profile .app-container,body.inv-person-profile .app-container{padding-left:.55rem;padding-right:.55rem}body.inv-investor-profile .inv-detail-wrap,body.inv-person-profile .inv-detail-wrap{padding-left:10px;padding-right:10px}}',
-  '.inv-profile-hero-inner,.inv-profile-hero-copy{position:relative;z-index:1}',
-  '.inv-profile-logo{width:56px;height:56px;border-radius:14px;object-fit:contain;margin-bottom:14px;background:rgba(255,255,255,.96);border:1.5px solid var(--color-accent-orange)}',
-  '.inv-profile-type{display:inline-block;color:var(--color-accent-orange);font-size:.65rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.35rem}',
-  '.inv-profile-title{font-family:var(--font-heading);font-size:clamp(1.6rem,7vw,2.2rem);color:#fff;line-height:1.15;font-weight:400;margin:0 0 .5rem}',
-  '.inv-profile-hero-lead{color:rgba(255,255,255,.72);font-size:.95rem;line-height:1.5;margin:0 0 1rem}',
-  '.inv-profile-hero-actions{display:flex;flex-wrap:wrap;gap:.5rem}',
-  '.inv-profile-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.65rem 1rem;border-radius:12px;text-decoration:none;font-size:.85rem;font-weight:600;color:#fff;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06)}',
+  // These values MUST match css/directory.css. A compact first-paint hero
+  // (smaller title, missing meta row) is what produced CLS 0.17 on fund profiles:
+  // async CSS arrived and grew the hero, pushing #snapshot down.
+  '.inv-profile-hero-inner{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between;gap:1.35rem}',
+  '.inv-profile-hero-copy{position:relative;z-index:1}',
+  '.inv-profile-logo{display:block;width:56px;height:56px;border-radius:14px;object-fit:contain;margin-bottom:1rem;background:rgba(255,255,255,.96);border:1.5px solid var(--color-accent-orange);padding:6px;box-sizing:border-box}',
+  '.inv-profile-type{display:inline-block;margin-bottom:.85rem;padding:.35rem .7rem;border-radius:999px;border:1px solid rgba(237,87,47,.4);background:rgba(237,87,47,.14);color:#ffb89c;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}',
+  '.inv-profile-active-badge{display:inline-flex;align-items:center;gap:.4rem;margin:0 0 .85rem .5rem;padding:.35rem .7rem;border-radius:999px;border:1px solid rgba(80,200,120,.4);background:rgba(80,200,120,.12);color:#a8f0c0;font-size:.72rem;font-weight:700;letter-spacing:.04em}',
+  '.inv-profile-active-dot{width:6px;height:6px;border-radius:50%;background:#6be895;display:inline-block}',
+  '.inv-profile-title{font-family:var(--font-heading);font-size:clamp(2.6rem,6.5vw,4.1rem);color:#fff;line-height:.98;font-weight:400;margin:0 0 .85rem}',
+  '.inv-profile-hero-lead{color:rgba(255,255,255,.78);font-size:1.08rem;line-height:1.55;margin:0 0 1.4rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;max-width:38rem}',
+  '.inv-profile-hero-actions{display:flex;flex-wrap:wrap;gap:.65rem}',
+  '.inv-profile-cta{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;padding:.8rem 1.15rem;border-radius:999px;text-decoration:none;font-size:.9rem;font-weight:700;color:#fff}',
+  '.inv-profile-cta.is-primary{background:var(--color-accent-orange);border:1px solid transparent}',
+  '.inv-profile-cta.is-ghost{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.9)}',
+  '.inv-profile-hero-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem 1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.1)}',
+  '.inv-profile-hero-meta-label{color:rgba(255,255,255,.48);font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase}',
+  '.inv-profile-hero-meta-value{color:rgba(255,255,255,.92);font-family:var(--font-heading);font-size:clamp(.98rem,1.5vw,1.15rem);font-weight:400;line-height:1.25}',
+  '@media(max-width:768px){body.inv-investor-profile .inv-profile-hero-meta{gap:.45rem .4rem}body.inv-investor-profile .inv-profile-hero-meta-label{font-size:.58rem;letter-spacing:.05em}body.inv-investor-profile .inv-profile-hero-meta-value{font-size:.88rem;white-space:normal}body.inv-person-profile .inv-profile-hero-actions{margin-top:auto;padding-top:1.25rem}}',
   '.inv-profile-sticky-host{width:100vw;max-width:100vw;margin-left:calc(50% - 50vw)}',
-  '.inv-profile-sticky{display:flex;flex-wrap:nowrap;justify-content:flex-start;gap:.15rem 1rem;overflow-x:auto;padding:.75rem max(1rem,env(safe-area-inset-left)) .65rem;border-bottom:1px solid rgba(255,255,255,.1);-webkit-overflow-scrolling:touch;scrollbar-width:none;position:relative;z-index:8;box-sizing:border-box}',
+  '.inv-profile-sticky{display:flex;flex-wrap:nowrap;justify-content:flex-start;gap:.15rem 1rem;overflow-x:auto;margin:0 0 1rem;padding:.75rem max(1rem,env(safe-area-inset-left)) .65rem;border-bottom:1px solid rgba(255,255,255,.1);-webkit-overflow-scrolling:touch;scrollbar-width:none;position:relative;z-index:8;box-sizing:border-box}',
   /* Mweb: pin styles in critical CSS so sticky works before async directory.css */
   '@media(max-width:768px){.inv-profile-sticky.is-pinned{position:fixed!important;top:env(safe-area-inset-top,0);left:0!important;right:0!important;width:100%!important;max-width:100vw!important;z-index:90;margin:0;padding:.75rem max(1rem,env(safe-area-inset-left)) .65rem max(1rem,env(safe-area-inset-right));background:rgba(11,11,13,.92);border-bottom:1px solid rgba(255,255,255,.1);box-shadow:0 8px 24px rgba(0,0,0,.35)}}',
   '.inv-profile-sticky a{flex:0 0 auto;color:rgba(255,255,255,.5);font-size:.82rem;font-weight:650;text-decoration:none;white-space:nowrap;padding:.45rem .35rem .6rem}',
@@ -57,8 +70,10 @@ const PROFILE_CRITICAL_CSS = [
   '.inv-profile-section-head h2{font-family:var(--font-heading);font-size:1.45rem;font-weight:400;color:#fff;margin:0 0 .35rem}',
   '.inv-profile-section-head p{color:rgba(255,255,255,.62);font-size:.9rem;line-height:1.45;margin:0 0 .85rem}',
   '.inv-profile-metric-strip{display:grid;gap:.75rem;margin-top:.5rem}',
-  '@media(max-width:768px){body.inv-investor-profile #snapshot .inv-profile-metric-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem .75rem}}',
-  '.inv-profile-metric-label{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45)}',
+  '@media(max-width:768px){body.inv-investor-profile #snapshot .inv-profile-metric-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem .75rem}body.inv-investor-profile #snapshot .inv-profile-metric-value{font-size:.95rem;line-height:1.3}}',
+  '.inv-profile-metric{padding:0 0 0 .85rem;border-left:2px solid rgba(255,255,255,.12)}',
+  '.inv-profile-metric:first-child{border-left-color:rgba(237,87,47,.55)}',
+  '.inv-profile-metric-label{font-size:.7rem;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.4rem}',
   '.inv-profile-metric-value{font-family:var(--font-heading);font-size:1.35rem;color:#fff;margin-top:.15rem}',
   '.inv-profile-focus-panel{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:1rem 1.1rem;background:rgba(255,255,255,.02)}',
   '.inv-profile-focus-col h3{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55);margin:0 0 .55rem}',
