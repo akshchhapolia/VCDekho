@@ -10,6 +10,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 require('dotenv').config();
 
@@ -187,6 +188,81 @@ function testStaticAssets() {
   testDirectoryPrerender('funds/index.html', 'inv-results', 'inv-prerender', 'investors');
   testDirectoryPrerender('investors/index.html', 'ppl-results', 'ppl-prerender', 'people');
   testListIndexShape();
+  testSelfHostedFonts();
+}
+
+/**
+ * Fonts are self-hosted as an exact mirror of Google's payload. These guard
+ * the two ways that can silently regress the site's typography.
+ */
+function testSelfHostedFonts() {
+  try {
+    const css = fs.readFileSync(path.join(ROOT, 'css/fonts.css'), 'utf8');
+
+    // Every woff2 the CSS points at must actually be deployed.
+    const refs = [...css.matchAll(/url\((\/assets\/fonts\/[^)]+)\)/g)].map((m) => m[1]);
+    const missing = [...new Set(refs)].filter((r) => !fs.existsSync(path.join(ROOT, r.replace(/^\//, ''))));
+    if (missing.length) {
+      fail('self-hosted fonts', `missing files: ${missing.join(', ')}`);
+      return;
+    }
+
+    // Plus Jakarta Sans is variable; the stylesheets use 650 and 800, which are
+    // not declared and must keep snapping to the 700 face. A collapsed range
+    // (e.g. `font-weight: 200 900`) would render those at their true weights.
+    if (/font-weight:\s*\d+\s+\d+/.test(css)) {
+      fail('self-hosted fonts', 'a @font-face declares a weight RANGE — this changes how 650/800 render');
+      return;
+    }
+    const weights = [...new Set([...css.matchAll(/font-weight:\s*(\d+)/g)].map((m) => m[1]))].sort();
+    const expected = ['300', '400', '500', '600', '700'];
+    if (expected.some((w) => !weights.includes(w))) {
+      fail('self-hosted fonts', `expected discrete weights ${expected.join('/')}, found ${weights.join('/')}`);
+      return;
+    }
+
+    const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/fonts.manifest.json'), 'utf8'));
+    const tampered = manifest.files.filter((f) => {
+      const p = path.join(ROOT, 'assets/fonts', f.file);
+      if (!fs.existsSync(p)) return true;
+      return crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex') !== f.sha256;
+    });
+    if (tampered.length) {
+      fail('self-hosted fonts', `${tampered.length} font file(s) no longer match Google's bytes`);
+      return;
+    }
+
+    pass(`self-hosted fonts (${[...new Set(refs)].length} files, weights ${weights.join('/')})`);
+  } catch (err) {
+    fail('self-hosted fonts', err);
+  }
+
+  try {
+    const stale = [];
+    walkHtml(ROOT).forEach((file) => {
+      const html = fs.readFileSync(file, 'utf8');
+      if (html.includes('fonts.googleapis.com') || html.includes('fonts.gstatic.com')) {
+        stale.push(path.relative(ROOT, file));
+      }
+    });
+    if (stale.length) {
+      fail('no third-party font origins', `${stale.length} page(s) still hit Google: ${stale.slice(0, 3).join(', ')}`);
+    } else {
+      pass('no page references fonts.googleapis.com / fonts.gstatic.com');
+    }
+  } catch (err) {
+    fail('no third-party font origins', err);
+  }
+}
+
+function walkHtml(dir, out = []) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name === 'node_modules' || entry.name === '.git') continue;
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) walkHtml(full, out);
+    else if (entry.isFile() && entry.name.endsWith('.html')) out.push(full);
+  }
+  return out;
 }
 
 /**

@@ -18,6 +18,8 @@
     "enrich:portfolio-all": "bash scripts/run_portfolio_enrichment_all.sh",
     "build:people": "node scripts/build_people_json.js",
     "build:css": "node scripts/split_css.js",
+    "build:fonts": "node scripts/build_fonts.js",
+    "check:fonts": "node scripts/build_fonts.js --check",
     "check:links": "node scripts/check_investor_links.js",
     "check:links:apply": "node scripts/check_investor_links.js --apply",
     "fetch:logos": "node scripts/fetch_investor_logos.js",
