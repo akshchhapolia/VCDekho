@@ -3,8 +3,7 @@
  * Desktop keeps render-blocking stylesheets — design unchanged.
  */
 
-const FONTS_HREF =
-  'https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap';
+const { FONTS_HREF, renderFontPreloads, renderFontLinks } = require('./font-assets');
 
 const HOME_CSS = [
   '/css/base.css?v=145',
@@ -68,10 +67,7 @@ const DIRECTORY_CRITICAL_EXTRA = [
 ];
 
 function renderBlockingDirectoryHead() {
-  return [
-    '<link rel="preconnect" href="https://fonts.googleapis.com">',
-    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
-    '<link rel="stylesheet" href="' + FONTS_HREF + '">',
+  return renderFontLinks().concat([
     '<link rel="stylesheet" href="/css/base.css?v=145">',
     '<link rel="stylesheet" href="/css/hero.css?v=96">',
     '<link rel="stylesheet" href="/css/ambient.css?v=98">',
