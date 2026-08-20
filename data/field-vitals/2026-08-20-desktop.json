@@ -1,0 +1,47 @@
+{
+  "measuredAt": "2026-08-20T18:20:06.636Z",
+  "formFactor": "DESKTOP",
+  "origin": {
+    "largest_contentful_paint": {
+      "label": "LCP",
+      "p75": 1329,
+      "rating": "good",
+      "good": 83,
+      "needsImprovement": 11,
+      "poor": 6
+    },
+    "interaction_to_next_paint": {
+      "label": "INP",
+      "p75": 54,
+      "rating": "good",
+      "good": 99,
+      "needsImprovement": 1,
+      "poor": 0
+    },
+    "cumulative_layout_shift": {
+      "label": "CLS",
+      "p75": "0.03",
+      "rating": "good",
+      "good": 86,
+      "needsImprovement": 5,
+      "poor": 10
+    },
+    "first_contentful_paint": {
+      "label": "FCP",
+      "p75": 810,
+      "rating": "good",
+      "good": 88,
+      "needsImprovement": 8,
+      "poor": 3
+    },
+    "experimental_time_to_first_byte": {
+      "label": "TTFB",
+      "p75": 148,
+      "rating": "good",
+      "good": 94,
+      "needsImprovement": 5,
+      "poor": 1
+    }
+  },
+  "pages": {}
+}
