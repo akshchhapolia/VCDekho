@@ -162,6 +162,67 @@ function testStaticAssets() {
   } catch (err) {
     fail('investors.json parse', err);
   }
+
+  try {
+    const listCss = fs.readFileSync(path.join(ROOT, 'css/directory-list.css'), 'utf8');
+    if (!/\.inv-dir-cell a,\s*\n\.inv-dir-ticket a,\s*\n\.inv-dir-inline-link \{[\s\S]*?color:\s*inherit/.test(listCss)) {
+      fail('directory-list.css link styles', 'missing directory inline link color rules');
+    } else {
+      pass('directory-list.css styles inline links');
+    }
+    if (!/\.inv-email-unlock-btn \{[\s\S]*?border-radius:\s*999px/.test(listCss)) {
+      fail('directory-list.css email unlock', 'missing .inv-email-unlock-btn pill styles');
+    } else {
+      pass('directory-list.css styles email unlock CTA');
+    }
+    if (!/body\.inv-people-dir[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1\.32fr\)/.test(listCss)) {
+      fail('directory-list.css people grid', 'missing people directory column layout');
+    } else {
+      pass('directory-list.css people directory grid');
+    }
+  } catch (err) {
+    fail('directory-list.css link styles', err);
+  }
+
+  testDirectoryPrerender('funds/index.html', 'inv-results', 'inv-prerender', 'investors');
+  testDirectoryPrerender('investors/index.html', 'ppl-results', 'ppl-prerender', 'people');
+}
+
+function testDirectoryPrerender(relPath, resultsId, bootstrapId, collection) {
+  const label = `${relPath} pre-render`;
+  try {
+    const html = fs.readFileSync(path.join(ROOT, relPath), 'utf8');
+
+    const rows = (html.match(/<article class="inv-dir-row">/g) || []).length;
+    if (rows < 15) {
+      fail(label, `expected 15 pre-rendered rows, found ${rows}`);
+      return;
+    }
+    if (!new RegExp(`<div id="${resultsId}"[^>]*aria-busy="false"`).test(html)) {
+      fail(label, `#${resultsId} still marked aria-busy="true"`);
+      return;
+    }
+
+    const match = html.match(
+      new RegExp(`<script type="application/json" id="${bootstrapId}">([\\s\\S]*?)</script>`)
+    );
+    if (!match) {
+      fail(label, `missing #${bootstrapId} bootstrap JSON`);
+      return;
+    }
+    const data = JSON.parse(match[1].replace(/\\u003c/g, '<'));
+    if (!data.prerendered || !Array.isArray(data[collection]) || data[collection].length !== 15) {
+      fail(label, `bootstrap JSON missing 15 ${collection}`);
+      return;
+    }
+    if (!data.total || !data.filters) {
+      fail(label, 'bootstrap JSON missing total/filters');
+      return;
+    }
+    pass(`${label} (${rows} rows, ${data.total.toLocaleString('en-IN')} total)`);
+  } catch (err) {
+    fail(label, err);
+  }
 }
 
 function testSiteIcons() {

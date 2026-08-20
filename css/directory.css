@@ -3080,6 +3080,248 @@ a.inv-chip:hover {
   }
 }
 
+/* Directory list links — must stay in list bundle (not profile-only) */
+.inv-dir-guide-link {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+}
+
+.inv-dir-guide-link:hover {
+  color: #ffd2c3;
+  text-decoration: underline;
+}
+
+.inv-dir-cell a,
+.inv-dir-ticket a,
+.inv-dir-inline-link {
+  position: relative;
+  z-index: 2;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.inv-dir-cell a:hover,
+.inv-dir-ticket a:hover,
+.inv-dir-inline-link:hover {
+  color: #ffb89c;
+  border-bottom-color: rgba(237, 87, 47, 0.55);
+}
+
+/* Email unlock — people directory rows (list bundle; profile overrides below) */
+.inv-email-unlock-btn {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.32rem 0.65rem;
+  background: rgba(237, 87, 47, 0.06);
+  border: 1px solid rgba(237, 87, 47, 0.38);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.88);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
+}
+
+.inv-email-unlock-btn .inv-email-unlock-icon {
+  flex: 0 0 auto;
+  color: rgba(237, 87, 47, 0.72);
+  transition: color 0.18s ease;
+}
+
+.inv-email-unlock-btn:hover:not(:disabled),
+.inv-email-unlock-btn:focus-visible:not(:disabled) {
+  background: rgba(237, 87, 47, 0.12);
+  border-color: rgba(237, 87, 47, 0.55);
+  color: rgba(255, 255, 255, 0.96);
+  transform: translateY(-1px);
+}
+
+.inv-email-unlock-btn:hover:not(:disabled) .inv-email-unlock-icon,
+.inv-email-unlock-btn:focus-visible:not(:disabled) .inv-email-unlock-icon {
+  color: rgba(237, 87, 47, 0.88);
+}
+
+.inv-email-unlock-btn:active:not(:disabled) {
+  transform: translateY(0);
+  background: rgba(237, 87, 47, 0.16);
+  border-color: rgba(237, 87, 47, 0.62);
+}
+
+.inv-email-unlock-btn:disabled {
+  opacity: 0.65;
+  cursor: wait;
+  transform: none;
+}
+
+.inv-dir-col-email:has(.inv-email-unlock-btn),
+.inv-dir-col-email:has(.inv-email-revealed) {
+  position: relative;
+  z-index: 2;
+}
+
+.inv-dir-col-email .inv-email-unlock-btn {
+  vertical-align: middle;
+}
+
+.inv-dir-col-email .inv-email-unlock-btn:hover:not(:disabled),
+.inv-dir-col-email .inv-email-unlock-btn:focus-visible:not(:disabled),
+.inv-dir-col-email .inv-email-unlock-btn:active:not(:disabled) {
+  transform: none;
+}
+
+@media (min-width: 769px) {
+  body.inv-people-dir .inv-dir-table-head,
+  body.inv-people-dir .inv-dir-row {
+    grid-template-columns: minmax(0, 1.32fr) minmax(0, 0.9fr) minmax(0, 1.12fr) minmax(0, 0.74fr);
+    gap: 1.2rem;
+  }
+
+  body.inv-people-dir .inv-dir-row {
+    padding-top: 0.82rem;
+    padding-bottom: 0.82rem;
+  }
+
+  body.inv-people-dir .inv-dir-col-stages,
+  body.inv-people-dir .inv-dir-col-email,
+  body.inv-people-dir .inv-dir-col-ticket {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+  }
+
+  body.inv-people-dir .inv-dir-col-email {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  body.inv-people-dir .inv-dir-col-email .inv-dir-cell {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 1.75rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  body.inv-people-dir .inv-dir-col-email .inv-email-unlock-btn {
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  body.inv-people-dir .inv-dir-col-email .inv-dir-inline-link,
+  body.inv-people-dir .inv-dir-col-ticket .inv-dir-inline-link {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  body.inv-people-dir .inv-dir-col-email .inv-profile-empty {
+    line-height: 1.75rem;
+  }
+}
+
+.inv-email-revealed {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.inv-email-revealed .inv-dir-inline-link {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inv-email-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.65rem;
+  height: 1.65rem;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(237, 87, 47, 0.38);
+  background: rgba(237, 87, 47, 0.06);
+  color: rgba(237, 87, 47, 0.72);
+  cursor: pointer;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.inv-email-copy-btn:hover,
+.inv-email-copy-btn:focus-visible {
+  background: rgba(237, 87, 47, 0.12);
+  border-color: rgba(237, 87, 47, 0.55);
+  color: rgba(237, 87, 47, 0.88);
+}
+
+.inv-email-copy-btn.is-copied {
+  background: rgba(72, 187, 120, 0.12);
+  border-color: rgba(72, 187, 120, 0.55);
+  color: rgba(130, 230, 170, 0.95);
+}
+
+body.inv-people-dir .inv-dir-col-email .inv-dir-cell:has(.inv-email-revealed) {
+  display: flex;
+  align-items: center;
+}
+
+.inv-email-limit-strip {
+  position: fixed;
+  left: 50%;
+  bottom: 1.25rem;
+  z-index: 9999;
+  transform: translate(-50%, 120%);
+  opacity: 0;
+  max-width: min(92vw, 28rem);
+  padding: 0.85rem 1.25rem;
+  border-radius: 999px;
+  border: 1px solid rgba(237, 87, 47, 0.45);
+  background: rgba(18, 12, 10, 0.94);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+  transition: transform 0.28s ease, opacity 0.28s ease;
+}
+
+.inv-email-limit-strip.is-visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .inv-email-limit-strip {
+    bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+    max-width: calc(100vw - 1.5rem);
+    font-size: 0.82rem;
+  }
+}
 
 /* Investor profile pages — editorial redesign */
 .inv-profile-wrap {
@@ -5467,135 +5709,7 @@ a.inv-profile-metric:hover .inv-profile-metric-value {
   }
 }
 
-/* Email unlock — directory + profile (emails fetched via authenticated API) */
-.inv-email-unlock-btn {
-  position: relative;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  padding: 0.32rem 0.65rem;
-  background: rgba(237, 87, 47, 0.06);
-  border: 1px solid rgba(237, 87, 47, 0.38);
-  border-radius: 999px;
-  color: rgba(255, 255, 255, 0.88);
-  font: inherit;
-  font-size: 0.72rem;
-  font-weight: 600;
-  line-height: 1.2;
-  cursor: pointer;
-  text-decoration: none;
-  white-space: nowrap;
-  pointer-events: auto;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
-}
-
-.inv-email-unlock-btn .inv-email-unlock-icon {
-  flex: 0 0 auto;
-  color: rgba(237, 87, 47, 0.72);
-  transition: color 0.18s ease;
-}
-
-.inv-email-unlock-btn:hover:not(:disabled),
-.inv-email-unlock-btn:focus-visible:not(:disabled) {
-  background: rgba(237, 87, 47, 0.12);
-  border-color: rgba(237, 87, 47, 0.55);
-  color: rgba(255, 255, 255, 0.96);
-  transform: translateY(-1px);
-}
-
-.inv-email-unlock-btn:hover:not(:disabled) .inv-email-unlock-icon,
-.inv-email-unlock-btn:focus-visible:not(:disabled) .inv-email-unlock-icon {
-  color: rgba(237, 87, 47, 0.88);
-}
-
-.inv-email-unlock-btn:active:not(:disabled) {
-  transform: translateY(0);
-  background: rgba(237, 87, 47, 0.16);
-  border-color: rgba(237, 87, 47, 0.62);
-}
-
-.inv-email-unlock-btn:disabled {
-  opacity: 0.65;
-  cursor: wait;
-  transform: none;
-}
-
-/* Keep email column interactive above the full-row hit target */
-.inv-dir-col-email:has(.inv-email-unlock-btn),
-.inv-dir-col-email:has(.inv-email-revealed) {
-  position: relative;
-  z-index: 2;
-}
-
-.inv-dir-col-email .inv-email-unlock-btn {
-  vertical-align: middle;
-}
-
-/* Directory rows: avoid translateY — parent row clips overflow */
-.inv-dir-col-email .inv-email-unlock-btn:hover:not(:disabled),
-.inv-dir-col-email .inv-email-unlock-btn:focus-visible:not(:disabled),
-.inv-dir-col-email .inv-email-unlock-btn:active:not(:disabled) {
-  transform: none;
-}
-
-/* People directory — email column spacing + alignment (desktop) */
-@media (min-width: 769px) {
-  body.inv-people-dir .inv-dir-table-head,
-  body.inv-people-dir .inv-dir-row {
-    grid-template-columns: minmax(0, 1.32fr) minmax(0, 0.9fr) minmax(0, 1.12fr) minmax(0, 0.74fr);
-    gap: 1.2rem;
-  }
-
-  body.inv-people-dir .inv-dir-row {
-    padding-top: 0.82rem;
-    padding-bottom: 0.82rem;
-  }
-
-  body.inv-people-dir .inv-dir-col-stages,
-  body.inv-people-dir .inv-dir-col-email,
-  body.inv-people-dir .inv-dir-col-ticket {
-    display: flex;
-    align-items: center;
-    min-width: 0;
-  }
-
-  body.inv-people-dir .inv-dir-col-email {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  body.inv-people-dir .inv-dir-col-email .inv-dir-cell {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    min-height: 1.75rem;
-    margin: 0;
-    padding: 0;
-  }
-
-  body.inv-people-dir .inv-dir-col-email .inv-email-unlock-btn {
-    margin: 0;
-    flex-shrink: 0;
-  }
-
-  body.inv-people-dir .inv-dir-col-email .inv-dir-inline-link {
-    display: inline-block;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    vertical-align: middle;
-  }
-
-  body.inv-people-dir .inv-dir-col-email .inv-profile-empty {
-    line-height: 1.75rem;
-  }
-}
-
+/* Email unlock — profile page overrides */
 .inv-profile-cta.inv-email-unlock-btn {
   padding: 0.8rem 1.15rem;
   font-size: 0.9rem;
@@ -5606,17 +5720,6 @@ a.inv-profile-metric:hover .inv-profile-metric-value {
 .inv-profile-cta.inv-email-unlock-btn .inv-email-unlock-icon {
   width: 15px;
   height: 15px;
-}
-
-/* Revealed email + copy */
-.inv-email-revealed {
-  position: relative;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  max-width: 100%;
-  min-width: 0;
 }
 
 .inv-email-revealed--profile {
@@ -5671,45 +5774,6 @@ a.inv-profile-metric:hover .inv-profile-metric-value {
   color: rgba(130, 230, 170, 0.95);
 }
 
-.inv-email-revealed .inv-dir-inline-link {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.inv-email-copy-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 1.65rem;
-  height: 1.65rem;
-  padding: 0;
-  border-radius: 999px;
-  border: 1px solid rgba(237, 87, 47, 0.38);
-  background: rgba(237, 87, 47, 0.06);
-  color: rgba(237, 87, 47, 0.72);
-  cursor: pointer;
-  pointer-events: auto;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
-}
-
-.inv-email-copy-btn:hover,
-.inv-email-copy-btn:focus-visible {
-  background: rgba(237, 87, 47, 0.12);
-  border-color: rgba(237, 87, 47, 0.55);
-  color: rgba(237, 87, 47, 0.88);
-}
-
-.inv-email-copy-btn.is-copied {
-  background: rgba(72, 187, 120, 0.12);
-  border-color: rgba(72, 187, 120, 0.55);
-  color: rgba(130, 230, 170, 0.95);
-}
-
 .inv-email-copy-btn--profile {
   width: 2rem;
   height: 2rem;
@@ -5718,45 +5782,5 @@ a.inv-profile-metric:hover .inv-profile-metric-value {
 .inv-email-copy-btn--profile .inv-email-copy-icon {
   width: 14px;
   height: 14px;
-}
-
-body.inv-people-dir .inv-dir-col-email .inv-dir-cell:has(.inv-email-revealed) {
-  display: flex;
-  align-items: center;
-}
-
-/* Daily unlock limit — bottom status strip */
-.inv-email-limit-strip {
-  position: fixed;
-  left: 50%;
-  bottom: 1.25rem;
-  z-index: 9999;
-  transform: translate(-50%, 120%);
-  opacity: 0;
-  max-width: min(92vw, 28rem);
-  padding: 0.85rem 1.25rem;
-  border-radius: 999px;
-  border: 1px solid rgba(237, 87, 47, 0.45);
-  background: rgba(18, 12, 10, 0.94);
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 0.88rem;
-  font-weight: 600;
-  text-align: center;
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45);
-  pointer-events: none;
-  transition: transform 0.28s ease, opacity 0.28s ease;
-}
-
-.inv-email-limit-strip.is-visible {
-  transform: translate(-50%, 0);
-  opacity: 1;
-}
-
-@media (max-width: 768px) {
-  .inv-email-limit-strip {
-    bottom: max(1rem, env(safe-area-inset-bottom, 0px));
-    max-width: calc(100vw - 1.5rem);
-    font-size: 0.82rem;
-  }
 }
 

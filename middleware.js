@@ -42,6 +42,7 @@ export default async function middleware(request) {
 
   const isSensitiveData =
     pathname.startsWith('/utils/_data/') ||
+    pathname.startsWith('/data/') ||
     pathname === '/utils/_data' ||
     pathname === '/VC Dekho Sheet - Investor - Individuals.csv';
   if (isSensitiveData) {
@@ -52,6 +53,7 @@ export default async function middleware(request) {
 export const config = {
   matcher: [
     '/utils/_data/:path*',
+    '/data/:path*',
     '/VC Dekho Sheet - Investor - Individuals.csv'
   ]
 };

@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const { INVESTMENT_STAGES } = require('../data/investment-stages');
 
-let cache = null;
+let indexCache = null;
+let fullCache = null;
 let activityCacheAt = 0;
 let portfolioCacheAt = 0;
 const ACTIVITY_CACHE_TTL_MS = 5 * 60 * 1000; // 5 min — avoids a DB round trip on every request
@@ -22,11 +23,23 @@ function isActivelyDeploying(inv) {
   return ageDays >= 0 && ageDays <= ACTIVE_WINDOW_DAYS;
 }
 
-function loadInvestorsData() {
-  if (cache) return cache;
+function loadInvestorsIndex() {
+  if (indexCache) return indexCache;
+  const filePath = path.join(__dirname, '..', 'data', 'investors.index.json');
+  indexCache = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  return indexCache;
+}
+
+function loadInvestorsFull() {
+  if (fullCache) return fullCache;
   const filePath = path.join(__dirname, '..', 'data', 'investors.json');
-  cache = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-  return cache;
+  fullCache = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  return fullCache;
+}
+
+/** Full payload (detail pages). List/filter APIs use investors.index.json when present. */
+function loadInvestorsData() {
+  return loadInvestorsFull();
 }
 
 /**
@@ -47,7 +60,7 @@ async function ensureActivityFresh() {
        FROM investor_activity WHERE last_check_date IS NOT NULL`
     );
     const bySlug = new Map(rows.map((r) => [r.slug, r]));
-    const data = loadInvestorsData();
+    const data = loadInvestorsFull();
     data.investors.forEach((inv) => {
       const r = bySlug.get(inv.slug);
       if (!r) return;
@@ -78,7 +91,7 @@ async function ensurePortfolioFresh() {
       `SELECT slug, companies, company_count FROM investor_portfolio WHERE company_count > 0`
     );
     const bySlug = new Map(rows.map((r) => [r.slug, r]));
-    const data = loadInvestorsData();
+    const data = loadInvestorsFull();
     data.investors.forEach((inv) => {
       const r = bySlug.get(inv.slug);
       if (!r) return;
@@ -157,14 +170,16 @@ async function ensureInvestorDetailExtras(slug) {
 }
 
 function getFilters() {
-  return loadInvestorsData().filters;
+  return loadInvestorsIndex().filters;
 }
 
 function getAllInvestors() {
-  return loadInvestorsData().investors;
+  return loadInvestorsIndex().investors;
 }
 
 function getInvestorBySlug(slug) {
+  const full = loadInvestorsFull().investors.find(i => i.slug === slug);
+  if (full) return full;
   return getAllInvestors().find(i => i.slug === slug) || null;
 }
 
@@ -187,7 +202,7 @@ function chequeOverlaps(inv, range) {
 }
 
 function filterInvestors(query = {}) {
-  const data = loadInvestorsData();
+  const data = loadInvestorsIndex();
   let list = data.investors;
 
   const q = (query.q || '').trim().toLowerCase();

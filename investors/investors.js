@@ -409,6 +409,42 @@
   }
 
   async function load() {
+    const isFirstDefaultPage =
+      state.offset === 0 &&
+      !state.q &&
+      !state.sector &&
+      !state.stage &&
+      !state.type &&
+      !state.thesis &&
+      !state.cheque &&
+      !state.active;
+
+    if (isFirstDefaultPage) {
+      const el = document.getElementById('inv-prerender');
+      if (el) {
+        try {
+          const data = JSON.parse(el.textContent);
+          if (data && data.prerendered && Array.isArray(data.investors)) {
+            if (!state.filters && data.filters) {
+              state.filters = data.filters;
+              dropdowns.sector.setOptions(data.filters.sectors || [], state.sector);
+              dropdowns.stage.setOptions(data.filters.stages || [], state.stage);
+              dropdowns.type.setOptions(data.filters.types || [], state.type);
+              dropdowns.thesis.setOptions(data.filters.thesisThemes || [], state.thesis);
+              dropdowns.cheque.setOptions(data.filters.chequeRanges || [], state.cheque);
+            }
+            state.total = data.total || 0;
+            renderRows(data.investors);
+            updatePager();
+            if (els.results) els.results.setAttribute('aria-busy', 'false');
+            return;
+          }
+        } catch (_) {
+          /* fall through to fetch */
+        }
+      }
+    }
+
     renderSkeleton(8);
     if (!state.total) {
       els.count.textContent = 'Fetching funds';

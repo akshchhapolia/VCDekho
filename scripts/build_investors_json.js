@@ -10,6 +10,7 @@ const { parse } = require('csv-parse/sync');
 const ROOT = path.join(__dirname, '..');
 const CSV_PATH = path.join(ROOT, 'Updated VC Dekho Sheet - Org.csv');
 const OUT_PATH = path.join(ROOT, 'data', 'investors.json');
+const INDEX_OUT_PATH = path.join(ROOT, 'data', 'investors.index.json');
 
 const STAGE_CANON = [
   { id: 'pre-seed', label: 'Pre-Seed', match: [/pre[-\s]?seed/i, /preseed/i] },
@@ -494,7 +495,42 @@ function build() {
 
   fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
   fs.writeFileSync(OUT_PATH, JSON.stringify(payload), 'utf8');
+
+  const indexInvestors = investors.map((inv) => ({
+    id: inv.id,
+    slug: inv.slug,
+    name: inv.name,
+    type: inv.type,
+    typeId: inv.typeId,
+    stages: inv.stages,
+    stageIds: inv.stageIds,
+    sectors: inv.sectors,
+    sectorIds: inv.sectorIds,
+    thesisThemes: inv.thesisThemes,
+    thesisThemeIds: inv.thesisThemeIds,
+    thesis: (inv.thesis || '').slice(0, 280),
+    chequeSize: inv.chequeSize,
+    chequeMin: inv.chequeMin,
+    chequeMax: inv.chequeMax,
+    website: inv.website,
+    logo: inv.logo || null,
+    lastCheckDate: inv.lastCheckDate || null,
+    lastCheckHighlight: inv.lastCheckHighlight || null
+  }));
+
+  fs.writeFileSync(
+    INDEX_OUT_PATH,
+    JSON.stringify({
+      generatedAt: payload.generatedAt,
+      count: indexInvestors.length,
+      filters: payload.filters,
+      investors: indexInvestors
+    }),
+    'utf8'
+  );
+
   console.log(`Wrote ${investors.length} investors → ${OUT_PATH}`);
+  console.log(`Wrote list index (${Math.round(fs.statSync(INDEX_OUT_PATH).size / 1024)}KB) → ${INDEX_OUT_PATH}`);
   console.log('Sample:', investors[0].name, investors[0].slug, investors[0].sectors.slice(0, 3));
 }
 

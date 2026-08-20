@@ -66,6 +66,12 @@ body.scrollable-page::before{content:'';position:fixed;inset:0;z-index:0;pointer
 .auth-divider{display:flex;align-items:center;gap:.75rem;margin:1rem 0;color:rgba(255,255,255,.45);font-size:.85rem}
 .auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.12)}
 .auth-google-btn{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:.65rem;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:#fff;font:inherit;font-weight:600;padding:.85rem 1rem;border-radius:12px;cursor:pointer}
+@media (min-width:993px){
+body.scrollable-page.login-page .app-container{display:flex;flex-direction:column;min-height:100dvh}
+body.scrollable-page.login-page .hero-showcase{flex:1!important;display:flex;align-items:center;justify-content:center;min-height:0!important}
+body.scrollable-page.login-page .hero-content.waitlist-content{display:block;width:100%;height:auto;padding:2rem}
+body.scrollable-page.login-page .waitlist-layout-grid{height:auto}
+}
 @media (max-width:992px){
 .app-container{padding:.85rem 1rem 0;gap:.75rem}
 .waitlist-layout-grid{display:flex;flex-direction:column;gap:2rem;height:auto;padding-bottom:2rem}
@@ -91,11 +97,11 @@ input,select,textarea{font-size:16px!important}
     <!-- Full stylesheets: non-blocking; critical CSS above matches first paint -->
     <link rel="stylesheet" href="/css/base.css?v=110" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="/css/hero.css?v=110" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="/css/ambient.css?v=110" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/ambient.css?v=111" media="print" onload="this.media='all'">
     <noscript>
       <link rel="stylesheet" href="/css/base.css?v=110">
       <link rel="stylesheet" href="/css/hero.css?v=110">
-      <link rel="stylesheet" href="/css/ambient.css?v=110">
+      <link rel="stylesheet" href="/css/ambient.css?v=111">
     </noscript>
     <!-- Keep login header spacing aligned with Funds/Investors after async CSS loads -->
     <style>

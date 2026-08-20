@@ -18,7 +18,11 @@ module.exports = async function handler(req, res) {
       if (!access) return;
     }
 
-    await ensureActivityFresh();
+    const wantsFreshActivity =
+      query.active === '1' || query.active === 'true';
+    if (wantsFreshActivity) {
+      await ensureActivityFresh();
+    }
 
     if (query.view === 'themes') {
       if (!enforceListRateLimit(req, res, { authenticated: false })) return;

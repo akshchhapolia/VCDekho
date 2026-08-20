@@ -186,7 +186,8 @@ module.exports = async function handler(req, res) {
       return toCard(person, contact ? { email: contact.email } : {});
     });
 
-    if (start === 0) {
+    // Signed-in responses embed unlocked emails — never let a shared cache hold them.
+    if (start === 0 && !access.user) {
       res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=120, stale-while-revalidate=600');
     } else {
       res.setHeader('Cache-Control', 'private, no-store');

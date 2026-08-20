@@ -5,10 +5,12 @@
  */
 
 const CSS_FILES = [
-  '/css/base.css?v=114',
-  '/css/hero.css?v=97',
+  '/css/base.css?v=145',
+  '/css/hero.css?v=96',
   '/css/ambient.css?v=98',
-  '/css/directory.css?v=141'
+  '/css/announcement.css?v=145',
+  '/css/directory-list.css?v=145',
+  '/css/directory-profile.css?v=145'
 ];
 
 const FONTS_HREF =

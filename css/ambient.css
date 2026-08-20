@@ -16,6 +16,34 @@
     height: 100%;
 }
 
+/* Login — vertically center hero + auth card in viewport (desktop) */
+@media (min-width: 993px) {
+    body.scrollable-page.login-page .app-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100dvh;
+    }
+
+    body.scrollable-page.login-page .hero-showcase {
+        flex: 1 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 0 !important;
+    }
+
+    body.scrollable-page.login-page .hero-content.waitlist-content {
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: 2rem;
+    }
+
+    body.scrollable-page.login-page .waitlist-layout-grid {
+        height: auto;
+    }
+}
+
 @media (max-width: 992px) {
     .waitlist-layout-grid {
         display: flex;

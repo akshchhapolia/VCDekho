@@ -336,9 +336,57 @@
     return res;
   }
 
-  async function load() {
-    renderSkeleton(8);
-    if (!state.total) els.count.textContent = 'Fetching investors';
+  function applyFilterOptions(filters) {
+    if (state.filters || !filters) return;
+    state.filters = filters;
+    dropdowns.role.setOptions(filters.roles || [], state.role);
+    dropdowns.companyType.setOptions(filters.companyTypes || [], state.companyType);
+    dropdowns.stage.setOptions(filters.stages || [], state.stage);
+    dropdowns.sector.setOptions(filters.sectors || [], state.sector);
+    dropdowns.thesis.setOptions(filters.thesisThemes || [], state.thesis);
+    dropdowns.cheque.setOptions(filters.chequeRanges || [], state.cheque);
+  }
+
+  function isDefaultFirstPage() {
+    return (
+      state.offset === 0 &&
+      !state.q &&
+      !state.role &&
+      !state.companyType &&
+      !state.stage &&
+      !state.sector &&
+      !state.thesis &&
+      !state.cheque
+    );
+  }
+
+  function hasSessionCookie() {
+    return /(?:^|;\s*)vd_access_token=/.test(document.cookie || '');
+  }
+
+  function hydrateFromPrerender() {
+    const el = document.getElementById('ppl-prerender');
+    if (!el) return false;
+    try {
+      const data = JSON.parse(el.textContent);
+      if (!data || !data.prerendered || !Array.isArray(data.people)) return false;
+      applyFilterOptions(data.filters);
+      state.total = data.total || 0;
+      renderRows(data.people);
+      updatePager();
+      if (els.results) els.results.setAttribute('aria-busy', 'false');
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  async function load(opts) {
+    const silent = Boolean(opts && opts.silent);
+    if (!silent) {
+      renderSkeleton(8);
+      if (!state.total) els.count.textContent = 'Fetching investors';
+    }
     const params = new URLSearchParams({
       q: state.q,
       role: state.role,
@@ -357,19 +405,12 @@
     if (!res.ok) throw new Error('Failed to load investors');
     const data = await res.json();
 
-    if (!state.filters && data.filters) {
-      state.filters = data.filters;
-      dropdowns.role.setOptions(data.filters.roles || [], state.role);
-      dropdowns.companyType.setOptions(data.filters.companyTypes || [], state.companyType);
-      dropdowns.stage.setOptions(data.filters.stages || [], state.stage);
-      dropdowns.sector.setOptions(data.filters.sectors || [], state.sector);
-      dropdowns.thesis.setOptions(data.filters.thesisThemes || [], state.thesis);
-      dropdowns.cheque.setOptions(data.filters.chequeRanges || [], state.cheque);
-    }
+    applyFilterOptions(data.filters);
 
     state.total = data.total || 0;
     renderRows(data.people || []);
     updatePager();
+    if (els.results) els.results.setAttribute('aria-busy', 'false');
   }
 
   function trackFilter(name, value) {
@@ -490,7 +531,12 @@
     els.search.value = state.q;
   }
 
-  resetOffsetAndLoad();
+  if (isDefaultFirstPage() && hydrateFromPrerender()) {
+    // Signed-in users get unlocked emails sorted first — refresh behind the pre-rendered paint.
+    if (hasSessionCookie()) load({ silent: true }).catch(console.error);
+  } else {
+    resetOffsetAndLoad();
+  }
 
   document.addEventListener('vc:person-email-unlocked', function () {
     state.offset = 0;
