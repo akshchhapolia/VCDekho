@@ -189,6 +189,29 @@ function testStaticAssets() {
   }
 
   try {
+    const auth = fs.readFileSync(path.join(ROOT, 'js/auth.js'), 'utf8');
+    const session = fs.readFileSync(path.join(ROOT, 'js/directory-session.js'), 'utf8');
+    // Signed-out visitors must not pay for the Supabase SDK just to label the
+    // nav link, but every way a session can exist still has to be detected.
+    const exported = /hasStoredSession: hasStoredSession/.test(auth);
+    const checksCookie = /function hasStoredSession\(\)[\s\S]*?hasAccessCookie\(\)/.test(auth);
+    const checksStorage = /\^sb-\.\+-auth-token\$/.test(auth);
+    const checksRedirect = /code=/.test(auth) && /access_token=\|refresh_token=/.test(auth);
+    const shortCircuits = /!window\.VCAuth\.hasStoredSession\(\)/.test(session);
+    if (!exported || !checksCookie || !checksStorage || !checksRedirect || !shortCircuits) {
+      fail(
+        'anonymous visitors skip Supabase',
+        `exported=${exported} cookie=${checksCookie} storage=${checksStorage} ` +
+          `redirect=${checksRedirect} shortCircuit=${shortCircuits}`
+      );
+    } else {
+      pass('anonymous visitors skip the Supabase SDK');
+    }
+  } catch (err) {
+    fail('anonymous visitors skip Supabase', err);
+  }
+
+  try {
     const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/investors.json'), 'utf8'));
     if (!data.count || !Array.isArray(data.investors) || data.investors.length < 100) {
       fail('investors.json', 'invalid or too few investors');

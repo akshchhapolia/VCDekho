@@ -8,6 +8,8 @@
  * Writes the raw Lighthouse JSON per page to /tmp so follow-up analysis
  * doesn't need to re-run the (slow, rate-limited) audits.
  */
+require('dotenv').config({ path: require('path').join(__dirname, '..', '.env') });
+
 const fs = require('fs');
 const path = require('path');
 
@@ -32,6 +34,9 @@ const AUDITS_OF_INTEREST = [
 function api(url) {
   const params = new URLSearchParams({ url, strategy: 'mobile' });
   ['performance'].forEach((c) => params.append('category', c));
+  // Anonymous callers share a tiny daily quota that a single run exhausts.
+  const key = process.env.PSI_API_KEY || process.env.CRUX_API_KEY || process.env.GOOGLE_API_KEY;
+  if (key) params.append('key', key);
   return `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?${params}`;
 }
 

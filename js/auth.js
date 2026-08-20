@@ -29,6 +29,39 @@
     }
   }
 
+  function hasAccessCookie() {
+    return document.cookie.split(';').some(function (part) {
+      var trimmed = part.trim();
+      return (
+        trimmed.indexOf(COOKIE_NAME + '=') === 0 && trimmed.length > COOKIE_NAME.length + 1
+      );
+    });
+  }
+
+  /**
+   * Cheap "could this browser be signed in?" check that never touches the
+   * network, so public pages can skip downloading the Supabase SDK for the
+   * anonymous visitors who make up most of their traffic.
+   *
+   * Deliberately errs towards true: the access cookie only lives an hour while
+   * the persisted refresh token outlasts it, so localStorage is checked too, as
+   * is an in-flight OAuth/magic-link redirect where neither exists yet.
+   */
+  function hasStoredSession() {
+    if (hasAccessCookie()) return true;
+    if (/[?&]code=/.test(global.location.search)) return true;
+    if (/access_token=|refresh_token=/.test(global.location.hash)) return true;
+    try {
+      for (var i = 0; i < localStorage.length; i++) {
+        if (/^sb-.+-auth-token$/.test(localStorage.key(i))) return true;
+      }
+    } catch (_) {
+      // Storage blocked (private mode). Fall back to the old always-load path.
+      return true;
+    }
+    return false;
+  }
+
   function getClient() {
     if (clientPromise) return clientPromise;
     clientPromise = new Promise(function (resolve, reject) {
@@ -184,6 +217,7 @@
     SUPABASE_ANON_KEY: SUPABASE_ANON_KEY,
     getClient: getClient,
     getSession: getSession,
+    hasStoredSession: hasStoredSession,
     requireSession: requireSession,
     authFetch: authFetch,
     pingSessionMeta: pingSessionMeta,

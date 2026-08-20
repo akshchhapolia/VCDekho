@@ -19,7 +19,10 @@ function patchHtml(file) {
   }
   html = html.replace(/<script src="\/app.js"><\/script>/g, '<script src="/app.js" defer></script>');
   html = html.replace(/<script src="\/blog\/blog.js"><\/script>/g, '<script src="/blog/blog.js" defer></script>');
-  html = html.replace(/<script src="\/js\/auth.js"><\/script>/g, '<script src="/js/auth.js" defer></script>');
+  html = html.replace(
+    /<script src="\/js\/auth.js(\?v=\d+)?"><\/script>/g,
+    '<script src="/js/auth.js?v=2" defer></script>'
+  );
   html = html.replace(
     /<script src="\/js\/auth-guard.js(\?v=\d+)?"><\/script>/g,
     '<script src="/js/auth-guard.js?v=25" defer></script>'

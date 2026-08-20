@@ -24,6 +24,14 @@
       return;
     }
 
+    // getSession() pulls the Supabase SDK from a third-party CDN. That is a
+    // wasted connection plus ~30KB on every public page view by a signed-out
+    // visitor, purely to decide the wording of this one link.
+    if (window.VCAuth.hasStoredSession && !window.VCAuth.hasStoredSession()) {
+      setLoggedOut(link);
+      return;
+    }
+
     window.VCAuth.getSession()
       .then(function (session) {
         if (session) {
