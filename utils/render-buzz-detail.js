@@ -175,8 +175,8 @@ function renderBuzzDetailHtml(item) {
             </div>
         </main>
     </div>
-    <script src="/js/auth.js" defer></script>
-    <script src="/js/directory-session.js?v=2" defer></script>
+    <script src="/js/auth.js?v=2" defer></script>
+    <script src="/js/directory-session.js?v=3" defer></script>
     <script src="/app.js" defer></script>
     <script src="/js/buzz.js?v=12" defer></script>
 </body>
