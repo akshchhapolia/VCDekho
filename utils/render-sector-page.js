@@ -10,6 +10,7 @@ const { getSectorIconSvg } = require('./sector-icons');
 const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('./site-labels');
 const { renderSiteNavLinks } = require('./render-site-nav');
 const { renderFaviconLinks } = require('./site-icons');
+const { renderFontLinks } = require('./font-assets');
 
 function escapeHtml(value) {
   return String(value || '')
@@ -362,9 +363,7 @@ function renderSectorPage(sector, res) {
     '<script src="/js/nav.js?v=101" defer></script>',
     '<meta charset="UTF-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">',
-    '<link rel="preconnect" href="https://fonts.googleapis.com">',
-    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
-    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">',
+    ...renderFontLinks(),
     '<title>' + escapeHtml(sector.label) + ' Funds India | Sector Guide | VC Dekho</title>',
     '<meta name="description" content="' + escapeHtml(sector.summary).slice(0, 160) + '">',
     '<link rel="canonical" href="https://vcdekho.com/funds/sectors/' + escapeHtml(sector.id) + '">',

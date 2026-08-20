@@ -13,8 +13,7 @@ const CSS_FILES = [
   '/css/directory-profile.css?v=145'
 ];
 
-const FONTS_HREF =
-  'https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap';
+const { FONTS_HREF, renderFontPreloads } = require('./font-assets');
 
 /** Compact first-paint styles for mweb profile hero (matches final CSS). */
 const PROFILE_CRITICAL_CSS = [
@@ -82,9 +81,7 @@ function renderProfileHeadAssets() {
       return '<link rel="stylesheet" href="' + h + '">';
     }).join('');
 
-  return [
-    '<link rel="preconnect" href="https://fonts.googleapis.com">',
-    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+  return renderFontPreloads().concat([
     '<style id="profile-critical-css">' + PROFILE_CRITICAL_CSS + '</style>',
     '<script>',
     '(function(){',
@@ -107,7 +104,7 @@ function renderProfileHeadAssets() {
     '})();',
     '</script>',
     '<noscript>' + noscriptLinks + '</noscript>'
-  ].join('\n');
+  ]).join('\n');
 }
 
 function isMobileRequest(req) {
