@@ -496,17 +496,16 @@ function build() {
   fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
   fs.writeFileSync(OUT_PATH, JSON.stringify(payload), 'utf8');
 
+  // Label arrays (stages/sectors/thesisThemes/type) are ~40% of this file and are
+  // fully derivable from the ids via the filters block, so they're rebuilt on load
+  // by utils/investors.js#hydrateIndexLabels instead of being stored per record.
   const indexInvestors = investors.map((inv) => ({
     id: inv.id,
     slug: inv.slug,
     name: inv.name,
-    type: inv.type,
     typeId: inv.typeId,
-    stages: inv.stages,
     stageIds: inv.stageIds,
-    sectors: inv.sectors,
     sectorIds: inv.sectorIds,
-    thesisThemes: inv.thesisThemes,
     thesisThemeIds: inv.thesisThemeIds,
     thesis: (inv.thesis || '').slice(0, 280),
     chequeSize: inv.chequeSize,
@@ -517,6 +516,8 @@ function build() {
     lastCheckDate: inv.lastCheckDate || null,
     lastCheckHighlight: inv.lastCheckHighlight || null
   }));
+
+  assertLabelsAreDerivable(investors, indexInvestors, payload.filters);
 
   fs.writeFileSync(
     INDEX_OUT_PATH,
@@ -530,6 +531,7 @@ function build() {
   );
 
   console.log(`Wrote ${investors.length} investors → ${OUT_PATH}`);
+  console.log('Verified list index labels rebuild losslessly from ids');
   console.log(`Wrote list index (${Math.round(fs.statSync(INDEX_OUT_PATH).size / 1024)}KB) → ${INDEX_OUT_PATH}`);
   console.log('Sample:', investors[0].name, investors[0].slug, investors[0].sectors.slice(0, 3));
 }

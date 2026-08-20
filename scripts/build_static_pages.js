@@ -119,8 +119,9 @@ function stripLegacyStylesheetBlock(html) {
 
 function replaceDirectoryHeadBlock(html) {
   const assets = renderBlockingDirectoryHead();
+  // Lookahead must not leave the original indentation behind, or every rebuild adds a level.
   const re =
-    /[ \t]*<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com">[\s\S]*?(?=[ \t]*(?:<title>|<link rel="icon"|<link rel="canonical"|<meta name="robots"|<meta property="og:|<meta name="description"|<meta name="theme-color"))/;
+    /[ \t]*<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com">[\s\S]*?(?=<title>|<link rel="icon"|<link rel="canonical"|<meta name="robots"|<meta property="og:|<meta name="description"|<meta name="theme-color")/;
   if (!re.test(html)) {
     throw new Error('Could not find stylesheet block to replace');
   }
@@ -145,7 +146,7 @@ function patchHomeHtml() {
   // Homepage: keep original blocking CSS so design matches production exactly.
   const assets = renderBlockingHomeHead();
   const re =
-    /[ \t]*<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com">[\s\S]*?(?=[ \t]*(?:<title>|<link rel="icon"|<link rel="preload"|<link rel="canonical"|<meta name="robots"|<meta property="og:|<meta name="description"|<meta name="theme-color"))/;
+    /[ \t]*<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com">[\s\S]*?(?=<title>|<link rel="icon"|<link rel="preload"|<link rel="canonical"|<meta name="robots"|<meta property="og:|<meta name="description"|<meta name="theme-color")/;
   if (!re.test(html)) {
     throw new Error('Could not find stylesheet block to replace in index.html');
   }
