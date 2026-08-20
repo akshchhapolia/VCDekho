@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroShowcase = document.getElementById('main-viewport');
     const heroBg = document.getElementById('hero-background-media');
     const heroFallback = document.getElementById('hero-bg-fallback');
-    const exploreBtn = document.getElementById('explore-btn');
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobile = window.matchMedia('(max-width: 992px)').matches;
@@ -111,19 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
         heroShowcase.addEventListener('mouseleave', handleReset);
     }
 
-    if (exploreBtn) {
-        exploreBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (window.VCHero && typeof window.VCHero.release === 'function') {
-                window.VCHero.release();
-            }
-            exploreBtn.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                exploreBtn.style.transform = 'scale(1)';
-                window.location.href = exploreBtn.getAttribute('href');
-            }, 100);
-        });
-    }
+    // "Start Exploring" is a plain link. It used to preventDefault, animate, and
+    // navigate from a 100ms timer, which threw away the browser's instant
+    // navigation and its loading indicator, so taps felt dead on mobile. The
+    // press state is handled by .trend-card-btn:active, and pagehide already
+    // releases the hero media, so the native link needs no help.
 });
 
 document.addEventListener('DOMContentLoaded', () => {
