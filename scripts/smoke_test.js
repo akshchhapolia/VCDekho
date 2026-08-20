@@ -186,6 +186,57 @@ function testStaticAssets() {
 
   testDirectoryPrerender('funds/index.html', 'inv-results', 'inv-prerender', 'investors');
   testDirectoryPrerender('investors/index.html', 'ppl-results', 'ppl-prerender', 'people');
+  testListIndexShape();
+}
+
+/**
+ * The list index stores ids and rebuilds labels on load. Guard both halves:
+ * the file must stay slim, and the hydrated records must still expose labels.
+ */
+function testListIndexShape() {
+  try {
+    const file = path.join(ROOT, 'data/investors.index.json');
+    const sizeKb = Math.round(fs.statSync(file).size / 1024);
+    if (sizeKb > 800) {
+      fail('investors.index.json size', `${sizeKb}KB — label arrays may have crept back in`);
+    } else {
+      pass(`investors.index.json is slim (${sizeKb}KB)`);
+    }
+
+    const raw = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const stored = raw.investors.filter((i) => i.stages || i.sectors || i.thesisThemes);
+    if (stored.length) {
+      fail('investors.index.json shape', `${stored.length} records still store derivable label arrays`);
+    } else {
+      pass('investors.index.json stores ids only');
+    }
+
+    const { getAllInvestors, toCard } = require(path.join(ROOT, 'utils/investors.js'));
+    const hydrated = getAllInvestors();
+    const missing = hydrated.filter(
+      (i) =>
+        !Array.isArray(i.stages) ||
+        !Array.isArray(i.sectors) ||
+        !Array.isArray(i.thesisThemes) ||
+        !i.type ||
+        i.stages.length !== (i.stageIds || []).length ||
+        i.sectors.length !== (i.sectorIds || []).length ||
+        i.thesisThemes.length !== (i.thesisThemeIds || []).length
+    );
+    if (missing.length) {
+      fail('list index hydration', `${missing.length} records missing rebuilt labels (e.g. ${missing[0].slug})`);
+      return;
+    }
+
+    const sample = toCard(hydrated.find((i) => i.sectorIds && i.sectorIds.length) || hydrated[0]);
+    if (!sample.sectors.length || typeof sample.sectors[0] !== 'string' || !sample.type) {
+      fail('list index hydration', 'toCard() produced empty labels');
+      return;
+    }
+    pass(`list index hydrates labels (${hydrated.length} records)`);
+  } catch (err) {
+    fail('list index shape', err);
+  }
 }
 
 function testDirectoryPrerender(relPath, resultsId, bootstrapId, collection) {
