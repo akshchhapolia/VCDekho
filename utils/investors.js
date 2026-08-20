@@ -23,10 +23,33 @@ function isActivelyDeploying(inv) {
   return ageDays >= 0 && ageDays <= ACTIVE_WINDOW_DAYS;
 }
 
+/**
+ * investors.index.json stores ids only (see scripts/build_investors_json.js).
+ * Rebuild the label arrays once per cold start — every label is a shared
+ * reference into the filters block rather than 1,000+ duplicated strings.
+ */
+function hydrateIndexLabels(data) {
+  const filters = data.filters || {};
+  const lookup = (list) => new Map((list || []).map((o) => [o.id, o.label]));
+  const stages = lookup(filters.stages);
+  const sectors = lookup(filters.sectors);
+  const themes = lookup(filters.thesisThemes);
+  const types = lookup(filters.types);
+  const labelsFor = (ids, map) => (ids || []).map((id) => map.get(id) || id);
+
+  data.investors.forEach((inv) => {
+    if (!inv.stages) inv.stages = labelsFor(inv.stageIds, stages);
+    if (!inv.sectors) inv.sectors = labelsFor(inv.sectorIds, sectors);
+    if (!inv.thesisThemes) inv.thesisThemes = labelsFor(inv.thesisThemeIds, themes);
+    if (!inv.type) inv.type = types.get(inv.typeId) || inv.typeId;
+  });
+  return data;
+}
+
 function loadInvestorsIndex() {
   if (indexCache) return indexCache;
   const filePath = path.join(__dirname, '..', 'data', 'investors.index.json');
-  indexCache = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  indexCache = hydrateIndexLabels(JSON.parse(fs.readFileSync(filePath, 'utf8')));
   return indexCache;
 }
 

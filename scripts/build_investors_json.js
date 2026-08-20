@@ -349,8 +349,9 @@ function assertLabelsAreDerivable(investors, indexInvestors, filters) {
     check('stages', slim.stageIds, stages);
     check('sectors', slim.sectorIds, sectors);
     check('thesisThemes', slim.thesisThemeIds, themes);
-    if (types.get(slim.typeId) !== inv.type) {
-      problems.push(`${inv.slug}.type: expected ${JSON.stringify(inv.type)}, rebuilt ${JSON.stringify(types.get(slim.typeId))}`);
+    const rebuiltType = slim.type || types.get(slim.typeId);
+    if (rebuiltType !== inv.type) {
+      problems.push(`${inv.slug}.type: expected ${JSON.stringify(inv.type)}, rebuilt ${JSON.stringify(rebuiltType)}`);
     }
   });
 
@@ -537,23 +538,30 @@ function build() {
   // Label arrays (stages/sectors/thesisThemes/type) are ~40% of this file and are
   // fully derivable from the ids via the filters block, so they're rebuilt on load
   // by utils/investors.js#hydrateIndexLabels instead of being stored per record.
-  const indexInvestors = investors.map((inv) => ({
-    id: inv.id,
-    slug: inv.slug,
-    name: inv.name,
-    typeId: inv.typeId,
-    stageIds: inv.stageIds,
-    sectorIds: inv.sectorIds,
-    thesisThemeIds: inv.thesisThemeIds,
-    thesis: (inv.thesis || '').slice(0, 280),
-    chequeSize: inv.chequeSize,
-    chequeMin: inv.chequeMin,
-    chequeMax: inv.chequeMax,
-    website: inv.website,
-    logo: inv.logo || null,
-    lastCheckDate: inv.lastCheckDate || null,
-    lastCheckHighlight: inv.lastCheckHighlight || null
-  }));
+  const typeLabels = new Map(payload.filters.types.map((t) => [t.id, t.label]));
+  const indexInvestors = investors.map((inv) => {
+    const record = {
+      id: inv.id,
+      slug: inv.slug,
+      name: inv.name,
+      typeId: inv.typeId,
+      stageIds: inv.stageIds,
+      sectorIds: inv.sectorIds,
+      thesisThemeIds: inv.thesisThemeIds,
+      thesis: (inv.thesis || '').slice(0, 280),
+      chequeSize: inv.chequeSize,
+      chequeMin: inv.chequeMin,
+      chequeMax: inv.chequeMax,
+      website: inv.website,
+      logo: inv.logo || null,
+      lastCheckDate: inv.lastCheckDate || null,
+      lastCheckHighlight: inv.lastCheckHighlight || null
+    };
+    // Uncategorised firms keep their raw type text under the shared "other" id,
+    // so that label can't be looked up — carry it on the record instead.
+    if (typeLabels.get(inv.typeId) !== inv.type) record.type = inv.type;
+    return record;
+  });
 
   assertLabelsAreDerivable(investors, indexInvestors, payload.filters);
 
