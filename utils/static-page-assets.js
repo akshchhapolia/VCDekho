@@ -73,19 +73,16 @@ function renderBlockingDirectoryHead() {
     '<link rel="stylesheet" href="/css/ambient.css?v=98">',
     '<link rel="stylesheet" href="/css/announcement.css?v=145">',
     '<link rel="stylesheet" href="/css/directory-list.css?v=145">'
-  ].join('\n    ');
+  ]).join('\n    ');
 }
 
 function renderBlockingHomeHead() {
-  return [
-    '<link rel="preconnect" href="https://fonts.googleapis.com">',
-    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
-    '<link rel="stylesheet" href="' + FONTS_HREF + '">',
+  return renderFontLinks().concat([
     '<link rel="stylesheet" href="/css/base.css?v=145">',
     '<link rel="stylesheet" href="/css/ambient.css?v=98">',
     '<link rel="stylesheet" href="/css/hero.css?v=96">',
     '<link rel="stylesheet" href="/css/announcement.css?v=145">'
-  ].join('\n    ');
+  ]).join('\n    ');
 }
 
 function renderAsyncHeadAssets(mode) {
@@ -102,9 +99,7 @@ function renderAsyncHeadAssets(mode) {
     '">' +
     cssFiles.map((h) => '<link rel="stylesheet" href="' + h + '">').join('');
 
-  return [
-    '<link rel="preconnect" href="https://fonts.googleapis.com">',
-    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+  return renderFontPreloads().concat([
     '<style id="static-critical-css">' + critical.join('') + '</style>',
     '<script>',
     '(function(){',
@@ -125,7 +120,7 @@ function renderAsyncHeadAssets(mode) {
     '})();',
     '</script>',
     '<noscript>' + noscriptLinks + '</noscript>'
-  ].join('\n    ');
+  ]).join('\n    ');
 }
 
 module.exports = {
