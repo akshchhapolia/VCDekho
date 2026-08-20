@@ -324,6 +324,44 @@ function classifyType(typeText) {
   return { id: 'other', label: typeText.trim() || 'Investor' };
 }
 
+/**
+ * The list index stores ids only. Fail the build loudly if any label the app
+ * still reads can't be reconstructed from them, rather than shipping a file
+ * that silently renders blank stages/sectors/themes.
+ */
+function assertLabelsAreDerivable(investors, indexInvestors, filters) {
+  const lookup = (list) => new Map((list || []).map((o) => [o.id, o.label]));
+  const stages = lookup(filters.stages);
+  const sectors = lookup(filters.sectors);
+  const themes = lookup(filters.thesisThemes);
+  const types = lookup(filters.types);
+
+  const problems = [];
+  investors.forEach((inv, i) => {
+    const slim = indexInvestors[i];
+    const check = (field, ids, map) => {
+      const rebuilt = (ids || []).map((id) => map.get(id));
+      const expected = inv[field] || [];
+      if (rebuilt.length !== expected.length || rebuilt.some((l, n) => l !== expected[n])) {
+        problems.push(`${inv.slug}.${field}: expected ${JSON.stringify(expected)}, rebuilt ${JSON.stringify(rebuilt)}`);
+      }
+    };
+    check('stages', slim.stageIds, stages);
+    check('sectors', slim.sectorIds, sectors);
+    check('thesisThemes', slim.thesisThemeIds, themes);
+    if (types.get(slim.typeId) !== inv.type) {
+      problems.push(`${inv.slug}.type: expected ${JSON.stringify(inv.type)}, rebuilt ${JSON.stringify(types.get(slim.typeId))}`);
+    }
+  });
+
+  if (problems.length) {
+    throw new Error(
+      `List index labels are not derivable from ids (${problems.length} records):\n  ` +
+        problems.slice(0, 10).join('\n  ')
+    );
+  }
+}
+
 function build() {
   const raw = fs.readFileSync(CSV_PATH, 'utf8');
   const rows = parse(raw, {

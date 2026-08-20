@@ -607,7 +607,7 @@ body.home-page .trend-card::before {
         height: 100%;
         z-index: 1;
         background-color: #e2ddd5;
-        background-image: url('/assets/sand_bg.jpg');
+        background-image: url('/assets/sand_bg.webp');
         background-size: cover;
         background-position: center;
     }
