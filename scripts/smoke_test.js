@@ -198,17 +198,43 @@ function testStaticAssets() {
     const checksStorage = /\^sb-\.\+-auth-token\$/.test(auth);
     const checksRedirect = /code=/.test(auth) && /access_token=\|refresh_token=/.test(auth);
     const shortCircuits = /!window\.VCAuth\.hasStoredSession\(\)/.test(session);
-    if (!exported || !checksCookie || !checksStorage || !checksRedirect || !shortCircuits) {
+    // Directory pages render one unlock button per row; each used to ask for a
+    // session, which pulled the SDK back in even with the nav link fixed.
+    const unlock = fs.readFileSync(path.join(ROOT, 'js/person-email-unlock.js'), 'utf8');
+    const skipsHydrate =
+      /function hydratePersistedEmails\([\s\S]{0,400}?!global\.VCAuth\.hasStoredSession\(\)/.test(unlock);
+    if (!exported || !checksCookie || !checksStorage || !checksRedirect || !shortCircuits || !skipsHydrate) {
       fail(
         'anonymous visitors skip Supabase',
         `exported=${exported} cookie=${checksCookie} storage=${checksStorage} ` +
-          `redirect=${checksRedirect} shortCircuit=${shortCircuits}`
+          `redirect=${checksRedirect} shortCircuit=${shortCircuits} emailHydrate=${skipsHydrate}`
       );
     } else {
       pass('anonymous visitors skip the Supabase SDK');
     }
   } catch (err) {
     fail('anonymous visitors skip Supabase', err);
+  }
+
+  try {
+    // These are lazy-loaded and full-bleed, so without intrinsic dimensions each
+    // one shoves the article down as it arrives (CLS 0.17 on /blog/top-vc-firms-india).
+    const offenders = [];
+    let total = 0;
+    for (const file of fs.readdirSync(path.join(ROOT, 'blog')).filter((f) => f.endsWith('.html'))) {
+      const html = fs.readFileSync(path.join(ROOT, 'blog', file), 'utf8');
+      for (const tag of html.match(/<img[^>]*class="blog-image"[^>]*>/g) || []) {
+        total++;
+        if (!/\bwidth="\d+"/.test(tag) || !/\bheight="\d+"/.test(tag)) offenders.push(file);
+      }
+    }
+    if (offenders.length) {
+      fail('blog images reserve space', `${offenders.length} without width/height: ${[...new Set(offenders)].join(', ')}`);
+    } else {
+      pass(`blog images reserve space (${total} images)`);
+    }
+  } catch (err) {
+    fail('blog images reserve space', err);
   }
 
   try {

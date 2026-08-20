@@ -195,6 +195,12 @@
   }
 
   function hydratePersistedEmails(root) {
+    // A signed-out visitor has no previously unlocked emails to restore, and
+    // checking that locally avoids pulling the Supabase SDK on directory pages
+    // that render one of these buttons per row.
+    if (global.VCAuth && global.VCAuth.hasStoredSession && !global.VCAuth.hasStoredSession()) {
+      return;
+    }
     var scope = root || document;
     var buttons = scope.querySelectorAll('[data-unlock-email]');
     buttons.forEach(function (btn) {
@@ -232,6 +238,13 @@
 
     if (!global.VCAuth) {
       setBtnLabel(btn, 'Sign in required');
+      return;
+    }
+
+    // Known signed-out: go straight to login rather than loading the SDK only
+    // to be told there is no session.
+    if (global.VCAuth.hasStoredSession && !global.VCAuth.hasStoredSession()) {
+      global.location.href = global.VCAuth.loginUrl(global.location.pathname + global.location.search);
       return;
     }
 
