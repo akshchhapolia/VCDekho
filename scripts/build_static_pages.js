@@ -117,11 +117,25 @@ function stripLegacyStylesheetBlock(html) {
   return html;
 }
 
+// The asset block starts at the first font tag. The legacy Google Fonts
+// preconnect is still accepted so this works on pages that predate the
+// self-hosted font swap.
+const HEAD_BLOCK_START =
+  '[ \\t]*<link rel="(?:preload" href="/assets/fonts/[^"]*"|preconnect" href="https://fonts\\.googleapis\\.com")[^>]*>';
+
+function headBlockRegex(extraStops = '') {
+  // Lookahead must not leave the original indentation behind, or every rebuild adds a level.
+  return new RegExp(
+    HEAD_BLOCK_START +
+      '[\\s\\S]*?(?=<title>|<link rel="icon"|' +
+      extraStops +
+      '<link rel="canonical"|<meta name="robots"|<meta property="og:|<meta name="description"|<meta name="theme-color")'
+  );
+}
+
 function replaceDirectoryHeadBlock(html) {
   const assets = renderBlockingDirectoryHead();
-  // Lookahead must not leave the original indentation behind, or every rebuild adds a level.
-  const re =
-    /[ \t]*<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com">[\s\S]*?(?=<title>|<link rel="icon"|<link rel="canonical"|<meta name="robots"|<meta property="og:|<meta name="description"|<meta name="theme-color")/;
+  const re = headBlockRegex();
   if (!re.test(html)) {
     throw new Error('Could not find stylesheet block to replace');
   }
@@ -145,8 +159,7 @@ function patchHomeHtml() {
 
   // Homepage: keep original blocking CSS so design matches production exactly.
   const assets = renderBlockingHomeHead();
-  const re =
-    /[ \t]*<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com">[\s\S]*?(?=<title>|<link rel="icon"|<link rel="preload"|<link rel="canonical"|<meta name="robots"|<meta property="og:|<meta name="description"|<meta name="theme-color")/;
+  const re = headBlockRegex('<link rel="preload" as="image"|');
   if (!re.test(html)) {
     throw new Error('Could not find stylesheet block to replace in index.html');
   }

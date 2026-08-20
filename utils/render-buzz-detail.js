@@ -1,6 +1,7 @@
 const { fundHref } = require('./site-labels');
 const { renderSiteNavLinks } = require('./render-site-nav');
 const { renderFaviconLinks } = require('./site-icons');
+const { renderFontLinks } = require('./font-assets');
 const {
   cleanBuzzTitle,
   normalizeSentiment,
@@ -125,9 +126,7 @@ function renderBuzzDetailHtml(item) {
     <script src="/js/nav.js?v=101" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+    ${renderFontLinks().join('\n    ')}
     <title>${esc(title)} | Founder Buzz | VC Dekho</title>
     <meta name="description" content="${esc(title)} — founder discussion on VC Dekho Founder Buzz">
     <meta name="robots" content="index, follow">

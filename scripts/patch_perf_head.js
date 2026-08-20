@@ -3,18 +3,15 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const FONT_BLOCK = `    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">`;
+const { renderFontLinks } = require('../utils/font-assets');
 
-const SSR_FONT_BLOCK = `    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">`;
+const FONT_BLOCK = '    ' + renderFontLinks().join('\n    ');
+const SSR_FONT_BLOCK = FONT_BLOCK;
 
 function patchHtml(file) {
   let html = fs.readFileSync(file, 'utf8');
   html = html.replace(/style\.css\?v=\d+/g, 'style.css?v=64');
-  if (!html.includes('fonts.googleapis.com')) {
+  if (!html.includes('/css/fonts.css')) {
     html = html.replace(
       /(<meta name="viewport"[^>]*>)/,
       `$1\n${FONT_BLOCK}`
@@ -55,7 +52,7 @@ function patchBlogImages(file) {
 function patchJs(file) {
   let src = fs.readFileSync(file, 'utf8');
   src = src.replace(/style\.css\?v=\d+/g, 'style.css?v=64');
-  if (!src.includes('fonts.googleapis.com') && src.includes('<meta name="viewport"')) {
+  if (!src.includes('/css/fonts.css') && src.includes('<meta name="viewport"')) {
     src = src.replace(
       /(<meta name="viewport"[^>]*>)/,
       `$1\n${SSR_FONT_BLOCK}`

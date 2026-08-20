@@ -1,6 +1,7 @@
 const db = require('../../utils/db');
 const { renderBuzzDetailHtml } = require('../../utils/render-buzz-detail');
 const { renderFaviconLinks } = require('../../utils/site-icons');
+const { renderFontLinks } = require('../../utils/font-assets');
 
 // MOCK DATA for testing environment
 const MOCK_ARTICLES = {
@@ -306,9 +307,7 @@ module.exports = async function handler(req, res) {
     <script src="/js/nav.js?v=101" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+    ${renderFontLinks().join('\n    ')}
     <title>${article.meta_title} | ${titleSuffix}</title>
     <meta name="description" content="${article.meta_description}">
     
