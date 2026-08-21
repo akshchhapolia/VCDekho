@@ -1,0 +1,76 @@
+const path = require('path');
+
+const dataTrace = [
+  './data/**/*',
+  './utils/**/*',
+  './utils/_data/**/*',
+  './api/**/*'
+];
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  poweredByHeader: false,
+  images: { unoptimized: true },
+  outputFileTracingRoot: path.join(__dirname),
+  outputFileTracingIncludes: {
+    '/*': dataTrace
+  },
+  async headers() {
+    const htmlCache = [
+      {
+        key: 'Cache-Control',
+        value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800'
+      },
+      {
+        key: 'CDN-Cache-Control',
+        value: 'public, s-maxage=86400, stale-while-revalidate=604800'
+      }
+    ];
+    return [
+      { source: '/', headers: htmlCache },
+      { source: '/investors', headers: htmlCache },
+      { source: '/funds', headers: htmlCache },
+      { source: '/investors/:slug', headers: htmlCache },
+      { source: '/funds/:slug', headers: htmlCache }
+    ];
+  },
+  async redirects() {
+    return [
+      { source: '/waitlist', destination: '/login', permanent: true },
+      { source: '/people', destination: '/investors', permanent: true },
+      { source: '/people/:slug', destination: '/investors/:slug', permanent: true },
+      { source: '/investors/stages', destination: '/funds/stages', permanent: true },
+      { source: '/investors/stages/:slug*', destination: '/funds/stages/:slug*', permanent: true },
+      { source: '/investors/themes', destination: '/funds/themes', permanent: true },
+      { source: '/investors/themes/:slug*', destination: '/funds/themes/:slug*', permanent: true },
+      { source: '/investors/sectors', destination: '/funds/sectors', permanent: true },
+      { source: '/investors/sectors/:slug*', destination: '/funds/sectors/:slug*', permanent: true }
+    ];
+  },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        { source: '/login', destination: '/login.html' },
+        { source: '/about', destination: '/about.html' },
+        { source: '/contact', destination: '/contact.html' },
+        { source: '/guide/raising-vc-funding-india', destination: '/guide/raising-vc-funding-india.html' },
+        { source: '/blog', destination: '/blog/index.html' },
+        { source: '/news', destination: '/news/index.html' },
+        { source: '/buzz', destination: '/buzz/index.html' },
+        { source: '/funds/stages', destination: '/funds/stages/index.html' },
+        { source: '/funds/themes', destination: '/funds/themes/index.html' },
+        { source: '/funds/sectors', destination: '/funds/sectors/index.html' },
+        { source: '/funds/stages/:slug', destination: '/api/investors/detail?slug=:slug&view=stage' },
+        { source: '/funds/themes/:slug', destination: '/api/investors/detail?slug=:slug&view=theme' },
+        { source: '/funds/sectors/:slug', destination: '/api/investors/detail?slug=:slug&view=sector' },
+        { source: '/news/:slug', destination: '/api/news/article?slug=:slug' },
+        { source: '/blog/:slug', destination: '/api/news/article?slug=:slug' },
+        { source: '/buzz/:slug', destination: '/api/news/article?slug=:slug&feed=buzz' },
+        { source: '/sitemap.xml', destination: '/api/ops?action=sitemap' }
+      ]
+    };
+  }
+};
+
+module.exports = nextConfig;
