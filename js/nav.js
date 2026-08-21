@@ -3,6 +3,8 @@
     var menuToggle = document.getElementById('menu-toggle');
     var mainNav = document.getElementById('navigation-bar');
     if (!menuToggle || !mainNav) return;
+    if (menuToggle.getAttribute('data-nav-ready') === '1') return;
+    menuToggle.setAttribute('data-nav-ready', '1');
 
     var header = menuToggle.closest('.site-header') || menuToggle.parentNode;
     var mobileMq = window.matchMedia('(max-width: 768px)');
@@ -119,8 +121,19 @@
           return;
         }
         if (!mobileMq.matches) return;
-        e.preventDefault();
+        var path = (href || '').split('?')[0];
+        var isApp =
+          path === '/' ||
+          path === '/investors' ||
+          path === '/funds' ||
+          /^\/investors\/[^/]+$/.test(path) ||
+          (/^\/funds\/[^/]+$/.test(path) &&
+            path !== '/funds/stages' &&
+            path !== '/funds/themes' &&
+            path !== '/funds/sectors');
         setOpen(false);
+        if (isApp) return;
+        e.preventDefault();
         if (window.VCHero && typeof window.VCHero.release === 'function') {
           window.VCHero.release();
         }
@@ -132,7 +145,12 @@
       if (e.key === 'Escape') setOpen(false);
     });
 
-    window.VCNav = { close: function () { setOpen(false); } };
+    window.VCNav = {
+      close: function () {
+        setOpen(false);
+      },
+      boot: initNav
+    };
   }
 
   if (document.readyState === 'loading') {

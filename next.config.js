@@ -4,7 +4,20 @@ const dataTrace = [
   './data/**/*',
   './utils/**/*',
   './utils/_data/**/*',
-  './api/**/*'
+  './server/**/*',
+  './login.html',
+  './about.html',
+  './contact.html',
+  './login.js',
+  './about.js',
+  './contact.js',
+  './blog/index.html',
+  './news/index.html',
+  './buzz/index.html',
+  './guide/raising-vc-funding-india.html',
+  './funds/stages/index.html',
+  './funds/themes/index.html',
+  './funds/sectors/index.html'
 ];
 
 /** @type {import('next').NextConfig} */
@@ -51,22 +64,30 @@ const nextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
-        { source: '/login', destination: '/login.html' },
-        { source: '/about', destination: '/about.html' },
-        { source: '/contact', destination: '/contact.html' },
-        { source: '/guide/raising-vc-funding-india', destination: '/guide/raising-vc-funding-india.html' },
-        { source: '/blog', destination: '/blog/index.html' },
-        { source: '/news', destination: '/news/index.html' },
-        { source: '/buzz', destination: '/buzz/index.html' },
-        { source: '/funds/stages', destination: '/funds/stages/index.html' },
-        { source: '/funds/themes', destination: '/funds/themes/index.html' },
-        { source: '/funds/sectors', destination: '/funds/sectors/index.html' },
-        { source: '/funds/stages/:slug', destination: '/api/investors/detail?slug=:slug&view=stage' },
-        { source: '/funds/themes/:slug', destination: '/api/investors/detail?slug=:slug&view=theme' },
-        { source: '/funds/sectors/:slug', destination: '/api/investors/detail?slug=:slug&view=sector' },
-        { source: '/news/:slug', destination: '/api/news/article?slug=:slug' },
-        { source: '/blog/:slug', destination: '/api/news/article?slug=:slug' },
-        { source: '/buzz/:slug', destination: '/api/news/article?slug=:slug&feed=buzz' },
+        {
+          source: '/funds/stages/:slug((?!index\\.html$).*)',
+          destination: '/api/investors/detail?slug=:slug&view=stage'
+        },
+        {
+          source: '/funds/themes/:slug((?!index\\.html$).*)',
+          destination: '/api/investors/detail?slug=:slug&view=theme'
+        },
+        {
+          source: '/funds/sectors/:slug((?!index\\.html$).*)',
+          destination: '/api/investors/detail?slug=:slug&view=sector'
+        },
+        {
+          source: '/news/:slug((?!index\\.html$).*)',
+          destination: '/api/news/article?slug=:slug'
+        },
+        {
+          source: '/blog/:slug((?!index\\.html$).*)',
+          destination: '/api/news/article?slug=:slug'
+        },
+        {
+          source: '/buzz/:slug((?!index\\.html$).*)',
+          destination: '/api/news/article?slug=:slug&feed=buzz'
+        },
         { source: '/sitemap.xml', destination: '/api/ops?action=sitemap' }
       ]
     };

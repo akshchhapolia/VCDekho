@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { getInvestorBySlug, getFilters: getInvestorFilters, chequeOverlaps } = require('./investors');
+const { dataPath } = require('./data-root');
 
 let cache = null;
 
@@ -24,7 +25,7 @@ const PERSON_ROLES = [
 
 function loadPeopleData() {
   if (cache) return cache;
-  const filePath = path.join(__dirname, '..', 'data', 'people.json');
+  const filePath = dataPath('people.json');
   cache = JSON.parse(fs.readFileSync(filePath, 'utf8'));
   return cache;
 }

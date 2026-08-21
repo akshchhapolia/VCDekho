@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { INVESTMENT_STAGES } = require('../data/investment-stages');
+const { dataPath } = require('./data-root');
 
 let indexCache = null;
 let fullCache = null;
@@ -48,14 +49,14 @@ function hydrateIndexLabels(data) {
 
 function loadInvestorsIndex() {
   if (indexCache) return indexCache;
-  const filePath = path.join(__dirname, '..', 'data', 'investors.index.json');
+  const filePath = dataPath('investors.index.json');
   indexCache = hydrateIndexLabels(JSON.parse(fs.readFileSync(filePath, 'utf8')));
   return indexCache;
 }
 
 function loadInvestorsFull() {
   if (fullCache) return fullCache;
-  const filePath = path.join(__dirname, '..', 'data', 'investors.json');
+  const filePath = dataPath('investors.json');
   fullCache = JSON.parse(fs.readFileSync(filePath, 'utf8'));
   return fullCache;
 }

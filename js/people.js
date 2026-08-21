@@ -1,4 +1,11 @@
-(function () {
+(function (global) {
+  function bootPeopleDirectory() {
+    var root = document.getElementById('ppl-results');
+    if (!root) return;
+    if (global.__vcPplAc) global.__vcPplAc.abort();
+    var ac = new AbortController();
+    global.__vcPplAc = ac;
+    var onDoc = { signal: ac.signal };
   const PAGE_SIZE = 15;
   const LOCK_ICON =
     '<svg class="inv-email-unlock-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
@@ -31,6 +38,8 @@
     sidebar: document.getElementById('ppl-dir-sidebar'),
     backdrop: document.getElementById('ppl-filters-backdrop')
   };
+  if (!els.search || !els.results) return;
+  root.setAttribute('data-booted', '1');
 
   const dropdowns = {};
 
@@ -486,18 +495,18 @@
   if (els.filtersClose) els.filtersClose.addEventListener('click', () => setFiltersOpen(false));
   if (els.backdrop) els.backdrop.addEventListener('click', () => setFiltersOpen(false));
 
-  document.addEventListener('click', () => closeAllDropdowns());
+  document.addEventListener('click', () => closeAllDropdowns(), onDoc);
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeAllDropdowns();
       setFiltersOpen(false);
     }
-  });
+  }, onDoc);
 
   window.addEventListener('resize', function () {
     updateMobileFiltersLabel();
     if (!window.matchMedia('(max-width: 768px)').matches) setFiltersOpen(false);
-  });
+  }, onDoc);
 
   // Mweb: visible press state on Firm / Links tiles (iOS :active is unreliable)
   if (els.results) {
@@ -541,5 +550,20 @@
   document.addEventListener('vc:person-email-unlocked', function () {
     state.offset = 0;
     load();
-  });
-})();
+  }, onDoc);
+  }
+
+  global.VCPeopleDir = {
+    boot: bootPeopleDirectory,
+    destroy: function () {
+      if (global.__vcPplAc) global.__vcPplAc.abort();
+    }
+  };
+  if (document.getElementById('ppl-results')) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootPeopleDirectory);
+    } else {
+      bootPeopleDirectory();
+    }
+  }
+})(typeof window !== 'undefined' ? window : this);

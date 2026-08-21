@@ -4,6 +4,9 @@
   "description": "",
   "main": "about.js",
   "scripts": {
+    "dev": "next dev",
+    "build": "node scripts/materialize_public.js && next build",
+    "start": "next start",
     "test": "node scripts/smoke_test.js",
     "smoke": "node scripts/smoke_test.js",
     "deploy:prod": "node scripts/smoke_test.js && vercel deploy --prod",
@@ -48,7 +51,16 @@
     "csv-parse": "^7.0.1",
     "csv-stringify": "^6.8.1",
     "dotenv": "^17.4.2",
+    "next": "^15.5.23",
     "pg": "^8.21.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "rss-parser": "^3.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "typescript": "^5.9.3"
   }
 }

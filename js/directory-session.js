@@ -1,4 +1,4 @@
-(function () {
+(function (global) {
   function setLoggedOut(link) {
     link.textContent = 'Log in';
     link.href =
@@ -51,9 +51,11 @@
       });
   }
 
+  global.VCDirectorySession = { wireNavAuth: wireNavAuth };
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', wireNavAuth);
   } else {
     wireNavAuth();
   }
-})();
+})(typeof window !== 'undefined' ? window : this);

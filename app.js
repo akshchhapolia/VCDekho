@@ -1,6 +1,8 @@
-document.addEventListener('DOMContentLoaded', () => {
+function bootApp() {
     const heroShowcase = document.getElementById('main-viewport');
     const heroBg = document.getElementById('hero-background-media');
+    if (heroBg && heroBg.getAttribute('data-hero-booted') === '1') return;
+    if (heroBg) heroBg.setAttribute('data-hero-booted', '1');
     const heroFallback = document.getElementById('hero-bg-fallback');
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -115,7 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // navigation and its loading indicator, so taps felt dead on mobile. The
     // press state is handled by .trend-card-btn:active, and pagehide already
     // releases the hero media, so the native link needs no help.
-});
+}
+window.VCApp = { boot: bootApp };
+document.addEventListener('DOMContentLoaded', bootApp);
 
 document.addEventListener('DOMContentLoaded', () => {
     const faqQuestions = document.querySelectorAll('.faq-question');

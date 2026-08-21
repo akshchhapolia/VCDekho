@@ -1,15 +1,16 @@
 {
+  "framework": "nextjs",
   "functions": {
-    "api/cron/scrape.js": {
+    "pages/api/cron/scrape.ts": {
       "maxDuration": 300
     },
-    "api/cron/ai-process.js": {
+    "pages/api/cron/ai-process.ts": {
       "maxDuration": 300
     },
-    "api/cron/daily-digest.js": {
+    "pages/api/cron/daily-digest.ts": {
       "maxDuration": 300
     },
-    "api/cron/ai-blog.js": {
+    "pages/api/cron/ai-blog.ts": {
       "maxDuration": 300
     }
   },
@@ -186,18 +187,6 @@
       "destination": "/api/news/article?slug=:slug&feed=buzz"
     },
     {
-      "source": "/funds/stages",
-      "destination": "/funds/stages/index.html"
-    },
-    {
-      "source": "/funds/themes",
-      "destination": "/funds/themes/index.html"
-    },
-    {
-      "source": "/funds/sectors",
-      "destination": "/funds/sectors/index.html"
-    },
-    {
       "source": "/funds/stages/:slug",
       "destination": "/api/investors/detail?slug=:slug&view=stage"
     },
@@ -208,14 +197,6 @@
     {
       "source": "/funds/sectors/:slug",
       "destination": "/api/investors/detail?slug=:slug&view=sector"
-    },
-    {
-      "source": "/funds/:slug",
-      "destination": "/api/investors/detail?slug=:slug"
-    },
-    {
-      "source": "/investors/:slug",
-      "destination": "/api/people?slug=:slug"
     },
     {
       "source": "/sitemap.xml",

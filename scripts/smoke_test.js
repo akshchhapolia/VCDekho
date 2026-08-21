@@ -91,7 +91,7 @@ async function invokeHandler(handler, req) {
 
 async function testModuleLoads() {
   console.log('\nModule loads');
-  const apiFiles = walkJs(path.join(ROOT, 'api'));
+  const apiFiles = walkJs(path.join(ROOT, 'server'));
   const renderFiles = fs
     .readdirSync(path.join(ROOT, 'utils'))
     .filter((f) => f.startsWith('render-') && f.endsWith('.js'))
@@ -123,6 +123,9 @@ async function testModuleLoads() {
 function testStaticAssets() {
   console.log('\nStatic assets');
   const required = [
+    'app/page.tsx',
+    'app/layout.tsx',
+    'next.config.js',
     'index.html',
     'funds/index.html',
     'investors/index.html',
@@ -169,59 +172,46 @@ function testStaticAssets() {
   }
 
   try {
-    const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+    const page = fs.readFileSync(path.join(ROOT, 'app/page.tsx'), 'utf8');
     const js = fs.readFileSync(path.join(ROOT, 'app.js'), 'utf8');
-    const nativeLink = /<a class="trend-card-btn" id="explore-btn" href="\/investors">/.test(html);
+    const nextLink =
+      /<Link className="trend-card-btn" id="explore-btn" href="\/investors" prefetch>/.test(page);
     const hijacks =
       /getElementById\(['"]explore-btn['"]\)/.test(js) ||
       /exploreBtn\.addEventListener/.test(js);
-    if (!nativeLink || hijacks) {
+    if (!nextLink || hijacks) {
       fail(
         'Start Exploring is a native link',
-        `nativeLink=${nativeLink} hijacks=${hijacks} — preventDefault + setTimeout makes taps feel dead`
+        `nextLink=${nextLink} hijacks=${hijacks} — home Start Exploring must be Next Link to /investors`
       );
     } else {
-      pass('Start Exploring navigates as a native link');
+      pass('Start Exploring is a prefetching Next Link to /investors');
     }
   } catch (err) {
     fail('Start Exploring is a native link', err);
   }
 
   try {
-    const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-    const hasOverlay = html.includes('id="explore-skel"') && html.includes('body.explore-pending');
-    const onClick = /a\[href="\/investors"\][\s\S]*addEventListener\('click'/.test(html);
-    const noPointerDown = !/addEventListener\('pointerdown'/.test(html);
-    const passthrough = /explore-skel\{[^}]*pointer-events:none/.test(html);
-    const noPrevent = !/explore-pending[\s\S]{0,200}preventDefault/.test(html);
-    if (!hasOverlay || !onClick || !noPointerDown || !passthrough || !noPrevent) {
-      fail(
-        'Start Exploring shows a skeleton on tap',
-        `overlay=${hasOverlay} click=${onClick} noPointerDown=${noPointerDown} passthrough=${passthrough} noPrevent=${noPrevent}`
-      );
+    const page = fs.readFileSync(path.join(ROOT, 'app/page.tsx'), 'utf8');
+    if (page.includes('explore-skel') || page.includes('explore-pending')) {
+      fail('Start Exploring has no skeleton overlay', 'explore-skel must stay out of the Next home page');
     } else {
-      pass('Start Exploring shows a skeleton on tap (native navigation kept)');
+      pass('Start Exploring has no skeleton overlay (Link is the tap feedback)');
     }
   } catch (err) {
-    fail('Start Exploring shows a skeleton on tap', err);
+    fail('Start Exploring has no skeleton overlay', err);
   }
 
   try {
-    const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-    const head = html.slice(0, html.indexOf('</head>'));
-    const beforeCss = head.split(/<link rel="stylesheet"/)[0];
-    const paintsDark = /html\.home-page\s*,\s*body\.home-page\s*\{[^}]*background:\s*#000/.test(
-      beforeCss
-    );
-    const colorScheme =
-      /name="color-scheme" content="dark"/.test(beforeCss) || /color-scheme:\s*dark/.test(beforeCss);
-    if (!paintsDark || !colorScheme) {
-      fail(
-        'homepage first paint is dark',
-        `paintsDark=${paintsDark} colorScheme=${colorScheme} — base.css is cream until ambient.css`
-      );
+    const layout = fs.readFileSync(path.join(ROOT, 'app/layout.tsx'), 'utf8');
+    if (!layout.includes("background='#000'") && !layout.includes('background="#000"') && !layout.includes("background='#000'") && !layout.includes("style.background='#000'") && !layout.includes('style.background=\'#000\'')) {
+      // layout uses an inline script: document.documentElement.style.background='#000'
+    }
+    const paintsDark = layout.includes("style.background='#000'") || layout.includes('style.background="#000"') || /background='#000'/.test(layout);
+    if (!paintsDark) {
+      fail('homepage first paint is dark', 'app/layout.tsx must set html background #000 on /');
     } else {
-      pass('homepage first paint is dark (before stylesheets)');
+      pass('homepage first paint is dark (Next layout inline script)');
     }
   } catch (err) {
     fail('homepage first paint is dark', err);
@@ -237,16 +227,13 @@ function testStaticAssets() {
     const whiteCta = /body\.home-page \.trend-card-btn\{[^}]*color:#0b0b0d/.test(head);
     const sand = head.includes('sand_bg.webp');
     const hasAnnouncementCss = HOME_CSS.includes('/css/announcement.css?v=145');
-    const prerender = html.includes('type="speculationrules"') && html.includes('"/investors"');
     if (!hidesAnnouncement || !whiteCta || !sand || !hasAnnouncementCss) {
       fail(
         'homepage mweb critical CSS matches final layout',
         `hideAnn=${hidesAnnouncement} whiteCta=${whiteCta} sand=${sand} annCss=${hasAnnouncementCss}`
       );
-    } else if (!prerender) {
-      fail('Start Exploring prerender', 'missing speculationrules for /investors');
     } else {
-      pass('homepage mweb paints from critical CSS; /investors is prerendered');
+      pass('homepage mweb critical CSS helper still matches layout (legacy static head)');
     }
   } catch (err) {
     fail('homepage mweb critical CSS matches final layout', err);
@@ -649,11 +636,11 @@ async function getNewsSmokeCase() {
 async function testSsrHandlers() {
   console.log('\nSSR handlers');
 
-  const detail = require(path.join(ROOT, 'api/investors/detail.js'));
-  const people = require(path.join(ROOT, 'api/people.js'));
-  const article = require(path.join(ROOT, 'api/news/article.js'));
-  const list = require(path.join(ROOT, 'api/investors/list.js'));
-  const ops = require(path.join(ROOT, 'api/ops.js'));
+  const detail = require(path.join(ROOT, 'server/investors/detail.js'));
+  const people = require(path.join(ROOT, 'server/people.js'));
+  const article = require(path.join(ROOT, 'server/news/article.js'));
+  const list = require(path.join(ROOT, 'server/investors/list.js'));
+  const ops = require(path.join(ROOT, 'server/ops.js'));
 
   const newsCase = await getNewsSmokeCase();
 
@@ -749,6 +736,91 @@ async function testSsrHandlers() {
   }
 }
 
+function testNextAppShell() {
+  console.log('\nNext app shell');
+
+  try {
+    const cfg = fs.readFileSync(path.join(ROOT, 'next.config.js'), 'utf8');
+    const hasGuides =
+      cfg.includes("/funds/stages/:slug") &&
+      cfg.includes('view=stage') &&
+      cfg.includes("/funds/themes/:slug") &&
+      cfg.includes("/funds/sectors/:slug");
+    const hasLogin = fs.existsSync(path.join(ROOT, 'app/login/route.ts'));
+    if (!hasGuides || !hasLogin) {
+      fail('next.config keeps guides and login on the old stack', `guides=${hasGuides} login=${hasLogin}`);
+    } else {
+      pass('login route + fund guide slug rewrites are in place');
+    }
+  } catch (err) {
+    fail('next.config keeps guides and login on the old stack', err);
+  }
+
+  try {
+    const v = JSON.parse(fs.readFileSync(path.join(ROOT, 'vercel.json'), 'utf8'));
+    const rewrites = v.rewrites || [];
+    const stealsFunds = rewrites.some((r) => r.source === '/funds/:slug');
+    const stealsPeople = rewrites.some((r) => r.source === '/investors/:slug');
+    const keepsStage = rewrites.some((r) => r.source === '/funds/stages/:slug');
+    if (stealsFunds || stealsPeople || !keepsStage) {
+      fail(
+        'vercel slug rewrites',
+        `fundsSlug=${stealsFunds} peopleSlug=${stealsPeople} stage=${keepsStage} — Next owns profile slugs; keep guide rewrites`
+      );
+    } else {
+      pass('vercel.json no longer steals /funds/:slug or /investors/:slug');
+    }
+  } catch (err) {
+    fail('vercel slug rewrites', err);
+  }
+
+  try {
+    const peopleView = fs.readFileSync(path.join(ROOT, 'app/investors/PeopleDirectoryView.tsx'), 'utf8');
+    const fundsView = fs.readFileSync(path.join(ROOT, 'app/funds/FundsDirectoryView.tsx'), 'utf8');
+    if (!peopleView.includes('inv-dir-row') && !peopleView.includes('inv-dir-results')) {
+      fail('people list class lock', 'missing inv-dir-results');
+    } else if (!fundsView.includes('inv-dir-results')) {
+      fail('funds list class lock', 'missing inv-dir-results');
+    } else {
+      pass('directory views keep inv-dir-* class names');
+    }
+  } catch (err) {
+    fail('directory views keep inv-dir-* class names', err);
+  }
+
+  try {
+    const { getPeopleListPayload, getFundsListPayload } = require(path.join(ROOT, 'lib/directory-server'));
+    const people = getPeopleListPayload();
+    const funds = getFundsListPayload();
+    const leaked = (people.people || []).some((p) => p && p.email);
+    const rows = String(people.rowsHtml || '');
+    const fundRows = String(funds.rowsHtml || '');
+    if (leaked) {
+      fail('anon people payload has no emails', 'email field present on a public card');
+    } else if (!rows.includes('class="inv-dir-row"') || !fundRows.includes('class="inv-dir-row"')) {
+      fail('prerendered rows class lock', 'missing inv-dir-row');
+    } else if (!rows.includes('inv-email-unlock-btn') && !rows.includes('Not available')) {
+      fail('email unlock lock', 'list rows must keep unlock CTA, not raw addresses');
+    } else {
+      pass('page-1 payloads: no emails, inv-dir-row + unlock CTA');
+    }
+  } catch (err) {
+    fail('page-1 payloads: no emails, inv-dir-row + unlock CTA', err);
+  }
+
+  try {
+    const apiPeople = fs.readFileSync(path.join(ROOT, 'server/people.js'), 'utf8');
+    const hasGate = apiPeople.includes('resolveDirectoryListAccess') && apiPeople.includes('private, no-store');
+    if (!hasGate) {
+      fail('list API login gate', 'server/people.js must keep page-2 auth + no-store when emails present');
+    } else {
+      pass('list API keeps page-2 login gate and private no-store');
+    }
+  } catch (err) {
+    fail('list API login gate', err);
+  }
+}
+
 async function main() {
   console.log('VC Dekho smoke tests');
   const hasDb = Boolean(process.env.DATABASE_URL);
@@ -757,6 +829,7 @@ async function main() {
   await testModuleLoads();
   testStaticAssets();
   testSiteIcons();
+  testNextAppShell();
   await testSsrHandlers();
 
   console.log('\n---');
