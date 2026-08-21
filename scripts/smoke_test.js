@@ -189,6 +189,25 @@ function testStaticAssets() {
 
   try {
     const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+    const hasOverlay = html.includes('id="explore-skel"') && html.includes('body.explore-pending');
+    const onClick = /a\[href="\/investors"\][\s\S]*addEventListener\('click'/.test(html);
+    const noPointerDown = !/pointerdown/.test(html);
+    const passthrough = /explore-skel\{[^}]*pointer-events:none/.test(html);
+    const noPrevent = !/explore-pending[\s\S]{0,200}preventDefault/.test(html);
+    if (!hasOverlay || !onClick || !noPointerDown || !passthrough || !noPrevent) {
+      fail(
+        'Start Exploring shows a skeleton on tap',
+        `overlay=${hasOverlay} click=${onClick} noPointerDown=${noPointerDown} passthrough=${passthrough} noPrevent=${noPrevent}`
+      );
+    } else {
+      pass('Start Exploring shows a skeleton on tap (native navigation kept)');
+    }
+  } catch (err) {
+    fail('Start Exploring shows a skeleton on tap', err);
+  }
+
+  try {
+    const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
     const head = html.slice(0, html.indexOf('</head>'));
     const beforeCss = head.split(/<link rel="stylesheet"/)[0];
     const paintsDark = /html\.home-page\s*,\s*body\.home-page\s*\{[^}]*background:\s*#000/.test(

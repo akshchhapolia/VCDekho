@@ -37,6 +37,7 @@ const SHARED_CRITICAL = [
 
 const HOME_CRITICAL_EXTRA = [
   'html.home-page,body.home-page{background:#000;color:rgba(255,255,255,.88)}',
+  '.explore-skel{display:none;position:fixed;inset:0;z-index:500;background:#0b0b0d;padding:calc(1.25rem + env(safe-area-inset-top,0px)) 1.25rem 1.5rem;overflow:hidden;pointer-events:none}body.explore-pending{overflow:hidden}body.explore-pending .explore-skel{display:block}.explore-skel-heading{margin:0 0 .75rem;font-family:Georgia,serif;font-size:1.85rem;font-weight:400;color:#fff;line-height:1.2}.explore-skel-bar{display:block;border-radius:6px;background:linear-gradient(90deg,rgba(255,255,255,.05),rgba(255,255,255,.12),rgba(255,255,255,.05));background-size:200% 100%;animation:exploreSkel 1.2s ease-in-out infinite}.explore-skel-meta{width:28%;height:.7rem;margin-bottom:1.25rem}.explore-skel-row{width:100%;height:4.5rem;border-radius:16px;margin-bottom:.55rem}@keyframes exploreSkel{0%{background-position:100% 0}100%{background-position:-100% 0}}',
   // Must match css/hero.css + css/ambient.css mobile home — the previous
   // critical CSS described a different layout (orange CTA, sticky bar,
   // visible announcement) and that FOUC is why async CSS was reverted.
