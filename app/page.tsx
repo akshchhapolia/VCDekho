@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import SiteHeader from './components/SiteHeader';
-import { HomeCss } from './components/PageCss';
 import { HomeBoot } from './components/ClientRuntime';
 
 export const metadata: Metadata = {
@@ -23,7 +22,6 @@ export const revalidate = 86400;
 export default function HomePage() {
   return (
     <>
-      <HomeCss />
       <div className="ambient-bg-wrapper home-ambient" aria-hidden="true">
         <div className="waitlist-bg">
           <div className="glow-orb orb-1"></div>

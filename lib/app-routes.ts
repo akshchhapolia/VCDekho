@@ -16,7 +16,7 @@ export function isAppRoute(pathname: string) {
 export function documentClasses(pathname: string) {
   const p = normalizePath(pathname);
   if (p === '/') {
-    return { html: 'home-page', body: 'has-announcement home-page', home: true };
+    return { html: 'home-page has-announcement', body: 'has-announcement home-page', home: true };
   }
   if (p === '/investors') {
     return {
