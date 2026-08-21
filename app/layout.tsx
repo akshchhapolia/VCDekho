@@ -52,11 +52,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script src="/js/people.js?v=125" strategy="beforeInteractive" />
         <Script src="/investors/investors.js?v=117" strategy="beforeInteractive" />
         <Script src="/js/person-email-unlock.js?v=8" strategy="beforeInteractive" />
+        <Script src="/js/profile-page-boot.js?v=2" strategy="beforeInteractive" />
+        <Script src="/app.js?v=98" strategy="beforeInteractive" />
       </head>
       <body suppressHydrationWarning>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){var p=location.pathname.replace(/\\/$/, '')||'/';var html='scrollable-page';var body='scrollable-page';if(p==='/'){html='home-page has-announcement';body='has-announcement home-page';document.documentElement.style.background='#000';}else if(p==='/investors'){body='scrollable-page inv-page inv-dir-page inv-people-dir';}else if(p==='/funds'){body='scrollable-page inv-page inv-dir-page';}else if(/^\\/investors\\/[^/]+$/.test(p)){body='scrollable-page inv-page inv-person-profile';}else if(/^\\/funds\\/[^/]+$/.test(p)&&p!=='/funds/stages'&&p!=='/funds/themes'&&p!=='/funds/sectors'){body='scrollable-page inv-page inv-investor-profile';}document.documentElement.className=html;document.body.className=body;})();`
+            __html: `(function(){var p=location.pathname.replace(/\\/$/, '')||'/';var html='scrollable-page';var body='scrollable-page';if(p==='/'){html='home-page has-announcement';body='has-announcement home-page';document.documentElement.style.background='#000';}else if(p==='/investors'){body='scrollable-page inv-page inv-dir-page inv-people-dir';}else if(p==='/funds'){body='scrollable-page inv-page inv-dir-page';}else if(/^\\/investors\\/[^/]+$/.test(p)){body='scrollable-page inv-page inv-person-profile inv-profile-ready';}else if(/^\\/funds\\/[^/]+$/.test(p)&&p!=='/funds/stages'&&p!=='/funds/themes'&&p!=='/funds/sectors'){body='scrollable-page inv-page inv-investor-profile inv-profile-ready';}document.documentElement.className=html;document.body.className=body;})();`
           }}
         />
         <script dangerouslySetInnerHTML={{ __html: inlineDirectoryFiltersScript() }} />

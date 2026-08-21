@@ -553,7 +553,12 @@ function testDirectoryPrerender(relPath, resultsId, bootstrapId, collection) {
 
 function testProfileClsGuards() {
   try {
-    const { renderProfileHeadAssets } = require(path.join(ROOT, 'utils/profile-page-assets.js'));
+    const { renderProfileHeadAssets, renderProfileCriticalCss } = require(path.join(ROOT, 'utils/profile-page-assets.js'));
+    const criticalFn = renderProfileCriticalCss();
+    if (typeof criticalFn !== 'string' || !criticalFn.length) {
+      fail('profile critical CSS helper', 'renderProfileCriticalCss() must return a non-empty string');
+      return;
+    }
     const html = renderProfileHeadAssets();
     const critical = (html.match(/<style id="profile-critical-css">([\s\S]*?)<\/style>/) || [])[1] || '';
     const need = [
@@ -571,6 +576,17 @@ function testProfileClsGuards() {
     }
   } catch (err) {
     fail('profile critical CSS matches final hero', err);
+  }
+
+  try {
+    const boot = fs.readFileSync(path.join(ROOT, 'public/js/profile-page-boot.js'), 'utf8');
+    if (!boot.includes('inv-profile-ready') || !boot.includes('DOMContentLoaded') || !boot.includes('VCProfilePage')) {
+      fail('profile boot script auto-starts', 'profile-page-boot.js must reveal content without inline body scripts');
+    } else {
+      pass('profile boot script auto-starts');
+    }
+  } catch (err) {
+    fail('profile boot script auto-starts', err);
   }
 
   try {

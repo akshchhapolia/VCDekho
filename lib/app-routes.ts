@@ -31,7 +31,7 @@ export function documentClasses(pathname: string) {
   if (/^\/investors\/[^/]+$/.test(p)) {
     return {
       html: 'scrollable-page',
-      body: 'scrollable-page inv-page inv-person-profile',
+      body: 'scrollable-page inv-page inv-person-profile inv-profile-ready',
       home: false
     };
   }
@@ -39,7 +39,7 @@ export function documentClasses(pathname: string) {
   if (fund && !GUIDE_ROOTS[fund[1]]) {
     return {
       html: 'scrollable-page',
-      body: 'scrollable-page inv-page inv-investor-profile',
+      body: 'scrollable-page inv-page inv-investor-profile inv-profile-ready',
       home: false
     };
   }

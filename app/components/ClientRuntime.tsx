@@ -9,6 +9,7 @@ declare global {
     VCNav?: { close?: () => void; boot?: () => void };
     VCDirectorySession?: { wireNavAuth?: () => void };
     VCHero?: { release?: () => void };
+    VCProfilePage?: { boot?: () => void };
   }
 }
 
@@ -20,6 +21,9 @@ export default function ClientRuntime() {
   useEffect(() => {
     routerReady.current = true;
     applyDocumentClasses(pathname);
+    if (window.VCProfilePage && typeof window.VCProfilePage.boot === 'function') {
+      window.VCProfilePage.boot();
+    }
     if (window.VCNav && typeof window.VCNav.close === 'function') window.VCNav.close();
     if (window.VCDirectorySession && window.VCDirectorySession.wireNavAuth) {
       window.VCDirectorySession.wireNavAuth();

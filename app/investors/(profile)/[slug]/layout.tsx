@@ -13,7 +13,6 @@ export default function PersonProfileLayout({ children }: { children: React.Reac
       <script src="/investors/lazy-portfolio-logos.js?v=1" defer />
       <script src="/investors/portfolio-section.js?v=4" defer />
       <script src="/investors/profile-sticky.js?v=6" defer />
-      <script src="/js/profile-page-boot.js?v=1" defer />
       {children}
     </>
   );
