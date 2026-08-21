@@ -2,6 +2,7 @@
   function bootFundsDirectory() {
     var root = document.getElementById('inv-results');
     if (!root) return;
+    if (root.getAttribute('data-booted') === '1') return;
     if (global.__vcInvAc) global.__vcInvAc.abort();
     var ac = new AbortController();
     global.__vcInvAc = ac;

@@ -213,6 +213,11 @@ function testStaticAssets() {
     } else {
       pass('homepage first paint is dark (Next layout inline script)');
     }
+    if (layout.includes('directory-list.css') || layout.includes('directory-profile.css')) {
+      fail('home layout CSS', 'directory CSS must not block the homepage');
+    } else {
+      pass('homepage does not load directory CSS');
+    }
   } catch (err) {
     fail('homepage first paint is dark', err);
   }
@@ -754,6 +759,24 @@ function testNextAppShell() {
     }
   } catch (err) {
     fail('next.config keeps guides and login on the old stack', err);
+  }
+
+  try {
+    const personPage = fs.readFileSync(path.join(ROOT, 'app/investors/[slug]/page.tsx'), 'utf8');
+    const fundPage = fs.readFileSync(path.join(ROOT, 'app/funds/[slug]/page.tsx'), 'utf8');
+    const cfg = fs.readFileSync(path.join(ROOT, 'next.config.js'), 'utf8');
+    const usesHeaders = personPage.includes("next/headers") || fundPage.includes("next/headers");
+    const hasStale = cfg.includes('staleTimes');
+    if (usesHeaders || !hasStale) {
+      fail(
+        'profile pages can ISR',
+        `headers=${usesHeaders} staleTimes=${hasStale} — headers() forces a serverless hit on every profile click`
+      );
+    } else {
+      pass('profile pages do not call headers(); client router keeps a stale cache');
+    }
+  } catch (err) {
+    fail('profile pages can ISR', err);
   }
 
   try {

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import DocumentClass from './components/DocumentClass';
 import SiteHeader from './components/SiteHeader';
+import { HomeCss } from './components/PageCss';
 import { HomeBoot } from './components/ClientRuntime';
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export const revalidate = 86400;
 export default function HomePage() {
   return (
     <>
-      <DocumentClass htmlClass="home-page" bodyClass="has-announcement home-page" />
+      <HomeCss />
       <div className="ambient-bg-wrapper home-ambient" aria-hidden="true">
         <div className="waitlist-bg">
           <div className="glow-orb orb-1"></div>
@@ -44,7 +44,7 @@ export default function HomePage() {
       </div>
 
       <div className="app-container">
-        <SiteHeader />
+        <SiteHeader pathname="/" />
         <main className="hero-showcase" id="main-viewport">
           <video
             loop

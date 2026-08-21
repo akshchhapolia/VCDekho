@@ -1,8 +1,5 @@
-'use client';
-
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { isAppRoute } from '../../lib/app-routes';
+import { isAppRoute, normalizePath } from '../../lib/app-routes';
 
 function NavHref({
   href,
@@ -31,19 +28,15 @@ function NavHref({
   );
 }
 
-export default function SiteHeader() {
-  const pathname = usePathname() || '/';
-  const isHome = pathname === '/';
-  const investorsActive = pathname === '/investors' || pathname.startsWith('/investors/');
-  const fundsActive = pathname === '/funds' || pathname.startsWith('/funds/');
+export default function SiteHeader({ pathname = '/' }: { pathname?: string }) {
+  const path = normalizePath(pathname);
+  const isHome = path === '/';
+  const investorsActive = path === '/investors' || path.startsWith('/investors/');
+  const fundsActive = path === '/funds' || path.startsWith('/funds/');
 
   return (
     <header className="site-header">
-      <NavHref
-        href="/"
-        className="logo-container"
-        id={isHome ? 'logo-link' : undefined}
-      >
+      <NavHref href="/" className="logo-container" id={isHome ? 'logo-link' : undefined}>
         <img
           src="/assets/logoforvc.png"
           alt={isHome ? '' : 'VC Dekho Logo'}

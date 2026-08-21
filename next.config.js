@@ -25,6 +25,12 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: { unoptimized: true },
+  experimental: {
+    staleTimes: {
+      dynamic: 60,
+      static: 300
+    }
+  },
   outputFileTracingRoot: path.join(__dirname),
   outputFileTracingIncludes: {
     '/*': dataTrace

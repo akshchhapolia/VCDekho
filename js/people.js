@@ -2,6 +2,7 @@
   function bootPeopleDirectory() {
     var root = document.getElementById('ppl-results');
     if (!root) return;
+    if (root.getAttribute('data-booted') === '1') return;
     if (global.__vcPplAc) global.__vcPplAc.abort();
     var ac = new AbortController();
     global.__vcPplAc = ac;

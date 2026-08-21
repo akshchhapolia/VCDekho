@@ -1,5 +1,5 @@
-import DocumentClass from '../components/DocumentClass';
 import SiteHeader from '../components/SiteHeader';
+import { DirectoryCss } from '../components/PageCss';
 import { DirectoryBoot } from '../components/ClientRuntime';
 
 function jsonScript(obj: unknown) {
@@ -17,9 +17,9 @@ export default function FundsDirectoryView({
 }) {
   return (
     <>
-      <DocumentClass htmlClass="scrollable-page" bodyClass="scrollable-page inv-page inv-dir-page" />
+      <DirectoryCss />
       <div className="app-container">
-        <SiteHeader />
+        <SiteHeader pathname="/funds" />
         <main className="hero-showcase inv-list-main">
           <div className="ambient-bg-wrapper inv-dir-ambient" aria-hidden="true">
             <div className="waitlist-bg">
