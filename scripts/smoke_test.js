@@ -208,8 +208,15 @@ function testStaticAssets() {
       // layout uses an inline script: document.documentElement.style.background='#000'
     }
     const paintsDark = layout.includes("style.background='#000'") || layout.includes('style.background="#000"') || /background='#000'/.test(layout);
+    const heroInHead = layout.includes('/css/hero.css?v=97') && layout.includes("id=\"vc-critical-css\"");
+    const sandPreload = layout.includes('/assets/sand_bg.webp');
     if (!paintsDark) {
       fail('homepage first paint is dark', 'app/layout.tsx must set html background #000 on /');
+    } else if (!heroInHead || !sandPreload) {
+      fail(
+        'homepage first paint is dark',
+        `heroInHead=${heroInHead} sandPreload=${sandPreload} — hero CSS and sand image must be in the document head`
+      );
     } else {
       pass('homepage first paint is dark (Next layout inline script)');
     }
