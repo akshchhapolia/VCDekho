@@ -5,7 +5,10 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
-const { renderBlockingHomeHead, renderBlockingDirectoryHead } = require('../utils/static-page-assets');
+const {
+  renderAsyncHeadAssets,
+  renderBlockingDirectoryHead
+} = require('../utils/static-page-assets');
 const { filterInvestors, getFilters, toCard } = require('../utils/investors');
 const {
   filterPeople,
@@ -111,7 +114,11 @@ function stripLegacyStylesheetBlock(html) {
   );
   html = html.replace(/<style id="static-critical-css">[\s\S]*?<\/style>\s*/g, '');
   html = html.replace(
-    /<script>\s*\(function\(\)\{[\s\S]*?files=\[.*?directory-list\.css[\s\S]*?\}\)\(\);\s*<\/script>\s*/g,
+    /<script>\s*\(function\(\)\{\s*var files=[\s\S]*?\}\)\(\);\s*<\/script>\s*/g,
+    ''
+  );
+  html = html.replace(
+    /<noscript><link rel="stylesheet" href="\/css\/fonts\.css[\s\S]*?<\/noscript>\s*/g,
     ''
   );
   return html;
@@ -157,15 +164,17 @@ function patchHomeHtml() {
     html = html.replace(/poster="\/assets\/sand_bg\.jpg"/g, 'poster="/assets/sand_bg.webp"');
   }
 
-  // Homepage: keep original blocking CSS so design matches production exactly.
-  const assets = renderBlockingHomeHead();
+  // Mobile: inline first-viewport CSS and fetch the rest async so a typed URL
+  // can paint before five stylesheets round-trip. Desktop still document.write
+  // blocking sheets (unchanged). Critical CSS must match hero/ambient mweb.
+  const assets = renderAsyncHeadAssets('home');
   const re = headBlockRegex('<link rel="preload" as="image"|');
   if (!re.test(html)) {
     throw new Error('Could not find stylesheet block to replace in index.html');
   }
   html = html.replace(re, assets + '\n    ');
   fs.writeFileSync(file, html);
-  console.log('Patched index.html (blocking CSS, no blog.css, WebP hero)');
+  console.log('Patched index.html (async CSS on mweb, blocking on desktop)');
 }
 
 function buildFundsPrerender() {

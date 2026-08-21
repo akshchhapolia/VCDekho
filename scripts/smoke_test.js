@@ -171,6 +171,98 @@ function testStaticAssets() {
   try {
     const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
     const js = fs.readFileSync(path.join(ROOT, 'app.js'), 'utf8');
+    const nativeLink = /<a class="trend-card-btn" id="explore-btn" href="\/investors">/.test(html);
+    const hijacks =
+      /getElementById\(['"]explore-btn['"]\)/.test(js) ||
+      /exploreBtn\.addEventListener/.test(js);
+    if (!nativeLink || hijacks) {
+      fail(
+        'Start Exploring is a native link',
+        `nativeLink=${nativeLink} hijacks=${hijacks} — preventDefault + setTimeout makes taps feel dead`
+      );
+    } else {
+      pass('Start Exploring navigates as a native link');
+    }
+  } catch (err) {
+    fail('Start Exploring is a native link', err);
+  }
+
+  try {
+    const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+    const head = html.slice(0, html.indexOf('</head>'));
+    const beforeCss = head.split(/<link rel="stylesheet"/)[0];
+    const paintsDark = /html\.home-page\s*,\s*body\.home-page\s*\{[^}]*background:\s*#000/.test(
+      beforeCss
+    );
+    const colorScheme =
+      /name="color-scheme" content="dark"/.test(beforeCss) || /color-scheme:\s*dark/.test(beforeCss);
+    if (!paintsDark || !colorScheme) {
+      fail(
+        'homepage first paint is dark',
+        `paintsDark=${paintsDark} colorScheme=${colorScheme} — base.css is cream until ambient.css`
+      );
+    } else {
+      pass('homepage first paint is dark (before stylesheets)');
+    }
+  } catch (err) {
+    fail('homepage first paint is dark', err);
+  }
+
+  try {
+    const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+    const { renderAsyncHeadAssets, HOME_CSS } = require('../utils/static-page-assets');
+    const head = renderAsyncHeadAssets('home');
+    const hidesAnnouncement = /body\.home-page \.announcement-strip,body\.home-page \.mobile-sticky-cta\{display:none!important\}/.test(
+      head
+    );
+    const whiteCta = /body\.home-page \.trend-card-btn\{[^}]*color:#0b0b0d/.test(head);
+    const sand = head.includes('sand_bg.webp');
+    const hasAnnouncementCss = HOME_CSS.includes('/css/announcement.css?v=145');
+    const prerender = html.includes('type="speculationrules"') && html.includes('"/investors"');
+    if (!hidesAnnouncement || !whiteCta || !sand || !hasAnnouncementCss) {
+      fail(
+        'homepage mweb critical CSS matches final layout',
+        `hideAnn=${hidesAnnouncement} whiteCta=${whiteCta} sand=${sand} annCss=${hasAnnouncementCss}`
+      );
+    } else if (!prerender) {
+      fail('Start Exploring prerender', 'missing speculationrules for /investors');
+    } else {
+      pass('homepage mweb paints from critical CSS; /investors is prerendered');
+    }
+  } catch (err) {
+    fail('homepage mweb critical CSS matches final layout', err);
+  }
+
+  try {
+    const v = JSON.parse(fs.readFileSync(path.join(ROOT, 'vercel.json'), 'utf8'));
+    const indexRule = (v.headers || []).find((h) => h.source === '/(funds|investors|blog)');
+    const cc =
+      indexRule &&
+      (indexRule.headers || []).find((x) => x.key === 'Cache-Control');
+    const cached = cc && /s-maxage=86400/.test(cc.value);
+    const wwwRedirect = (v.redirects || []).some(
+      (r) =>
+        r.destination === 'https://vcdekho.com/:path*' &&
+        Array.isArray(r.has) &&
+        r.has.some((h) => h.value === 'www.vcdekho.com')
+    );
+    if (!cached) {
+      fail(
+        'directory index CDN cache',
+        'vercel.json /funds /investors /blog must set s-maxage — /(.*) does not match the index itself'
+      );
+    } else if (!wwwRedirect) {
+      fail('www canonical redirect', 'www.vcdekho.com must 301 to the apex');
+    } else {
+      pass('directory indexes are CDN-cached; www redirects to apex');
+    }
+  } catch (err) {
+    fail('directory index CDN cache', err);
+  }
+
+  try {
+    const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+    const js = fs.readFileSync(path.join(ROOT, 'app.js'), 'utf8');
     const heroCss = fs.readFileSync(path.join(ROOT, 'css/hero.css'), 'utf8');
     const stripsSrc =
       html.includes("matchMedia('(max-width:992px)')") && html.includes('hero-background-media');

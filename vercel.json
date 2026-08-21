@@ -16,6 +16,12 @@
   "cleanUrls": true,
   "headers": [
     {
+      "source": "/:path*",
+      "headers": [
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" }
+      ]
+    },
+    {
       "source": "/",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800" },
@@ -65,6 +71,14 @@
       ]
     },
     {
+      "source": "/(funds|investors|blog)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800" },
+        { "key": "CDN-Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=604800" },
+        { "key": "Vercel-CDN-Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=604800" }
+      ]
+    },
+    {
       "source": "/funds/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800" },
@@ -96,6 +110,12 @@
     }
   ],
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.vcdekho.com" }],
+      "destination": "https://vcdekho.com/:path*",
+      "permanent": true
+    },
     {
       "source": "/waitlist",
       "destination": "/login",

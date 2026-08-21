@@ -3,12 +3,13 @@
  * Desktop keeps render-blocking stylesheets — design unchanged.
  */
 
-const { FONTS_HREF, renderFontPreloads, renderFontLinks } = require('./font-assets');
+const { FONTS_HREF, renderFontPreloads, renderFontLinks, renderLatinFontFaces } = require('./font-assets');
 
 const HOME_CSS = [
   '/css/base.css?v=146',
   '/css/ambient.css?v=98',
-  '/css/hero.css?v=97'
+  '/css/hero.css?v=97',
+  '/css/announcement.css?v=145'
 ];
 
 const DIRECTORY_CSS = [
@@ -35,19 +36,11 @@ const SHARED_CRITICAL = [
 ];
 
 const HOME_CRITICAL_EXTRA = [
-  '.hero-showcase{position:relative;flex:1;display:flex;align-items:stretch;min-height:calc(100dvh - 120px);overflow:hidden;border-radius:24px}',
-  '.hero-bg,.hero-bg-fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0b0b0d}',
-  '.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,13,.35) 0%,rgba(11,11,13,.75) 100%);pointer-events:none}',
-  '.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:space-between;width:100%;padding:1.25rem;min-height:100%}',
-  '.hero-title{font-family:var(--font-heading);font-size:clamp(2.2rem,10vw,4.5rem);line-height:1.05;color:#fff;font-weight:400}',
-  '.highlight-text{color:var(--color-accent-orange)}',
-  '.hero-tagline{color:rgba(255,255,255,.72);font-size:.95rem;line-height:1.5;max-width:36rem}',
-  '.trend-card{margin-top:auto;align-self:flex-end;max-width:22rem;padding:1.1rem;border-radius:18px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}',
-  '.trend-card-title{font-family:var(--font-heading);font-size:1.35rem;color:#fff;margin:0 0 .45rem}',
-  '.trend-card-desc,.trend-card-note{color:rgba(255,255,255,.65);font-size:.88rem;line-height:1.45;margin:0 0 .65rem}',
-  '.trend-card-btn,.mobile-sticky-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.7rem 1rem;border-radius:12px;background:var(--color-accent-orange);color:#fff;text-decoration:none;font-weight:600;font-size:.9rem}',
-  '.mobile-sticky-cta{position:fixed;left:1rem;right:1rem;bottom:max(1rem,env(safe-area-inset-bottom));z-index:20}',
-  '.announcement-strip{position:relative;z-index:3;padding:.55rem 1rem;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.08);font-size:.82rem}'
+  'html.home-page,body.home-page{background:#000;color:rgba(255,255,255,.88)}',
+  // Must match css/hero.css + css/ambient.css mobile home — the previous
+  // critical CSS described a different layout (orange CTA, sticky bar,
+  // visible announcement) and that FOUC is why async CSS was reverted.
+  '@media(max-width:768px){html.home-page,body.home-page{width:100%;height:auto!important;min-height:100dvh;overflow-x:clip!important;overflow-y:auto!important;background:#000!important}body.home-page.has-announcement{display:block;padding:0;margin:0}body.home-page .app-container,body.home-page.has-announcement .app-container{display:flex;flex-direction:column;width:100%;height:auto!important;min-height:100dvh;padding:calc(1.25rem + env(safe-area-inset-top,0px)) 1.5rem calc(1.5rem + env(safe-area-inset-bottom,0px));gap:1.5rem;overflow:visible;background:transparent}body.home-page .site-header{display:flex;justify-content:space-between;align-items:center;height:50px;width:100%;margin:0!important;padding:0!important;background:transparent}body.home-page .logo-img{height:40px;width:auto}body.home-page .logo-wordmark{color:#fff}body.home-page .nav-toggle span{background:#fff}body.home-page .announcement-strip,body.home-page .mobile-sticky-cta{display:none!important}body.home-page .hero-showcase,body.home-page.has-announcement .hero-showcase{position:relative;display:flex;flex-direction:column;flex:1 1 auto!important;min-height:550px!important;height:auto!important;border-radius:16px;overflow:hidden!important;background-color:#e2ddd5}body.home-page .hero-bg-fallback{display:block!important;position:absolute;inset:0;width:100%;height:100%;z-index:1;background-color:#e2ddd5;background-image:url(/assets/sand_bg.webp);background-size:cover;background-position:center}body.home-page .hero-bg{display:none!important}body.home-page .hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(135deg,rgba(0,0,0,.4),rgba(0,0,0,.15) 50%,rgba(0,0,0,.3));pointer-events:none}body.home-page .hero-content{position:relative;z-index:3;display:flex;flex-direction:column;justify-content:flex-start;flex:1 1 auto;padding:1.5rem 1.25rem .85rem;gap:1.25rem}body.home-page .hero-title{font-family:var(--font-heading);color:#fff;font-size:clamp(2.65rem,11.5vw,3.4rem)!important;line-height:1.08;font-weight:400}body.home-page .mweb-title-break{display:inline}body.home-page .highlight-text{display:inline-block;padding:0 12px;margin-top:.5rem;background:rgba(255,255,255,.12);color:#fff}body.home-page .hero-sub-tagline{display:block!important;margin-top:.85rem;font-size:.95rem!important;line-height:1.55;color:#fff;opacity:.9}body.home-page .hero-tagline-container{display:none!important}body.home-page .trend-card{position:static;order:3;width:100%;margin-top:auto;display:flex;flex-direction:column;gap:1rem;padding:1.75rem;border-radius:16px;border:1px solid rgba(255,255,255,.1);background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.03) 50%,rgba(237,87,47,.05))}body.home-page .trend-card-title{font-family:var(--font-sans);color:#fff;font-size:1.05rem;font-weight:600}body.home-page .trend-card-desc{display:block!important;color:rgba(255,255,255,.55);font-size:.85rem;line-height:1.5}body.home-page .trend-card-note{display:block!important;color:rgba(255,255,255,.42);font-size:.8rem;margin:0}body.home-page .trend-card-btn{display:inline-flex!important;align-items:center;justify-content:center;align-self:flex-end;padding:.7rem 1.35rem;background:linear-gradient(135deg,#fff,rgba(255,255,255,.92))!important;color:#0b0b0d!important;border:none;border-radius:999px;font-size:.8rem;font-weight:600;text-decoration:none}}'
 ];
 
 const DIRECTORY_CRITICAL_EXTRA = [
@@ -89,7 +82,7 @@ function renderAsyncHeadAssets(mode) {
   const cssFiles = mode === 'home' ? HOME_CSS : DIRECTORY_CSS;
   const critical =
     mode === 'home'
-      ? SHARED_CRITICAL.concat(HOME_CRITICAL_EXTRA)
+      ? [renderLatinFontFaces()].concat(SHARED_CRITICAL, HOME_CRITICAL_EXTRA)
       : SHARED_CRITICAL.concat(DIRECTORY_CRITICAL_EXTRA);
   const filesJson = JSON.stringify(cssFiles);
   const fontsJson = JSON.stringify(FONTS_HREF);
