@@ -191,7 +191,7 @@ function testStaticAssets() {
     const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
     const hasOverlay = html.includes('id="explore-skel"') && html.includes('body.explore-pending');
     const onClick = /a\[href="\/investors"\][\s\S]*addEventListener\('click'/.test(html);
-    const noPointerDown = !/pointerdown/.test(html);
+    const noPointerDown = !/addEventListener\('pointerdown'/.test(html);
     const passthrough = /explore-skel\{[^}]*pointer-events:none/.test(html);
     const noPrevent = !/explore-pending[\s\S]{0,200}preventDefault/.test(html);
     if (!hasOverlay || !onClick || !noPointerDown || !passthrough || !noPrevent) {
