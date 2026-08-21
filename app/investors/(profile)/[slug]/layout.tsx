@@ -1,4 +1,4 @@
-const { renderProfileCriticalCss } = require('../../../utils/profile-page-assets');
+const { renderProfileCriticalCss } = require('../../../../utils/profile-page-assets');
 
 export default function PersonProfileLayout({ children }: { children: React.ReactNode }) {
   return (

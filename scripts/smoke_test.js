@@ -123,7 +123,7 @@ async function testModuleLoads() {
 function testStaticAssets() {
   console.log('\nStatic assets');
   const required = [
-    'app/page.tsx',
+    'app/(home)/page.tsx',
     'app/layout.tsx',
     'next.config.js',
     'index.html',
@@ -172,7 +172,7 @@ function testStaticAssets() {
   }
 
   try {
-    const page = fs.readFileSync(path.join(ROOT, 'app/page.tsx'), 'utf8');
+    const page = fs.readFileSync(path.join(ROOT, 'app/(home)/page.tsx'), 'utf8');
     const js = fs.readFileSync(path.join(ROOT, 'app.js'), 'utf8');
     const nextLink =
       /<Link className="trend-card-btn" id="explore-btn" href="\/investors" prefetch>/.test(page);
@@ -192,7 +192,7 @@ function testStaticAssets() {
   }
 
   try {
-    const page = fs.readFileSync(path.join(ROOT, 'app/page.tsx'), 'utf8');
+    const page = fs.readFileSync(path.join(ROOT, 'app/(home)/page.tsx'), 'utf8');
     if (page.includes('explore-skel') || page.includes('explore-pending')) {
       fail('Start Exploring has no skeleton overlay', 'explore-skel must stay out of the Next home page');
     } else {
@@ -203,13 +203,15 @@ function testStaticAssets() {
   }
 
   try {
-    const layout = fs.readFileSync(path.join(ROOT, 'app/layout.tsx'), 'utf8');
-    if (!layout.includes("background='#000'") && !layout.includes('background="#000"') && !layout.includes("background='#000'") && !layout.includes("style.background='#000'") && !layout.includes('style.background=\'#000\'')) {
-      // layout uses an inline script: document.documentElement.style.background='#000'
-    }
-    const paintsDark = layout.includes("style.background='#000'") || layout.includes('style.background="#000"') || /background='#000'/.test(layout);
-    const heroInHead = layout.includes('/css/hero.css?v=97') && layout.includes("id=\"vc-critical-css\"");
+    const root = fs.readFileSync(path.join(ROOT, 'app/layout.tsx'), 'utf8');
+    const layout = fs.readFileSync(path.join(ROOT, 'app/(home)/layout.tsx'), 'utf8');
+    const paintsDark =
+      root.includes("background='#000'") ||
+      root.includes('background="#000"') ||
+      /background='#000'/.test(root);
+    const heroInHead = root.includes('/css/hero.css?v=97') && layout.includes('id="vc-critical-css"');
     const sandPreload = layout.includes('/assets/sand_bg.webp');
+    const earlyPeople = root.includes('beforeInteractive') && root.includes('people.js');
     if (!paintsDark) {
       fail('homepage first paint is dark', 'app/layout.tsx must set html background #000 on /');
     } else if (!heroInHead || !sandPreload) {
@@ -220,8 +222,10 @@ function testStaticAssets() {
     } else {
       pass('homepage first paint is dark (Next layout inline script)');
     }
-    if (layout.includes('directory-list.css') || layout.includes('directory-profile.css')) {
-      fail('home layout CSS', 'directory CSS must not block the homepage');
+    if (layout.includes('directory-profile.css')) {
+      fail('home layout CSS', 'profile CSS must not block the homepage');
+    } else if (root.includes('directory-list.css')) {
+      fail('home layout CSS', 'directory-list.css must not block the homepage');
     } else {
       pass('homepage does not load directory CSS');
     }
@@ -760,7 +764,7 @@ function testNextAppShell() {
       cfg.includes("/funds/sectors/:slug");
     const hasLogin = fs.existsSync(path.join(ROOT, 'app/login/route.ts'));
     if (!hasGuides || !hasLogin) {
-      fail('next.config keeps guides and login on the old stack', `guides=${hasGuides} login=${hasLogin}`);
+      fail('next.config keeps guides and login on the old stack', `guides=${hasGuides} loginRoute=${hasLogin}`);
     } else {
       pass('login route + fund guide slug rewrites are in place');
     }
@@ -769,11 +773,14 @@ function testNextAppShell() {
   }
 
   try {
-    const personPage = fs.readFileSync(path.join(ROOT, 'app/investors/[slug]/page.tsx'), 'utf8');
-    const fundPage = fs.readFileSync(path.join(ROOT, 'app/funds/[slug]/page.tsx'), 'utf8');
+    const personPage = fs.readFileSync(path.join(ROOT, 'app/investors/(profile)/[slug]/page.tsx'), 'utf8');
+    const fundPage = fs.readFileSync(path.join(ROOT, 'app/funds/(profile)/[slug]/page.tsx'), 'utf8');
+    const investorsLayout = fs.readFileSync(path.join(ROOT, 'app/investors/(directory)/layout.tsx'), 'utf8');
+    const rootLayout = fs.readFileSync(path.join(ROOT, 'app/layout.tsx'), 'utf8');
     const cfg = fs.readFileSync(path.join(ROOT, 'next.config.js'), 'utf8');
     const usesHeaders = personPage.includes("next/headers") || fundPage.includes("next/headers");
     const hasStale = cfg.includes('staleTimes');
+    const earlyPeople = rootLayout.includes('beforeInteractive') && rootLayout.includes('people.js');
     if (usesHeaders || !hasStale) {
       fail(
         'profile pages can ISR',
@@ -781,6 +788,11 @@ function testNextAppShell() {
       );
     } else {
       pass('profile pages do not call headers(); client router keeps a stale cache');
+    }
+    if (!investorsLayout.includes('directory-list.css') || !earlyPeople) {
+      fail('directory layout loads CSS and JS in head', `dirCss=${investorsLayout.includes('directory-list.css')} earlyPeople=${earlyPeople}`);
+    } else {
+      pass('directory layout loads CSS and JS in head');
     }
   } catch (err) {
     fail('profile pages can ISR', err);

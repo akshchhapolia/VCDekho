@@ -8,6 +8,7 @@ declare global {
   interface Window {
     VCNav?: { close?: () => void; boot?: () => void };
     VCDirectorySession?: { wireNavAuth?: () => void };
+    VCHero?: { release?: () => void };
   }
 }
 
