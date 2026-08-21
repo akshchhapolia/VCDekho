@@ -49,15 +49,19 @@ const DIRECTORY_CRITICAL_EXTRA = [
   '.inv-dir-header{display:flex;flex-wrap:wrap;align-items:center;gap:.65rem;margin-bottom:1rem}',
   '.inv-dir-header h1{font-family:var(--font-heading);font-size:clamp(1.6rem,6vw,2.4rem);color:#fff;font-weight:400}',
   '.inv-dir-meta{color:rgba(255,255,255,.55);font-size:.88rem}',
+  '.inv-dir-row-hit{position:absolute;inset:0;z-index:1;border-radius:inherit}',
+  '.inv-dir-skel{display:none!important}',
+  // Mobile-only row/card rules. Leaving these unscoped broke desktop: directory-list.css
+  // never resets border-radius/background, so rows looked like mweb cards on wide screens.
+  '@media(max-width:768px){',
   '.inv-dir-layout{display:grid;grid-template-columns:1fr;gap:1rem}',
   '.inv-dir-table-head{display:none}',
   '.inv-dir-results{display:flex;flex-direction:column;gap:.55rem}',
   '.inv-dir-row{position:relative;display:grid;grid-template-columns:1fr;gap:.35rem;padding:.85rem;border-radius:16px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)}',
-  '.inv-dir-row-hit{position:absolute;inset:0;z-index:1;border-radius:inherit}',
   '.inv-dir-name{color:#fff;font-weight:600;font-size:.95rem}',
   '.inv-dir-type{color:rgba(255,255,255,.5);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em}',
   '.inv-dir-cell,.inv-dir-ticket{color:rgba(255,255,255,.72);font-size:.82rem;line-height:1.4}',
-  '.inv-dir-skel{display:none!important}'
+  '}'
 ];
 
 function renderBlockingDirectoryHead() {

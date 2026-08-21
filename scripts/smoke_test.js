@@ -256,6 +256,24 @@ function testStaticAssets() {
   }
 
   try {
+    const { renderDirectoryCriticalCss } = require('../utils/static-page-assets');
+    const critical = renderDirectoryCriticalCss();
+    const unscopedCardRow = /\.inv-dir-row\{[^}]*border-radius:16px/.test(
+      critical.replace(/@media\(max-width:768px\)\{[\s\S]*?\}/g, '')
+    );
+    if (unscopedCardRow) {
+      fail(
+        'directory critical CSS is mobile-scoped',
+        'desktop must not inherit mweb card row styles from critical CSS'
+      );
+    } else {
+      pass('directory critical CSS is mobile-scoped');
+    }
+  } catch (err) {
+    fail('directory critical CSS is mobile-scoped', err);
+  }
+
+  try {
     const v = JSON.parse(fs.readFileSync(path.join(ROOT, 'vercel.json'), 'utf8'));
     const indexRule = (v.headers || []).find((h) => h.source === '/(funds|investors|blog)');
     const cc =
