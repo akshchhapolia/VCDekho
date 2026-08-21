@@ -1,0 +1,1 @@
+../../investors/lazy-portfolio-logos.js
