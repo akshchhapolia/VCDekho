@@ -119,7 +119,11 @@ function renderAsyncHeadAssets(mode) {
 
 function renderHomeCriticalCss() {
   const homeExtra = HOME_CRITICAL_EXTRA.map((rule) => rule.replace(/body\.home-page/g, 'html.home-page'));
-  return [renderLatinFontFaces()].concat(SHARED_CRITICAL, homeExtra, DIRECTORY_CRITICAL_EXTRA).join('');
+  return [renderLatinFontFaces()].concat(SHARED_CRITICAL, homeExtra).join('');
+}
+
+function renderDirectoryCriticalCss() {
+  return [renderLatinFontFaces()].concat(SHARED_CRITICAL, DIRECTORY_CRITICAL_EXTRA).join('');
 }
 
 module.exports = {
@@ -127,6 +131,7 @@ module.exports = {
   renderBlockingHomeHead,
   renderBlockingDirectoryHead,
   renderHomeCriticalCss,
+  renderDirectoryCriticalCss,
   HOME_CSS,
   DIRECTORY_CSS,
   FONTS_HREF

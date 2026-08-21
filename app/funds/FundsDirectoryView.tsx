@@ -1,6 +1,4 @@
 import SiteHeader from '../components/SiteHeader';
-import { DirectoryCss } from '../components/PageCss';
-import { DirectoryBoot } from '../components/ClientRuntime';
 
 function jsonScript(obj: unknown) {
   return JSON.stringify(obj).replace(/</g, '\\u003c');
@@ -17,7 +15,6 @@ export default function FundsDirectoryView({
 }) {
   return (
     <>
-      <DirectoryCss />
       <div className="app-container">
         <SiteHeader pathname="/funds" />
         <main className="hero-showcase inv-list-main">
@@ -126,7 +123,6 @@ export default function FundsDirectoryView({
         id="inv-prerender"
         dangerouslySetInnerHTML={{ __html: jsonScript(bootstrap) }}
       />
-      <DirectoryBoot kind="funds" />
     </>
   );
 }

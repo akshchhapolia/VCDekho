@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 import ClientRuntime from './components/ClientRuntime';
 
-const { renderHomeCriticalCss } = require('../utils/static-page-assets');
-
 export const metadata: Metadata = {
   metadataBase: new URL('https://vcdekho.com'),
   icons: {
@@ -21,15 +19,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var p=location.pathname.replace(/\\/$/, '')||'/';var html='scrollable-page';if(p==='/'){html='home-page has-announcement';document.documentElement.style.background='#000';}document.documentElement.className=html;})();`
-          }}
-        />
-        <style
-          id="vc-critical-css"
-          dangerouslySetInnerHTML={{ __html: renderHomeCriticalCss() }}
-        />
         <link
           rel="preload"
           href="/assets/fonts/plus-jakarta-sans-latin.woff2"
@@ -44,13 +33,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        <link rel="preload" href="/assets/sand_bg.webp" as="image" />
-        <link rel="preload" href="/css/hero.css?v=97" as="style" />
         <link rel="stylesheet" href="/css/fonts.css?v=1" />
         <link rel="stylesheet" href="/css/base.css?v=146" />
-        <link rel="stylesheet" href="/css/hero.css?v=97" />
-        <link rel="stylesheet" href="/css/ambient.css?v=98" />
-        <link rel="stylesheet" href="/css/announcement.css?v=145" />
       </head>
       <body suppressHydrationWarning>
         <script

@@ -167,6 +167,7 @@ module.exports = {
   renderProfileHeadAssets,
   earlyStickyPinScript,
   isMobileRequest,
+  renderProfileCriticalCss: () => PROFILE_CRITICAL_CSS.join(''),
   CSS_FILES,
   FONTS_HREF
 };

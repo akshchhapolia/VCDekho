@@ -70,6 +70,16 @@ const nextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
+        { source: '/login', destination: '/login.html' },
+        { source: '/about', destination: '/about.html' },
+        { source: '/contact', destination: '/contact.html' },
+        { source: '/blog', destination: '/blog/index.html' },
+        { source: '/news', destination: '/news/index.html' },
+        { source: '/buzz', destination: '/buzz/index.html' },
+        { source: '/guide/raising-vc-funding-india', destination: '/guide/raising-vc-funding-india.html' },
+        { source: '/funds/stages', destination: '/funds/stages/index.html' },
+        { source: '/funds/themes', destination: '/funds/themes/index.html' },
+        { source: '/funds/sectors', destination: '/funds/sectors/index.html' },
         {
           source: '/funds/stages/:slug((?!index\\.html$).*)',
           destination: '/api/investors/detail?slug=:slug&view=stage'
