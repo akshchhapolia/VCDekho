@@ -375,6 +375,24 @@ function testStaticAssets() {
   }
 
   try {
+    const src = fs.readFileSync(path.join(ROOT, 'utils/people-contacts.js'), 'utf8');
+    const bundled = src.includes("require('./_data/people-contacts.bySlug.json')");
+    const { getPersonContact, loadContactsBySlug } = require(path.join(ROOT, 'utils/people-contacts'));
+    const n = Object.keys(loadContactsBySlug() || {}).length;
+    const sample = getPersonContact('aakrit-vaish');
+    if (!bundled || n < 1000 || !sample || !String(sample.email || '').includes('@')) {
+      fail(
+        'contacts JSON is readable for unlock',
+        `bundled=${bundled} n=${n} sample=${Boolean(sample && sample.email)}`
+      );
+    } else {
+      pass('contacts JSON is readable for unlock');
+    }
+  } catch (err) {
+    fail('contacts JSON is readable for unlock', err);
+  }
+
+  try {
     // These are lazy-loaded and full-bleed, so without intrinsic dimensions each
     // one shoves the article down as it arrives (CLS 0.17 on /blog/top-vc-firms-india).
     const offenders = [];
@@ -422,6 +440,12 @@ function testStaticAssets() {
       fail('directory-list.css people grid', 'missing people directory column layout');
     } else {
       pass('directory-list.css people directory grid');
+    }
+    const peopleJs = fs.readFileSync(path.join(ROOT, 'js/people.js'), 'utf8');
+    if (!peopleJs.includes('inv-skel-mark') || !peopleJs.includes('inv-skel-pill') || !listCss.includes('.inv-skel-mark')) {
+      fail('directory filter skeleton', 'people list must show row-shaped skeletons while a filter loads');
+    } else {
+      pass('directory filter skeleton');
     }
   } catch (err) {
     fail('directory-list.css link styles', err);
@@ -661,8 +685,16 @@ function testProfileClsGuards() {
     const funds = fs.readFileSync(path.join(ROOT, 'public/investors/investors.js'), 'utf8');
     const peopleSchedules = people.includes('schedulePeopleBoot') && people.includes("document.addEventListener('DOMContentLoaded', schedulePeopleBoot)");
     const fundsSchedules = funds.includes('scheduleFundsBoot') && funds.includes("document.addEventListener('DOMContentLoaded', scheduleFundsBoot)");
-    if (!peopleSchedules || !fundsSchedules) {
-      fail('directory scripts schedule boot on DOMContentLoaded', `people=${peopleSchedules} funds=${fundsSchedules}`);
+    const runtime = fs.readFileSync(path.join(ROOT, 'app/components/ClientRuntime.tsx'), 'utf8');
+    const waitsHydration =
+      people.includes('vc:client-ready') &&
+      funds.includes('vc:client-ready') &&
+      runtime.includes("dispatchEvent(new Event('vc:client-ready'))");
+    if (!peopleSchedules || !fundsSchedules || !waitsHydration) {
+      fail(
+        'directory scripts schedule boot on DOMContentLoaded',
+        `people=${peopleSchedules} funds=${fundsSchedules} hydration=${waitsHydration}`
+      );
     } else {
       pass('directory scripts schedule boot on DOMContentLoaded');
     }

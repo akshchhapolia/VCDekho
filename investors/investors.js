@@ -2,7 +2,8 @@
   function bootFundsDirectory() {
     var root = document.getElementById('inv-results');
     if (!root) return;
-    if (root.getAttribute('data-booted') === '1') return;
+    var dropdownsAlive = Boolean(document.querySelector('#inv-dir-sidebar .inv-dd-trigger'));
+    if (root.getAttribute('data-booted') === '1' && dropdownsAlive) return;
     if (global.__vcInvAc) global.__vcInvAc.abort();
     var ac = new AbortController();
     global.__vcInvAc = ac;
@@ -64,6 +65,17 @@
   }
 
   function createDropdown(root, key) {
+    if (!root) {
+      dropdowns[key] = {
+        get value() { return ''; },
+        set value(v) {},
+        setOptions: function () {},
+        setOnChange: function () {},
+        open: function () {},
+        close: function () {}
+      };
+      return dropdowns[key];
+    }
     const placeholder = root.getAttribute('data-placeholder') || 'All';
     root.innerHTML =
       '<button type="button" class="inv-dd-trigger" aria-haspopup="listbox" aria-expanded="false">' +
@@ -204,19 +216,26 @@
 
   function renderSkeleton(count) {
     const n = count || 8;
+    if (els.results) els.results.setAttribute('aria-busy', 'true');
     els.results.innerHTML = Array.from({ length: n }, () => `
       <div class="inv-dir-row inv-dir-skel" aria-hidden="true">
         <div class="inv-dir-col inv-dir-col-fund">
-          <span class="inv-skel inv-skel-type"></span>
-          <span class="inv-skel inv-skel-name"></span>
+          <span class="inv-dir-fund-mark"><span class="inv-skel inv-skel-mark"></span></span>
+          <span class="inv-dir-fund-text">
+            <span class="inv-skel inv-skel-type"></span>
+            <span class="inv-skel inv-skel-name"></span>
+          </span>
         </div>
         <div class="inv-dir-col inv-dir-col-stages">
+          <span class="inv-dir-mobile-label">Stages</span>
           <span class="inv-skel inv-skel-line"></span>
         </div>
         <div class="inv-dir-col inv-dir-col-sectors">
+          <span class="inv-dir-mobile-label">Sectors</span>
           <span class="inv-skel inv-skel-line inv-skel-wide"></span>
         </div>
         <div class="inv-dir-col inv-dir-col-ticket">
+          <span class="inv-dir-mobile-label">Ticket</span>
           <span class="inv-skel inv-skel-ticket"></span>
         </div>
       </div>
@@ -614,6 +633,13 @@
 
   function scheduleFundsBoot() {
     if (!document.getElementById('inv-results')) return;
+    if (document.querySelector('script[src*="/_next/"]') && !global.__vcClientReady) {
+      document.addEventListener('vc:client-ready', function onReady() {
+        document.removeEventListener('vc:client-ready', onReady);
+        bootFundsDirectory();
+      });
+      return;
+    }
     bootFundsDirectory();
   }
 

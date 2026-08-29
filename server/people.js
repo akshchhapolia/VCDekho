@@ -9,7 +9,7 @@
  *   GET /api/people?q=&role=&companyType=&stage=&sector=&thesis=&cheque= -> public page 1; login for page 2+
  */
 const { filterPeople, getFilters, toCard, getPersonBySlug, getPeopleByCompanySlug } = require('../utils/people');
-const { getPersonContact } = require('../utils/people-contacts');
+const { getPersonContact, loadContactsBySlug } = require('../utils/people-contacts');
 const {
   getUserUnlockMap,
   isPersonEmailUnlocked,
@@ -105,6 +105,12 @@ module.exports = async function handler(req, res) {
 
           const contact = getPersonContact(query.slug);
           if (!contact) {
+            console.error(
+              'unlock 404 no contact',
+              query.slug,
+              'loaded',
+              Object.keys(loadContactsBySlug()).length
+            );
             res.setHeader('Cache-Control', 'private, no-store');
             return res.status(404).json({ error: 'No email on file' });
           }

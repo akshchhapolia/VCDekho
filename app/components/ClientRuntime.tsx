@@ -13,6 +13,7 @@ declare global {
     VCFundsDir?: { boot?: () => void; destroy?: () => void };
     VCPeopleDir?: { boot?: () => void; destroy?: () => void };
     VCPersonEmailUnlock?: { initEmailUnlock?: (root?: Element | Document | null) => void };
+    __vcClientReady?: boolean;
   }
 }
 
@@ -24,6 +25,8 @@ export default function ClientRuntime() {
 
   useEffect(() => {
     routerReady.current = true;
+    window.__vcClientReady = true;
+    window.dispatchEvent(new Event('vc:client-ready'));
     applyDocumentClasses(pathname);
     if (window.VCProfilePage && typeof window.VCProfilePage.boot === 'function') {
       window.VCProfilePage.boot();

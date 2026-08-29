@@ -17,7 +17,7 @@ const DIRECTORY_CSS = [
   '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
   '/css/announcement.css?v=145',
-  '/css/directory-list.css?v=145'
+  '/css/directory-list.css?v=146'
 ];
 
 const SHARED_CRITICAL = [
@@ -79,7 +79,7 @@ function renderBlockingDirectoryHead() {
     '<link rel="stylesheet" href="/css/hero.css?v=97">',
     '<link rel="stylesheet" href="/css/ambient.css?v=98">',
     '<link rel="stylesheet" href="/css/announcement.css?v=145">',
-    '<link rel="stylesheet" href="/css/directory-list.css?v=145">'
+    '<link rel="stylesheet" href="/css/directory-list.css?v=146">'
   ]).join('\n    ');
 }
 

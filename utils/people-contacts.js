@@ -1,18 +1,38 @@
 const fs = require('fs');
 const path = require('path');
 const { displayEmail } = require('../scripts/lib/person_email');
-
-const CONTACTS_PATH = path.join(__dirname, '_data', 'people-contacts.bySlug.json');
+const { repoRoot } = require('./data-root');
 
 let cache = null;
 
 function loadContactsBySlug() {
   if (cache) return cache;
-  if (!fs.existsSync(CONTACTS_PATH)) {
-    cache = {};
+
+  // Webpack compiles this file into .next/server/pages/api/*.js, so
+  // path.join(__dirname, '_data', ...) looks next to the API route and
+  // misses the JSON. require() inlines it into the serverless bundle.
+  try {
+    cache = require('./_data/people-contacts.bySlug.json');
+  } catch (_) {
+    cache = null;
+  }
+  if (cache && typeof cache === 'object' && !Array.isArray(cache)) {
     return cache;
   }
-  cache = JSON.parse(fs.readFileSync(CONTACTS_PATH, 'utf8'));
+
+  const candidates = [
+    path.join(__dirname, '_data', 'people-contacts.bySlug.json'),
+    path.join(repoRoot(), 'utils', '_data', 'people-contacts.bySlug.json'),
+    path.join(process.cwd(), 'utils', '_data', 'people-contacts.bySlug.json')
+  ];
+  for (const filePath of candidates) {
+    if (fs.existsSync(filePath)) {
+      cache = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+      return cache;
+    }
+  }
+
+  cache = {};
   return cache;
 }
 
@@ -32,5 +52,5 @@ function getPersonContact(slug) {
 module.exports = {
   getPersonContact,
   loadContactsBySlug,
-  CONTACTS_PATH
+  CONTACTS_PATH: path.join(repoRoot(), 'utils', '_data', 'people-contacts.bySlug.json')
 };

@@ -606,17 +606,32 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
   border-bottom-color: rgba(255, 255, 255, 0.08);
 }
 
+.inv-dir-results[aria-busy="true"] {
+  min-height: 22rem;
+}
+
 .inv-skel {
   display: block;
   border-radius: 4px;
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.04) 0%,
-    rgba(255, 255, 255, 0.09) 50%,
-    rgba(255, 255, 255, 0.04) 100%
+    rgba(255, 255, 255, 0.07) 0%,
+    rgba(255, 255, 255, 0.16) 50%,
+    rgba(255, 255, 255, 0.07) 100%
   );
   background-size: 200% 100%;
   animation: invSkelShimmer 1.2s ease-in-out infinite;
+}
+
+.inv-skel-mark {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.inv-dir-row.inv-dir-skel .inv-dir-fund-mark {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .inv-skel-type {
@@ -647,9 +662,33 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
   margin-top: 0.35rem;
 }
 
+.inv-skel-pill {
+  width: 7.25rem;
+  height: 1.55rem;
+  margin-top: 0;
+  border-radius: 999px;
+}
+
 @keyframes invSkelShimmer {
   0% { background-position: 100% 0; }
   100% { background-position: -100% 0; }
+}
+
+@media (max-width: 768px) {
+  body.inv-dir-page .inv-dir-results[aria-busy="true"] {
+    min-height: 28rem;
+  }
+
+  body.inv-dir-page .inv-dir-row.inv-dir-skel .inv-skel-line,
+  body.inv-dir-page .inv-dir-row.inv-dir-skel .inv-skel-ticket {
+    margin-top: 0.2rem;
+    height: 0.8rem;
+    width: 78%;
+  }
+
+  body.inv-dir-page .inv-dir-row.inv-dir-skel .inv-skel-pill {
+    margin-top: 0.15rem;
+  }
 }
 
 .inv-dir-empty-state {

@@ -2,7 +2,8 @@
   function bootPeopleDirectory() {
     var root = document.getElementById('ppl-results');
     if (!root) return;
-    if (root.getAttribute('data-booted') === '1') return;
+    var dropdownsAlive = Boolean(document.querySelector('#ppl-dir-sidebar .inv-dd-trigger'));
+    if (root.getAttribute('data-booted') === '1' && dropdownsAlive) return;
     if (global.__vcPplAc) global.__vcPplAc.abort();
     var ac = new AbortController();
     global.__vcPplAc = ac;
@@ -59,6 +60,17 @@
   }
 
   function createDropdown(root, key) {
+    if (!root) {
+      dropdowns[key] = {
+        get value() { return ''; },
+        set value(v) {},
+        setOptions: function () {},
+        setOnChange: function () {},
+        open: function () {},
+        close: function () {}
+      };
+      return dropdowns[key];
+    }
     const placeholder = root.getAttribute('data-placeholder') || 'All';
     root.innerHTML =
       '<button type="button" class="inv-dd-trigger" aria-haspopup="listbox" aria-expanded="false">' +
@@ -187,19 +199,26 @@
 
   function renderSkeleton(count) {
     const n = count || 8;
+    if (els.results) els.results.setAttribute('aria-busy', 'true');
     els.results.innerHTML = Array.from({ length: n }, () => `
       <div class="inv-dir-row inv-dir-skel" aria-hidden="true">
         <div class="inv-dir-col inv-dir-col-fund">
-          <span class="inv-skel inv-skel-type"></span>
-          <span class="inv-skel inv-skel-name"></span>
+          <span class="inv-dir-fund-mark"><span class="inv-skel inv-skel-mark"></span></span>
+          <span class="inv-dir-fund-text">
+            <span class="inv-skel inv-skel-type"></span>
+            <span class="inv-skel inv-skel-name"></span>
+          </span>
         </div>
         <div class="inv-dir-col inv-dir-col-stages">
+          <span class="inv-dir-mobile-label">Firm</span>
           <span class="inv-skel inv-skel-line"></span>
         </div>
-        <div class="inv-dir-col inv-dir-col-sectors">
-          <span class="inv-skel inv-skel-line inv-skel-wide"></span>
+        <div class="inv-dir-col inv-dir-col-sectors inv-dir-col-email">
+          <span class="inv-dir-mobile-label">Email</span>
+          <span class="inv-skel inv-skel-pill"></span>
         </div>
         <div class="inv-dir-col inv-dir-col-ticket">
+          <span class="inv-dir-mobile-label">Links</span>
           <span class="inv-skel inv-skel-ticket"></span>
         </div>
       </div>
@@ -350,8 +369,9 @@
     return res;
   }
 
-  function applyFilterOptions(filters) {
-    if (state.filters || !filters) return;
+  function applyFilterOptions(filters, force) {
+    if (!filters) return;
+    if (state.filters && !force) return;
     state.filters = filters;
     dropdowns.role.setOptions(filters.roles || [], state.role);
     dropdowns.companyType.setOptions(filters.companyTypes || [], state.companyType);
@@ -612,6 +632,15 @@
 
   function schedulePeopleBoot() {
     if (!document.getElementById('ppl-results')) return;
+    // Next hydrates empty filter <div>s; filling them first gets wiped.
+    // ClientRuntime fires vc:client-ready after hydration.
+    if (document.querySelector('script[src*="/_next/"]') && !global.__vcClientReady) {
+      document.addEventListener('vc:client-ready', function onReady() {
+        document.removeEventListener('vc:client-ready', onReady);
+        bootPeopleDirectory();
+      });
+      return;
+    }
     bootPeopleDirectory();
   }
 
