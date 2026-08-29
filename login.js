@@ -253,14 +253,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fromResend && Date.now() < resendCooldownUntil) return false;
 
     const email = fromResend ? pendingEmail : readEmail();
-
+    pendingEmail = email;
+    if (!fromResend) setStep('otp');
     setBusy(true);
-    submitBtn.textContent = fromResend ? 'Resending…' : 'Sending OTP…';
-    setStatus(clientReady ? '' : 'Connecting…', clientReady ? undefined : 'info');
+    submitBtn.textContent = fromResend ? 'Resending…' : 'Sending code…';
+    setStatus('Sending a code to ' + email + '…', 'info');
 
     try {
       await ensureClient();
-      setStatus('');
       await window.VCAuth.sendEmailOtp({
         email,
         createUser: true,
@@ -269,8 +269,6 @@ document.addEventListener('DOMContentLoaded', () => {
           '/login?next=' +
           encodeURIComponent(safeNext(nextPath))
       });
-      pendingEmail = email;
-      setStep('otp');
       startResendCooldown();
       if (window.VCAnalytics) window.VCAnalytics.track('login_start', { method: 'email_otp' });
       setStatus('Check your inbox for a one-time code sent to ' + email + '.', 'success');
@@ -316,18 +314,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return /(?:^|;\s*)vd_access_token=/.test(document.cookie || '');
   }
 
-  function warmSupabaseCache() {
-    try {
-      if (document.querySelector('link[data-vc-supabase-preload]')) return;
-      var link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'script';
-      link.href = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js';
-      link.setAttribute('data-vc-supabase-preload', '1');
-      document.head.appendChild(link);
-    } catch (_) {
-      /* ignore */
-    }
+  function warmAuthClient() {
+    ensureClient().catch(function () {});
   }
 
   async function checkExistingSession() {
@@ -366,6 +354,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   scheduleSessionCheck();
+  warmAuthClient();
+  emailInput.addEventListener('focus', warmAuthClient, { once: true });
+  emailInput.addEventListener('input', warmAuthClient, { once: true });
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();

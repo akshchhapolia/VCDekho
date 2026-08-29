@@ -844,7 +844,7 @@ function testNextAppShell() {
     const hasLogin = fs.existsSync(path.join(ROOT, 'app/login/route.ts'));
     const loginCached = loginRoute.includes('force-static') && !loginRoute.includes('no-store');
     const oauthReturn = loginJs.includes('function hasOAuthCallback') && loginJs.includes('location.replace');
-    const cacheBust = loginHtml.includes('login.js?v=112');
+    const cacheBust = loginHtml.includes('login.js?v=113') && loginHtml.includes('supabase.min.js');
     const hashNext = loginJs.includes('hashNext') && loginJs.includes("hashNext.startsWith('/')");
     if (!hasGuides || !hasLogin) {
       fail('next.config keeps guides and login on the old stack', `guides=${hasGuides} loginRoute=${hasLogin}`);

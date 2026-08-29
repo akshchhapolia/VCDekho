@@ -102,12 +102,17 @@
       }
 
       var script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js';
+      script.src = '/js/supabase.min.js?v=1';
       script.async = true;
       script.dataset.vcSupabase = '1';
       script.onload = ready;
       script.onerror = function () {
-        reject(new Error('Supabase script failed to load'));
+        if (script.dataset.vcSupabaseFallback) {
+          reject(new Error('Supabase script failed to load'));
+          return;
+        }
+        script.dataset.vcSupabaseFallback = '1';
+        script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js';
       };
       document.head.appendChild(script);
     });
