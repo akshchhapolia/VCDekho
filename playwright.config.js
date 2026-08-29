@@ -19,9 +19,9 @@ module.exports = defineConfig({
   webServer: process.env.PLAYWRIGHT_BASE_URL
     ? undefined
     : {
-        command: `npx next dev -p ${port}`,
-        url: `${baseURL}/investors`,
+        command: `npx next start -H 127.0.0.1 -p ${port}`,
+        url: `${baseURL}/`,
         reuseExistingServer: !process.env.CI,
-        timeout: 180000
+        timeout: 60000
       }
 });
