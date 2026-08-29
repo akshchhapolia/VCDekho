@@ -17,7 +17,7 @@ const DIRECTORY_CSS = [
   '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
   '/css/announcement.css?v=145',
-  '/css/directory-list.css?v=146'
+  '/css/directory-list.css?v=147'
 ];
 
 const SHARED_CRITICAL = [
@@ -52,7 +52,9 @@ const DIRECTORY_CRITICAL_EXTRA = [
   '.inv-dir-header h1{font-family:var(--font-heading);font-size:clamp(1.6rem,6vw,2.4rem);color:#fff;font-weight:400}',
   '.inv-dir-meta{color:rgba(255,255,255,.55);font-size:.88rem}',
   '.inv-dir-row-hit{position:absolute;inset:0;z-index:1;border-radius:inherit}',
-  '.inv-dir-skel{display:none!important}',
+  // Hide leftover SSR skeleton rows once the list is ready. While a filter
+  // loads, aria-busy="true" and the skeleton must stay visible.
+  '.inv-dir-results:not([aria-busy="true"]) .inv-dir-skel{display:none!important}',
   // Mobile-only row/card rules. Leaving these unscoped broke desktop: directory-list.css
   // never resets border-radius/background, so rows looked like mweb cards on wide screens.
   '@media(max-width:960px){',
@@ -79,7 +81,7 @@ function renderBlockingDirectoryHead() {
     '<link rel="stylesheet" href="/css/hero.css?v=97">',
     '<link rel="stylesheet" href="/css/ambient.css?v=98">',
     '<link rel="stylesheet" href="/css/announcement.css?v=145">',
-    '<link rel="stylesheet" href="/css/directory-list.css?v=146">'
+    '<link rel="stylesheet" href="/css/directory-list.css?v=147">'
   ]).join('\n    ');
 }
 

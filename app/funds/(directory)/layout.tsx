@@ -5,7 +5,7 @@ export default function FundsDirectoryLayout({ children }: { children: React.Rea
   return (
     <>
       <link rel="preload" href="/css/directory-profile.css?v=149" as="style" />
-      <link rel="stylesheet" href="/css/directory-list.css?v=146" />
+      <link rel="stylesheet" href="/css/directory-list.css?v=147" />
       <style id="vc-directory-critical-css" dangerouslySetInnerHTML={{ __html: renderDirectoryCriticalCss() }} />
       <Script src="/investors/investors.js?v=120" strategy="beforeInteractive" />
       {children}

@@ -442,8 +442,21 @@ function testStaticAssets() {
       pass('directory-list.css people directory grid');
     }
     const peopleJs = fs.readFileSync(path.join(ROOT, 'js/people.js'), 'utf8');
-    if (!peopleJs.includes('inv-skel-mark') || !peopleJs.includes('inv-skel-pill') || !listCss.includes('.inv-skel-mark')) {
-      fail('directory filter skeleton', 'people list must show row-shaped skeletons while a filter loads');
+    const { renderDirectoryCriticalCss } = require('../utils/static-page-assets');
+    const dirCritical = renderDirectoryCriticalCss();
+    const hidesSkelAlways = /\.inv-dir-skel\{display:none!important\}/.test(dirCritical);
+    const hidesSkelWhenReady = dirCritical.includes('.inv-dir-results:not([aria-busy="true"]) .inv-dir-skel');
+    if (
+      !peopleJs.includes('inv-skel-mark') ||
+      !peopleJs.includes('inv-skel-pill') ||
+      !listCss.includes('.inv-skel-mark') ||
+      hidesSkelAlways ||
+      !hidesSkelWhenReady
+    ) {
+      fail(
+        'directory filter skeleton',
+        `people list must show row-shaped skeletons while a filter loads (hidesAlways=${hidesSkelAlways} hidesWhenReady=${hidesSkelWhenReady})`
+      );
     } else {
       pass('directory filter skeleton');
     }
