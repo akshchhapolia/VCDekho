@@ -258,6 +258,10 @@
   var dailyLimitHit = false;
 
   async function unlockEmail(btn) {
+    if (btn.dataset.unlockQueued === '1') return;
+    btn.dataset.unlockQueued = '1';
+    btn.setAttribute('aria-disabled', 'true');
+    setBtnLabel(btn, 'Unlocking…');
     unlockChain = unlockChain.then(function () {
       return runUnlock(btn);
     }).catch(function () {});
@@ -265,21 +269,26 @@
 
   async function runUnlock(btn) {
     var slug = btn.getAttribute('data-person-slug');
-    if (!slug || btn.getAttribute('aria-disabled') === 'true') return;
+    if (!slug) return;
+
+    if (dailyLimitHit) {
+      btn.removeAttribute('aria-disabled');
+      btn.dataset.unlockQueued = '';
+      setBtnLabel(btn, 'Unlock email');
+      showDailyLimitStrip();
+      return;
+    }
 
     if (!global.VCAuth) {
       goLogin(slug);
       return;
     }
 
-    btn.setAttribute('aria-disabled', 'true');
-    var prevText = getBtnLabel(btn);
-    setBtnLabel(btn, 'Unlocking…');
-
     var session = await global.VCAuth.getSession();
     if (!session) {
       btn.removeAttribute('aria-disabled');
-      setBtnLabel(btn, prevText === 'Unlocking…' ? 'Unlock email' : prevText);
+      btn.dataset.unlockQueued = '';
+      setBtnLabel(btn, 'Unlock email');
       goLogin(slug);
       return;
     }
@@ -292,7 +301,9 @@
         return;
       }
       if (res.status === 429) {
+        dailyLimitHit = true;
         btn.removeAttribute('aria-disabled');
+        btn.dataset.unlockQueued = '';
         setBtnLabel(btn, 'Unlock email');
         showDailyLimitStrip();
         return;
@@ -322,7 +333,8 @@
         });
       }
       btn.removeAttribute('aria-disabled');
-      setBtnLabel(btn, prevText === 'Unlocking…' ? 'Unlock email' : 'Try again');
+      btn.dataset.unlockQueued = '';
+      setBtnLabel(btn, 'Try again');
     }
   }
 

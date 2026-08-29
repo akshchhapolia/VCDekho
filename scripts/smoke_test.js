@@ -340,7 +340,7 @@ function testStaticAssets() {
       /e\.preventDefault\(\);/.test(unlock) &&
       /if \(isProbablySignedIn\(\)\) \{\s*unlockEmail\(btn\);/.test(unlock);
     const layout = fs.readFileSync(path.join(ROOT, 'app/layout.tsx'), 'utf8');
-    const cacheBust = layout.includes('person-email-unlock.js?v=13');
+    const cacheBust = layout.includes('person-email-unlock.js?v=14');
     if (!exported || !checksCookie || !checksStorage || !checksRedirect || !shortCircuits || !skipsHydrate || !cookieLogin || !cacheBust) {
       fail(
         'anonymous visitors skip Supabase',
@@ -362,10 +362,14 @@ function testStaticAssets() {
     const slimPool = /max:\s*1/.test(db);
     const skipsDirHydrate = /closest\('#ppl-results'\)/.test(unlock);
     const persistCaught = /email unlock persist failed/.test(peopleApi);
-    if (!slimPool || !skipsDirHydrate || !persistCaught) {
+    const claimsAtomically =
+      peopleApi.includes('claimPersonEmailUnlock') &&
+      fs.readFileSync(path.join(ROOT, 'utils/person-email-unlocks.js'), 'utf8').includes('pg_advisory_xact_lock');
+    const queuesClicks = unlock.includes('unlockChain') && unlock.includes('dailyLimitHit');
+    if (!slimPool || !skipsDirHydrate || !persistCaught || !claimsAtomically || !queuesClicks) {
       fail(
         'unlock survives db pool exhaustion',
-        `pool=${slimPool} skipDirHydrate=${skipsDirHydrate} persistCaught=${persistCaught}`
+        `pool=${slimPool} skipDirHydrate=${skipsDirHydrate} persistCaught=${persistCaught} claim=${claimsAtomically} queue=${queuesClicks}`
       );
     } else {
       pass('unlock survives db pool exhaustion');

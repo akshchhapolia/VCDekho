@@ -50,7 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script src="/js/directory-session.js?v=5" strategy="beforeInteractive" />
         <Script src="/js/site-paths.js?v=1" strategy="beforeInteractive" />
         <Script src="/js/report.js?v=1" strategy="beforeInteractive" />
-        <Script src="/js/person-email-unlock.js?v=13" strategy="beforeInteractive" />
+        <Script src="/js/person-email-unlock.js?v=14" strategy="beforeInteractive" />
         <Script src="/js/profile-page-boot.js?v=2" strategy="beforeInteractive" />
         <Script src="/app.js?v=98" strategy="beforeInteractive" />
       </head>
