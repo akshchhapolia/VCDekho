@@ -247,31 +247,61 @@ body {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 70%;
+        left: auto;
+        bottom: 0;
+        width: 100%;
+        max-width: none;
         height: 100%;
+        height: 100vh;
         height: 100dvh;
+        min-height: 100vh;
+        min-height: 100dvh;
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 3rem;
         z-index: 10040 !important;
         flex: none;
-        background: #121214 !important;
-        background-color: #121214 !important;
-        border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.45);
+        background: #0b0b0d !important;
+        background-color: #0b0b0d !important;
+        opacity: 1 !important;
+        border-left: none !important;
+        box-shadow: none;
+        transform: none !important;
         transition: right 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
         pointer-events: auto;
+        isolation: isolate;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .main-nav.active,
     nav.main-nav.active,
-    #navigation-bar.active {
-        right: 0;
+    #navigation-bar.active,
+    body.nav-open #navigation-bar {
+        right: 0 !important;
+        left: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        max-width: none !important;
+    }
+
+    /* Viewport fill so page content cannot show through a short/transparent panel */
+    #navigation-bar.active::before,
+    body.nav-open #navigation-bar::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: #0b0b0d;
+        z-index: 0;
+        pointer-events: none;
     }
 
     .main-nav .nav-link,
     #navigation-bar .nav-link {
+        position: relative;
+        z-index: 1;
         color: rgba(255, 255, 255, 0.9) !important;
         font-size: 1.3rem;
         opacity: 1;
@@ -303,6 +333,11 @@ body {
     .nav-backdrop {
         z-index: 10030 !important;
         background: rgba(0, 0, 0, 0.55) !important;
+    }
+
+    /* Full-screen sheet covers the page; a body-level dimmer would paint over the menu. */
+    body.nav-open .nav-backdrop {
+        display: none !important;
     }
 }
 
@@ -393,7 +428,8 @@ body.nav-open {
 
 @media (max-width: 768px) {
     .main-nav {
-        width: min(85vw, 320px);
+        width: 100%;
+        max-width: none;
         padding-top: calc(2rem + env(safe-area-inset-top, 0px));
         padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
         padding-left: 1.5rem;
@@ -408,10 +444,33 @@ body.nav-open {
         -webkit-tap-highlight-color: rgba(255, 255, 255, 0.08);
     }
 
-    /* Toggle / drawer stay above the dimmer on every page */
+    /*
+     * Page chrome (login card, profile hero, sticky tabs) uses z-index 2–90
+     * and would otherwise paint on top of the drawer. Flatten those layers
+     * and unstick the header so position:fixed covers the viewport.
+     */
     body.nav-open .site-header {
-        z-index: 10045;
-        position: relative;
+        z-index: 10045 !important;
+        position: relative !important;
+        transform: none !important;
+        filter: none !important;
+        isolation: auto !important;
+        overflow: visible !important;
+        background: transparent !important;
+    }
+
+    body.nav-open .hero-content,
+    body.nav-open .waitlist-content,
+    body.nav-open .inv-detail-wrap,
+    body.nav-open .inv-profile-wrap,
+    body.nav-open .inv-dir-wrap,
+    body.nav-open .blog-content,
+    body.nav-open .hero-showcase,
+    body.nav-open .inv-profile-sticky,
+    body.nav-open .inv-profile-sticky.is-pinned,
+    body.nav-open .inv-profile-sticky-host,
+    body.nav-open .inv-profile-hero {
+        z-index: 0 !important;
     }
 
     .nav-backdrop {
@@ -442,8 +501,8 @@ body.nav-open {
 
 @media (max-width: 480px) {
     .main-nav {
-        width: 100vw;
-        max-width: 100vw;
+        width: 100%;
+        max-width: none;
         padding-top: calc(2.5rem + env(safe-area-inset-top, 0px));
         padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
         padding-left: 2rem;

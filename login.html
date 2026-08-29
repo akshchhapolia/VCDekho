@@ -82,7 +82,11 @@ body.scrollable-page.login-page .waitlist-layout-grid{height:auto}
 @media (max-width:768px){
 .site-header{padding-top:env(safe-area-inset-top,0)}
 .nav-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:44px;min-height:44px;margin-left:auto;z-index:230}
-.main-nav{position:fixed;top:0;right:-100%;width:min(85vw,320px);height:100dvh;flex-direction:column;justify-content:center;gap:3rem;z-index:10040;background:#121214;padding:2rem 1.5rem}
+.main-nav{position:fixed;top:0;right:-100%;bottom:0;width:100%;height:100dvh;flex-direction:column;justify-content:center;gap:3rem;z-index:10040;background:#0b0b0d;padding:2rem 1.5rem}
+.main-nav.active{right:0;left:0}
+.nav-toggle.active,body.nav-open .nav-toggle{position:fixed;top:calc(.65rem + env(safe-area-inset-top,0px));right:1rem;z-index:10050}
+body.nav-open .site-header{z-index:10045!important;position:relative!important}
+body.nav-open .hero-content,body.nav-open .waitlist-content{z-index:0!important}
 .why-join-container{display:none}
 .waitlist-info-col{gap:0}
 .waitlist-form-col{width:100%}
@@ -95,11 +99,11 @@ input,select,textarea{font-size:16px!important}
 }
     </style>
     <!-- Full stylesheets: non-blocking; critical CSS above matches first paint -->
-    <link rel="stylesheet" href="/css/base.css?v=110" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/base.css?v=149" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="/css/hero.css?v=110" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="/css/ambient.css?v=111" media="print" onload="this.media='all'">
     <noscript>
-      <link rel="stylesheet" href="/css/base.css?v=110">
+      <link rel="stylesheet" href="/css/base.css?v=149">
       <link rel="stylesheet" href="/css/hero.css?v=110">
       <link rel="stylesheet" href="/css/ambient.css?v=111">
     </noscript>

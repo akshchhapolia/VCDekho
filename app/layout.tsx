@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           crossOrigin="anonymous"
         />
         <link rel="stylesheet" href="/css/fonts.css?v=1" />
-        <link rel="stylesheet" href="/css/base.css?v=148" />
+        <link rel="stylesheet" href="/css/base.css?v=149" />
         <link rel="stylesheet" href="/css/hero.css?v=97" />
         <link rel="stylesheet" href="/css/ambient.css?v=98" />
         <link rel="stylesheet" href="/css/announcement.css?v=145" />
