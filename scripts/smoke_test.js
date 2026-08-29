@@ -258,13 +258,13 @@ function testStaticAssets() {
   try {
     const { renderDirectoryCriticalCss } = require('../utils/static-page-assets');
     const critical = renderDirectoryCriticalCss();
-    const unscopedCardRow = /\.inv-dir-row\{[^}]*border-radius:16px/.test(
-      critical.replace(/@media\(max-width:768px\)\{[\s\S]*?\}/g, '')
-    );
-    if (unscopedCardRow) {
+    const beforeMobile = critical.split('@media(max-width:960px)')[0] || critical;
+    const unscopedCardRow = /\.inv-dir-row\{[^}]*border-radius:16px/.test(beforeMobile);
+    const hasDrawerCss = critical.includes('@media(max-width:960px)') && critical.includes('.inv-dir-sidebar{position:fixed');
+    if (unscopedCardRow || !hasDrawerCss) {
       fail(
         'directory critical CSS is mobile-scoped',
-        'desktop must not inherit mweb card row styles from critical CSS'
+        `unscopedCardRow=${unscopedCardRow} hasDrawerCss=${hasDrawerCss}`
       );
     } else {
       pass('directory critical CSS is mobile-scoped');
@@ -608,6 +608,20 @@ function testProfileClsGuards() {
   }
 
   try {
+    const people = fs.readFileSync(path.join(ROOT, 'public/js/people.js'), 'utf8');
+    const funds = fs.readFileSync(path.join(ROOT, 'public/investors/investors.js'), 'utf8');
+    const peopleSchedules = people.includes('schedulePeopleBoot') && people.includes("document.addEventListener('DOMContentLoaded', schedulePeopleBoot)");
+    const fundsSchedules = funds.includes('scheduleFundsBoot') && funds.includes("document.addEventListener('DOMContentLoaded', scheduleFundsBoot)");
+    if (!peopleSchedules || !fundsSchedules) {
+      fail('directory scripts schedule boot on DOMContentLoaded', `people=${peopleSchedules} funds=${fundsSchedules}`);
+    } else {
+      pass('directory scripts schedule boot on DOMContentLoaded');
+    }
+  } catch (err) {
+    fail('directory scripts schedule boot on DOMContentLoaded', err);
+  }
+
+  try {
     const stale = [];
     function walk(dir) {
       for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -807,6 +821,18 @@ function testNextAppShell() {
   }
 
   try {
+    const routes = fs.readFileSync(path.join(ROOT, 'lib/app-routes.ts'), 'utf8');
+    const runtime = fs.readFileSync(path.join(ROOT, 'app/components/ClientRuntime.tsx'), 'utf8');
+    if (!routes.includes('isSoftNavRoute') || !runtime.includes('isSoftNavRoute')) {
+      fail('profiles use full navigation', 'profile slugs must not use client router.push');
+    } else {
+      pass('profiles use full navigation');
+    }
+  } catch (err) {
+    fail('profiles use full navigation', err);
+  }
+
+  try {
     const personPage = fs.readFileSync(path.join(ROOT, 'app/investors/(profile)/[slug]/page.tsx'), 'utf8');
     const fundPage = fs.readFileSync(path.join(ROOT, 'app/funds/(profile)/[slug]/page.tsx'), 'utf8');
     const investorsLayout = fs.readFileSync(path.join(ROOT, 'app/investors/(directory)/layout.tsx'), 'utf8');
@@ -814,7 +840,9 @@ function testNextAppShell() {
     const cfg = fs.readFileSync(path.join(ROOT, 'next.config.js'), 'utf8');
     const usesHeaders = personPage.includes("next/headers") || fundPage.includes("next/headers");
     const hasStale = cfg.includes('staleTimes');
-    const earlyPeople = rootLayout.includes('beforeInteractive') && rootLayout.includes('people.js');
+    const earlyPeople = investorsLayout.includes('beforeInteractive') && investorsLayout.includes('people.js');
+    const rootLoadsDirJs =
+      !rootLayout.includes('investors/investors.js') && !rootLayout.includes('/js/people.js?v=');
     if (usesHeaders || !hasStale) {
       fail(
         'profile pages can ISR',
@@ -823,8 +851,8 @@ function testNextAppShell() {
     } else {
       pass('profile pages do not call headers(); client router keeps a stale cache');
     }
-    if (!investorsLayout.includes('directory-list.css') || !earlyPeople) {
-      fail('directory layout loads CSS and JS in head', `dirCss=${investorsLayout.includes('directory-list.css')} earlyPeople=${earlyPeople}`);
+    if (!investorsLayout.includes('directory-list.css') || !earlyPeople || !rootLoadsDirJs) {
+      fail('directory layout loads CSS and JS in head', `dirCss=${investorsLayout.includes('directory-list.css')} earlyPeople=${earlyPeople} slimRoot=${rootLoadsDirJs}`);
     } else {
       pass('directory layout loads CSS and JS in head');
     }

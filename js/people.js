@@ -560,11 +560,15 @@
       if (global.__vcPplAc) global.__vcPplAc.abort();
     }
   };
-  if (document.getElementById('ppl-results')) {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', bootPeopleDirectory);
-    } else {
-      bootPeopleDirectory();
-    }
+
+  function schedulePeopleBoot() {
+    if (!document.getElementById('ppl-results')) return;
+    bootPeopleDirectory();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', schedulePeopleBoot);
+  } else {
+    schedulePeopleBoot();
   }
 })(typeof window !== 'undefined' ? window : this);

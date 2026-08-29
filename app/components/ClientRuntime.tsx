@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { documentClasses, isAppRoute } from '../../lib/app-routes';
+import { documentClasses, isAppRoute, isSoftNavRoute, normalizePath } from '../../lib/app-routes';
 
 declare global {
   interface Window {
@@ -10,6 +10,8 @@ declare global {
     VCDirectorySession?: { wireNavAuth?: () => void };
     VCHero?: { release?: () => void };
     VCProfilePage?: { boot?: () => void };
+    VCFundsDir?: { boot?: () => void; destroy?: () => void };
+    VCPeopleDir?: { boot?: () => void; destroy?: () => void };
   }
 }
 
@@ -24,11 +26,18 @@ export default function ClientRuntime() {
     if (window.VCProfilePage && typeof window.VCProfilePage.boot === 'function') {
       window.VCProfilePage.boot();
     }
+    const path = normalizePath(pathname);
+    if (path === '/funds' && window.VCFundsDir && typeof window.VCFundsDir.boot === 'function') {
+      window.VCFundsDir.boot();
+    }
+    if (path === '/investors' && window.VCPeopleDir && typeof window.VCPeopleDir.boot === 'function') {
+      window.VCPeopleDir.boot();
+    }
     if (window.VCNav && typeof window.VCNav.close === 'function') window.VCNav.close();
     if (window.VCDirectorySession && window.VCDirectorySession.wireNavAuth) {
       window.VCDirectorySession.wireNavAuth();
     }
-    const t = window.setTimeout(() => prefetchVisibleAppLinks(router), 50);
+    const t = window.setTimeout(() => prefetchVisibleLinks(router, path), 50);
     return () => window.clearTimeout(t);
   }, [pathname, router]);
 
@@ -73,7 +82,7 @@ export default function ClientRuntime() {
         return;
       }
       if (url.origin !== window.location.origin) return;
-      if (!isAppRoute(url.pathname)) return;
+      if (!isSoftNavRoute(url.pathname)) return;
       e.preventDefault();
       if (window.VCNav && typeof window.VCNav.close === 'function') window.VCNav.close();
       if (window.VCHero && typeof window.VCHero.release === 'function') window.VCHero.release();
@@ -93,16 +102,41 @@ function applyDocumentClasses(pathname: string) {
   document.documentElement.style.background = next.home ? '#000' : '';
 }
 
-function prefetchVisibleAppLinks(router: { prefetch: (href: string) => void }) {
+function prefetchVisibleLinks(router: { prefetch: (href: string) => void }, currentPath: string) {
   const seen: Record<string, boolean> = {};
-  document.querySelectorAll('a[href^="/investors/"], a[href^="/funds/"], a[href="/investors"], a[href="/funds"]').forEach((node) => {
-    const href = node.getAttribute('href');
-    if (!href || seen[href] || !isAppRoute(href.split('?')[0])) return;
-    seen[href] = true;
-    try {
-      router.prefetch(href);
-    } catch {
-      /* ignore */
-    }
-  });
+  const onDirectory = currentPath === '/investors' || currentPath === '/funds';
+
+  if (onDirectory && !document.querySelector('link[data-vc-prefetch="directory-profile.css"]')) {
+    const css = document.createElement('link');
+    css.rel = 'preload';
+    css.as = 'style';
+    css.href = '/css/directory-profile.css?v=145';
+    css.setAttribute('data-vc-prefetch', 'directory-profile.css');
+    document.head.appendChild(css);
+  }
+
+  document
+    .querySelectorAll('a[href^="/investors/"], a[href^="/funds/"], a[href="/investors"], a[href="/funds"]')
+    .forEach((node) => {
+      const href = node.getAttribute('href');
+      if (!href || seen[href]) return;
+      const path = href.split('?')[0];
+      if (!isAppRoute(path)) return;
+      seen[href] = true;
+      if (isSoftNavRoute(path)) {
+        try {
+          router.prefetch(href);
+        } catch {
+          /* ignore */
+        }
+        return;
+      }
+      if (!document.querySelector(`link[data-vc-prefetch="${href}"]`)) {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = href;
+        link.setAttribute('data-vc-prefetch', href);
+        document.head.appendChild(link);
+      }
+    });
 }

@@ -53,9 +53,16 @@ const DIRECTORY_CRITICAL_EXTRA = [
   '.inv-dir-skel{display:none!important}',
   // Mobile-only row/card rules. Leaving these unscoped broke desktop: directory-list.css
   // never resets border-radius/background, so rows looked like mweb cards on wide screens.
-  '@media(max-width:768px){',
+  '@media(max-width:960px){',
+  '.inv-dir-filters-toggle{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.65rem 1rem;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);color:#fff;font-family:var(--font-sans);font-size:.85rem;font-weight:600;cursor:pointer}',
   '.inv-dir-layout{display:grid;grid-template-columns:1fr;gap:1rem}',
+  '.inv-dir-sidebar{position:fixed;top:0;left:0;bottom:0;width:min(320px,88vw);z-index:10035;background:#161618;border-right:1px solid rgba(255,255,255,.12);padding:calc(1.25rem + env(safe-area-inset-top,0px)) 1.15rem calc(1.5rem + env(safe-area-inset-bottom,0px));transform:translateX(-105%);transition:transform .25s ease;overflow-y:auto;overflow-x:hidden;gap:1rem;pointer-events:auto;box-shadow:8px 0 28px rgba(0,0,0,.45)}',
+  '.inv-dir-sidebar.is-open{transform:translateX(0)}',
+  '.inv-dir-sidebar-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.25rem;color:#fff;font-size:.95rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}',
   '.inv-dir-table-head{display:none}',
+  '.inv-dir-main{min-width:0;width:100%}',
+  '}',
+  '@media(max-width:768px){',
   '.inv-dir-results{display:flex;flex-direction:column;gap:.55rem}',
   '.inv-dir-row{position:relative;display:grid;grid-template-columns:1fr;gap:.35rem;padding:.85rem;border-radius:16px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)}',
   '.inv-dir-name{color:#fff;font-weight:600;font-size:.95rem}',

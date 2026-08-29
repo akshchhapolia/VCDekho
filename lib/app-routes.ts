@@ -13,6 +13,19 @@ export function isAppRoute(pathname: string) {
   return false;
 }
 
+/** Client-side router only for home + directory indexes — profiles use full navigation. */
+export function isSoftNavRoute(pathname: string) {
+  const p = normalizePath(pathname);
+  return p === '/' || p === '/investors' || p === '/funds';
+}
+
+export function isProfileRoute(pathname: string) {
+  const p = normalizePath(pathname);
+  if (/^\/investors\/[^/]+$/.test(p)) return true;
+  const fund = p.match(/^\/funds\/([^/]+)$/);
+  return Boolean(fund && !GUIDE_ROOTS[fund[1]]);
+}
+
 export function documentClasses(pathname: string) {
   const p = normalizePath(pathname);
   if (p === '/') {

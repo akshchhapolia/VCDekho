@@ -24,7 +24,7 @@ const PROFILE_CRITICAL_CSS = [
   'html.scrollable-page,body.scrollable-page{overflow-y:auto!important;overflow-x:hidden!important;height:auto!important}',
   'body.scrollable-page::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:#0b0b0d;background-image:radial-gradient(ellipse 160% 120% at 15% -10%,rgba(237,87,47,.1),transparent 58%),radial-gradient(ellipse 120% 90% at 85% 15%,rgba(237,87,47,.05),transparent 55%)}',
   '.app-container{display:flex;flex-direction:column;width:100%;min-height:100dvh;padding:1rem;gap:.75rem;max-width:1600px;margin:0 auto;position:relative;z-index:1}',
-  '.site-header{display:flex;justify-content:space-between;align-items:center;width:100%;height:50px;position:relative;z-index:2;padding-top:env(safe-area-inset-top,0)}',
+  '.site-header{display:flex;justify-content:space-between;align-items:center;width:100%;height:50px;position:relative;z-index:100;padding-top:env(safe-area-inset-top,0)}',
   '.logo-img{height:44px;width:auto;aspect-ratio:220/204;display:block}',
   '.main-nav{display:none}',
   '.nav-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:44px;min-height:44px;margin-left:auto;background:none;border:none;padding:.5rem}',
@@ -82,7 +82,7 @@ const PROFILE_CRITICAL_CSS = [
   '.inv-profile-panel-link,.inv-profile-browse{display:inline-block;margin-top:.35rem;color:#ffb89c;font-size:.82rem;font-weight:600;text-decoration:none}',
   '.inv-profile-reveal.is-visible,.inv-profile-ready .inv-profile-hero-enter{opacity:1;transform:none}',
   /* Mweb-only first paint: hide dir widgets + show through thesis; stacked focus divider only on mweb */
-  '@media(max-width:768px){.inv-profile-dir-widget{display:none!important}.main-nav{display:none}.nav-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}body.inv-investor-profile #focus.inv-profile-reveal,body.inv-investor-profile #thesis.inv-profile-reveal,body.inv-person-profile #firm-focus.inv-profile-reveal,body.inv-person-profile #firm-thesis.inv-profile-reveal,body.inv-person-profile #firm-activity.inv-profile-reveal{opacity:1;transform:none}.inv-profile-focus-col+.inv-profile-focus-col{margin-top:.85rem;padding-top:.85rem;border-top:1px solid rgba(255,255,255,.1);border-left:none;padding-left:0}}',
+  '@media(max-width:768px){.inv-profile-dir-widget{display:none!important}.main-nav:not(.active){position:fixed;right:-100%;display:flex}.main-nav.active,#navigation-bar.active{display:flex!important;right:0}.nav-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;z-index:10050}body.inv-investor-profile #focus.inv-profile-reveal,body.inv-investor-profile #thesis.inv-profile-reveal,body.inv-person-profile #firm-focus.inv-profile-reveal,body.inv-person-profile #firm-thesis.inv-profile-reveal,body.inv-person-profile #firm-activity.inv-profile-reveal{opacity:1;transform:none}.inv-profile-focus-col+.inv-profile-focus-col{margin-top:.85rem;padding-top:.85rem;border-top:1px solid rgba(255,255,255,.1);border-left:none;padding-left:0}}',
   '@media(min-width:769px){.main-nav{display:flex}.nav-toggle{display:none}.app-container{padding:var(--page-padding)}.inv-profile-sticky-host{width:auto;max-width:none;margin-left:0}.inv-profile-sticky{overflow:visible;flex-wrap:wrap}.inv-profile-focus-col+.inv-profile-focus-col{margin-top:0;padding-top:0;border-top:none}}'
 ].join('');
 
@@ -164,11 +164,16 @@ function earlyStickyPinScript() {
   ].join('');
 }
 
+function profileMobileAsyncCssScript() {
+  return "(function(){if(!window.matchMedia('(max-width:768px)').matches)return;var href='/css/directory-profile.css?v=145';if(document.querySelector('link[href=\"'+href+'\"]'))return;var l=document.createElement('link');l.rel='stylesheet';l.href=href;l.media='print';l.onload=function(){this.media='all'};document.head.appendChild(l);})();";
+}
+
 module.exports = {
   renderProfileHeadAssets,
   earlyStickyPinScript,
   isMobileRequest,
   renderProfileCriticalCss: () => PROFILE_CRITICAL_CSS,
+  profileMobileAsyncCssScript,
   CSS_FILES,
   FONTS_HREF
 };

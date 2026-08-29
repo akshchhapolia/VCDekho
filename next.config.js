@@ -51,7 +51,8 @@ const nextConfig = {
       { source: '/investors', headers: htmlCache },
       { source: '/funds', headers: htmlCache },
       { source: '/investors/:slug', headers: htmlCache },
-      { source: '/funds/:slug', headers: htmlCache }
+      { source: '/funds/:slug', headers: htmlCache },
+      { source: '/login', headers: htmlCache }
     ];
   },
   async redirects() {

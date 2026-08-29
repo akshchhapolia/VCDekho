@@ -49,8 +49,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script src="/js/auth.js?v=2" strategy="beforeInteractive" />
         <Script src="/js/directory-session.js?v=4" strategy="beforeInteractive" />
         <Script src="/js/site-paths.js?v=1" strategy="beforeInteractive" />
-        <Script src="/js/people.js?v=125" strategy="beforeInteractive" />
-        <Script src="/investors/investors.js?v=117" strategy="beforeInteractive" />
         <Script src="/js/person-email-unlock.js?v=8" strategy="beforeInteractive" />
         <Script src="/js/profile-page-boot.js?v=2" strategy="beforeInteractive" />
         <Script src="/app.js?v=98" strategy="beforeInteractive" />

@@ -611,11 +611,15 @@
       if (global.__vcInvAc) global.__vcInvAc.abort();
     }
   };
-  if (document.getElementById('inv-results')) {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', bootFundsDirectory);
-    } else {
-      bootFundsDirectory();
-    }
+
+  function scheduleFundsBoot() {
+    if (!document.getElementById('inv-results')) return;
+    bootFundsDirectory();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scheduleFundsBoot);
+  } else {
+    scheduleFundsBoot();
   }
 })(typeof window !== 'undefined' ? window : this);
