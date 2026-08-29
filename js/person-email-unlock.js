@@ -341,13 +341,15 @@
   function onUnlockClick(e) {
     var btn = e.target && e.target.closest ? e.target.closest('[data-unlock-email]') : null;
     if (!btn) return;
-    e.preventDefault();
-    e.stopPropagation();
     if (isProbablySignedIn()) {
+      e.preventDefault();
+      e.stopPropagation();
       unlockEmail(btn);
       return;
     }
-    goLogin(btn.getAttribute('data-person-slug'));
+    // Signed out: let the <a href="/login#..."> navigate natively so a warmed
+    // / prerendered login document can paint immediately. Do not stopPropagation
+    // on document capture — that would cancel the link's default action.
   }
 
   function wireUnlockButtons(root) {

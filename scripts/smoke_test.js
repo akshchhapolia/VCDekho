@@ -338,9 +338,9 @@ function testStaticAssets() {
     const cookieLogin =
       /function isProbablySignedIn\(/.test(unlock) &&
       /e\.preventDefault\(\);/.test(unlock) &&
-      /if \(isProbablySignedIn\(\)\) \{\s*unlockEmail\(btn\);/.test(unlock);
+      /if \(isProbablySignedIn\(\)\) \{\s*e\.preventDefault\(\);\s*e\.stopPropagation\(\);\s*unlockEmail\(btn\);/.test(unlock);
     const layout = fs.readFileSync(path.join(ROOT, 'app/layout.tsx'), 'utf8');
-    const cacheBust = layout.includes('person-email-unlock.js?v=14');
+    const cacheBust = layout.includes('person-email-unlock.js?v=15');
     if (!exported || !checksCookie || !checksStorage || !checksRedirect || !shortCircuits || !skipsHydrate || !cookieLogin || !cacheBust) {
       fail(
         'anonymous visitors skip Supabase',
@@ -991,6 +991,33 @@ function testNextAppShell() {
     }
   } catch (err) {
     fail('profiles use full navigation', err);
+  }
+
+  try {
+    const layout = fs.readFileSync(path.join(ROOT, 'app/layout.tsx'), 'utf8');
+    const runtime = fs.readFileSync(path.join(ROOT, 'app/components/ClientRuntime.tsx'), 'utf8');
+    const unlock = fs.readFileSync(path.join(ROOT, 'js/person-email-unlock.js'), 'utf8');
+    const cfg = fs.readFileSync(path.join(ROOT, 'next.config.js'), 'utf8');
+    const loginResp = fs.readFileSync(path.join(ROOT, 'lib/html-file-response.ts'), 'utf8');
+    const hasSpeculation = layout.includes('type="speculationrules"') && layout.includes('"/login"');
+    const hasWarm = layout.includes('pointerdown') && layout.includes("fetch(p,{credentials:'same-origin'})");
+    const noBlank = !layout.includes("classList.add('vc-nav-pending')");
+    const nativeLogin =
+      /if \(isProbablySignedIn\(\)\) \{\s*e\.preventDefault\(\);\s*e\.stopPropagation\(\);\s*unlockEmail\(btn\);/.test(unlock) &&
+      !/goLogin\(btn\.getAttribute/.test(unlock);
+    const browserTtl =
+      /max-age=180, s-maxage=86400/.test(cfg) && /max-age=180, s-maxage=86400/.test(loginResp);
+    const loginFetch = runtime.includes("fetch('/login'");
+    if (!hasSpeculation || !hasWarm || !noBlank || !nativeLogin || !browserTtl || !loginFetch) {
+      fail(
+        'mweb profile/login nav is warmed',
+        `speculation=${hasSpeculation} warm=${hasWarm} noBlank=${noBlank} nativeLogin=${nativeLogin} ttl=${browserTtl} loginFetch=${loginFetch}`
+      );
+    } else {
+      pass('mweb profile/login nav is warmed without layout CSS changes');
+    }
+  } catch (err) {
+    fail('mweb profile/login nav is warmed', err);
   }
 
   try {

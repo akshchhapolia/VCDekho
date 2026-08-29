@@ -4,6 +4,9 @@ export default function FundProfileLayout({ children }: { children: React.ReactN
   return (
     <>
       <style id="vc-critical-css" dangerouslySetInnerHTML={{ __html: renderProfileCriticalCss() }} />
+      <link rel="prefetch" href="/login" />
+      <link rel="prefetch" href="/login.js?v=113" />
+      <link rel="prefetch" href="/js/supabase.min.js?v=1" />
       <link rel="stylesheet" href="/css/directory-profile.css?v=150" />
       <script src="/investors/lazy-portfolio-logos.js?v=1" defer />
       <script src="/investors/portfolio-section.js?v=4" defer />

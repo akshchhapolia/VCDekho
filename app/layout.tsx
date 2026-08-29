@@ -16,6 +16,34 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest'
 };
 
+// Chromium (incl. Android Chrome). Safari ignores this; NAV_WARM_SCRIPT covers it.
+const NAV_SPECULATION_RULES = JSON.stringify({
+  prefetch: [{ urls: ['/login'], eagerness: 'immediate' }],
+  prerender: [
+    { urls: ['/login'], eagerness: 'eager' },
+    { where: { href_matches: '/investors/*' }, eagerness: 'moderate' },
+    {
+      where: {
+        and: [
+          { href_matches: '/funds/*' },
+          { not: { href_matches: '/funds/stages' } },
+          { not: { href_matches: '/funds/stages/*' } },
+          { not: { href_matches: '/funds/themes' } },
+          { not: { href_matches: '/funds/themes/*' } },
+          { not: { href_matches: '/funds/sectors' } },
+          { not: { href_matches: '/funds/sectors/*' } }
+        ]
+      },
+      eagerness: 'moderate'
+    }
+  ]
+});
+
+const DOCUMENT_CLASSES_BOOT = `(function(){var p=location.pathname.replace(/\\/$/, '')||'/';var html='scrollable-page';var body='scrollable-page';if(p==='/'){html='home-page has-announcement';body='has-announcement home-page';document.documentElement.style.background='#000';}else if(p==='/investors'){body='scrollable-page inv-page inv-dir-page inv-people-dir';}else if(p==='/funds'){body='scrollable-page inv-page inv-dir-page';}else if(/^\\/investors\\/[^/]+$/.test(p)){body='scrollable-page inv-page inv-person-profile inv-profile-ready';}else if(/^\\/funds\\/[^/]+$/.test(p)&&p!=='/funds/stages'&&p!=='/funds/themes'&&p!=='/funds/sectors'){body='scrollable-page inv-page inv-investor-profile inv-profile-ready';}document.documentElement.className=html;document.body.className=body;})();`;
+
+// pointerdown starts the HTML fetch before click; phones often ignore rel=prefetch.
+const NAV_WARM_SCRIPT = `(function(){var warmed=Object.create(null);function dest(href){try{var u=new URL(href,location.origin);if(u.origin!==location.origin)return'';return u.pathname.replace(/\\/$/,'')||'/';}catch(e){return'';}}function isTarget(p){return p==='/login'||/^\\/investors\\/[^/]+$/.test(p)||(/^\\/funds\\/[^/]+$/.test(p)&&p!=='/funds/stages'&&p!=='/funds/themes'&&p!=='/funds/sectors');}function warm(href){var p=dest(href);if(!p||!isTarget(p)||warmed[p])return;warmed[p]=1;fetch(p,{credentials:'same-origin'}).catch(function(){});if(p==='/login'){fetch('/login.js?v=113',{credentials:'same-origin'}).catch(function(){});fetch('/js/supabase.min.js?v=1',{credentials:'same-origin'}).catch(function(){});}}function fromEvent(e){var t=e.target;if(!t||!t.closest)return;var a=t.closest('a[href]');if(!a||a.getAttribute('target')==='_blank'||a.hasAttribute('download'))return;var href=a.getAttribute('href');if(!href||href.charAt(0)==='#'||href.indexOf('mailto:')===0)return;warm(href);}document.addEventListener('pointerdown',fromEvent,true);document.addEventListener('touchstart',fromEvent,{capture:true,passive:true});function idleLogin(){if(document.querySelector('[data-unlock-email][href^="/login"]'))warm('/login');}if(typeof requestIdleCallback==='function')requestIdleCallback(idleLogin,{timeout:1800});else setTimeout(idleLogin,400);})();`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -26,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `(function(){var p=location.pathname.replace(/\\/$/, '')||'/';var html='scrollable-page';if(p==='/'){html='home-page has-announcement';document.documentElement.style.background='#000';}document.documentElement.className=html;})();`
           }}
         />
+        <script type="speculationrules" dangerouslySetInnerHTML={{ __html: NAV_SPECULATION_RULES }} />
         <link
           rel="preload"
           href="/assets/fonts/plus-jakarta-sans-latin.woff2"
@@ -50,16 +79,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script src="/js/directory-session.js?v=5" strategy="beforeInteractive" />
         <Script src="/js/site-paths.js?v=1" strategy="beforeInteractive" />
         <Script src="/js/report.js?v=1" strategy="beforeInteractive" />
-        <Script src="/js/person-email-unlock.js?v=14" strategy="beforeInteractive" />
+        <Script src="/js/person-email-unlock.js?v=15" strategy="beforeInteractive" />
         <Script src="/js/profile-page-boot.js?v=2" strategy="beforeInteractive" />
         <Script src="/app.js?v=98" strategy="beforeInteractive" />
       </head>
       <body suppressHydrationWarning>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var p=location.pathname.replace(/\\/$/, '')||'/';var html='scrollable-page';var body='scrollable-page';if(p==='/'){html='home-page has-announcement';body='has-announcement home-page';document.documentElement.style.background='#000';}else if(p==='/investors'){body='scrollable-page inv-page inv-dir-page inv-people-dir';}else if(p==='/funds'){body='scrollable-page inv-page inv-dir-page';}else if(/^\\/investors\\/[^/]+$/.test(p)){body='scrollable-page inv-page inv-person-profile inv-profile-ready';}else if(/^\\/funds\\/[^/]+$/.test(p)&&p!=='/funds/stages'&&p!=='/funds/themes'&&p!=='/funds/sectors'){body='scrollable-page inv-page inv-investor-profile inv-profile-ready';}document.documentElement.className=html;document.body.className=body;function isProfilePath(path){return /^\\/investors\\/[^/]+$/.test(path)||(/^\\/funds\\/[^/]+$/.test(path)&&path!=='/funds/stages'&&path!=='/funds/themes'&&path!=='/funds/sectors');}document.addEventListener('click',function(e){if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;var t=e.target;if(!t||!t.closest)return;var a=t.closest('a');if(!a||a.getAttribute('target')==='_blank'||a.hasAttribute('download'))return;var href=a.getAttribute('href');if(!href||href.charAt(0)==='#'||href.indexOf('mailto:')===0)return;var u;try{u=new URL(href,location.origin);}catch(err){return;}if(u.origin!==location.origin)return;var next=u.pathname.replace(/\\/$/, '')||'/';if(isProfilePath(next)&&next!==p)document.documentElement.classList.add('vc-nav-pending');},true);window.addEventListener('pageshow',function(){document.documentElement.classList.remove('vc-nav-pending');});})();`
-          }}
-        />
+        <script dangerouslySetInnerHTML={{ __html: DOCUMENT_CLASSES_BOOT }} />
+        <script dangerouslySetInnerHTML={{ __html: NAV_WARM_SCRIPT }} />
         <script dangerouslySetInnerHTML={{ __html: inlineDirectoryFiltersScript() }} />
         <ClientRuntime />
         {children}

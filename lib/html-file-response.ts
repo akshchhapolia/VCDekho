@@ -12,7 +12,7 @@ export function htmlFileResponse(...parts: string[]) {
         return new Response(fs.readFileSync(file, 'utf8'), {
           headers: {
             'content-type': 'text/html; charset=utf-8',
-            'cache-control': 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800',
+            'cache-control': 'public, max-age=180, s-maxage=86400, stale-while-revalidate=604800',
             'cdn-cache-control': 'public, s-maxage=86400, stale-while-revalidate=604800'
           }
         });

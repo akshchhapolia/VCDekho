@@ -124,13 +124,16 @@ function prefetchVisibleLinks(router: { prefetch: (href: string) => void }, curr
 
   if (
     document.querySelector('[data-unlock-email][href^="/login"]') &&
-    !document.querySelector('link[data-vc-prefetch="/login"]')
+    !document.querySelector('[data-vc-prefetch="/login"]')
   ) {
     const login = document.createElement('link');
     login.rel = 'prefetch';
     login.href = '/login';
     login.setAttribute('data-vc-prefetch', '/login');
     document.head.appendChild(login);
+    // rel=prefetch is often ignored on cellular; fetch fills the HTTP cache.
+    fetch('/login', { credentials: 'same-origin' }).catch(() => {});
+    fetch('/login.js?v=113', { credentials: 'same-origin' }).catch(() => {});
   }
 
   if (onDirectory && !document.querySelector('link[data-vc-prefetch="directory-profile.css"]')) {
