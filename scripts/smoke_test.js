@@ -340,7 +340,7 @@ function testStaticAssets() {
       /e\.preventDefault\(\);/.test(unlock) &&
       /if \(isProbablySignedIn\(\)\) \{\s*unlockEmail\(btn\);/.test(unlock);
     const layout = fs.readFileSync(path.join(ROOT, 'app/layout.tsx'), 'utf8');
-    const cacheBust = layout.includes('person-email-unlock.js?v=12');
+    const cacheBust = layout.includes('person-email-unlock.js?v=13');
     if (!exported || !checksCookie || !checksStorage || !checksRedirect || !shortCircuits || !skipsHydrate || !cookieLogin || !cacheBust) {
       fail(
         'anonymous visitors skip Supabase',
@@ -713,6 +713,42 @@ function testProfileClsGuards() {
     }
   } catch (err) {
     fail('directory scripts schedule boot on DOMContentLoaded', err);
+  }
+
+  try {
+    const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+    const e2e = fs.readFileSync(path.join(ROOT, 'e2e/golden-paths.spec.js'), 'utf8');
+    const canary = fs.readFileSync(path.join(ROOT, 'scripts/canary_prod.js'), 'utf8');
+    const deploy = fs.readFileSync(path.join(ROOT, 'scripts/deploy_prod.js'), 'utf8');
+    const db = fs.readFileSync(path.join(ROOT, 'utils/db.js'), 'utf8');
+    const ops = fs.readFileSync(path.join(ROOT, 'server/ops.js'), 'utf8');
+    const peopleJs = fs.readFileSync(path.join(ROOT, 'js/people.js'), 'utf8');
+    const auth = fs.readFileSync(path.join(ROOT, 'js/auth.js'), 'utf8');
+    const layout = fs.readFileSync(path.join(ROOT, 'app/layout.tsx'), 'utf8');
+    const ci = fs.readFileSync(path.join(ROOT, '.github/workflows/smoke.yml'), 'utf8');
+    const ok =
+      pkg.scripts['test:e2e'] &&
+      pkg.scripts['deploy:prod'] === 'node scripts/deploy_prod.js' &&
+      e2e.includes('waitForPeopleFilters') &&
+      e2e.includes('inv-dir-skel') &&
+      e2e.includes('data-unlock-email') &&
+      e2e.includes('#otp-step') &&
+      canary.includes('/api/people?limit=1') &&
+      canary.includes('contact=email') &&
+      deploy.includes('canary_prod.js') &&
+      db.includes('isPoolExhausted') &&
+      ops.includes("action === 'client-error'") &&
+      peopleJs.includes('function isSignedIn') &&
+      auth.includes('isProbablySignedIn: hasStoredSession') &&
+      layout.includes('report.js?v=1') &&
+      ci.includes('test:e2e');
+    if (!ok) {
+      fail('core-path guards', 'missing Playwright / canary / report wiring');
+    } else {
+      pass('core-path guards (e2e, canary, deploy, alerts)');
+    }
+  } catch (err) {
+    fail('core-path guards', err);
   }
 
   try {

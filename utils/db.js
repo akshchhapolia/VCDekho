@@ -1,7 +1,9 @@
 const { Pool } = require('pg');
 require('dotenv').config();
+const { reportError, isPoolExhausted } = require('./report-error');
 
 let pool;
+let reportingPool = false;
 
 if (process.env.DATABASE_URL) {
     const useSSL = process.env.NODE_ENV === 'production' || process.env.DATABASE_URL.includes('supabase');
@@ -23,7 +25,21 @@ if (process.env.DATABASE_URL) {
 module.exports = {
   query: (text, params) => {
       if (!pool) throw new Error("Database not configured. Set DATABASE_URL.");
-      return pool.query(text, params);
+      return pool.query(text, params).catch((err) => {
+        if (!reportingPool && isPoolExhausted(err)) {
+          reportingPool = true;
+          reportError({
+            source: 'postgres',
+            severity: 'critical',
+            subject: 'Postgres pool exhausted (EMAXCONN)',
+            body: String(err && (err.message || err))
+          });
+          setTimeout(function () {
+            reportingPool = false;
+          }, 60000);
+        }
+        throw err;
+      });
   },
   get pool() { return pool; }
 };

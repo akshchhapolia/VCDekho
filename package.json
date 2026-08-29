@@ -9,7 +9,9 @@
     "start": "next start",
     "test": "node scripts/smoke_test.js",
     "smoke": "node scripts/smoke_test.js",
-    "deploy:prod": "node scripts/smoke_test.js && vercel deploy --prod",
+    "test:e2e": "npx playwright test",
+    "canary": "node scripts/canary_prod.js",
+    "deploy:prod": "node scripts/deploy_prod.js",
     "build:investors": "node scripts/build_investors_json.js",
     "build:static-pages": "node scripts/build_static_pages.js",
     "build:perf": "npm run build:investors && npm run build:static-pages",
@@ -67,6 +69,7 @@
     "@types/node": "^26.2.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "@playwright/test": "^1.55.0"
   }
 }

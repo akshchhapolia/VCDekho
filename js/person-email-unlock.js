@@ -248,8 +248,10 @@
   }
 
   function isProbablySignedIn() {
-    if (hasAccessCookie()) return true;
-    return Boolean(global.VCAuth && global.VCAuth.hasStoredSession && global.VCAuth.hasStoredSession());
+    if (global.VCAuth && global.VCAuth.hasStoredSession) {
+      return global.VCAuth.hasStoredSession();
+    }
+    return hasAccessCookie();
   }
 
   async function unlockEmail(btn) {
@@ -302,7 +304,14 @@
       }
 
       global.dispatchEvent(new CustomEvent('vc:person-email-unlocked', { detail: { slug: slug } }));
-    } catch (_) {
+    } catch (err) {
+      if (global.VCReport) {
+        global.VCReport('unlock_failed', {
+          slug: slug,
+          status: typeof res !== 'undefined' && res ? res.status : null,
+          message: err && err.message
+        });
+      }
       btn.removeAttribute('aria-disabled');
       setBtnLabel(btn, prevText === 'Unlocking…' ? 'Unlock email' : 'Try again');
     }

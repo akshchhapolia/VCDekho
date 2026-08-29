@@ -352,7 +352,7 @@
   }
 
   async function directoryFetch(url) {
-    const signedIn = hasSessionCookie() || (window.VCAuth && window.VCAuth.hasStoredSession && window.VCAuth.hasStoredSession());
+    const signedIn = isSignedIn();
     const needsAuth = state.offset > 0 || signedIn;
     const res = needsAuth && window.VCAuth && window.VCAuth.authFetch
       ? await window.VCAuth.authFetch(url)
@@ -396,6 +396,11 @@
 
   function hasSessionCookie() {
     return /(?:^|;\s*)vd_access_token=/.test(document.cookie || '');
+  }
+
+  function isSignedIn() {
+    if (window.VCAuth && window.VCAuth.hasStoredSession) return window.VCAuth.hasStoredSession();
+    return hasSessionCookie();
   }
 
   function scheduleEmailHydrate() {
@@ -613,14 +618,18 @@
 
   if (isDefaultFirstPage() && hydrateFromPrerender()) {
     // Fill in already-unlocked emails without replacing or re-sorting the rows.
-    var signedIn =
-      hasSessionCookie() ||
-      (window.VCAuth && window.VCAuth.hasStoredSession && window.VCAuth.hasStoredSession());
-    if (signedIn) load({ silent: true, keepRows: true }).catch(console.error);
+    if (isSignedIn()) load({ silent: true, keepRows: true }).catch(console.error);
     else scheduleEmailHydrate();
   } else {
     resetOffsetAndLoad();
   }
+
+  setTimeout(function () {
+    var n = document.querySelectorAll('#ppl-dir-sidebar .inv-dd-trigger').length;
+    if (n < 4 && global.VCReport) {
+      global.VCReport('filter_boot_failed', { directory: 'people', triggers: n });
+    }
+  }, 2500);
   }
 
   global.VCPeopleDir = {

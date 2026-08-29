@@ -22,6 +22,7 @@ const { resolveDirectoryListAccess } = require('../utils/directory-list-access')
 const { recordSessionMeta } = require('../utils/user-analytics');
 const { renderPersonPage, renderPersonExtrasHtml } = require('../utils/render-person-page');
 const { isMobileRequest } = require('../utils/profile-page-assets');
+const { reportError } = require('../utils/report-error');
 
 module.exports = async function handler(req, res) {
   const query = req.query || {};
@@ -105,12 +106,14 @@ module.exports = async function handler(req, res) {
 
           const contact = getPersonContact(query.slug);
           if (!contact) {
-            console.error(
-              'unlock 404 no contact',
-              query.slug,
-              'loaded',
-              Object.keys(loadContactsBySlug()).length
-            );
+            const loaded = Object.keys(loadContactsBySlug()).length;
+            console.error('unlock 404 no contact', query.slug, 'loaded', loaded);
+            reportError({
+              source: 'unlock',
+              severity: 'critical',
+              subject: 'Unlock 404 No email on file',
+              body: 'slug=' + query.slug + ' loadedKeys=' + loaded
+            });
             res.setHeader('Cache-Control', 'private, no-store');
             return res.status(404).json({ error: 'No email on file' });
           }

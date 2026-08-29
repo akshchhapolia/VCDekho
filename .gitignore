@@ -4,5 +4,8 @@
 node_modules/
 .DS_Store
 *.log
+/test-results/
+/playwright-report/
+/blob-report/
 scripts/.enrich_org_progress.json
 Updated VC Dekho Sheet - Org.backup.csv

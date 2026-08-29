@@ -46,10 +46,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="stylesheet" href="/css/ambient.css?v=98" />
         <link rel="stylesheet" href="/css/announcement.css?v=145" />
         <Script src="/js/nav.js?v=104" strategy="beforeInteractive" />
-        <Script src="/js/auth.js?v=5" strategy="beforeInteractive" />
+        <Script src="/js/auth.js?v=6" strategy="beforeInteractive" />
         <Script src="/js/directory-session.js?v=5" strategy="beforeInteractive" />
         <Script src="/js/site-paths.js?v=1" strategy="beforeInteractive" />
-        <Script src="/js/person-email-unlock.js?v=12" strategy="beforeInteractive" />
+        <Script src="/js/report.js?v=1" strategy="beforeInteractive" />
+        <Script src="/js/person-email-unlock.js?v=13" strategy="beforeInteractive" />
         <Script src="/js/profile-page-boot.js?v=2" strategy="beforeInteractive" />
         <Script src="/app.js?v=98" strategy="beforeInteractive" />
       </head>

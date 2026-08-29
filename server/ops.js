@@ -6,6 +6,7 @@
  *   GET  ?action=status        ADMIN_SECRET
  *   GET  ?action=analytics    ADMIN_SECRET (view=overview|users)
  *   POST ?action=test-alert    ADMIN_SECRET
+ *   POST ?action=client-error  public (allowlisted kinds → ops email)
  *   GET  ?action=ping-vendors  CRON_SECRET (production)
  */
 const db = require('../utils/db');
@@ -257,6 +258,34 @@ async function handleAnalytics(req, res) {
   return res.status(200).json(overview);
 }
 
+async function handleClientError(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'POST required' });
+  }
+  const allowed = {
+    unlock_failed: true,
+    filter_boot_failed: true,
+    login_failed: true
+  };
+  const body = await readJsonBody(req);
+  const kind = String((body && body.kind) || '');
+  if (!allowed[kind]) {
+    res.status(204).end();
+    return;
+  }
+  sendAlert({
+    source: 'client-' + kind,
+    severity: 'error',
+    subject: 'Client: ' + kind,
+    body: JSON.stringify({
+      kind: kind,
+      href: body.href,
+      extra: body.extra
+    }).slice(0, 2000)
+  }).catch(() => {});
+  res.status(204).end();
+}
+
 async function handleBuzzVote(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'POST required' });
@@ -306,6 +335,10 @@ module.exports = async function handler(req, res) {
     if (action === 'analytics') {
       if (!requireAdmin(req, res)) return;
       return handleAnalytics(req, res);
+    }
+
+    if (action === 'client-error') {
+      return handleClientError(req, res);
     }
 
     if (action === 'buzz-vote') {

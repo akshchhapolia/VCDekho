@@ -622,6 +622,13 @@
   }
 
   resetOffsetAndLoad();
+
+  setTimeout(function () {
+    var n = document.querySelectorAll('#inv-dir-sidebar .inv-dd-trigger').length;
+    if (n < 4 && global.VCReport) {
+      global.VCReport('filter_boot_failed', { directory: 'funds', triggers: n });
+    }
+  }, 2500);
   }
 
   global.VCFundsDir = {

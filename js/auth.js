@@ -225,6 +225,7 @@
     SUPABASE_ANON_KEY: SUPABASE_ANON_KEY,
     getClient: getClient,
     getSession: getSession,
+    isProbablySignedIn: hasStoredSession,
     hasStoredSession: hasStoredSession,
     requireSession: requireSession,
     authFetch: authFetch,
