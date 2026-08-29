@@ -1081,6 +1081,53 @@ function testNextAppShell() {
   }
 
   try {
+    const peopleView = fs.readFileSync(path.join(ROOT, 'app/investors/PeopleDirectoryView.tsx'), 'utf8');
+    const fundsView = fs.readFileSync(path.join(ROOT, 'app/funds/FundsDirectoryView.tsx'), 'utf8');
+    const peopleJs = fs.readFileSync(path.join(ROOT, 'js/people.js'), 'utf8');
+    const fundsJs = fs.readFileSync(path.join(ROOT, 'investors/investors.js'), 'utf8');
+    const nextNotStuck =
+      peopleView.includes('disabled={nextDisabled}') &&
+      fundsView.includes('disabled={nextDisabled}') &&
+      !/id="ppl-next" disabled>/.test(peopleView) &&
+      !/id="inv-next" disabled>/.test(fundsView);
+    const pagerDelegated =
+      peopleJs.includes('onPeoplePagerClick') &&
+      peopleJs.includes('#ppl-next, #ppl-prev') &&
+      fundsJs.includes('onFundsPagerClick') &&
+      peopleJs.includes('loginForPager') &&
+      /offset > 0 && !isSignedIn\(\)/.test(peopleJs);
+    const filtersDelegated =
+      peopleJs.includes('onPeopleFiltersClick') &&
+      peopleJs.includes('#ppl-filters-toggle') &&
+      fundsJs.includes('onFundsFiltersClick') &&
+      peopleJs.includes('peopleSetFiltersOpen') &&
+      peopleJs.includes('paintPeopleFilters') &&
+      fundsJs.includes('paintFundsFilters') &&
+      /max-width: 960px/.test(peopleJs);
+    const filtersOpenFirst =
+      /function onPeopleFiltersClick[\s\S]{0,400}paintPeopleFilters\(true\)/.test(peopleJs) &&
+      !/function onPeopleFiltersClick[\s\S]{0,120}bootPeopleDirectory\(\)/.test(peopleJs);
+    if (!nextNotStuck || !pagerDelegated) {
+      fail(
+        'directory pager works before hydration',
+        `nextNotStuck=${nextNotStuck} pagerDelegated=${pagerDelegated} — Next must not ship disabled, taps must not wait for Next hydrate`
+      );
+    } else {
+      pass('directory pager Next is live in HTML; taps do not wait for hydration');
+    }
+    if (!filtersDelegated || !filtersOpenFirst) {
+      fail(
+        'directory filters open on mweb',
+        `delegated=${filtersDelegated} openFirst=${filtersOpenFirst} — drawer must paint before directory boot`
+      );
+    } else {
+      pass('directory filters open without waiting for hydration');
+    }
+  } catch (err) {
+    fail('directory pager works before hydration', err);
+  }
+
+  try {
     const { getPeopleListPayload, getFundsListPayload } = require(path.join(ROOT, 'lib/directory-server'));
     const people = getPeopleListPayload();
     const funds = getFundsListPayload();

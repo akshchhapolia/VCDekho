@@ -10,7 +10,7 @@ export default function InvestorsDirectoryLayout({ children }: { children: React
       <link rel="prefetch" href="/js/supabase.min.js?v=1" />
       <link rel="stylesheet" href="/css/directory-list.css?v=148" />
       <style id="vc-directory-critical-css" dangerouslySetInnerHTML={{ __html: renderDirectoryCriticalCss() }} />
-      <Script src="/js/people.js?v=134" strategy="beforeInteractive" />
+      <Script src="/js/people.js?v=136" strategy="beforeInteractive" />
       {children}
     </>
   );

@@ -15,6 +15,7 @@
 
   var fundsPagerGo = null;
   var fundsPagerPending = null;
+  var fundsSetFiltersOpen = null;
 
   function onFundsPagerClick(e) {
     var btn = e.target && e.target.closest ? e.target.closest('#inv-next, #inv-prev') : null;
@@ -36,11 +37,61 @@
     document.addEventListener('click', onFundsPagerClick, true);
   }
 
+  function paintFundsFilters(open) {
+    var sidebar = document.getElementById('inv-dir-sidebar');
+    var backdrop = document.getElementById('inv-filters-backdrop');
+    var toggle = document.getElementById('inv-filters-toggle');
+    var layout = sidebar ? document.querySelector('.inv-dir-layout') : null;
+    if (!sidebar) return;
+    var isMobile = window.matchMedia('(max-width: 960px)').matches;
+    sidebar.classList.toggle('is-open', open);
+    if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.classList.toggle('inv-dir-filters-open', open);
+    if (backdrop) {
+      backdrop.hidden = !open;
+      if (open && isMobile) document.body.appendChild(backdrop);
+    }
+    if (open && isMobile) {
+      document.body.appendChild(sidebar);
+      return;
+    }
+    var main = layout && layout.querySelector('.inv-dir-main');
+    if (layout && sidebar.parentNode !== layout) {
+      if (main) layout.insertBefore(sidebar, main);
+      else layout.insertBefore(sidebar, layout.firstChild);
+    }
+  }
+
+  function onFundsFiltersClick(e) {
+    var t = e.target && e.target.closest
+      ? e.target.closest('#inv-filters-toggle, #inv-filters-close, #inv-filters-backdrop')
+      : null;
+    if (!t) return;
+    if (t.id === 'inv-filters-toggle') {
+      if (global.VCNav && global.VCNav.close) global.VCNav.close();
+      if (fundsSetFiltersOpen) fundsSetFiltersOpen(true);
+      else {
+        paintFundsFilters(true);
+        requestAnimationFrame(function () {
+          bootFundsDirectory();
+        });
+      }
+      return;
+    }
+    if (fundsSetFiltersOpen) fundsSetFiltersOpen(false);
+    else paintFundsFilters(false);
+  }
+
+  if (typeof document !== 'undefined' && !document.documentElement.dataset.vcInvFilters) {
+    document.documentElement.dataset.vcInvFilters = '1';
+    document.addEventListener('click', onFundsFiltersClick, true);
+  }
+
   function bootFundsDirectory() {
     var root = document.getElementById('inv-results');
     if (!root) return;
     var dropdownsAlive = Boolean(document.querySelector('#inv-dir-sidebar .inv-dd-trigger'));
-    if (root.getAttribute('data-booted') === '1' && dropdownsAlive) return;
+    if (root.getAttribute('data-booted') === '1' && dropdownsAlive && fundsSetFiltersOpen) return;
     if (global.__vcInvAc) global.__vcInvAc.abort();
     var ac = new AbortController();
     global.__vcInvAc = ac;
@@ -218,21 +269,18 @@
 
   // Mweb: drawer lives inside .inv-dir-wrap (z-index: 10), so portal it to <body>
   // when open — otherwise the header logo + backdrop sit above and block taps.
-  const sidebarHome = els.sidebar ? els.sidebar.parentNode : null;
-  const sidebarBefore = els.sidebar ? els.sidebar.nextSibling : null;
 
   function restoreFiltersSidebar() {
-    if (!els.sidebar || !sidebarHome || els.sidebar.parentNode === sidebarHome) return;
-    if (sidebarBefore && sidebarBefore.parentNode === sidebarHome) {
-      sidebarHome.insertBefore(els.sidebar, sidebarBefore);
-    } else {
-      sidebarHome.insertBefore(els.sidebar, sidebarHome.firstChild);
-    }
+    var layout = document.querySelector('.inv-dir-layout');
+    if (!els.sidebar || !layout || els.sidebar.parentNode === layout) return;
+    var main = layout.querySelector('.inv-dir-main');
+    if (main) layout.insertBefore(els.sidebar, main);
+    else layout.insertBefore(els.sidebar, layout.firstChild);
   }
 
   function setFiltersOpen(open) {
     if (!els.sidebar) return;
-    var isMobile = window.matchMedia('(max-width: 768px)').matches;
+    var isMobile = window.matchMedia('(max-width: 960px)').matches;
     els.sidebar.classList.toggle('is-open', open);
     if (els.backdrop) {
       els.backdrop.hidden = !open;
@@ -250,6 +298,7 @@
       restoreFiltersSidebar();
     }
   }
+  fundsSetFiltersOpen = setFiltersOpen;
 
   function renderSkeleton(count) {
     const n = count || 8;
@@ -631,19 +680,6 @@
     goPager(queued);
   }
 
-  if (els.filtersToggle) {
-    els.filtersToggle.addEventListener('click', () => {
-      if (window.VCNav) window.VCNav.close();
-      setFiltersOpen(true);
-    });
-  }
-  if (els.filtersClose) {
-    els.filtersClose.addEventListener('click', () => setFiltersOpen(false));
-  }
-  if (els.backdrop) {
-    els.backdrop.addEventListener('click', () => setFiltersOpen(false));
-  }
-
   document.addEventListener('click', () => closeAllDropdowns(), onDoc);
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
@@ -654,7 +690,7 @@
 
   window.addEventListener('resize', function () {
     updateMobileFiltersLabel();
-    if (!window.matchMedia('(max-width: 768px)').matches) setFiltersOpen(false);
+    if (!window.matchMedia('(max-width: 960px)').matches) setFiltersOpen(false);
   }, onDoc);
 
   const params0 = new URLSearchParams(window.location.search);
@@ -690,6 +726,7 @@
     destroy: function () {
       if (global.__vcInvAc) global.__vcInvAc.abort();
       fundsPagerGo = null;
+      fundsSetFiltersOpen = null;
     }
   };
 

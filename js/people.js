@@ -15,6 +15,7 @@
 
   var peoplePagerGo = null;
   var peoplePagerPending = null;
+  var peopleSetFiltersOpen = null;
 
   function onPeoplePagerClick(e) {
     var btn = e.target && e.target.closest ? e.target.closest('#ppl-next, #ppl-prev') : null;
@@ -36,11 +37,63 @@
     document.addEventListener('click', onPeoplePagerClick, true);
   }
 
+  function paintPeopleFilters(open) {
+    var sidebar = document.getElementById('ppl-dir-sidebar');
+    var backdrop = document.getElementById('ppl-filters-backdrop');
+    var toggle = document.getElementById('ppl-filters-toggle');
+    var layout = document.querySelector('#ppl-dir-sidebar')
+      ? document.querySelector('.inv-dir-layout')
+      : null;
+    if (!sidebar) return;
+    var isMobile = window.matchMedia('(max-width: 960px)').matches;
+    sidebar.classList.toggle('is-open', open);
+    if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.classList.toggle('inv-dir-filters-open', open);
+    if (backdrop) {
+      backdrop.hidden = !open;
+      if (open && isMobile) document.body.appendChild(backdrop);
+    }
+    if (open && isMobile) {
+      document.body.appendChild(sidebar);
+      return;
+    }
+    var main = layout && layout.querySelector('.inv-dir-main');
+    if (layout && sidebar.parentNode !== layout) {
+      if (main) layout.insertBefore(sidebar, main);
+      else layout.insertBefore(sidebar, layout.firstChild);
+    }
+  }
+
+  function onPeopleFiltersClick(e) {
+    var t = e.target && e.target.closest
+      ? e.target.closest('#ppl-filters-toggle, #ppl-filters-close, #ppl-filters-backdrop')
+      : null;
+    if (!t) return;
+    if (t.id === 'ppl-filters-toggle') {
+      if (global.VCNav && global.VCNav.close) global.VCNav.close();
+      if (peopleSetFiltersOpen) peopleSetFiltersOpen(true);
+      else {
+        paintPeopleFilters(true);
+        requestAnimationFrame(function () {
+          bootPeopleDirectory();
+        });
+      }
+      return;
+    }
+    if (peopleSetFiltersOpen) peopleSetFiltersOpen(false);
+    else paintPeopleFilters(false);
+  }
+
+  if (typeof document !== 'undefined' && !document.documentElement.dataset.vcPplFilters) {
+    document.documentElement.dataset.vcPplFilters = '1';
+    document.addEventListener('click', onPeopleFiltersClick, true);
+  }
+
   function bootPeopleDirectory() {
     var root = document.getElementById('ppl-results');
     if (!root) return;
     var dropdownsAlive = Boolean(document.querySelector('#ppl-dir-sidebar .inv-dd-trigger'));
-    if (root.getAttribute('data-booted') === '1' && dropdownsAlive) return;
+    if (root.getAttribute('data-booted') === '1' && dropdownsAlive && peopleSetFiltersOpen) return;
     if (global.__vcPplAc) global.__vcPplAc.abort();
     var ac = new AbortController();
     global.__vcPplAc = ac;
@@ -205,21 +258,17 @@
   dropdowns.cheque = createDropdown(document.getElementById('filter-cheque'), 'cheque');
 
   // Mweb: portal drawer to <body> so it isn't trapped under .inv-dir-wrap / backdrop.
-  const sidebarHome = els.sidebar ? els.sidebar.parentNode : null;
-  const sidebarBefore = els.sidebar ? els.sidebar.nextSibling : null;
-
   function restoreFiltersSidebar() {
-    if (!els.sidebar || !sidebarHome || els.sidebar.parentNode === sidebarHome) return;
-    if (sidebarBefore && sidebarBefore.parentNode === sidebarHome) {
-      sidebarHome.insertBefore(els.sidebar, sidebarBefore);
-    } else {
-      sidebarHome.insertBefore(els.sidebar, sidebarHome.firstChild);
-    }
+    var layout = document.querySelector('.inv-dir-layout');
+    if (!els.sidebar || !layout || els.sidebar.parentNode === layout) return;
+    var main = layout.querySelector('.inv-dir-main');
+    if (main) layout.insertBefore(els.sidebar, main);
+    else layout.insertBefore(els.sidebar, layout.firstChild);
   }
 
   function setFiltersOpen(open) {
     if (!els.sidebar) return;
-    var isMobile = window.matchMedia('(max-width: 768px)').matches;
+    var isMobile = window.matchMedia('(max-width: 960px)').matches;
     els.sidebar.classList.toggle('is-open', open);
     if (els.backdrop) els.backdrop.hidden = !open;
     if (els.filtersToggle) els.filtersToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -233,6 +282,7 @@
       restoreFiltersSidebar();
     }
   }
+  peopleSetFiltersOpen = setFiltersOpen;
 
   function renderSkeleton(count) {
     const n = count || 8;
@@ -613,15 +663,6 @@
     goPager(queued);
   }
 
-  if (els.filtersToggle) {
-    els.filtersToggle.addEventListener('click', () => {
-      if (window.VCNav) window.VCNav.close();
-      setFiltersOpen(true);
-    });
-  }
-  if (els.filtersClose) els.filtersClose.addEventListener('click', () => setFiltersOpen(false));
-  if (els.backdrop) els.backdrop.addEventListener('click', () => setFiltersOpen(false));
-
   document.addEventListener('click', () => closeAllDropdowns(), onDoc);
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
@@ -632,7 +673,7 @@
 
   window.addEventListener('resize', function () {
     updateMobileFiltersLabel();
-    if (!window.matchMedia('(max-width: 768px)').matches) setFiltersOpen(false);
+    if (!window.matchMedia('(max-width: 960px)').matches) setFiltersOpen(false);
   }, onDoc);
 
   // Mweb: visible press state on Firm / Links tiles (iOS :active is unreliable)
@@ -691,6 +732,7 @@
     destroy: function () {
       if (global.__vcPplAc) global.__vcPplAc.abort();
       peoplePagerGo = null;
+      peopleSetFiltersOpen = null;
     }
   };
 
