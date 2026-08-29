@@ -33,7 +33,7 @@ function formatActivityDate(dateStr) {
 function firmAttribution(person, investor) {
   return (
     '<p class="inv-person-firm-attribution">' +
-    'Data shown for <a href="/funds/' + escapeHtml(investor.slug) + '">' +
+    'Data shown for <a class="inv-dir-inline-link" href="/funds/' + escapeHtml(investor.slug) + '">' +
     escapeHtml(person.company || investor.name) +
     '</a> — the fund this person is mapped to in VC Dekho.' +
     '</p>'

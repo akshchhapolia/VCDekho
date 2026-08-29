@@ -974,6 +974,21 @@ function testNextAppShell() {
     } else {
       pass('profiles use full navigation');
     }
+    const personLayout = fs.readFileSync(path.join(ROOT, 'app/investors/(profile)/[slug]/layout.tsx'), 'utf8');
+    const fundLayout = fs.readFileSync(path.join(ROOT, 'app/funds/(profile)/[slug]/layout.tsx'), 'utf8');
+    const desktopOnlyCss =
+      /directory-profile\.css[^>]*(min-width:\s*769px)/.test(personLayout) ||
+      /directory-profile\.css[^>]*(min-width:\s*769px)/.test(fundLayout);
+    const loadsProfileCss =
+      personLayout.includes('directory-profile.css') && fundLayout.includes('directory-profile.css');
+    if (!loadsProfileCss || desktopOnlyCss) {
+      fail(
+        'profile CSS loads on mweb',
+        'directory-profile.css must load on all viewports — a min-width:769px link skips the mobile stylesheet'
+      );
+    } else {
+      pass('profile CSS loads on mweb');
+    }
   } catch (err) {
     fail('profiles use full navigation', err);
   }

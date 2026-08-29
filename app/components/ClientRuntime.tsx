@@ -137,7 +137,7 @@ function prefetchVisibleLinks(router: { prefetch: (href: string) => void }, curr
     const css = document.createElement('link');
     css.rel = 'preload';
     css.as = 'style';
-    css.href = '/css/directory-profile.css?v=149';
+    css.href = '/css/directory-profile.css?v=150';
     css.setAttribute('data-vc-prefetch', 'directory-profile.css');
     document.head.appendChild(css);
   }

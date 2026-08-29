@@ -6,14 +6,14 @@
 const { FONTS_HREF, renderFontPreloads, renderFontLinks, renderLatinFontFaces } = require('./font-assets');
 
 const HOME_CSS = [
-  '/css/base.css?v=149',
+  '/css/base.css?v=151',
   '/css/ambient.css?v=98',
   '/css/hero.css?v=97',
   '/css/announcement.css?v=145'
 ];
 
 const DIRECTORY_CSS = [
-  '/css/base.css?v=149',
+  '/css/base.css?v=151',
   '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
   '/css/announcement.css?v=145',
@@ -77,7 +77,7 @@ const DIRECTORY_CRITICAL_EXTRA = [
 
 function renderBlockingDirectoryHead() {
   return renderFontLinks().concat([
-    '<link rel="stylesheet" href="/css/base.css?v=149">',
+    '<link rel="stylesheet" href="/css/base.css?v=151">',
     '<link rel="stylesheet" href="/css/hero.css?v=97">',
     '<link rel="stylesheet" href="/css/ambient.css?v=98">',
     '<link rel="stylesheet" href="/css/announcement.css?v=145">',
@@ -87,7 +87,7 @@ function renderBlockingDirectoryHead() {
 
 function renderBlockingHomeHead() {
   return renderFontLinks().concat([
-    '<link rel="stylesheet" href="/css/base.css?v=149">',
+    '<link rel="stylesheet" href="/css/base.css?v=151">',
     '<link rel="stylesheet" href="/css/ambient.css?v=98">',
     '<link rel="stylesheet" href="/css/hero.css?v=97">',
     '<link rel="stylesheet" href="/css/announcement.css?v=145">'

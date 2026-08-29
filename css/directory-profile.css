@@ -771,13 +771,15 @@ body.inv-person-profile .inv-person-firm-attribution {
 }
 
 body.inv-person-profile .inv-person-firm-attribution a {
-  color: rgba(255, 255, 255, 0.72);
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  color: inherit;
+  text-decoration: none;
+  -webkit-text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 body.inv-person-profile .inv-person-firm-attribution a:hover {
-  color: var(--color-accent-orange);
+  color: #ffb89c;
+  border-bottom-color: rgba(237, 87, 47, 0.55);
 }
 
 body.inv-person-profile .inv-person-firm-thesis-lead {
@@ -2119,8 +2121,10 @@ html.auth-pending .inv-dir-wrap {
   border-bottom-color: rgba(237, 87, 47, 0.45);
 }
 
-a.inv-profile-metric {
+a.inv-profile-metric,
+a.inv-profile-metric:visited {
   text-decoration: none;
+  -webkit-text-decoration: none;
   color: inherit;
   transition: background 0.15s ease;
 }
@@ -2129,8 +2133,13 @@ a.inv-profile-metric:hover {
   background: rgba(255, 255, 255, 0.04);
 }
 
+a.inv-profile-metric .inv-profile-metric-value {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
 a.inv-profile-metric:hover .inv-profile-metric-value {
   color: #ffb89c;
+  border-bottom-color: rgba(237, 87, 47, 0.55);
 }
 
 /* -------------------------------------------------------------------------- */

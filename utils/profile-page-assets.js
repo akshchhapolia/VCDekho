@@ -5,12 +5,12 @@
  */
 
 const CSS_FILES = [
-  '/css/base.css?v=149',
+  '/css/base.css?v=151',
   '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
   '/css/announcement.css?v=145',
   '/css/directory-list.css?v=148',
-  '/css/directory-profile.css?v=149'
+  '/css/directory-profile.css?v=150'
 ];
 
 const { FONTS_HREF, renderFontPreloads, renderLatinFontFaces } = require('./font-assets');
@@ -77,6 +77,9 @@ const PROFILE_CRITICAL_CSS = [
   '.inv-profile-metric:first-child{border-left-color:rgba(237,87,47,.55)}',
   '.inv-profile-metric-label{font-size:.7rem;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.4rem}',
   '.inv-profile-metric-value{font-family:var(--font-heading);font-size:1.35rem;color:#fff;margin-top:.15rem}',
+  'a.inv-profile-metric,a.inv-profile-metric:visited{color:inherit;text-decoration:none;-webkit-text-decoration:none}',
+  'a.inv-profile-metric .inv-profile-metric-value{border-bottom:1px solid rgba(255,255,255,.18)}',
+  'a.inv-dir-inline-link,.inv-person-firm-attribution a,.inv-profile-section p a{color:inherit;text-decoration:none;-webkit-text-decoration:none;border-bottom:1px solid rgba(255,255,255,.18)}',
   '.inv-profile-focus-panel{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:1rem 1.1rem;background:rgba(255,255,255,.02)}',
   '.inv-profile-focus-col h3{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55);margin:0 0 .55rem}',
   '.inv-profile-chip-row,.inv-profile-thesis-chips{display:flex;flex-wrap:wrap;gap:.45rem}',
@@ -167,7 +170,7 @@ function earlyStickyPinScript() {
 }
 
 function profileMobileAsyncCssScript() {
-  return "(function(){if(!window.matchMedia('(max-width:768px)').matches)return;var href='/css/directory-profile.css?v=149';if(document.querySelector('link[href=\"'+href+'\"]'))return;var l=document.createElement('link');l.rel='stylesheet';l.href=href;l.media='print';l.onload=function(){this.media='all'};document.head.appendChild(l);})();";
+  return "(function(){var href='/css/directory-profile.css?v=150';var existing=document.querySelector('link[href=\"'+href+'\"]');if(existing){existing.media='all';existing.onload=null;return;}var l=document.createElement('link');l.rel='stylesheet';l.href=href;document.head.appendChild(l);})();";
 }
 
 module.exports = {
