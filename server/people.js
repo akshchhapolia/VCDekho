@@ -13,8 +13,7 @@ const { getPersonContact, loadContactsBySlug } = require('../utils/people-contac
 const {
   getUserUnlockMap,
   isPersonEmailUnlocked,
-  recordPersonEmailUnlock,
-  getUnlockQuota
+  claimPersonEmailUnlock
 } = require('../utils/person-email-unlocks');
 const { getInvestorBySlug, ensureInvestorDetailExtras } = require('../utils/investors');
 const { requireAuth, requireAuthWithActivity } = require('../utils/require-auth');
@@ -85,9 +84,9 @@ module.exports = async function handler(req, res) {
             unlimited: false
           };
           try {
-            const alreadyUnlocked = await isPersonEmailUnlocked(user.id, query.slug);
-            quota = await getUnlockQuota(user);
-            if (!alreadyUnlocked && !quota.allowed) {
+            const claim = await claimPersonEmailUnlock(user, query.slug);
+            quota = claim.quota || quota;
+            if (claim.status === 'limit') {
               res.setHeader('Content-Type', 'application/json; charset=utf-8');
               res.setHeader('Cache-Control', 'private, no-store');
               return res.status(429).json({
@@ -96,9 +95,6 @@ module.exports = async function handler(req, res) {
                 limit: quota.limit,
                 remaining: 0
               });
-            }
-            if (!alreadyUnlocked) {
-              await recordPersonEmailUnlock(user.id, query.slug);
             }
           } catch (err) {
             console.error('email unlock persist failed:', err);

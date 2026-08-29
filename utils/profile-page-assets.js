@@ -9,7 +9,7 @@ const CSS_FILES = [
   '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
   '/css/announcement.css?v=145',
-  '/css/directory-list.css?v=147',
+  '/css/directory-list.css?v=148',
   '/css/directory-profile.css?v=149'
 ];
 

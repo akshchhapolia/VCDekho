@@ -144,6 +144,17 @@ async function isPersonEmailUnlocked(userId, personSlug) {
   }
 }
 
+async function countUnlocksTodayWithClient(client, userId) {
+  const { rows } = await client.query(
+    `SELECT COUNT(*)::int AS n
+     FROM user_person_email_unlocks
+     WHERE user_id = $1::uuid
+       AND unlocked_at >= ${startOfTodayIstSql()}`,
+    [userId]
+  );
+  return rows[0]?.n || 0;
+}
+
 async function recordPersonEmailUnlock(userId, personSlug) {
   if (!isDbUser({ id: userId }) || !personSlug) return false;
   const ok = await ensurePersonEmailUnlockTables();
@@ -160,6 +171,105 @@ async function recordPersonEmailUnlock(userId, personSlug) {
   } catch (err) {
     console.error('recordPersonEmailUnlock failed:', err.message);
     return false;
+  }
+}
+
+/**
+ * Atomically claim today's unlock slot for this user+slug.
+ * Parallel POSTs used to all see count=0 and all insert (15 unlocks, then 16th blocked).
+ * status: ok | already | limit | unavailable
+ */
+async function claimPersonEmailUnlock(user, personSlug) {
+  const limit = DAILY_UNLOCK_LIMIT;
+  const unlimitedQuota = {
+    allowed: true,
+    remaining: null,
+    limit: limit,
+    unlimited: true
+  };
+
+  if (!personSlug) {
+    return { status: 'unavailable', quota: unlimitedQuota };
+  }
+
+  if (!isDbUser(user) || isUnlimitedUnlockUser(user)) {
+    if (isDbUser(user)) await recordPersonEmailUnlock(user.id, personSlug);
+    return { status: 'ok', quota: unlimitedQuota };
+  }
+
+  const pool = db.pool;
+  const ok = await ensurePersonEmailUnlockTables();
+  if (!pool || !ok) {
+    return {
+      status: 'unavailable',
+      quota: { allowed: true, remaining: null, limit: limit, unlimited: false }
+    };
+  }
+
+  let client;
+  try {
+    client = await pool.connect();
+    await client.query('BEGIN');
+    await client.query('SELECT pg_advisory_xact_lock(87421, hashtext($1::text))', [String(user.id)]);
+
+    const existing = await client.query(
+      `SELECT 1 FROM user_person_email_unlocks
+       WHERE user_id = $1::uuid AND person_slug = $2
+       LIMIT 1`,
+      [user.id, personSlug]
+    );
+    const used = await countUnlocksTodayWithClient(client, user.id);
+
+    if (existing.rows.length) {
+      await client.query('COMMIT');
+      return {
+        status: 'already',
+        quota: {
+          allowed: true,
+          remaining: Math.max(0, limit - used),
+          limit: limit,
+          unlimited: false
+        }
+      };
+    }
+
+    if (used >= limit) {
+      await client.query('COMMIT');
+      return {
+        status: 'limit',
+        quota: { allowed: false, remaining: 0, limit: limit, unlimited: false }
+      };
+    }
+
+    await client.query(
+      `INSERT INTO user_person_email_unlocks (user_id, person_slug, unlocked_at)
+       VALUES ($1::uuid, $2, NOW())
+       ON CONFLICT (user_id, person_slug) DO NOTHING`,
+      [user.id, personSlug]
+    );
+    await client.query('COMMIT');
+    return {
+      status: 'ok',
+      quota: {
+        allowed: true,
+        remaining: Math.max(0, limit - used - 1),
+        limit: limit,
+        unlimited: false
+      }
+    };
+  } catch (err) {
+    if (client) {
+      try {
+        await client.query('ROLLBACK');
+      } catch (_) {}
+    }
+    console.error('claimPersonEmailUnlock failed:', err.message);
+    return {
+      status: 'unavailable',
+      quota: { allowed: true, remaining: null, limit: limit, unlimited: false }
+    };
+  } finally {
+    if (client) client.release();
   }
 }
 
@@ -188,6 +298,7 @@ module.exports = {
   getUserUnlockMap,
   isPersonEmailUnlocked,
   recordPersonEmailUnlock,
+  claimPersonEmailUnlock,
   sortPeopleByUnlocks,
   getUnlockQuota,
   countUnlocksToday,

@@ -735,9 +735,10 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
 }
 
 .inv-dir-pager {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1rem 1.25rem;
   margin-top: 1.85rem;
   padding: 1.15rem 0.25rem 0.35rem;
@@ -759,14 +760,6 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
   padding: 0.65rem 1rem;
   cursor: pointer;
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
-}
-
-.inv-dir-pager-btn#inv-prev {
-  justify-self: start;
-}
-
-.inv-dir-pager-btn#inv-next {
-  justify-self: end;
 }
 
 .inv-dir-pager-arrow {
@@ -796,7 +789,6 @@ body.scrollable-page:not(.inv-page) .hero-showcase {
   display: inline-flex;
   align-items: baseline;
   gap: 0.35rem;
-  justify-self: center;
   color: rgba(255, 255, 255, 0.45);
   font-size: 0.78rem;
   letter-spacing: 0.04em;
@@ -2666,6 +2658,7 @@ a.inv-chip:hover {
   }
 
   .inv-dir-pager {
+    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
   }

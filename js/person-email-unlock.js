@@ -254,7 +254,16 @@
     return hasAccessCookie();
   }
 
+  var unlockChain = Promise.resolve();
+  var dailyLimitHit = false;
+
   async function unlockEmail(btn) {
+    unlockChain = unlockChain.then(function () {
+      return runUnlock(btn);
+    }).catch(function () {});
+  }
+
+  async function runUnlock(btn) {
     var slug = btn.getAttribute('data-person-slug');
     if (!slug || btn.getAttribute('aria-disabled') === 'true') return;
 
