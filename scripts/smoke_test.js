@@ -334,12 +334,13 @@ function testStaticAssets() {
     // session, which pulled the SDK back in even with the nav link fixed.
     const unlock = fs.readFileSync(path.join(ROOT, 'js/person-email-unlock.js'), 'utf8');
     const skipsHydrate =
-      /function hydratePersistedEmails\([\s\S]{0,500}?!hasAccessCookie\(\)/.test(unlock);
+      /function hydratePersistedEmails\([\s\S]{0,800}?hasStoredSession/.test(unlock);
     const cookieLogin =
-      /if \(!hasAccessCookie\(\)\) \{\s*goLogin\(slug\);/.test(unlock) &&
-      /if \(hasAccessCookie\(\)\) \{\s*e\.preventDefault\(\);/.test(unlock);
+      /function isProbablySignedIn\(/.test(unlock) &&
+      /e\.preventDefault\(\);/.test(unlock) &&
+      /if \(isProbablySignedIn\(\)\) \{\s*unlockEmail\(btn\);/.test(unlock);
     const layout = fs.readFileSync(path.join(ROOT, 'app/layout.tsx'), 'utf8');
-    const cacheBust = layout.includes('person-email-unlock.js?v=10');
+    const cacheBust = layout.includes('person-email-unlock.js?v=12');
     if (!exported || !checksCookie || !checksStorage || !checksRedirect || !shortCircuits || !skipsHydrate || !cookieLogin || !cacheBust) {
       fail(
         'anonymous visitors skip Supabase',
@@ -352,6 +353,25 @@ function testStaticAssets() {
     }
   } catch (err) {
     fail('anonymous visitors skip Supabase', err);
+  }
+
+  try {
+    const db = fs.readFileSync(path.join(ROOT, 'utils/db.js'), 'utf8');
+    const unlock = fs.readFileSync(path.join(ROOT, 'js/person-email-unlock.js'), 'utf8');
+    const peopleApi = fs.readFileSync(path.join(ROOT, 'server/people.js'), 'utf8');
+    const slimPool = /max:\s*1/.test(db);
+    const skipsDirHydrate = /closest\('#ppl-results'\)/.test(unlock);
+    const persistCaught = /email unlock persist failed/.test(peopleApi);
+    if (!slimPool || !skipsDirHydrate || !persistCaught) {
+      fail(
+        'unlock survives db pool exhaustion',
+        `pool=${slimPool} skipDirHydrate=${skipsDirHydrate} persistCaught=${persistCaught}`
+      );
+    } else {
+      pass('unlock survives db pool exhaustion');
+    }
+  } catch (err) {
+    fail('unlock survives db pool exhaustion', err);
   }
 
   try {

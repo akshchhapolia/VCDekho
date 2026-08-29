@@ -195,15 +195,18 @@
   }
 
   function hydratePersistedEmails(root) {
-    // Cookie-only: leftover sb-* localStorage must not pull the SDK on a
-    // signed-out visit. Unlocks are gated by vd_access_token on the server.
-    if (!hasAccessCookie()) return;
-    if (global.VCAuth && global.VCAuth.hasStoredSession && !global.VCAuth.hasStoredSession()) {
+    // Skip the SDK for anonymous visits. hasStoredSession() is true for the
+    // 1h cookie OR a persisted refresh token — nav can say Log out after the
+    // cookie expires, and those already-unlocked emails still need to paint.
+    if (!global.VCAuth || !global.VCAuth.hasStoredSession || !global.VCAuth.hasStoredSession()) {
       return;
     }
     var scope = root || document;
     var buttons = scope.querySelectorAll('[data-unlock-email]');
     buttons.forEach(function (btn) {
+      // Directory rows are filled by the list API (one request). N parallel
+      // contact GETs were opening a DB connection each and hitting EMAXCONN.
+      if (btn.closest && btn.closest('#ppl-results')) return;
       hydratePersistedEmail(btn);
     });
   }
@@ -244,22 +247,16 @@
     global.location.assign(loginHref(slug));
   }
 
+  function isProbablySignedIn() {
+    if (hasAccessCookie()) return true;
+    return Boolean(global.VCAuth && global.VCAuth.hasStoredSession && global.VCAuth.hasStoredSession());
+  }
+
   async function unlockEmail(btn) {
     var slug = btn.getAttribute('data-person-slug');
     if (!slug || btn.getAttribute('aria-disabled') === 'true') return;
 
-    if (!hasAccessCookie()) {
-      goLogin(slug);
-      return;
-    }
-
     if (!global.VCAuth) {
-      goLogin(slug);
-      return;
-    }
-
-    var session = await global.VCAuth.getSession();
-    if (!session) {
       goLogin(slug);
       return;
     }
@@ -267,6 +264,14 @@
     btn.setAttribute('aria-disabled', 'true');
     var prevText = getBtnLabel(btn);
     setBtnLabel(btn, 'Unlocking…');
+
+    var session = await global.VCAuth.getSession();
+    if (!session) {
+      btn.removeAttribute('aria-disabled');
+      setBtnLabel(btn, prevText === 'Unlocking…' ? 'Unlock email' : prevText);
+      goLogin(slug);
+      return;
+    }
 
     try {
       var url = '/api/people?slug=' + encodeURIComponent(slug) + '&contact=email';
@@ -281,8 +286,13 @@
         showDailyLimitStrip();
         return;
       }
+      var data = null;
+      try {
+        data = await res.json();
+      } catch (_) {
+        data = null;
+      }
       if (!res.ok) throw new Error('unlock failed');
-      var data = await res.json();
       if (!data || !data.email) throw new Error('no email');
 
       replaceWithMailto(btn, data.email, slug);
@@ -301,18 +311,13 @@
   function onUnlockClick(e) {
     var btn = e.target && e.target.closest ? e.target.closest('[data-unlock-email]') : null;
     if (!btn) return;
+    e.preventDefault();
     e.stopPropagation();
-    if (hasAccessCookie()) {
-      e.preventDefault();
+    if (isProbablySignedIn()) {
       unlockEmail(btn);
       return;
     }
-    // Logged out: a real <a href="/login"> navigates immediately. Cached
-    // <button> markup still needs an explicit redirect.
-    if (btn.tagName !== 'A' || !btn.getAttribute('href')) {
-      e.preventDefault();
-      goLogin(btn.getAttribute('data-person-slug'));
-    }
+    goLogin(btn.getAttribute('data-person-slug'));
   }
 
   function wireUnlockButtons(root) {

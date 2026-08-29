@@ -146,6 +146,7 @@
     if (session && session.access_token) {
       headers.set('Authorization', 'Bearer ' + session.access_token);
     }
+    if (!headers.has('Accept')) headers.set('Accept', 'application/json');
     return fetch(url, Object.assign({}, options, { headers: headers }));
   }
 

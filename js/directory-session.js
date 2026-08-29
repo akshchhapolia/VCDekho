@@ -42,6 +42,9 @@
           if (window.VCAuth.pingSessionMeta) {
             window.VCAuth.pingSessionMeta();
           }
+          if (window.VCPersonEmailUnlock && window.VCPersonEmailUnlock.initEmailUnlock) {
+            window.VCPersonEmailUnlock.initEmailUnlock();
+          }
         } else {
           setLoggedOut(link);
         }

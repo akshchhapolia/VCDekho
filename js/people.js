@@ -333,14 +333,18 @@
   }
 
   async function directoryFetch(url) {
-    const needsAuth = state.offset > 0 || hasSessionCookie();
+    const signedIn = hasSessionCookie() || (window.VCAuth && window.VCAuth.hasStoredSession && window.VCAuth.hasStoredSession());
+    const needsAuth = state.offset > 0 || signedIn;
     const res = needsAuth && window.VCAuth && window.VCAuth.authFetch
       ? await window.VCAuth.authFetch(url)
       : await fetch(url);
     if (res.status === 401) {
-      window.location.replace(
-        window.VCAuth.loginUrl(window.location.pathname + window.location.search)
-      );
+      // Page 1 is public; a stale cookie must not kick the user to login.
+      if (state.offset > 0) {
+        window.location.replace(
+          window.VCAuth.loginUrl(window.location.pathname + window.location.search)
+        );
+      }
       return null;
     }
     return res;
@@ -589,7 +593,10 @@
 
   if (isDefaultFirstPage() && hydrateFromPrerender()) {
     // Fill in already-unlocked emails without replacing or re-sorting the rows.
-    if (hasSessionCookie()) load({ silent: true, keepRows: true }).catch(console.error);
+    var signedIn =
+      hasSessionCookie() ||
+      (window.VCAuth && window.VCAuth.hasStoredSession && window.VCAuth.hasStoredSession());
+    if (signedIn) load({ silent: true, keepRows: true }).catch(console.error);
     else scheduleEmailHydrate();
   } else {
     resetOffsetAndLoad();

@@ -74,10 +74,19 @@ module.exports = async function handler(req, res) {
         const method = String(req.method || 'GET').toUpperCase();
 
         if (method === 'POST') {
-          const alreadyUnlocked = await isPersonEmailUnlocked(user.id, query.slug);
-          if (!alreadyUnlocked) {
-            const quota = await getUnlockQuota(user);
-            if (!quota.allowed) {
+          // Contacts live in a JSON file — reveal must not depend on Postgres.
+          // Persist/quota are best-effort; a pool-exhausted DB used to 500 the
+          // whole request and the button stuck on "Try again".
+          let quota = {
+            allowed: true,
+            remaining: null,
+            limit: 10,
+            unlimited: false
+          };
+          try {
+            const alreadyUnlocked = await isPersonEmailUnlocked(user.id, query.slug);
+            quota = await getUnlockQuota(user);
+            if (!alreadyUnlocked && !quota.allowed) {
               res.setHeader('Content-Type', 'application/json; charset=utf-8');
               res.setHeader('Cache-Control', 'private, no-store');
               return res.status(429).json({
@@ -87,7 +96,11 @@ module.exports = async function handler(req, res) {
                 remaining: 0
               });
             }
-            await recordPersonEmailUnlock(user.id, query.slug);
+            if (!alreadyUnlocked) {
+              await recordPersonEmailUnlock(user.id, query.slug);
+            }
+          } catch (err) {
+            console.error('email unlock persist failed:', err);
           }
 
           const contact = getPersonContact(query.slug);
@@ -95,7 +108,6 @@ module.exports = async function handler(req, res) {
             res.setHeader('Cache-Control', 'private, no-store');
             return res.status(404).json({ error: 'No email on file' });
           }
-          const quota = await getUnlockQuota(user);
           res.setHeader('Content-Type', 'application/json; charset=utf-8');
           res.setHeader('Cache-Control', 'private, no-store');
           return res.status(200).json({

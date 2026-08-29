@@ -46,14 +46,19 @@ async function countUnlocksToday(userId) {
   const ok = await ensurePersonEmailUnlockTables();
   if (!ok) return 0;
 
-  const { rows } = await db.query(
-    `SELECT COUNT(*)::int AS n
-     FROM user_person_email_unlocks
-     WHERE user_id = $1::uuid
-       AND unlocked_at >= ${startOfTodayIstSql()}`,
-    [userId]
-  );
-  return rows[0]?.n || 0;
+  try {
+    const { rows } = await db.query(
+      `SELECT COUNT(*)::int AS n
+       FROM user_person_email_unlocks
+       WHERE user_id = $1::uuid
+         AND unlocked_at >= ${startOfTodayIstSql()}`,
+      [userId]
+    );
+    return rows[0]?.n || 0;
+  } catch (err) {
+    console.error('countUnlocksToday failed:', err.message);
+    return 0;
+  }
 }
 
 /**
@@ -101,18 +106,23 @@ async function getUserUnlockMap(userId) {
   const ok = await ensurePersonEmailUnlockTables();
   if (!ok) return new Map();
 
-  const { rows } = await db.query(
-    `SELECT person_slug, unlocked_at
-     FROM user_person_email_unlocks
-     WHERE user_id = $1::uuid`,
-    [userId]
-  );
+  try {
+    const { rows } = await db.query(
+      `SELECT person_slug, unlocked_at
+       FROM user_person_email_unlocks
+       WHERE user_id = $1::uuid`,
+      [userId]
+    );
 
-  const map = new Map();
-  for (const row of rows) {
-    map.set(row.person_slug, new Date(row.unlocked_at));
+    const map = new Map();
+    for (const row of rows) {
+      map.set(row.person_slug, new Date(row.unlocked_at));
+    }
+    return map;
+  } catch (err) {
+    console.error('getUserUnlockMap failed:', err.message);
+    return new Map();
   }
-  return map;
 }
 
 async function isPersonEmailUnlocked(userId, personSlug) {
@@ -120,13 +130,18 @@ async function isPersonEmailUnlocked(userId, personSlug) {
   const ok = await ensurePersonEmailUnlockTables();
   if (!ok) return false;
 
-  const { rows } = await db.query(
-    `SELECT 1 FROM user_person_email_unlocks
-     WHERE user_id = $1::uuid AND person_slug = $2
-     LIMIT 1`,
-    [userId, personSlug]
-  );
-  return rows.length > 0;
+  try {
+    const { rows } = await db.query(
+      `SELECT 1 FROM user_person_email_unlocks
+       WHERE user_id = $1::uuid AND person_slug = $2
+       LIMIT 1`,
+      [userId, personSlug]
+    );
+    return rows.length > 0;
+  } catch (err) {
+    console.error('isPersonEmailUnlocked failed:', err.message);
+    return false;
+  }
 }
 
 async function recordPersonEmailUnlock(userId, personSlug) {
@@ -134,13 +149,18 @@ async function recordPersonEmailUnlock(userId, personSlug) {
   const ok = await ensurePersonEmailUnlockTables();
   if (!ok) return false;
 
-  const { rowCount } = await db.query(
-    `INSERT INTO user_person_email_unlocks (user_id, person_slug, unlocked_at)
-     VALUES ($1::uuid, $2, NOW())
-     ON CONFLICT (user_id, person_slug) DO NOTHING`,
-    [userId, personSlug]
-  );
-  return rowCount > 0;
+  try {
+    const { rowCount } = await db.query(
+      `INSERT INTO user_person_email_unlocks (user_id, person_slug, unlocked_at)
+       VALUES ($1::uuid, $2, NOW())
+       ON CONFLICT (user_id, person_slug) DO NOTHING`,
+      [userId, personSlug]
+    );
+    return rowCount > 0;
+  } catch (err) {
+    console.error('recordPersonEmailUnlock failed:', err.message);
+    return false;
+  }
 }
 
 /** Unlocked contacts first (most recent unlock first), then alphabetical. */
