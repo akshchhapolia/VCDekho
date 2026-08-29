@@ -195,9 +195,9 @@
   }
 
   function hydratePersistedEmails(root) {
-    // A signed-out visitor has no previously unlocked emails to restore, and
-    // checking that locally avoids pulling the Supabase SDK on directory pages
-    // that render one of these buttons per row.
+    // Cookie-only: leftover sb-* localStorage must not pull the SDK on a
+    // signed-out visit. Unlocks are gated by vd_access_token on the server.
+    if (!hasAccessCookie()) return;
     if (global.VCAuth && global.VCAuth.hasStoredSession && !global.VCAuth.hasStoredSession()) {
       return;
     }
@@ -232,29 +232,43 @@
     }, 3000);
   }
 
+  function hasAccessCookie() {
+    return /(?:^|;\s*)vd_access_token=/.test(document.cookie || '');
+  }
+
+  function loginHref(slug) {
+    var next = '/investors/' + String(slug || '');
+    if (global.VCAuth && typeof global.VCAuth.loginUrl === 'function') {
+      return global.VCAuth.loginUrl(next);
+    }
+    return '/login?next=' + encodeURIComponent(next);
+  }
+
+  function goLogin(slug) {
+    global.location.assign(loginHref(slug));
+  }
+
   async function unlockEmail(btn) {
     var slug = btn.getAttribute('data-person-slug');
-    if (!slug || btn.disabled) return;
+    if (!slug || btn.getAttribute('aria-disabled') === 'true') return;
 
-    if (!global.VCAuth) {
-      setBtnLabel(btn, 'Sign in required');
+    if (!hasAccessCookie()) {
+      goLogin(slug);
       return;
     }
 
-    // Known signed-out: go straight to login rather than loading the SDK only
-    // to be told there is no session.
-    if (global.VCAuth.hasStoredSession && !global.VCAuth.hasStoredSession()) {
-      global.location.href = global.VCAuth.loginUrl(global.location.pathname + global.location.search);
+    if (!global.VCAuth) {
+      goLogin(slug);
       return;
     }
 
     var session = await global.VCAuth.getSession();
     if (!session) {
-      global.location.href = global.VCAuth.loginUrl(global.location.pathname + global.location.search);
+      goLogin(slug);
       return;
     }
 
-    btn.disabled = true;
+    btn.setAttribute('aria-disabled', 'true');
     var prevText = getBtnLabel(btn);
     setBtnLabel(btn, 'Unlocking…');
 
@@ -262,11 +276,11 @@
       var url = '/api/people?slug=' + encodeURIComponent(slug) + '&contact=email';
       var res = await global.VCAuth.authFetch(url, { method: 'POST' });
       if (res.status === 401) {
-        global.location.href = global.VCAuth.loginUrl(global.location.pathname + global.location.search);
+        goLogin(slug);
         return;
       }
       if (res.status === 429) {
-        btn.disabled = false;
+        btn.removeAttribute('aria-disabled');
         setBtnLabel(btn, 'Unlock email');
         showDailyLimitStrip();
         return;
@@ -283,8 +297,25 @@
 
       global.dispatchEvent(new CustomEvent('vc:person-email-unlocked', { detail: { slug: slug } }));
     } catch (_) {
-      btn.disabled = false;
+      btn.removeAttribute('aria-disabled');
       setBtnLabel(btn, prevText === 'Unlocking…' ? 'Unlock email' : 'Try again');
+    }
+  }
+
+  function onUnlockClick(e) {
+    var btn = e.target && e.target.closest ? e.target.closest('[data-unlock-email]') : null;
+    if (!btn) return;
+    e.stopPropagation();
+    if (hasAccessCookie()) {
+      e.preventDefault();
+      unlockEmail(btn);
+      return;
+    }
+    // Logged out: a real <a href="/login"> navigates immediately. Cached
+    // <button> markup still needs an explicit redirect.
+    if (btn.tagName !== 'A' || !btn.getAttribute('href')) {
+      e.preventDefault();
+      goLogin(btn.getAttribute('data-person-slug'));
     }
   }
 
@@ -293,11 +324,6 @@
     scope.querySelectorAll('[data-unlock-email]').forEach(function (btn) {
       if (btn.dataset.wired) return;
       btn.dataset.wired = '1';
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        unlockEmail(btn);
-      });
     });
   }
 
@@ -317,6 +343,10 @@
   };
 
   function onReady() {
+    if (!document.documentElement.dataset.vcUnlockClick) {
+      document.documentElement.dataset.vcUnlockClick = '1';
+      document.addEventListener('click', onUnlockClick, true);
+    }
     initEmailUnlock();
   }
 

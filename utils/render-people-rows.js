@@ -3,11 +3,7 @@
  */
 const { esc } = require('./render-directory-rows');
 
-const LOCK_ICON =
-  '<svg class="inv-email-unlock-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
-  '<rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2"/>' +
-  '<path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
-  '</svg>';
+const { unlockEmailButtonHtml } = require('./email-unlock-markup');
 
 function initialsFor(name) {
   const parts = String(name || '')
@@ -43,13 +39,7 @@ function logoHtml(person) {
 
 function emailCellHtml(person) {
   if (person.hasEmail) {
-    return (
-      '<button type="button" class="inv-email-unlock-btn" data-unlock-email data-person-slug="' +
-      esc(person.slug) +
-      '">' +
-      LOCK_ICON +
-      '<span class="inv-email-unlock-label">Unlock email</span></button>'
-    );
+    return unlockEmailButtonHtml(person.slug);
   }
   return '<span class="inv-profile-empty">Not available</span>';
 }

@@ -260,7 +260,7 @@ body {
         background-color: #121214 !important;
         border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
         box-shadow: -10px 0 30px rgba(0, 0, 0, 0.45);
-        transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        transition: right 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
         pointer-events: auto;
     }
 
@@ -410,7 +410,7 @@ body.nav-open {
 
     /* Toggle / drawer stay above the dimmer on every page */
     body.nav-open .site-header {
-        z-index: 220;
+        z-index: 10045;
         position: relative;
     }
 

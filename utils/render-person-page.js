@@ -133,7 +133,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     ? '<a class="inv-profile-cta is-primary" href="' + escapeHtml(person.linkedin) + '" target="_blank" rel="noopener noreferrer" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"linkedin","kind":"person"}\'>' + iconLinkedin + '<span>LinkedIn</span></a>'
     : '';
   const emailBtn = person.hasEmail
-    ? unlockEmailButtonHtml(escapeHtml(person.slug), 'inv-profile-cta')
+    ? unlockEmailButtonHtml(person.slug, 'inv-profile-cta is-ghost')
     : '';
   const twitterBtn = person.twitter
     ? '<a class="inv-profile-cta is-ghost" href="' + escapeHtml(person.twitter) + '" target="_blank" rel="noopener noreferrer" data-analytics-event="profile_cta_click" data-analytics-params=\'{"cta":"twitter","kind":"person"}\'>' + iconTwitter + '<span>Twitter / X</span></a>'
@@ -314,7 +314,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     '</div></main></div>',
     '<script src="/js/auth.js?v=2" defer></script>',
     '<script src="/js/directory-session.js?v=3" defer></script>',
-    '<script src="/js/person-email-unlock.js?v=8" defer></script>',
+    '<script src="/js/person-email-unlock.js?v=9" defer></script>',
     '<script src="/app.js" defer></script>',
     '<script src="/investors/lazy-portfolio-logos.js?v=1" defer></script>',
     '<script src="/investors/portfolio-section.js?v=4" defer></script>',

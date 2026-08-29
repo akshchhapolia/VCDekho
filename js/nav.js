@@ -1,13 +1,11 @@
 (function (global) {
   var mobileMq = global.matchMedia('(max-width: 768px)');
   var bound = false;
-  var togglePlaceholder = null;
 
   function els() {
     return {
       toggle: document.getElementById('menu-toggle'),
-      nav: document.getElementById('navigation-bar'),
-      header: document.querySelector('.site-header')
+      nav: document.getElementById('navigation-bar')
     };
   }
 
@@ -21,25 +19,8 @@
     backdrop.hidden = true;
     backdrop.setAttribute('aria-label', 'Close menu');
     backdrop.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(backdrop);
     return backdrop;
-  }
-
-  function restoreToggle(toggle, header) {
-    if (!toggle || !header) return;
-    if (togglePlaceholder && togglePlaceholder.parentNode) {
-      togglePlaceholder.parentNode.replaceChild(toggle, togglePlaceholder);
-      togglePlaceholder = null;
-    } else if (toggle.parentNode !== header) {
-      header.appendChild(toggle);
-    }
-    header.querySelectorAll('.nav-toggle-spacer').forEach(function (node) {
-      if (node.parentNode) node.parentNode.removeChild(node);
-    });
-  }
-
-  function restoreNav(nav, header) {
-    if (!nav || !header) return;
-    if (nav.parentNode !== header) header.appendChild(nav);
   }
 
   function isOpen() {
@@ -51,7 +32,6 @@
     var nodes = els();
     var toggle = nodes.toggle;
     var nav = nodes.nav;
-    var header = nodes.header;
     if (!toggle || !nav) return;
 
     toggle.classList.toggle('active', open);
@@ -62,28 +42,6 @@
     var backdrop = ensureBackdrop();
     backdrop.hidden = !open;
     backdrop.setAttribute('aria-hidden', open ? 'false' : 'true');
-
-    if (!mobileMq.matches) {
-      restoreNav(nav, header);
-      restoreToggle(toggle, header);
-      if (backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
-      return;
-    }
-
-    if (open) {
-      if (header && toggle.parentNode === header) {
-        togglePlaceholder = document.createElement('span');
-        togglePlaceholder.className = 'nav-toggle-spacer';
-        togglePlaceholder.setAttribute('aria-hidden', 'true');
-        header.replaceChild(togglePlaceholder, toggle);
-      }
-      document.body.appendChild(backdrop);
-      document.body.appendChild(nav);
-      document.body.appendChild(toggle);
-    } else {
-      restoreNav(nav, header);
-      restoreToggle(toggle, header);
-    }
   }
 
   function onDocumentClick(e) {
@@ -122,6 +80,7 @@
   function boot() {
     var nodes = els();
     if (nodes.toggle) nodes.toggle.setAttribute('aria-controls', 'navigation-bar');
+    if (document.body) ensureBackdrop();
     if (!bound) {
       bound = true;
       document.addEventListener('click', onDocumentClick, true);

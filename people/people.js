@@ -243,7 +243,7 @@
           ? window.VCPersonEmailUnlock.revealedEmailHtml(p.email, p.slug, false)
           : esc(p.email))
         : p.hasEmail
-          ? '<button type="button" class="inv-email-unlock-btn" data-unlock-email data-person-slug="' + esc(p.slug) + '">' + LOCK_ICON + '<span class="inv-email-unlock-label">Unlock email</span></button>'
+          ? '<a class="inv-email-unlock-btn" href="/login?next=' + encodeURIComponent('/investors/' + p.slug) + '" data-unlock-email data-person-slug="' + esc(p.slug) + '">' + LOCK_ICON + '<span class="inv-email-unlock-label">Unlock email</span></a>'
           : '<span class="inv-profile-empty">Not available</span>';
       const linksHtml = [
         p.linkedin ? '<a class="inv-dir-inline-link" href="' + esc(p.linkedin) + '" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">LinkedIn</a>' : '',

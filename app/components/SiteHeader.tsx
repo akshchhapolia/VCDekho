@@ -78,7 +78,11 @@ export default function SiteHeader({ pathname = '/' }: { pathname?: string }) {
         <a href="/news" className="nav-link">
           News
         </a>
-        <a href="/login" className="nav-link" id="nav-auth-link">
+        <a
+          href={'/login?next=' + encodeURIComponent(path === '/login' ? '/funds' : path)}
+          className="nav-link"
+          id="nav-auth-link"
+        >
           Log in
         </a>
       </nav>

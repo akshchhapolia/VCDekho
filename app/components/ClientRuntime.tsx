@@ -19,6 +19,7 @@ export default function ClientRuntime() {
   const pathname = usePathname() || '/';
   const router = useRouter();
   const routerReady = useRef(false);
+  const prevPath = useRef<string | null>(null);
 
   useEffect(() => {
     routerReady.current = true;
@@ -33,7 +34,13 @@ export default function ClientRuntime() {
     if (path === '/investors' && window.VCPeopleDir && typeof window.VCPeopleDir.boot === 'function') {
       window.VCPeopleDir.boot();
     }
-    if (window.VCNav && typeof window.VCNav.close === 'function') window.VCNav.close();
+    if (window.VCNav && typeof window.VCNav.boot === 'function') window.VCNav.boot();
+    // Only close on a real route change. Calling close() on first hydration
+    // slams shut a menu the user already opened.
+    if (prevPath.current !== null && prevPath.current !== path && window.VCNav && typeof window.VCNav.close === 'function') {
+      window.VCNav.close();
+    }
+    prevPath.current = path;
     if (window.VCDirectorySession && window.VCDirectorySession.wireNavAuth) {
       window.VCDirectorySession.wireNavAuth();
     }
@@ -97,8 +104,10 @@ export default function ClientRuntime() {
 
 function applyDocumentClasses(pathname: string) {
   const next = documentClasses(pathname);
+  const navOpen = document.body.classList.contains('nav-open');
   document.documentElement.className = next.html;
   document.body.className = next.body;
+  if (navOpen) document.body.classList.add('nav-open');
   document.documentElement.style.background = next.home ? '#000' : '';
 }
 
@@ -106,11 +115,22 @@ function prefetchVisibleLinks(router: { prefetch: (href: string) => void }, curr
   const seen: Record<string, boolean> = {};
   const onDirectory = currentPath === '/investors' || currentPath === '/funds';
 
+  if (
+    document.querySelector('[data-unlock-email][href^="/login"]') &&
+    !document.querySelector('link[data-vc-prefetch="/login"]')
+  ) {
+    const login = document.createElement('link');
+    login.rel = 'prefetch';
+    login.href = '/login';
+    login.setAttribute('data-vc-prefetch', '/login');
+    document.head.appendChild(login);
+  }
+
   if (onDirectory && !document.querySelector('link[data-vc-prefetch="directory-profile.css"]')) {
     const css = document.createElement('link');
     css.rel = 'preload';
     css.as = 'style';
-    css.href = '/css/directory-profile.css?v=145';
+    css.href = '/css/directory-profile.css?v=146';
     css.setAttribute('data-vc-prefetch', 'directory-profile.css');
     document.head.appendChild(css);
   }

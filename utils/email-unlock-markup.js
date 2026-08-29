@@ -4,16 +4,35 @@ const LOCK_ICON =
   '<path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
   '</svg>';
 
-function unlockEmailButtonHtml(slugEscaped, extraClass) {
+function escAttr(s) {
+  return String(s || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function unlockLoginHref(slug) {
+  return '/login?next=' + encodeURIComponent('/investors/' + String(slug || ''));
+}
+
+function unlockEmailButtonHtml(slug, extraClass) {
   const cls = extraClass ? 'inv-email-unlock-btn ' + extraClass : 'inv-email-unlock-btn';
   return (
-    '<button type="button" class="' + cls + '" data-unlock-email data-person-slug="' + slugEscaped + '">' +
+    '<a class="' +
+    cls +
+    '" href="' +
+    escAttr(unlockLoginHref(slug)) +
+    '" data-unlock-email data-person-slug="' +
+    escAttr(slug) +
+    '">' +
     LOCK_ICON +
-    '<span class="inv-email-unlock-label">Unlock email</span></button>'
+    '<span class="inv-email-unlock-label">Unlock email</span></a>'
   );
 }
 
 module.exports = {
   LOCK_ICON,
-  unlockEmailButtonHtml
+  unlockEmailButtonHtml,
+  unlockLoginHref
 };

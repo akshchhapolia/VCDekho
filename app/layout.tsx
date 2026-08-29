@@ -41,15 +41,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           crossOrigin="anonymous"
         />
         <link rel="stylesheet" href="/css/fonts.css?v=1" />
-        <link rel="stylesheet" href="/css/base.css?v=146" />
+        <link rel="stylesheet" href="/css/base.css?v=147" />
         <link rel="stylesheet" href="/css/hero.css?v=97" />
         <link rel="stylesheet" href="/css/ambient.css?v=98" />
         <link rel="stylesheet" href="/css/announcement.css?v=145" />
-        <Script src="/js/nav.js?v=103" strategy="beforeInteractive" />
-        <Script src="/js/auth.js?v=2" strategy="beforeInteractive" />
+        <Script src="/js/nav.js?v=104" strategy="beforeInteractive" />
+        <Script src="/js/auth.js?v=3" strategy="beforeInteractive" />
         <Script src="/js/directory-session.js?v=4" strategy="beforeInteractive" />
         <Script src="/js/site-paths.js?v=1" strategy="beforeInteractive" />
-        <Script src="/js/person-email-unlock.js?v=8" strategy="beforeInteractive" />
+        <Script src="/js/person-email-unlock.js?v=9" strategy="beforeInteractive" />
         <Script src="/js/profile-page-boot.js?v=2" strategy="beforeInteractive" />
         <Script src="/app.js?v=98" strategy="beforeInteractive" />
       </head>

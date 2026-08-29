@@ -29,7 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
   function safeNext(path) {
     if (!path || typeof path !== 'string') return '/funds';
     if (!path.startsWith('/') || path.startsWith('//')) return '/funds';
+    var clean = path.split('#')[0];
+    if (clean === '/login' || clean.startsWith('/login?')) return '/funds';
     return path;
+  }
+
+  function hasOAuthCallback() {
+    return /(?:^|[?&])code=/.test(window.location.search || '') ||
+      /access_token=|refresh_token=/.test(window.location.hash || '');
   }
 
   function setStatus(message, type) {
@@ -214,11 +221,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return true;
   }
 
-  async function redirectAfterAuth() {
+  function redirectAfterAuth() {
     if (window.VCAuth && window.VCAuth.pingSessionMeta) {
-      await window.VCAuth.pingSessionMeta({ isSignup: true });
+      window.VCAuth.pingSessionMeta({ isSignup: true });
     }
-    window.location.href = safeNext(nextPath);
+    window.location.replace(safeNext(nextPath));
   }
 
   function friendlyAuthError(err, context) {
@@ -255,7 +262,11 @@ document.addEventListener('DOMContentLoaded', () => {
       setStatus('');
       await window.VCAuth.sendEmailOtp({
         email,
-        createUser: true
+        createUser: true,
+        emailRedirectTo:
+          window.location.origin +
+          '/login?next=' +
+          encodeURIComponent(safeNext(nextPath))
       });
       pendingEmail = email;
       setStep('otp');
@@ -290,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.VCAuth.syncCookie(data.session);
       }
       if (window.VCAnalytics) window.VCAnalytics.track('login_success', { method: 'email_otp' });
-      await redirectAfterAuth();
+      redirectAfterAuth();
     } catch (err) {
       setStatus(friendlyAuthError(err, 'verify'), 'error');
       setBusy(false);
@@ -324,28 +335,32 @@ document.addEventListener('DOMContentLoaded', () => {
       const client = await window.VCAuth.getClient();
       const { data } = await client.auth.getSession();
       if (data.session) {
-        await redirectAfterAuth();
+        if (window.VCAuth.syncCookie) window.VCAuth.syncCookie(data.session);
+        redirectAfterAuth();
+        return;
+      }
+      if (hasOAuthCallback()) {
+        setBusy(false);
+        setStatus('Sign-in did not complete. Try again.', 'error');
       }
     } catch (err) {
       console.error(err);
+      if (hasOAuthCallback()) {
+        setBusy(false);
+        setStatus((err && err.message) || 'Sign-in did not complete. Try again.', 'error');
+      }
     }
   }
 
   function scheduleSessionCheck() {
-    if (hasAccessCookie()) {
+    if (hasOAuthCallback()) {
+      setBusy(true);
+      setStatus('Signing you in…', 'info');
       checkExistingSession();
       return;
     }
-    warmSupabaseCache();
-    var run = function () {
+    if (hasAccessCookie()) {
       checkExistingSession();
-    };
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(run, { timeout: 4000 });
-    } else {
-      window.addEventListener('load', function () {
-        setTimeout(run, 100);
-      });
     }
   }
 

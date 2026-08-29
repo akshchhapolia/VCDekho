@@ -5,12 +5,12 @@
  */
 
 const CSS_FILES = [
-  '/css/base.css?v=146',
+  '/css/base.css?v=147',
   '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
   '/css/announcement.css?v=145',
   '/css/directory-list.css?v=145',
-  '/css/directory-profile.css?v=145'
+  '/css/directory-profile.css?v=146'
 ];
 
 const { FONTS_HREF, renderFontPreloads, renderLatinFontFaces } = require('./font-assets');
@@ -51,9 +51,10 @@ const PROFILE_CRITICAL_CSS = [
   '.inv-profile-title{font-family:var(--font-heading);font-size:clamp(2.6rem,6.5vw,4.1rem);color:#fff;line-height:.98;font-weight:400;margin:0 0 .85rem}',
   '.inv-profile-hero-lead{color:rgba(255,255,255,.78);font-size:1.08rem;line-height:1.55;margin:0 0 1.4rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;max-width:38rem}',
   '.inv-profile-hero-actions{display:flex;flex-wrap:wrap;gap:.65rem}',
-  '.inv-profile-cta{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;padding:.8rem 1.15rem;border-radius:999px;text-decoration:none;font-size:.9rem;font-weight:700;color:#fff}',
+  '.inv-profile-cta{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;padding:.8rem 1.15rem;border-radius:999px;text-decoration:none;font-size:.9rem;font-weight:700;color:#fff;-webkit-appearance:none;appearance:none}',
   '.inv-profile-cta.is-primary{background:var(--color-accent-orange);border:1px solid transparent}',
   '.inv-profile-cta.is-ghost{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.9)}',
+  'button.inv-profile-cta{font:inherit;cursor:pointer}',
   '.inv-profile-hero-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem 1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.1)}',
   '.inv-profile-hero-meta-label{color:rgba(255,255,255,.48);font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase}',
   '.inv-profile-hero-meta-value{color:rgba(255,255,255,.92);font-family:var(--font-heading);font-size:clamp(.98rem,1.5vw,1.15rem);font-weight:400;line-height:1.25}',
@@ -165,7 +166,7 @@ function earlyStickyPinScript() {
 }
 
 function profileMobileAsyncCssScript() {
-  return "(function(){if(!window.matchMedia('(max-width:768px)').matches)return;var href='/css/directory-profile.css?v=145';if(document.querySelector('link[href=\"'+href+'\"]'))return;var l=document.createElement('link');l.rel='stylesheet';l.href=href;l.media='print';l.onload=function(){this.media='all'};document.head.appendChild(l);})();";
+  return "(function(){if(!window.matchMedia('(max-width:768px)').matches)return;var href='/css/directory-profile.css?v=146';if(document.querySelector('link[href=\"'+href+'\"]'))return;var l=document.createElement('link');l.rel='stylesheet';l.href=href;l.media='print';l.onload=function(){this.media='all'};document.head.appendChild(l);})();";
 }
 
 module.exports = {

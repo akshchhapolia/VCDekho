@@ -334,12 +334,18 @@ function testStaticAssets() {
     // session, which pulled the SDK back in even with the nav link fixed.
     const unlock = fs.readFileSync(path.join(ROOT, 'js/person-email-unlock.js'), 'utf8');
     const skipsHydrate =
-      /function hydratePersistedEmails\([\s\S]{0,400}?!global\.VCAuth\.hasStoredSession\(\)/.test(unlock);
-    if (!exported || !checksCookie || !checksStorage || !checksRedirect || !shortCircuits || !skipsHydrate) {
+      /function hydratePersistedEmails\([\s\S]{0,500}?!hasAccessCookie\(\)/.test(unlock);
+    const cookieLogin =
+      /if \(!hasAccessCookie\(\)\) \{\s*goLogin\(slug\);/.test(unlock) &&
+      /if \(hasAccessCookie\(\)\) \{\s*e\.preventDefault\(\);/.test(unlock);
+    const layout = fs.readFileSync(path.join(ROOT, 'app/layout.tsx'), 'utf8');
+    const cacheBust = layout.includes('person-email-unlock.js?v=9');
+    if (!exported || !checksCookie || !checksStorage || !checksRedirect || !shortCircuits || !skipsHydrate || !cookieLogin || !cacheBust) {
       fail(
         'anonymous visitors skip Supabase',
         `exported=${exported} cookie=${checksCookie} storage=${checksStorage} ` +
-          `redirect=${checksRedirect} shortCircuit=${shortCircuits} emailHydrate=${skipsHydrate}`
+          `redirect=${checksRedirect} shortCircuit=${shortCircuits} emailHydrate=${skipsHydrate} ` +
+          `cookieLogin=${cookieLogin} cacheBust=${cacheBust}`
       );
     } else {
       pass('anonymous visitors skip the Supabase SDK');
@@ -592,6 +598,12 @@ function testProfileClsGuards() {
     } else {
       pass('profile critical CSS matches final hero');
     }
+    const personPage = fs.readFileSync(path.join(ROOT, 'utils/render-person-page.js'), 'utf8');
+    if (!personPage.includes("unlockEmailButtonHtml(person.slug, 'inv-profile-cta is-ghost')")) {
+      fail('profile unlock email uses ghost CTA', 'person profile Unlock email must match other ghost hero buttons');
+    } else {
+      pass('profile unlock email uses ghost CTA');
+    }
   } catch (err) {
     fail('profile critical CSS matches final hero', err);
   }
@@ -605,6 +617,22 @@ function testProfileClsGuards() {
     }
   } catch (err) {
     fail('profile boot script auto-starts', err);
+  }
+
+  try {
+    const nav = fs.readFileSync(path.join(ROOT, 'public/js/nav.js'), 'utf8');
+    const root = fs.readFileSync(path.join(ROOT, 'app/layout.tsx'), 'utf8');
+    if (
+      !nav.includes("document.addEventListener('click', onDocumentClick, true)") ||
+      !root.includes('nav.js?v=104') ||
+      nav.includes('appendChild(nav)')
+    ) {
+      fail('nav uses document click delegation', 'menu must toggle in place without portaling on first open');
+    } else {
+      pass('nav uses document click delegation');
+    }
+  } catch (err) {
+    fail('nav uses document click delegation', err);
   }
 
   try {
@@ -810,9 +838,20 @@ function testNextAppShell() {
       cfg.includes('view=stage') &&
       cfg.includes("/funds/themes/:slug") &&
       cfg.includes("/funds/sectors/:slug");
+    const loginRoute = fs.readFileSync(path.join(ROOT, 'app/login/route.ts'), 'utf8');
+    const loginJs = fs.readFileSync(path.join(ROOT, 'login.js'), 'utf8');
+    const loginHtml = fs.readFileSync(path.join(ROOT, 'login.html'), 'utf8');
     const hasLogin = fs.existsSync(path.join(ROOT, 'app/login/route.ts'));
+    const loginNoStore = loginRoute.includes('private, no-store') && cfg.includes("source: '/login'");
+    const oauthReturn = loginJs.includes('function hasOAuthCallback') && loginJs.includes('location.replace');
+    const cacheBust = loginHtml.includes('login.js?v=111');
     if (!hasGuides || !hasLogin) {
       fail('next.config keeps guides and login on the old stack', `guides=${hasGuides} loginRoute=${hasLogin}`);
+    } else if (!loginNoStore || !oauthReturn || !cacheBust) {
+      fail(
+        'login return path',
+        `noStore=${loginNoStore} oauthReturn=${oauthReturn} cacheBust=${cacheBust}`
+      );
     } else {
       pass('login route + fund guide slug rewrites are in place');
     }
@@ -905,6 +944,8 @@ function testNextAppShell() {
       fail('prerendered rows class lock', 'missing inv-dir-row');
     } else if (!rows.includes('inv-email-unlock-btn') && !rows.includes('Not available')) {
       fail('email unlock lock', 'list rows must keep unlock CTA, not raw addresses');
+    } else if (rows.includes('inv-email-unlock-btn') && !rows.includes('href="/login?next=')) {
+      fail('email unlock lock', 'logged-out unlock CTA must be a real /login link');
     } else {
       pass('page-1 payloads: no emails, inv-dir-row + unlock CTA');
     }

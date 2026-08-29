@@ -155,6 +155,7 @@
       if (!session) return;
       await authFetch('/api/people?action=session-meta', {
         method: 'POST',
+        keepalive: true,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           platform: clientPlatform(),
@@ -178,7 +179,8 @@
     var result = await client.auth.signInWithOtp({
       email: email,
       options: {
-        shouldCreateUser: options.createUser !== false
+        shouldCreateUser: options.createUser !== false,
+        emailRedirectTo: options.emailRedirectTo || undefined
       }
     });
     if (result.error) throw result.error;

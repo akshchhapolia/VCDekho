@@ -6,14 +6,14 @@
 const { FONTS_HREF, renderFontPreloads, renderFontLinks, renderLatinFontFaces } = require('./font-assets');
 
 const HOME_CSS = [
-  '/css/base.css?v=146',
+  '/css/base.css?v=147',
   '/css/ambient.css?v=98',
   '/css/hero.css?v=97',
   '/css/announcement.css?v=145'
 ];
 
 const DIRECTORY_CSS = [
-  '/css/base.css?v=146',
+  '/css/base.css?v=147',
   '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
   '/css/announcement.css?v=145',
@@ -26,11 +26,12 @@ const SHARED_CRITICAL = [
   'html,body{width:100%;background:#0b0b0d;color:rgba(255,255,255,.88);font-family:var(--font-sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}',
   'html.scrollable-page,body.scrollable-page{overflow-y:auto!important;overflow-x:hidden!important;height:auto!important}',
   '.app-container{display:flex;flex-direction:column;width:100%;min-height:100dvh;padding:1rem;gap:.75rem;max-width:1600px;margin:0 auto;position:relative;z-index:1}',
-  '.site-header{display:flex;justify-content:space-between;align-items:center;width:100%;height:50px;position:relative;z-index:2;padding-top:env(safe-area-inset-top,0)}',
+  '.site-header{display:flex;justify-content:space-between;align-items:center;width:100%;height:50px;position:relative;z-index:100;padding-top:env(safe-area-inset-top,0)}',
   '.logo-img{height:44px;width:auto;aspect-ratio:220/204;display:block}',
   '.main-nav{display:none}',
   '.nav-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:44px;min-height:44px;margin-left:auto;background:none;border:none;padding:.5rem;gap:5px}',
   '.nav-toggle span{display:block;width:22px;height:2px;background:#fff}',
+  '@media(max-width:768px){.main-nav,#navigation-bar{display:flex;position:fixed;top:0;right:-100%;width:min(85vw,320px);height:100dvh;flex-direction:column;justify-content:center;gap:3rem;z-index:10040;background:#121214;padding:2rem 1.5rem}.main-nav.active,#navigation-bar.active{right:0}.nav-toggle.active,body.nav-open .nav-toggle{position:fixed;top:calc(.65rem + env(safe-area-inset-top,0px));right:1rem;z-index:10050}body.nav-open .site-header{z-index:10045}}',
   '.ambient-bg-wrapper,.home-ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}',
   '@media(min-width:769px){.main-nav{display:flex}.nav-toggle{display:none}.app-container{padding:var(--page-padding)}}'
 ];
@@ -73,7 +74,7 @@ const DIRECTORY_CRITICAL_EXTRA = [
 
 function renderBlockingDirectoryHead() {
   return renderFontLinks().concat([
-    '<link rel="stylesheet" href="/css/base.css?v=146">',
+    '<link rel="stylesheet" href="/css/base.css?v=147">',
     '<link rel="stylesheet" href="/css/hero.css?v=97">',
     '<link rel="stylesheet" href="/css/ambient.css?v=98">',
     '<link rel="stylesheet" href="/css/announcement.css?v=145">',
@@ -83,7 +84,7 @@ function renderBlockingDirectoryHead() {
 
 function renderBlockingHomeHead() {
   return renderFontLinks().concat([
-    '<link rel="stylesheet" href="/css/base.css?v=146">',
+    '<link rel="stylesheet" href="/css/base.css?v=147">',
     '<link rel="stylesheet" href="/css/ambient.css?v=98">',
     '<link rel="stylesheet" href="/css/hero.css?v=97">',
     '<link rel="stylesheet" href="/css/announcement.css?v=145">'

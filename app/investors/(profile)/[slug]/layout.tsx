@@ -4,7 +4,8 @@ export default function PersonProfileLayout({ children }: { children: React.Reac
   return (
     <>
       <style id="vc-critical-css" dangerouslySetInnerHTML={{ __html: renderProfileCriticalCss() }} />
-      <link rel="stylesheet" href="/css/directory-profile.css?v=145" media="(min-width: 769px)" />
+      <link rel="prefetch" href="/login" />
+      <link rel="stylesheet" href="/css/directory-profile.css?v=146" media="(min-width: 769px)" />
       <script dangerouslySetInnerHTML={{ __html: profileMobileAsyncCssScript() }} />
       <script src="/investors/lazy-portfolio-logos.js?v=1" defer />
       <script src="/investors/portfolio-section.js?v=4" defer />
