@@ -459,6 +459,11 @@ body.nav-open {
         background: transparent !important;
     }
 
+    body.nav-open .logo-container {
+        position: relative;
+        z-index: 10051;
+    }
+
     body.nav-open .hero-content,
     body.nav-open .waitlist-content,
     body.nav-open .inv-detail-wrap,
