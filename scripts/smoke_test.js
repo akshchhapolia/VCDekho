@@ -444,7 +444,7 @@ function testStaticAssets() {
     const peopleJs = fs.readFileSync(path.join(ROOT, 'js/people.js'), 'utf8');
     const { renderDirectoryCriticalCss } = require('../utils/static-page-assets');
     const dirCritical = renderDirectoryCriticalCss();
-    const hidesSkelAlways = /\.inv-dir-skel\{display:none!important\}/.test(dirCritical);
+    const hidesSkelAlways = /(^|})\.inv-dir-skel\{display:none!important\}/.test(dirCritical);
     const hidesSkelWhenReady = dirCritical.includes('.inv-dir-results:not([aria-busy="true"]) .inv-dir-skel');
     if (
       !peopleJs.includes('inv-skel-mark') ||
