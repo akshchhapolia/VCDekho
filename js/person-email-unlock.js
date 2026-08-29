@@ -237,11 +237,7 @@
   }
 
   function loginHref(slug) {
-    var next = '/investors/' + String(slug || '');
-    if (global.VCAuth && typeof global.VCAuth.loginUrl === 'function') {
-      return global.VCAuth.loginUrl(next);
-    }
-    return '/login?next=' + encodeURIComponent(next);
+    return '/login#/investors/' + String(slug || '');
   }
 
   function goLogin(slug) {
@@ -322,6 +318,11 @@
   function wireUnlockButtons(root) {
     var scope = root || document;
     scope.querySelectorAll('[data-unlock-email]').forEach(function (btn) {
+      var slug = btn.getAttribute('data-person-slug');
+      if (slug && btn.tagName === 'A') {
+        var fast = loginHref(slug);
+        if (btn.getAttribute('href') !== fast) btn.setAttribute('href', fast);
+      }
       if (btn.dataset.wired) return;
       btn.dataset.wired = '1';
     });

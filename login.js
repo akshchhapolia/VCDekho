@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const LABEL_VERIFY = 'Verify & continue';
 
   const params = new URLSearchParams(window.location.search);
-  const nextPath = params.get('next') || '/funds';
+  const hashNext = (window.location.hash || '').replace(/^#/, '');
+  const nextPath = params.get('next') || (hashNext.startsWith('/') ? hashNext : '') || '/funds';
 
   function safeNext(path) {
     if (!path || typeof path !== 'string') return '/funds';

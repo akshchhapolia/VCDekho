@@ -13,7 +13,9 @@ function escAttr(s) {
 }
 
 function unlockLoginHref(slug) {
-  return '/login?next=' + encodeURIComponent('/investors/' + String(slug || ''));
+  // Same cached /login document as prefetch. Hash is not part of the request,
+  // so the edge can serve the page instantly; login.js reads it as `next`.
+  return '/login#/investors/' + String(slug || '');
 }
 
 function unlockEmailButtonHtml(slug, extraClass) {

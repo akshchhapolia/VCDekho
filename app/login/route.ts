@@ -1,9 +1,8 @@
 import { htmlFileResponse } from '../../lib/html-file-response';
 
+export const dynamic = 'force-static';
+export const revalidate = 86400;
+
 export function GET() {
-  const res = htmlFileResponse('login.html');
-  const headers = new Headers(res.headers);
-  headers.set('cache-control', 'private, no-store');
-  headers.set('cdn-cache-control', 'private, no-store');
-  return new Response(res.body, { status: res.status, headers });
+  return htmlFileResponse('login.html');
 }

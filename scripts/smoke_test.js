@@ -339,7 +339,7 @@ function testStaticAssets() {
       /if \(!hasAccessCookie\(\)\) \{\s*goLogin\(slug\);/.test(unlock) &&
       /if \(hasAccessCookie\(\)\) \{\s*e\.preventDefault\(\);/.test(unlock);
     const layout = fs.readFileSync(path.join(ROOT, 'app/layout.tsx'), 'utf8');
-    const cacheBust = layout.includes('person-email-unlock.js?v=9');
+    const cacheBust = layout.includes('person-email-unlock.js?v=10');
     if (!exported || !checksCookie || !checksStorage || !checksRedirect || !shortCircuits || !skipsHydrate || !cookieLogin || !cacheBust) {
       fail(
         'anonymous visitors skip Supabase',
@@ -842,15 +842,16 @@ function testNextAppShell() {
     const loginJs = fs.readFileSync(path.join(ROOT, 'login.js'), 'utf8');
     const loginHtml = fs.readFileSync(path.join(ROOT, 'login.html'), 'utf8');
     const hasLogin = fs.existsSync(path.join(ROOT, 'app/login/route.ts'));
-    const loginNoStore = loginRoute.includes('private, no-store') && cfg.includes("source: '/login'");
+    const loginCached = loginRoute.includes('force-static') && !loginRoute.includes('no-store');
     const oauthReturn = loginJs.includes('function hasOAuthCallback') && loginJs.includes('location.replace');
-    const cacheBust = loginHtml.includes('login.js?v=111');
+    const cacheBust = loginHtml.includes('login.js?v=112');
+    const hashNext = loginJs.includes('hashNext') && loginJs.includes("hashNext.startsWith('/')");
     if (!hasGuides || !hasLogin) {
       fail('next.config keeps guides and login on the old stack', `guides=${hasGuides} loginRoute=${hasLogin}`);
-    } else if (!loginNoStore || !oauthReturn || !cacheBust) {
+    } else if (!loginCached || !oauthReturn || !cacheBust || !hashNext) {
       fail(
         'login return path',
-        `noStore=${loginNoStore} oauthReturn=${oauthReturn} cacheBust=${cacheBust}`
+        `cached=${loginCached} oauthReturn=${oauthReturn} cacheBust=${cacheBust} hashNext=${hashNext}`
       );
     } else {
       pass('login route + fund guide slug rewrites are in place');
@@ -944,7 +945,7 @@ function testNextAppShell() {
       fail('prerendered rows class lock', 'missing inv-dir-row');
     } else if (!rows.includes('inv-email-unlock-btn') && !rows.includes('Not available')) {
       fail('email unlock lock', 'list rows must keep unlock CTA, not raw addresses');
-    } else if (rows.includes('inv-email-unlock-btn') && !rows.includes('href="/login?next=')) {
+    } else if (rows.includes('inv-email-unlock-btn') && !rows.includes('href="/login')) {
       fail('email unlock lock', 'logged-out unlock CTA must be a real /login link');
     } else {
       pass('page-1 payloads: no emails, inv-dir-row + unlock CTA');
