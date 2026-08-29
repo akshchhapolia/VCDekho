@@ -3815,6 +3815,11 @@ body.inv-investor-profile .inv-profile-section {
     padding-right: 10px;
   }
 
+  body.inv-investor-profile .hero-showcase.inv-detail-main,
+  body.inv-person-profile .hero-showcase.inv-detail-main {
+    padding-top: 1rem;
+  }
+
   body.inv-investor-profile .inv-profile-hero-enter,
   body.inv-person-profile .inv-profile-hero-enter {
     transform: none;

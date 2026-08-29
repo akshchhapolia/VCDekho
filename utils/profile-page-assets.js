@@ -10,7 +10,7 @@ const CSS_FILES = [
   '/css/ambient.css?v=98',
   '/css/announcement.css?v=145',
   '/css/directory-list.css?v=145',
-  '/css/directory-profile.css?v=148'
+  '/css/directory-profile.css?v=149'
 ];
 
 const { FONTS_HREF, renderFontPreloads, renderLatinFontFaces } = require('./font-assets');
@@ -85,7 +85,7 @@ const PROFILE_CRITICAL_CSS = [
   '.inv-profile-reveal.is-visible,.inv-profile-ready .inv-profile-hero-enter{opacity:1;transform:none}',
   /* Mweb-only first paint: hide dir widgets + show through thesis; stacked focus divider only on mweb */
   '@media(max-width:768px){.inv-profile-dir-widget{display:none!important}.main-nav:not(.active){position:fixed;right:-100%;display:flex}.main-nav.active,#navigation-bar.active{display:flex!important;right:0}.nav-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;z-index:10050}body.inv-investor-profile #focus.inv-profile-reveal,body.inv-investor-profile #thesis.inv-profile-reveal,body.inv-person-profile #firm-focus.inv-profile-reveal,body.inv-person-profile #firm-thesis.inv-profile-reveal,body.inv-person-profile #firm-activity.inv-profile-reveal{opacity:1;transform:none}.inv-profile-focus-col+.inv-profile-focus-col{margin-top:.85rem;padding-top:.85rem;border-top:1px solid rgba(255,255,255,.1);border-left:none;padding-left:0}}',
-  '@media(min-width:769px){.main-nav{display:flex}.nav-toggle{display:none}.app-container{padding:var(--page-padding)}.inv-profile-sticky-host{width:auto;max-width:none;margin-left:0}.inv-profile-sticky{overflow:visible;flex-wrap:wrap}.inv-profile-focus-col+.inv-profile-focus-col{margin-top:0;padding-top:0;border-top:none}}'
+  '@media(min-width:769px){.main-nav{display:flex}.nav-toggle{display:none}.app-container{padding:var(--page-padding);padding-top:1rem;padding-bottom:0;gap:.75rem}.hero-showcase.inv-detail-main{padding-top:1.25rem;padding-bottom:2.5rem}.inv-profile-sticky-host{width:auto;max-width:none;margin-left:0}.inv-profile-sticky{overflow:visible;flex-wrap:wrap}.inv-profile-focus-col+.inv-profile-focus-col{margin-top:0;padding-top:0;border-top:none}}'
 ].join('');
 
 function renderProfileHeadAssets() {
@@ -167,7 +167,7 @@ function earlyStickyPinScript() {
 }
 
 function profileMobileAsyncCssScript() {
-  return "(function(){if(!window.matchMedia('(max-width:768px)').matches)return;var href='/css/directory-profile.css?v=148';if(document.querySelector('link[href=\"'+href+'\"]'))return;var l=document.createElement('link');l.rel='stylesheet';l.href=href;l.media='print';l.onload=function(){this.media='all'};document.head.appendChild(l);})();";
+  return "(function(){if(!window.matchMedia('(max-width:768px)').matches)return;var href='/css/directory-profile.css?v=149';if(document.querySelector('link[href=\"'+href+'\"]'))return;var l=document.createElement('link');l.rel='stylesheet';l.href=href;l.media='print';l.onload=function(){this.media='all'};document.head.appendChild(l);})();";
 }
 
 module.exports = {
