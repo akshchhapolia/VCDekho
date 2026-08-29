@@ -6,14 +6,14 @@
 const { FONTS_HREF, renderFontPreloads, renderFontLinks, renderLatinFontFaces } = require('./font-assets');
 
 const HOME_CSS = [
-  '/css/base.css?v=147',
+  '/css/base.css?v=148',
   '/css/ambient.css?v=98',
   '/css/hero.css?v=97',
   '/css/announcement.css?v=145'
 ];
 
 const DIRECTORY_CSS = [
-  '/css/base.css?v=147',
+  '/css/base.css?v=148',
   '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
   '/css/announcement.css?v=145',
@@ -33,7 +33,8 @@ const SHARED_CRITICAL = [
   '.nav-toggle span{display:block;width:22px;height:2px;background:#fff}',
   '@media(max-width:768px){.main-nav,#navigation-bar{display:flex;position:fixed;top:0;right:-100%;width:min(85vw,320px);height:100dvh;flex-direction:column;justify-content:center;gap:3rem;z-index:10040;background:#121214;padding:2rem 1.5rem}.main-nav.active,#navigation-bar.active{right:0}.nav-toggle.active,body.nav-open .nav-toggle{position:fixed;top:calc(.65rem + env(safe-area-inset-top,0px));right:1rem;z-index:10050}body.nav-open .site-header{z-index:10045}}',
   '.ambient-bg-wrapper,.home-ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}',
-  '@media(min-width:769px){.main-nav{display:flex}.nav-toggle{display:none}.app-container{padding:var(--page-padding)}}'
+  '@media(min-width:769px){.main-nav{display:flex}.nav-toggle{display:none}.app-container{padding:var(--page-padding)}}',
+  'html.vc-nav-pending .app-container{opacity:0;pointer-events:none}'
 ];
 
 const HOME_CRITICAL_EXTRA = [
@@ -74,7 +75,7 @@ const DIRECTORY_CRITICAL_EXTRA = [
 
 function renderBlockingDirectoryHead() {
   return renderFontLinks().concat([
-    '<link rel="stylesheet" href="/css/base.css?v=147">',
+    '<link rel="stylesheet" href="/css/base.css?v=148">',
     '<link rel="stylesheet" href="/css/hero.css?v=97">',
     '<link rel="stylesheet" href="/css/ambient.css?v=98">',
     '<link rel="stylesheet" href="/css/announcement.css?v=145">',
@@ -84,7 +85,7 @@ function renderBlockingDirectoryHead() {
 
 function renderBlockingHomeHead() {
   return renderFontLinks().concat([
-    '<link rel="stylesheet" href="/css/base.css?v=147">',
+    '<link rel="stylesheet" href="/css/base.css?v=148">',
     '<link rel="stylesheet" href="/css/ambient.css?v=98">',
     '<link rel="stylesheet" href="/css/hero.css?v=97">',
     '<link rel="stylesheet" href="/css/announcement.css?v=145">'

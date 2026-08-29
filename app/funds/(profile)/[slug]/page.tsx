@@ -25,7 +25,7 @@ export default async function FundProfilePage({ params }: { params: Promise<Para
   const data = await loadFundProfile(slug);
   if (!data || data.reserved) notFound();
   return (
-    <div className="app-container">
+    <div className="app-container" key={slug}>
       <SiteHeader pathname={'/funds/' + slug} />
       <div dangerouslySetInnerHTML={{ __html: (data.mainHtml as string) || '' }} />
     </div>

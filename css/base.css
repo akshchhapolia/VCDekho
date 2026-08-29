@@ -536,3 +536,15 @@ body.nav-open {
     }
 }
 
+/* Hide the current page as soon as a profile link is clicked so the
+   directory's first row (A. Balachandran, …) does not linger while
+   the profile document loads. */
+html.vc-nav-pending {
+    cursor: progress;
+}
+
+html.vc-nav-pending .app-container {
+    opacity: 0;
+    pointer-events: none;
+}
+

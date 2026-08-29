@@ -12,6 +12,7 @@ declare global {
     VCProfilePage?: { boot?: () => void };
     VCFundsDir?: { boot?: () => void; destroy?: () => void };
     VCPeopleDir?: { boot?: () => void; destroy?: () => void };
+    VCPersonEmailUnlock?: { initEmailUnlock?: (root?: Element | Document | null) => void };
   }
 }
 
@@ -33,6 +34,9 @@ export default function ClientRuntime() {
     }
     if (path === '/investors' && window.VCPeopleDir && typeof window.VCPeopleDir.boot === 'function') {
       window.VCPeopleDir.boot();
+    }
+    if (window.VCPersonEmailUnlock && typeof window.VCPersonEmailUnlock.initEmailUnlock === 'function') {
+      window.VCPersonEmailUnlock.initEmailUnlock();
     }
     if (window.VCNav && typeof window.VCNav.boot === 'function') window.VCNav.boot();
     // Only close on a real route change. Calling close() on first hydration
@@ -130,7 +134,7 @@ function prefetchVisibleLinks(router: { prefetch: (href: string) => void }, curr
     const css = document.createElement('link');
     css.rel = 'preload';
     css.as = 'style';
-    css.href = '/css/directory-profile.css?v=146';
+    css.href = '/css/directory-profile.css?v=148';
     css.setAttribute('data-vc-prefetch', 'directory-profile.css');
     document.head.appendChild(css);
   }

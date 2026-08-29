@@ -14,7 +14,6 @@ const {
   getUserUnlockMap,
   isPersonEmailUnlocked,
   recordPersonEmailUnlock,
-  sortPeopleByUnlocks,
   getUnlockQuota
 } = require('../utils/person-email-unlocks');
 const { getInvestorBySlug, ensureInvestorDetailExtras } = require('../utils/investors');
@@ -177,10 +176,9 @@ module.exports = async function handler(req, res) {
     } = query;
     const all = filterPeople({ q, companyType, role, stage, sector, thesis, cheque });
     const unlockMap = access.user ? await getUserUnlockMap(access.user.id) : new Map();
-    const sorted = sortPeopleByUnlocks(all, unlockMap);
     const start = access.start;
     const take = Math.min(200, Math.max(1, parseInt(limit, 10) || 100));
-    const page = sorted.slice(start, start + take).map((person) => {
+    const page = all.slice(start, start + take).map((person) => {
       if (!unlockMap.has(person.slug)) return toCard(person);
       const contact = getPersonContact(person.slug);
       return toCard(person, contact ? { email: contact.email } : {});
@@ -193,7 +191,7 @@ module.exports = async function handler(req, res) {
       res.setHeader('Cache-Control', 'private, no-store');
     }
     res.status(200).json({
-      total: sorted.length,
+      total: all.length,
       offset: start,
       limit: take,
       unlockedCount: unlockMap.size,

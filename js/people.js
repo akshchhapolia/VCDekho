@@ -333,8 +333,8 @@
   }
 
   async function directoryFetch(url) {
-    const needsAuth = state.offset > 0;
-    const res = needsAuth
+    const needsAuth = state.offset > 0 || hasSessionCookie();
+    const res = needsAuth && window.VCAuth && window.VCAuth.authFetch
       ? await window.VCAuth.authFetch(url)
       : await fetch(url);
     if (res.status === 401) {
@@ -374,6 +374,17 @@
     return /(?:^|;\s*)vd_access_token=/.test(document.cookie || '');
   }
 
+  function scheduleEmailHydrate() {
+    function run() {
+      if (window.VCPersonEmailUnlock) window.VCPersonEmailUnlock.initEmailUnlock(els.results);
+    }
+    run();
+    requestAnimationFrame(function () {
+      requestAnimationFrame(run);
+    });
+    setTimeout(run, 0);
+  }
+
   function hydrateFromPrerender() {
     const el = document.getElementById('ppl-prerender');
     if (!el) return false;
@@ -382,17 +393,47 @@
       if (!data || !data.prerendered || !Array.isArray(data.people)) return false;
       applyFilterOptions(data.filters);
       state.total = data.total || 0;
-      renderRows(data.people);
       updatePager();
       if (els.results) els.results.setAttribute('aria-busy', 'false');
+      // Keep the SSR rows. Replacing them flashes the first name (A. Balachandran)
+      // and fights React hydration, which then paints the same list again.
+      scheduleEmailHydrate();
       return true;
     } catch (_) {
       return false;
     }
   }
 
+  function patchEmailsInPlace(people) {
+    if (!els.results) return false;
+    const rows = els.results.querySelectorAll('.inv-dir-row');
+    if (!rows.length) return false;
+    const bySlug = {};
+    (people || []).forEach(function (p) {
+      if (p && p.slug) bySlug[p.slug] = p;
+    });
+    rows.forEach(function (row) {
+      const hit = row.querySelector('.inv-dir-row-hit');
+      if (!hit) return;
+      const href = (hit.getAttribute('href') || '').split('?')[0].split('#')[0].replace(/\/$/, '');
+      const slug = decodeURIComponent(href.split('/').pop() || '');
+      const p = bySlug[slug];
+      if (!p || !p.email) return;
+      const cell = row.querySelector('.inv-dir-col-email .inv-dir-cell');
+      if (!cell) return;
+      if (window.VCPersonEmailUnlock && window.VCPersonEmailUnlock.revealedEmailHtml) {
+        cell.innerHTML = window.VCPersonEmailUnlock.revealedEmailHtml(p.email, p.slug, false);
+      } else {
+        cell.textContent = p.email;
+      }
+    });
+    if (window.VCPersonEmailUnlock) window.VCPersonEmailUnlock.initEmailUnlock(els.results);
+    return true;
+  }
+
   async function load(opts) {
     const silent = Boolean(opts && opts.silent);
+    const keepRows = Boolean(opts && opts.keepRows);
     if (!silent) {
       renderSkeleton(8);
       if (!state.total) els.count.textContent = 'Fetching investors';
@@ -418,6 +459,11 @@
     applyFilterOptions(data.filters);
 
     state.total = data.total || 0;
+    if (keepRows && patchEmailsInPlace(data.people || [])) {
+      updatePager();
+      if (els.results) els.results.setAttribute('aria-busy', 'false');
+      return;
+    }
     renderRows(data.people || []);
     updatePager();
     if (els.results) els.results.setAttribute('aria-busy', 'false');
@@ -542,16 +588,12 @@
   }
 
   if (isDefaultFirstPage() && hydrateFromPrerender()) {
-    // Signed-in users get unlocked emails sorted first — refresh behind the pre-rendered paint.
-    if (hasSessionCookie()) load({ silent: true }).catch(console.error);
+    // Fill in already-unlocked emails without replacing or re-sorting the rows.
+    if (hasSessionCookie()) load({ silent: true, keepRows: true }).catch(console.error);
+    else scheduleEmailHydrate();
   } else {
     resetOffsetAndLoad();
   }
-
-  document.addEventListener('vc:person-email-unlocked', function () {
-    state.offset = 0;
-    load();
-  }, onDoc);
   }
 
   global.VCPeopleDir = {

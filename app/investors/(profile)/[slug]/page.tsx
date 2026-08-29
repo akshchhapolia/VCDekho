@@ -26,7 +26,7 @@ export default async function PersonProfilePage({ params }: { params: Promise<Pa
   if (!data) notFound();
   if (data.redirectTo) redirect(data.redirectTo as string);
   return (
-    <div className="app-container">
+    <div className="app-container" key={slug}>
       <SiteHeader pathname={'/investors/' + slug} />
       <div dangerouslySetInnerHTML={{ __html: (data.mainHtml as string) || '' }} />
     </div>

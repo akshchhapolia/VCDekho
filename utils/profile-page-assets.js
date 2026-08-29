@@ -5,12 +5,12 @@
  */
 
 const CSS_FILES = [
-  '/css/base.css?v=147',
+  '/css/base.css?v=148',
   '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
   '/css/announcement.css?v=145',
   '/css/directory-list.css?v=145',
-  '/css/directory-profile.css?v=146'
+  '/css/directory-profile.css?v=148'
 ];
 
 const { FONTS_HREF, renderFontPreloads, renderLatinFontFaces } = require('./font-assets');
@@ -45,6 +45,7 @@ const PROFILE_CRITICAL_CSS = [
   '.inv-profile-hero-inner{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between;gap:1.35rem}',
   '.inv-profile-hero-copy{position:relative;z-index:1}',
   '.inv-profile-logo{display:block;width:56px;height:56px;border-radius:14px;object-fit:contain;margin-bottom:1rem;background:rgba(255,255,255,.96);border:1.5px solid var(--color-accent-orange);padding:6px;box-sizing:border-box}',
+  '.inv-profile-logo-fallback{display:flex;align-items:center;justify-content:center;width:56px;height:56px;margin-bottom:1rem;border-radius:14px;box-sizing:border-box;border:1.5px solid var(--color-accent-orange);background:rgba(237,87,47,.16);color:#ffb89c;font-family:var(--font-sans);font-size:1rem;font-weight:700;letter-spacing:.04em;line-height:1}',
   '.inv-profile-type{display:inline-block;margin-bottom:.85rem;padding:.35rem .7rem;border-radius:999px;border:1px solid rgba(237,87,47,.4);background:rgba(237,87,47,.14);color:#ffb89c;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}',
   '.inv-profile-active-badge{display:inline-flex;align-items:center;gap:.4rem;margin:0 0 .85rem .5rem;padding:.35rem .7rem;border-radius:999px;border:1px solid rgba(80,200,120,.4);background:rgba(80,200,120,.12);color:#a8f0c0;font-size:.72rem;font-weight:700;letter-spacing:.04em}',
   '.inv-profile-active-dot{width:6px;height:6px;border-radius:50%;background:#6be895;display:inline-block}',
@@ -166,7 +167,7 @@ function earlyStickyPinScript() {
 }
 
 function profileMobileAsyncCssScript() {
-  return "(function(){if(!window.matchMedia('(max-width:768px)').matches)return;var href='/css/directory-profile.css?v=146';if(document.querySelector('link[href=\"'+href+'\"]'))return;var l=document.createElement('link');l.rel='stylesheet';l.href=href;l.media='print';l.onload=function(){this.media='all'};document.head.appendChild(l);})();";
+  return "(function(){if(!window.matchMedia('(max-width:768px)').matches)return;var href='/css/directory-profile.css?v=148';if(document.querySelector('link[href=\"'+href+'\"]'))return;var l=document.createElement('link');l.rel='stylesheet';l.href=href;l.media='print';l.onload=function(){this.media='all'};document.head.appendChild(l);})();";
 }
 
 module.exports = {

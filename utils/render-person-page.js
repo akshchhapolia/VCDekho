@@ -280,7 +280,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
       ? ('<img class="inv-profile-logo" src="' + escapeHtml(person.photo) + '" alt="" width="56" height="56" loading="eager" style="border-radius:50%;object-fit:cover;">')
       : person.companyLogo
         ? ('<img class="inv-profile-logo" src="' + escapeHtml(person.companyLogo) + '" alt="" width="56" height="56" loading="eager">')
-        : ('<span class="inv-dir-logo-fallback is-visible" aria-hidden="true" style="display:inline-flex;margin-bottom:14px;">' + escapeHtml(initialsFor(person.name)) + '</span>'),
+        : ('<span class="inv-profile-logo-fallback" aria-hidden="true">' + escapeHtml(initialsFor(person.name)) + '</span>'),
     '<span class="inv-profile-type">' + escapeHtml(person.title || 'Investor') + '</span>',
     '<h1 class="inv-profile-title">' + escapeHtml(person.name) + '</h1>',
     '<p class="inv-profile-hero-lead">' + escapeHtml(heroLead) + '</p>',

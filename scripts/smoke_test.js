@@ -590,7 +590,8 @@ function testProfileClsGuards() {
       ['hero meta', '.inv-profile-hero-meta{'],
       ['active badge', '.inv-profile-active-badge{'],
       ['cta pills', 'border-radius:999px'],
-      ['latin faces', 'plus-jakarta-sans-latin.woff2']
+      ['latin faces', 'plus-jakarta-sans-latin.woff2'],
+      ['initials mark', '.inv-profile-logo-fallback{']
     ];
     const missing = need.filter(([, needle]) => !critical.includes(needle)).map(([n]) => n);
     if (missing.length) {

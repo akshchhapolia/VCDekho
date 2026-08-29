@@ -3524,6 +3524,25 @@ body.inv-people-dir .inv-dir-col-email .inv-dir-cell:has(.inv-email-revealed) {
   display: block;
 }
 
+.inv-profile-logo-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 1rem;
+  border-radius: 14px;
+  box-sizing: border-box;
+  border: 1.5px solid var(--color-accent-orange);
+  background: rgba(237, 87, 47, 0.16);
+  color: #ffb89c;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
 .inv-profile-type {
   display: inline-block;
   margin-bottom: 0.85rem;
@@ -3699,6 +3718,8 @@ body.inv-investor-profile .hero-showcase.inv-detail-main {
   overflow: visible;
   background: transparent !important;
   box-shadow: none;
+  padding-top: 1.25rem;
+  padding-bottom: 2.5rem;
 }
 
 body.inv-investor-profile .ambient-bg-wrapper {
@@ -3721,7 +3742,8 @@ body.inv-investor-profile .site-header {
 }
 
 body.inv-investor-profile .app-container {
-  padding-top: 0;
+  padding-top: 1rem;
+  padding-bottom: 0;
   gap: 0.75rem;
 }
 
@@ -3738,6 +3760,8 @@ body.inv-person-profile .hero-showcase.inv-detail-main {
   position: relative;
   overflow: visible;
   background: transparent !important;
+  padding-top: 1.25rem;
+  padding-bottom: 2.5rem;
 }
 
 body.inv-person-profile .inv-profile-section {
@@ -3754,12 +3778,13 @@ body.inv-person-profile .site-header {
   top: 0;
   z-index: 100;
   background: transparent;
-  margin: 0 0 0.75rem;
+  margin: 0;
 }
 
 body.inv-person-profile .app-container {
-  padding-top: 0;
-  gap: 0;
+  padding-top: 1rem;
+  padding-bottom: 0;
+  gap: 0.75rem;
 }
 
 body.inv-investor-profile .inv-profile-section {
@@ -3779,6 +3804,7 @@ body.inv-investor-profile .inv-profile-section {
    */
   body.inv-investor-profile .app-container,
   body.inv-person-profile .app-container {
+    padding-top: 0.85rem;
     padding-left: 0.55rem;
     padding-right: 0.55rem;
   }

@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           crossOrigin="anonymous"
         />
         <link rel="stylesheet" href="/css/fonts.css?v=1" />
-        <link rel="stylesheet" href="/css/base.css?v=147" />
+        <link rel="stylesheet" href="/css/base.css?v=148" />
         <link rel="stylesheet" href="/css/hero.css?v=97" />
         <link rel="stylesheet" href="/css/ambient.css?v=98" />
         <link rel="stylesheet" href="/css/announcement.css?v=145" />
@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body suppressHydrationWarning>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){var p=location.pathname.replace(/\\/$/, '')||'/';var html='scrollable-page';var body='scrollable-page';if(p==='/'){html='home-page has-announcement';body='has-announcement home-page';document.documentElement.style.background='#000';}else if(p==='/investors'){body='scrollable-page inv-page inv-dir-page inv-people-dir';}else if(p==='/funds'){body='scrollable-page inv-page inv-dir-page';}else if(/^\\/investors\\/[^/]+$/.test(p)){body='scrollable-page inv-page inv-person-profile inv-profile-ready';}else if(/^\\/funds\\/[^/]+$/.test(p)&&p!=='/funds/stages'&&p!=='/funds/themes'&&p!=='/funds/sectors'){body='scrollable-page inv-page inv-investor-profile inv-profile-ready';}document.documentElement.className=html;document.body.className=body;})();`
+            __html: `(function(){var p=location.pathname.replace(/\\/$/, '')||'/';var html='scrollable-page';var body='scrollable-page';if(p==='/'){html='home-page has-announcement';body='has-announcement home-page';document.documentElement.style.background='#000';}else if(p==='/investors'){body='scrollable-page inv-page inv-dir-page inv-people-dir';}else if(p==='/funds'){body='scrollable-page inv-page inv-dir-page';}else if(/^\\/investors\\/[^/]+$/.test(p)){body='scrollable-page inv-page inv-person-profile inv-profile-ready';}else if(/^\\/funds\\/[^/]+$/.test(p)&&p!=='/funds/stages'&&p!=='/funds/themes'&&p!=='/funds/sectors'){body='scrollable-page inv-page inv-investor-profile inv-profile-ready';}document.documentElement.className=html;document.body.className=body;function isProfilePath(path){return /^\\/investors\\/[^/]+$/.test(path)||(/^\\/funds\\/[^/]+$/.test(path)&&path!=='/funds/stages'&&path!=='/funds/themes'&&path!=='/funds/sectors');}document.addEventListener('click',function(e){if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;var t=e.target;if(!t||!t.closest)return;var a=t.closest('a');if(!a||a.getAttribute('target')==='_blank'||a.hasAttribute('download'))return;var href=a.getAttribute('href');if(!href||href.charAt(0)==='#'||href.indexOf('mailto:')===0)return;var u;try{u=new URL(href,location.origin);}catch(err){return;}if(u.origin!==location.origin)return;var next=u.pathname.replace(/\\/$/, '')||'/';if(isProfilePath(next)&&next!==p)document.documentElement.classList.add('vc-nav-pending');},true);window.addEventListener('pageshow',function(){document.documentElement.classList.remove('vc-nav-pending');});})();`
           }}
         />
         <script dangerouslySetInnerHTML={{ __html: inlineDirectoryFiltersScript() }} />
