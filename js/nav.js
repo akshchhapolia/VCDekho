@@ -1,161 +1,145 @@
-(function () {
-  function initNav() {
-    var menuToggle = document.getElementById('menu-toggle');
-    var mainNav = document.getElementById('navigation-bar');
-    if (!menuToggle || !mainNav) return;
-    if (menuToggle.getAttribute('data-nav-ready') === '1') return;
-    menuToggle.setAttribute('data-nav-ready', '1');
+(function (global) {
+  var mobileMq = global.matchMedia('(max-width: 768px)');
+  var bound = false;
+  var togglePlaceholder = null;
 
-    var header = menuToggle.closest('.site-header') || menuToggle.parentNode;
-    var mobileMq = window.matchMedia('(max-width: 768px)');
-    var togglePlaceholder = null;
-
-    var backdrop = document.getElementById('nav-backdrop');
-    if (!backdrop) {
-      backdrop = document.createElement('button');
-      backdrop.type = 'button';
-      backdrop.id = 'nav-backdrop';
-      backdrop.className = 'nav-backdrop';
-      backdrop.hidden = true;
-      backdrop.setAttribute('aria-label', 'Close menu');
-      backdrop.setAttribute('aria-hidden', 'true');
-    }
-
-    function makePlaceholder() {
-      var el = document.createElement('span');
-      el.className = 'nav-toggle-spacer';
-      el.setAttribute('aria-hidden', 'true');
-      return el;
-    }
-
-    function restoreToggleToHeader() {
-      if (!header) return;
-      if (togglePlaceholder && togglePlaceholder.parentNode) {
-        togglePlaceholder.parentNode.replaceChild(menuToggle, togglePlaceholder);
-        togglePlaceholder = null;
-      } else if (menuToggle.parentNode !== header) {
-        header.appendChild(menuToggle);
-      }
-      // Never leave a stray spacer beside the toggle (that shifts it left).
-      header.querySelectorAll('.nav-toggle-spacer').forEach(function (node) {
-        if (node.parentNode) node.parentNode.removeChild(node);
-      });
-    }
-
-    function setOpen(open) {
-      menuToggle.classList.toggle('active', open);
-      mainNav.classList.toggle('active', open);
-      menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      backdrop.hidden = !open;
-      backdrop.setAttribute('aria-hidden', open ? 'false' : 'true');
-      document.body.classList.toggle('nav-open', open);
-
-      if (!mobileMq.matches) return;
-
-      if (open) {
-        // Swap toggle for a same-size spacer so the header layout doesn't jump,
-        // then portal drawer + toggle to <body> above stacking contexts.
-        if (menuToggle.parentNode === header) {
-          togglePlaceholder = makePlaceholder();
-          header.replaceChild(togglePlaceholder, menuToggle);
-        } else if (!togglePlaceholder) {
-          togglePlaceholder = makePlaceholder();
-          header.appendChild(togglePlaceholder);
-        }
-        document.body.appendChild(backdrop);
-        document.body.appendChild(mainNav);
-        document.body.appendChild(menuToggle);
-      } else {
-        restoreToggleToHeader();
-      }
-    }
-
-    function placeForViewport() {
-      if (mobileMq.matches) {
-        document.body.appendChild(backdrop);
-        document.body.appendChild(mainNav);
-        if (!menuToggle.classList.contains('active')) {
-          restoreToggleToHeader();
-        }
-      } else {
-        setOpen(false);
-        if (backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
-        if (header && mainNav.parentNode !== header) header.appendChild(mainNav);
-        restoreToggleToHeader();
-      }
-    }
-
-    menuToggle.setAttribute('aria-expanded', 'false');
-    menuToggle.setAttribute('aria-controls', 'navigation-bar');
-    placeForViewport();
-
-    if (typeof mobileMq.addEventListener === 'function') {
-      mobileMq.addEventListener('change', placeForViewport);
-    } else if (typeof mobileMq.addListener === 'function') {
-      mobileMq.addListener(placeForViewport);
-    }
-
-    menuToggle.addEventListener('click', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      if (!mobileMq.matches) return;
-      setOpen(!mainNav.classList.contains('active'));
-    });
-
-    backdrop.addEventListener('click', function (e) {
-      e.preventDefault();
-      setOpen(false);
-    });
-
-    mainNav.querySelectorAll('a.nav-link').forEach(function (link) {
-      link.addEventListener('click', function (e) {
-        var href = link.getAttribute('href');
-        if (window.VCAnalytics) {
-          window.VCAnalytics.track('nav_click', {
-            href: href || '',
-            label: (link.textContent || '').trim().slice(0, 40)
-          });
-        }
-        if (!href || href === '#') {
-          setOpen(false);
-          return;
-        }
-        if (!mobileMq.matches) return;
-        var path = (href || '').split('?')[0];
-        var isApp =
-          path === '/' ||
-          path === '/investors' ||
-          path === '/funds' ||
-          /^\/investors\/[^/]+$/.test(path) ||
-          (/^\/funds\/[^/]+$/.test(path) &&
-            path !== '/funds/stages' &&
-            path !== '/funds/themes' &&
-            path !== '/funds/sectors');
-        setOpen(false);
-        if (isApp) return;
-        e.preventDefault();
-        if (window.VCHero && typeof window.VCHero.release === 'function') {
-          window.VCHero.release();
-        }
-        window.location.assign(href);
-      });
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') setOpen(false);
-    });
-
-    window.VCNav = {
-      close: function () {
-        setOpen(false);
-      },
-      boot: initNav
+  function els() {
+    return {
+      toggle: document.getElementById('menu-toggle'),
+      nav: document.getElementById('navigation-bar'),
+      header: document.querySelector('.site-header')
     };
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initNav);
-  } else {
-    initNav();
+  function ensureBackdrop() {
+    var backdrop = document.getElementById('nav-backdrop');
+    if (backdrop) return backdrop;
+    backdrop = document.createElement('button');
+    backdrop.type = 'button';
+    backdrop.id = 'nav-backdrop';
+    backdrop.className = 'nav-backdrop';
+    backdrop.hidden = true;
+    backdrop.setAttribute('aria-label', 'Close menu');
+    backdrop.setAttribute('aria-hidden', 'true');
+    return backdrop;
   }
-})();
+
+  function restoreToggle(toggle, header) {
+    if (!toggle || !header) return;
+    if (togglePlaceholder && togglePlaceholder.parentNode) {
+      togglePlaceholder.parentNode.replaceChild(toggle, togglePlaceholder);
+      togglePlaceholder = null;
+    } else if (toggle.parentNode !== header) {
+      header.appendChild(toggle);
+    }
+    header.querySelectorAll('.nav-toggle-spacer').forEach(function (node) {
+      if (node.parentNode) node.parentNode.removeChild(node);
+    });
+  }
+
+  function restoreNav(nav, header) {
+    if (!nav || !header) return;
+    if (nav.parentNode !== header) header.appendChild(nav);
+  }
+
+  function isOpen() {
+    var nav = els().nav;
+    return Boolean(nav && nav.classList.contains('active'));
+  }
+
+  function setOpen(open) {
+    var nodes = els();
+    var toggle = nodes.toggle;
+    var nav = nodes.nav;
+    var header = nodes.header;
+    if (!toggle || !nav) return;
+
+    toggle.classList.toggle('active', open);
+    nav.classList.toggle('active', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.classList.toggle('nav-open', open);
+
+    var backdrop = ensureBackdrop();
+    backdrop.hidden = !open;
+    backdrop.setAttribute('aria-hidden', open ? 'false' : 'true');
+
+    if (!mobileMq.matches) {
+      restoreNav(nav, header);
+      restoreToggle(toggle, header);
+      if (backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
+      return;
+    }
+
+    if (open) {
+      if (header && toggle.parentNode === header) {
+        togglePlaceholder = document.createElement('span');
+        togglePlaceholder.className = 'nav-toggle-spacer';
+        togglePlaceholder.setAttribute('aria-hidden', 'true');
+        header.replaceChild(togglePlaceholder, toggle);
+      }
+      document.body.appendChild(backdrop);
+      document.body.appendChild(nav);
+      document.body.appendChild(toggle);
+    } else {
+      restoreNav(nav, header);
+      restoreToggle(toggle, header);
+    }
+  }
+
+  function onDocumentClick(e) {
+    var target = e.target;
+    if (!target || !target.closest) return;
+
+    if (target.closest('#menu-toggle')) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (!mobileMq.matches) return;
+      setOpen(!isOpen());
+      return;
+    }
+
+    if (target.closest('#nav-backdrop')) {
+      e.preventDefault();
+      setOpen(false);
+      return;
+    }
+
+    var link = target.closest('#navigation-bar a.nav-link');
+    if (link) {
+      if (!mobileMq.matches) return;
+      setOpen(false);
+    }
+  }
+
+  function onKeydown(e) {
+    if (e.key === 'Escape') setOpen(false);
+  }
+
+  function onViewportChange() {
+    if (!mobileMq.matches) setOpen(false);
+  }
+
+  function boot() {
+    var nodes = els();
+    if (nodes.toggle) nodes.toggle.setAttribute('aria-controls', 'navigation-bar');
+    if (!bound) {
+      bound = true;
+      document.addEventListener('click', onDocumentClick, true);
+      document.addEventListener('keydown', onKeydown);
+      if (typeof mobileMq.addEventListener === 'function') {
+        mobileMq.addEventListener('change', onViewportChange);
+      } else if (typeof mobileMq.addListener === 'function') {
+        mobileMq.addListener(onViewportChange);
+      }
+    }
+  }
+
+  global.VCNav = {
+    close: function () {
+      setOpen(false);
+    },
+    boot: boot
+  };
+
+  boot();
+})(window);

@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="stylesheet" href="/css/hero.css?v=97" />
         <link rel="stylesheet" href="/css/ambient.css?v=98" />
         <link rel="stylesheet" href="/css/announcement.css?v=145" />
-        <Script src="/js/nav.js?v=102" strategy="beforeInteractive" />
+        <Script src="/js/nav.js?v=103" strategy="beforeInteractive" />
         <Script src="/js/auth.js?v=2" strategy="beforeInteractive" />
         <Script src="/js/directory-session.js?v=4" strategy="beforeInteractive" />
         <Script src="/js/site-paths.js?v=1" strategy="beforeInteractive" />
