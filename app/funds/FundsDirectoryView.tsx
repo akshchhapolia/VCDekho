@@ -13,6 +13,9 @@ export default function FundsDirectoryView({
   rowsHtml: string;
   bootstrap: unknown;
 }) {
+  const pageSize = 15;
+  const pageCount = Math.max(1, Math.ceil(Number(total) / pageSize) || 1);
+  const nextDisabled = Number(total) <= pageSize;
   return (
     <>
       <div className="app-container">
@@ -104,8 +107,15 @@ export default function FundsDirectoryView({
                     </span>
                     <span>Previous</span>
                   </button>
-                  <p className="inv-dir-pager-status" id="inv-page-label" aria-live="polite"></p>
-                  <button type="button" className="inv-dir-pager-btn" id="inv-next" disabled>
+                  <p className="inv-dir-pager-status" id="inv-page-label" aria-live="polite">
+                    <span className="inv-dir-pager-kicker">Page</span>
+                    <span className="inv-dir-pager-current">1</span>
+                    <span className="inv-dir-pager-sep" aria-hidden="true">
+                      /
+                    </span>
+                    <span className="inv-dir-pager-total">{pageCount}</span>
+                  </p>
+                  <button type="button" className="inv-dir-pager-btn" id="inv-next" disabled={nextDisabled}>
                     <span>Next</span>
                     <span className="inv-dir-pager-arrow" aria-hidden="true">
                       →

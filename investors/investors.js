@@ -1,4 +1,41 @@
 (function (global) {
+  function hasDirSession() {
+    if (global.VCAuth && global.VCAuth.hasStoredSession) return global.VCAuth.hasStoredSession();
+    return /(?:^|;\s*)vd_access_token=/.test(document.cookie || '');
+  }
+
+  function loginForPager() {
+    var next = global.location.pathname + global.location.search;
+    if (global.VCAuth && global.VCAuth.loginUrl) {
+      global.location.assign(global.VCAuth.loginUrl(next));
+      return;
+    }
+    global.location.assign('/login?next=' + encodeURIComponent(next));
+  }
+
+  var fundsPagerGo = null;
+  var fundsPagerPending = null;
+
+  function onFundsPagerClick(e) {
+    var btn = e.target && e.target.closest ? e.target.closest('#inv-next, #inv-prev') : null;
+    if (!btn || btn.disabled) return;
+    var dir = btn.id === 'inv-next' ? 1 : -1;
+    if (fundsPagerGo) {
+      fundsPagerGo(dir);
+      return;
+    }
+    if (dir > 0 && !hasDirSession()) {
+      loginForPager();
+      return;
+    }
+    fundsPagerPending = dir;
+  }
+
+  if (typeof document !== 'undefined' && !document.documentElement.dataset.vcInvPager) {
+    document.documentElement.dataset.vcInvPager = '1';
+    document.addEventListener('click', onFundsPagerClick, true);
+  }
+
   function bootFundsDirectory() {
     var root = document.getElementById('inv-results');
     if (!root) return;
@@ -424,14 +461,16 @@
   }
 
   async function directoryFetch(url) {
+    if (state.offset > 0 && !hasDirSession()) {
+      loginForPager();
+      return null;
+    }
     const needsAuth = state.offset > 0;
     const res = needsAuth
       ? await window.VCAuth.authFetch(url)
       : await fetch(url);
     if (res.status === 401) {
-      window.location.replace(
-        window.VCAuth.loginUrl(window.location.pathname + window.location.search)
-      );
+      loginForPager();
       return null;
     }
     return res;
@@ -571,14 +610,26 @@
     resetOffsetAndLoad();
   });
 
-  els.prev.addEventListener('click', () => {
-    state.offset = Math.max(0, state.offset - PAGE_SIZE);
+  function goPager(dir) {
+    if (dir < 0) {
+      if (state.offset <= 0) return;
+      state.offset = Math.max(0, state.offset - PAGE_SIZE);
+    } else {
+      if (state.offset + PAGE_SIZE >= state.total) return;
+      if (!hasDirSession()) {
+        loginForPager();
+        return;
+      }
+      state.offset = state.offset + PAGE_SIZE;
+    }
     load().catch(console.error);
-  });
-  els.next.addEventListener('click', () => {
-    state.offset = state.offset + PAGE_SIZE;
-    load().catch(console.error);
-  });
+  }
+  fundsPagerGo = goPager;
+  if (fundsPagerPending) {
+    var queued = fundsPagerPending;
+    fundsPagerPending = null;
+    goPager(queued);
+  }
 
   if (els.filtersToggle) {
     els.filtersToggle.addEventListener('click', () => {
@@ -633,8 +684,12 @@
 
   global.VCFundsDir = {
     boot: bootFundsDirectory,
+    goPager: function (dir) {
+      if (fundsPagerGo) fundsPagerGo(dir);
+    },
     destroy: function () {
       if (global.__vcInvAc) global.__vcInvAc.abort();
+      fundsPagerGo = null;
     }
   };
 

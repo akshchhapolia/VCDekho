@@ -14,6 +14,9 @@ export default function PeopleDirectoryPage({
   bootstrap: unknown;
 }) {
   const countLabel = Number(total).toLocaleString('en-IN') + ' investors';
+  const pageSize = 15;
+  const pageCount = Math.max(1, Math.ceil(Number(total) / pageSize) || 1);
+  const nextDisabled = Number(total) <= pageSize;
   return (
     <>
       <div className="app-container">
@@ -104,8 +107,15 @@ export default function PeopleDirectoryPage({
                     </span>
                     <span>Previous</span>
                   </button>
-                  <p className="inv-dir-pager-status" id="ppl-page-label" aria-live="polite"></p>
-                  <button type="button" className="inv-dir-pager-btn" id="ppl-next" disabled>
+                  <p className="inv-dir-pager-status" id="ppl-page-label" aria-live="polite">
+                    <span className="inv-dir-pager-kicker">Page</span>
+                    <span className="inv-dir-pager-current">1</span>
+                    <span className="inv-dir-pager-sep" aria-hidden="true">
+                      /
+                    </span>
+                    <span className="inv-dir-pager-total">{pageCount}</span>
+                  </p>
+                  <button type="button" className="inv-dir-pager-btn" id="ppl-next" disabled={nextDisabled}>
                     <span>Next</span>
                     <span className="inv-dir-pager-arrow" aria-hidden="true">
                       →

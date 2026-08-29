@@ -1,4 +1,41 @@
 (function (global) {
+  function hasDirSession() {
+    if (global.VCAuth && global.VCAuth.hasStoredSession) return global.VCAuth.hasStoredSession();
+    return /(?:^|;\s*)vd_access_token=/.test(document.cookie || '');
+  }
+
+  function loginForPager() {
+    var next = global.location.pathname + global.location.search;
+    if (global.VCAuth && global.VCAuth.loginUrl) {
+      global.location.assign(global.VCAuth.loginUrl(next));
+      return;
+    }
+    global.location.assign('/login?next=' + encodeURIComponent(next));
+  }
+
+  var peoplePagerGo = null;
+  var peoplePagerPending = null;
+
+  function onPeoplePagerClick(e) {
+    var btn = e.target && e.target.closest ? e.target.closest('#ppl-next, #ppl-prev') : null;
+    if (!btn || btn.disabled) return;
+    var dir = btn.id === 'ppl-next' ? 1 : -1;
+    if (peoplePagerGo) {
+      peoplePagerGo(dir);
+      return;
+    }
+    if (dir > 0 && !hasDirSession()) {
+      loginForPager();
+      return;
+    }
+    peoplePagerPending = dir;
+  }
+
+  if (typeof document !== 'undefined' && !document.documentElement.dataset.vcPplPager) {
+    document.documentElement.dataset.vcPplPager = '1';
+    document.addEventListener('click', onPeoplePagerClick, true);
+  }
+
   function bootPeopleDirectory() {
     var root = document.getElementById('ppl-results');
     if (!root) return;
@@ -352,6 +389,10 @@
   }
 
   async function directoryFetch(url) {
+    if (state.offset > 0 && !isSignedIn()) {
+      loginForPager();
+      return null;
+    }
     const signedIn = isSignedIn();
     const needsAuth = state.offset > 0 || signedIn;
     const res = needsAuth && window.VCAuth && window.VCAuth.authFetch
@@ -360,9 +401,7 @@
     if (res.status === 401) {
       // Page 1 is public; a stale cookie must not kick the user to login.
       if (state.offset > 0) {
-        window.location.replace(
-          window.VCAuth.loginUrl(window.location.pathname + window.location.search)
-        );
+        loginForPager();
       }
       return null;
     }
@@ -553,14 +592,26 @@
     resetOffsetAndLoad();
   });
 
-  els.prev.addEventListener('click', () => {
-    state.offset = Math.max(0, state.offset - PAGE_SIZE);
+  function goPager(dir) {
+    if (dir < 0) {
+      if (state.offset <= 0) return;
+      state.offset = Math.max(0, state.offset - PAGE_SIZE);
+    } else {
+      if (state.offset + PAGE_SIZE >= state.total) return;
+      if (!isSignedIn()) {
+        loginForPager();
+        return;
+      }
+      state.offset = state.offset + PAGE_SIZE;
+    }
     load().catch(console.error);
-  });
-  els.next.addEventListener('click', () => {
-    state.offset = state.offset + PAGE_SIZE;
-    load().catch(console.error);
-  });
+  }
+  peoplePagerGo = goPager;
+  if (peoplePagerPending) {
+    var queued = peoplePagerPending;
+    peoplePagerPending = null;
+    goPager(queued);
+  }
 
   if (els.filtersToggle) {
     els.filtersToggle.addEventListener('click', () => {
@@ -634,8 +685,12 @@
 
   global.VCPeopleDir = {
     boot: bootPeopleDirectory,
+    goPager: function (dir) {
+      if (peoplePagerGo) peoplePagerGo(dir);
+    },
     destroy: function () {
       if (global.__vcPplAc) global.__vcPplAc.abort();
+      peoplePagerGo = null;
     }
   };
 
