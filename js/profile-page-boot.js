@@ -1,5 +1,4 @@
 (function (global) {
-  var listenersBound = false;
   var revealObserver = null;
 
   function isProfilePage() {
@@ -45,11 +44,10 @@
     var nav = document.getElementById('inv-profile-sticky');
     if (!nav) return;
 
-    if (listenersBound) {
-      if (typeof global.VCProfileStickyPin === 'function') global.VCProfileStickyPin();
-      return;
-    }
-    listenersBound = true;
+    if (typeof global.VCProfileStickyPin === 'function') global.VCProfileStickyPin();
+
+    if (nav.getAttribute('data-vc-sticky-bound') === '1') return;
+    nav.setAttribute('data-vc-sticky-bound', '1');
 
     var lastActive = '';
 

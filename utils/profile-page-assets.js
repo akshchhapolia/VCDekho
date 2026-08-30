@@ -10,7 +10,7 @@ const CSS_FILES = [
   '/css/ambient.css?v=98',
   '/css/announcement.css?v=145',
   '/css/directory-list.css?v=148',
-  '/css/directory-profile.css?v=151'
+  '/css/directory-profile.css?v=152'
 ];
 
 const { FONTS_HREF, renderFontPreloads, renderLatinFontFaces } = require('./font-assets');
@@ -63,7 +63,7 @@ const PROFILE_CRITICAL_CSS = [
   '.inv-profile-sticky-host{width:100vw;max-width:100vw;margin-left:calc(50% - 50vw)}',
   '.inv-profile-sticky{display:flex;flex-wrap:nowrap;justify-content:flex-start;gap:.15rem 1rem;overflow-x:auto;margin:0 0 1rem;padding:.75rem max(1rem,env(safe-area-inset-left)) .65rem;border-bottom:1px solid rgba(255,255,255,.1);-webkit-overflow-scrolling:touch;scrollbar-width:none;position:relative;z-index:8;box-sizing:border-box}',
   /* Mweb: pin styles in critical CSS so sticky works before async directory.css */
-  '@media(max-width:768px){.inv-profile-sticky.is-pinned{position:fixed!important;top:env(safe-area-inset-top,0);left:0!important;right:0!important;width:100%!important;max-width:100vw!important;z-index:90;margin:0;padding:.75rem max(1rem,env(safe-area-inset-left)) .65rem max(1rem,env(safe-area-inset-right));background:rgba(11,11,13,.92);border-bottom:1px solid rgba(255,255,255,.1);box-shadow:0 8px 24px rgba(0,0,0,.35)}}',
+  '@media(max-width:768px){.inv-profile-sticky.is-pinned{position:fixed!important;top:calc(50px + env(safe-area-inset-top,0px));left:0!important;right:0!important;width:100%!important;max-width:100vw!important;z-index:90;margin:0;padding:.75rem max(1rem,env(safe-area-inset-left)) .65rem max(1rem,env(safe-area-inset-right));background:rgba(11,11,13,.92);border-bottom:1px solid rgba(255,255,255,.1);box-shadow:0 8px 24px rgba(0,0,0,.35)}}',
   '.inv-profile-sticky a{flex:0 0 auto;color:rgba(255,255,255,.5);font-size:.82rem;font-weight:650;text-decoration:none;white-space:nowrap;padding:.45rem .35rem .6rem}',
   '.inv-profile-sticky a.is-active{color:#fff}',
   '.inv-profile-sticky a.is-active::after{content:"";position:absolute;left:.35rem;right:.35rem;bottom:.2rem;height:2px;background:var(--color-accent-orange);border-radius:2px}',
@@ -151,6 +151,7 @@ function earlyStickyPinScript() {
     'if(!mweb)return;',
     'var y=window.scrollY||window.pageYOffset;',
     'var top=host.getBoundingClientRect().top+y;',
+    'if(top<80){nav.classList.remove("is-pinned");host.style.minHeight="";nav.style.left="";nav.style.width="";return;}',
     'if(y>=top-1){',
     'nav.classList.add("is-pinned");',
     'host.style.minHeight=(nav.offsetHeight||48)+"px";',
@@ -170,7 +171,7 @@ function earlyStickyPinScript() {
 }
 
 function profileMobileAsyncCssScript() {
-  return "(function(){var href='/css/directory-profile.css?v=151';var existing=document.querySelector('link[href=\"'+href+'\"]');if(existing){existing.media='all';existing.onload=null;return;}var l=document.createElement('link');l.rel='stylesheet';l.href=href;document.head.appendChild(l);})();";
+  return "(function(){var href='/css/directory-profile.css?v=152';var existing=document.querySelector('link[href=\"'+href+'\"]');if(existing){existing.media='all';existing.onload=null;return;}var l=document.createElement('link');l.rel='stylesheet';l.href=href;document.head.appendChild(l);})();";
 }
 
 module.exports = {

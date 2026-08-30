@@ -10,6 +10,7 @@ declare global {
     VCDirectorySession?: { wireNavAuth?: () => void };
     VCHero?: { release?: () => void };
     VCProfilePage?: { boot?: () => void };
+    VCProfileSticky?: { boot?: () => void; pin?: () => void };
     VCFundsDir?: { boot?: () => void; destroy?: () => void };
     VCPeopleDir?: { boot?: () => void; destroy?: () => void };
     VCPersonEmailUnlock?: { initEmailUnlock?: (root?: Element | Document | null) => void };
@@ -36,6 +37,13 @@ export default function ClientRuntime() {
       window.VCProfileExtras.boot();
     }
     const path = normalizePath(pathname);
+    if (isProfileRoute(path)) {
+      window.scrollTo(0, 0);
+      document.querySelector('.inv-profile-sticky')?.classList.remove('is-pinned');
+      if (window.VCProfileSticky && typeof window.VCProfileSticky.boot === 'function') {
+        window.VCProfileSticky.boot();
+      }
+    }
     if (path === '/funds' && window.VCFundsDir && typeof window.VCFundsDir.boot === 'function') {
       window.VCFundsDir.boot();
     }
@@ -197,7 +205,7 @@ function prefetchVisibleLinks(router: { prefetch: (href: string) => void }, curr
     const css = document.createElement('link');
     css.rel = 'preload';
     css.as = 'style';
-    css.href = '/css/directory-profile.css?v=151';
+    css.href = '/css/directory-profile.css?v=152';
     css.setAttribute('data-vc-prefetch', 'directory-profile.css');
     document.head.appendChild(css);
   }
