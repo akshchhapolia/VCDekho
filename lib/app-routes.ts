@@ -13,10 +13,9 @@ export function isAppRoute(pathname: string) {
   return false;
 }
 
-/** Client router only for home + directory indexes. Profiles and HTML pages use full navigation. */
+/** Client-side router for home, directories, and profile slugs — same as Founder Tape Link. */
 export function isSoftNavRoute(pathname: string) {
-  const p = normalizePath(pathname);
-  return p === '/' || p === '/investors' || p === '/funds';
+  return isAppRoute(pathname);
 }
 
 export function isProfileRoute(pathname: string) {
