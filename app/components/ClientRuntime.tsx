@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { documentClasses, isAppRoute, isSoftNavRoute, normalizePath } from '../../lib/app-routes';
+import { documentClasses, isProfileRoute, isSoftNavRoute, normalizePath } from '../../lib/app-routes';
 
 declare global {
   interface Window {
@@ -136,6 +136,10 @@ export default function ClientRuntime() {
       }
       if (url.origin !== window.location.origin) return;
       const p = url.pathname + url.search;
+      if (isProfileRoute(url.pathname)) {
+        fetch(p, { credentials: 'same-origin' }).catch(() => {});
+        return;
+      }
       if (isSoftNavRoute(url.pathname)) {
         try {
           router.prefetch(url.pathname + url.search);
@@ -199,27 +203,17 @@ function prefetchVisibleLinks(router: { prefetch: (href: string) => void }, curr
   }
 
   document
-    .querySelectorAll('a[href^="/investors/"], a[href^="/funds/"], a[href="/investors"], a[href="/funds"]')
+    .querySelectorAll('a[href="/investors"], a[href="/funds"]')
     .forEach((node) => {
       const href = node.getAttribute('href');
       if (!href || seen[href]) return;
       const path = href.split('?')[0];
-      if (!isAppRoute(path)) return;
+      if (!isSoftNavRoute(path)) return;
       seen[href] = true;
-      if (isSoftNavRoute(path)) {
-        try {
-          router.prefetch(href);
-        } catch {
-          /* ignore */
-        }
-        return;
-      }
-      if (!document.querySelector(`link[data-vc-prefetch="${href}"]`)) {
-        const link = document.createElement('link');
-        link.rel = 'prefetch';
-        link.href = href;
-        link.setAttribute('data-vc-prefetch', href);
-        document.head.appendChild(link);
+      try {
+        router.prefetch(href);
+      } catch {
+        /* ignore */
       }
     });
 }

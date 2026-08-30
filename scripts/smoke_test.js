@@ -992,11 +992,11 @@ function testNextAppShell() {
     if (
       !routes.includes('isSoftNavRoute') ||
       !runtime.includes('isSoftNavRoute') ||
-      !routes.includes('return isAppRoute(pathname)')
+      routes.includes('return isAppRoute(pathname)')
     ) {
-      fail('profiles use client navigation', 'home, directories, and profile slugs must use client router.push (Founder Tape Link model)');
+      fail('profiles use full navigation', 'profile slugs must use a real document load — RSC prefetch of 15 profiles queues the next tap');
     } else {
-      pass('profiles use client navigation');
+      pass('profiles use full navigation');
     }
     const personLayout = fs.readFileSync(path.join(ROOT, 'app/investors/(profile)/[slug]/layout.tsx'), 'utf8');
     const fundLayout = fs.readFileSync(path.join(ROOT, 'app/funds/(profile)/[slug]/layout.tsx'), 'utf8');

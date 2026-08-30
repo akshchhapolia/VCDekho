@@ -13,9 +13,10 @@ export function isAppRoute(pathname: string) {
   return false;
 }
 
-/** Client-side router for home, directories, and profile slugs — same as Founder Tape Link. */
+/** Client router for home + directory indexes only. Profile HTML is too large for RSC prefetch. */
 export function isSoftNavRoute(pathname: string) {
-  return isAppRoute(pathname);
+  const p = normalizePath(pathname);
+  return p === '/' || p === '/investors' || p === '/funds';
 }
 
 export function isProfileRoute(pathname: string) {
