@@ -2,12 +2,6 @@
 
 import { useEffect, useState } from 'react';
 
-declare global {
-  interface Window {
-    VCNav?: { close?: () => void };
-  }
-}
-
 const DRAWER_MQ = '(max-width: 960px)';
 const TITLE_MQ = '(max-width: 768px)';
 
