@@ -1,16 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { applyDocumentClasses } from '../../lib/apply-document-classes';
 
 declare global {
   interface Window {
     VCNav?: { close?: () => void; boot?: () => void };
   }
 }
-
-const HTML_PREFETCH = ['/news', '/blog', '/buzz', '/login'];
 
 function closeNavDom() {
   document.body.classList.remove('nav-open');
@@ -25,7 +21,6 @@ function closeNavDom() {
 
 export default function MobileNav({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
-  const router = useRouter();
 
   function closeNow() {
     closeNavDom();
@@ -56,16 +51,8 @@ export default function MobileNav({ children }: { children: React.ReactNode }) {
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
     if (nav) nav.classList.toggle('active', open);
-    if (open) {
-      router.prefetch('/investors');
-      router.prefetch('/funds');
-      router.prefetch('/');
-      HTML_PREFETCH.forEach((href) => {
-        fetch(href, { credentials: 'same-origin' }).catch(() => {});
-      });
-    }
     return () => document.body.classList.remove('nav-open');
-  }, [open, router]);
+  }, [open]);
 
   return (
     <>
@@ -89,16 +76,8 @@ export default function MobileNav({ children }: { children: React.ReactNode }) {
       <div
         onClickCapture={(e) => {
           const t = e.target as Element | null;
-          const link = t && t.closest ? t.closest('a.nav-link') : null;
-          if (!link) return;
-          const href = link.getAttribute('href');
-          if (!href || href.startsWith('#') || href.startsWith('mailto:')) return;
-          try {
-            const url = new URL(href, window.location.origin);
-            if (url.origin !== window.location.origin) return;
-            applyDocumentClasses(url.pathname, { keepNavOpen: true });
-          } catch {
-            /* ignore */
+          if (t && t.closest && t.closest('a.nav-link')) {
+            /* Let the browser follow href. Do not close or restyle first — iOS would retarget the tap. */
           }
         }}
       >

@@ -14,7 +14,7 @@ const {
   firmExploreSection
 } = require('./render-person-firm-sections');
 const { setPublicHtmlCache } = require('./public-html-cache');
-const { renderProfileHeadAssets, earlyStickyPinScript } = require('./profile-page-assets');
+const { renderProfileHeadAssets } = require('./profile-page-assets');
 const { unlockEmailButtonHtml } = require('./email-unlock-markup');
 
 function escapeHtml(value) {
@@ -221,18 +221,6 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
       : '';
   const exploreSection = firmExploreSection(investor, { sectionOffset });
 
-  const stickyNav = [
-    '<nav class="inv-profile-sticky" id="inv-profile-sticky" aria-label="On this page">',
-    snapshotSection ? '<a href="#snapshot" data-section="snapshot">Snapshot</a>' : '',
-    focusSection ? '<a href="#firm-focus" data-section="firm-focus">Focus</a>' : '',
-    thesisSection ? '<a href="#firm-thesis" data-section="firm-thesis">Thesis</a>' : '',
-    activitySection ? '<a href="#firm-activity" data-section="firm-activity">Activity</a>' : '',
-    portfolioSection ? '<a href="#firm-portfolio" data-section="firm-portfolio">Portfolio</a>' : '',
-    colleagueSection ? '<a href="#colleagues" data-section="colleagues">Colleagues</a>' : '',
-    exploreSection ? '<a href="#explore" data-section="explore">Explore</a>' : '',
-    '</nav>'
-  ].join('');
-
   const schema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Person',
@@ -297,9 +285,6 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     peopleDirectoryWidget(),
     '</div>',
 
-    '<div class="inv-profile-sticky-host" id="inv-profile-sticky-host">' + stickyNav + '</div>',
-    earlyStickyPinScript(),
-
     snapshotSection,
 
     focusSection,
@@ -325,34 +310,8 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     '<script src="/app.js" defer></script>',
     '<script src="/investors/lazy-portfolio-logos.js?v=1" defer></script>',
     '<script src="/investors/portfolio-section.js?v=4" defer></script>',
-    '<script src="/investors/profile-sticky.js?v=6" defer></script>',
     '<script>',
     '(function(){',
-    'var nav=document.getElementById("inv-profile-sticky");',
-    'var links=nav?Array.prototype.slice.call(nav.querySelectorAll("a[data-section]")):[];',
-    'var sections=links.map(function(a){return document.getElementById(a.getAttribute("data-section"));}).filter(Boolean);',
-    'function setActive(id){if(!id)return;links.forEach(function(a){a.classList.toggle("is-active",a.getAttribute("data-section")===id);});}',
-    'function syncActiveFromScroll(){',
-    'if(!sections.length)return;',
-    'var offset=(nav?nav.getBoundingClientRect().bottom:0)+12;',
-    'var active=sections[0].id;',
-    'for(var i=0;i<sections.length;i++){',
-    'var top=sections[i].getBoundingClientRect().top;',
-    'if(top-offset<=1)active=sections[i].id;',
-    '}',
-    'setActive(active);',
-    '}',
-    'links.forEach(function(a){',
-    'a.addEventListener("click",function(){setActive(a.getAttribute("data-section"));});',
-    '});',
-    'window.addEventListener("scroll",syncActiveFromScroll,{passive:true});',
-    'window.addEventListener("hashchange",function(){',
-    'var id=(location.hash||"").replace(/^#/,"");',
-    'if(id)setActive(id);',
-    '});',
-    'if(location.hash){setActive(location.hash.replace(/^#/,""));}',
-    'else{syncActiveFromScroll();}',
-    'requestAnimationFrame(syncActiveFromScroll);',
     'var reveals=document.querySelectorAll(".inv-profile-reveal:not(.is-visible)");',
     'if("IntersectionObserver" in window){',
     'var ro=new IntersectionObserver(function(entries){',

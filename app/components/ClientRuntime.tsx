@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { applyDocumentClasses } from '../../lib/apply-document-classes';
 import { isProfileRoute, isSoftNavRoute, normalizePath } from '../../lib/app-routes';
 
@@ -9,11 +9,7 @@ declare global {
   interface Window {
     VCNav?: { close?: () => void; boot?: () => void };
     VCDirectorySession?: { wireNavAuth?: () => void };
-    VCHero?: { release?: () => void };
     VCProfilePage?: { boot?: () => void };
-    VCProfileSticky?: { boot?: () => void; pin?: () => void };
-    VCFundsDir?: { boot?: () => void; destroy?: () => void };
-    VCPeopleDir?: { boot?: () => void; destroy?: () => void };
     VCPersonEmailUnlock?: { initEmailUnlock?: (root?: Element | Document | null) => void };
     VCProfileExtras?: { boot?: () => void };
     __vcClientReady?: boolean;
@@ -22,53 +18,32 @@ declare global {
 
 export default function ClientRuntime() {
   const pathname = usePathname() || '/';
-  const router = useRouter();
-  const routerReady = useRef(false);
   const prevPath = useRef<string | null>(null);
 
   useEffect(() => {
-    routerReady.current = true;
     window.__vcClientReady = true;
     window.dispatchEvent(new Event('vc:client-ready'));
-    const pathNow = normalizePath(pathname);
-    const sameRoute = prevPath.current === null || prevPath.current === pathNow;
-    applyDocumentClasses(pathname, { keepNavOpen: sameRoute && document.body.classList.contains('nav-open') });
+    const path = normalizePath(pathname);
+    applyDocumentClasses(pathname, { keepNavOpen: false });
     if (window.VCProfilePage && typeof window.VCProfilePage.boot === 'function') {
       window.VCProfilePage.boot();
     }
     if (window.VCProfileExtras && typeof window.VCProfileExtras.boot === 'function') {
       window.VCProfileExtras.boot();
     }
-    const path = pathNow;
-    if (isProfileRoute(path)) {
-      window.scrollTo(0, 0);
-      document.querySelector('.inv-profile-sticky')?.classList.remove('is-pinned');
-      if (window.VCProfileSticky && typeof window.VCProfileSticky.boot === 'function') {
-        window.VCProfileSticky.boot();
-      }
-    }
-    if (path === '/funds' && window.VCFundsDir && typeof window.VCFundsDir.boot === 'function') {
-      window.VCFundsDir.boot();
-    }
-    if (path === '/investors' && window.VCPeopleDir && typeof window.VCPeopleDir.boot === 'function') {
-      window.VCPeopleDir.boot();
-    }
+    if (isProfileRoute(path)) window.scrollTo(0, 0);
     if (window.VCPersonEmailUnlock && typeof window.VCPersonEmailUnlock.initEmailUnlock === 'function') {
       window.VCPersonEmailUnlock.initEmailUnlock();
     }
     if (window.VCNav && typeof window.VCNav.boot === 'function') window.VCNav.boot();
-    // Only close on a real route change. Calling close() on first hydration
-    // slams shut a menu the user already opened.
-    if (prevPath.current !== null && prevPath.current !== path && window.VCNav && typeof window.VCNav.close === 'function') {
+    if (prevPath.current !== null && prevPath.current !== path && window.VCNav?.close) {
       window.VCNav.close();
     }
     prevPath.current = path;
     if (window.VCDirectorySession && window.VCDirectorySession.wireNavAuth) {
       window.VCDirectorySession.wireNavAuth();
     }
-    const t = window.setTimeout(() => prefetchVisibleLinks(router, path), 50);
-    return () => window.clearTimeout(t);
-  }, [pathname, router]);
+  }, [pathname]);
 
   useEffect(() => {
     let cancelled = false;
@@ -99,45 +74,12 @@ export default function ClientRuntime() {
         });
         document.head.appendChild(spec);
       }
+      fetch('/login', { credentials: 'same-origin' }).catch(() => {});
     });
     return () => {
       cancelled = true;
     };
   }, []);
-
-  useEffect(() => {
-    function onClick(e: MouseEvent) {
-      if (!routerReady.current) return;
-      if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) {
-        return;
-      }
-      const target = e.target as Element | null;
-      if (!target) return;
-      const a = target.closest('a');
-      if (!a) return;
-      if (a.closest('#navigation-bar')) return;
-      if (a.getAttribute('target') === '_blank' || a.hasAttribute('download')) return;
-      const href = a.getAttribute('href');
-      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('javascript:')) {
-        return;
-      }
-      let url: URL;
-      try {
-        url = new URL(href, window.location.origin);
-      } catch {
-        return;
-      }
-      if (url.origin !== window.location.origin) return;
-      if (!isSoftNavRoute(url.pathname)) return;
-      e.preventDefault();
-      applyDocumentClasses(url.pathname, { keepNavOpen: false });
-      if (window.VCNav && typeof window.VCNav.close === 'function') window.VCNav.close();
-      if (window.VCHero && typeof window.VCHero.release === 'function') window.VCHero.release();
-      router.push(url.pathname + url.search + url.hash);
-    }
-    document.addEventListener('click', onClick);
-    return () => document.removeEventListener('click', onClick);
-  }, [router]);
 
   useEffect(() => {
     function warm(href: string) {
@@ -149,18 +91,7 @@ export default function ClientRuntime() {
       }
       if (url.origin !== window.location.origin) return;
       const p = url.pathname + url.search;
-      if (isProfileRoute(url.pathname)) {
-        fetch(p, { credentials: 'same-origin' }).catch(() => {});
-        return;
-      }
-      if (isSoftNavRoute(url.pathname)) {
-        try {
-          router.prefetch(url.pathname + url.search);
-        } catch {
-          /* ignore */
-        }
-        return;
-      }
+      if (isSoftNavRoute(url.pathname)) return;
       fetch(p, { credentials: 'same-origin' }).catch(() => {});
     }
     function onPointerDown(e: PointerEvent) {
@@ -174,50 +105,7 @@ export default function ClientRuntime() {
     }
     document.addEventListener('pointerdown', onPointerDown, { passive: true });
     return () => document.removeEventListener('pointerdown', onPointerDown);
-  }, [router]);
+  }, []);
 
   return null;
-}
-
-function prefetchVisibleLinks(router: { prefetch: (href: string) => void }, currentPath: string) {
-  const seen: Record<string, boolean> = {};
-  const onDirectory = currentPath === '/investors' || currentPath === '/funds';
-
-  if (
-    document.querySelector('[data-unlock-email][href^="/login"]') &&
-    !document.querySelector('[data-vc-prefetch="/login"]')
-  ) {
-    const login = document.createElement('link');
-    login.rel = 'prefetch';
-    login.href = '/login';
-    login.setAttribute('data-vc-prefetch', '/login');
-    document.head.appendChild(login);
-    // rel=prefetch is often ignored on cellular; fetch fills the HTTP cache.
-    fetch('/login', { credentials: 'same-origin' }).catch(() => {});
-    fetch('/login.js?v=113', { credentials: 'same-origin' }).catch(() => {});
-  }
-
-  if (onDirectory && !document.querySelector('link[data-vc-prefetch="directory-profile.css"]')) {
-    const css = document.createElement('link');
-    css.rel = 'preload';
-    css.as = 'style';
-    css.href = '/css/directory-profile.css?v=153';
-    css.setAttribute('data-vc-prefetch', 'directory-profile.css');
-    document.head.appendChild(css);
-  }
-
-  document
-    .querySelectorAll('a[href="/investors"], a[href="/funds"]')
-    .forEach((node) => {
-      const href = node.getAttribute('href');
-      if (!href || seen[href]) return;
-      const path = href.split('?')[0];
-      if (!isSoftNavRoute(path)) return;
-      seen[href] = true;
-      try {
-        router.prefetch(href);
-      } catch {
-        /* ignore */
-      }
-    });
 }

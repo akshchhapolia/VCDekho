@@ -10,7 +10,7 @@ const CSS_FILES = [
   '/css/ambient.css?v=98',
   '/css/announcement.css?v=145',
   '/css/directory-list.css?v=149',
-  '/css/directory-profile.css?v=153'
+  '/css/directory-profile.css?v=154'
 ];
 
 const { FONTS_HREF, renderFontPreloads, renderLatinFontFaces } = require('./font-assets');
@@ -84,6 +84,7 @@ const PROFILE_CRITICAL_CSS = [
   '.inv-profile-focus-col h3{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55);margin:0 0 .55rem}',
   '.inv-profile-chip-row,.inv-profile-thesis-chips{display:flex;flex-wrap:wrap;gap:.45rem}',
   '.inv-profile-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.4rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:rgba(255,255,255,.88);font-size:.8rem;text-decoration:none}',
+  '.inv-profile-sticky-host,.inv-profile-sticky{display:none!important}',
   '.inv-profile-panel-link,.inv-profile-browse{display:inline-block;margin-top:.35rem;color:#ffb89c;font-size:.82rem;font-weight:600;text-decoration:none}',
   '.inv-profile-reveal,.inv-profile-reveal.is-visible,.inv-profile-hero-enter,.inv-profile-ready .inv-profile-hero-enter{opacity:1;transform:none}',
   '.inv-profile-boot-bar{display:block;height:.85rem;border-radius:4px;background:rgba(255,255,255,.08)}.inv-profile-boot-bar--title{width:42%;height:1.55rem;margin-bottom:.85rem}.inv-profile-boot-bar--lead{width:78%;margin-bottom:.5rem}.inv-profile-boot-bar--lead-short{width:54%}',
@@ -139,40 +140,12 @@ function isMobileRequest(req) {
   );
 }
 
-/** Inline pin bootstrap — runs as soon as sticky host is parsed (mweb only). */
 function earlyStickyPinScript() {
-  return [
-    '<script>',
-    '(function(){',
-    'var host=document.getElementById("inv-profile-sticky-host");',
-    'var nav=document.getElementById("inv-profile-sticky");',
-    'if(!host||!nav)return;',
-    'function pin(){',
-    'var mweb=window.matchMedia("(max-width:768px)").matches;',
-    'if(!mweb)return;',
-    'var y=window.scrollY||window.pageYOffset;',
-    'var top=host.getBoundingClientRect().top+y;',
-    'if(top<80){nav.classList.remove("is-pinned");host.style.minHeight="";nav.style.left="";nav.style.width="";return;}',
-    'if(y>=top-1){',
-    'nav.classList.add("is-pinned");',
-    'host.style.minHeight=(nav.offsetHeight||48)+"px";',
-    'nav.style.left="0";nav.style.width="100%";',
-    '}else{',
-    'nav.classList.remove("is-pinned");',
-    'host.style.minHeight="";nav.style.left="";nav.style.width="";',
-    '}',
-    '}',
-    'window.VCProfileStickyPin=pin;',
-    'window.addEventListener("scroll",pin,{passive:true});',
-    'window.addEventListener("resize",pin,{passive:true});',
-    'pin();',
-    '})();',
-    '</script>'
-  ].join('');
+  return '';
 }
 
 function profileMobileAsyncCssScript() {
-  return "(function(){var href='/css/directory-profile.css?v=153';var existing=document.querySelector('link[href=\"'+href+'\"]');if(existing){existing.media='all';existing.onload=null;return;}var l=document.createElement('link');l.rel='stylesheet';l.href=href;document.head.appendChild(l);})();";
+  return "(function(){var href='/css/directory-profile.css?v=154';var existing=document.querySelector('link[href=\"'+href+'\"]');if(existing){existing.media='all';existing.onload=null;return;}var l=document.createElement('link');l.rel='stylesheet';l.href=href;document.head.appendChild(l);})();";
 }
 
 module.exports = {

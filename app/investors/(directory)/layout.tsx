@@ -4,7 +4,7 @@ const { renderDirectoryCriticalCss } = require('../../../utils/static-page-asset
 export default function InvestorsDirectoryLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <link rel="preload" href="/css/directory-profile.css?v=153" as="style" />
+      <link rel="preload" href="/css/directory-profile.css?v=154" as="style" />
       <link rel="preload" href="/dir-index/people.json" as="fetch" crossOrigin="anonymous" />
       <link rel="prefetch" href="/login" />
       <link rel="stylesheet" href="/css/ambient.css?v=98" />

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import SiteHeader from '../components/SiteHeader';
 
 export const metadata: Metadata = {
@@ -86,17 +85,17 @@ export default function HomePage() {
                 Discover venture capital firms, angel investors, and startup funds investing across India.
               </p>
               <p className="trend-card-note">Free account - browse 1600+ investors</p>
-              <Link className="trend-card-btn" id="explore-btn" href="/investors" prefetch>
+              <a className="trend-card-btn" id="explore-btn" href="/investors">
                 Start Exploring
-              </Link>
+              </a>
             </article>
           </div>
         </main>
       </div>
 
-      <Link href="/investors" prefetch className="mobile-sticky-cta" id="mobile-sticky-cta">
+      <a href="/investors" className="mobile-sticky-cta" id="mobile-sticky-cta">
         Browse 1600+ investors <span aria-hidden="true">→</span>
-      </Link>
+      </a>
     </>
   );
 }

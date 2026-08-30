@@ -13,10 +13,9 @@ export function isAppRoute(pathname: string) {
   return false;
 }
 
-/** Client router for home + directory indexes only. Profile HTML is too large for RSC prefetch. */
-export function isSoftNavRoute(pathname: string) {
-  const p = normalizePath(pathname);
-  return p === '/' || p === '/investors' || p === '/funds';
+/** Never hijack clicks. Founder Tape model: every route is a real document load. */
+export function isSoftNavRoute(_pathname: string) {
+  return false;
 }
 
 export function isProfileRoute(pathname: string) {

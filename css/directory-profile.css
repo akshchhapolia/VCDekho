@@ -326,6 +326,11 @@
   color: #ffe1d6;
 }
 
+.inv-profile-sticky-host,
+.inv-profile-sticky {
+  display: none !important;
+}
+
 .inv-profile-sticky {
   position: relative;
   top: auto;

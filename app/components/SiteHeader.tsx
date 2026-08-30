@@ -1,33 +1,5 @@
-import Link from 'next/link';
-import { isAppRoute, normalizePath } from '../../lib/app-routes';
+import { normalizePath } from '../../lib/app-routes';
 import MobileNav from './MobileNav';
-
-function NavHref({
-  href,
-  className,
-  id,
-  children,
-  prefetch
-}: {
-  href: string;
-  className?: string;
-  id?: string;
-  children: React.ReactNode;
-  prefetch?: boolean;
-}) {
-  if (isAppRoute(href)) {
-    return (
-      <Link href={href} prefetch={prefetch !== false} className={className} id={id}>
-        {children}
-      </Link>
-    );
-  }
-  return (
-    <a href={href} className={className} id={id}>
-      {children}
-    </a>
-  );
-}
 
 export default function SiteHeader({ pathname = '/' }: { pathname?: string }) {
   const path = normalizePath(pathname);
@@ -37,7 +9,7 @@ export default function SiteHeader({ pathname = '/' }: { pathname?: string }) {
 
   return (
     <header className="site-header">
-      <NavHref href="/" className="logo-container" id={isHome ? 'logo-link' : undefined}>
+      <a href="/" className="logo-container" id={isHome ? 'logo-link' : undefined}>
         <img
           src="/assets/logoforvc.png"
           alt={isHome ? '' : 'VC Dekho Logo'}
@@ -52,20 +24,20 @@ export default function SiteHeader({ pathname = '/' }: { pathname?: string }) {
             VC Dekho
           </span>
         ) : null}
-      </NavHref>
+      </a>
       <MobileNav>
         <nav className="main-nav" id="navigation-bar">
           {isHome ? null : (
-            <NavHref href="/" className="nav-link">
+            <a href="/" className="nav-link">
               Home
-            </NavHref>
+            </a>
           )}
-          <NavHref href="/investors" className={'nav-link' + (investorsActive ? ' active' : '')}>
+          <a href="/investors" className={'nav-link' + (investorsActive ? ' active' : '')}>
             Investors
-          </NavHref>
-          <NavHref href="/funds" className={'nav-link' + (fundsActive ? ' active' : '')}>
+          </a>
+          <a href="/funds" className={'nav-link' + (fundsActive ? ' active' : '')}>
             Funds
-          </NavHref>
+          </a>
           <a href="/buzz" className="nav-link">
             Founder Buzz
           </a>

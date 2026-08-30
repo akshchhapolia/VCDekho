@@ -6,7 +6,7 @@ const { getAllStages } = require('./investment-stages');
 const { hasSectorGuide } = require('./sectors');
 const { renderExploreRelated } = require('./render-explore-related');
 const { setPublicHtmlCache } = require('./public-html-cache');
-const { renderProfileHeadAssets, earlyStickyPinScript } = require('./profile-page-assets');
+const { renderProfileHeadAssets } = require('./profile-page-assets');
 const { getThesisThemeIconSvg } = require('./thesis-theme-icons');
 const { renderFaviconLinks, renderLogoImg } = require('./site-icons');
 const { getPeopleByCompanySlug } = require('./people');
@@ -501,20 +501,6 @@ function renderInvestorPage(investor, related, res, opts) {
         '" data-kind="firm" hidden></div>'
       : '';
 
-  const stickyNav = [
-    '<nav class="inv-profile-sticky" id="inv-profile-sticky" aria-label="On this page">',
-    '<a href="#snapshot" data-section="snapshot">Snapshot</a>',
-    '<a href="#focus" data-section="focus">Focus</a>',
-    themes.length ? '<a href="#thesis" data-section="thesis">Thesis</a>' : '',
-    activityHtml ? '<a href="#activity" data-section="activity">Activity</a>' : '',
-    portfolioHtml ? '<a href="#portfolio" data-section="portfolio">Portfolio</a>' : '',
-    '<a href="#about" data-section="about">About</a>',
-    peopleCards ? '<a href="#people" data-section="people">' + INVESTORS_LABEL + '</a>' : '',
-    relatedCards ? '<a href="#similar" data-section="similar">Similar</a>' : '',
-    '<a href="#explore" data-section="explore">Explore</a>',
-    '</nav>'
-  ].join('');
-
   const schema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -578,9 +564,6 @@ function renderInvestorPage(investor, related, res, opts) {
     '</section>',
     directoryWidget(),
     '</div>',
-
-    '<div class="inv-profile-sticky-host" id="inv-profile-sticky-host">' + stickyNav + '</div>',
-    earlyStickyPinScript(),
 
     '<section class="inv-profile-section inv-profile-reveal is-visible" id="snapshot">',
     '<div class="inv-profile-section-label">01 — Snapshot</div>',
@@ -647,42 +630,8 @@ function renderInvestorPage(investor, related, res, opts) {
     '<script src="/app.js" defer></script>',
     '<script src="/investors/lazy-portfolio-logos.js?v=1" defer></script>',
     '<script src="/investors/portfolio-section.js?v=4" defer></script>',
-    '<script src="/investors/profile-sticky.js?v=6" defer></script>',
     '<script>',
     '(function(){',
-    'var nav=document.getElementById("inv-profile-sticky");',
-    'var links=nav?Array.prototype.slice.call(nav.querySelectorAll("a[data-section]")):[];',
-    'var sections=links.map(function(a){return document.getElementById(a.getAttribute("data-section"));}).filter(Boolean);',
-    'var lastActive="";',
-    'function setActive(id){',
-    'if(!id)return;',
-    'links.forEach(function(a){a.classList.toggle("is-active",a.getAttribute("data-section")===id);});',
-    'if(id!==lastActive){',
-    'lastActive=id;',
-    'if(typeof window.VCProfileStickyScrollActive==="function")window.VCProfileStickyScrollActive();',
-    '}',
-    '}',
-    'function syncActiveFromScroll(){',
-    'if(!sections.length)return;',
-    'var offset=(nav?nav.getBoundingClientRect().bottom:0)+12;',
-    'var active=sections[0].id;',
-    'for(var i=0;i<sections.length;i++){',
-    'var top=sections[i].getBoundingClientRect().top;',
-    'if(top-offset<=1)active=sections[i].id;',
-    '}',
-    'setActive(active);',
-    '}',
-    'links.forEach(function(a){',
-    'a.addEventListener("click",function(){setActive(a.getAttribute("data-section"));});',
-    '});',
-    'window.addEventListener("scroll",syncActiveFromScroll,{passive:true});',
-    'window.addEventListener("hashchange",function(){',
-    'var id=(location.hash||"").replace(/^#/,"");',
-    'if(id)setActive(id);',
-    '});',
-    'if(location.hash){setActive(location.hash.replace(/^#/,""));}',
-    'else{syncActiveFromScroll();}',
-    'requestAnimationFrame(syncActiveFromScroll);',
     'var reveals=document.querySelectorAll(".inv-profile-reveal:not(.is-visible)");',
     'if("IntersectionObserver" in window){',
     'var ro=new IntersectionObserver(function(entries){',

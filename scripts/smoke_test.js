@@ -174,18 +174,18 @@ function testStaticAssets() {
   try {
     const page = fs.readFileSync(path.join(ROOT, 'app/(home)/page.tsx'), 'utf8');
     const js = fs.readFileSync(path.join(ROOT, 'app.js'), 'utf8');
-    const nextLink =
-      /<Link className="trend-card-btn" id="explore-btn" href="\/investors" prefetch>/.test(page);
+    const nativeLink =
+      /<a className="trend-card-btn" id="explore-btn" href="\/investors">/.test(page);
     const hijacks =
       /getElementById\(['"]explore-btn['"]\)/.test(js) ||
       /exploreBtn\.addEventListener/.test(js);
-    if (!nextLink || hijacks) {
+    if (!nativeLink || hijacks) {
       fail(
         'Start Exploring is a native link',
-        `nextLink=${nextLink} hijacks=${hijacks} — home Start Exploring must be Next Link to /investors`
+        `nativeLink=${nativeLink} hijacks=${hijacks} — home Start Exploring must be a real <a href="/investors">`
       );
     } else {
-      pass('Start Exploring is a prefetching Next Link to /investors');
+      pass('Start Exploring is a native document link to /investors');
     }
   } catch (err) {
     fail('Start Exploring is a native link', err);
@@ -702,13 +702,14 @@ function testProfileClsGuards() {
       !nav.includes('menu-toggle') ||
       !nav.includes("closest('a.nav-link')") ||
       nav.includes('onPointerDownCapture') ||
+      nav.includes('applyDocumentClasses') ||
       !header.includes('MobileNav') ||
       root.includes('nav.js') ||
-      !runtime.includes("a.closest('#navigation-bar')")
+      runtime.includes('router.push(')
     ) {
       fail(
         'nav uses document click delegation',
-        'React MobileNav must own the hamburger; menu links must not hide on pointerdown (iOS retargets the tap to the logo / home)'
+        'Menu links must be real <a href> document loads — no pointerdown close, no SPA router.push'
       );
     } else {
       pass('nav uses document click delegation');
@@ -1000,9 +1001,11 @@ function testNextAppShell() {
     if (
       !routes.includes('isSoftNavRoute') ||
       !runtime.includes('isSoftNavRoute') ||
-      routes.includes('return isAppRoute(pathname)')
+      routes.includes('return isAppRoute(pathname)') ||
+      !/export function isSoftNavRoute[\s\S]*return false/.test(routes) ||
+      runtime.includes('router.push(')
     ) {
-      fail('profiles use full navigation', 'profile slugs must use a real document load — RSC prefetch of 15 profiles queues the next tap');
+      fail('profiles use full navigation', 'every in-app route must be a real document load — no SPA click hijack');
     } else {
       pass('profiles use full navigation');
     }
@@ -1066,28 +1069,35 @@ function testNextAppShell() {
       !rootLayout.includes('/js/people.js?v=');
     const prerenders =
       personPage.includes("dynamic = 'force-static'") && fundPage.includes("dynamic = 'force-static'");
-    const personLoading = fs.readFileSync(
-      path.join(ROOT, 'app/investors/(profile)/[slug]/loading.tsx'),
-      'utf8'
-    );
-    const fundLoading = fs.readFileSync(path.join(ROOT, 'app/funds/(profile)/[slug]/loading.tsx'), 'utf8');
-    const skel = fs.readFileSync(path.join(ROOT, 'app/components/ProfileLoadingSkeleton.tsx'), 'utf8');
-    const headerShell =
-      personLoading.includes('ProfileLoadingSkeleton') &&
-      fundLoading.includes('ProfileLoadingSkeleton') &&
-      skel.includes('SiteHeader') &&
-      skel.includes('inv-profile-boot-bar') &&
-      !personLoading.includes('Loading profile') &&
-      !fundLoading.includes('Loading profile');
+    const noLoadingShell =
+      !fs.existsSync(path.join(ROOT, 'app/investors/(profile)/[slug]/loading.tsx')) &&
+      !fs.existsSync(path.join(ROOT, 'app/funds/(profile)/[slug]/loading.tsx'));
     const profileServer = fs.readFileSync(path.join(ROOT, 'lib/profile-server.js'), 'utf8');
     const noDbBlock = !profileServer.includes('ensureInvestorDetailExtras');
-    if (usesHeaders || !hasStale || !prerenders || !headerShell || !noDbBlock) {
+    if (usesHeaders || !hasStale || !prerenders || !noLoadingShell || !noDbBlock) {
       fail(
         'profile pages can ISR',
-        `headers=${usesHeaders} staleTimes=${hasStale} prerender=${prerenders} headerShell=${headerShell} noDbBlock=${noDbBlock}`
+        `headers=${usesHeaders} staleTimes=${hasStale} prerender=${prerenders} noLoadingShell=${noLoadingShell} noDbBlock=${noDbBlock}`
       );
     } else {
       pass('profile pages do not call headers(); client router keeps a stale cache');
+    }
+    const personRender = fs.readFileSync(path.join(ROOT, 'utils/render-person-page.js'), 'utf8');
+    const fundRender = fs.readFileSync(path.join(ROOT, 'utils/render-investor-page.js'), 'utf8');
+    const personProfileLayout = fs.readFileSync(
+      path.join(ROOT, 'app/investors/(profile)/[slug]/layout.tsx'),
+      'utf8'
+    );
+    const fundProfileLayout = fs.readFileSync(path.join(ROOT, 'app/funds/(profile)/[slug]/layout.tsx'), 'utf8');
+    const noSticky =
+      !personRender.includes('inv-profile-sticky-host') &&
+      !fundRender.includes('inv-profile-sticky-host') &&
+      !personProfileLayout.includes('profile-sticky.js') &&
+      !fundProfileLayout.includes('profile-sticky.js');
+    if (!noSticky) {
+      fail('profile sticky nav removed', 'Focus/Thesis sticky row must not render or pin on mweb');
+    } else {
+      pass('profile sticky nav removed');
     }
     if (!investorsLayout.includes('directory-list.css') || !noDirIife) {
       fail(
