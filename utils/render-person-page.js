@@ -248,7 +248,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     '<html lang="en" class="scrollable-page">',
     '<head>',
     '<script src="/js/analytics.js?v=2" defer></script>',
-    '<script src="/js/nav.js?v=101" defer></script>',
+    '<script src="/js/nav.js?v=104" defer></script>',
     '<meta charset="UTF-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">',
     renderProfileHeadAssets(),

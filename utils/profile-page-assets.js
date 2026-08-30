@@ -5,7 +5,7 @@
  */
 
 const CSS_FILES = [
-  '/css/base.css?v=151',
+  '/css/base.css?v=152',
   '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
   '/css/announcement.css?v=145',

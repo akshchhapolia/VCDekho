@@ -304,7 +304,7 @@ module.exports = async function handler(req, res) {
 <html lang="en" class="scrollable-page">
 <head>
     <script src="/js/analytics.js?v=2" defer></script>
-    <script src="/js/nav.js?v=101" defer></script>
+    <script src="/js/nav.js?v=104" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     ${renderFontLinks().join('\n    ')}
@@ -312,7 +312,7 @@ module.exports = async function handler(req, res) {
     <meta name="description" content="${article.meta_description}">
     
     ${renderFaviconLinks().join('\n    ')}
-    <link rel="stylesheet" href="/css/base.css?v=101">
+    <link rel="stylesheet" href="/css/base.css?v=152">
     <link rel="stylesheet" href="/css/hero.css?v=73">
     <link rel="stylesheet" href="/css/ambient.css?v=98">
     <link rel="stylesheet" href="/css/blog.css?v=74">
