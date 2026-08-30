@@ -5,6 +5,7 @@ import DirLogo from '../components/directory/DirLogo';
 import InvDropdown from '../components/directory/InvDropdown';
 import { useDirectoryChrome } from '../components/directory/useDirectoryChrome';
 import { useDirectoryIndex } from '../components/directory/useDirectoryIndex';
+import { useInfiniteDirectory } from '../components/directory/useInfiniteDirectory';
 import {
   PAGE_SIZE,
   STAGE_GUIDE_IDS,
@@ -206,7 +207,11 @@ export default function FundsDirectoryBrowser({
 
   const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE) || 1);
   const safePage = Math.min(page, pageCount);
-  const pageItems = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+  const resetKey = [query, sector, stage, cheque, type, thesis, activeOnly].join('|');
+  const infinite = useInfiniteDirectory(filtered, resetKey, mobile);
+  const pageItems = mobile
+    ? infinite.visible
+    : filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
 
   useEffect(() => {
     setPage(1);
@@ -407,7 +412,19 @@ export default function FundsDirectoryBrowser({
                 pageItems.map((inv) => <FundRow key={inv.slug} inv={inv} mobile={mobile} />)
               )}
             </div>
-            {filtered.length > 0 ? (
+            {filtered.length > 0 && mobile && infinite.hasMore ? (
+              <div className="inv-dir-pager" ref={infinite.sentinelRef}>
+                <button
+                  type="button"
+                  className="inv-dir-pager-btn"
+                  id="inv-next"
+                  onClick={infinite.loadMore}
+                >
+                  <span>Load more</span>
+                </button>
+              </div>
+            ) : null}
+            {filtered.length > 0 && !mobile ? (
               <div className="inv-dir-pager" role="navigation" aria-label="Directory pages">
                 <button
                   type="button"

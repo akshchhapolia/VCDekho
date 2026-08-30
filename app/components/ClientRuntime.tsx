@@ -2,7 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { documentClasses, isProfileRoute, isSoftNavRoute, normalizePath } from '../../lib/app-routes';
+import { applyDocumentClasses } from '../../lib/apply-document-classes';
+import { isProfileRoute, isSoftNavRoute, normalizePath } from '../../lib/app-routes';
 
 declare global {
   interface Window {
@@ -29,14 +30,16 @@ export default function ClientRuntime() {
     routerReady.current = true;
     window.__vcClientReady = true;
     window.dispatchEvent(new Event('vc:client-ready'));
-    applyDocumentClasses(pathname, prevPath.current !== null && prevPath.current !== normalizePath(pathname));
+    const pathNow = normalizePath(pathname);
+    const sameRoute = prevPath.current === null || prevPath.current === pathNow;
+    applyDocumentClasses(pathname, { keepNavOpen: sameRoute && document.body.classList.contains('nav-open') });
     if (window.VCProfilePage && typeof window.VCProfilePage.boot === 'function') {
       window.VCProfilePage.boot();
     }
     if (window.VCProfileExtras && typeof window.VCProfileExtras.boot === 'function') {
       window.VCProfileExtras.boot();
     }
-    const path = normalizePath(pathname);
+    const path = pathNow;
     if (isProfileRoute(path)) {
       window.scrollTo(0, 0);
       document.querySelector('.inv-profile-sticky')?.classList.remove('is-pinned');
@@ -112,6 +115,7 @@ export default function ClientRuntime() {
       if (!target) return;
       const a = target.closest('a');
       if (!a) return;
+      if (a.closest('#navigation-bar')) return;
       if (a.getAttribute('target') === '_blank' || a.hasAttribute('download')) return;
       const href = a.getAttribute('href');
       if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('javascript:')) {
@@ -126,6 +130,7 @@ export default function ClientRuntime() {
       if (url.origin !== window.location.origin) return;
       if (!isSoftNavRoute(url.pathname)) return;
       e.preventDefault();
+      applyDocumentClasses(url.pathname, { keepNavOpen: false });
       if (window.VCNav && typeof window.VCNav.close === 'function') window.VCNav.close();
       if (window.VCHero && typeof window.VCHero.release === 'function') window.VCHero.release();
       router.push(url.pathname + url.search + url.hash);
@@ -174,15 +179,6 @@ export default function ClientRuntime() {
   return null;
 }
 
-function applyDocumentClasses(pathname: string, leavingRoute: boolean) {
-  const next = documentClasses(pathname);
-  const navOpen = !leavingRoute && document.body.classList.contains('nav-open');
-  document.documentElement.className = next.html;
-  document.body.className = next.body;
-  if (navOpen) document.body.classList.add('nav-open');
-  document.documentElement.style.background = next.home ? '#000' : '';
-}
-
 function prefetchVisibleLinks(router: { prefetch: (href: string) => void }, currentPath: string) {
   const seen: Record<string, boolean> = {};
   const onDirectory = currentPath === '/investors' || currentPath === '/funds';
@@ -205,7 +201,7 @@ function prefetchVisibleLinks(router: { prefetch: (href: string) => void }, curr
     const css = document.createElement('link');
     css.rel = 'preload';
     css.as = 'style';
-    css.href = '/css/directory-profile.css?v=152';
+    css.href = '/css/directory-profile.css?v=153';
     css.setAttribute('data-vc-prefetch', 'directory-profile.css');
     document.head.appendChild(css);
   }

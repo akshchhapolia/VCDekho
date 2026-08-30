@@ -366,6 +366,13 @@ a[x-apple-data-detectors] {
         font-size: 1.3rem;
         opacity: 1;
         pointer-events: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0.35rem 0.75rem;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0.08);
     }
 
     .main-nav .nav-link.active,
@@ -426,6 +433,13 @@ body.scrollable-page .hero-showcase {
     min-height: calc(100vh - 120px);
     min-height: calc(100dvh - 120px);
     overflow: visible !important;
+}
+
+html.scrollable-page .hero-showcase.inv-list-main,
+body.scrollable-page .hero-showcase.inv-list-main,
+html.scrollable-page .hero-showcase.inv-detail-main,
+body.scrollable-page .hero-showcase.inv-detail-main {
+    min-height: 0;
 }
 
 /* ==========================================================================
@@ -522,6 +536,9 @@ body.nav-open {
     body.nav-open .logo-container {
         position: relative;
         z-index: 10051;
+        width: max-content;
+        max-width: calc(100% - 4.5rem);
+        pointer-events: auto;
     }
 
     body.nav-open .hero-content,

@@ -1622,14 +1622,35 @@ a.inv-profile-chip:hover .inv-profile-chip-icon {
 }
 
 .inv-profile-hero-enter {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  opacity: 1;
+  transform: none;
 }
 
 .inv-profile-ready .inv-profile-hero-enter {
   opacity: 1;
   transform: none;
+}
+
+.inv-profile-boot-bar {
+  display: block;
+  height: 0.85rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.inv-profile-boot-bar--title {
+  width: 42%;
+  height: 1.55rem;
+  margin-bottom: 0.85rem;
+}
+
+.inv-profile-boot-bar--lead {
+  width: 78%;
+  margin-bottom: 0.5rem;
+}
+
+.inv-profile-boot-bar--lead-short {
+  width: 54%;
 }
 
 .inv-profile-reveal {

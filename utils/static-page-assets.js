@@ -6,18 +6,18 @@
 const { FONTS_HREF, renderFontPreloads, renderFontLinks, renderLatinFontFaces } = require('./font-assets');
 
 const HOME_CSS = [
-  '/css/base.css?v=152',
+  '/css/base.css?v=153',
   '/css/ambient.css?v=98',
   '/css/hero.css?v=97',
   '/css/announcement.css?v=145'
 ];
 
 const DIRECTORY_CSS = [
-  '/css/base.css?v=152',
+  '/css/base.css?v=153',
   '/css/hero.css?v=97',
   '/css/ambient.css?v=98',
   '/css/announcement.css?v=145',
-  '/css/directory-list.css?v=148'
+  '/css/directory-list.css?v=149'
 ];
 
 const SHARED_CRITICAL = [
@@ -77,17 +77,17 @@ const DIRECTORY_CRITICAL_EXTRA = [
 
 function renderBlockingDirectoryHead() {
   return renderFontLinks().concat([
-    '<link rel="stylesheet" href="/css/base.css?v=152">',
+    '<link rel="stylesheet" href="/css/base.css?v=153">',
     '<link rel="stylesheet" href="/css/hero.css?v=97">',
     '<link rel="stylesheet" href="/css/ambient.css?v=98">',
     '<link rel="stylesheet" href="/css/announcement.css?v=145">',
-    '<link rel="stylesheet" href="/css/directory-list.css?v=148">'
+    '<link rel="stylesheet" href="/css/directory-list.css?v=149">'
   ]).join('\n    ');
 }
 
 function renderBlockingHomeHead() {
   return renderFontLinks().concat([
-    '<link rel="stylesheet" href="/css/base.css?v=152">',
+    '<link rel="stylesheet" href="/css/base.css?v=153">',
     '<link rel="stylesheet" href="/css/ambient.css?v=98">',
     '<link rel="stylesheet" href="/css/hero.css?v=97">',
     '<link rel="stylesheet" href="/css/announcement.css?v=145">'

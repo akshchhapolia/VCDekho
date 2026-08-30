@@ -2663,6 +2663,10 @@ a.inv-chip:hover {
     gap: 0.75rem;
   }
 
+  .inv-dir-pager:not(:has(.inv-dir-pager-status)) {
+    grid-template-columns: 1fr;
+  }
+
   .inv-dir-pager-status {
     grid-column: 1 / -1;
     order: -1;

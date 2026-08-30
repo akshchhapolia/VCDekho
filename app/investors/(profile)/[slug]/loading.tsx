@@ -1,9 +1,5 @@
-import SiteHeader from '../../../components/SiteHeader';
+import ProfileLoadingSkeleton from '../../../components/ProfileLoadingSkeleton';
 
 export default function PersonProfileLoading() {
-  return (
-    <div className="app-container">
-      <SiteHeader pathname="/investors" />
-    </div>
-  );
+  return <ProfileLoadingSkeleton pathname="/investors" />;
 }

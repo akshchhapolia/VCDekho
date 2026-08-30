@@ -6,6 +6,7 @@ import InvDropdown from '../components/directory/InvDropdown';
 import UnlockEmailButton from '../components/directory/UnlockEmailButton';
 import { useDirectoryChrome } from '../components/directory/useDirectoryChrome';
 import { useDirectoryIndex } from '../components/directory/useDirectoryIndex';
+import { useInfiniteDirectory } from '../components/directory/useInfiniteDirectory';
 import {
   PAGE_SIZE,
   chequeOverlaps,
@@ -146,6 +147,7 @@ export default function PeopleDirectoryBrowser({
   const [thesis, setThesis] = useState('');
   const [cheque, setCheque] = useState('');
   const [page, setPage] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
   const { filtersOpen, openFilters, closeFilters, isNarrowTitle } = useDirectoryChrome('ppl');
 
   const filtered = useMemo(() => {
@@ -177,7 +179,19 @@ export default function PeopleDirectoryBrowser({
 
   const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE) || 1);
   const safePage = Math.min(page, pageCount);
-  const pageItems = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+  const resetKey = [query, role, companyType, stage, sector, thesis, cheque].join('|');
+  const infinite = useInfiniteDirectory(filtered, resetKey, isMobile);
+  const pageItems = isMobile
+    ? infinite.visible
+    : filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const sync = () => setIsMobile(mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
 
   useEffect(() => {
     setPage(1);
@@ -357,7 +371,19 @@ export default function PeopleDirectoryBrowser({
                 pageItems.map((person) => <PersonRow key={person.slug} person={person} />)
               )}
             </div>
-            {filtered.length > 0 ? (
+            {filtered.length > 0 && isMobile && infinite.hasMore ? (
+              <div className="inv-dir-pager" ref={infinite.sentinelRef}>
+                <button
+                  type="button"
+                  className="inv-dir-pager-btn"
+                  id="ppl-next"
+                  onClick={infinite.loadMore}
+                >
+                  <span>Load more</span>
+                </button>
+              </div>
+            ) : null}
+            {filtered.length > 0 && !isMobile ? (
               <div className="inv-dir-pager" role="navigation" aria-label="Directory pages">
                 <button
                   type="button"

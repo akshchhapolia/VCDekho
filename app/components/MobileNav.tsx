@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { applyDocumentClasses } from '../../lib/apply-document-classes';
 
 declare global {
   interface Window {
@@ -86,9 +87,19 @@ export default function MobileNav({ children }: { children: React.ReactNode }) {
         <span></span>
       </button>
       <div
-        onPointerDownCapture={(e) => {
+        onClickCapture={(e) => {
           const t = e.target as Element | null;
-          if (t && t.closest && t.closest('a.nav-link')) closeNow();
+          const link = t && t.closest ? t.closest('a.nav-link') : null;
+          if (!link) return;
+          const href = link.getAttribute('href');
+          if (!href || href.startsWith('#') || href.startsWith('mailto:')) return;
+          try {
+            const url = new URL(href, window.location.origin);
+            if (url.origin !== window.location.origin) return;
+            applyDocumentClasses(url.pathname, { keepNavOpen: true });
+          } catch {
+            /* ignore */
+          }
         }}
       >
         {children}

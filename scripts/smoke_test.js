@@ -697,13 +697,19 @@ function testProfileClsGuards() {
     const nav = fs.readFileSync(path.join(ROOT, 'app/components/MobileNav.tsx'), 'utf8');
     const header = fs.readFileSync(path.join(ROOT, 'app/components/SiteHeader.tsx'), 'utf8');
     const root = fs.readFileSync(path.join(ROOT, 'app/layout.tsx'), 'utf8');
+    const runtime = fs.readFileSync(path.join(ROOT, 'app/components/ClientRuntime.tsx'), 'utf8');
     if (
       !nav.includes('menu-toggle') ||
       !nav.includes("closest('a.nav-link')") ||
+      nav.includes('onPointerDownCapture') ||
       !header.includes('MobileNav') ||
-      root.includes('nav.js')
+      root.includes('nav.js') ||
+      !runtime.includes("a.closest('#navigation-bar')")
     ) {
-      fail('nav uses document click delegation', 'React MobileNav must own the hamburger without nav.js on the root layout');
+      fail(
+        'nav uses document click delegation',
+        'React MobileNav must own the hamburger; menu links must not hide on pointerdown (iOS retargets the tap to the logo / home)'
+      );
     } else {
       pass('nav uses document click delegation');
     }
@@ -723,6 +729,8 @@ function testProfileClsGuards() {
       peopleBrowser.includes('useMemo') &&
       fundsBrowser.includes('useMemo') &&
       peopleBrowser.includes('useDirectoryIndex') &&
+      peopleBrowser.includes('useInfiniteDirectory') &&
+      fundsBrowser.includes('useInfiniteDirectory') &&
       peopleBrowser.includes('inv-dir-row-hit') &&
       !peopleBrowser.includes("from 'next/link'");
     if (!inMemory) {
@@ -1063,9 +1071,12 @@ function testNextAppShell() {
       'utf8'
     );
     const fundLoading = fs.readFileSync(path.join(ROOT, 'app/funds/(profile)/[slug]/loading.tsx'), 'utf8');
+    const skel = fs.readFileSync(path.join(ROOT, 'app/components/ProfileLoadingSkeleton.tsx'), 'utf8');
     const headerShell =
-      personLoading.includes('SiteHeader') &&
-      fundLoading.includes('SiteHeader') &&
+      personLoading.includes('ProfileLoadingSkeleton') &&
+      fundLoading.includes('ProfileLoadingSkeleton') &&
+      skel.includes('SiteHeader') &&
+      skel.includes('inv-profile-boot-bar') &&
       !personLoading.includes('Loading profile') &&
       !fundLoading.includes('Loading profile');
     const profileServer = fs.readFileSync(path.join(ROOT, 'lib/profile-server.js'), 'utf8');

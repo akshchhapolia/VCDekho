@@ -1,9 +1,5 @@
-import SiteHeader from '../../../components/SiteHeader';
+import ProfileLoadingSkeleton from '../../../components/ProfileLoadingSkeleton';
 
 export default function FundProfileLoading() {
-  return (
-    <div className="app-container">
-      <SiteHeader pathname="/funds" />
-    </div>
-  );
+  return <ProfileLoadingSkeleton pathname="/funds" />;
 }
