@@ -312,7 +312,7 @@ module.exports = async function handler(req, res) {
     <meta name="description" content="${article.meta_description}">
     
     ${renderFaviconLinks().join('\n    ')}
-    <link rel="stylesheet" href="/css/base.css?v=152">
+    <link rel="stylesheet" href="/css/base.css?v=153">
     <link rel="stylesheet" href="/css/hero.css?v=73">
     <link rel="stylesheet" href="/css/ambient.css?v=98">
     <link rel="stylesheet" href="/css/blog.css?v=74">

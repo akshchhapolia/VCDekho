@@ -136,7 +136,7 @@ function renderBuzzDetailHtml(item) {
     <meta property="og:url" content="https://vcdekho.com/buzz/${esc(item.slug)}">
     <meta property="og:type" content="article">
     ${renderFaviconLinks().join('\n    ')}
-    <link rel="stylesheet" href="/css/base.css?v=152">
+    <link rel="stylesheet" href="/css/base.css?v=153">
     <link rel="stylesheet" href="/css/hero.css?v=73">
     <link rel="stylesheet" href="/css/ambient.css?v=98">
     <link rel="stylesheet" href="/css/buzz.css?v=17">

@@ -157,7 +157,7 @@ function renderStagePage(stage, res) {
     '<link rel="canonical" href="https://vcdekho.com/funds/stages/' + escapeHtml(stage.id) + '">',
     ...renderFaviconLinks(),
     '<meta name="robots" content="index, follow">',
-    '<link rel="stylesheet" href="/css/base.css?v=152">',
+    '<link rel="stylesheet" href="/css/base.css?v=153">',
     '<link rel="stylesheet" href="/css/hero.css?v=73">',
     '<link rel="stylesheet" href="/css/ambient.css?v=98">',
     '<link rel="stylesheet" href="/css/directory.css?v=73">',
