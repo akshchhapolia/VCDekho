@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getFundsDirectoryIndex } from '../../../lib/directory-server';
+import { getFundsDirectoryIndex, ensureDirectoryIndexFiles } from '../../../lib/directory-server';
 import FundsDirectoryView from '../FundsDirectoryView';
 
 export const revalidate = 86400;
@@ -17,6 +17,9 @@ export const metadata: Metadata = {
 };
 
 export default function FundsPage() {
+  ensureDirectoryIndexFiles();
   const { investors, filters, total } = getFundsDirectoryIndex();
-  return <FundsDirectoryView investors={investors} filters={filters} total={total} />;
+  return (
+    <FundsDirectoryView investors={investors.slice(0, 15)} filters={filters} total={total} />
+  );
 }

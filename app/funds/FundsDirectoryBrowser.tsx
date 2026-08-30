@@ -1,10 +1,10 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import DirLogo from '../components/directory/DirLogo';
 import InvDropdown from '../components/directory/InvDropdown';
 import { useDirectoryChrome } from '../components/directory/useDirectoryChrome';
+import { useDirectoryIndex } from '../components/directory/useDirectoryIndex';
 import {
   PAGE_SIZE,
   STAGE_GUIDE_IDS,
@@ -61,15 +61,14 @@ function LinkedLabels({
     const href = id ? hrefForId(id) : null;
     if (href) {
       return (
-        <Link
+        <a
           key={id + label}
           className="inv-dir-inline-link"
           href={href}
-          prefetch={false}
           onClick={(e) => e.stopPropagation()}
         >
           {label}
-        </Link>
+        </a>
       );
     }
     return <span key={label + i}>{label}</span>;
@@ -115,10 +114,9 @@ function FundRow({ inv, mobile }: { inv: FundCard; mobile: boolean }) {
 
   return (
     <article className="inv-dir-row">
-      <Link
+      <a
         className="inv-dir-row-hit"
         href={href}
-        prefetch
         aria-label={inv.name}
         data-analytics-event="dir_result_click"
         data-analytics-params={'{"directory":"funds","slug":"' + inv.slug + '"}'}
@@ -159,11 +157,14 @@ function FundRow({ inv, mobile }: { inv: FundCard; mobile: boolean }) {
 
 export default function FundsDirectoryBrowser({
   investors,
-  filters
+  filters,
+  indexUrl
 }: {
   investors: FundCard[];
   filters: FundFilters;
+  indexUrl: string;
 }) {
+  const { items: allInvestors } = useDirectoryIndex<FundCard>(investors, indexUrl, 'investors');
   const [query, setQuery] = useState('');
   const [sector, setSector] = useState('');
   const [stage, setStage] = useState('');
@@ -186,7 +187,7 @@ export default function FundsDirectoryBrowser({
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     const chequeRange = cheque ? (filters.chequeRanges || []).find((r) => r.id === cheque) : null;
-    return investors.filter((i) => {
+    return allInvestors.filter((i) => {
       if (activeOnly && !i.activelyDeploying) return false;
       if (q) {
         const hay = (i.name + ' ' + (i.thesis || '') + ' ' + (i.sectors || []).join(' ')).toLowerCase();
@@ -201,7 +202,7 @@ export default function FundsDirectoryBrowser({
       }
       return true;
     });
-  }, [investors, filters, query, sector, stage, cheque, type, thesis, activeOnly]);
+  }, [allInvestors, filters, query, sector, stage, cheque, type, thesis, activeOnly]);
 
   const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE) || 1);
   const safePage = Math.min(page, pageCount);
@@ -248,9 +249,9 @@ export default function FundsDirectoryBrowser({
         <span className="inv-dir-dot" aria-hidden="true">
           ·
         </span>
-        <Link className="inv-dir-guide-link" href={'/funds/stages/' + encodeURIComponent(stage)} prefetch={false}>
+        <a className="inv-dir-guide-link" href={'/funds/stages/' + encodeURIComponent(stage)}>
           Open {label} guide →
-        </Link>
+        </a>
       </>
     );
   } else if (thesis && thesis !== 'general') {
@@ -260,9 +261,9 @@ export default function FundsDirectoryBrowser({
         <span className="inv-dir-dot" aria-hidden="true">
           ·
         </span>
-        <Link className="inv-dir-guide-link" href={'/funds/themes/' + encodeURIComponent(thesis)} prefetch={false}>
+        <a className="inv-dir-guide-link" href={'/funds/themes/' + encodeURIComponent(thesis)}>
           Open {label} guide →
-        </Link>
+        </a>
       </>
     );
   }

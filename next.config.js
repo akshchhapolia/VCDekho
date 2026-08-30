@@ -50,6 +50,9 @@ const nextConfig = {
       { source: '/', headers: htmlCache },
       { source: '/investors', headers: htmlCache },
       { source: '/funds', headers: htmlCache },
+      { source: '/blog', headers: htmlCache },
+      { source: '/news', headers: htmlCache },
+      { source: '/buzz', headers: htmlCache },
       { source: '/investors/:slug', headers: htmlCache },
       { source: '/funds/:slug', headers: htmlCache },
       { source: '/login', headers: htmlCache }

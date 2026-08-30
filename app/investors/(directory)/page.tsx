@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getPeopleDirectoryIndex } from '../../../lib/directory-server';
+import { getPeopleDirectoryIndex, ensureDirectoryIndexFiles } from '../../../lib/directory-server';
 import PeopleDirectoryView from '../PeopleDirectoryView';
 
 export const revalidate = 86400;
@@ -17,6 +17,9 @@ export const metadata: Metadata = {
 };
 
 export default function InvestorsPage() {
+  ensureDirectoryIndexFiles();
   const { people, filters, total } = getPeopleDirectoryIndex();
-  return <PeopleDirectoryView people={people} filters={filters} total={total} />;
+  return (
+    <PeopleDirectoryView people={people.slice(0, 15)} filters={filters} total={total} />
+  );
 }

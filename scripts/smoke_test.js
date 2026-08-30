@@ -703,12 +703,14 @@ function testProfileClsGuards() {
     const peopleBrowser = fs.readFileSync(path.join(ROOT, 'app/investors/PeopleDirectoryBrowser.tsx'), 'utf8');
     const fundsBrowser = fs.readFileSync(path.join(ROOT, 'app/funds/FundsDirectoryBrowser.tsx'), 'utf8');
     const inMemory =
-      !peopleLayout.includes('people.js') &&
-      !fundsLayout.includes('investors.js') &&
+      !peopleLayout.includes('/js/people.js') &&
+      !fundsLayout.includes('investors/investors.js') &&
       peopleBrowser.includes("'use client'") &&
       peopleBrowser.includes('useMemo') &&
       fundsBrowser.includes('useMemo') &&
-      peopleBrowser.includes('prefetch');
+      peopleBrowser.includes('useDirectoryIndex') &&
+      peopleBrowser.includes('inv-dir-row-hit') &&
+      !peopleBrowser.includes("from 'next/link'");
     if (!inMemory) {
       fail(
         'directory is in-memory React (Founder Tape model)',
@@ -951,15 +953,17 @@ function testNextAppShell() {
     const loginHtml = fs.readFileSync(path.join(ROOT, 'login.html'), 'utf8');
     const hasLogin = fs.existsSync(path.join(ROOT, 'app/login/route.ts'));
     const loginCached = loginRoute.includes('force-static') && !loginRoute.includes('no-store');
+    const blogRoute = fs.readFileSync(path.join(ROOT, 'app/blog/route.ts'), 'utf8');
+    const blogStatic = blogRoute.includes('force-static');
     const oauthReturn = loginJs.includes('function hasOAuthCallback') && loginJs.includes('location.replace');
     const cacheBust = loginHtml.includes('login.js?v=113') && loginHtml.includes('supabase.min.js');
     const hashNext = loginJs.includes('hashNext') && loginJs.includes("hashNext.startsWith('/')");
     if (!hasGuides || !hasLogin) {
       fail('next.config keeps guides and login on the old stack', `guides=${hasGuides} loginRoute=${hasLogin}`);
-    } else if (!loginCached || !oauthReturn || !cacheBust || !hashNext) {
+    } else if (!loginCached || !oauthReturn || !cacheBust || !hashNext || !blogStatic) {
       fail(
         'login return path',
-        `cached=${loginCached} oauthReturn=${oauthReturn} cacheBust=${cacheBust} hashNext=${hashNext}`
+        `cached=${loginCached} oauthReturn=${oauthReturn} cacheBust=${cacheBust} hashNext=${hashNext} blogStatic=${blogStatic}`
       );
     } else {
       pass('login route + fund guide slug rewrites are in place');
@@ -974,11 +978,11 @@ function testNextAppShell() {
     if (
       !routes.includes('isSoftNavRoute') ||
       !runtime.includes('isSoftNavRoute') ||
-      !routes.includes('return isAppRoute(pathname)')
+      routes.includes('return isAppRoute(pathname)')
     ) {
-      fail('profiles use client navigation', 'profile slugs must use next/link + the client router cache');
+      fail('profiles use full navigation', 'profile slugs must not use client router.push');
     } else {
-      pass('profiles use client navigation (Link + router cache)');
+      pass('profiles use full navigation');
     }
     const personLayout = fs.readFileSync(path.join(ROOT, 'app/investors/(profile)/[slug]/layout.tsx'), 'utf8');
     const fundLayout = fs.readFileSync(path.join(ROOT, 'app/funds/(profile)/[slug]/layout.tsx'), 'utf8');
@@ -996,7 +1000,7 @@ function testNextAppShell() {
       pass('profile CSS loads on mweb');
     }
   } catch (err) {
-    fail('profiles use client navigation', err);
+    fail('profiles use full navigation', err);
   }
 
   try {
@@ -1035,7 +1039,7 @@ function testNextAppShell() {
     const usesHeaders = personPage.includes("next/headers") || fundPage.includes("next/headers");
     const hasStale = cfg.includes('staleTimes');
     const noDirIife =
-      !investorsLayout.includes('people.js') &&
+      !investorsLayout.includes('/js/people.js') &&
       !rootLayout.includes('investors/investors.js') &&
       !rootLayout.includes('/js/people.js?v=');
     if (usesHeaders || !hasStale) {

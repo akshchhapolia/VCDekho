@@ -1,11 +1,11 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import DirLogo from '../components/directory/DirLogo';
 import InvDropdown from '../components/directory/InvDropdown';
 import UnlockEmailButton from '../components/directory/UnlockEmailButton';
 import { useDirectoryChrome } from '../components/directory/useDirectoryChrome';
+import { useDirectoryIndex } from '../components/directory/useDirectoryIndex';
 import {
   PAGE_SIZE,
   chequeOverlaps,
@@ -74,10 +74,9 @@ function PersonRow({ person }: { person: PersonCard }) {
 
   return (
     <article className="inv-dir-row">
-      <Link
+      <a
         className="inv-dir-row-hit"
         href={href}
-        prefetch
         aria-label={person.name}
         data-analytics-event="dir_result_click"
         data-analytics-params={'{"directory":"people","slug":"' + person.slug + '"}'}
@@ -95,14 +94,13 @@ function PersonRow({ person }: { person: PersonCard }) {
         <span className="inv-dir-mobile-label">Firm</span>
         <span className="inv-dir-cell">
           {person.companySlug ? (
-            <Link
+            <a
               className="inv-dir-inline-link"
               href={'/funds/' + encodeURIComponent(person.companySlug)}
-              prefetch
               onClick={(e) => e.stopPropagation()}
             >
               {person.company}
-            </Link>
+            </a>
           ) : (
             person.company || '—'
           )}
@@ -132,11 +130,14 @@ function PersonRow({ person }: { person: PersonCard }) {
 
 export default function PeopleDirectoryBrowser({
   people,
-  filters
+  filters,
+  indexUrl
 }: {
   people: PersonCard[];
   filters: PeopleFilters;
+  indexUrl: string;
 }) {
+  const { items: allPeople } = useDirectoryIndex<PersonCard>(people, indexUrl, 'people');
   const [query, setQuery] = useState('');
   const [role, setRole] = useState('');
   const [companyType, setCompanyType] = useState('');
@@ -155,7 +156,7 @@ export default function PeopleDirectoryBrowser({
     const chequeRange = cheque ? (filters.chequeRanges || []).find((r) => r.id === cheque) : null;
     const needsFirm = Boolean(stage || sector || thesis || cheque);
 
-    return people.filter((p) => {
+    return allPeople.filter((p) => {
       if (q) {
         const hay = (p.name + ' ' + (p.title || '') + ' ' + (p.company || '')).toLowerCase();
         if (!hay.includes(q)) return false;
@@ -172,7 +173,7 @@ export default function PeopleDirectoryBrowser({
       }
       return true;
     });
-  }, [people, filters, query, role, companyType, stage, sector, thesis, cheque]);
+  }, [allPeople, filters, query, role, companyType, stage, sector, thesis, cheque]);
 
   const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE) || 1);
   const safePage = Math.min(page, pageCount);

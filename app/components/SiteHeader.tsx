@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { isAppRoute, normalizePath } from '../../lib/app-routes';
+import MobileNav from './MobileNav';
 
 function NavHref({
   href,
@@ -52,40 +53,37 @@ export default function SiteHeader({ pathname = '/' }: { pathname?: string }) {
           </span>
         ) : null}
       </NavHref>
-      <button className="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav className="main-nav" id="navigation-bar">
-        {isHome ? null : (
-          <NavHref href="/" className="nav-link">
-            Home
+      <MobileNav>
+        <nav className="main-nav" id="navigation-bar">
+          {isHome ? null : (
+            <NavHref href="/" className="nav-link">
+              Home
+            </NavHref>
+          )}
+          <NavHref href="/investors" className={'nav-link' + (investorsActive ? ' active' : '')}>
+            Investors
           </NavHref>
-        )}
-        <NavHref href="/investors" className={'nav-link' + (investorsActive ? ' active' : '')}>
-          Investors
-        </NavHref>
-        <NavHref href="/funds" className={'nav-link' + (fundsActive ? ' active' : '')}>
-          Funds
-        </NavHref>
-        <a href="/buzz" className="nav-link">
-          Founder Buzz
-        </a>
-        <a href="/blog" className="nav-link">
-          Blog
-        </a>
-        <a href="/news" className="nav-link">
-          News
-        </a>
-        <a
-          href={'/login?next=' + encodeURIComponent(path === '/login' ? '/funds' : path)}
-          className="nav-link"
-          id="nav-auth-link"
-        >
-          Log in
-        </a>
-      </nav>
+          <NavHref href="/funds" className={'nav-link' + (fundsActive ? ' active' : '')}>
+            Funds
+          </NavHref>
+          <a href="/buzz" className="nav-link">
+            Founder Buzz
+          </a>
+          <a href="/blog" className="nav-link">
+            Blog
+          </a>
+          <a href="/news" className="nav-link">
+            News
+          </a>
+          <a
+            href={'/login?next=' + encodeURIComponent(path === '/login' ? '/funds' : path)}
+            className="nav-link"
+            id="nav-auth-link"
+          >
+            Log in
+          </a>
+        </nav>
+      </MobileNav>
     </header>
   );
 }

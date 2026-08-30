@@ -4,6 +4,7 @@ export default function InvestorsDirectoryLayout({ children }: { children: React
   return (
     <>
       <link rel="preload" href="/css/directory-profile.css?v=150" as="style" />
+      <link rel="preload" href="/dir-index/people.json" as="fetch" crossOrigin="anonymous" />
       <link rel="prefetch" href="/login" />
       <link rel="prefetch" href="/login.js?v=113" />
       <link rel="prefetch" href="/js/supabase.min.js?v=1" />

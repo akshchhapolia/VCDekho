@@ -27,7 +27,7 @@ export default function ClientRuntime() {
     routerReady.current = true;
     window.__vcClientReady = true;
     window.dispatchEvent(new Event('vc:client-ready'));
-    applyDocumentClasses(pathname);
+    applyDocumentClasses(pathname, prevPath.current !== null && prevPath.current !== normalizePath(pathname));
     if (window.VCProfilePage && typeof window.VCProfilePage.boot === 'function') {
       window.VCProfilePage.boot();
     }
@@ -109,9 +109,9 @@ export default function ClientRuntime() {
   return null;
 }
 
-function applyDocumentClasses(pathname: string) {
+function applyDocumentClasses(pathname: string, leavingRoute: boolean) {
   const next = documentClasses(pathname);
-  const navOpen = document.body.classList.contains('nav-open');
+  const navOpen = !leavingRoute && document.body.classList.contains('nav-open');
   document.documentElement.className = next.html;
   document.body.className = next.body;
   if (navOpen) document.body.classList.add('nav-open');

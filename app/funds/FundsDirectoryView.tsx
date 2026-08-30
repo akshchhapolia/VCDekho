@@ -18,7 +18,7 @@ export default function FundsDirectoryView({
     <>
       <div className="app-container">
         <SiteHeader pathname="/funds" />
-        <FundsDirectoryBrowser investors={investors} filters={filters} />
+        <FundsDirectoryBrowser investors={investors} filters={filters} indexUrl="/dir-index/funds.json" />
       </div>
       <script
         type="application/json"

@@ -18,7 +18,7 @@ export default function PeopleDirectoryPage({
     <>
       <div className="app-container">
         <SiteHeader pathname="/investors" />
-        <PeopleDirectoryBrowser people={people} filters={filters} />
+        <PeopleDirectoryBrowser people={people} filters={filters} indexUrl="/dir-index/people.json" />
       </div>
       <script
         type="application/json"

@@ -13,9 +13,10 @@ export function isAppRoute(pathname: string) {
   return false;
 }
 
-/** Client-side router for home, directories, and profile slugs (Founder Tape Link model). */
+/** Client router only for home + directory indexes. Profiles and HTML pages use full navigation. */
 export function isSoftNavRoute(pathname: string) {
-  return isAppRoute(pathname);
+  const p = normalizePath(pathname);
+  return p === '/' || p === '/investors' || p === '/funds';
 }
 
 export function isProfileRoute(pathname: string) {
