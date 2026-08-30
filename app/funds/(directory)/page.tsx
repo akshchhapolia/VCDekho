@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getFundsListPayload } from '../../../lib/directory-server';
+import { getFundsDirectoryIndex } from '../../../lib/directory-server';
 import FundsDirectoryView from '../FundsDirectoryView';
 
 export const revalidate = 86400;
@@ -17,7 +17,6 @@ export const metadata: Metadata = {
 };
 
 export default function FundsPage() {
-  const payload = getFundsListPayload();
-  const { rowsHtml, ...bootstrap } = payload;
-  return <FundsDirectoryView total={payload.total} rowsHtml={rowsHtml} bootstrap={bootstrap} />;
+  const { investors, filters, total } = getFundsDirectoryIndex();
+  return <FundsDirectoryView investors={investors} filters={filters} total={total} />;
 }

@@ -63,37 +63,21 @@ test.describe('directory golden paths', () => {
     expect(optionCount).toBeGreaterThan(2);
   });
 
-  test('investors: applying a filter shows a skeleton then results', async ({ page }) => {
-    await page.route(/\/api\/people\?/, async (route) => {
-      const req = route.request();
-      const url = req.url();
-      if (req.method() === 'GET' && /[?&]role=[^&]+/.test(url)) {
-        await new Promise((r) => setTimeout(r, 900));
-      }
-      await route.continue();
-    });
-
+  test('investors: applying a filter updates results in memory', async ({ page }) => {
     await page.goto('/investors');
     await waitForPeopleFilters(page);
+    const before = await page.locator('#ppl-count').innerText();
 
     await page.locator('#ppl-dir-sidebar #filter-role .inv-dd-trigger').click();
     const choice = page.locator('#ppl-dir-sidebar #filter-role .inv-dd-option[data-value]:not([data-value=""])').first();
     await expect(choice).toBeVisible();
-
-    const skeletonVisible = page
-      .locator('#ppl-results .inv-dir-skel')
-      .first()
-      .waitFor({ state: 'visible', timeout: 4000 })
-      .then(() => true)
-      .catch(() => false);
-
     await choice.click();
-    expect(await skeletonVisible).toBe(true);
 
-    await expect(page.locator('#ppl-results .inv-dir-skel')).toHaveCount(0, { timeout: 15000 });
+    await expect(page.locator('#ppl-results .inv-dir-skel')).toHaveCount(0);
     await expect(page.locator('#ppl-dir-sidebar #filter-role .inv-dd-trigger')).toBeVisible();
     const rowsOrEmpty = page.locator('#ppl-results .inv-dir-row, #ppl-results .inv-dir-empty-state');
     await expect(rowsOrEmpty.first()).toBeVisible();
+    await expect(page.locator('#ppl-count')).not.toHaveText(before);
   });
 
   test('funds: filter dropdowns survive hydration', async ({ page }) => {

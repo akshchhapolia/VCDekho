@@ -698,22 +698,24 @@ function testProfileClsGuards() {
   }
 
   try {
-    const people = fs.readFileSync(path.join(ROOT, 'public/js/people.js'), 'utf8');
-    const funds = fs.readFileSync(path.join(ROOT, 'public/investors/investors.js'), 'utf8');
-    const peopleSchedules = people.includes('schedulePeopleBoot') && people.includes("document.addEventListener('DOMContentLoaded', schedulePeopleBoot)");
-    const fundsSchedules = funds.includes('scheduleFundsBoot') && funds.includes("document.addEventListener('DOMContentLoaded', scheduleFundsBoot)");
-    const runtime = fs.readFileSync(path.join(ROOT, 'app/components/ClientRuntime.tsx'), 'utf8');
-    const waitsHydration =
-      people.includes('vc:client-ready') &&
-      funds.includes('vc:client-ready') &&
-      runtime.includes("dispatchEvent(new Event('vc:client-ready'))");
-    if (!peopleSchedules || !fundsSchedules || !waitsHydration) {
+    const peopleLayout = fs.readFileSync(path.join(ROOT, 'app/investors/(directory)/layout.tsx'), 'utf8');
+    const fundsLayout = fs.readFileSync(path.join(ROOT, 'app/funds/(directory)/layout.tsx'), 'utf8');
+    const peopleBrowser = fs.readFileSync(path.join(ROOT, 'app/investors/PeopleDirectoryBrowser.tsx'), 'utf8');
+    const fundsBrowser = fs.readFileSync(path.join(ROOT, 'app/funds/FundsDirectoryBrowser.tsx'), 'utf8');
+    const inMemory =
+      !peopleLayout.includes('people.js') &&
+      !fundsLayout.includes('investors.js') &&
+      peopleBrowser.includes("'use client'") &&
+      peopleBrowser.includes('useMemo') &&
+      fundsBrowser.includes('useMemo') &&
+      peopleBrowser.includes('prefetch');
+    if (!inMemory) {
       fail(
-        'directory scripts schedule boot on DOMContentLoaded',
-        `people=${peopleSchedules} funds=${fundsSchedules} hydration=${waitsHydration}`
+        'directory is in-memory React (Founder Tape model)',
+        'directory layouts must not load people.js / investors.js; browsers filter in useMemo'
       );
     } else {
-      pass('directory scripts schedule boot on DOMContentLoaded');
+      pass('directory is in-memory React (no people.js / investors.js on the page)');
     }
   } catch (err) {
     fail('directory scripts schedule boot on DOMContentLoaded', err);
@@ -734,7 +736,7 @@ function testProfileClsGuards() {
       pkg.scripts['test:e2e'] &&
       pkg.scripts['deploy:prod'] === 'node scripts/deploy_prod.js' &&
       e2e.includes('waitForPeopleFilters') &&
-      e2e.includes('inv-dir-skel') &&
+      e2e.includes('inv-dir-empty-state') &&
       e2e.includes('data-unlock-email') &&
       e2e.includes('#otp-step') &&
       canary.includes('/api/people?limit=1') &&
@@ -969,10 +971,14 @@ function testNextAppShell() {
   try {
     const routes = fs.readFileSync(path.join(ROOT, 'lib/app-routes.ts'), 'utf8');
     const runtime = fs.readFileSync(path.join(ROOT, 'app/components/ClientRuntime.tsx'), 'utf8');
-    if (!routes.includes('isSoftNavRoute') || !runtime.includes('isSoftNavRoute')) {
-      fail('profiles use full navigation', 'profile slugs must not use client router.push');
+    if (
+      !routes.includes('isSoftNavRoute') ||
+      !runtime.includes('isSoftNavRoute') ||
+      !routes.includes('return isAppRoute(pathname)')
+    ) {
+      fail('profiles use client navigation', 'profile slugs must use next/link + the client router cache');
     } else {
-      pass('profiles use full navigation');
+      pass('profiles use client navigation (Link + router cache)');
     }
     const personLayout = fs.readFileSync(path.join(ROOT, 'app/investors/(profile)/[slug]/layout.tsx'), 'utf8');
     const fundLayout = fs.readFileSync(path.join(ROOT, 'app/funds/(profile)/[slug]/layout.tsx'), 'utf8');
@@ -990,7 +996,7 @@ function testNextAppShell() {
       pass('profile CSS loads on mweb');
     }
   } catch (err) {
-    fail('profiles use full navigation', err);
+    fail('profiles use client navigation', err);
   }
 
   try {
@@ -1028,9 +1034,10 @@ function testNextAppShell() {
     const cfg = fs.readFileSync(path.join(ROOT, 'next.config.js'), 'utf8');
     const usesHeaders = personPage.includes("next/headers") || fundPage.includes("next/headers");
     const hasStale = cfg.includes('staleTimes');
-    const earlyPeople = investorsLayout.includes('beforeInteractive') && investorsLayout.includes('people.js');
-    const rootLoadsDirJs =
-      !rootLayout.includes('investors/investors.js') && !rootLayout.includes('/js/people.js?v=');
+    const noDirIife =
+      !investorsLayout.includes('people.js') &&
+      !rootLayout.includes('investors/investors.js') &&
+      !rootLayout.includes('/js/people.js?v=');
     if (usesHeaders || !hasStale) {
       fail(
         'profile pages can ISR',
@@ -1039,10 +1046,13 @@ function testNextAppShell() {
     } else {
       pass('profile pages do not call headers(); client router keeps a stale cache');
     }
-    if (!investorsLayout.includes('directory-list.css') || !earlyPeople || !rootLoadsDirJs) {
-      fail('directory layout loads CSS and JS in head', `dirCss=${investorsLayout.includes('directory-list.css')} earlyPeople=${earlyPeople} slimRoot=${rootLoadsDirJs}`);
+    if (!investorsLayout.includes('directory-list.css') || !noDirIife) {
+      fail(
+        'directory layout loads CSS without people.js',
+        `dirCss=${investorsLayout.includes('directory-list.css')} noDirIife=${noDirIife}`
+      );
     } else {
-      pass('directory layout loads CSS and JS in head');
+      pass('directory layout loads CSS without people.js');
     }
   } catch (err) {
     fail('profile pages can ISR', err);
@@ -1069,10 +1079,14 @@ function testNextAppShell() {
   try {
     const peopleView = fs.readFileSync(path.join(ROOT, 'app/investors/PeopleDirectoryView.tsx'), 'utf8');
     const fundsView = fs.readFileSync(path.join(ROOT, 'app/funds/FundsDirectoryView.tsx'), 'utf8');
-    if (!peopleView.includes('inv-dir-row') && !peopleView.includes('inv-dir-results')) {
+    const peopleBrowser = fs.readFileSync(path.join(ROOT, 'app/investors/PeopleDirectoryBrowser.tsx'), 'utf8');
+    const fundsBrowser = fs.readFileSync(path.join(ROOT, 'app/funds/FundsDirectoryBrowser.tsx'), 'utf8');
+    if (!peopleBrowser.includes('inv-dir-row') || !peopleBrowser.includes('inv-dir-results')) {
       fail('people list class lock', 'missing inv-dir-results');
-    } else if (!fundsView.includes('inv-dir-results')) {
+    } else if (!fundsBrowser.includes('inv-dir-results') || !fundsView.includes('SiteHeader')) {
       fail('funds list class lock', 'missing inv-dir-results');
+    } else if (!peopleView.includes('PeopleDirectoryBrowser')) {
+      fail('people list class lock', 'view must render PeopleDirectoryBrowser');
     } else {
       pass('directory views keep inv-dir-* class names');
     }
@@ -1083,70 +1097,78 @@ function testNextAppShell() {
   try {
     const peopleView = fs.readFileSync(path.join(ROOT, 'app/investors/PeopleDirectoryView.tsx'), 'utf8');
     const fundsView = fs.readFileSync(path.join(ROOT, 'app/funds/FundsDirectoryView.tsx'), 'utf8');
-    const peopleJs = fs.readFileSync(path.join(ROOT, 'js/people.js'), 'utf8');
-    const fundsJs = fs.readFileSync(path.join(ROOT, 'investors/investors.js'), 'utf8');
+    const peopleBrowser = fs.readFileSync(path.join(ROOT, 'app/investors/PeopleDirectoryBrowser.tsx'), 'utf8');
+    const fundsBrowser = fs.readFileSync(path.join(ROOT, 'app/funds/FundsDirectoryBrowser.tsx'), 'utf8');
+    const inline = fs.readFileSync(path.join(ROOT, 'lib/inline-directory-filters.ts'), 'utf8');
     const nextNotStuck =
-      peopleView.includes('disabled={nextDisabled}') &&
-      fundsView.includes('disabled={nextDisabled}') &&
+      peopleBrowser.includes('disabled={safePage >= pageCount}') &&
+      fundsBrowser.includes('disabled={safePage >= pageCount}') &&
       !/id="ppl-next" disabled>/.test(peopleView) &&
       !/id="inv-next" disabled>/.test(fundsView);
-    const pagerDelegated =
-      peopleJs.includes('onPeoplePagerClick') &&
-      peopleJs.includes('#ppl-next, #ppl-prev') &&
-      fundsJs.includes('onFundsPagerClick') &&
-      peopleJs.includes('loginForPager') &&
-      /offset > 0 && !isSignedIn\(\)/.test(peopleJs);
-    const filtersDelegated =
-      peopleJs.includes('onPeopleFiltersClick') &&
-      peopleJs.includes('#ppl-filters-toggle') &&
-      fundsJs.includes('onFundsFiltersClick') &&
-      peopleJs.includes('peopleSetFiltersOpen') &&
-      peopleJs.includes('paintPeopleFilters') &&
-      fundsJs.includes('paintFundsFilters') &&
-      /max-width: 960px/.test(peopleJs);
-    const filtersOpenFirst =
-      /function onPeopleFiltersClick[\s\S]{0,400}paintPeopleFilters\(true\)/.test(peopleJs) &&
-      !/function onPeopleFiltersClick[\s\S]{0,120}bootPeopleDirectory\(\)/.test(peopleJs);
-    if (!nextNotStuck || !pagerDelegated) {
+    const inMemoryPager =
+      peopleBrowser.includes('filtered.slice') &&
+      !peopleBrowser.includes('/api/people') &&
+      !fundsBrowser.includes('/api/investors');
+    const filtersInstant =
+      peopleBrowser.includes('id="filter-role"') &&
+      fundsBrowser.includes('id="filter-stage"') &&
+      inline.includes('max-width:960px');
+    if (!nextNotStuck || !inMemoryPager) {
       fail(
-        'directory pager works before hydration',
-        `nextNotStuck=${nextNotStuck} pagerDelegated=${pagerDelegated} — Next must not ship disabled, taps must not wait for Next hydrate`
+        'directory pager is in-memory',
+        `nextNotStuck=${nextNotStuck} inMemoryPager=${inMemoryPager} — Next/Prev must page the loaded list, not hit the API`
       );
     } else {
-      pass('directory pager Next is live in HTML; taps do not wait for hydration');
+      pass('directory pager pages the in-memory list (no API, no login wall)');
     }
-    if (!filtersDelegated || !filtersOpenFirst) {
+    if (!filtersInstant) {
       fail(
         'directory filters open on mweb',
-        `delegated=${filtersDelegated} openFirst=${filtersOpenFirst} — drawer must paint before directory boot`
+        `filtersInstant=${filtersInstant} — dropdowns SSR and the drawer paints from the inline script`
       );
     } else {
-      pass('directory filters open without waiting for hydration');
+      pass('directory filters SSR in React; drawer opens without people.js');
     }
   } catch (err) {
-    fail('directory pager works before hydration', err);
+    fail('directory pager is in-memory', err);
   }
 
   try {
-    const { getPeopleListPayload, getFundsListPayload } = require(path.join(ROOT, 'lib/directory-server'));
+    const {
+      getPeopleListPayload,
+      getFundsListPayload,
+      getPeopleDirectoryIndex,
+      getFundsDirectoryIndex
+    } = require(path.join(ROOT, 'lib/directory-server'));
     const people = getPeopleListPayload();
     const funds = getFundsListPayload();
+    const peopleIndex = getPeopleDirectoryIndex();
+    const fundsIndex = getFundsDirectoryIndex();
     const leaked = (people.people || []).some((p) => p && p.email);
+    const indexLeaked = (peopleIndex.people || []).some((p) => p && p.email);
     const rows = String(people.rowsHtml || '');
     const fundRows = String(funds.rowsHtml || '');
-    if (leaked) {
+    const browser = fs.readFileSync(path.join(ROOT, 'app/investors/PeopleDirectoryBrowser.tsx'), 'utf8');
+    const unlockBtn = fs.readFileSync(path.join(ROOT, 'app/components/directory/UnlockEmailButton.tsx'), 'utf8');
+    const hasUnlock =
+      browser.includes('UnlockEmailButton') &&
+      unlockBtn.includes("'/login#/investors/'") &&
+      unlockBtn.includes('data-unlock-email');
+    if (leaked || indexLeaked) {
       fail('anon people payload has no emails', 'email field present on a public card');
     } else if (!rows.includes('class="inv-dir-row"') || !fundRows.includes('class="inv-dir-row"')) {
       fail('prerendered rows class lock', 'missing inv-dir-row');
-    } else if (!rows.includes('inv-email-unlock-btn') && !rows.includes('Not available')) {
-      fail('email unlock lock', 'list rows must keep unlock CTA, not raw addresses');
-    } else if (rows.includes('inv-email-unlock-btn') && !rows.includes('href="/login')) {
+    } else if (!hasUnlock) {
       fail('email unlock lock', 'logged-out unlock CTA must be a real /login link');
+    } else if (!peopleIndex.people || peopleIndex.people.length < 100) {
+      fail('in-memory people index', 'expected the full public people list');
+    } else if (!fundsIndex.investors || fundsIndex.investors.length < 100) {
+      fail('in-memory funds index', 'expected the full funds list');
     } else {
-      pass('page-1 payloads: no emails, inv-dir-row + unlock CTA');
+      pass('directory indexes: full lists, no emails, unlock CTA');
     }
   } catch (err) {
-    fail('page-1 payloads: no emails, inv-dir-row + unlock CTA', err);
+    fail('directory indexes: full lists, no emails, unlock CTA', err);
   }
 
   try {

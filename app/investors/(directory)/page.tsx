@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getPeopleListPayload } from '../../../lib/directory-server';
+import { getPeopleDirectoryIndex } from '../../../lib/directory-server';
 import PeopleDirectoryView from '../PeopleDirectoryView';
 
 export const revalidate = 86400;
@@ -17,7 +17,6 @@ export const metadata: Metadata = {
 };
 
 export default function InvestorsPage() {
-  const payload = getPeopleListPayload();
-  const { rowsHtml, ...bootstrap } = payload;
-  return <PeopleDirectoryView total={payload.total} rowsHtml={rowsHtml} bootstrap={bootstrap} />;
+  const { people, filters, total } = getPeopleDirectoryIndex();
+  return <PeopleDirectoryView people={people} filters={filters} total={total} />;
 }
