@@ -10,7 +10,7 @@ const CSS_FILES = [
   '/css/ambient.css?v=98',
   '/css/announcement.css?v=145',
   '/css/directory-list.css?v=148',
-  '/css/directory-profile.css?v=150'
+  '/css/directory-profile.css?v=151'
 ];
 
 const { FONTS_HREF, renderFontPreloads, renderLatinFontFaces } = require('./font-assets');
@@ -85,7 +85,7 @@ const PROFILE_CRITICAL_CSS = [
   '.inv-profile-chip-row,.inv-profile-thesis-chips{display:flex;flex-wrap:wrap;gap:.45rem}',
   '.inv-profile-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.4rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:rgba(255,255,255,.88);font-size:.8rem;text-decoration:none}',
   '.inv-profile-panel-link,.inv-profile-browse{display:inline-block;margin-top:.35rem;color:#ffb89c;font-size:.82rem;font-weight:600;text-decoration:none}',
-  '.inv-profile-reveal.is-visible,.inv-profile-ready .inv-profile-hero-enter{opacity:1;transform:none}',
+  '.inv-profile-reveal,.inv-profile-reveal.is-visible,.inv-profile-ready .inv-profile-hero-enter{opacity:1;transform:none}',
   /* Mweb-only first paint: hide dir widgets + show through thesis; stacked focus divider only on mweb */
   '@media(max-width:768px){.inv-profile-dir-widget{display:none!important}.main-nav:not(.active){position:fixed;right:-100%;display:flex}.main-nav.active,#navigation-bar.active{display:flex!important;position:fixed;top:0;right:0;left:0;bottom:0;width:100%;height:100dvh;background:#0b0b0d;z-index:10040}.nav-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;z-index:10050}body.nav-open .site-header{z-index:10045!important;position:relative!important}body.nav-open .inv-detail-wrap,body.nav-open .inv-profile-sticky,body.nav-open .hero-showcase{z-index:0!important}body.inv-investor-profile #focus.inv-profile-reveal,body.inv-investor-profile #thesis.inv-profile-reveal,body.inv-person-profile #firm-focus.inv-profile-reveal,body.inv-person-profile #firm-thesis.inv-profile-reveal,body.inv-person-profile #firm-activity.inv-profile-reveal{opacity:1;transform:none}.inv-profile-focus-col+.inv-profile-focus-col{margin-top:.85rem;padding-top:.85rem;border-top:1px solid rgba(255,255,255,.1);border-left:none;padding-left:0}}',
   '@media(min-width:769px){.main-nav{display:flex}.nav-toggle{display:none}.app-container{padding:var(--page-padding);padding-top:1rem;padding-bottom:0;gap:.75rem}.hero-showcase.inv-detail-main{padding-top:1.25rem;padding-bottom:2.5rem}.inv-profile-sticky-host{width:auto;max-width:none;margin-left:0}.inv-profile-sticky{overflow:visible;flex-wrap:wrap}.inv-profile-focus-col+.inv-profile-focus-col{margin-top:0;padding-top:0;border-top:none}}'
@@ -170,7 +170,7 @@ function earlyStickyPinScript() {
 }
 
 function profileMobileAsyncCssScript() {
-  return "(function(){var href='/css/directory-profile.css?v=150';var existing=document.querySelector('link[href=\"'+href+'\"]');if(existing){existing.media='all';existing.onload=null;return;}var l=document.createElement('link');l.rel='stylesheet';l.href=href;document.head.appendChild(l);})();";
+  return "(function(){var href='/css/directory-profile.css?v=151';var existing=document.querySelector('link[href=\"'+href+'\"]');if(existing){existing.media='all';existing.onload=null;return;}var l=document.createElement('link');l.rel='stylesheet';l.href=href;document.head.appendChild(l);})();";
 }
 
 module.exports = {

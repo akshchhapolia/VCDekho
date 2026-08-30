@@ -13,6 +13,7 @@ declare global {
     VCFundsDir?: { boot?: () => void; destroy?: () => void };
     VCPeopleDir?: { boot?: () => void; destroy?: () => void };
     VCPersonEmailUnlock?: { initEmailUnlock?: (root?: Element | Document | null) => void };
+    VCProfileExtras?: { boot?: () => void };
     __vcClientReady?: boolean;
   }
 }
@@ -30,6 +31,9 @@ export default function ClientRuntime() {
     applyDocumentClasses(pathname, prevPath.current !== null && prevPath.current !== normalizePath(pathname));
     if (window.VCProfilePage && typeof window.VCProfilePage.boot === 'function') {
       window.VCProfilePage.boot();
+    }
+    if (window.VCProfileExtras && typeof window.VCProfileExtras.boot === 'function') {
+      window.VCProfileExtras.boot();
     }
     const path = normalizePath(pathname);
     if (path === '/funds' && window.VCFundsDir && typeof window.VCFundsDir.boot === 'function') {
@@ -62,11 +66,27 @@ export default function ClientRuntime() {
         ? (cb: () => void) => window.requestIdleCallback(cb, { timeout: 2500 })
         : (cb: () => void) => window.setTimeout(cb, 400);
     idle(() => {
-      if (!cancelled) {
-        const s = document.createElement('script');
-        s.src = '/js/analytics.js?v=2';
-        s.async = true;
-        document.body.appendChild(s);
+      if (cancelled) return;
+      if (!document.querySelector('script[src="/js/analytics.js?v=2"]')) {
+        const analytics = document.createElement('script');
+        analytics.src = '/js/analytics.js?v=2';
+        analytics.async = true;
+        document.body.appendChild(analytics);
+      }
+      if (!document.querySelector('script[src="/js/report.js?v=1"]')) {
+        const report = document.createElement('script');
+        report.src = '/js/report.js?v=1';
+        report.async = true;
+        document.body.appendChild(report);
+      }
+      if (!document.getElementById('vc-speculation')) {
+        const spec = document.createElement('script');
+        spec.id = 'vc-speculation';
+        spec.type = 'speculationrules';
+        spec.textContent = JSON.stringify({
+          prefetch: [{ source: 'list', urls: ['/login'] }]
+        });
+        document.head.appendChild(spec);
       }
     });
     return () => {
@@ -106,6 +126,39 @@ export default function ClientRuntime() {
     return () => document.removeEventListener('click', onClick);
   }, [router]);
 
+  useEffect(() => {
+    function warm(href: string) {
+      let url: URL;
+      try {
+        url = new URL(href, window.location.origin);
+      } catch {
+        return;
+      }
+      if (url.origin !== window.location.origin) return;
+      const p = url.pathname + url.search;
+      if (isSoftNavRoute(url.pathname)) {
+        try {
+          router.prefetch(url.pathname + url.search);
+        } catch {
+          /* ignore */
+        }
+        return;
+      }
+      fetch(p, { credentials: 'same-origin' }).catch(() => {});
+    }
+    function onPointerDown(e: PointerEvent) {
+      const a = (e.target as Element | null)?.closest?.('a');
+      if (!a) return;
+      const href = a.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('javascript:')) {
+        return;
+      }
+      warm(href);
+    }
+    document.addEventListener('pointerdown', onPointerDown, { passive: true });
+    return () => document.removeEventListener('pointerdown', onPointerDown);
+  }, [router]);
+
   return null;
 }
 
@@ -140,7 +193,7 @@ function prefetchVisibleLinks(router: { prefetch: (href: string) => void }, curr
     const css = document.createElement('link');
     css.rel = 'preload';
     css.as = 'style';
-    css.href = '/css/directory-profile.css?v=150';
+    css.href = '/css/directory-profile.css?v=151';
     css.setAttribute('data-vc-prefetch', 'directory-profile.css');
     document.head.appendChild(css);
   }

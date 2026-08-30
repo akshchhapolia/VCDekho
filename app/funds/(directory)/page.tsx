@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getFundsDirectoryIndex, ensureDirectoryIndexFiles } from '../../../lib/directory-server';
 import FundsDirectoryView from '../FundsDirectoryView';
 
+export const dynamic = 'force-static';
 export const revalidate = 86400;
 
 export const metadata: Metadata = {

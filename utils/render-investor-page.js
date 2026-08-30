@@ -494,6 +494,12 @@ function renderInvestorPage(investor, related, res, opts) {
   const extras = renderInvestorExtrasHtml(investor);
   const activityHtml = extras.activityHtml;
   const portfolioHtml = extras.portfolioHtml;
+  const extrasMount =
+    !activityHtml && !portfolioHtml
+      ? '<div id="inv-profile-extras" data-slug="' +
+        escapeHtml(investor.slug) +
+        '" data-kind="firm" hidden></div>'
+      : '';
 
   const stickyNav = [
     '<nav class="inv-profile-sticky" id="inv-profile-sticky" aria-label="On this page">',
@@ -607,6 +613,7 @@ function renderInvestorPage(investor, related, res, opts) {
     // Below thesis so late paint never interrupts Snapshot → Thesis
     activityHtml,
     portfolioHtml,
+    extrasMount,
 
     '<section class="inv-profile-section inv-profile-about inv-profile-reveal" id="about">',
     '<div class="inv-profile-section-label">06 — Story</div>',

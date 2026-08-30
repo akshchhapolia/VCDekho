@@ -213,6 +213,12 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
   const extras = renderPersonExtrasHtml(person, investor, { sectionOffset, visible: mwebFirstPaint });
   const activitySection = extras.activityHtml;
   const portfolioSection = extras.portfolioHtml;
+  const extrasMount =
+    investor && !activitySection && !portfolioSection
+      ? '<div id="inv-profile-extras" data-slug="' +
+        escapeHtml(person.slug) +
+        '" data-kind="person" hidden></div>'
+      : '';
   const exploreSection = firmExploreSection(investor, { sectionOffset });
 
   const stickyNav = [
@@ -300,6 +306,7 @@ function renderPersonPage(person, colleagues, investor, res, opts) {
     thesisSection,
     activitySection,
     portfolioSection,
+    extrasMount,
     colleagueSection,
     exploreSection,
 

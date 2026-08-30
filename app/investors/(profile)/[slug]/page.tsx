@@ -3,6 +3,8 @@ import { notFound, redirect } from 'next/navigation';
 import SiteHeader from '../../../components/SiteHeader';
 import { loadPersonProfile } from '../../../../lib/profile';
 
+export const dynamic = 'force-static';
+export const dynamicParams = true;
 export const revalidate = 86400;
 
 type Params = { slug: string };

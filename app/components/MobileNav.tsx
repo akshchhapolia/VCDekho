@@ -2,6 +2,12 @@
 
 import { useEffect, useState } from 'react';
 
+declare global {
+  interface Window {
+    VCNav?: { close?: () => void; boot?: () => void };
+  }
+}
+
 export default function MobileNav({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
 

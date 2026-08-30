@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getPeopleDirectoryIndex, ensureDirectoryIndexFiles } from '../../../lib/directory-server';
 import PeopleDirectoryView from '../PeopleDirectoryView';
 
+export const dynamic = 'force-static';
 export const revalidate = 86400;
 
 export const metadata: Metadata = {

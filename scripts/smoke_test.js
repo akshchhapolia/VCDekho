@@ -209,16 +209,25 @@ function testStaticAssets() {
       root.includes("background='#000'") ||
       root.includes('background="#000"') ||
       /background='#000'/.test(root);
-    const heroInHead = root.includes('/css/hero.css?v=97') && layout.includes('id="vc-critical-css"');
+    const heroOnHome = layout.includes('/css/hero.css?v=97') && layout.includes('id="vc-critical-css"');
+    const heroNotOnRoot = !root.includes('/css/hero.css');
     const sandPreload = layout.includes('/assets/sand_bg.webp');
-    const earlyPeople = root.includes('beforeInteractive') && root.includes('people.js');
+    const thinRoot =
+      !root.includes('beforeInteractive') &&
+      !root.includes('nav.js') &&
+      !root.includes('people.js') &&
+      !root.includes('/css/hero.css') &&
+      !root.includes('/css/ambient.css') &&
+      !root.includes('/css/announcement.css');
     if (!paintsDark) {
       fail('homepage first paint is dark', 'app/layout.tsx must set html background #000 on /');
-    } else if (!heroInHead || !sandPreload) {
+    } else if (!heroOnHome || !heroNotOnRoot || !sandPreload) {
       fail(
         'homepage first paint is dark',
-        `heroInHead=${heroInHead} sandPreload=${sandPreload} — hero CSS and sand image must be in the document head`
+        `heroOnHome=${heroOnHome} heroNotOnRoot=${heroNotOnRoot} sandPreload=${sandPreload} — hero CSS stays on the home layout only`
       );
+    } else if (!thinRoot) {
+      fail('homepage first paint is dark', 'root layout must stay fonts + base.css only (Founder Tape model)');
     } else {
       pass('homepage first paint is dark (Next layout inline script)');
     }
@@ -339,8 +348,11 @@ function testStaticAssets() {
       /function isProbablySignedIn\(/.test(unlock) &&
       /e\.preventDefault\(\);/.test(unlock) &&
       /if \(isProbablySignedIn\(\)\) \{\s*e\.preventDefault\(\);\s*e\.stopPropagation\(\);\s*unlockEmail\(btn\);/.test(unlock);
-    const layout = fs.readFileSync(path.join(ROOT, 'app/layout.tsx'), 'utf8');
-    const cacheBust = layout.includes('person-email-unlock.js?v=15');
+    const personLayout = fs.readFileSync(path.join(ROOT, 'app/investors/(profile)/[slug]/layout.tsx'), 'utf8');
+    const peopleDirLayout = fs.readFileSync(path.join(ROOT, 'app/investors/(directory)/layout.tsx'), 'utf8');
+    const cacheBust =
+      personLayout.includes('person-email-unlock.js?v=15') &&
+      peopleDirLayout.includes('person-email-unlock.js?v=15');
     if (!exported || !checksCookie || !checksStorage || !checksRedirect || !shortCircuits || !skipsHydrate || !cookieLogin || !cacheBust) {
       fail(
         'anonymous visitors skip Supabase',
@@ -682,14 +694,16 @@ function testProfileClsGuards() {
   }
 
   try {
-    const nav = fs.readFileSync(path.join(ROOT, 'public/js/nav.js'), 'utf8');
+    const nav = fs.readFileSync(path.join(ROOT, 'app/components/MobileNav.tsx'), 'utf8');
+    const header = fs.readFileSync(path.join(ROOT, 'app/components/SiteHeader.tsx'), 'utf8');
     const root = fs.readFileSync(path.join(ROOT, 'app/layout.tsx'), 'utf8');
     if (
-      !nav.includes("document.addEventListener('click', onDocumentClick, true)") ||
-      !root.includes('nav.js?v=104') ||
-      nav.includes('appendChild(nav)')
+      !nav.includes('menu-toggle') ||
+      !nav.includes("closest('a.nav-link')") ||
+      !header.includes('MobileNav') ||
+      root.includes('nav.js')
     ) {
-      fail('nav uses document click delegation', 'menu must toggle in place without portaling on first open');
+      fail('nav uses document click delegation', 'React MobileNav must own the hamburger without nav.js on the root layout');
     } else {
       pass('nav uses document click delegation');
     }
@@ -748,7 +762,7 @@ function testProfileClsGuards() {
       ops.includes("action === 'client-error'") &&
       peopleJs.includes('function isSignedIn') &&
       auth.includes('isProbablySignedIn: hasStoredSession') &&
-      layout.includes('report.js?v=1') &&
+      fs.readFileSync(path.join(ROOT, 'app/components/ClientRuntime.tsx'), 'utf8').includes('report.js?v=1') &&
       ci.includes('test:e2e');
     if (!ok) {
       fail('core-path guards', 'missing Playwright / canary / report wiring');
@@ -978,11 +992,11 @@ function testNextAppShell() {
     if (
       !routes.includes('isSoftNavRoute') ||
       !runtime.includes('isSoftNavRoute') ||
-      routes.includes('return isAppRoute(pathname)')
+      !routes.includes('return isAppRoute(pathname)')
     ) {
-      fail('profiles use full navigation', 'profile slugs must not use client router.push');
+      fail('profiles use client navigation', 'home, directories, and profile slugs must use client router.push (Founder Tape Link model)');
     } else {
-      pass('profiles use full navigation');
+      pass('profiles use client navigation');
     }
     const personLayout = fs.readFileSync(path.join(ROOT, 'app/investors/(profile)/[slug]/layout.tsx'), 'utf8');
     const fundLayout = fs.readFileSync(path.join(ROOT, 'app/funds/(profile)/[slug]/layout.tsx'), 'utf8');
@@ -1009,8 +1023,8 @@ function testNextAppShell() {
     const unlock = fs.readFileSync(path.join(ROOT, 'js/person-email-unlock.js'), 'utf8');
     const cfg = fs.readFileSync(path.join(ROOT, 'next.config.js'), 'utf8');
     const loginResp = fs.readFileSync(path.join(ROOT, 'lib/html-file-response.ts'), 'utf8');
-    const hasSpeculation = layout.includes('type="speculationrules"') && layout.includes('"/login"');
-    const hasWarm = layout.includes('pointerdown') && layout.includes("fetch(p,{credentials:'same-origin'})");
+    const hasSpeculation = runtime.includes('speculationrules') && runtime.includes("'/login'");
+    const hasWarm = runtime.includes('pointerdown') && runtime.includes("fetch(p, { credentials: 'same-origin' })");
     const noBlank = !layout.includes("classList.add('vc-nav-pending')");
     const nativeLogin =
       /if \(isProbablySignedIn\(\)\) \{\s*e\.preventDefault\(\);\s*e\.stopPropagation\(\);\s*unlockEmail\(btn\);/.test(unlock) &&
@@ -1042,10 +1056,24 @@ function testNextAppShell() {
       !investorsLayout.includes('/js/people.js') &&
       !rootLayout.includes('investors/investors.js') &&
       !rootLayout.includes('/js/people.js?v=');
-    if (usesHeaders || !hasStale) {
+    const prerenders =
+      personPage.includes("dynamic = 'force-static'") && fundPage.includes("dynamic = 'force-static'");
+    const personLoading = fs.readFileSync(
+      path.join(ROOT, 'app/investors/(profile)/[slug]/loading.tsx'),
+      'utf8'
+    );
+    const fundLoading = fs.readFileSync(path.join(ROOT, 'app/funds/(profile)/[slug]/loading.tsx'), 'utf8');
+    const headerShell =
+      personLoading.includes('SiteHeader') &&
+      fundLoading.includes('SiteHeader') &&
+      !personLoading.includes('Loading profile') &&
+      !fundLoading.includes('Loading profile');
+    const profileServer = fs.readFileSync(path.join(ROOT, 'lib/profile-server.js'), 'utf8');
+    const noDbBlock = !profileServer.includes('ensureInvestorDetailExtras');
+    if (usesHeaders || !hasStale || !prerenders || !headerShell || !noDbBlock) {
       fail(
         'profile pages can ISR',
-        `headers=${usesHeaders} staleTimes=${hasStale} — headers() forces a serverless hit on every profile click`
+        `headers=${usesHeaders} staleTimes=${hasStale} prerender=${prerenders} headerShell=${headerShell} noDbBlock=${noDbBlock}`
       );
     } else {
       pass('profile pages do not call headers(); client router keeps a stale cache');
