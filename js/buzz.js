@@ -190,6 +190,8 @@
 
   function initExpandables(root) {
     root.querySelectorAll('[data-buzz-expand]').forEach((btn) => {
+      if (btn.dataset.bound === '1') return;
+      btn.dataset.bound = '1';
       btn.addEventListener('click', () => {
         const body = btn.previousElementSibling;
         if (!body) return;
@@ -278,22 +280,34 @@
   async function loadBuzz() {
     const container = document.getElementById('buzz-container');
     if (!container || container.dataset.mode === 'detail') return;
+    const PAGE = 8;
+    let offset = Number(container.dataset.offset || 0);
 
     try {
-      const res = await fetch('/api/news/list?feed=buzz');
+      const res = await fetch('/api/news/list?feed=buzz&limit=' + PAGE + '&offset=' + offset);
       const items = await res.json();
       if (!Array.isArray(items) || !items.length) {
-        container.innerHTML =
-          '<p class="buzz-empty">No founder VC reviews published yet. We index Reddit threads where founders share fundraising experiences — check back soon.</p>';
+        if (!offset) {
+          container.innerHTML =
+            '<p class="buzz-empty">No founder VC reviews published yet. We index Reddit threads where founders share fundraising experiences — check back soon.</p>';
+        }
         container.setAttribute('aria-busy', 'false');
+        var done = document.getElementById('buzz-load-more');
+        if (done) done.hidden = true;
         return;
       }
-      container.innerHTML = items.map(renderCard).join('');
+      const html = items.map(renderCard).join('');
+      if (!offset) container.innerHTML = html;
+      else container.insertAdjacentHTML('beforeend', html);
+      offset += items.length;
+      container.dataset.offset = String(offset);
       container.setAttribute('aria-busy', 'false');
       initExpandables(container);
+      var more = document.getElementById('buzz-load-more');
+      if (more) more.hidden = items.length < PAGE;
     } catch (err) {
       console.error(err);
-      container.innerHTML = '<p class="buzz-error">Failed to load Founder Buzz.</p>';
+      if (!offset) container.innerHTML = '<p class="buzz-error">Failed to load Founder Buzz.</p>';
       container.setAttribute('aria-busy', 'false');
     }
   }
@@ -305,6 +319,15 @@
       initExpandables(container);
       container.setAttribute('aria-busy', 'false');
       return;
+    }
+    const more = document.getElementById('buzz-load-more');
+    if (more) {
+      more.addEventListener('click', function () {
+        more.disabled = true;
+        loadBuzz().finally(function () {
+          more.disabled = false;
+        });
+      });
     }
     loadBuzz();
   }

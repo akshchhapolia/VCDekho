@@ -649,3 +649,20 @@ body.scrollable-page.buzz-page .hero-showcase {
     align-items: flex-start;
   }
 }
+
+.pub-load-more {
+  display: block;
+  margin: 1.75rem auto 0;
+  padding: 0.8rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.pub-load-more[hidden] {
+  display: none;
+}

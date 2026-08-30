@@ -2,7 +2,7 @@
 <html lang="en" class="scrollable-page">
 <head>
         <script src="/js/analytics.js?v=2" defer></script>
-    <script src="/js/nav.js?v=101" defer></script>
+    <script src="/js/nav.js?v=104" defer></script>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -15,10 +15,10 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet" href="/css/base.css?v=101">
+    <link rel="stylesheet" href="/css/base.css?v=152">
     <link rel="stylesheet" href="/css/hero.css?v=73">
     <link rel="stylesheet" href="/css/ambient.css?v=98">
-    <link rel="stylesheet" href="/css/blog.css?v=74">
+    <link rel="stylesheet" href="/css/blog.css?v=75">
 </head>
 <body class="scrollable-page pub-page">
     <div class="app-container">
@@ -102,6 +102,7 @@
                         </div>
                     </div>
                 </div>
+                <button type="button" class="pub-load-more" id="news-load-more" hidden>Load more</button>
             </div>
         </main>
     </div>
@@ -110,65 +111,89 @@
     <script src="/js/directory-session.js?v=3" defer></script>
 <script src="/app.js" defer></script>
     <script>
-        async function fetchNews() {
-            const container = document.getElementById('news-container');
-            try {
-                const res = await fetch('/api/news/list');
-                const articles = await res.json();
-                
-                if (!Array.isArray(articles) || articles.length === 0) {
-                    container.innerHTML = '<p style="color: var(--color-text-muted);">No news published yet.</p>';
-                    container.setAttribute('aria-busy', 'false');
-                    return;
-                }
+        (function () {
+            var PAGE = 8;
+            var offset = 0;
+            var container = document.getElementById('news-container');
+            var moreBtn = document.getElementById('news-load-more');
 
-                let html = '';
-                articles.forEach((a, index) => {
-                    const dateStr = new Date(a.published_at).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' });
-                    const catStr = a.category === 'funding-round' ? 'Funding Round' : String(a.category || '').replace('-', ' ');
-                    
-                    if (index === 0) {
-                        html += `
-                            <a href="/news/${a.slug}" class="news-feed-card featured-news-card">
-                                ${a.image_url ? `<div class="news-image"><img src="${a.image_url}" alt="${a.title}"></div>` : ''}
-                                <div class="news-content">
-                                    <div class="news-meta">
-                                        <span class="news-category">${catStr}</span>
-                                        <span class="news-date-source">${dateStr} • ${a.source_name}</span>
-                                    </div>
-                                    <h2 class="news-title" style="font-size: 2.2rem;">${a.title}</h2>
-                                    ${a.meta_description ? `<p class="news-desc" style="color: var(--color-text-muted); margin-top: 15px; font-size: 1.1rem; line-height: 1.6;">${a.meta_description}</p>` : ''}
-                                </div>
-                            </a>
-                        `;
-                    } else {
-                        if (index === 1) html += '<div class="news-grid">';
-                        html += `
-                            <a href="/news/${a.slug}" class="news-feed-card grid-news-card">
-                                ${a.image_url ? `<div class="news-image"><img src="${a.image_url}" alt="${a.title}"></div>` : ''}
-                                <div class="news-content" style="padding: 25px;">
-                                    <div class="news-meta" style="margin-bottom: 10px;">
-                                        <span class="news-category">${catStr}</span>
-                                    </div>
-                                    <h2 class="news-title" style="font-size: 1.3rem; margin-bottom: 15px;">${a.title}</h2>
-                                    <div class="news-date-source" style="margin-top: auto; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05);">${dateStr} • ${a.source_name}</div>
-                                </div>
-                            </a>
-                        `;
-                        if (index === articles.length - 1) html += '</div>';
-                    }
-                });
-
-                container.innerHTML = html;
-                container.setAttribute('aria-busy', 'false');
-            } catch (err) {
-                console.error(err);
-                container.innerHTML = '<p style="color: #ff6b6b;">Failed to load news.</p>';
-                container.setAttribute('aria-busy', 'false');
+            function esc(s) {
+                return String(s || '')
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;');
             }
-        }
 
-        fetchNews();
+            function cardHtml(a, featured) {
+                var dateStr = new Date(a.published_at).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' });
+                var catStr = a.category === 'funding-round' ? 'Funding Round' : String(a.category || '').replace('-', ' ');
+                var img = a.image_url ? '<div class="news-image"><img src="' + esc(a.image_url) + '" alt="' + esc(a.title) + '"></div>' : '';
+                if (featured) {
+                    return '<a href="/news/' + esc(a.slug) + '" class="news-feed-card featured-news-card">' +
+                        img +
+                        '<div class="news-content">' +
+                        '<div class="news-meta"><span class="news-category">' + esc(catStr) + '</span>' +
+                        '<span class="news-date-source">' + dateStr + ' • ' + esc(a.source_name) + '</span></div>' +
+                        '<h2 class="news-title" style="font-size: 2.2rem;">' + esc(a.title) + '</h2>' +
+                        (a.meta_description ? '<p class="news-desc" style="color: var(--color-text-muted); margin-top: 15px; font-size: 1.1rem; line-height: 1.6;">' + esc(a.meta_description) + '</p>' : '') +
+                        '</div></a>';
+                }
+                return '<a href="/news/' + esc(a.slug) + '" class="news-feed-card grid-news-card">' +
+                    img +
+                    '<div class="news-content" style="padding: 25px;">' +
+                    '<div class="news-meta" style="margin-bottom: 10px;"><span class="news-category">' + esc(catStr) + '</span></div>' +
+                    '<h2 class="news-title" style="font-size: 1.3rem; margin-bottom: 15px;">' + esc(a.title) + '</h2>' +
+                    '<div class="news-date-source" style="margin-top: auto; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05);">' + dateStr + ' • ' + esc(a.source_name) + '</div>' +
+                    '</div></a>';
+            }
+
+            async function fetchNews() {
+                if (!container) return;
+                try {
+                    var res = await fetch('/api/news/list?limit=' + PAGE + '&offset=' + offset);
+                    var articles = await res.json();
+                    if (!Array.isArray(articles) || articles.length === 0) {
+                        if (!offset) {
+                            container.innerHTML = '<p style="color: var(--color-text-muted);">No news published yet.</p>';
+                        }
+                        container.setAttribute('aria-busy', 'false');
+                        if (moreBtn) moreBtn.hidden = true;
+                        return;
+                    }
+                    if (!offset) {
+                        var html = cardHtml(articles[0], true);
+                        var rest = articles.slice(1).map(function (a) { return cardHtml(a, false); }).join('');
+                        html += '<div class="news-grid" id="news-grid">' + rest + '</div>';
+                        container.innerHTML = html;
+                    } else {
+                        var grid = document.getElementById('news-grid');
+                        if (!grid) {
+                            grid = document.createElement('div');
+                            grid.className = 'news-grid';
+                            grid.id = 'news-grid';
+                            container.appendChild(grid);
+                        }
+                        grid.insertAdjacentHTML('beforeend', articles.map(function (a) { return cardHtml(a, false); }).join(''));
+                    }
+                    offset += articles.length;
+                    container.setAttribute('aria-busy', 'false');
+                    if (moreBtn) moreBtn.hidden = articles.length < PAGE;
+                } catch (err) {
+                    console.error(err);
+                    if (!offset) container.innerHTML = '<p style="color: #ff6b6b;">Failed to load news.</p>';
+                    container.setAttribute('aria-busy', 'false');
+                }
+            }
+
+            if (moreBtn) {
+                moreBtn.addEventListener('click', function () {
+                    moreBtn.disabled = true;
+                    fetchNews().finally(function () { moreBtn.disabled = false; });
+                });
+            }
+            fetchNews();
+        })();
     </script>
 </body>
 </html>

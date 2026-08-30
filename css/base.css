@@ -325,8 +325,9 @@ a[x-apple-data-detectors] {
         border-left: none !important;
         box-shadow: none;
         transform: none !important;
-        transition: right 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-        pointer-events: auto;
+        transition: none;
+        pointer-events: none;
+        visibility: hidden;
         isolation: isolate;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
@@ -342,6 +343,8 @@ a[x-apple-data-detectors] {
         bottom: 0 !important;
         width: 100% !important;
         max-width: none !important;
+        pointer-events: auto;
+        visibility: visible;
     }
 
     /* Viewport fill so page content cannot show through a short/transparent panel */

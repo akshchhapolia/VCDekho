@@ -2,7 +2,7 @@
 <html lang="en" class="scrollable-page">
 <head>
     <script src="/js/analytics.js?v=2" defer></script>
-    <script src="/js/nav.js?v=101" defer></script>
+    <script src="/js/nav.js?v=104" defer></script>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -15,10 +15,10 @@
     <meta name="keywords" content="Venture Capital India, Startup Blog, Fundraising Guides, Investor Lists">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="/css/base.css?v=101">
+    <link rel="stylesheet" href="/css/base.css?v=152">
     <link rel="stylesheet" href="/css/hero.css?v=73">
     <link rel="stylesheet" href="/css/ambient.css?v=98">
-    <link rel="stylesheet" href="/css/blog.css?v=74">
+    <link rel="stylesheet" href="/css/blog.css?v=75">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
@@ -119,7 +119,7 @@
                     </div>
 
                     <!-- Blog Post Card 1 (Newest static) -->
-                    <a href="/blog/how-to-find-right-vc-india" class="blog-post-card">
+                    <a href="/blog/how-to-find-right-vc-india" class="blog-post-card" data-static="1">
                         <div class="blog-card-img-wrapper">
                             <img src="/assets/blog_4_hero.webp" alt="Indian founder choosing the right VC for their startup - step-by-step guide illustration" class="blog-card-img" loading="lazy">
                         </div>
@@ -137,7 +137,7 @@
                     </a>
 
                     <!-- Blog Post Card 2 -->
-                    <a href="/blog/micro-vcs-india-first-cheque" class="blog-post-card">
+                    <a href="/blog/micro-vcs-india-first-cheque" class="blog-post-card" data-static="1">
                         <div class="blog-card-img-wrapper">
                             <img src="/assets/blog_3_hero.webp" alt="Best micro VC funds in India writing the first cheque for pre-seed startups in 2026" class="blog-card-img" loading="lazy">
                         </div>
@@ -155,7 +155,7 @@
                     </a>
 
                     <!-- Blog Post Card 3 -->
-                    <a href="/blog/what-is-vc-investment-thesis" class="blog-post-card">
+                    <a href="/blog/what-is-vc-investment-thesis" class="blog-post-card" data-static="1">
                         <div class="blog-card-img-wrapper">
                             <img src="/assets/blog_2_hero.webp" alt="A founder reading and decoding a VC investment thesis document" class="blog-card-img" loading="lazy">
                         </div>
@@ -173,7 +173,7 @@
                     </a>
 
                     <!-- Blog Post Card 4 (Oldest) -->
-                    <a href="/blog/top-vc-firms-india" class="blog-post-card">
+                    <a href="/blog/top-vc-firms-india" class="blog-post-card" data-static="1">
                         <div class="blog-card-img-wrapper">
                             <img src="/assets/blog_hero_map.webp" alt="Top VC hub cities in India - Bengaluru, Mumbai, Delhi - on an illustrated map" class="blog-card-img" loading="lazy">
                         </div>
@@ -191,6 +191,7 @@
                     </a>
 
                 </div> <!-- End of Blog Grid -->
+                <button type="button" class="pub-load-more" id="blog-load-more" hidden>Load more</button>
 
             </div>
         </main>
@@ -201,63 +202,85 @@
     <script src="/js/directory-session.js?v=3" defer></script>
 <script src="/blog/blog.js" defer></script>
     <script>
-    (async function loadDailyBlogs() {
+    (function loadDailyBlogs() {
         const grid = document.getElementById('blog-grid');
+        const moreBtn = document.getElementById('blog-load-more');
         if (!grid) return;
+        const PAGE = 8;
+        let offset = 0;
 
         const clearSkeletons = () => {
             grid.querySelectorAll('.blog-post-skeleton').forEach((el) => el.remove());
         };
 
-        try {
-            const res = await fetch('/api/news/list?category=blog');
-            if (!res.ok) {
-                clearSkeletons();
-                return;
-            }
-            const posts = await res.json();
-            clearSkeletons();
-            if (!Array.isArray(posts) || posts.length === 0) return;
+        const esc = (s) => String(s || '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
 
-            const esc = (s) => String(s || '')
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;');
-
-            const frag = document.createDocumentFragment();
-            posts.forEach(post => {
-                const category = (post.tags || []).find(t => t === 'Fundraising Fundamentals' || t === 'VC Research') || 'Founder Guide';
-                const date = post.published_at
-                    ? new Date(post.published_at).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })
-                    : '';
-                const excerpt = post.meta_description || 'Practical insights for Indian founders navigating venture capital and fundraising.';
-
-                const a = document.createElement('a');
-                a.href = '/blog/' + encodeURIComponent(post.slug);
-                a.className = 'blog-post-card';
-                const img = post.image_url
-                    ? '<div class="blog-card-img-wrapper"><img src="' + esc(post.image_url) + '" alt="' + esc(post.title) + '" class="blog-card-img" loading="lazy"></div>'
-                    : '';
-
-                a.innerHTML =
-                    img +
-                    '<div class="blog-card-body">' +
-                        '<span class="blog-card-category">' + esc(category) + '</span>' +
-                        '<h2 class="blog-card-title">' + esc(post.title) + '</h2>' +
-                        '<p class="blog-card-excerpt">' + esc(excerpt) + '</p>' +
-                    '</div>' +
-                    '<div class="blog-card-footer">' +
-                        '<span class="blog-card-date">' + esc(date) + '</span>' +
-                        '<span class="blog-card-readtime">Daily Guide</span>' +
-                    '</div>';
-                frag.appendChild(a);
-            });
-            grid.prepend(frag);
-        } catch (err) {
-            clearSkeletons();
-            console.warn('Could not load daily blogs', err);
+        function cardFor(post) {
+            const category = (post.tags || []).find(t => t === 'Fundraising Fundamentals' || t === 'VC Research') || 'Founder Guide';
+            const date = post.published_at
+                ? new Date(post.published_at).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })
+                : '';
+            const excerpt = post.meta_description || 'Practical insights for Indian founders navigating venture capital and fundraising.';
+            const a = document.createElement('a');
+            a.href = '/blog/' + encodeURIComponent(post.slug);
+            a.className = 'blog-post-card';
+            a.setAttribute('data-api', '1');
+            const img = post.image_url
+                ? '<div class="blog-card-img-wrapper"><img src="' + esc(post.image_url) + '" alt="' + esc(post.title) + '" class="blog-card-img" loading="lazy"></div>'
+                : '';
+            a.innerHTML =
+                img +
+                '<div class="blog-card-body">' +
+                    '<span class="blog-card-category">' + esc(category) + '</span>' +
+                    '<h2 class="blog-card-title">' + esc(post.title) + '</h2>' +
+                    '<p class="blog-card-excerpt">' + esc(excerpt) + '</p>' +
+                '</div>' +
+                '<div class="blog-card-footer">' +
+                    '<span class="blog-card-date">' + esc(date) + '</span>' +
+                    '<span class="blog-card-readtime">Daily Guide</span>' +
+                '</div>';
+            return a;
         }
+
+        async function loadPage() {
+            try {
+                const res = await fetch('/api/news/list?category=blog&limit=' + PAGE + '&offset=' + offset);
+                if (!res.ok) {
+                    clearSkeletons();
+                    if (moreBtn) moreBtn.hidden = true;
+                    return;
+                }
+                const posts = await res.json();
+                clearSkeletons();
+                if (!Array.isArray(posts) || posts.length === 0) {
+                    if (moreBtn) moreBtn.hidden = true;
+                    return;
+                }
+                const frag = document.createDocumentFragment();
+                posts.forEach((post) => frag.appendChild(cardFor(post)));
+                const firstStatic = grid.querySelector('[data-static="1"]');
+                if (firstStatic) grid.insertBefore(frag, firstStatic);
+                else grid.appendChild(frag);
+                offset += posts.length;
+                if (moreBtn) moreBtn.hidden = posts.length < PAGE;
+            } catch (err) {
+                clearSkeletons();
+                if (moreBtn) moreBtn.hidden = true;
+                console.warn('Could not load daily blogs', err);
+            }
+        }
+
+        if (moreBtn) {
+            moreBtn.addEventListener('click', function () {
+                moreBtn.disabled = true;
+                loadPage().finally(function () { moreBtn.disabled = false; });
+            });
+        }
+        loadPage();
     })();
     </script>
 </body>

@@ -1,11 +1,17 @@
 const db = require('../../utils/db');
 const { renderBuzzBodyHtml } = require('../../utils/buzz-body-render');
 
+function pageParams(query, fallback, max) {
+    const limit = Math.min(Math.max(parseInt(query.limit, 10) || fallback, 1), max);
+    const offset = Math.max(parseInt(query.offset, 10) || 0, 0);
+    return { limit, offset };
+}
+
 module.exports = async function handler(req, res) {
-    const { category, feed, investor, topic, limit: limitRaw } = req.query;
+    const { category, feed, investor, topic } = req.query;
 
     if (feed === 'buzz') {
-        const limit = Math.min(parseInt(limitRaw, 10) || 40, 60);
+        const { limit, offset } = pageParams(req.query, 8, 40);
         if (!process.env.DATABASE_URL) {
             res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=3600');
             return res.status(200).json([]);
@@ -29,6 +35,8 @@ module.exports = async function handler(req, res) {
         }
         params.push(limit);
         query += ` ORDER BY COALESCE(published_at_source, published_at) DESC NULLS LAST LIMIT $${params.length}`;
+        params.push(offset);
+        query += ` OFFSET $${params.length}`;
         try {
             const { rows } = await db.query(query, params);
             const enriched = rows.map((row) => ({
@@ -91,12 +99,16 @@ module.exports = async function handler(req, res) {
         // News feed should not mix in evergreen blog posts
         query += ` AND category IS DISTINCT FROM 'blog'`;
     }
-    
-    query += ` ORDER BY published_at DESC LIMIT 50`;
+
+    const { limit, offset } = pageParams(req.query, 50, 50);
+    params.push(limit);
+    query += ` ORDER BY published_at DESC LIMIT $${params.length}`;
+    params.push(offset);
+    query += ` OFFSET $${params.length}`;
 
     try {
         const { rows } = await db.query(query, params);
-        
+
         // Return heavily cached response for performance
         res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=3600');
         res.status(200).json(rows);

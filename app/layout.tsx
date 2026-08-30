@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           crossOrigin="anonymous"
         />
         <link rel="stylesheet" href="/css/fonts.css?v=1" />
-        <link rel="stylesheet" href="/css/base.css?v=151" />
+        <link rel="stylesheet" href="/css/base.css?v=152" />
       </head>
       <body suppressHydrationWarning>
         <ClientRuntime />
