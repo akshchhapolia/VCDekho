@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 declare global {
   interface Window {
@@ -8,22 +9,44 @@ declare global {
   }
 }
 
+const HTML_PREFETCH = ['/news', '/blog', '/buzz', '/login'];
+
+function closeNavDom() {
+  document.body.classList.remove('nav-open');
+  const toggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('navigation-bar');
+  if (toggle) {
+    toggle.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+  if (nav) nav.classList.remove('active');
+}
+
 export default function MobileNav({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
+
+  function closeNow() {
+    closeNavDom();
+    setOpen(false);
+  }
+
+  useEffect(() => {
+    window.VCNav = {
+      close: closeNow,
+      boot: () => {}
+    };
+  });
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') setOpen(false);
+      if (e.key === 'Escape') closeNow();
     }
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, []);
 
   useEffect(() => {
-    window.VCNav = {
-      close: () => setOpen(false),
-      boot: () => {}
-    };
     document.body.classList.toggle('nav-open', open);
     const toggle = document.getElementById('menu-toggle');
     const nav = document.getElementById('navigation-bar');
@@ -32,18 +55,16 @@ export default function MobileNav({ children }: { children: React.ReactNode }) {
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
     if (nav) nav.classList.toggle('active', open);
-    return () => document.body.classList.remove('nav-open');
-  }, [open]);
-
-  useEffect(() => {
-    function onClick(e: MouseEvent) {
-      const t = e.target as Element | null;
-      if (!t || !t.closest) return;
-      if (t.closest('a.nav-link')) setOpen(false);
+    if (open) {
+      router.prefetch('/investors');
+      router.prefetch('/funds');
+      router.prefetch('/');
+      HTML_PREFETCH.forEach((href) => {
+        fetch(href, { credentials: 'same-origin' }).catch(() => {});
+      });
     }
-    document.addEventListener('click', onClick);
-    return () => document.removeEventListener('click', onClick);
-  }, []);
+    return () => document.body.classList.remove('nav-open');
+  }, [open, router]);
 
   return (
     <>
@@ -56,14 +77,22 @@ export default function MobileNav({ children }: { children: React.ReactNode }) {
         aria-expanded={open ? 'true' : 'false'}
         onClick={() => {
           if (!window.matchMedia('(max-width: 768px)').matches) return;
-          setOpen((v) => !v);
+          if (open) closeNow();
+          else setOpen(true);
         }}
       >
         <span></span>
         <span></span>
         <span></span>
       </button>
-      {children}
+      <div
+        onPointerDownCapture={(e) => {
+          const t = e.target as Element | null;
+          if (t && t.closest && t.closest('a.nav-link')) closeNow();
+        }}
+      >
+        {children}
+      </div>
       <button
         type="button"
         id="nav-backdrop"
@@ -71,7 +100,7 @@ export default function MobileNav({ children }: { children: React.ReactNode }) {
         hidden={!open}
         aria-label="Close menu"
         aria-hidden={open ? 'false' : 'true'}
-        onClick={() => setOpen(false)}
+        onClick={() => closeNow()}
       />
     </>
   );
