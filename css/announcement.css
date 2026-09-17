@@ -1,0 +1,137 @@
+/* Announcement strip (shared site-wide; was previously bundled in blog.css) */
+body.has-announcement {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+body.has-announcement .app-container {
+    height: 0;
+    flex: 1 1 auto;
+}
+
+.announcement-strip {
+    background: #FAF9F6;
+    border-bottom: 1.5px solid rgba(237, 87, 47, 0.4);
+    padding: 8px 24px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.announcement-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.announcement-tag {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-accent-orange);
+    background: rgba(237, 87, 47, 0.08);
+    border: 1px solid rgba(237, 87, 47, 0.2);
+    padding: 2px 8px;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
+    margin-right: 12px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.announcement-text {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(26, 26, 26, 0.8);
+    letter-spacing: 0.2px;
+    margin-right: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.announcement-cta {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-accent-orange);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: var(--transition-smooth);
+    flex-shrink: 0;
+}
+
+.announcement-cta .announcement-arrow {
+    display: inline-block;
+    transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.announcement-cta:hover {
+    color: var(--color-accent-orange-hover);
+}
+
+.announcement-cta:hover .announcement-arrow {
+    transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+    .announcement-strip {
+        padding: 8px 16px;
+    }
+    .announcement-text {
+        font-size: 0.8rem;
+        margin-right: 8px;
+    }
+    .announcement-cta {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .announcement-tag {
+        display: none;
+    }
+
+    .announcement-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.35rem;
+    }
+
+    .announcement-text {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        margin-right: 0;
+        line-height: 1.35;
+    }
+}
+
+@media (max-width: 480px) {
+    body.home-page .announcement-tag {
+        display: inline-flex;
+    }
+
+    body.home-page .announcement-wrapper {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    body.home-page .announcement-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

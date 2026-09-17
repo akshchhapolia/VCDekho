@@ -1,8 +1,8 @@
 require('dotenv').config({ path: '.env.production' });
 const db = require('./utils/db');
-const scrape = require('./api/cron/scrape');
-const aiProcess = require('./api/cron/ai-process');
-const dailyDigest = require('./api/cron/daily-digest');
+const scrape = require('./server/cron/scrape');
+const aiProcess = require('./server/cron/ai-process');
+const dailyDigest = require('./server/cron/daily-digest');
 
 async function run() {
     try {

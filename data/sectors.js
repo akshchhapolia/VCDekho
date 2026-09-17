@@ -694,6 +694,178 @@ Pitch both narratives with equal seriousness. Show density in a cohort that matt
     ],
     relatedThesisIds: ['impact-inclusion', 'india-first', 'fintech', 'edtech', 'agri-food'],
     relatedStageIds: ['seed', 'pre-seed', 'series-a']
+  },
+  {
+    id: 'cyber-security',
+    label: 'Cyber Security',
+    eyebrow: 'Sector guide',
+    order: 9,
+    summary:
+      'Enterprise security, cloud security, threat detection, and compliance — how Indian cybersecurity investors diligence and what founders should show at seed.',
+    writeup: `Cybersecurity investors underwrite trust at scale: can your product reduce breach risk, pass enterprise procurement, and survive in a market where buyers are skeptical and cycles are long. In India the category spans cloud and application security, identity and access, threat intelligence, GRC/compliance automation, and security for SaaS stacks selling globally.
+
+The wedge matters. Horizontal “we secure everything” stories struggle unless backed by a clear ICP — developers, mid-market IT, regulated enterprises, or a vertical like fintech or healthcare. Investors want to see why you win vs global incumbents and why India-built teams can sell into US/EU buyers without being a cost-only vendor.
+
+Fundraising is proof-heavy: design partners, pilot conversions, retention in security teams, and honest talk about sales cycles. Lead with the attack surface you own, the buyer persona, and early metrics — not fear-based TAM slides.`,
+    snapshot: {
+      typicalCheque: 'Seed $0.5–3M; enterprise cycles longer',
+      buyer: 'CISO, IT, DevSecOps, compliance',
+      diligenceFocus: 'Product depth, GTM, trust, cycles',
+      indiaEdge: 'Global SaaS security talent + US GTM',
+      capitalTypes: 'B2B VCs, cyber specialists, CVCs'
+    },
+    subsectors: [
+      { label: 'Cloud & app security', blurb: 'CNAPP, WAF, API security, posture management' },
+      { label: 'Identity & access', blurb: 'IAM, PAM, zero-trust tooling' },
+      { label: 'Threat intel & detection', blurb: 'SOC automation, XDR, brand monitoring' },
+      { label: 'Compliance / GRC', blurb: 'SOC 2, ISO, audit automation for startups' },
+      { label: 'DevSecOps', blurb: 'Supply chain, secrets, code scanning' }
+    ],
+    metricsThatMatter: [
+      { label: 'Design partner → paid', why: 'Enterprise trust signal' },
+      { label: 'Logo retention / NDR', why: 'Security products must stick' },
+      { label: 'Sales cycle length', why: 'Capital plan realism' },
+      { label: 'POC win rate', why: 'Product-market fit in security' },
+      { label: 'ACV / deal size', why: 'Path to efficient GTM' },
+      { label: 'Compliance certifications', why: 'Table stakes for buyers' }
+    ],
+    diligenceMap: [
+      { area: 'Technical depth', weight: 92, detail: 'Real differentiation vs suites' },
+      { area: 'Buyer & wedge', weight: 88, detail: 'ICP clarity and champion map' },
+      { area: 'GTM motion', weight: 82, detail: 'PLG vs enterprise realism' },
+      { area: 'Trust & security posture', weight: 80, detail: 'Your own SOC 2 / data handling' },
+      { area: 'Team pedigree', weight: 72, detail: 'Security domain + GTM balance' }
+    ],
+    whoItFits: [
+      'B2B security founders with a narrow wedge and early enterprise pilots',
+      'Teams selling globally from India with US design partners',
+      'Founders who understand long cycles and compliance buyers',
+      'Products with measurable risk reduction, not slide-deck fear'
+    ],
+    whoDoesntFit: [
+      'Consumer VPN or generic “cyber awareness” apps',
+      'Founders who cannot explain the buyer or procurement path',
+      'Copy-paste global features with no India or GTM edge',
+      'Services-heavy MSSP models pitched as product companies'
+    ],
+    whatInvestorsLookFor: [
+      'Clear ICP and attack surface owned',
+      'Evidence of technical depth (team, architecture, pilots)',
+      'Early paid or committed design partners',
+      'Honest enterprise cycle and pricing assumptions',
+      'Why incumbents lose to you in your wedge',
+      'Plan for certifications and customer trust'
+    ],
+    whatToPrepare: [
+      'Architecture diagram and threat model for your wedge',
+      'Pilot / POC outcomes with named logos if allowed',
+      'Security & privacy one-pager (your product + company)',
+      'Competitive map vs 2–3 incumbents and alternatives',
+      '18-month GTM plan with cycle assumptions'
+    ],
+    fundraisingPlaybook: [
+      'Lead with wedge and buyer, not “cyber TAM”',
+      'Shortlist funds with B2B SaaS + security portfolio overlap',
+      'Bring a customer or design-partner quote to first calls',
+      'Separate product risk from GTM risk in the deck',
+      'Raise for the next 2–3 lighthouse logos, not vanity ARR',
+      'Be ready for technical diligence early'
+    ],
+    commonMistakes: [
+      'Fear-based pitching without product proof',
+      'Underestimating enterprise sales cycles',
+      'No security posture for your own company',
+      'Competing head-on with suites on day one',
+      'Ignoring compliance as “later problem”'
+    ],
+    relatedThesisIds: ['saas-b2b', 'tech-first', 'ai-ml', 'fintech', 'series-a-pmf'],
+    relatedStageIds: ['seed', 'pre-seed', 'series-a']
+  },
+  {
+    id: 'blockchain',
+    label: 'Blockchain',
+    eyebrow: 'Sector guide',
+    order: 10,
+    summary:
+      'Web3, blockchain infrastructure, and crypto-native products — how specialist capital diligences token models, compliance, and community-led growth in India.',
+    writeup: `Blockchain and Web3 investors evaluate a different risk stack: protocol design, token economics, regulatory posture, community traction, and whether the team can ship through market cycles. In India, activity spans infrastructure (L1/L2, tooling, wallets), DeFi and payments rails, gaming/NFT platforms, and enterprise blockchain for supply chain and identity — often with global users from day one.
+
+Capital is more specialized than generalist VC. The best pitches combine a clear on-chain or crypto-native wedge with honest regulatory framing (India VDA rules, offshore structure, KYC/AML where relevant) and evidence of usage — wallets, TVL, transactions, or developer adoption — not only whitepaper narrative.
+
+Fundraising means finding crypto-native funds, syndicates, and angels who understand token timelines, and being transparent about what is equity vs token, jurisdiction, and treasury policy. Warm intros through builder communities matter more here than in classic SaaS.`,
+    snapshot: {
+      typicalCheque: 'Highly variable; strategic + token rounds',
+      buyer: 'Users, developers, protocols, institutions',
+      diligenceFocus: 'Token model, compliance, traction, team',
+      indiaEdge: 'Builder talent; global crypto networks',
+      capitalTypes: 'Web3 specialists, angels, global crypto VCs'
+    },
+    subsectors: [
+      { label: 'Infrastructure & tooling', blurb: 'Nodes, indexing, wallets, dev tooling' },
+      { label: 'DeFi & payments', blurb: 'On-chain finance, remittance, stablecoin rails' },
+      { label: 'Gaming / NFT / consumer', blurb: 'GameFi, digital collectibles, social tokens' },
+      { label: 'Enterprise blockchain', blurb: 'Supply chain, identity, tokenized assets' },
+      { label: 'Exchange / custody adjacency', blurb: 'Compliance-heavy regulated touchpoints' }
+    ],
+    metricsThatMatter: [
+      { label: 'Active wallets / users', why: 'Real adoption beyond airdrops' },
+      { label: 'On-chain volume or TVL', why: 'Usage truth for DeFi/protocol plays' },
+      { label: 'Developer adoption', why: 'Infra and tooling fit' },
+      { label: 'Token float & unlock schedule', why: 'Cap table and dilution clarity' },
+      { label: 'Regulatory posture', why: 'India + target market viability' },
+      { label: 'Community retention', why: 'Cycle-resilient engagement' }
+    ],
+    diligenceMap: [
+      { area: 'Token & cap table', weight: 90, detail: 'Equity vs token, unlocks, treasury' },
+      { area: 'Regulatory & compliance', weight: 88, detail: 'VDA, KYC, jurisdiction' },
+      { area: 'Product / protocol traction', weight: 85, detail: 'Usage, audits, security' },
+      { area: 'Team & crypto-native fit', weight: 78, detail: 'Shipping through cycles' },
+      { area: 'Go-to-market', weight: 72, detail: 'Community, partnerships, listings' }
+    ],
+    whoItFits: [
+      'Crypto-native teams with shipped product and on-chain metrics',
+      'Infrastructure founders with developer adoption',
+      'Founders transparent about regulation and structure',
+      'Global-first Web3 products with India engineering base'
+    ],
+    whoDoesntFit: [
+      'Token slides with no product or users',
+      'Founders avoiding regulatory questions',
+      'Copycat NFT/gaming without retention',
+      'Equity-only pitches to crypto funds expecting token clarity'
+    ],
+    whatInvestorsLookFor: [
+      'Clear protocol or product wedge',
+      'Honest tokenomics and cap table map',
+      'Security audits or smart-contract discipline',
+      'Usage metrics that survive incentive removal',
+      'Regulatory plan for India and primary markets',
+      'Team that has operated through a crypto cycle'
+    ],
+    whatToPrepare: [
+      'Token/equity structure one-pager',
+      'On-chain metrics dashboard or screenshots',
+      'Audit / security summary if applicable',
+      'Regulatory memo (India VDA, offshore entity if any)',
+      'Cap table including advisor and community allocations'
+    ],
+    fundraisingPlaybook: [
+      'Target Web3-native funds first — generalists need extra education',
+      'Lead with traction metrics, not ideology',
+      'Be explicit about round type (equity, token, SAFT)',
+      'Map co-investors who add exchange, audit, or devrel value',
+      'Prepare for technical + legal diligence in parallel',
+      'Build in public — community is part of the pitch'
+    ],
+    commonMistakes: [
+      'Opaque token allocations',
+      'Ignoring India VDA compliance for India-facing products',
+      'Metric farming that collapses when incentives stop',
+      'Pitching Web3 without naming the on-chain wedge',
+      'Raising from generalist VCs with no crypto follow-on path'
+    ],
+    relatedThesisIds: ['crypto-web3', 'fintech', 'gaming-media', 'tech-first', 'saas-b2b'],
+    relatedStageIds: ['pre-seed', 'seed', 'series-a']
   }
 ];
 

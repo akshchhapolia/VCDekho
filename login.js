@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const menuToggle = document.getElementById('menu-toggle');
-  const mainNav = document.getElementById('navigation-bar');
   const form = document.getElementById('auth-form');
   const emailStep = document.getElementById('email-step');
   const otpStep = document.getElementById('otp-step');
@@ -26,12 +24,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const LABEL_VERIFY = 'Verify & continue';
 
   const params = new URLSearchParams(window.location.search);
-  const nextPath = params.get('next') || '/investors';
+  const hashNext = (window.location.hash || '').replace(/^#/, '');
+  const nextPath = params.get('next') || (hashNext.startsWith('/') ? hashNext : '') || '/funds';
 
   function safeNext(path) {
-    if (!path || typeof path !== 'string') return '/investors';
-    if (!path.startsWith('/') || path.startsWith('//')) return '/investors';
+    if (!path || typeof path !== 'string') return '/funds';
+    if (!path.startsWith('/') || path.startsWith('//')) return '/funds';
+    var clean = path.split('#')[0];
+    if (clean === '/login' || clean.startsWith('/login?')) return '/funds';
     return path;
+  }
+
+  function hasOAuthCallback() {
+    return /(?:^|[?&])code=/.test(window.location.search || '') ||
+      /access_token=|refresh_token=/.test(window.location.hash || '');
   }
 
   function setStatus(message, type) {
@@ -121,13 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
       otpInput.value = '';
     }
     clearFieldErrors();
-  }
-
-  if (menuToggle && mainNav) {
-    menuToggle.addEventListener('click', () => {
-      menuToggle.classList.toggle('active');
-      mainNav.classList.toggle('active');
-    });
   }
 
   function sanitizeOtpValue(raw) {
@@ -223,8 +222,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return true;
   }
 
-  async function redirectAfterAuth() {
-    window.location.href = safeNext(nextPath);
+  function redirectAfterAuth() {
+    if (window.VCAuth && window.VCAuth.pingSessionMeta) {
+      window.VCAuth.pingSessionMeta({ isSignup: true });
+    }
+    window.location.replace(safeNext(nextPath));
   }
 
   function friendlyAuthError(err, context) {
@@ -251,21 +253,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fromResend && Date.now() < resendCooldownUntil) return false;
 
     const email = fromResend ? pendingEmail : readEmail();
-
+    pendingEmail = email;
+    if (!fromResend) setStep('otp');
     setBusy(true);
-    submitBtn.textContent = fromResend ? 'Resending…' : 'Sending OTP…';
-    setStatus(clientReady ? '' : 'Connecting…', clientReady ? undefined : 'info');
+    submitBtn.textContent = fromResend ? 'Resending…' : 'Sending code…';
+    setStatus('Sending a code to ' + email + '…', 'info');
 
     try {
       await ensureClient();
-      setStatus('');
       await window.VCAuth.sendEmailOtp({
         email,
-        createUser: true
+        createUser: true,
+        emailRedirectTo:
+          window.location.origin +
+          '/login?next=' +
+          encodeURIComponent(safeNext(nextPath))
       });
-      pendingEmail = email;
-      setStep('otp');
       startResendCooldown();
+      if (window.VCAnalytics) window.VCAnalytics.track('login_start', { method: 'email_otp' });
       setStatus('Check your inbox for a one-time code sent to ' + email + '.', 'success');
       return true;
     } catch (err) {
@@ -294,7 +299,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (data && data.session) {
         window.VCAuth.syncCookie(data.session);
       }
-      await redirectAfterAuth();
+      if (window.VCAnalytics) window.VCAnalytics.track('login_success', { method: 'email_otp' });
+      redirectAfterAuth();
     } catch (err) {
       setStatus(friendlyAuthError(err, 'verify'), 'error');
       setBusy(false);
@@ -302,18 +308,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  (async function bootstrap() {
+  // Defer Supabase (~113KB) so first paint isn't blocked.
+  // Logged-in users (cookie present): check ASAP. Everyone else: idle / after load.
+  function hasAccessCookie() {
+    return /(?:^|;\s*)vd_access_token=/.test(document.cookie || '');
+  }
+
+  function warmAuthClient() {
+    ensureClient().catch(function () {});
+  }
+
+  async function checkExistingSession() {
     try {
       await ensureClient();
       const client = await window.VCAuth.getClient();
       const { data } = await client.auth.getSession();
       if (data.session) {
-        await redirectAfterAuth();
+        if (window.VCAuth.syncCookie) window.VCAuth.syncCookie(data.session);
+        redirectAfterAuth();
+        return;
+      }
+      if (hasOAuthCallback()) {
+        setBusy(false);
+        setStatus('Sign-in did not complete. Try again.', 'error');
       }
     } catch (err) {
       console.error(err);
+      if (hasOAuthCallback()) {
+        setBusy(false);
+        setStatus((err && err.message) || 'Sign-in did not complete. Try again.', 'error');
+      }
     }
-  })();
+  }
+
+  function scheduleSessionCheck() {
+    if (hasOAuthCallback()) {
+      setBusy(true);
+      setStatus('Signing you in…', 'info');
+      checkExistingSession();
+      return;
+    }
+    if (hasAccessCookie()) {
+      checkExistingSession();
+    }
+  }
+
+  scheduleSessionCheck();
+  warmAuthClient();
+  emailInput.addEventListener('focus', warmAuthClient, { once: true });
+  emailInput.addEventListener('input', warmAuthClient, { once: true });
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();

@@ -1,0 +1,235 @@
+const { getInvestorBySlug, filterInvestors, toCard, hasStageGuide, deriveRelatedStages, ensureInvestorDetailExtras } = require('../../utils/investors');
+const { getThemePage, getAllThemes } = require('../../utils/thesis-themes');
+const { getStagePage } = require('../../utils/investment-stages');
+const { getSectorPage } = require('../../utils/sectors');
+const { renderStagePage } = require('../../utils/render-stage-page');
+const { renderSectorPage } = require('../../utils/render-sector-page');
+const { renderInvestorPage, renderInvestorExtrasHtml } = require('../../utils/render-investor-page');
+const { renderExploreRelated } = require('../../utils/render-explore-related');
+const { getThesisThemeIconSvg } = require('../../utils/thesis-theme-icons');
+const { renderFontLinks } = require('../../utils/font-assets');
+const { FUNDS_PATH, INVESTORS_PATH, FUNDS_LABEL, INVESTORS_LABEL } = require('../../utils/site-labels');
+const { renderSiteNavLinks } = require('../../utils/render-site-nav');
+const { renderFaviconLinks, renderLogoImg } = require('../../utils/site-icons');
+const { setPublicHtmlCache } = require('../../utils/public-html-cache');
+const { isMobileRequest } = require('../../utils/profile-page-assets');
+
+function escapeHtml(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function paragraphs(text) {
+  return String(text || '')
+    .split(/\n\n+/)
+    .map(p => p.trim())
+    .filter(Boolean)
+    .map(p => '<p class="theme-writeup-p">' + escapeHtml(p) + '</p>')
+    .join('');
+}
+
+function listItems(items) {
+  return (items || [])
+    .map(item => '<li>' + escapeHtml(item) + '</li>')
+    .join('');
+}
+
+function stageLinksForCard(inv) {
+  const labels = inv.stages || [];
+  const ids = inv.stageIds || [];
+  const links = labels.slice(0, 3).map((label, i) => {
+    const id = ids[i];
+    if (hasStageGuide(id)) {
+      return (
+        '<a class="theme-inv-stage-link" href="/funds/stages/' + escapeHtml(id) + '">' +
+          escapeHtml(label) +
+        '</a>'
+      );
+    }
+    return '<span class="theme-inv-stage-link">' + escapeHtml(label) + '</span>';
+  });
+  if (!links.length) return '';
+  return '<div class="theme-inv-stages">' + links.join('<span aria-hidden="true"> · </span>') + '</div>';
+}
+
+function renderThemePage(theme, res) {
+  const otherThemes = getAllThemes()
+    .filter(t => t.id !== theme.id)
+    .slice(0, 4);
+
+  const relatedStages = deriveRelatedStages(theme.investors, 5);
+
+  const investorCards = theme.investors.slice(0, 24).map(inv => (
+    '<article class="theme-inv-card">' +
+      '<a class="theme-inv-card-main" href="/funds/' + escapeHtml(inv.slug) + '">' +
+        '<div class="theme-inv-type">' + escapeHtml(inv.type) + '</div>' +
+        '<h3>' + escapeHtml(inv.name) + '</h3>' +
+        '<p>' + escapeHtml(inv.thesis || inv.chequeSize || '') + '</p>' +
+        '<div class="theme-inv-meta">' + escapeHtml(inv.chequeSize || '') + '</div>' +
+      '</a>' +
+      stageLinksForCard(inv) +
+    '</article>'
+  )).join('');
+
+  const otherCards = otherThemes.map(t => (
+    '<a class="theme-other-card" href="/funds/themes/' + escapeHtml(t.id) + '">' +
+      '<div class="theme-other-top">' +
+        getThesisThemeIconSvg(t.id, 'theme-other-icon') +
+        '<div class="theme-other-count">' + t.investorCount + ' funds</div>' +
+      '</div>' +
+      '<h3>' + escapeHtml(t.label) + '</h3>' +
+      '<p>' + escapeHtml(t.summary) + '</p>' +
+    '</a>'
+  )).join('');
+
+  const exploreHtml = renderExploreRelated({
+    title: 'Explore related',
+    subtitle: 'Pair this thesis with the right stage, then shortlist matching funds.',
+    stages: relatedStages,
+    themes: otherThemes.map(t => ({ id: t.id, label: t.label })),
+    fundsHref: '/funds?thesis=' + encodeURIComponent(theme.id),
+    fundsLabel: 'Browse ' + theme.investorCount + ' matching funds →',
+    siblingHref: '/funds/sectors',
+    siblingLabel: 'Sector guides →'
+  });
+
+  const html = [
+    '<!DOCTYPE html>',
+    '<html lang="en" class="scrollable-page">',
+    '<head>',
+    '<script src="/js/analytics.js?v=2" defer></script>',
+    '<script src="/js/nav.js?v=104" defer></script>',
+    '<meta charset="UTF-8">',
+    '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">',
+    ...renderFontLinks(),
+    '<title>' + escapeHtml(theme.label) + ' Funds | Thesis Themes | VC Dekho</title>',
+    '<meta name="description" content="' + escapeHtml(theme.summary).slice(0, 160) + '">',
+    '<link rel="canonical" href="https://vcdekho.com/funds/themes/' + escapeHtml(theme.id) + '">',
+    ...renderFaviconLinks(),
+    '<meta name="robots" content="index, follow">',
+    '<link rel="stylesheet" href="/css/base.css?v=153">',
+    '<link rel="stylesheet" href="/css/hero.css?v=73">',
+    '<link rel="stylesheet" href="/css/ambient.css?v=98">',
+    '<link rel="stylesheet" href="/css/directory.css?v=73">',
+    '</head>',
+    '<body class="scrollable-page inv-page">',
+    '<div class="app-container">',
+    '<header class="site-header">',
+    '<a href="/" class="logo-container">' + renderLogoImg() + '</a>',
+    '<button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>',
+    '<nav class="main-nav" id="navigation-bar">',
+    ...renderSiteNavLinks('funds'),
+    '</nav></header>',
+    '<main class="hero-showcase inv-detail-main">',
+    '<div class="ambient-bg-wrapper"><div class="waitlist-bg"><div class="glow-orb orb-1"></div><div class="glow-orb orb-2"></div><div class="glow-orb orb-3"></div></div></div>',
+    '<div class="inv-detail-wrap theme-page-wrap">',
+    '<div class="inv-breadcrumbs"><a href="/">Home</a><span>›</span><a href="' + FUNDS_PATH + '">' + FUNDS_LABEL + '</a><span>›</span><a href="/funds/themes">Thesis themes</a><span>›</span><span class="current">' + escapeHtml(theme.label) + '</span></div>',
+    '<section class="theme-hero">',
+    '<div class="theme-hero-icon-wrap" aria-hidden="true">' + getThesisThemeIconSvg(theme.id, 'theme-hero-icon') + '</div>',
+    '<span class="inv-kicker">' + escapeHtml(theme.eyebrow) + '</span>',
+    '<h1 class="inv-detail-title">' + escapeHtml(theme.label) + '</h1>',
+    '<p class="inv-detail-thesis">' + escapeHtml(theme.summary) + '</p>',
+    '<div class="theme-hero-meta"><span>' + theme.investorCount + ' matching funds</span><a href="/funds?thesis=' + encodeURIComponent(theme.id) + '">View in directory →</a></div>',
+    '</section>',
+    '<section class="inv-body-panel theme-writeup-panel">',
+    '<h2>What this thesis means</h2>',
+    paragraphs(theme.writeup),
+    '<div class="theme-two-col">',
+    '<div><h3>Who it fits</h3><ul class="theme-bullets">' + listItems(theme.whoItFits) + '</ul></div>',
+    '<div><h3>What to prepare</h3><ul class="theme-bullets">' + listItems(theme.whatToPrepare) + '</ul></div>',
+    '</div>',
+    '</section>',
+    '<section class="theme-investors-section">',
+    '<div class="theme-section-head"><h2>Funds with this thesis</h2><a href="/funds?thesis=' + encodeURIComponent(theme.id) + '">See all filters</a></div>',
+    '<div class="theme-inv-grid">' + (investorCards || '<p class="inv-empty">No funds tagged yet.</p>') + '</div>',
+    theme.investorCount > 24 ? ('<div class="theme-more"><a class="inv-btn inv-btn-primary" href="/funds?thesis=' + encodeURIComponent(theme.id) + '">Browse all ' + theme.investorCount + ' funds</a></div>') : '',
+    '</section>',
+    exploreHtml,
+    otherCards ? ('<section class="theme-others"><h2>Other thesis themes</h2><div class="theme-others-grid">' + otherCards + '</div></section>') : '',
+    '<section class="blog-cta-banner" style="margin: 3rem 0 1rem;">',
+    '<img src="/assets/blog_vc_dekho_cta.webp" alt="VC Dekho" class="blog-cta-bg">',
+    '<div class="blog-cta-content">',
+    '<h2 class="blog-cta-title">Match your round to the right thesis</h2>',
+    '<p class="blog-cta-desc">VC Dekho helps founders shortlist funds by stage, sector, cheque size, and investment thesis.</p>',
+    '<a href="' + FUNDS_PATH + '" class="blog-cta-btn">Browse funds</a>',
+    '</div></section>',
+    '</div></main></div>',
+    '<script src="/js/auth.js?v=2" defer></script>',
+    '<script src="/js/directory-session.js?v=3" defer></script>',
+    '<script src="/app.js" defer></script>',
+    '</body></html>'
+  ].join('\n');
+
+  setPublicHtmlCache(res);
+  return res.status(200).send(html);
+}
+
+module.exports = async function handler(req, res) {
+  const { slug, view, extras } = req.query || {};
+  if (!slug) {
+    return res.status(400).send('<h1>400 - Bad Request</h1>');
+  }
+
+  try {
+    // Guides don't need live portfolio/activity rows
+    if (view === 'theme') {
+      const theme = getThemePage(slug);
+      if (!theme) return res.status(404).send('<h1>404 - Thesis theme not found</h1>');
+      return renderThemePage(theme, res);
+    }
+
+    if (view === 'stage') {
+      const stage = getStagePage(slug);
+      if (!stage) return res.status(404).send('<h1>404 - Investment stage not found</h1>');
+      return renderStagePage(stage, res);
+    }
+
+    if (view === 'sector') {
+      const sector = getSectorPage(slug);
+      if (!sector) return res.status(404).send('<h1>404 - Sector guide not found</h1>');
+      return renderSectorPage(sector, res);
+    }
+
+    // Public JSON for mweb client hydrate (activity + portfolio HTML)
+    if (extras === '1' || extras === 'true') {
+      await ensureInvestorDetailExtras(slug);
+      const investor = getInvestorBySlug(slug);
+      if (!investor) {
+        res.setHeader('Cache-Control', 'public, max-age=60');
+        return res.status(404).json({ error: 'Investor not found' });
+      }
+      const payload = renderInvestorExtrasHtml(investor);
+      res.setHeader('Content-Type', 'application/json; charset=utf-8');
+      res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=300, stale-while-revalidate=3600');
+      res.setHeader('CDN-Cache-Control', 'public, s-maxage=300, stale-while-revalidate=3600');
+      return res.status(200).json(payload);
+    }
+
+    // Always SSR activity/portfolio in first HTML (mweb + desktop) — no late hydrate
+    await ensureInvestorDetailExtras(slug);
+
+    const investor = getInvestorBySlug(slug);
+    if (!investor) {
+      return res.status(404).send('<h1>404 - Investor Not Found</h1>');
+    }
+
+    const related = filterInvestors({
+      sector: investor.sectorIds[0] || '',
+      type: investor.typeId || ''
+    })
+      .filter(i => i.slug !== investor.slug)
+      .slice(0, 3)
+      .map(toCard);
+
+    // mwebFirstPaint: focus/thesis visible on first paint (not deferred extras)
+    return renderInvestorPage(investor, related, res, {
+      mwebFirstPaint: isMobileRequest(req)
+    });
+  } catch (error) {
+    console.error('investor detail error:', error);
+    res.status(500).send('<h1>500 - Internal Server Error</h1>');
+  }
+};

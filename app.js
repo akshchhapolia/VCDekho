@@ -1,51 +1,95 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Select elements
-    const menuToggle = document.getElementById('menu-toggle');
-    const mainNav = document.getElementById('navigation-bar');
+function bootApp() {
     const heroShowcase = document.getElementById('main-viewport');
     const heroBg = document.getElementById('hero-background-media');
+    if (heroBg && heroBg.getAttribute('data-hero-booted') === '1') return;
+    if (heroBg) heroBg.setAttribute('data-hero-booted', '1');
     const heroFallback = document.getElementById('hero-bg-fallback');
-    const trendCard = document.getElementById('ai-trend-card');
-    const exploreBtn = document.getElementById('explore-btn');
 
-    // Autoplay policy detection (Low Power Mode/Safari)
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.matchMedia('(max-width: 992px)').matches;
+    const enableParallax = !prefersReducedMotion && !isMobile;
+
+    /** Abort hero media so the next navigation isn't starved of bandwidth (esp. mweb). */
+    function releaseHeroMedia() {
+        if (!heroBg) return;
+        try {
+            heroBg.pause();
+        } catch (_) { /* ignore */ }
+        try {
+            heroBg.removeAttribute('src');
+            heroBg.querySelectorAll('source').forEach(function (source) {
+                source.removeAttribute('src');
+                source.remove();
+            });
+            heroBg.load();
+        } catch (_) { /* ignore */ }
+        heroBg.style.display = 'none';
+        if (heroFallback) heroFallback.style.display = 'block';
+    }
+
+    window.VCHero = { release: releaseHeroMedia };
+
+    window.addEventListener('pagehide', releaseHeroMedia);
+    document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'hidden') {
+            try {
+                if (heroBg) heroBg.pause();
+            } catch (_) { /* ignore */ }
+        }
+    });
+
     if (heroBg && heroFallback) {
-        heroBg.play().catch(err => {
-            // Autoplay failed, hide video and show static fallback background
+        // Mweb already shows the poster/fallback image — never fetch the mp4 there.
+        const skipVideo = prefersReducedMotion || isMobile;
+
+        if (skipVideo) {
             heroBg.style.display = 'none';
             heroFallback.style.display = 'block';
-        });
+            releaseHeroMedia();
+        } else {
+            heroBg.setAttribute('playsinline', '');
+            heroBg.setAttribute('webkit-playsinline', '');
+            heroBg.muted = true;
+            heroBg.playsInline = true;
+            heroBg.preload = 'metadata';
+            heroBg.style.display = '';
+            heroFallback.style.display = 'none';
+
+            const hideVideoHard = () => {
+                heroBg.style.display = 'none';
+                heroFallback.style.display = 'block';
+            };
+
+            const tryPlay = () => {
+                heroBg.muted = true;
+                return heroBg.play();
+            };
+
+            heroBg.addEventListener('error', hideVideoHard, { once: true });
+
+            const startVideo = () => {
+                if (document.visibilityState === 'hidden') return;
+                if (!heroBg.querySelector('source') && !heroBg.getAttribute('src')) return;
+                tryPlay().catch(hideVideoHard);
+            };
+
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(startVideo, { timeout: 2000 });
+            } else {
+                setTimeout(startVideo, 150);
+            }
+        }
     }
 
-    // 1. Mobile Navigation Toggle
-    if (menuToggle && mainNav) {
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            mainNav.classList.toggle('active');
-        });
-
-        // Close navigation menu if a link is clicked
-        const navLinks = mainNav.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                mainNav.classList.remove('active');
-            });
-        });
-    }
-
-    // 2. Premium Parallax Hover & Touch Effect (Desktop & Mobile)
-    if (heroShowcase && heroBg) {
+    if (enableParallax && heroShowcase && heroBg) {
         const handleMove = (clientX, clientY) => {
             const { width, height } = heroShowcase.getBoundingClientRect();
-            // Get position relative to center of the showcase container (-0.5 to 0.5)
             const x = (clientX - heroShowcase.offsetLeft) / width - 0.5;
             const y = (clientY - heroShowcase.offsetTop) / height - 0.5;
 
-            // Parallax the background (subtle slide)
             const bgMoveX = x * 25;
             const bgMoveY = y * 25;
-            
+
             const transformStr = `scale(1.05) translate(${bgMoveX}px, ${bgMoveY}px)`;
             heroBg.style.transform = transformStr;
             if (heroFallback) {
@@ -53,19 +97,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Desktop mouse movement
         heroShowcase.addEventListener('mousemove', (e) => {
             handleMove(e.clientX, e.clientY);
         });
 
-        // Mobile touch movement
-        heroShowcase.addEventListener('touchmove', (e) => {
-            if (e.touches && e.touches.length > 0) {
-                handleMove(e.touches[0].clientX, e.touches[0].clientY);
-            }
-        }, { passive: true });
-
-        // Reset positions
         const handleReset = () => {
             const resetStr = 'scale(1) translate(0, 0)';
             heroBg.style.transform = resetStr;
@@ -75,43 +110,34 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         heroShowcase.addEventListener('mouseleave', handleReset);
-        heroShowcase.addEventListener('touchend', handleReset);
     }
 
-    if (exploreBtn) {
-        exploreBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            // Ripple or feedback animation
-            exploreBtn.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                exploreBtn.style.transform = 'scale(1)';
-                window.location.href = exploreBtn.getAttribute('href');
-            }, 100);
-        });
-    }
-});
+    // "Start Exploring" is a plain link. It used to preventDefault, animate, and
+    // navigate from a 100ms timer, which threw away the browser's instant
+    // navigation and its loading indicator, so taps felt dead on mobile. The
+    // press state is handled by .trend-card-btn:active, and pagehide already
+    // releases the hero media, so the native link needs no help.
+}
+window.VCApp = { boot: bootApp };
+document.addEventListener('DOMContentLoaded', bootApp);
 
-// FAQ Toggle Logic
 document.addEventListener('DOMContentLoaded', () => {
     const faqQuestions = document.querySelectorAll('.faq-question');
     faqQuestions.forEach(question => {
         question.addEventListener('click', () => {
             const faqItem = question.closest('.faq-item');
-            
-            // Close other open FAQs
+
             document.querySelectorAll('.faq-item.open').forEach(item => {
                 if (item !== faqItem) {
                     item.classList.remove('open');
                 }
             });
-            
-            // Toggle current FAQ
+
             faqItem.classList.toggle('open');
         });
     });
 });
 
-// Reading Progress Bar
 document.addEventListener('DOMContentLoaded', () => {
     const progressBar = document.getElementById('reading-progress');
     if (progressBar) {

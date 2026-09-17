@@ -1,8 +1,8 @@
 require('dotenv').config();
 
 const db = require('./utils/db');
-const aiProcess = require('./api/cron/ai-process');
-const dailyDigest = require('./api/cron/daily-digest');
+const aiProcess = require('./server/cron/ai-process');
+const dailyDigest = require('./server/cron/daily-digest');
 
 async function run() {
     if (!process.env.DATABASE_URL) {

@@ -1,0 +1,68 @@
+{
+  "generatedAt": "2026-07-30T05:55:00.000Z",
+  "found": [
+    {
+      "company": "Elevation Capital",
+      "name": "Mukul Arora",
+      "title": "Co-Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/mukularora1",
+      "sourceUrl": "https://www.linkedin.com/in/mukularora1",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Accel",
+      "name": "Anand Daniel",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/ananddaniel",
+      "sourceUrl": "https://www.linkedin.com/in/ananddaniel",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Accel",
+      "name": "Prashanth Prakash",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/prakashprashanth",
+      "sourceUrl": "https://www.linkedin.com/in/prakashprashanth",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Nexus Venture Partners",
+      "name": "Jishnu Bhattacharjee",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/jishnu-b-3063271",
+      "sourceUrl": "https://www.linkedin.com/in/jishnu-b-3063271",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Nexus Venture Partners",
+      "name": "Anand Datta",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/ananddatta",
+      "sourceUrl": "https://www.linkedin.com/in/ananddatta",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Nexus Venture Partners",
+      "name": "Suvir Sujan",
+      "title": "Founder & Managing Director",
+      "linkedinUrl": "https://www.linkedin.com/in/suvir-sujan-66023b3",
+      "sourceUrl": "https://nexusvp.com/team/suvir-sujan/",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Lightspeed",
+      "name": "Bejul Somaia",
+      "title": "Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/bejul-somaia-ba415",
+      "sourceUrl": "https://lsvp.com/team-member/bejul-somaia/",
+      "method": "agent-verified",
+      "companyType": "VC"
+    }
+  ]
+}

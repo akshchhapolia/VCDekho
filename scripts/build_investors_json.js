@@ -10,6 +10,7 @@ const { parse } = require('csv-parse/sync');
 const ROOT = path.join(__dirname, '..');
 const CSV_PATH = path.join(ROOT, 'Updated VC Dekho Sheet - Org.csv');
 const OUT_PATH = path.join(ROOT, 'data', 'investors.json');
+const INDEX_OUT_PATH = path.join(ROOT, 'data', 'investors.index.json');
 
 const STAGE_CANON = [
   { id: 'pre-seed', label: 'Pre-Seed', match: [/pre[-\s]?seed/i, /preseed/i] },
@@ -33,8 +34,38 @@ const SECTOR_CANON = [
   { id: 'logistics', label: 'Supply Chain / Logistics', match: [/logistics/i, /supply\s*chain/i, /mobility/i] },
   { id: 'agritech', label: 'Agritech / Food', match: [/agri/i, /food/i, /farming/i] },
   { id: 'gaming', label: 'Gaming / Media', match: [/gaming/i, /media/i, /entertainment/i, /content/i] },
+  {
+    id: 'sports',
+    label: 'Sports',
+    match: [
+      /\bsports?\b/i,
+      /esports?/i,
+      /e-sports?/i,
+      /fantasy sports?/i,
+      /sportstech/i,
+      /sports tech/i,
+      /sports media/i,
+      /fan engagement/i,
+      /dream\s*sports/i,
+      /dream11/i,
+      /\brooter\b/i,
+      /\bmpl\b/i,
+      /mobile premier league/i,
+      /stepsetgo/i,
+      /step set go/i,
+      /\bfancode\b/i,
+      /sportskeeda/i,
+      /\bplayo\b/i,
+      /sportz interactive/i,
+      /\bnazara\b/i,
+      /\bloco\b/i,
+      /\brusk media\b/i
+    ]
+  },
   { id: 'proptech', label: 'PropTech / Real Estate', match: [/prop\s*tech/i, /real\s*estate/i] },
   { id: 'impact', label: 'Social Impact', match: [/impact/i, /social/i, /inclusion/i] },
+  { id: 'cyber-security', label: 'Cyber Security', match: [/cyber\s*security/i, /cybersecurity/i, /infosec/i, /information security/i, /cloud\s*security/i, /endpoint security/i, /threat detection/i, /zero trust/i, /application security/i, /devsecops/i, /cloudsek/i, /astra security/i, /safe security/i, /bluesapphire/i] },
+  { id: 'blockchain', label: 'Blockchain', match: [/blockchain/i, /\bweb3\b/i, /\bcrypto\b/i, /crypto\//i, /crypto-/i, /\bdefi\b/i, /\bnft\b/i, /gamefi/i, /tokenomics/i, /on[-\s]?chain/i] },
   { id: 'sector-agnostic', label: 'Sector Agnostic', match: [/sector\s*agnostic/i, /multi[-\s]?sector/i, /generalist/i] }
 ];
 
@@ -54,7 +85,8 @@ const THESIS_THEMES = [
   { id: 'healthtech', label: 'Healthtech / wellness', match: [/healthtech/i, /health[-\s]?tech/i, /healthcare/i, /wellness/i, /medtech/i, /digital health/i], sectorIds: ['health'] },
   { id: 'climate', label: 'Climate / sustainability', match: [/climate/i, /sustainab/i, /clean[-\s]?tech/i, /cleantech/i, /renewable/i, /net[-\s]?zero/i], sectorIds: ['climate'] },
   { id: 'pre-seed-day-zero', label: 'Pre-seed / day-zero', match: [/pre[-\s]?seed/i, /day[-\s]?zero/i, /first cheque/i, /first significant backer/i], stageIds: ['pre-seed'] },
-  { id: 'crypto-web3', label: 'Crypto / Web3', match: [/crypto/i, /web3/i, /blockchain/i, /bitcoin/i, /\bdefi\b/i] },
+  { id: 'crypto-web3', label: 'Crypto / Web3', match: [/crypto/i, /web3/i, /blockchain/i, /bitcoin/i, /\bdefi\b/i], sectorIds: ['blockchain'] },
+  { id: 'cyber-security', label: 'Cybersecurity / infosec', match: [/cyber\s*security/i, /cybersecurity/i, /infosec/i, /cloud\s*security/i, /threat detection/i], sectorIds: ['cyber-security'] },
   { id: 'family-offices', label: 'Family offices', match: [/family\s*office/i, /patient capital/i], typeIds: ['family-office'] },
   { id: 'angel-syndicates', label: 'Angel syndicates / networks', match: [/syndicate/i, /angel network/i, /angel community/i, /rolling fund/i], typeIds: ['syndicate', 'angel'] },
   { id: 'agri-food', label: 'Agri / food systems', match: [/agri/i, /agtech/i, /foodtech/i, /agriculture/i, /farming/i, /food system/i], sectorIds: ['agritech'] },
@@ -292,6 +324,45 @@ function classifyType(typeText) {
   return { id: 'other', label: typeText.trim() || 'Investor' };
 }
 
+/**
+ * The list index stores ids only. Fail the build loudly if any label the app
+ * still reads can't be reconstructed from them, rather than shipping a file
+ * that silently renders blank stages/sectors/themes.
+ */
+function assertLabelsAreDerivable(investors, indexInvestors, filters) {
+  const lookup = (list) => new Map((list || []).map((o) => [o.id, o.label]));
+  const stages = lookup(filters.stages);
+  const sectors = lookup(filters.sectors);
+  const themes = lookup(filters.thesisThemes);
+  const types = lookup(filters.types);
+
+  const problems = [];
+  investors.forEach((inv, i) => {
+    const slim = indexInvestors[i];
+    const check = (field, ids, map) => {
+      const rebuilt = (ids || []).map((id) => map.get(id));
+      const expected = inv[field] || [];
+      if (rebuilt.length !== expected.length || rebuilt.some((l, n) => l !== expected[n])) {
+        problems.push(`${inv.slug}.${field}: expected ${JSON.stringify(expected)}, rebuilt ${JSON.stringify(rebuilt)}`);
+      }
+    };
+    check('stages', slim.stageIds, stages);
+    check('sectors', slim.sectorIds, sectors);
+    check('thesisThemes', slim.thesisThemeIds, themes);
+    const rebuiltType = slim.type || types.get(slim.typeId);
+    if (rebuiltType !== inv.type) {
+      problems.push(`${inv.slug}.type: expected ${JSON.stringify(inv.type)}, rebuilt ${JSON.stringify(rebuiltType)}`);
+    }
+  });
+
+  if (problems.length) {
+    throw new Error(
+      `List index labels are not derivable from ids (${problems.length} records):\n  ` +
+        problems.slice(0, 10).join('\n  ')
+    );
+  }
+}
+
 function build() {
   const raw = fs.readFileSync(CSV_PATH, 'utf8');
   const rows = parse(raw, {
@@ -322,15 +393,20 @@ function build() {
     const stages = uniqueById(matchCanon(stageText, STAGE_CANON));
     // Prefer explicit Sector cell + short thesis; include name/notes for keyword hits
     // (e.g. "W Health", "Beams") without scanning long template writeups.
+    const writeupSnippet = String(row['Detailed Writeup (~200 words)'] || '').slice(0, 2500);
     let sectors = uniqueById(
-      matchCanon(`${sectorText} ${thesisText} ${name} ${row.Notes || ''}`, SECTOR_CANON)
+      matchCanon(`${sectorText} ${thesisText} ${name} ${row.Notes || ''} ${writeupSnippet}`, SECTOR_CANON)
     );
     if (!sectors.length && sectorText.trim()) {
       const first = splitList(sectorText)[0] || 'Other';
       if (/^all sectors$/i.test(first) || /^sector-?agnostic$/i.test(first)) {
         sectors = [{ id: 'sector-agnostic', label: 'Sector Agnostic' }];
-      } else if (/^(crypto|web3)$/i.test(first)) {
-        sectors = [{ id: 'fintech', label: 'Fintech' }];
+      } else if (/^(crypto|web3|blockchain)$/i.test(first) || /crypto\/blockchain/i.test(first)) {
+        sectors = [{ id: 'blockchain', label: 'Blockchain' }];
+      } else if (/^cyber\s*security$/i.test(first) || /^cybersecurity$/i.test(first)) {
+        sectors = [{ id: 'cyber-security', label: 'Cyber Security' }];
+      } else if (/^sports?$/i.test(first) || /^sportstech$/i.test(first)) {
+        sectors = [{ id: 'sports', label: 'Sports' }];
       } else {
         sectors = [{ id: 'other', label: first }];
       }
@@ -410,6 +486,34 @@ function build() {
     } catch (_) {}
   }
 
+  // Static fallback for the "actively deploying" signal — a one-time snapshot
+  // from the early manual runs of scripts/build_investor_activity.js. The live
+  // source of truth is now the investor_activity DB table, refreshed
+  // automatically by api/cron/investor-activity.js (news pipeline) and
+  // api/cron/investor-activity-backfill.js (targeted web search), and merged
+  // in at request time by utils/investors.js#ensureActivityFresh(). This file
+  // is no longer regenerated — it only matters if the DB is briefly
+  // unreachable. activelyDeploying itself is NOT stored here — it's derived
+  // at request time from lastCheckDate, so the badge correctly ages out.
+  const activityPath = path.join(ROOT, 'data', 'investor-activity.json');
+  if (fs.existsSync(activityPath)) {
+    try {
+      const payload = JSON.parse(fs.readFileSync(activityPath, 'utf8'));
+      const activity = payload.activity || {};
+      investors.forEach((inv) => {
+        const a = activity[inv.slug];
+        if (!a) return;
+        inv.lastCheckDate = a.lastCheckDate || null;
+        inv.lastCheckSector = a.lastCheckSector || null;
+        inv.lastCheckHighlight = a.lastCheckHighlight || null;
+        inv.lastCheckSource = a.lastCheckSource || null;
+        inv.lastCheckSourceTitle = a.lastCheckSourceTitle || null;
+        inv.recentCheckCount = a.recentCheckCount || 0;
+        inv.recentChecks = a.recentChecks || [];
+      });
+    } catch (_) {}
+  }
+
   const payload = {
     generatedAt: new Date().toISOString(),
     count: investors.length,
@@ -430,7 +534,51 @@ function build() {
 
   fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
   fs.writeFileSync(OUT_PATH, JSON.stringify(payload), 'utf8');
+
+  // Label arrays (stages/sectors/thesisThemes/type) are ~40% of this file and are
+  // fully derivable from the ids via the filters block, so they're rebuilt on load
+  // by utils/investors.js#hydrateIndexLabels instead of being stored per record.
+  const typeLabels = new Map(payload.filters.types.map((t) => [t.id, t.label]));
+  const indexInvestors = investors.map((inv) => {
+    const record = {
+      id: inv.id,
+      slug: inv.slug,
+      name: inv.name,
+      typeId: inv.typeId,
+      stageIds: inv.stageIds,
+      sectorIds: inv.sectorIds,
+      thesisThemeIds: inv.thesisThemeIds,
+      thesis: (inv.thesis || '').slice(0, 280),
+      chequeSize: inv.chequeSize,
+      chequeMin: inv.chequeMin,
+      chequeMax: inv.chequeMax,
+      website: inv.website,
+      logo: inv.logo || null,
+      lastCheckDate: inv.lastCheckDate || null,
+      lastCheckHighlight: inv.lastCheckHighlight || null
+    };
+    // Uncategorised firms keep their raw type text under the shared "other" id,
+    // so that label can't be looked up — carry it on the record instead.
+    if (typeLabels.get(inv.typeId) !== inv.type) record.type = inv.type;
+    return record;
+  });
+
+  assertLabelsAreDerivable(investors, indexInvestors, payload.filters);
+
+  fs.writeFileSync(
+    INDEX_OUT_PATH,
+    JSON.stringify({
+      generatedAt: payload.generatedAt,
+      count: indexInvestors.length,
+      filters: payload.filters,
+      investors: indexInvestors
+    }),
+    'utf8'
+  );
+
   console.log(`Wrote ${investors.length} investors → ${OUT_PATH}`);
+  console.log('Verified list index labels rebuild losslessly from ids');
+  console.log(`Wrote list index (${Math.round(fs.statSync(INDEX_OUT_PATH).size / 1024)}KB) → ${INDEX_OUT_PATH}`);
   console.log('Sample:', investors[0].name, investors[0].slug, investors[0].sectors.slice(0, 3));
 }
 

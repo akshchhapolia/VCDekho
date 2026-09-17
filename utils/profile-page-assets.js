@@ -1,0 +1,159 @@
+/**
+ * Head assets for firm + person profile pages.
+ * Mweb: critical CSS + async full styles/fonts (same files — design unchanged).
+ * Desktop: normal render-blocking stylesheets (unchanged behavior).
+ */
+
+const CSS_FILES = [
+  '/css/base.css?v=153',
+  '/css/hero.css?v=97',
+  '/css/ambient.css?v=98',
+  '/css/announcement.css?v=145',
+  '/css/directory-list.css?v=149',
+  '/css/directory-profile.css?v=154'
+];
+
+const { FONTS_HREF, renderFontPreloads, renderLatinFontFaces } = require('./font-assets');
+
+/** Compact first-paint styles for mweb profile hero (matches final CSS). */
+const PROFILE_CRITICAL_CSS = [
+  renderLatinFontFaces(),
+  ':root{--color-text-main:#1A1A1A;--color-text-light:#fff;--color-accent-orange:#ED572F;--font-heading:"Instrument Serif",Georgia,serif;--font-sans:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;--page-padding:2.5rem}',
+  '*{box-sizing:border-box;margin:0;padding:0}',
+  'html,body{width:100%;background:#0b0b0d;color:rgba(255,255,255,.88);font-family:var(--font-sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}',
+  'html.scrollable-page,body.scrollable-page{overflow-y:auto!important;overflow-x:hidden!important;height:auto!important}',
+  'body.scrollable-page::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:#0b0b0d;background-image:radial-gradient(ellipse 160% 120% at 15% -10%,rgba(237,87,47,.1),transparent 58%),radial-gradient(ellipse 120% 90% at 85% 15%,rgba(237,87,47,.05),transparent 55%)}',
+  '.app-container{display:flex;flex-direction:column;width:100%;min-height:100dvh;padding:1rem;gap:.75rem;max-width:1600px;margin:0 auto;position:relative;z-index:1}',
+  '.site-header{display:flex;justify-content:space-between;align-items:center;width:100%;height:50px;position:relative;z-index:100;padding-top:env(safe-area-inset-top,0)}',
+  '.logo-img{height:44px;width:auto;aspect-ratio:220/204;display:block}',
+  '.main-nav{display:none}',
+  '.nav-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:44px;min-height:44px;margin-left:auto;background:none;border:none;padding:.5rem}',
+  '.nav-toggle span{display:block;width:22px;height:2px;background:#fff;margin:0;flex-shrink:0}',
+  '.nav-toggle{gap:5px}',
+  '.hero-showcase{position:relative;background:transparent;overflow:visible;min-height:0}',
+  '.ambient-bg-wrapper{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}',
+  '.inv-detail-wrap,.inv-profile-wrap{max-width:1120px;margin:0 auto;position:relative;z-index:10;padding:0 20px 40px}',
+  '.inv-breadcrumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:.9rem;color:rgba(255,255,255,.55);margin-bottom:1rem}',
+  '.inv-breadcrumbs a{color:rgba(255,255,255,.55);text-decoration:none}',
+  '.inv-profile-hero-row{display:grid;grid-template-columns:1fr;gap:.9rem;margin:0 0 1.25rem}',
+  '.inv-profile-hero{position:relative;display:flex;flex-direction:column;padding:1.75rem 1.2rem 1.25rem;border-radius:20px;border:1px solid rgba(255,255,255,.1);overflow:hidden;background:rgba(255,255,255,.02);isolation:isolate;-webkit-transform:translateZ(0);transform:translateZ(0)}',
+  '.inv-profile-hero-wash{position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse 90% 75% at 18% 28%,rgba(237,87,47,.16),transparent 72%);pointer-events:none}',
+  '@media(max-width:768px){body.inv-investor-profile .app-container,body.inv-person-profile .app-container{padding-left:.55rem;padding-right:.55rem}body.inv-investor-profile .inv-detail-wrap,body.inv-person-profile .inv-detail-wrap{padding-left:10px;padding-right:10px}}',
+  // These values MUST match css/directory.css. A compact first-paint hero
+  // (smaller title, missing meta row) is what produced CLS 0.17 on fund profiles:
+  // async CSS arrived and grew the hero, pushing #snapshot down.
+  '.inv-profile-hero-inner{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between;gap:1.35rem}',
+  '.inv-profile-hero-copy{position:relative;z-index:1}',
+  '.inv-profile-logo{display:block;width:56px;height:56px;border-radius:14px;object-fit:contain;margin-bottom:1rem;background:rgba(255,255,255,.96);border:1.5px solid var(--color-accent-orange);padding:6px;box-sizing:border-box}',
+  '.inv-profile-logo-fallback{display:flex;align-items:center;justify-content:center;width:56px;height:56px;margin-bottom:1rem;border-radius:14px;box-sizing:border-box;border:1.5px solid var(--color-accent-orange);background:rgba(237,87,47,.16);color:#ffb89c;font-family:var(--font-sans);font-size:1rem;font-weight:700;letter-spacing:.04em;line-height:1}',
+  '.inv-profile-type{display:inline-block;margin-bottom:.85rem;padding:.35rem .7rem;border-radius:999px;border:1px solid rgba(237,87,47,.4);background:rgba(237,87,47,.14);color:#ffb89c;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}',
+  '.inv-profile-active-badge{display:inline-flex;align-items:center;gap:.4rem;margin:0 0 .85rem .5rem;padding:.35rem .7rem;border-radius:999px;border:1px solid rgba(80,200,120,.4);background:rgba(80,200,120,.12);color:#a8f0c0;font-size:.72rem;font-weight:700;letter-spacing:.04em}',
+  '.inv-profile-active-dot{width:6px;height:6px;border-radius:50%;background:#6be895;display:inline-block}',
+  '.inv-profile-title{font-family:var(--font-heading);font-size:clamp(2.6rem,6.5vw,4.1rem);color:#fff;line-height:.98;font-weight:400;margin:0 0 .85rem}',
+  '.inv-profile-hero-lead{color:rgba(255,255,255,.78);font-size:1.08rem;line-height:1.55;margin:0 0 1.4rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;max-width:38rem}',
+  '.inv-profile-hero-actions{display:flex;flex-wrap:wrap;gap:.65rem}',
+  '.inv-profile-cta{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;padding:.8rem 1.15rem;border-radius:999px;text-decoration:none;font-size:.9rem;font-weight:700;color:#fff;-webkit-appearance:none;appearance:none}',
+  '.inv-profile-cta.is-primary{background:var(--color-accent-orange);border:1px solid transparent}',
+  '.inv-profile-cta.is-ghost{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.9)}',
+  'button.inv-profile-cta{font:inherit;cursor:pointer}',
+  '.inv-profile-hero-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem 1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.1)}',
+  '.inv-profile-hero-meta-label{color:rgba(255,255,255,.48);font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase}',
+  '.inv-profile-hero-meta-value{color:rgba(255,255,255,.92);font-family:var(--font-heading);font-size:clamp(.98rem,1.5vw,1.15rem);font-weight:400;line-height:1.25}',
+  '@media(max-width:768px){body.inv-investor-profile .inv-profile-hero-meta{gap:.45rem .4rem}body.inv-investor-profile .inv-profile-hero-meta-label{font-size:.58rem;letter-spacing:.05em}body.inv-investor-profile .inv-profile-hero-meta-value{font-size:.88rem;white-space:normal}body.inv-person-profile .inv-profile-hero-actions{margin-top:auto;padding-top:1.25rem}}',
+  '.inv-profile-sticky-host{width:100vw;max-width:100vw;margin-left:calc(50% - 50vw)}',
+  '.inv-profile-sticky{display:flex;flex-wrap:nowrap;justify-content:flex-start;gap:.15rem 1rem;overflow-x:auto;margin:0 0 1rem;padding:.75rem max(1rem,env(safe-area-inset-left)) .65rem;border-bottom:1px solid rgba(255,255,255,.1);-webkit-overflow-scrolling:touch;scrollbar-width:none;position:relative;z-index:8;box-sizing:border-box}',
+  /* Mweb: pin styles in critical CSS so sticky works before async directory.css */
+  '@media(max-width:768px){.inv-profile-sticky.is-pinned{position:fixed!important;top:calc(50px + env(safe-area-inset-top,0px));left:0!important;right:0!important;width:100%!important;max-width:100vw!important;z-index:90;margin:0;padding:.75rem max(1rem,env(safe-area-inset-left)) .65rem max(1rem,env(safe-area-inset-right));background:rgba(11,11,13,.92);border-bottom:1px solid rgba(255,255,255,.1);box-shadow:0 8px 24px rgba(0,0,0,.35)}}',
+  '.inv-profile-sticky a{flex:0 0 auto;color:rgba(255,255,255,.5);font-size:.82rem;font-weight:650;text-decoration:none;white-space:nowrap;padding:.45rem .35rem .6rem}',
+  '.inv-profile-sticky a.is-active{color:#fff}',
+  '.inv-profile-sticky a.is-active::after{content:"";position:absolute;left:.35rem;right:.35rem;bottom:.2rem;height:2px;background:var(--color-accent-orange);border-radius:2px}',
+  '.inv-profile-section{margin:1.5rem 0;color:rgba(255,255,255,.85)}',
+  '.inv-profile-section-label{color:#ffb89c;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}',
+  '.inv-profile-section-head h2{font-family:var(--font-heading);font-size:1.45rem;font-weight:400;color:#fff;margin:0 0 .35rem}',
+  '.inv-profile-section-head p{color:rgba(255,255,255,.62);font-size:.9rem;line-height:1.45;margin:0 0 .85rem}',
+  '.inv-profile-metric-strip{display:grid;gap:.75rem;margin-top:.5rem}',
+  '@media(max-width:768px){body.inv-investor-profile #snapshot .inv-profile-metric-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem .75rem}body.inv-investor-profile #snapshot .inv-profile-metric-value{font-size:.95rem;line-height:1.3}}',
+  '.inv-profile-metric{padding:0 0 0 .85rem;border-left:2px solid rgba(255,255,255,.12)}',
+  '.inv-profile-metric:first-child{border-left-color:rgba(237,87,47,.55)}',
+  '.inv-profile-metric-label{font-size:.7rem;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.4rem}',
+  '.inv-profile-metric-value{font-family:var(--font-heading);font-size:1.35rem;color:#fff;margin-top:.15rem}',
+  'a.inv-profile-metric,a.inv-profile-metric:visited{color:inherit;text-decoration:none;-webkit-text-decoration:none}',
+  'a.inv-profile-metric .inv-profile-metric-value{border-bottom:1px solid rgba(255,255,255,.18)}',
+  'a.inv-dir-inline-link,.inv-person-firm-attribution a,.inv-profile-section p a{color:inherit;text-decoration:none;-webkit-text-decoration:none;border-bottom:1px solid rgba(255,255,255,.18)}',
+  '.inv-profile-focus-panel{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:1rem 1.1rem;background:rgba(255,255,255,.02)}',
+  '.inv-profile-focus-col h3{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55);margin:0 0 .55rem}',
+  '.inv-profile-chip-row,.inv-profile-thesis-chips{display:flex;flex-wrap:wrap;gap:.45rem}',
+  '.inv-profile-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.4rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:rgba(255,255,255,.88);font-size:.8rem;text-decoration:none}',
+  '.inv-profile-sticky-host,.inv-profile-sticky{display:none!important}',
+  '.inv-profile-panel-link,.inv-profile-browse{display:inline-block;margin-top:.35rem;color:#ffb89c;font-size:.82rem;font-weight:600;text-decoration:none}',
+  '.inv-profile-reveal,.inv-profile-reveal.is-visible,.inv-profile-hero-enter,.inv-profile-ready .inv-profile-hero-enter{opacity:1;transform:none}',
+  '.inv-profile-boot-bar{display:block;height:.85rem;border-radius:4px;background:rgba(255,255,255,.08)}.inv-profile-boot-bar--title{width:42%;height:1.55rem;margin-bottom:.85rem}.inv-profile-boot-bar--lead{width:78%;margin-bottom:.5rem}.inv-profile-boot-bar--lead-short{width:54%}',
+  /* Mweb-only first paint: hide dir widgets + show through thesis; stacked focus divider only on mweb */
+  '@media(max-width:768px){.inv-profile-dir-widget{display:none!important}.main-nav:not(.active){position:fixed;right:-100%;display:flex}.main-nav.active,#navigation-bar.active{display:flex!important;position:fixed;top:0;right:0;left:0;bottom:0;width:100%;height:100dvh;background:#0b0b0d;z-index:10040}.nav-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;z-index:10050}body.nav-open .site-header{z-index:10045!important;position:relative!important}body.nav-open .inv-detail-wrap,body.nav-open .inv-profile-sticky,body.nav-open .hero-showcase{z-index:0!important}body.inv-investor-profile #focus.inv-profile-reveal,body.inv-investor-profile #thesis.inv-profile-reveal,body.inv-person-profile #firm-focus.inv-profile-reveal,body.inv-person-profile #firm-thesis.inv-profile-reveal,body.inv-person-profile #firm-activity.inv-profile-reveal{opacity:1;transform:none}.inv-profile-focus-col+.inv-profile-focus-col{margin-top:.85rem;padding-top:.85rem;border-top:1px solid rgba(255,255,255,.1);border-left:none;padding-left:0}}',
+  '@media(min-width:769px){.main-nav{display:flex}.nav-toggle{display:none}.app-container{padding:var(--page-padding);padding-top:1rem;padding-bottom:0;gap:.75rem}.hero-showcase.inv-detail-main{padding-top:1.25rem;padding-bottom:2.5rem}.inv-profile-sticky-host{width:auto;max-width:none;margin-left:0}.inv-profile-sticky{overflow:visible;flex-wrap:wrap}.inv-profile-focus-col+.inv-profile-focus-col{margin-top:0;padding-top:0;border-top:none}}'
+].join('');
+
+function renderProfileHeadAssets() {
+  const filesJson = JSON.stringify(CSS_FILES);
+  const fontsJson = JSON.stringify(FONTS_HREF);
+  const noscriptLinks =
+    '<link rel="stylesheet" href="' +
+    FONTS_HREF +
+    '">' +
+    CSS_FILES.map(function (h) {
+      return '<link rel="stylesheet" href="' + h + '">';
+    }).join('');
+
+  return renderFontPreloads().concat([
+    '<style id="profile-critical-css">' + PROFILE_CRITICAL_CSS + '</style>',
+    '<script>',
+    '(function(){',
+    'var files=' + filesJson + ';',
+    'var fonts=' + fontsJson + ';',
+    'var mweb=window.matchMedia("(max-width:768px)").matches;',
+    'function addAsync(href){',
+    'var l=document.createElement("link");',
+    'l.rel="stylesheet";l.href=href;l.media="print";',
+    'l.onload=function(){this.media="all"};',
+    'document.head.appendChild(l);',
+    '}',
+    'if(mweb){',
+    'addAsync(fonts);',
+    'files.forEach(addAsync);',
+    '}else{',
+    'document.write(\'<link rel="stylesheet" href="\'+fonts+\'">\');',
+    'files.forEach(function(h){document.write(\'<link rel="stylesheet" href="\'+h+\'">\');});',
+    '}',
+    '})();',
+    '</script>',
+    '<noscript>' + noscriptLinks + '</noscript>'
+  ]).join('\n');
+}
+
+function isMobileRequest(req) {
+  if (!req || !req.headers) return false;
+  const ch = req.headers['sec-ch-ua-mobile'];
+  if (ch === '?1') return true;
+  if (ch === '?0') return false;
+  return /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    String(req.headers['user-agent'] || '')
+  );
+}
+
+function earlyStickyPinScript() {
+  return '';
+}
+
+function profileMobileAsyncCssScript() {
+  return "(function(){var href='/css/directory-profile.css?v=154';var existing=document.querySelector('link[href=\"'+href+'\"]');if(existing){existing.media='all';existing.onload=null;return;}var l=document.createElement('link');l.rel='stylesheet';l.href=href;document.head.appendChild(l);})();";
+}
+
+module.exports = {
+  renderProfileHeadAssets,
+  earlyStickyPinScript,
+  isMobileRequest,
+  renderProfileCriticalCss: () => PROFILE_CRITICAL_CSS,
+  profileMobileAsyncCssScript,
+  CSS_FILES,
+  FONTS_HREF
+};

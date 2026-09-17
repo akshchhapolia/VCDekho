@@ -1,0 +1,302 @@
+[
+  {
+    "company": "Native Smart Capital",
+    "website": "https://nativesmart.capital",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Info Edge Ventures",
+    "website": "https://www.infoedge.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.infoedge.in/About/Overview"
+  },
+  {
+    "company": "Flipkart Ventures",
+    "website": "https://stories.flipkart.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://stories.flipkart.com/"
+  },
+  {
+    "company": "JioGenNext",
+    "website": "https://www.jiogennext.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.jiogennext.com/"
+  },
+  {
+    "company": "Reliance Ventures",
+    "website": "https://www.ril.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.ril.com/"
+  },
+  {
+    "company": "Mahindra Partners",
+    "website": "https://www.mahindrapartners.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "SIDBI Venture Capital",
+    "website": "https://www.sidbiventure.co.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.sidbiventure.co.in/"
+  },
+  {
+    "company": "Canbank Venture Capital Fund",
+    "website": "https://www.canbankventure.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "IFCI Venture Capital Funds",
+    "website": "https://www.ifciventure.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.ifciventure.com/index.aspx"
+  },
+  {
+    "company": "ICICI Venture",
+    "website": "https://www.iciciventure.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "The operation was aborted due to timeout"
+  },
+  {
+    "company": "Kotak Private Equity",
+    "website": "https://www.kotak.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.kotak.bank.in/en/corporate/cash-management-services.html"
+  },
+  {
+    "company": "Patamar Capital",
+    "website": "https://patamar.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://patamar.com/about-us/"
+  },
+  {
+    "company": "Greyhound Capital",
+    "website": "https://greyhoundcapital.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://greyhoundcapital.com/"
+  },
+  {
+    "company": "Steadview Capital",
+    "website": "https://www.steadview.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.steadview.com/"
+  },
+  {
+    "company": "Rebright Partners",
+    "website": "https://rebrightpartners.com/",
+    "reason": "homepage-fetch-failed",
+    "detail": "The operation was aborted due to timeout"
+  },
+  {
+    "company": "Surge",
+    "website": "https://surge.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.coca-cola.com/us/en/offerings/partners/nascar"
+  },
+  {
+    "company": "Y Combinator",
+    "website": "https://www.ycombinator.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.ycombinator.com/about"
+  },
+  {
+    "company": "Techstars",
+    "website": "https://www.techstars.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.techstars.com/about"
+  },
+  {
+    "company": "500 Global",
+    "website": "https://500.co/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://500.co/founders/flagship"
+  },
+  {
+    "company": "Jungle Ventures",
+    "website": "https://www.jungle.vc/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.jungle.vc/portfolio"
+  },
+  {
+    "company": "Wavemaker Partners",
+    "website": "https://wavemaker.vc/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://wavemaker.vc/"
+  },
+  {
+    "company": "Insignia Ventures Partners",
+    "website": "https://www.insignia.vc/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "JAFCO Asia",
+    "website": "https://www.jafco.asia",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Pavilion Capital",
+    "website": "https://www.pavilioncapital.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "General Atlantic",
+    "website": "https://www.generalatlantic.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.generalatlantic.com/"
+  },
+  {
+    "company": "Bessemer Venture Partners",
+    "website": "https://www.bvp.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.bvp.com/team"
+  },
+  {
+    "company": "Prosus Ventures",
+    "website": "https://www.prosus.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.prosus.com/about-us"
+  },
+  {
+    "company": "Naspers Foundry",
+    "website": "https://www.naspers.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.naspers.com/the-group/leadership"
+  },
+  {
+    "company": "Temasek",
+    "website": "https://www.temasek.com.sg/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.temasek.com.sg/en/about-us"
+  },
+  {
+    "company": "SoftBank Investment Advisers",
+    "website": "https://group.softbank/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://group.softbank/about/corporate_governance"
+  },
+  {
+    "company": "SoftBank Ventures Asia",
+    "website": "https://www.softbank.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "The operation was aborted due to timeout"
+  },
+  {
+    "company": "Insight Partners",
+    "website": "https://www.insightpartners.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.insightpartners.com/onsite/"
+  },
+  {
+    "company": "Coatue Management",
+    "website": "https://www.coatue.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.coatue.com/blog/press/our-continued-partnership-with-anthropic"
+  },
+  {
+    "company": "DST Global",
+    "website": "https://dstglobal.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Dragoneer Investment Group",
+    "website": "https://www.dragoneer.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Blackstone Growth",
+    "website": "https://www.blackstone.com/",
+    "reason": "homepage-fetch-failed",
+    "detail": 403
+  },
+  {
+    "company": "Warburg Pincus",
+    "website": "https://warburgpincus.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://warburgpincus.com/"
+  },
+  {
+    "company": "Bain Capital",
+    "website": "https://www.baincapital.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.baincapital.com/about-us"
+  },
+  {
+    "company": "Carlyle Group",
+    "website": "https://www.carlyle.com/",
+    "reason": "homepage-fetch-failed",
+    "detail": 403
+  },
+  {
+    "company": "Creador",
+    "website": "https://www.creador.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://creador.com/about/our-story/"
+  },
+  {
+    "company": "British International Investment",
+    "website": "https://www.bii.co.uk/",
+    "reason": "homepage-fetch-failed",
+    "detail": 403
+  },
+  {
+    "company": "Norfund",
+    "website": "https://www.norfund.no/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.norfund.no/about-norfund/"
+  },
+  {
+    "company": "FMO Entrepreneurial Development Bank",
+    "website": "https://www.fmo.nl/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.fmo.nl/about-fmo"
+  },
+  {
+    "company": "Proparco",
+    "website": "https://www.proparco.fr/fr",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.proparco.fr/fr"
+  },
+  {
+    "company": "Michael & Susan Dell Foundation",
+    "website": "https://www.dell.org/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.dell.org/"
+  },
+  {
+    "company": "Cisco Investments",
+    "website": "https://www.cisco.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.cisco.com/site/us/en/about/whats-new.html"
+  },
+  {
+    "company": "Samsung Ventures",
+    "website": "https://www.samsungventures.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Amazon Smbhav Venture Fund",
+    "website": "https://www.aboutamazon.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.aboutamazon.in/news/small-business/amazon-india-smbhav-pledges"
+  },
+  {
+    "company": "SC Ventures",
+    "website": "https://www.sc.com/en/about/innovation/sc-ventures/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.sc.com/en/about/"
+  },
+  {
+    "company": "Unilever Ventures",
+    "website": "https://www.unileverventures.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.unileverventures.com/about/"
+  }
+]

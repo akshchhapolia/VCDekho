@@ -1,0 +1,32 @@
+{
+  "generatedAt": "2026-07-30T06:00:00.000Z",
+  "found": [
+    {
+      "company": "Fireside Ventures",
+      "name": "Kanwaljit Singh",
+      "title": "Founder & Managing Partner",
+      "linkedinUrl": "https://www.linkedin.com/in/singhkanwaljit",
+      "sourceUrl": "https://firesideventures.com/pages/kanwaljit-singh",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Inflexor Ventures",
+      "name": "Jatin Desai",
+      "title": "Founder And Managing Director",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.inflexor.vc/about",
+      "method": "agent-verified",
+      "companyType": "VC"
+    },
+    {
+      "company": "Inflexor Ventures",
+      "name": "Pratip Mazumdar",
+      "title": "Co-Founder And Partner",
+      "linkedinUrl": "",
+      "sourceUrl": "https://www.inflexor.vc/about",
+      "method": "agent-verified",
+      "companyType": "VC"
+    }
+  ]
+}

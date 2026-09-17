@@ -1,0 +1,26 @@
+# Hit production every 6 hours so unlock/directory/login cannot die silently.
+name: Prod canary
+
+on:
+  schedule:
+    - cron: '15 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Canary vcdekho.com
+        run: node scripts/canary_prod.js
+        env:
+          CANARY_BASE: https://vcdekho.com
+          CANARY_TOKEN: ${{ secrets.CANARY_TOKEN }}

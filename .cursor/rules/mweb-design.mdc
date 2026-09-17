@@ -1,0 +1,78 @@
+---
+description: Mobile web (mweb) CSS/JS guardrails — changes must not affect desktop (dweb)
+globs: css/**/*.css,style.css,**/*.html,investors/*.js,people/*.js,js/nav.js
+alwaysApply: false
+---
+
+# Mobile web design — desktop isolation
+
+VC Dekho uses **desktop-first CSS**. Desktop styles are the default; mobile is layered on top.
+
+## Golden rule
+
+**Never change desktop appearance.** All mweb redesign work goes inside `@media (max-width: …)` blocks only.
+
+- Do **not** edit shared base selectors outside media queries unless fixing a bug that affects both (rare — ask first).
+- Do **not** convert the codebase to mobile-first (`min-width` desktop overrides) in this phase.
+- Do **not** change desktop HTML structure for mobile convenience; prefer CSS-only overrides or mobile-only elements hidden on desktop.
+
+## Canonical breakpoints
+
+Use only these tiers (align JS `matchMedia` with CSS):
+
+| Tier | Query | Use for |
+|------|--------|---------|
+| Tablet | `max-width: 992px` | Scroll unlock, home/hero layout |
+| Mobile | `max-width: 768px` | Nav drawer, touch targets, filter bar |
+| Small phone | `max-width: 640px` | Directory cards, profile section heads |
+
+Avoid introducing new breakpoint values (720, 860, 960, etc.) unless replacing an existing one in the same PR.
+
+**Desktop floor:** treat **≥993px** as dweb for QA.
+
+## Scoping overrides
+
+Prefer page/body scoping inside mobile blocks so rules cannot leak:
+
+```css
+/* ✅ GOOD — scoped, max-width only */
+@media (max-width: 768px) {
+  body.inv-dir-page .inv-dir-header { … }
+  body.inv-investor-profile .inv-profile-hero-row { … }
+}
+
+/* ❌ BAD — changes desktop base */
+.inv-dir-header { padding: 0.5rem; }
+
+/* ❌ BAD — unscoped global that affects dweb at wrong widths */
+.inv-dir-header { display: block; }
+```
+
+Existing body classes: `inv-dir-page`, `inv-page`, `inv-investor-profile`, `inv-person-profile`, `home-page`, `scrollable-page`.
+
+## Mobile-only markup
+
+If adding HTML/JS for mobile:
+
+- Hide on desktop: `@media (min-width: 993px) { .mweb-only { display: none !important; } }`
+- Or use elements that only render meaningfully under `max-width` (e.g. drawer/backdrop already gated by CSS).
+
+Prefix new mobile-only classes with `mweb-` when they have no desktop role.
+
+## Files and workflow
+
+- Edit split bundles: `css/base.css`, `css/hero.css`, `css/directory.css`, `css/ambient.css`, `css/blog.css`.
+- If editing `style.css`, run `node scripts/split_css.js` afterward — do not let split files drift.
+- Bump `?v=` on changed CSS bundles in HTML/SSR after deploy.
+- Largest mweb surface: `css/directory.css` (directories + profiles).
+
+## JS alignment
+
+- Filter drawer / mobile labels: `matchMedia('(max-width: 768px)')` in `investors/investors.js`, `people/people.js`.
+- Parallax off: `992px` in `app.js` — do not change without matching CSS.
+
+## Before finishing any mweb change
+
+1. Spot-check **dweb at 1280px+** (nav, directory table, profile hero, home).
+2. Spot-check **mweb at 375px** (iPhone width).
+3. Confirm no desktop selector was modified outside `@media (max-width: …)`.

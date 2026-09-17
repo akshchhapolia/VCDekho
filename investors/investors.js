@@ -1,5 +1,102 @@
-(function () {
-  const PAGE_SIZE = 24;
+(function (global) {
+  function hasDirSession() {
+    if (global.VCAuth && global.VCAuth.hasStoredSession) return global.VCAuth.hasStoredSession();
+    return /(?:^|;\s*)vd_access_token=/.test(document.cookie || '');
+  }
+
+  function loginForPager() {
+    var next = global.location.pathname + global.location.search;
+    if (global.VCAuth && global.VCAuth.loginUrl) {
+      global.location.assign(global.VCAuth.loginUrl(next));
+      return;
+    }
+    global.location.assign('/login?next=' + encodeURIComponent(next));
+  }
+
+  var fundsPagerGo = null;
+  var fundsPagerPending = null;
+  var fundsSetFiltersOpen = null;
+
+  function onFundsPagerClick(e) {
+    var btn = e.target && e.target.closest ? e.target.closest('#inv-next, #inv-prev') : null;
+    if (!btn || btn.disabled) return;
+    var dir = btn.id === 'inv-next' ? 1 : -1;
+    if (fundsPagerGo) {
+      fundsPagerGo(dir);
+      return;
+    }
+    if (dir > 0 && !hasDirSession()) {
+      loginForPager();
+      return;
+    }
+    fundsPagerPending = dir;
+  }
+
+  if (typeof document !== 'undefined' && !document.documentElement.dataset.vcInvPager) {
+    document.documentElement.dataset.vcInvPager = '1';
+    document.addEventListener('click', onFundsPagerClick, true);
+  }
+
+  function paintFundsFilters(open) {
+    var sidebar = document.getElementById('inv-dir-sidebar');
+    var backdrop = document.getElementById('inv-filters-backdrop');
+    var toggle = document.getElementById('inv-filters-toggle');
+    var layout = sidebar ? document.querySelector('.inv-dir-layout') : null;
+    if (!sidebar) return;
+    var isMobile = window.matchMedia('(max-width: 960px)').matches;
+    sidebar.classList.toggle('is-open', open);
+    if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.classList.toggle('inv-dir-filters-open', open);
+    if (backdrop) {
+      backdrop.hidden = !open;
+      if (open && isMobile) document.body.appendChild(backdrop);
+    }
+    if (open && isMobile) {
+      document.body.appendChild(sidebar);
+      return;
+    }
+    var main = layout && layout.querySelector('.inv-dir-main');
+    if (layout && sidebar.parentNode !== layout) {
+      if (main) layout.insertBefore(sidebar, main);
+      else layout.insertBefore(sidebar, layout.firstChild);
+    }
+  }
+
+  function onFundsFiltersClick(e) {
+    var t = e.target && e.target.closest
+      ? e.target.closest('#inv-filters-toggle, #inv-filters-close, #inv-filters-backdrop')
+      : null;
+    if (!t) return;
+    if (t.id === 'inv-filters-toggle') {
+      if (global.VCNav && global.VCNav.close) global.VCNav.close();
+      if (fundsSetFiltersOpen) fundsSetFiltersOpen(true);
+      else {
+        paintFundsFilters(true);
+        requestAnimationFrame(function () {
+          bootFundsDirectory();
+        });
+      }
+      return;
+    }
+    if (fundsSetFiltersOpen) fundsSetFiltersOpen(false);
+    else paintFundsFilters(false);
+  }
+
+  if (typeof document !== 'undefined' && !document.documentElement.dataset.vcInvFilters) {
+    document.documentElement.dataset.vcInvFilters = '1';
+    document.addEventListener('click', onFundsFiltersClick, true);
+  }
+
+  function bootFundsDirectory() {
+    var root = document.getElementById('inv-results');
+    if (!root) return;
+    var dropdownsAlive = Boolean(document.querySelector('#inv-dir-sidebar .inv-dd-trigger'));
+    if (root.getAttribute('data-booted') === '1' && dropdownsAlive && fundsSetFiltersOpen) return;
+    if (global.__vcInvAc) global.__vcInvAc.abort();
+    var ac = new AbortController();
+    global.__vcInvAc = ac;
+    var onDoc = { signal: ac.signal };
+  const PAGE_SIZE = 15;
   const STAGE_GUIDE_IDS = {
     'pre-seed': true,
     seed: true,
@@ -15,6 +112,7 @@
     type: '',
     thesis: '',
     cheque: '',
+    active: '',
     offset: 0,
     total: 0,
     filters: null
@@ -22,6 +120,7 @@
 
   const els = {
     search: document.getElementById('inv-search'),
+    active: document.getElementById('filter-active'),
     clear: document.getElementById('inv-clear'),
     count: document.getElementById('inv-count'),
     guideSlot: document.getElementById('inv-guide-slot'),
@@ -34,6 +133,8 @@
     sidebar: document.getElementById('inv-dir-sidebar'),
     backdrop: document.getElementById('inv-filters-backdrop')
   };
+  if (!els.search || !els.results) return;
+  root.setAttribute('data-booted', '1');
 
   const dropdowns = {};
 
@@ -52,6 +153,17 @@
   }
 
   function createDropdown(root, key) {
+    if (!root) {
+      dropdowns[key] = {
+        get value() { return ''; },
+        set value(v) {},
+        setOptions: function () {},
+        setOnChange: function () {},
+        open: function () {},
+        close: function () {}
+      };
+      return dropdowns[key];
+    }
     const placeholder = root.getAttribute('data-placeholder') || 'All';
     root.innerHTML =
       '<button type="button" class="inv-dd-trigger" aria-haspopup="listbox" aria-expanded="false">' +
@@ -155,8 +267,20 @@
     return text;
   }
 
+  // Mweb: drawer lives inside .inv-dir-wrap (z-index: 10), so portal it to <body>
+  // when open — otherwise the header logo + backdrop sit above and block taps.
+
+  function restoreFiltersSidebar() {
+    var layout = document.querySelector('.inv-dir-layout');
+    if (!els.sidebar || !layout || els.sidebar.parentNode === layout) return;
+    var main = layout.querySelector('.inv-dir-main');
+    if (main) layout.insertBefore(els.sidebar, main);
+    else layout.insertBefore(els.sidebar, layout.firstChild);
+  }
+
   function setFiltersOpen(open) {
     if (!els.sidebar) return;
+    var isMobile = window.matchMedia('(max-width: 960px)').matches;
     els.sidebar.classList.toggle('is-open', open);
     if (els.backdrop) {
       els.backdrop.hidden = !open;
@@ -166,23 +290,38 @@
     }
     document.body.classList.toggle('inv-dir-filters-open', open);
     if (!open) closeAllDropdowns();
+
+    if (isMobile && open) {
+      if (els.backdrop) document.body.appendChild(els.backdrop);
+      document.body.appendChild(els.sidebar);
+    } else {
+      restoreFiltersSidebar();
+    }
   }
+  fundsSetFiltersOpen = setFiltersOpen;
 
   function renderSkeleton(count) {
     const n = count || 8;
+    if (els.results) els.results.setAttribute('aria-busy', 'true');
     els.results.innerHTML = Array.from({ length: n }, () => `
       <div class="inv-dir-row inv-dir-skel" aria-hidden="true">
         <div class="inv-dir-col inv-dir-col-fund">
-          <span class="inv-skel inv-skel-type"></span>
-          <span class="inv-skel inv-skel-name"></span>
+          <span class="inv-dir-fund-mark"><span class="inv-skel inv-skel-mark"></span></span>
+          <span class="inv-dir-fund-text">
+            <span class="inv-skel inv-skel-type"></span>
+            <span class="inv-skel inv-skel-name"></span>
+          </span>
         </div>
         <div class="inv-dir-col inv-dir-col-stages">
+          <span class="inv-dir-mobile-label">Stages</span>
           <span class="inv-skel inv-skel-line"></span>
         </div>
         <div class="inv-dir-col inv-dir-col-sectors">
+          <span class="inv-dir-mobile-label">Sectors</span>
           <span class="inv-skel inv-skel-line inv-skel-wide"></span>
         </div>
         <div class="inv-dir-col inv-dir-col-ticket">
+          <span class="inv-dir-mobile-label">Ticket</span>
           <span class="inv-skel inv-skel-ticket"></span>
         </div>
       </div>
@@ -197,7 +336,7 @@
       const id = (ids || [])[i];
       const href = id && hrefForId(id);
       if (href) {
-        return '<a class="inv-dir-inline-link" href="' + esc(href) + '">' + esc(label) + '</a>';
+        return '<a class="inv-dir-inline-link" href="' + esc(href) + '" onclick="event.stopPropagation()">' + esc(label) + '</a>';
       }
       return esc(label);
     });
@@ -236,7 +375,7 @@
     if (!investors.length) {
       els.results.innerHTML =
         '<div class="inv-dir-empty-state">' +
-          '<p class="inv-dir-empty-title">No matching investors</p>' +
+          '<p class="inv-dir-empty-title">No matching funds</p>' +
           '<p class="inv-dir-empty-copy">Try clearing filters or searching a different fund, sector, or stage.</p>' +
           '<button type="button" class="inv-dir-empty-action" id="inv-empty-clear">Clear filters</button>' +
         '</div>';
@@ -247,32 +386,35 @@
       return;
     }
 
+    const isMobileList = window.matchMedia('(max-width: 768px)').matches;
+
     els.results.innerHTML = investors.map(inv => {
+      const P = window.VCSitePaths || {};
       const stagesHtml = joinLinked(
         inv.stages,
         inv.stageIds,
-        id => (STAGE_GUIDE_IDS[id] ? '/investors/stages/' + id : null),
-        4
+        id => (STAGE_GUIDE_IDS[id] ? (P.fundStage || function (s) { return '/funds/stages/' + s; })(id) : null),
+        isMobileList ? 3 : 4
       );
       const thesisHtml = joinLinked(
         inv.thesisThemes,
         inv.thesisThemeIds,
-        id => (id && id !== 'general' ? '/investors/themes/' + id : null),
-        3
+        id => (id && id !== 'general' ? (P.fundTheme || function (s) { return '/funds/themes/' + s; })(id) : null),
+        isMobileList ? 1 : 3
       );
-      const sectorsText = joinList(inv.sectors, 3);
+      const sectorsText = joinList(inv.sectors, isMobileList ? 2 : 3);
       const sectorsThesis = [sectorsText !== '—' ? esc(sectorsText) : '', thesisHtml !== '—' ? thesisHtml : '']
         .filter(Boolean)
         .join(' · ') || '—';
 
-      const href = '/investors/' + esc(inv.slug);
+      const href = (P.fund || function (s) { return '/funds/' + s; })(inv.slug);
       return `
       <article class="inv-dir-row">
-        <a class="inv-dir-row-hit" href="${href}" aria-label="${esc(inv.name)}"></a>
+        <a class="inv-dir-row-hit" href="${href}" aria-label="${esc(inv.name)}" data-analytics-event="dir_result_click" data-analytics-params='{"directory":"funds","slug":"${esc(inv.slug)}"}'></a>
         <div class="inv-dir-col inv-dir-col-fund">
           <span class="inv-dir-fund-mark">${logoHtml(inv)}</span>
           <span class="inv-dir-fund-text">
-            <span class="inv-dir-type">${esc(inv.type || 'Investor')}</span>
+            <span class="inv-dir-type">${esc(inv.type || 'Investor')}${inv.activelyDeploying ? ' <span class="inv-dir-active-dot" title="Actively deploying — linked to a funding round in the last 6 months" aria-label="Actively deploying"></span>' : ''}</span>
             <span class="inv-dir-name">${esc(inv.name)}</span>
           </span>
         </div>
@@ -301,19 +443,55 @@
     if (!els.guideSlot) return;
     if (state.stage && STAGE_GUIDE_IDS[state.stage]) {
       const label = findFilterLabel(state.filters && state.filters.stages, state.stage) || state.stage;
+      const stageHref = (window.VCSitePaths && window.VCSitePaths.fundStage)
+        ? window.VCSitePaths.fundStage(state.stage)
+        : '/funds/stages/' + esc(state.stage);
       els.guideSlot.innerHTML =
         '<span class="inv-dir-dot" aria-hidden="true">·</span>' +
-        '<a class="inv-dir-guide-link" href="/investors/stages/' + esc(state.stage) + '">Open ' + esc(label) + ' guide →</a>';
+        '<a class="inv-dir-guide-link" href="' + stageHref + '">Open ' + esc(label) + ' guide →</a>';
       return;
     }
     if (state.thesis && state.thesis !== 'general') {
       const label = findFilterLabel(state.filters && state.filters.thesisThemes, state.thesis) || state.thesis;
+      const themeHref = (window.VCSitePaths && window.VCSitePaths.fundTheme)
+        ? window.VCSitePaths.fundTheme(state.thesis)
+        : '/funds/themes/' + esc(state.thesis);
       els.guideSlot.innerHTML =
         '<span class="inv-dir-dot" aria-hidden="true">·</span>' +
-        '<a class="inv-dir-guide-link" href="/investors/themes/' + esc(state.thesis) + '">Open ' + esc(label) + ' guide →</a>';
+        '<a class="inv-dir-guide-link" href="' + themeHref + '">Open ' + esc(label) + ' guide →</a>';
       return;
     }
     els.guideSlot.innerHTML = '';
+  }
+
+  function activeFilterCount() {
+    var n = 0;
+    if (state.q) n++;
+    if (state.sector) n++;
+    if (state.stage) n++;
+    if (state.type) n++;
+    if (state.thesis) n++;
+    if (state.cheque) n++;
+    if (state.active) n++;
+    return n;
+  }
+
+  function updateMobileFiltersLabel() {
+    if (!els.filtersToggle) return;
+    var titleEl = document.querySelector('.inv-dir-header h1');
+    var isMobile = window.matchMedia('(max-width: 768px)').matches;
+    var active = activeFilterCount();
+    if (!isMobile) {
+      els.filtersToggle.textContent = 'Filters';
+      els.filtersToggle.classList.remove('has-active-filters');
+      if (titleEl) titleEl.textContent = 'Funds';
+      return;
+    }
+    // Mweb: count in title; orange dot on button when any filter is applied
+    var total = state.total ? state.total.toLocaleString('en-IN') : '…';
+    els.filtersToggle.textContent = 'Filters';
+    els.filtersToggle.classList.toggle('has-active-filters', active > 0);
+    if (titleEl) titleEl.textContent = 'Funds(' + total + ')';
   }
 
   function updatePager() {
@@ -328,9 +506,62 @@
     els.next.disabled = state.offset + PAGE_SIZE >= state.total;
     els.count.textContent = `${state.total.toLocaleString('en-IN')} funds`;
     updateGuideSlot();
+    updateMobileFiltersLabel();
+  }
+
+  async function directoryFetch(url) {
+    if (state.offset > 0 && !hasDirSession()) {
+      loginForPager();
+      return null;
+    }
+    const needsAuth = state.offset > 0;
+    const res = needsAuth
+      ? await window.VCAuth.authFetch(url)
+      : await fetch(url);
+    if (res.status === 401) {
+      loginForPager();
+      return null;
+    }
+    return res;
   }
 
   async function load() {
+    const isFirstDefaultPage =
+      state.offset === 0 &&
+      !state.q &&
+      !state.sector &&
+      !state.stage &&
+      !state.type &&
+      !state.thesis &&
+      !state.cheque &&
+      !state.active;
+
+    if (isFirstDefaultPage) {
+      const el = document.getElementById('inv-prerender');
+      if (el) {
+        try {
+          const data = JSON.parse(el.textContent);
+          if (data && data.prerendered && Array.isArray(data.investors)) {
+            if (!state.filters && data.filters) {
+              state.filters = data.filters;
+              dropdowns.sector.setOptions(data.filters.sectors || [], state.sector);
+              dropdowns.stage.setOptions(data.filters.stages || [], state.stage);
+              dropdowns.type.setOptions(data.filters.types || [], state.type);
+              dropdowns.thesis.setOptions(data.filters.thesisThemes || [], state.thesis);
+              dropdowns.cheque.setOptions(data.filters.chequeRanges || [], state.cheque);
+            }
+            state.total = data.total || 0;
+            renderRows(data.investors);
+            updatePager();
+            if (els.results) els.results.setAttribute('aria-busy', 'false');
+            return;
+          }
+        } catch (_) {
+          /* fall through to fetch */
+        }
+      }
+    }
+
     renderSkeleton(8);
     if (!state.total) {
       els.count.textContent = 'Fetching funds';
@@ -342,16 +573,15 @@
       type: state.type,
       thesis: state.thesis,
       cheque: state.cheque,
+      active: state.active,
       limit: String(PAGE_SIZE),
       offset: String(state.offset)
     });
 
-    const res = await window.VCAuth.authFetch(`/api/investors/list?${params.toString()}`);
-    if (res.status === 401) {
-      window.location.replace(window.VCAuth.loginUrl());
-      return;
-    }
-    if (!res.ok) throw new Error('Failed to load investors');
+    const res = await directoryFetch(`/api/investors/list?${params.toString()}`);
+    if (!res) return;
+    if (res.status === 429) throw new Error('rate_limit');
+    if (!res.ok) throw new Error('Failed to load funds');
     const data = await res.json();
 
     if (!state.filters && data.filters) {
@@ -368,14 +598,26 @@
     updatePager();
   }
 
+  function trackFilter(name, value) {
+    if (window.VCAnalytics && value) {
+      window.VCAnalytics.track('dir_filter_change', { directory: 'funds', filter: name, value: value });
+    }
+  }
+
   function resetOffsetAndLoad() {
     state.offset = 0;
     load().catch(err => {
       console.error(err);
       els.results.innerHTML =
         '<div class="inv-dir-empty-state">' +
-          '<p class="inv-dir-empty-title">Couldn’t load investors</p>' +
-          '<p class="inv-dir-empty-copy">Check your connection and try again.</p>' +
+          '<p class="inv-dir-empty-title">' +
+            (err && err.message === 'rate_limit' ? 'Too many requests' : 'Couldn’t load funds') +
+          '</p>' +
+          '<p class="inv-dir-empty-copy">' +
+            (err && err.message === 'rate_limit'
+              ? 'Please wait a moment and try again.'
+              : 'Check your connection and try again.') +
+          '</p>' +
           '<button type="button" class="inv-dir-empty-action" id="inv-empty-retry">Retry</button>' +
         '</div>';
       const btn = document.getElementById('inv-empty-retry');
@@ -392,46 +634,64 @@
     }, 250);
   });
 
-  dropdowns.sector.setOnChange(v => { state.sector = v; resetOffsetAndLoad(); });
-  dropdowns.stage.setOnChange(v => { state.stage = v; resetOffsetAndLoad(); });
-  dropdowns.type.setOnChange(v => { state.type = v; resetOffsetAndLoad(); });
-  dropdowns.thesis.setOnChange(v => { state.thesis = v; resetOffsetAndLoad(); });
-  dropdowns.cheque.setOnChange(v => { state.cheque = v; resetOffsetAndLoad(); });
+  dropdowns.sector.setOnChange(v => { state.sector = v; trackFilter('sector', v); resetOffsetAndLoad(); });
+  dropdowns.stage.setOnChange(v => { state.stage = v; trackFilter('stage', v); resetOffsetAndLoad(); });
+  dropdowns.type.setOnChange(v => { state.type = v; trackFilter('type', v); resetOffsetAndLoad(); });
+  dropdowns.thesis.setOnChange(v => { state.thesis = v; trackFilter('thesis', v); resetOffsetAndLoad(); });
+  dropdowns.cheque.setOnChange(v => { state.cheque = v; trackFilter('cheque', v); resetOffsetAndLoad(); });
+
+  if (els.active) {
+    els.active.addEventListener('change', () => {
+      state.active = els.active.checked ? '1' : '';
+      resetOffsetAndLoad();
+    });
+  }
 
   els.clear.addEventListener('click', () => {
-    state.q = state.sector = state.stage = state.type = state.thesis = state.cheque = '';
+    state.q = state.sector = state.stage = state.type = state.thesis = state.cheque = state.active = '';
     els.search.value = '';
     dropdowns.sector.value = '';
     dropdowns.stage.value = '';
     dropdowns.type.value = '';
     dropdowns.thesis.value = '';
     dropdowns.cheque.value = '';
+    if (els.active) els.active.checked = false;
     resetOffsetAndLoad();
   });
 
-  els.prev.addEventListener('click', () => {
-    state.offset = Math.max(0, state.offset - PAGE_SIZE);
+  function goPager(dir) {
+    if (dir < 0) {
+      if (state.offset <= 0) return;
+      state.offset = Math.max(0, state.offset - PAGE_SIZE);
+    } else {
+      if (state.offset + PAGE_SIZE >= state.total) return;
+      if (!hasDirSession()) {
+        loginForPager();
+        return;
+      }
+      state.offset = state.offset + PAGE_SIZE;
+    }
     load().catch(console.error);
-  });
-  els.next.addEventListener('click', () => {
-    state.offset = state.offset + PAGE_SIZE;
-    load().catch(console.error);
-  });
-
-  if (els.filtersToggle) {
-    els.filtersToggle.addEventListener('click', () => setFiltersOpen(true));
   }
-  if (els.filtersClose) {
-    els.filtersClose.addEventListener('click', () => setFiltersOpen(false));
-  }
-  if (els.backdrop) {
-    els.backdrop.addEventListener('click', () => setFiltersOpen(false));
+  fundsPagerGo = goPager;
+  if (fundsPagerPending) {
+    var queued = fundsPagerPending;
+    fundsPagerPending = null;
+    goPager(queued);
   }
 
-  document.addEventListener('click', () => closeAllDropdowns());
+  document.addEventListener('click', () => closeAllDropdowns(), onDoc);
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeAllDropdowns();
-  });
+    if (e.key === 'Escape') {
+      closeAllDropdowns();
+      setFiltersOpen(false);
+    }
+  }, onDoc);
+
+  window.addEventListener('resize', function () {
+    updateMobileFiltersLabel();
+    if (!window.matchMedia('(max-width: 960px)').matches) setFiltersOpen(false);
+  }, onDoc);
 
   const params0 = new URLSearchParams(window.location.search);
   if (params0.get('stage')) state.stage = params0.get('stage');
@@ -439,10 +699,52 @@
   if (params0.get('sector')) state.sector = params0.get('sector');
   if (params0.get('type')) state.type = params0.get('type');
   if (params0.get('cheque')) state.cheque = params0.get('cheque');
+  if (params0.get('active') === '1') {
+    state.active = '1';
+    if (els.active) els.active.checked = true;
+  }
   if (params0.get('q')) {
     state.q = params0.get('q');
     els.search.value = state.q;
   }
 
   resetOffsetAndLoad();
-})();
+
+  setTimeout(function () {
+    var n = document.querySelectorAll('#inv-dir-sidebar .inv-dd-trigger').length;
+    if (n < 4 && global.VCReport) {
+      global.VCReport('filter_boot_failed', { directory: 'funds', triggers: n });
+    }
+  }, 2500);
+  }
+
+  global.VCFundsDir = {
+    boot: bootFundsDirectory,
+    goPager: function (dir) {
+      if (fundsPagerGo) fundsPagerGo(dir);
+    },
+    destroy: function () {
+      if (global.__vcInvAc) global.__vcInvAc.abort();
+      fundsPagerGo = null;
+      fundsSetFiltersOpen = null;
+    }
+  };
+
+  function scheduleFundsBoot() {
+    if (!document.getElementById('inv-results')) return;
+    if (document.querySelector('script[src*="/_next/"]') && !global.__vcClientReady) {
+      document.addEventListener('vc:client-ready', function onReady() {
+        document.removeEventListener('vc:client-ready', onReady);
+        bootFundsDirectory();
+      });
+      return;
+    }
+    bootFundsDirectory();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scheduleFundsBoot);
+  } else {
+    scheduleFundsBoot();
+  }
+})(typeof window !== 'undefined' ? window : this);

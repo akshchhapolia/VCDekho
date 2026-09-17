@@ -1,0 +1,299 @@
+[
+  {
+    "company": "Andhra Pradesh Innovation Society",
+    "website": "https://apis.ap.gov.in/home/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://apis.ap.gov.in/home/"
+  },
+  {
+    "company": "Gujarat Student Startup Innovation Hub / i-Hub",
+    "website": "https://www.startupgujarat.in/",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Karnataka Innovation Authority / Elevate",
+    "website": "https://startup.karnataka.gov.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "The operation was aborted due to timeout"
+  },
+  {
+    "company": "Tamil Nadu Startup & Innovation Mission",
+    "website": "https://startuptn.in/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Odisha Startup / Startup Odisha",
+    "website": "https://startupodisha.gov.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Telangana TSIC / T-Hub related programs",
+    "website": "https://enrich.telangana.gov.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Unitus Ventures",
+    "website": "https://unitus.vc/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://unitus.vc/"
+  },
+  {
+    "company": "Seedfund",
+    "website": "https://seedfund.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://seedfund.com/team"
+  },
+  {
+    "company": "Infuse Ventures",
+    "website": "https://infuseventures.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "The operation was aborted due to timeout"
+  },
+  {
+    "company": "Asha Impact",
+    "website": "https://ashaimpact.com/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "Circulate Capital",
+    "website": "https://www.circulatecapital.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.circulatecapital.com/about-us/"
+  },
+  {
+    "company": "Amicus Capital",
+    "website": "https://www.amicuscapital.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.amicuscapital.in/about-us/"
+  },
+  {
+    "company": "Zodius Capital",
+    "website": "",
+    "reason": "no-website"
+  },
+  {
+    "company": "Know3 Ventures",
+    "website": "",
+    "reason": "no-website"
+  },
+  {
+    "company": "Locomotive Ventures",
+    "website": "",
+    "reason": "no-website"
+  },
+  {
+    "company": "Soonicorn Club Ventures",
+    "website": "https://soonicornventures.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://soonicornventures.com/"
+  },
+  {
+    "company": "Beej Capital",
+    "website": "https://www.hugedomains.com/domain_profile.cfm?d=beejcapital.com",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.hugedomains.com/about.cfm"
+  },
+  {
+    "company": "Systemiq Capital",
+    "website": "https://www.systemiq.earth/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.systemiq.earth/"
+  },
+  {
+    "company": "UnLtd India",
+    "website": "https://unltdindia.org/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://unltdindia.org/"
+  },
+  {
+    "company": "C-CAMP",
+    "website": "https://www.ccamp.res.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "IKP Knowledge Park",
+    "website": "https://ikpknowledgepark.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://ikpknowledgepark.com/"
+  },
+  {
+    "company": "a-IDEA NAARM",
+    "website": "https://www.aidea.naarm.org.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Pusa Krishi",
+    "website": "https://pusakrishi.iari.res.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Agri Udaan",
+    "website": "https://www.agriudaan.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "NABI Mohali",
+    "website": "https://nabi.res.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://nabi.res.in/cms?slug=%23"
+  },
+  {
+    "company": "Electropreneur Park",
+    "website": "https://www.electropreneurpark.com",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "STPI Centres of Entrepreneurship",
+    "website": "https://www.stpi.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.stpi.in/"
+  },
+  {
+    "company": "T-Works",
+    "website": "https://tworks.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://tworks.telangana.gov.in/about-us"
+  },
+  {
+    "company": "Cisco LaunchPad",
+    "website": "https://launchpad.cisco.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://startups.cisco.com/c/aboutus.html"
+  },
+  {
+    "company": "SAP.iO Foundry India",
+    "website": "https://sap.io",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "Google for Startups Accelerator India",
+    "website": "https://startup.google.com/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://startup.google.com/alumni/"
+  },
+  {
+    "company": "Microsoft for Startups India",
+    "website": "https://www.microsoft.com/en-in/startups",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
+  },
+  {
+    "company": "AWS Activate India",
+    "website": "https://aws.amazon.com/startups/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://aws.amazon.com/partners/work-with-partners/?nc1=f_dr"
+  },
+  {
+    "company": "NVIDIA Inception",
+    "website": "https://www.nvidia.com/en-us/startups/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.nvidia.com/en-us/"
+  },
+  {
+    "company": "Yes Fintech",
+    "website": "https://www.yesbank.in",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "TiE ScaleUp",
+    "website": "https://tie.org/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://tie.org/about/"
+  },
+  {
+    "company": "TiE Nurture",
+    "website": "https://tie.org/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://tie.org/about/"
+  },
+  {
+    "company": "Founders Institute Bangalore",
+    "website": "https://fi.co/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://fi.co/partners"
+  },
+  {
+    "company": "Founders Institute Hyderabad",
+    "website": "https://fi.co/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://fi.co/partners"
+  },
+  {
+    "company": "Founders Institute Mumbai",
+    "website": "https://fi.co/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://fi.co/partners"
+  },
+  {
+    "company": "IISc SID",
+    "website": "https://sid.iisc.ac.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "IIT Hyderabad i-TIC",
+    "website": "https://i-tic.iith.ac.in",
+    "reason": "homepage-fetch-failed",
+    "detail": "fetch failed"
+  },
+  {
+    "company": "IIT Guwahati Technology Incubation Centre",
+    "website": "https://www.iitg.ac.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.iitg.ac.in/iitg_page_details?page=1/about-us"
+  },
+  {
+    "company": "IIT Ropar Incubation Foundation",
+    "website": "https://www.iitrpr.ac.in/",
+    "reason": "no-usable-text",
+    "detail": ""
+  },
+  {
+    "company": "IIT Mandi Catalyst",
+    "website": "https://iitmandi.ac.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://iitmandi.ac.in/"
+  },
+  {
+    "company": "IIT Indore Innovation",
+    "website": "https://www.iiti.ac.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.iiti.ac.in/page/about-us"
+  },
+  {
+    "company": "IIT Bhubaneswar Research & Entrepreneurship Park",
+    "website": "https://www.iitbbs.ac.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.iitbbs.ac.in/index.php/home/about/"
+  },
+  {
+    "company": "IIT Roorkee TIDES",
+    "website": "https://www.iitr.ac.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.iitr.ac.in/team_chakra/"
+  },
+  {
+    "company": "NITK STEP",
+    "website": "https://www.nitk.ac.in/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.nitk.ac.in/about_us"
+  },
+  {
+    "company": "NIT Trichy TBI",
+    "website": "https://www.nitt.edu/",
+    "reason": "no-names-in-text",
+    "sourceUrl": "https://www.nitt.edu/home/about/"
+  }
+]

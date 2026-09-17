@@ -42,7 +42,7 @@ function isProductionHost(host) {
 function loginRedirect(req, res) {
   const host = req.headers['x-forwarded-host'] || req.headers.host || 'vcdekho.com';
   const proto = req.headers['x-forwarded-proto'] || 'https';
-  const path = req.url || '/investors';
+  const path = req.url || '/funds';
   const next = encodeURIComponent(path.startsWith('/') ? path : '/' + path);
   res.writeHead(302, { Location: `${proto}://${host}/login?next=${next}` });
   res.end();
@@ -106,8 +106,44 @@ async function requireAuth(req, res) {
   }
 }
 
+function touchUserActivity(user, req) {
+  try {
+    const { recordUserActivitySafe } = require('./user-analytics');
+    recordUserActivitySafe(user, req);
+  } catch (_) {}
+}
+
+async function requireAuthWithActivity(req, res) {
+  const user = await requireAuth(req, res);
+  if (user) touchUserActivity(user, req);
+  return user;
+}
+
+/** Returns user when a valid token is present; otherwise null (no 401). */
+async function optionalAuth(req) {
+  if (!isProductionHost(requestHost(req))) {
+    return { id: 'preview', email: 'preview@local' };
+  }
+
+  const authHeader = String(req.headers.authorization || '');
+  let token = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : null;
+  if (!token) {
+    token = readCookie(req.headers.cookie, 'vd_access_token');
+  }
+  if (!token) return null;
+
+  try {
+    return await verifyAccessToken(token);
+  } catch (_) {
+    return null;
+  }
+}
+
 module.exports = {
   requireAuth,
+  requireAuthWithActivity,
+  optionalAuth,
+  touchUserActivity,
   verifyAccessToken,
   isProductionHost,
   requestHost,
