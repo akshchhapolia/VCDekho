@@ -55,8 +55,8 @@ Rules:
  * @param {{ force?: boolean, triggeredBy?: string }} [options]
  */
 async function runAiBlog(options = {}) {
-  if (!process.env.GEMINI_API_KEY) {
-    throw new Error('GEMINI_API_KEY is missing');
+  if (!process.env.GEMINI_API_KEY && !process.env.ANTHROPIC_API_KEY) {
+    throw new Error('GEMINI_API_KEY or ANTHROPIC_API_KEY is required');
   }
   if (!process.env.DATABASE_URL) {
     throw new Error('DATABASE_URL is missing');

@@ -101,7 +101,9 @@ async function testModuleLoads() {
     path.join(ROOT, 'utils', 'site-icons.js'),
     path.join(ROOT, 'utils', 'run-ai-process.js'),
     path.join(ROOT, 'utils', 'run-daily-digest.js'),
-    path.join(ROOT, 'utils', 'run-ai-blog.js')
+    path.join(ROOT, 'utils', 'run-ai-blog.js'),
+    path.join(ROOT, 'utils', 'article-image.js'),
+    path.join(ROOT, 'utils', 'blog-topics.js')
   ];
 
   for (const file of [...apiFiles, ...renderFiles, ...extra]) {
@@ -1237,12 +1239,78 @@ function testNextAppShell() {
   }
 }
 
+function testArticleImages() {
+  console.log('\nArticle images');
+  try {
+    const {
+      imageFromRssItem,
+      isUsableImageUrl,
+      fallbackHeroImage,
+      resolveArticleImage
+    } = require('../utils/article-image');
+
+    const fromEnclosure = imageFromRssItem({
+      enclosure: { url: 'https://cdn.example.com/hero.jpg', type: 'image/jpeg' }
+    });
+    if (fromEnclosure !== 'https://cdn.example.com/hero.jpg') {
+      fail('rss enclosure image', fromEnclosure);
+    } else {
+      pass('rss enclosure image');
+    }
+
+    const fromMedia = imageFromRssItem({
+      mediaContent: [{ $: { url: 'https://cdn.example.com/media.webp', medium: 'image' } }]
+    });
+    if (fromMedia !== 'https://cdn.example.com/media.webp') {
+      fail('rss media:content image', fromMedia);
+    } else {
+      pass('rss media:content image');
+    }
+
+    const fromHtml = imageFromRssItem({
+      content: '<p>Hello <img src="https://cdn.example.com/body.png" alt=""></p>'
+    });
+    if (fromHtml !== 'https://cdn.example.com/body.png') {
+      fail('rss html image', fromHtml);
+    } else {
+      pass('rss html image');
+    }
+
+    if (imageFromRssItem({ enclosure: { url: 'https://cdn.example.com/audio.mp3', type: 'audio/mpeg' } })) {
+      fail('skip audio enclosure', 'audio URL was accepted');
+    } else {
+      pass('skip audio enclosure');
+    }
+
+    if (!isUsableImageUrl('https://images.unsplash.com/photo-1') || isUsableImageUrl('/local.png')) {
+      fail('usable image url guard');
+    } else {
+      pass('usable image url guard');
+    }
+
+    const hero = fallbackHeroImage('funding-round');
+    if (!/^https:\/\/images\.unsplash\.com\//.test(hero)) {
+      fail('fallback hero image', hero);
+    } else {
+      pass('fallback hero image');
+    }
+
+    return resolveArticleImage({ rssImage: 'https://cdn.example.com/keep.jpg' }).then((url) => {
+      if (url !== 'https://cdn.example.com/keep.jpg') fail('resolve prefers rss image', url);
+      else pass('resolve prefers rss image');
+    });
+  } catch (err) {
+    fail('article image helpers', err);
+  }
+}
+
 async function main() {
   console.log('VC Dekho smoke tests');
   const hasDb = Boolean(process.env.DATABASE_URL);
   console.log('DATABASE_URL:', hasDb ? 'set (full SSR extras)' : 'not set (core SSR only)');
 
   await testModuleLoads();
+  await testArticleImages();
   testStaticAssets();
   testSiteIcons();
   testNextAppShell();

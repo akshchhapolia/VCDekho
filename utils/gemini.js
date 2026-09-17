@@ -150,10 +150,48 @@ async function generateText({
     return await call(model);
   } catch (err) {
     if (err.retryWithFallback) {
-      return await call(FALLBACK_MODEL);
+      try {
+        return await call(FALLBACK_MODEL);
+      } catch (fallbackErr) {
+        err = fallbackErr;
+      }
+    }
+    if (isFatalGeminiError(err) && process.env.ANTHROPIC_API_KEY) {
+      console.warn('Gemini unavailable, falling back to Anthropic:', String(err.message || err).slice(0, 180));
+      return generateWithAnthropic({ system, user, maxOutputTokens, jsonMode });
     }
     throw err;
   }
+}
+
+async function generateWithAnthropic({ system, user, maxOutputTokens, jsonMode }) {
+  const { Anthropic } = require('@anthropic-ai/sdk');
+  const model = process.env.ANTHROPIC_NEWS_MODEL || 'claude-sonnet-4-6';
+  const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const systemText = jsonMode
+    ? String(system || '') + '\nReturn ONLY valid JSON. Do not wrap in markdown.'
+    : String(system || '');
+  const msg = await client.messages.create({
+    model,
+    max_tokens: Math.max(32, maxOutputTokens || 1200),
+    system: systemText,
+    messages: [{ role: 'user', content: String(user || '') }]
+  });
+  const text = (msg.content || [])
+    .map((part) => (part && part.type === 'text' ? part.text : ''))
+    .join('');
+  if (!text.trim()) {
+    throw new Error('Anthropic returned empty text for model ' + model);
+  }
+  return {
+    text,
+    usage: {
+      inputTokens: (msg.usage && msg.usage.input_tokens) || 0,
+      outputTokens: (msg.usage && msg.usage.output_tokens) || 0,
+      costUsd: 0
+    },
+    model: msg.model || model
+  };
 }
 
 module.exports = {

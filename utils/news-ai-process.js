@@ -7,6 +7,7 @@ const {
     PROSE_MODEL
 } = require('./gemini');
 const { articlePublishedAt } = require('./article-dates');
+const { resolveArticleImage } = require('./article-image');
 
 const FACT_EXTRACTION_SYSTEM = `You are a VC and startup news analyst. Extract structured facts from the news report(s) below. Multiple articles from different sources about the SAME event may be provided; collate the information into a single cohesive set of facts. Return ONLY a valid JSON object with these keys: startup_name, news_category (e.g., 'Funding', 'Acquisition', 'Product Launch', 'Milestone', 'Tech/Research'), key_highlight (a short phrase summarizing the main achievement/metric, e.g. '$5M Seed', 'Acquired for $10M', or 'Crossed 1M Users'), amount_raised, currency, stage, lead_investors (array), other_investors (array), country, city, industry, startup_description (one sentence, max 20 words), and is_major_news (boolean). Set is_major_news to true ONLY IF this is a highly significant event (e.g. raised >$10M USD, or is a major strategic milestone for a well-known startup). If a field is not mentioned, use null. Do not include any text outside the JSON object.`;
 
@@ -29,8 +30,8 @@ const SEO_SYSTEM = `You are an SEO specialist. Given the article below, return O
 
 async function processItem(item) {
     try {
-        if (!process.env.GEMINI_API_KEY) {
-            throw new Error('GEMINI_API_KEY is missing');
+        if (!process.env.GEMINI_API_KEY && !process.env.ANTHROPIC_API_KEY) {
+            throw new Error('GEMINI_API_KEY or ANTHROPIC_API_KEY is required');
         }
 
         const duplicates = [];
@@ -90,10 +91,17 @@ async function processItem(item) {
         const wordCount = generatedArticle.split(/\s+/).length;
         const finalStatus = wordCount < 150 ? 'discarded' : 'published';
         const publishedAt = finalStatus === 'published' ? articlePublishedAt(item) : null;
+        const imageUrl = finalStatus === 'published'
+            ? await resolveArticleImage({
+                rssImage: item.image_url,
+                sourceUrl: item.source_url,
+                seed: metadata.slug || item.title
+            })
+            : null;
 
         await db.query(
-            `INSERT INTO articles (raw_content_id, title, body, slug, meta_title, meta_description, tags, category, source_name, source_url, internal_link_entities, status, published_at)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
+            `INSERT INTO articles (raw_content_id, title, body, slug, meta_title, meta_description, tags, category, source_name, source_url, image_url, internal_link_entities, status, published_at)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)`,
             [
                 item.id,
                 item.title,
@@ -105,6 +113,7 @@ async function processItem(item) {
                 'funding-round',
                 item.source_name,
                 item.source_url,
+                imageUrl,
                 metadata.internal_link_entities,
                 finalStatus,
                 publishedAt

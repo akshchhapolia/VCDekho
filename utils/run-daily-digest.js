@@ -9,6 +9,7 @@ const {
   digestPublishedAtFromDay,
   groupItemsByNewsDay
 } = require('./article-dates');
+const { resolveArticleImage } = require('./article-image');
 
 const DIGEST_SYSTEM = `You are a tech and startup ecosystem analyst writing for VCDekho. Write a comprehensive "Startup & Tech Daily Digest" article summarizing the provided news items.
 Rules:
@@ -69,10 +70,17 @@ async function publishDigestForDay(dayStr, pendingItems) {
   const baseSlug = `startup-tech-digest-${dayStr}`;
   const slug = await uniqueSlug(baseSlug);
   const publishedAt = digestPublishedAtFromDay(dayStr);
+  const rssImage = pendingItems.map((item) => item.image_url).find(Boolean);
+  const sourceUrl = pendingItems.map((item) => item.source_url).find((url) => /^https?:\/\//i.test(String(url || '')));
+  const imageUrl = await resolveArticleImage({
+    rssImage,
+    sourceUrl,
+    seed: slug
+  });
 
   await db.query(
-    `INSERT INTO articles (raw_content_id, title, body, slug, meta_title, meta_description, tags, category, source_name, source_url, status, published_at)
-     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
+    `INSERT INTO articles (raw_content_id, title, body, slug, meta_title, meta_description, tags, category, source_name, source_url, image_url, status, published_at)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
     [
       pendingItems[0].id,
       articleTitle,
@@ -84,6 +92,7 @@ async function publishDigestForDay(dayStr, pendingItems) {
       'daily-digest',
       'VCDekho Original',
       '/',
+      imageUrl,
       'published',
       publishedAt
     ]

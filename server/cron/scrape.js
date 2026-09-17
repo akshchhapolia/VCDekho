@@ -5,14 +5,29 @@ const { runBuzzScrape } = require('../../utils/buzz-scrape');
 const { runAiProcess } = require('../../utils/run-ai-process');
 const { runDailyDigest } = require('../../utils/run-daily-digest');
 const { runAiBlog } = require('../../utils/run-ai-blog');
+const { imageFromRssItem } = require('../../utils/article-image');
 
 const parser = new Parser({
     timeout: 15000,
     headers: {
         'User-Agent': 'Mozilla/5.0 (compatible; VCDekhoBot/1.0; +https://vcdekho.com)',
         'Accept': 'application/rss+xml, application/xml, text/xml, */*'
+    },
+    customFields: {
+        item: [
+            ['media:content', 'mediaContent', { keepArray: true }],
+            ['media:thumbnail', 'mediaThumbnail'],
+            ['content:encoded', 'contentEncoded']
+        ]
     }
 });
+
+let rawImageColumnReady = false;
+async function ensureRawImageColumn() {
+    if (rawImageColumnReady) return;
+    await db.query(`ALTER TABLE raw_content ADD COLUMN IF NOT EXISTS image_url TEXT`);
+    rawImageColumnReady = true;
+}
 
 // VCCircle no longer exposes a public RSS feed (endpoints return HTML/500).
 // LiveMint Companies is used as the PE/VC-adjacent Indian business source.
@@ -101,6 +116,8 @@ module.exports = async function handler(req, res) {
         let errors = [];
         let sourcesOk = 0;
 
+        await ensureRawImageColumn();
+
         const recentRows = await db.query(`SELECT title, source_url FROM raw_content WHERE scraped_at > NOW() - INTERVAL '14 days'`);
         const recentItems = recentRows.rows;
 
@@ -115,6 +132,7 @@ module.exports = async function handler(req, res) {
                     const title = item.title;
                     const content = item.contentSnippet || item.content || item.description || '';
                     const pubDate = item.pubDate ? new Date(item.pubDate) : new Date();
+                    const imageUrl = imageFromRssItem(item);
 
                     if (recentItems.find(r => r.source_url === url)) {
                         continue;
@@ -131,9 +149,9 @@ module.exports = async function handler(req, res) {
                     if (isDuplicate) {
                         itemsDuplicated++;
                         await db.query(
-                            `INSERT INTO raw_content (source_name, source_url, title, body, published_at_source, status, relevance_score)
-                             VALUES ($1, $2, $3, $4, $5, 'duplicate', 0) ON CONFLICT (source_url) DO NOTHING`,
-                            [source.name, url, title, content, pubDate]
+                            `INSERT INTO raw_content (source_name, source_url, title, body, published_at_source, status, relevance_score, image_url)
+                             VALUES ($1, $2, $3, $4, $5, 'duplicate', 0, $6) ON CONFLICT (source_url) DO NOTHING`,
+                            [source.name, url, title, content, pubDate, imageUrl]
                         );
                         recentItems.push({ title, source_url: url });
                         continue;
@@ -144,9 +162,9 @@ module.exports = async function handler(req, res) {
                     if (status === 'queued') itemsQueued++;
 
                     await db.query(
-                        `INSERT INTO raw_content (source_name, source_url, title, body, published_at_source, status, relevance_score)
-                         VALUES ($1, $2, $3, $4, $5, $6, $7) ON CONFLICT (source_url) DO NOTHING`,
-                        [source.name, url, title, content, pubDate, status, score]
+                        `INSERT INTO raw_content (source_name, source_url, title, body, published_at_source, status, relevance_score, image_url)
+                         VALUES ($1, $2, $3, $4, $5, $6, $7, $8) ON CONFLICT (source_url) DO NOTHING`,
+                        [source.name, url, title, content, pubDate, status, score, imageUrl]
                     );
                     recentItems.push({ title, source_url: url });
                 }
@@ -199,6 +217,22 @@ module.exports = async function handler(req, res) {
             meta.aiBlog = await runAiBlog({ triggeredBy: 'scrape' });
         } catch (blogErr) {
             meta.aiBlog = { error: blogErr.message };
+        }
+
+        const chained = [meta.aiProcess, meta.dailyDigest, meta.aiBlog].filter(Boolean);
+        const chainedText = chained
+            .flatMap((m) => [m.error, m.alertSubject, ...(m.errors || [])].filter(Boolean))
+            .join('\n');
+        if (
+            chained.some((m) => m.alert || m.error) ||
+            /prepayment credits are depleted|RESOURCE_EXHAUSTED|credit balance is too low/i.test(chainedText)
+        ) {
+            meta.alert = true;
+            meta.alertSeverity = 'error';
+            meta.alertSubject = /prepayment credits are depleted|RESOURCE_EXHAUSTED|credit balance is too low/i.test(chainedText)
+                ? 'News pipeline: LLM billing failed'
+                : 'News pipeline: chained AI job failed';
+            meta.alertBody = chainedText.slice(0, 4000);
         }
 
         return meta;

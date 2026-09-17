@@ -81,6 +81,12 @@ async function runAiProcess(options = {}) {
         meta.alertSeverity = 'error';
         meta.alertSubject = 'AI process: 0 items processed with non-empty queue';
         meta.alertBody = errors.join('\n') || 'All items failed';
+        const billingDead = errors.some((e) =>
+            /prepayment credits are depleted|RESOURCE_EXHAUSTED|API_KEY_INVALID|credit balance is too low/i.test(String(e))
+        );
+        if (billingDead) {
+            throw new Error(meta.alertBody);
+        }
     }
 
     return meta;

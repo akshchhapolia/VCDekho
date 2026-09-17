@@ -19,6 +19,9 @@ async function migrate() {
         console.log("Adding image_url column to articles...");
         await pool.query(`ALTER TABLE articles ADD COLUMN IF NOT EXISTS image_url TEXT;`);
 
+        console.log("Adding image_url column to raw_content...");
+        await pool.query(`ALTER TABLE raw_content ADD COLUMN IF NOT EXISTS image_url TEXT;`);
+
         console.log("Creating investor_activity table...");
         await pool.query(`
             CREATE TABLE IF NOT EXISTS investor_activity (

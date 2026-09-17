@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS raw_content (
     scraped_at TIMESTAMPTZ DEFAULT NOW(),
     status TEXT NOT NULL DEFAULT 'raw', -- raw, queued, duplicate, discarded, processing, done
     relevance_score INTEGER DEFAULT 0,
-    error_log TEXT
+    error_log TEXT,
+    image_url TEXT
 );
 
 -- 2. articles table
